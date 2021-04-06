@@ -1,6 +1,6 @@
 ---
 title: Gallery
-icon: fa-photo
+icon: fa-camera-retro
 order: 5
 ---
 
