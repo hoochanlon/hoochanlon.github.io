@@ -3,7 +3,7 @@ require 'yaml'
 
 SOURCE = "."
 CONFIG = {
-  'posts' => File.join(SOURCE, "_posts"),
+  'posts' => File.join(SOURCE, "_posts/#{Time.now().year()}"),
   'post_ext' => "md",
 }
 
