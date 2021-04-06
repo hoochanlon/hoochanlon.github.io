@@ -5,7 +5,7 @@ theme: jekyll-theme-chirpy
 
 # Only if your site type is GitHub Project sites and doesn't have a custom domain,
 # change below value to '/projectname'.
-baseurl: ''
+baseurl: '/hoochanlon.github.io'
 
 # the HTML language tag › https://www.w3.org/International/questions/qa-choosing-language-tags
 lang: en-US
@@ -15,14 +15,12 @@ timezone: Asia/Shanghai
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Chirpy                          # the main title
+title: Hoo.C.Lon                       # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: <i class="fas fa-pen-nib"></i> A note app by Jekyll theme  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+  体会·记录·反思
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://hoochanlon.github.io'
@@ -92,6 +90,7 @@ disqus:
   shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 paginate: 10
+paginate_path: "blog/page:num"
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -108,13 +107,14 @@ kramdown:
 
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # Or you think you're smart enough to change other relevant URLs within this template.
-permalink: /posts/:title/
+permalink: /posts/:year/:month/:day/:hour-:minute.html
 
 collections:
   tabs:
     output: true
     sort_by: order
 
+right: true
 
 defaults:
   -

@@ -151,6 +151,7 @@ footer {
       @include no-text-decoration;
     }
   }
+
   .footer-right {
     text-align: right;
   }
@@ -601,6 +602,7 @@ $sidebar-display: "sidebar-display";
 
   a {
     @include sidebar-links;
+    font-family: serif;
 
     &:hover {
       @include no-text-decoration;

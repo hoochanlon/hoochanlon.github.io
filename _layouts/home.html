@@ -49,10 +49,17 @@ layout: page
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h1>
 
-    <div class="post-content">
+    <!-- <div class="post-content">
       <p>
         {% include no-linenos.html content=post.content %}
         {{ content | markdownify | strip_html | truncate: 200 }}
+      </p>
+    </div> -->
+
+    <div class="post-content">
+      <p>
+        {% include no-linenos.html content=post.content %}
+        {{ post.excerpt |content | markdownify | strip_html | truncate: 200 }}
       </p>
     </div>
 

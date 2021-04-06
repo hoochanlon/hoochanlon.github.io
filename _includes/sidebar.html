@@ -40,7 +40,7 @@
     {% for tab in site.tabs %}
     <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
       <a href="{{ tab.url | relative_url }}" class="nav-link">
-        <i class="fa-fw {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
+        <i class="fa-fw fas {{ tab.icon }} ml-xl-3 mr-xl-3 unloaded"></i>
         <span>{{ tab.title | upcase }}</span>
       </a>
     </li> <!-- .nav-item -->
@@ -56,6 +56,8 @@
           https://github.com/{{ site.github.username }}
         {%- elsif entry.type == 'twitter' -%}
           https://twitter.com/{{ site.twitter.username }}
+          {%- elsif entry.type == 'weixin' -%}
+          /assets/qr/wx.png
         {%- elsif entry.type == 'email' -%}
           {% assign email = site.social.email | split: '@' %}
           javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
