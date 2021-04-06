@@ -90,7 +90,7 @@ disqus:
   shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 paginate: 10
-paginate_path: "/blog/page:num"
+paginate_path: "/moment/page:num"
 
 # ------------ The following options are not recommended to be modified ------------------
 
