@@ -5,6 +5,8 @@
 # bundler cache
 _site
 vendor
+.bundle
+
 Gemfile.lock
 
 # rubygem
