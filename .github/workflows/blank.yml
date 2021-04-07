@@ -23,15 +23,20 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Runs a single command using the runners shell
-      - name: ruby Install 🔧
+      - name: ruby Install & jekyll build🔧
         run:
-          rpm ruby install
-          npm run bui
+          apt-get ruby install
+          gem install jekyll
+          gem install bundle
+          bundle install
+          bundle add webrick
+          jekyll build
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.7
+        with:
+          # 为了让 GitHub触发重新构建页面，您必须使用存储库提供的GitHub令牌来提供操作, GITHUB_TOKEN 是系统默认提供的  不需要单独配置环境变量
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages 
+          FOLDER: _site 
