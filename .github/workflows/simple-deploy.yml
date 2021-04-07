@@ -1,4 +1,4 @@
-name: Ruby
+name: simple-deploy
 
 on:
   push:
@@ -24,6 +24,6 @@ jobs:
       with: # optional
         git-user: 'hoochanlon'
         git-email: 'hoochanlon@outlook.com'
-        git-base-folder: '_test'
-        commit-message: 'qwer'
+        git-base-folder: '_site'
+        commit-message: 'deploy'
         branch: 'gh-pages'
