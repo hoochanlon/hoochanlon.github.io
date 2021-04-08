@@ -107,7 +107,8 @@ kramdown:
 
 # DO NOT change this unless you're a Pro user on Jekyll and Web development,
 # Or you think you're smart enough to change other relevant URLs within this template.
-permalink: /posts/:year/:month/:day/:hour-:minute.html
+
+permalink: /:year/:month-:day-:hour.:minute.html
 
 collections:
   tabs:

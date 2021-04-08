@@ -26,7 +26,7 @@
           <span>{{ page.title }}</span>
 
         {% else %}
-        <span>
+        <!-- <span>
           {% assign url = item %}
           {% if item == 'posts' and page.layout == 'post' %}
             {% assign url = '/' %}
@@ -34,7 +34,17 @@
           <a href="{{ url | relative_url }}"> 
             {{ item | capitalize }}
           </a>
-        </span>
+        </span> -->
+
+        <span>
+          {% assign url = item %}
+          {% if item == 'posts' and page.layout == 'post' %}
+            {% assign url = '/' %}
+          {% endif %}
+          <a href="{{'archives' | relative_url}}"> 
+            {{ item | capitalize }}
+          </a>
+        </span> 
 
         {% endif %}
 
