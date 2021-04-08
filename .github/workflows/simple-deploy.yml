@@ -17,7 +17,7 @@ jobs:
         ruby-version: 2.6
     - name: Install dependencies
       run: bundle install
-    - name: Run tests
+    - name: Run jekyll build
       run: bundle exec jekyll build
     - name: Simple deploy with git
       uses: rdarida/simple-github-pages-deploy-action@v1
