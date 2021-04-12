@@ -43,7 +43,8 @@ mermaid: true
 * 冗余淀长的配置是否合理？**在对比同类型文章的情况下**
 * 在大方向上，自己要分几步走？
 
-```sequence
+```mermaid
+sequenceDiagram
 dockerfile->image:build
 image->container:run
 container->image:commit
