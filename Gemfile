@@ -31,3 +31,7 @@ gem "webrick", "~> 1.7"
 gem "jekyll-theme-chirpy", "~> 3.2"
 
 
+
+gem "rake", "~> 13.0"
+
+gem "i18n", "~> 1.8"
