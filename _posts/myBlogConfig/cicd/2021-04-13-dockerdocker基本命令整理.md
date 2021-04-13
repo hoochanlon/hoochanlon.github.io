@@ -56,3 +56,4 @@ docker push hoochanlon/httpd-t:0.1
 ```
 
 我们的最终目的其实就是提交远程镜像做一个备份环境仓，这样转移平台配置环境，就只在docker进行操作。
+
