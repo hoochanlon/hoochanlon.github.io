@@ -1,0 +1,20 @@
+# hidden files
+.*
+!.github
+!.gitignore
+!.gitattributes
+
+# bundler cache
+_site
+vendor
+.bundle
+.DS_Store
+
+Gemfile.lock
+
+# rubygem
+*.gem
+
+# npm dependencies
+node_modules
+package-lock.json
