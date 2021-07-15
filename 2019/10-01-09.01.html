@@ -1,0 +1,3041 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en-US" 
+  
+>
+
+  <!--
+  The Head
+-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    <meta name="pv-cache-enabled" content="false">
+
+    
+  
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="关于信息开发环境包下载过慢的解决方案" />
+<meta name="author" content="hoochanlon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。 进入GitHub 网速慢或被封锁，github.com.cnpmjs.org 、hub.fastgit.org在这个镜像地址登录访问、下载也是可以的。 然后是使用淘宝源加快国内git下载：https://npm.taobao.org/mirrors/git-for-windows ，npm/yarn下载组件方面，均可使用淘宝镜像 1 2 npm install -g cnpm --registry=https://registry.npm.taobao.org yarn config set registry https://registry.npm.taobao.org GitHub下载 将以下host复制进C:\Windows\System32\drivers\etc\hosts，再使用命令行输入ipconfig /flushdns刷新dns缓存。目的：此host只为解除GFW对GitHub（asw、ssh）下载及克隆的网络限制干扰（不排除服务器吞吐、光缆受地理限制等原因） 如果某条hosts的IP、域名变更，而又没及时更新容易引发浏览器的连接错误重置指向，造成站点无法访问， 详情 GitHub RST与Git SSL_ERR_SYSCALL综合分析 关于releases，它可以是压缩包如zip、7z等格式；也可以是软体程式，比方说：exe、msi 打开www.ipaddress.com，查询以下链接的DNS解析地址 1 2 3 4 5 6 github.com assets-cdn.github.com github.global.ssl.fastly.net # 下载链接 raw.githubusercontent.com 的实际地址 codeload.github.com 记录下查询到的IP地址，并添加进入C:\Windows\System32\drivers\etc\Hosts文件 添加 aws host 1 2 219.76.4.4 s3.amazonaws.com 219.76.4.4 github-cloud.s3.amazonaws.com 运行cmd输入ipconfig /flushdns 指令刷新系统DNS 我们也可利用jsDelivr CDN加速进行下载文件，也可借此搭建访问速度加快的图床；还有站点加速下载也可试试： https://toolwa.com/github/ http://g.widyun.com/ https://shrill-pond-3e81.hunsh.workers.dev/ http://www.toolzl.com/tools/githubjiasu.html 再使用chrome扩展 GitHub加速 + IDM/FDM 强强联合🤣 GitHub.io 解析 raw/avatars.githubusercontent.com 无法解析 除了host外，还可以配置国内知名的dns进行解析；因为1.1.1.1不一定好使，所以就用国内的。 百度DNS：180.76.76.76 阿里DNS：223.5.5.5、223.6.6.6 腾讯DNS：119.29.29.29、182.254.116.116 NET::ERR_CERT_AUTHORITY_INVALID 浏览器会额外提示：攻击者可能试图从 xxx.github.io 窃取你的信息，此服务器无法证明它是 xxx.github.io；你的计算机的操作系统不信任它的安全证书。这可能是由配置错误或者有攻击者截获你的连接而导致的。当继续访问时又会403。 解招！：更改为如上提供的百度、阿里、腾讯DNS，再用ipconfig/flushdns 刷新缓存。原因简述：ISP提供的DNS发送错误的根证书，换成能向访问网站提供正确证书的第三方DNS。 Git Clone 龟速问题 浅克隆 git clone 默认会下载项目的完整历史版本，若只关心最新的代码，而不关心之前的历史，可以使用浅复制功能： 1 $ git clone --depth=1 https://github.com/你的用户名/你的repo.git --depth=1 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，这样即使在红色网络环境下，也可以快速的获得代码；若之后想获取完整历史信息，可以使用指令 $ git fetch --unshallow git ssh方面: https://github.zhlh6.cn/ 加快速度。 Git或终端代理方案 git 1 2 3 4 5 6 7 # 代理设置 git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39; # 取消代理 git config --global --unset https.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global --unset http.proxy &#39;socks5://127.0.0.1:1080&#39; mac 1 2 3 4 5 6 7 8 9 # mac 终端 export http_proxy=&quot;socks5://127.0.0.1:1080&quot; export https_proxy=&quot;socks5://127.0.0.1:1080&quot; ## 在 .bashrc 或 .zshrc 中设置 alias setproxy=&quot;export ALL_PROXY=socks5://127.0.0.1:1080&quot; alias unsetproxy=&quot;unset ALL_PROXY&quot; openssh 1 2 3 4 5 6 7 8 9 # github ssh 配置 ## https://help.github.com/articles/using-ssh-over-the-https-port/ # HTTP 代理 ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8848 # socks5 代理 ProxyCommand nc -v -x 127.0.0.1:1080 %h %p 反向代理加速 —— Static CDN，用来加载图片、内容等： raw.githubusercontent.com 替换raw.staticdn.net 环境包加速 pip 由于部分项目需用到python，因附pip下载加速；pip install 想要安装文件 -i 镜像源地址 指令格式，以镜像源安装。 例：安装jupyter pip install jupyter - i http://mirrors.aliyun.com/pypi/simple/ 国内常用pip源： 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/ 阿里云 http://mirrors.aliyun.com/pypi/simple/ 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 豆瓣 http://pypi.douban.com/simple/ 设定默认值，一劳永逸 1 2 pip install pip -U pip config set global.index-url https://pypi.douban.com/simple/ gem 1 2 gem sources --remove https://rubygems.org/ #移除默认源 gem sources -a https://mirrors.ustc.edu.cn/rubygems/ #添加科大源 npm 1 2 npm config set registry https://registry.npm.taobao.org npm config get registry 总结 环境包下载无非三个问题： 镜像源 代理&amp;VPN，以及hosts 包、库文件的互相对应的版本" />
+<meta property="og:description" content="在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。 进入GitHub 网速慢或被封锁，github.com.cnpmjs.org 、hub.fastgit.org在这个镜像地址登录访问、下载也是可以的。 然后是使用淘宝源加快国内git下载：https://npm.taobao.org/mirrors/git-for-windows ，npm/yarn下载组件方面，均可使用淘宝镜像 1 2 npm install -g cnpm --registry=https://registry.npm.taobao.org yarn config set registry https://registry.npm.taobao.org GitHub下载 将以下host复制进C:\Windows\System32\drivers\etc\hosts，再使用命令行输入ipconfig /flushdns刷新dns缓存。目的：此host只为解除GFW对GitHub（asw、ssh）下载及克隆的网络限制干扰（不排除服务器吞吐、光缆受地理限制等原因） 如果某条hosts的IP、域名变更，而又没及时更新容易引发浏览器的连接错误重置指向，造成站点无法访问， 详情 GitHub RST与Git SSL_ERR_SYSCALL综合分析 关于releases，它可以是压缩包如zip、7z等格式；也可以是软体程式，比方说：exe、msi 打开www.ipaddress.com，查询以下链接的DNS解析地址 1 2 3 4 5 6 github.com assets-cdn.github.com github.global.ssl.fastly.net # 下载链接 raw.githubusercontent.com 的实际地址 codeload.github.com 记录下查询到的IP地址，并添加进入C:\Windows\System32\drivers\etc\Hosts文件 添加 aws host 1 2 219.76.4.4 s3.amazonaws.com 219.76.4.4 github-cloud.s3.amazonaws.com 运行cmd输入ipconfig /flushdns 指令刷新系统DNS 我们也可利用jsDelivr CDN加速进行下载文件，也可借此搭建访问速度加快的图床；还有站点加速下载也可试试： https://toolwa.com/github/ http://g.widyun.com/ https://shrill-pond-3e81.hunsh.workers.dev/ http://www.toolzl.com/tools/githubjiasu.html 再使用chrome扩展 GitHub加速 + IDM/FDM 强强联合🤣 GitHub.io 解析 raw/avatars.githubusercontent.com 无法解析 除了host外，还可以配置国内知名的dns进行解析；因为1.1.1.1不一定好使，所以就用国内的。 百度DNS：180.76.76.76 阿里DNS：223.5.5.5、223.6.6.6 腾讯DNS：119.29.29.29、182.254.116.116 NET::ERR_CERT_AUTHORITY_INVALID 浏览器会额外提示：攻击者可能试图从 xxx.github.io 窃取你的信息，此服务器无法证明它是 xxx.github.io；你的计算机的操作系统不信任它的安全证书。这可能是由配置错误或者有攻击者截获你的连接而导致的。当继续访问时又会403。 解招！：更改为如上提供的百度、阿里、腾讯DNS，再用ipconfig/flushdns 刷新缓存。原因简述：ISP提供的DNS发送错误的根证书，换成能向访问网站提供正确证书的第三方DNS。 Git Clone 龟速问题 浅克隆 git clone 默认会下载项目的完整历史版本，若只关心最新的代码，而不关心之前的历史，可以使用浅复制功能： 1 $ git clone --depth=1 https://github.com/你的用户名/你的repo.git --depth=1 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，这样即使在红色网络环境下，也可以快速的获得代码；若之后想获取完整历史信息，可以使用指令 $ git fetch --unshallow git ssh方面: https://github.zhlh6.cn/ 加快速度。 Git或终端代理方案 git 1 2 3 4 5 6 7 # 代理设置 git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39; # 取消代理 git config --global --unset https.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global --unset http.proxy &#39;socks5://127.0.0.1:1080&#39; mac 1 2 3 4 5 6 7 8 9 # mac 终端 export http_proxy=&quot;socks5://127.0.0.1:1080&quot; export https_proxy=&quot;socks5://127.0.0.1:1080&quot; ## 在 .bashrc 或 .zshrc 中设置 alias setproxy=&quot;export ALL_PROXY=socks5://127.0.0.1:1080&quot; alias unsetproxy=&quot;unset ALL_PROXY&quot; openssh 1 2 3 4 5 6 7 8 9 # github ssh 配置 ## https://help.github.com/articles/using-ssh-over-the-https-port/ # HTTP 代理 ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8848 # socks5 代理 ProxyCommand nc -v -x 127.0.0.1:1080 %h %p 反向代理加速 —— Static CDN，用来加载图片、内容等： raw.githubusercontent.com 替换raw.staticdn.net 环境包加速 pip 由于部分项目需用到python，因附pip下载加速；pip install 想要安装文件 -i 镜像源地址 指令格式，以镜像源安装。 例：安装jupyter pip install jupyter - i http://mirrors.aliyun.com/pypi/simple/ 国内常用pip源： 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/ 阿里云 http://mirrors.aliyun.com/pypi/simple/ 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 豆瓣 http://pypi.douban.com/simple/ 设定默认值，一劳永逸 1 2 pip install pip -U pip config set global.index-url https://pypi.douban.com/simple/ gem 1 2 gem sources --remove https://rubygems.org/ #移除默认源 gem sources -a https://mirrors.ustc.edu.cn/rubygems/ #添加科大源 npm 1 2 npm config set registry https://registry.npm.taobao.org npm config get registry 总结 环境包下载无非三个问题： 镜像源 代理&amp;VPN，以及hosts 包、库文件的互相对应的版本" />
+<link rel="canonical" href="https://hoochanlon.github.io/2019/10-01-09.01.html" />
+<meta property="og:url" content="https://hoochanlon.github.io/2019/10-01-09.01.html" />
+<meta property="og:site_name" content="Hoo.C.Lon" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-01T09:01:43+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="关于信息开发环境包下载过慢的解决方案" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@hoochanlon" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"description":"在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。 进入GitHub 网速慢或被封锁，github.com.cnpmjs.org 、hub.fastgit.org在这个镜像地址登录访问、下载也是可以的。 然后是使用淘宝源加快国内git下载：https://npm.taobao.org/mirrors/git-for-windows ，npm/yarn下载组件方面，均可使用淘宝镜像 1 2 npm install -g cnpm --registry=https://registry.npm.taobao.org yarn config set registry https://registry.npm.taobao.org GitHub下载 将以下host复制进C:\\Windows\\System32\\drivers\\etc\\hosts，再使用命令行输入ipconfig /flushdns刷新dns缓存。目的：此host只为解除GFW对GitHub（asw、ssh）下载及克隆的网络限制干扰（不排除服务器吞吐、光缆受地理限制等原因） 如果某条hosts的IP、域名变更，而又没及时更新容易引发浏览器的连接错误重置指向，造成站点无法访问， 详情 GitHub RST与Git SSL_ERR_SYSCALL综合分析 关于releases，它可以是压缩包如zip、7z等格式；也可以是软体程式，比方说：exe、msi 打开www.ipaddress.com，查询以下链接的DNS解析地址 1 2 3 4 5 6 github.com assets-cdn.github.com github.global.ssl.fastly.net # 下载链接 raw.githubusercontent.com 的实际地址 codeload.github.com 记录下查询到的IP地址，并添加进入C:\\Windows\\System32\\drivers\\etc\\Hosts文件 添加 aws host 1 2 219.76.4.4 s3.amazonaws.com 219.76.4.4 github-cloud.s3.amazonaws.com 运行cmd输入ipconfig /flushdns 指令刷新系统DNS 我们也可利用jsDelivr CDN加速进行下载文件，也可借此搭建访问速度加快的图床；还有站点加速下载也可试试： https://toolwa.com/github/ http://g.widyun.com/ https://shrill-pond-3e81.hunsh.workers.dev/ http://www.toolzl.com/tools/githubjiasu.html 再使用chrome扩展 GitHub加速 + IDM/FDM 强强联合🤣 GitHub.io 解析 raw/avatars.githubusercontent.com 无法解析 除了host外，还可以配置国内知名的dns进行解析；因为1.1.1.1不一定好使，所以就用国内的。 百度DNS：180.76.76.76 阿里DNS：223.5.5.5、223.6.6.6 腾讯DNS：119.29.29.29、182.254.116.116 NET::ERR_CERT_AUTHORITY_INVALID 浏览器会额外提示：攻击者可能试图从 xxx.github.io 窃取你的信息，此服务器无法证明它是 xxx.github.io；你的计算机的操作系统不信任它的安全证书。这可能是由配置错误或者有攻击者截获你的连接而导致的。当继续访问时又会403。 解招！：更改为如上提供的百度、阿里、腾讯DNS，再用ipconfig/flushdns 刷新缓存。原因简述：ISP提供的DNS发送错误的根证书，换成能向访问网站提供正确证书的第三方DNS。 Git Clone 龟速问题 浅克隆 git clone 默认会下载项目的完整历史版本，若只关心最新的代码，而不关心之前的历史，可以使用浅复制功能： 1 $ git clone --depth=1 https://github.com/你的用户名/你的repo.git --depth=1 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，这样即使在红色网络环境下，也可以快速的获得代码；若之后想获取完整历史信息，可以使用指令 $ git fetch --unshallow git ssh方面: https://github.zhlh6.cn/ 加快速度。 Git或终端代理方案 git 1 2 3 4 5 6 7 # 代理设置 git config --global http.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global https.proxy &#39;socks5://127.0.0.1:1080&#39; # 取消代理 git config --global --unset https.proxy &#39;socks5://127.0.0.1:1080&#39; git config --global --unset http.proxy &#39;socks5://127.0.0.1:1080&#39; mac 1 2 3 4 5 6 7 8 9 # mac 终端 export http_proxy=&quot;socks5://127.0.0.1:1080&quot; export https_proxy=&quot;socks5://127.0.0.1:1080&quot; ## 在 .bashrc 或 .zshrc 中设置 alias setproxy=&quot;export ALL_PROXY=socks5://127.0.0.1:1080&quot; alias unsetproxy=&quot;unset ALL_PROXY&quot; openssh 1 2 3 4 5 6 7 8 9 # github ssh 配置 ## https://help.github.com/articles/using-ssh-over-the-https-port/ # HTTP 代理 ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8848 # socks5 代理 ProxyCommand nc -v -x 127.0.0.1:1080 %h %p 反向代理加速 —— Static CDN，用来加载图片、内容等： raw.githubusercontent.com 替换raw.staticdn.net 环境包加速 pip 由于部分项目需用到python，因附pip下载加速；pip install 想要安装文件 -i 镜像源地址 指令格式，以镜像源安装。 例：安装jupyter pip install jupyter - i http://mirrors.aliyun.com/pypi/simple/ 国内常用pip源： 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/ 阿里云 http://mirrors.aliyun.com/pypi/simple/ 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 豆瓣 http://pypi.douban.com/simple/ 设定默认值，一劳永逸 1 2 pip install pip -U pip config set global.index-url https://pypi.douban.com/simple/ gem 1 2 gem sources --remove https://rubygems.org/ #移除默认源 gem sources -a https://mirrors.ustc.edu.cn/rubygems/ #添加科大源 npm 1 2 npm config set registry https://registry.npm.taobao.org npm config get registry 总结 环境包下载无非三个问题： 镜像源 代理&amp;VPN，以及hosts 包、库文件的互相对应的版本","@type":"BlogPosting","url":"https://hoochanlon.github.io/2019/10-01-09.01.html","headline":"关于信息开发环境包下载过慢的解决方案","datePublished":"2019-10-01T09:01:43+08:00","dateModified":"2019-10-01T09:01:43+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://hoochanlon.github.io/2019/10-01-09.01.html"},"author":{"@type":"Person","name":"hoochanlon"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <title>关于信息开发环境包下载过慢的解决方案 | Hoo.C.Lon
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://www.favicon-generator.org/
+-->
+
+
+
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<!-- 
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png">
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png">
+
+<link rel="icon" type="image/png" sizes="192x192"  href="/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"> 
+
+<link rel="manifest" href="/assets/img/favicons/manifest.json">
+<meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'>
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"> -->
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- GA -->
+  
+
+  <!-- jsDelivr CDN -->
+  <link rel="preconnect" href="cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="cdn.jsdelivr.net">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+    crossorigin="anonymous">
+
+  <!--
+  CSS selector for site.
+-->
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+
+
+
+  <!-- JavaScripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+
+  <!--
+  JS selector for site.
+-->
+
+
+  
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157837686-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157837686-1');
+</script>
+
+
+</head>
+
+
+  <body data-spy="scroll" data-target="#toc">
+
+    <!--
+  The Side Bar
+-->
+
+<div id="sidebar" class="d-flex flex-column align-items-end">
+
+  <div class="profile-wrapper text-center">
+    <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        
+        <img src="/assets/img/avatar/avatar1.png" alt="avatar" onerror="this.style.display='none'">
+      </a>
+    </div>
+
+    <div class="site-title mt-3">
+      <a href="/">Hoo.C.Lon</a>
+    </div>
+
+    <div class="site-subtitle font-italic"><i class="fas fa-pen-nib"></i> A note app by Jekyll theme</div>
+
+  </div><!-- .profile-wrapper -->
+
+  <ul class="w-100">
+    <!-- home -->
+    <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>INDEX</span>
+      </a>
+    </li>
+    <!-- the real tabs -->
+    
+    <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/gallery/" class="nav-link">
+        <i class="fa-fw fas fa-camera-retro ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>GALLERY</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+
+  </ul> <!-- ul.nav.flex-column -->
+
+  <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+
+    
+      
+
+      
+      <a href="https://github.com/hoochanlon" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github-alt"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/assets/qr/wx.png" aria-label="weixin"
+        class="order-4"
+        target="_blank" rel="noopener">
+        <i class="fab fa-weixin"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="
+          javascript:location.href = 'mailto:' + ['hoochanlon','outlook.com'].join('@')" aria-label="email"
+        class="order-5"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/feed.xml" aria-label="rss"
+        class="order-6"
+        >
+        <i class="fas fa-rss"></i>
+      </a>
+      
+
+    
+
+    
+      
+        <span class="icon-border order-2"></span>
+      
+
+      <span id="mode-toggle-wrapper" class="order-1">
+        <!--
+  Switch the mode between dark and light.
+-->
+
+<i class="mode-toggle fas fa-adjust"></i>
+
+<script type="text/javascript">
+
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+
+      var self = this;
+
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+
+          self.clearMode();
+        }
+
+        self.updateMermaid();
+      });
+
+    } /* constructor() */
+
+
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+
+    get hasMode() { return this.mode != null; }
+
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+
+      this.updateMermaid();
+
+    } /* flipMode() */
+
+  } /* ModeToggle */
+
+  let toggle = new ModeToggle();
+
+  $(".mode-toggle").click(function() {
+
+    toggle.flipMode();
+
+  });
+
+</script>
+
+      </span>
+    
+
+  </div> <!-- .sidebar-bottom -->
+
+</div><!-- #sidebar -->
+
+
+    <!--
+  The Top Bar
+-->
+
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+  <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+
+    
+
+    
+
+      
+
+        
+          
+
+        
+
+      
+
+        
+        <!-- <span>
+          
+          
+          <a href="/2019"> 
+            2019
+          </a>
+        </span> -->
+
+        <span>
+          
+          
+          <a href="/archives"> 
+            2019
+          </a>
+        </span> 
+
+        
+
+      
+
+        
+          <span>关于信息开发环境包下载过慢的解决方案</span>
+
+        
+
+      
+
+    
+
+    </span><!-- endof #breadcrumb -->
+
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+
+    <div id="topbar-title">
+      Post
+    </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+  </div>
+
+</div>
+
+
+    <div id="main-wrapper">
+      <div id="main">
+
+        <!--
+  Refactor the HTML structure.
+-->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+<!-- Add attribute 'hide-bullet' to the checkbox list -->
+
+
+
+
+<!-- return -->
+<div class="row">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>关于信息开发环境包下载过慢的解决方案</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Tue, Oct  1, 2019,  9:01 AM +0800"
+  >
+
+  
+  
+
+  
+    Oct  1, 2019
+  
+
+  <i class="unloaded">2019-10-01T09:01:43+08:00</i>
+
+</span>
+
+          by
+          <span class="author">
+            hoochanlon
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1110 words">6 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <p>在此之前，你可能需要阅读<a href="https://github.com/hoochanlon/fq-book">《这本书能让你连接互联网》</a>作为知识前提。</p>
+
+<!--more-->
+
+<h2 id="进入github">进入GitHub</h2>
+
+<p>网速慢或被封锁，<a href="https://github.com.cnpmjs.org/">github.com.cnpmjs.org</a> 、<a href="https://hub.fastgit.org">hub.fastgit.org</a>在这个镜像地址登录访问、下载也是可以的。</p>
+
+<p>然后是使用淘宝源加快国内git下载：https://npm.taobao.org/mirrors/git-for-windows ，npm/yarn下载组件方面，均可使用淘宝镜像</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>npm install -g cnpm --registry=https://registry.npm.taobao.org
+yarn config set registry https://registry.npm.taobao.org
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="github下载">GitHub下载</h2>
+
+<p>将以下host复制进<code class="language-plaintext highlighter-rouge">C:\Windows\System32\drivers\etc\hosts</code>，再使用命令行输入<code class="language-plaintext highlighter-rouge">ipconfig /flushdns</code>刷新dns缓存。目的：此host只为解除GFW对GitHub（asw、ssh）下载及克隆的网络限制干扰（不排除服务器吞吐、光缆受地理限制等原因）</p>
+
+<p><strong>如果某条hosts的IP、域名变更，而又没及时更新容易引发浏览器的连接错误重置指向，造成站点无法访问，</strong> 详情 <a href="https://hoochanlon.github.io/note/2020/06-06/74ae1ae6.html">GitHub RST与Git SSL_ERR_SYSCALL综合分析</a></p>
+
+<p>关于releases，它可以是压缩包如zip、7z等格式；也可以是软体程式，比方说：exe、msi</p>
+
+<ol>
+  <li>
+    <p>打开<a href="https://www.ipaddress.com/">www.ipaddress.com</a>，查询以下链接的DNS解析地址</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre> github.com 
+ assets-cdn.github.com 
+ github.global.ssl.fastly.net
+
+ # 下载链接 raw.githubusercontent.com 的实际地址
+ codeload.github.com 
+</pre></td></tr></tbody></table></code></div>    </div>
+  </li>
+  <li>
+    <p>记录下查询到的IP地址，并添加进入<code class="language-plaintext highlighter-rouge">C:\Windows\System32\drivers\etc\Hosts</code>文件</p>
+  </li>
+  <li>
+    <p>添加 aws host</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre> 219.76.4.4 s3.amazonaws.com
+ 219.76.4.4 github-cloud.s3.amazonaws.com
+</pre></td></tr></tbody></table></code></div></div>
+<ol>
+  <li>运行<code class="language-plaintext highlighter-rouge">cmd</code>输入<code class="language-plaintext highlighter-rouge">ipconfig /flushdns</code> 指令刷新系统DNS</li>
+</ol>
+
+<p>我们也可利用<a href="https://www.jsdelivr.com">jsDelivr</a> CDN加速进行下载文件，也可借此搭建访问速度加快的图床；还有站点加速下载也可试试：</p>
+<ul>
+  <li>https://toolwa.com/github/</li>
+  <li>http://g.widyun.com/</li>
+  <li>https://shrill-pond-3e81.hunsh.workers.dev/</li>
+  <li>http://www.toolzl.com/tools/githubjiasu.html</li>
+</ul>
+
+<p>再使用chrome扩展 <a href="https://chrome.google.com/webstore/detail/github%E5%8A%A0%E9%80%9F/mfnkflidjnladnkldfonnaicljppahpg/related?hl=zh-CN">GitHub加速</a> + IDM/FDM 强强联合🤣</p>
+
+<h2 id="githubio-解析">GitHub.io 解析</h2>
+
+<h3 id="rawavatarsgithubusercontentcom-无法解析">raw/avatars.githubusercontent.com 无法解析</h3>
+
+<p>除了host外，还可以配置国内知名的dns进行解析；因为1.1.1.1不一定好使，所以就用国内的。</p>
+
+<ul>
+  <li>百度DNS：180.76.76.76</li>
+  <li>阿里DNS：223.5.5.5、223.6.6.6</li>
+  <li>腾讯DNS：119.29.29.29、182.254.116.116</li>
+</ul>
+
+<h3 id="neterr_cert_authority_invalid">NET::ERR_CERT_AUTHORITY_INVALID</h3>
+
+<p>浏览器会额外提示：攻击者可能试图从 xxx.github.io 窃取你的信息，此服务器无法证明它是 xxx.github.io；你的计算机的操作系统不信任它的安全证书。这可能是由配置错误或者有攻击者截获你的连接而导致的。当继续访问时又会403。</p>
+
+<p>解招！：更改为如上提供的百度、阿里、腾讯DNS，再用<code class="language-plaintext highlighter-rouge">ipconfig/flushdns</code> 刷新缓存。原因简述：ISP提供的DNS发送错误的根证书，换成能向访问网站提供正确证书的第三方DNS。</p>
+
+<h2 id="git-clone-龟速问题">Git Clone 龟速问题</h2>
+
+<h3 id="浅克隆">浅克隆</h3>
+
+<p>git clone 默认会下载项目的完整历史版本，若只关心最新的代码，而不关心之前的历史，可以使用浅复制功能：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>$ git clone --depth=1  https://github.com/你的用户名/你的repo.git
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">--depth=1</code> 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，这样即使在红色网络环境下，也可以快速的获得代码；若之后想获取完整历史信息，可以使用指令 <code class="language-plaintext highlighter-rouge">$ git fetch --unshallow</code></p>
+
+<p>git ssh方面: https://github.zhlh6.cn/ 加快速度。</p>
+
+<h3 id="git或终端代理方案">Git或终端代理方案</h3>
+
+<p><strong><em>git</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre># 代理设置
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+# 取消代理
+git config --global --unset https.proxy 'socks5://127.0.0.1:1080'
+git config --global --unset http.proxy 'socks5://127.0.0.1:1080'
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><strong><em>mac</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>
+# mac 终端
+
+export http_proxy="socks5://127.0.0.1:1080"
+export https_proxy="socks5://127.0.0.1:1080"
+
+## 在 .bashrc 或 .zshrc 中设置
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
+alias unsetproxy="unset ALL_PROXY"
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><strong><em>openssh</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>
+# github ssh 配置
+## https://help.github.com/articles/using-ssh-over-the-https-port/
+
+# HTTP 代理
+ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8848
+
+# socks5 代理
+ ProxyCommand nc -v -x 127.0.0.1:1080 %h %p
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>反向代理加速 —— Static CDN，用来加载图片、内容等：</p>
+
+<ul>
+  <li>raw.githubusercontent.com 替换raw.staticdn.net</li>
+</ul>
+
+<h2 id="环境包加速">环境包加速</h2>
+
+<h3 id="pip">pip</h3>
+
+<p>由于部分项目需用到python，因附pip下载加速；<code class="language-plaintext highlighter-rouge">pip install 想要安装文件 -i 镜像源地址</code> 指令格式，以镜像源安装。</p>
+
+<p>例：安装jupyter <code class="language-plaintext highlighter-rouge">pip install jupyter - i http://mirrors.aliyun.com/pypi/simple/</code></p>
+
+<p>国内常用pip源：</p>
+
+<ul>
+  <li>清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</li>
+  <li>中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</li>
+  <li>阿里云 http://mirrors.aliyun.com/pypi/simple/</li>
+  <li>中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</li>
+  <li>豆瓣  http://pypi.douban.com/simple/</li>
+</ul>
+
+<p>设定默认值，一劳永逸</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>pip install pip -U
+pip config set global.index-url https://pypi.douban.com/simple/
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="gem">gem</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>gem sources --remove https://rubygems.org/  #移除默认源
+gem sources -a https://mirrors.ustc.edu.cn/rubygems/  #添加科大源
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="npm">npm</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>npm config set registry https://registry.npm.taobao.org
+npm config get registry
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="总结">总结</h2>
+
+<p>环境包下载无非三个问题：</p>
+
+<ul>
+  <li>镜像源</li>
+  <li>代理&amp;VPN，以及hosts</li>
+  <li>包、库文件的互相对应的版本</li>
+</ul>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/gfw/'>GFW</a>,
+            <a href='/categories/mirror/'>Mirror</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/no-gfw/"
+            class="post-tag no-text-decoration" >NO!GFW</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+    
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=关于信息开发环境包下载过慢的解决方案 - Hoo.C.Lon&url=https://hoochanlon.github.io/2019/10-01-09.01.html" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=关于信息开发环境包下载过慢的解决方案 - Hoo.C.Lon&u=https://hoochanlon.github.io/2019/10-01-09.01.html" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=关于信息开发环境包下载过慢的解决方案 - Hoo.C.Lon&url=https://hoochanlon.github.io/2019/10-01-09.01.html" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
+
+  <!--
+  The Pannel on right side (Desktop views)
+-->
+
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+
+  <div class="access">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  
+    <div id="access-tags">
+      <span>Trending Tags</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+      </div>
+    </div>
+  
+  </div> <!-- .access -->
+
+  
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
+
+</div> <!-- #panel-wrapper -->
+
+
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4" style="display:none">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/2020/06-06-08.53.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jun  6, 2020
+  
+
+  <i class="unloaded">2020-06-06T08:53:01+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>GitHub RST与Git SSL_ERR_SYSCALL综合分析</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                
+  杜绝主观情绪化因素
+  多方面考虑原因（多种可能）
+  查找及建立两者关联（共同点）
+
+
+主观情绪化会失去客观分析判断能力，正确率几乎忽略不计，必须杜绝主观情绪化再去分析！
+
+
+
+RST
+
+网络封锁重置、hosts IP-DNS映射指向问题
+
+SSL_ERR_SYSCALL
+
+调用传输层自行设置的代理套接字，出现的无法访问的问题。可能存在代理配置或是网址有问题，网址问题则涉及到host...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2021/07-14-15.44.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul 14
+  
+
+  <i class="unloaded">2021-07-14T15:44:49+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>各地域间学生存在的信息茧房</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                一些疑问待我发现。
+
+兴宁
+
+现在写到这里，其实心里也是五味杂陈的，但我还是要把它写下来，由于此前妹妹考上了郴州一中，我想我能够发现新的东西。我所接触的中学虽不算多，加入过的往届中学群实际上也就一两个。但我观察到对于我而言一个重要的现象：
+
+四五线往下的小乡镇（市），教育资源确实不发达，陈旧的铁木桌凳，待报废的电脑与投影设备仪器，多数教师都是上了年纪的土生土长的乡村教师，标着地道的乡音在课堂...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2021/07-13-10.03.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Jul 13
+  
+
+  <i class="unloaded">2021-07-13T10:03:36+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>躺平青年与鸡娃大婶</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                近一两年间新闻及贴吧论坛上不断被提及“躺平”、”摸鱼”，我看过一些自媒体人对此的描述似乎有些混为一谈。努力“奋斗”得不到快速显著的生活质量改善，于是选择躺平，加班劳心伤神，缓解身心做些摸鱼的事情；不过，二者目的是相同的 ———— 为了放松舒服。
+
+有时我在想“读书无用论”是不是和“躺平学”都是同一拨人所提起的。有种微妙的直觉：宣扬“读书无用论”的多是既得利益者，“躺平学”的前提是比起同阶级现...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/2019/09-20-00.00.html" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>解构非规范型服务企业</p>
+  </a>
+  
+
+  
+  <a href="/2019/10-29-04.46.html" class="btn btn-outline-primary"
+    prompt="Newer">
+    <p>2019.10.28 周一 阴</p>
+  </a>
+  
+
+</div>
+
+
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
+
+
+
+
+        <!--
+  The Footer
+-->
+
+<footer class="d-flex w-100 justify-content-center">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="footer-left">
+      <p class="mb-0">
+        ©2018- 2021
+        <a href="https://github.com/hoochanlon">hoochanlon</a>.
+        
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+        
+      </p>
+    </div>
+
+    <div class="showtime" style="text-align: center;">
+      <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span id="busuanzi_container_site_uv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_uv"></span></span> -->
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("3/21/2018 07:27:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "笔记应用在线 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+    </div>    
+
+    <div class="footer-right">
+      <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+      </p>
+    </div>
+
+  </div> <!-- div.d-flex -->
+</footer>
+
+
+      </div>
+
+      <!--
+  The Search results
+-->
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-12 col-sm-11 post-content">
+    <div id="search-hints">
+      <h4 class="text-muted mb-4">Trending Tags</h4>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+
+    </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
+
+    
+
+    <div id="mask"></div>
+
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://hoochanlon.github.io{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+
+
+  </body>
+
+</html>
+

@@ -1,0 +1,3404 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en-US" 
+  
+>
+
+  <!--
+  The Head
+-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    <meta name="pv-cache-enabled" content="false">
+
+    
+  
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="next爬坑深度魔改（四）" />
+<meta name="author" content="hoochanlon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="此文章是在hexo已经搭建成功基础之上，且next主题能在显示正确效果下，进行的较为详细的说明。 参考链接 因为此类教程很多写的还不错且较为详细，所以没必要重复造轮子。这里还有一些插件项目的补充，可看需求自行选择。 Hexo与NexT主题目录结构 hexo的next主题个性化配置教程 打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 使用Hexo搭建博客的深度优化与定制 Next主题个性化之自动更换背景图片 删除标题上下方横线 文章阴影立体层次边框 添加代码块复制功能 各设备图片显示问题 标签页添加标签云 网站动态标题 修改阅读全文按钮样式 博客部分图标引用 使用Hexo基于GitHub-Pages搭建个人博客（三）（相册的实现） 对Hexo-nexT进行简单SEO优化基于Google收录站点 为Hexo NexT主题添加字数统计功能 need-more-share（主题已自带） hexo-tag-cloud hexo-blog-encrypt 遇到过的坑 这里列举常用的，更多详情访问具体项目的issues 设置副标题后显示不出来，要怎么修改？#986 fancybox能否正常使用？ #48 多图功能 图片不能放大 #1043 hexo设置网站的图标Favicon 标签页不能显示标签云#15 btw，如果写作完成且没做任何配置的情况下，hexo g生成有误应该是markdown语法不对 其他细节方面的问题 设置CC协议 参考wiki，也可选择禁用；使用自己定制的cc协议请参考 hexo的next主题个性化配置教程。 修改站点标题字体 （本地字体） themes/next/layout/_partials/header.swig中的custom-logo-site-titlediv部分下添加 1 2 3 4 5 6 7 8 9 &lt;div class=&quot;custom-logo-site-title&quot;&gt; &lt;a href=&quot;&quot; class=&quot;brand&quot; rel=&quot;start&quot;&gt; &lt;span class=&quot;logo-line-before&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;span class=&quot;site-title&quot; style=&quot; font-family:FreeStyle Script;color: #AC161A;&quot;&gt; &lt;/span&gt; &lt;span class=&quot;logo-line-after&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;/a&gt; &lt;/div&gt; 远程调用字体库（兲朝·远程字体） 注册 有字库 并搜索字体，查看语系 中/英 选择立即使用 在要使用该字体的标签属性中添加如下代码：font-family:&#39;FreestyleScriptITC-Normal&#39;;；例如：&lt;h1 style=&quot;font-family:&#39;FreestyleScriptITC-Normal&#39;;&quot; &gt;你的内容&lt;/h1&gt; 将以下代码加到你网页的&lt;head&gt;标签之内。 1 2 &lt;link href=&#39;https://cdn.webfont.youziku.com/webfonts/nomal/129645/33899/5cf0e452f629d80774a3a155.css&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39; /&gt; 将 link 标签代码块添加至 head.swig，再到custom.styl调整即可 1 2 3 4 5 6 7 /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } 添加README.md 在source根目录下添加README.md，再修改hexo的站点配置文件_config.yml，设置skip_render: README.md保存退出即可。使用hexo d命令就不会在渲染README.md这个文件了。 添加相关文章 添加”相关文章”板块实际上是做一次伪升级，因为v5.x并没有，v6.0.x才新增集成的功能；安装npm install hexo-related-popular-posts --save,下载新版本next主题；找到themes\next\layout\_macro\post.swig文件,将如下代码复制在原版本同路径post.swig中,复制位置在支付代码相关部分上方即可例如：代码放在wechat支付的上面。 1 2 3 4 5 {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %} {% include &#39;post-related.swig&#39; with { post: post } %} {% endif %} 将themes\next\layout\_macro\post-related.swig文件复制在原版本同目录中；打开新版本主题中的_config.yml将如下代码复制在原版本主题配置文件中 1 2 3 4 5 6 7 8 9 10 11 12 # Related popular posts # Dependencies: https://github.com/tea3/hexo-related-popular-posts related_posts: enable: true title: # custom header, leave empty to use the default one display_in_home: false params: maxCount: 5 #PPMixingRate: 0.0 #isDate: false #isImage: false #isExcerpt: false 添加文章结尾标记 themes/next/layout/_macro下添加passage-end-tag.swig: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;div&gt; {% if page.passage_end %} &lt;style&gt; .passage_end::after{ content: &quot;- The End -&quot;; text-align:center; color: #252525; display: block; font-size:26px; font-weight:bold; font-family: Vladimir Script; } &lt;/style&gt; &lt;div class=&quot;passage_end&quot;&gt;&lt;/div&gt; {% endif %} &lt;/div&gt; next/layout/_macro/post.swig在相关支付代码之前增加如下代码： 1 2 3 4 5 6 7 &lt;div&gt; {% if not is_index %} {% include &#39;passage-end-tag.swig&#39; %} {% endif %} &lt;/div&gt; 即可在front-matter中使用passage_end: true打开文章结尾表语 js文章访问密码优化 因为其他博客的文章访问密码章节的js，当用户不输入时点击确定或是取消都弹出密码错误，显得不人性化，为此进行的改进方案；在themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig文件，meta标签后任意位置插入。 &lt;script&gt; (function(){ if(&#39;&#39;){ var str = prompt(&#39;请输入文章密码&#39;); if (str == null || str==&#39;&#39;){ history.back(); }else if(str !== &#39;&#39;){ alert(&#39;密码错误&#39;); history.back(); } } })(); &lt;/script&gt; btw，增加确认弹窗，这样就可以在front-matter中provision: true激活弹窗 &lt;script&gt; (function(){ if(&#39;&#39;){ var bool = confirm(&quot;请阅读一下条款：&quot;+&quot;\n&quot;+&quot;以下文章涉及成人内容，&quot; + &quot;未满18周岁建议在家长指导下观看&quot; ); if(!bool){ history.back(); } } })(); &lt;/script&gt; 自定义样式喜好概览 custom.styl 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 /* Custom styles.*/ .header { /*用于完全显示一整块背景*/ background: $head-bg; /* background:url(https://s1.ax2x.com/2018/03/13/Eoiz6.jpg);*/ /* background: #F5F5F5;*/ background-size: cover; background-repeat: no-repeat; } /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } /*副标题*/ /* .site-subtitle { display: none; }*/ .site-subtitle { margin-top: 10px; font-size: 13px; color: #555555; /* color: #ffdf58;*/ } /*菜单字体颜色*/ // .menu-item a {color:#c7c7c7;} /*菜单悬停颜色*/ /*.menu .menu-item a:hover { background: #36363c; }*/ /*移动设备菜单显示扩展*/ .site-nav-on { display: none; margin: 0 -10px; padding: 0 10px; clear: both; border-top-style: none; /*border-top: 1px solid #ddd;*/ } body { /*随机换图*/ /* background:url(https://source.unsplash.com/random/1600x900); background:url(https://s1.ax2x.com/2018/03/10/EHdHq.jpg); background: #E7E8EA;*/ background-repeat: no-repeat; background-attachment:fixed; background-size: cover; background-position: 50% 50%; /*鼠标样式*/ cursor: url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Arrow.cur),auto; } a:hover{ /*链接鼠标样式*/ cursor : url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Hand.cur),pointer; } /*文章内容块布局*/ .main-inner { margin-top: 10px; /* margin-top: 60px;*/ /*padding: 60px 60px 60px 60px;*/ padding: 10px 1px 1px 1px; /* background: #e6e6e6; */ width:830px; /* hight:720px; */ min-height: 500px; /*透明度*/ // opacity: 0.91; } /*内容盒子扩充*/ .use-motion .post { BACKGROUND-COLOR: #fff; padding: 40px 30px 40px 30px; border: 1px solid #eaecee; margin: 0 0 40px 0; position: relative; -webkit-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); -moz-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); } /*文章顶部内容紧凑*/ .posts-expand .post-meta { margin: 3px 0 5px 0; } /*阅读全文按钮部分*/ .post-button a:hover { border-bottom-color:#a96363; } /*阅读全文按钮悬停部分*/ .btn:hover { border-color: #222; color: #222; background: none; } /*文字以及下划线部分*/ .post-button a { padding: 0; font-size: 16px; background: none; border: none; border-bottom: 2px solid #666; transition-property: border; } /*标签悬停颜色*/ .posts-expand .post-tags a:hover { background: orange; } /*标签背景色*/ .posts-expand .post-tags a { padding: 1px 5px; background: #d6af66; color: #ea1616; font-size: 13px; border-bottom: none; display: inline-block; margin-right: 10px; } /*页脚*/ .footer { font-size: 14px; color: $grey-dark; //background: #2E2E2E; background: #ffffff; img { border: none; } } /*页脚内容居中*/ .footer-inner { margin: 0 auto; text-align: center; } /* 隐藏分类列表占位符以及列表居中样式调整*/ .category-list-item { margin: 5px 10px; text-align: center; // list-style: none !important; } /*侧边信息栏*/ /* .sidebar-toggle {}*/ /*侧边回滚顶部栏*/ /* .back-to-top {}*/ /*时间侧边栏格式*/ #days { display: block; color: #8989A3; font-size: 13px; margin-top: 15px; } 开发者工具很重要 可以先使用开发者模式进行预览；在不更改站点、主题配置文件时，可在hexo s环境下调试并保存代码。" />
+<meta property="og:description" content="此文章是在hexo已经搭建成功基础之上，且next主题能在显示正确效果下，进行的较为详细的说明。 参考链接 因为此类教程很多写的还不错且较为详细，所以没必要重复造轮子。这里还有一些插件项目的补充，可看需求自行选择。 Hexo与NexT主题目录结构 hexo的next主题个性化配置教程 打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 使用Hexo搭建博客的深度优化与定制 Next主题个性化之自动更换背景图片 删除标题上下方横线 文章阴影立体层次边框 添加代码块复制功能 各设备图片显示问题 标签页添加标签云 网站动态标题 修改阅读全文按钮样式 博客部分图标引用 使用Hexo基于GitHub-Pages搭建个人博客（三）（相册的实现） 对Hexo-nexT进行简单SEO优化基于Google收录站点 为Hexo NexT主题添加字数统计功能 need-more-share（主题已自带） hexo-tag-cloud hexo-blog-encrypt 遇到过的坑 这里列举常用的，更多详情访问具体项目的issues 设置副标题后显示不出来，要怎么修改？#986 fancybox能否正常使用？ #48 多图功能 图片不能放大 #1043 hexo设置网站的图标Favicon 标签页不能显示标签云#15 btw，如果写作完成且没做任何配置的情况下，hexo g生成有误应该是markdown语法不对 其他细节方面的问题 设置CC协议 参考wiki，也可选择禁用；使用自己定制的cc协议请参考 hexo的next主题个性化配置教程。 修改站点标题字体 （本地字体） themes/next/layout/_partials/header.swig中的custom-logo-site-titlediv部分下添加 1 2 3 4 5 6 7 8 9 &lt;div class=&quot;custom-logo-site-title&quot;&gt; &lt;a href=&quot;&quot; class=&quot;brand&quot; rel=&quot;start&quot;&gt; &lt;span class=&quot;logo-line-before&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;span class=&quot;site-title&quot; style=&quot; font-family:FreeStyle Script;color: #AC161A;&quot;&gt; &lt;/span&gt; &lt;span class=&quot;logo-line-after&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;/a&gt; &lt;/div&gt; 远程调用字体库（兲朝·远程字体） 注册 有字库 并搜索字体，查看语系 中/英 选择立即使用 在要使用该字体的标签属性中添加如下代码：font-family:&#39;FreestyleScriptITC-Normal&#39;;；例如：&lt;h1 style=&quot;font-family:&#39;FreestyleScriptITC-Normal&#39;;&quot; &gt;你的内容&lt;/h1&gt; 将以下代码加到你网页的&lt;head&gt;标签之内。 1 2 &lt;link href=&#39;https://cdn.webfont.youziku.com/webfonts/nomal/129645/33899/5cf0e452f629d80774a3a155.css&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39; /&gt; 将 link 标签代码块添加至 head.swig，再到custom.styl调整即可 1 2 3 4 5 6 7 /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } 添加README.md 在source根目录下添加README.md，再修改hexo的站点配置文件_config.yml，设置skip_render: README.md保存退出即可。使用hexo d命令就不会在渲染README.md这个文件了。 添加相关文章 添加”相关文章”板块实际上是做一次伪升级，因为v5.x并没有，v6.0.x才新增集成的功能；安装npm install hexo-related-popular-posts --save,下载新版本next主题；找到themes\next\layout\_macro\post.swig文件,将如下代码复制在原版本同路径post.swig中,复制位置在支付代码相关部分上方即可例如：代码放在wechat支付的上面。 1 2 3 4 5 {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %} {% include &#39;post-related.swig&#39; with { post: post } %} {% endif %} 将themes\next\layout\_macro\post-related.swig文件复制在原版本同目录中；打开新版本主题中的_config.yml将如下代码复制在原版本主题配置文件中 1 2 3 4 5 6 7 8 9 10 11 12 # Related popular posts # Dependencies: https://github.com/tea3/hexo-related-popular-posts related_posts: enable: true title: # custom header, leave empty to use the default one display_in_home: false params: maxCount: 5 #PPMixingRate: 0.0 #isDate: false #isImage: false #isExcerpt: false 添加文章结尾标记 themes/next/layout/_macro下添加passage-end-tag.swig: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;div&gt; {% if page.passage_end %} &lt;style&gt; .passage_end::after{ content: &quot;- The End -&quot;; text-align:center; color: #252525; display: block; font-size:26px; font-weight:bold; font-family: Vladimir Script; } &lt;/style&gt; &lt;div class=&quot;passage_end&quot;&gt;&lt;/div&gt; {% endif %} &lt;/div&gt; next/layout/_macro/post.swig在相关支付代码之前增加如下代码： 1 2 3 4 5 6 7 &lt;div&gt; {% if not is_index %} {% include &#39;passage-end-tag.swig&#39; %} {% endif %} &lt;/div&gt; 即可在front-matter中使用passage_end: true打开文章结尾表语 js文章访问密码优化 因为其他博客的文章访问密码章节的js，当用户不输入时点击确定或是取消都弹出密码错误，显得不人性化，为此进行的改进方案；在themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig文件，meta标签后任意位置插入。 &lt;script&gt; (function(){ if(&#39;&#39;){ var str = prompt(&#39;请输入文章密码&#39;); if (str == null || str==&#39;&#39;){ history.back(); }else if(str !== &#39;&#39;){ alert(&#39;密码错误&#39;); history.back(); } } })(); &lt;/script&gt; btw，增加确认弹窗，这样就可以在front-matter中provision: true激活弹窗 &lt;script&gt; (function(){ if(&#39;&#39;){ var bool = confirm(&quot;请阅读一下条款：&quot;+&quot;\n&quot;+&quot;以下文章涉及成人内容，&quot; + &quot;未满18周岁建议在家长指导下观看&quot; ); if(!bool){ history.back(); } } })(); &lt;/script&gt; 自定义样式喜好概览 custom.styl 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 /* Custom styles.*/ .header { /*用于完全显示一整块背景*/ background: $head-bg; /* background:url(https://s1.ax2x.com/2018/03/13/Eoiz6.jpg);*/ /* background: #F5F5F5;*/ background-size: cover; background-repeat: no-repeat; } /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } /*副标题*/ /* .site-subtitle { display: none; }*/ .site-subtitle { margin-top: 10px; font-size: 13px; color: #555555; /* color: #ffdf58;*/ } /*菜单字体颜色*/ // .menu-item a {color:#c7c7c7;} /*菜单悬停颜色*/ /*.menu .menu-item a:hover { background: #36363c; }*/ /*移动设备菜单显示扩展*/ .site-nav-on { display: none; margin: 0 -10px; padding: 0 10px; clear: both; border-top-style: none; /*border-top: 1px solid #ddd;*/ } body { /*随机换图*/ /* background:url(https://source.unsplash.com/random/1600x900); background:url(https://s1.ax2x.com/2018/03/10/EHdHq.jpg); background: #E7E8EA;*/ background-repeat: no-repeat; background-attachment:fixed; background-size: cover; background-position: 50% 50%; /*鼠标样式*/ cursor: url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Arrow.cur),auto; } a:hover{ /*链接鼠标样式*/ cursor : url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Hand.cur),pointer; } /*文章内容块布局*/ .main-inner { margin-top: 10px; /* margin-top: 60px;*/ /*padding: 60px 60px 60px 60px;*/ padding: 10px 1px 1px 1px; /* background: #e6e6e6; */ width:830px; /* hight:720px; */ min-height: 500px; /*透明度*/ // opacity: 0.91; } /*内容盒子扩充*/ .use-motion .post { BACKGROUND-COLOR: #fff; padding: 40px 30px 40px 30px; border: 1px solid #eaecee; margin: 0 0 40px 0; position: relative; -webkit-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); -moz-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); } /*文章顶部内容紧凑*/ .posts-expand .post-meta { margin: 3px 0 5px 0; } /*阅读全文按钮部分*/ .post-button a:hover { border-bottom-color:#a96363; } /*阅读全文按钮悬停部分*/ .btn:hover { border-color: #222; color: #222; background: none; } /*文字以及下划线部分*/ .post-button a { padding: 0; font-size: 16px; background: none; border: none; border-bottom: 2px solid #666; transition-property: border; } /*标签悬停颜色*/ .posts-expand .post-tags a:hover { background: orange; } /*标签背景色*/ .posts-expand .post-tags a { padding: 1px 5px; background: #d6af66; color: #ea1616; font-size: 13px; border-bottom: none; display: inline-block; margin-right: 10px; } /*页脚*/ .footer { font-size: 14px; color: $grey-dark; //background: #2E2E2E; background: #ffffff; img { border: none; } } /*页脚内容居中*/ .footer-inner { margin: 0 auto; text-align: center; } /* 隐藏分类列表占位符以及列表居中样式调整*/ .category-list-item { margin: 5px 10px; text-align: center; // list-style: none !important; } /*侧边信息栏*/ /* .sidebar-toggle {}*/ /*侧边回滚顶部栏*/ /* .back-to-top {}*/ /*时间侧边栏格式*/ #days { display: block; color: #8989A3; font-size: 13px; margin-top: 15px; } 开发者工具很重要 可以先使用开发者模式进行预览；在不更改站点、主题配置文件时，可在hexo s环境下调试并保存代码。" />
+<link rel="canonical" href="https://hoochanlon.github.io/2018/03-10-00.12.html" />
+<meta property="og:url" content="https://hoochanlon.github.io/2018/03-10-00.12.html" />
+<meta property="og:site_name" content="Hoo.C.Lon" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-03-10T00:12:38+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="next爬坑深度魔改（四）" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@hoochanlon" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"description":"此文章是在hexo已经搭建成功基础之上，且next主题能在显示正确效果下，进行的较为详细的说明。 参考链接 因为此类教程很多写的还不错且较为详细，所以没必要重复造轮子。这里还有一些插件项目的补充，可看需求自行选择。 Hexo与NexT主题目录结构 hexo的next主题个性化配置教程 打造个性超赞博客Hexo+NexT+GithubPages的超深度优化 使用Hexo搭建博客的深度优化与定制 Next主题个性化之自动更换背景图片 删除标题上下方横线 文章阴影立体层次边框 添加代码块复制功能 各设备图片显示问题 标签页添加标签云 网站动态标题 修改阅读全文按钮样式 博客部分图标引用 使用Hexo基于GitHub-Pages搭建个人博客（三）（相册的实现） 对Hexo-nexT进行简单SEO优化基于Google收录站点 为Hexo NexT主题添加字数统计功能 need-more-share（主题已自带） hexo-tag-cloud hexo-blog-encrypt 遇到过的坑 这里列举常用的，更多详情访问具体项目的issues 设置副标题后显示不出来，要怎么修改？#986 fancybox能否正常使用？ #48 多图功能 图片不能放大 #1043 hexo设置网站的图标Favicon 标签页不能显示标签云#15 btw，如果写作完成且没做任何配置的情况下，hexo g生成有误应该是markdown语法不对 其他细节方面的问题 设置CC协议 参考wiki，也可选择禁用；使用自己定制的cc协议请参考 hexo的next主题个性化配置教程。 修改站点标题字体 （本地字体） themes/next/layout/_partials/header.swig中的custom-logo-site-titlediv部分下添加 1 2 3 4 5 6 7 8 9 &lt;div class=&quot;custom-logo-site-title&quot;&gt; &lt;a href=&quot;&quot; class=&quot;brand&quot; rel=&quot;start&quot;&gt; &lt;span class=&quot;logo-line-before&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;span class=&quot;site-title&quot; style=&quot; font-family:FreeStyle Script;color: #AC161A;&quot;&gt; &lt;/span&gt; &lt;span class=&quot;logo-line-after&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt; &lt;/a&gt; &lt;/div&gt; 远程调用字体库（兲朝·远程字体） 注册 有字库 并搜索字体，查看语系 中/英 选择立即使用 在要使用该字体的标签属性中添加如下代码：font-family:&#39;FreestyleScriptITC-Normal&#39;;；例如：&lt;h1 style=&quot;font-family:&#39;FreestyleScriptITC-Normal&#39;;&quot; &gt;你的内容&lt;/h1&gt; 将以下代码加到你网页的&lt;head&gt;标签之内。 1 2 &lt;link href=&#39;https://cdn.webfont.youziku.com/webfonts/nomal/129645/33899/5cf0e452f629d80774a3a155.css&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39; /&gt; 将 link 标签代码块添加至 head.swig，再到custom.styl调整即可 1 2 3 4 5 6 7 /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } 添加README.md 在source根目录下添加README.md，再修改hexo的站点配置文件_config.yml，设置skip_render: README.md保存退出即可。使用hexo d命令就不会在渲染README.md这个文件了。 添加相关文章 添加”相关文章”板块实际上是做一次伪升级，因为v5.x并没有，v6.0.x才新增集成的功能；安装npm install hexo-related-popular-posts --save,下载新版本next主题；找到themes\\next\\layout\\_macro\\post.swig文件,将如下代码复制在原版本同路径post.swig中,复制位置在支付代码相关部分上方即可例如：代码放在wechat支付的上面。 1 2 3 4 5 {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %} {% include &#39;post-related.swig&#39; with { post: post } %} {% endif %} 将themes\\next\\layout\\_macro\\post-related.swig文件复制在原版本同目录中；打开新版本主题中的_config.yml将如下代码复制在原版本主题配置文件中 1 2 3 4 5 6 7 8 9 10 11 12 # Related popular posts # Dependencies: https://github.com/tea3/hexo-related-popular-posts related_posts: enable: true title: # custom header, leave empty to use the default one display_in_home: false params: maxCount: 5 #PPMixingRate: 0.0 #isDate: false #isImage: false #isExcerpt: false 添加文章结尾标记 themes/next/layout/_macro下添加passage-end-tag.swig: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 &lt;div&gt; {% if page.passage_end %} &lt;style&gt; .passage_end::after{ content: &quot;- The End -&quot;; text-align:center; color: #252525; display: block; font-size:26px; font-weight:bold; font-family: Vladimir Script; } &lt;/style&gt; &lt;div class=&quot;passage_end&quot;&gt;&lt;/div&gt; {% endif %} &lt;/div&gt; next/layout/_macro/post.swig在相关支付代码之前增加如下代码： 1 2 3 4 5 6 7 &lt;div&gt; {% if not is_index %} {% include &#39;passage-end-tag.swig&#39; %} {% endif %} &lt;/div&gt; 即可在front-matter中使用passage_end: true打开文章结尾表语 js文章访问密码优化 因为其他博客的文章访问密码章节的js，当用户不输入时点击确定或是取消都弹出密码错误，显得不人性化，为此进行的改进方案；在themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig文件，meta标签后任意位置插入。 &lt;script&gt; (function(){ if(&#39;&#39;){ var str = prompt(&#39;请输入文章密码&#39;); if (str == null || str==&#39;&#39;){ history.back(); }else if(str !== &#39;&#39;){ alert(&#39;密码错误&#39;); history.back(); } } })(); &lt;/script&gt; btw，增加确认弹窗，这样就可以在front-matter中provision: true激活弹窗 &lt;script&gt; (function(){ if(&#39;&#39;){ var bool = confirm(&quot;请阅读一下条款：&quot;+&quot;\\n&quot;+&quot;以下文章涉及成人内容，&quot; + &quot;未满18周岁建议在家长指导下观看&quot; ); if(!bool){ history.back(); } } })(); &lt;/script&gt; 自定义样式喜好概览 custom.styl 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 /* Custom styles.*/ .header { /*用于完全显示一整块背景*/ background: $head-bg; /* background:url(https://s1.ax2x.com/2018/03/13/Eoiz6.jpg);*/ /* background: #F5F5F5;*/ background-size: cover; background-repeat: no-repeat; } /*标题*/ .site-meta .site-title { font-size: 50px; font-weight: bolder; font-family:FreestyleScriptITC-Normal color: #AC161A; } /*副标题*/ /* .site-subtitle { display: none; }*/ .site-subtitle { margin-top: 10px; font-size: 13px; color: #555555; /* color: #ffdf58;*/ } /*菜单字体颜色*/ // .menu-item a {color:#c7c7c7;} /*菜单悬停颜色*/ /*.menu .menu-item a:hover { background: #36363c; }*/ /*移动设备菜单显示扩展*/ .site-nav-on { display: none; margin: 0 -10px; padding: 0 10px; clear: both; border-top-style: none; /*border-top: 1px solid #ddd;*/ } body { /*随机换图*/ /* background:url(https://source.unsplash.com/random/1600x900); background:url(https://s1.ax2x.com/2018/03/10/EHdHq.jpg); background: #E7E8EA;*/ background-repeat: no-repeat; background-attachment:fixed; background-size: cover; background-position: 50% 50%; /*鼠标样式*/ cursor: url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Arrow.cur),auto; } a:hover{ /*链接鼠标样式*/ cursor : url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Hand.cur),pointer; } /*文章内容块布局*/ .main-inner { margin-top: 10px; /* margin-top: 60px;*/ /*padding: 60px 60px 60px 60px;*/ padding: 10px 1px 1px 1px; /* background: #e6e6e6; */ width:830px; /* hight:720px; */ min-height: 500px; /*透明度*/ // opacity: 0.91; } /*内容盒子扩充*/ .use-motion .post { BACKGROUND-COLOR: #fff; padding: 40px 30px 40px 30px; border: 1px solid #eaecee; margin: 0 0 40px 0; position: relative; -webkit-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); -moz-box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); box-shadow: 0 4px 12px -1px rgba(36,41,46,.6); } /*文章顶部内容紧凑*/ .posts-expand .post-meta { margin: 3px 0 5px 0; } /*阅读全文按钮部分*/ .post-button a:hover { border-bottom-color:#a96363; } /*阅读全文按钮悬停部分*/ .btn:hover { border-color: #222; color: #222; background: none; } /*文字以及下划线部分*/ .post-button a { padding: 0; font-size: 16px; background: none; border: none; border-bottom: 2px solid #666; transition-property: border; } /*标签悬停颜色*/ .posts-expand .post-tags a:hover { background: orange; } /*标签背景色*/ .posts-expand .post-tags a { padding: 1px 5px; background: #d6af66; color: #ea1616; font-size: 13px; border-bottom: none; display: inline-block; margin-right: 10px; } /*页脚*/ .footer { font-size: 14px; color: $grey-dark; //background: #2E2E2E; background: #ffffff; img { border: none; } } /*页脚内容居中*/ .footer-inner { margin: 0 auto; text-align: center; } /* 隐藏分类列表占位符以及列表居中样式调整*/ .category-list-item { margin: 5px 10px; text-align: center; // list-style: none !important; } /*侧边信息栏*/ /* .sidebar-toggle {}*/ /*侧边回滚顶部栏*/ /* .back-to-top {}*/ /*时间侧边栏格式*/ #days { display: block; color: #8989A3; font-size: 13px; margin-top: 15px; } 开发者工具很重要 可以先使用开发者模式进行预览；在不更改站点、主题配置文件时，可在hexo s环境下调试并保存代码。","@type":"BlogPosting","url":"https://hoochanlon.github.io/2018/03-10-00.12.html","headline":"next爬坑深度魔改（四）","datePublished":"2018-03-10T00:12:38+08:00","dateModified":"2018-03-10T00:12:38+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://hoochanlon.github.io/2018/03-10-00.12.html"},"author":{"@type":"Person","name":"hoochanlon"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <title>next爬坑深度魔改（四） | Hoo.C.Lon
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://www.favicon-generator.org/
+-->
+
+
+
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<!-- 
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png">
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png">
+
+<link rel="icon" type="image/png" sizes="192x192"  href="/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"> 
+
+<link rel="manifest" href="/assets/img/favicons/manifest.json">
+<meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'>
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"> -->
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- GA -->
+  
+
+  <!-- jsDelivr CDN -->
+  <link rel="preconnect" href="cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="cdn.jsdelivr.net">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+    crossorigin="anonymous">
+
+  <!--
+  CSS selector for site.
+-->
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+
+
+
+  <!-- JavaScripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+
+  <!--
+  JS selector for site.
+-->
+
+
+  
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157837686-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157837686-1');
+</script>
+
+
+</head>
+
+
+  <body data-spy="scroll" data-target="#toc">
+
+    <!--
+  The Side Bar
+-->
+
+<div id="sidebar" class="d-flex flex-column align-items-end">
+
+  <div class="profile-wrapper text-center">
+    <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        
+        <img src="/assets/img/avatar/avatar1.png" alt="avatar" onerror="this.style.display='none'">
+      </a>
+    </div>
+
+    <div class="site-title mt-3">
+      <a href="/">Hoo.C.Lon</a>
+    </div>
+
+    <div class="site-subtitle font-italic"><i class="fas fa-pen-nib"></i> A note app by Jekyll theme</div>
+
+  </div><!-- .profile-wrapper -->
+
+  <ul class="w-100">
+    <!-- home -->
+    <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>INDEX</span>
+      </a>
+    </li>
+    <!-- the real tabs -->
+    
+    <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/gallery/" class="nav-link">
+        <i class="fa-fw fas fa-camera-retro ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>GALLERY</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+
+  </ul> <!-- ul.nav.flex-column -->
+
+  <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+
+    
+      
+
+      
+      <a href="https://github.com/hoochanlon" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github-alt"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/assets/qr/wx.png" aria-label="weixin"
+        class="order-4"
+        target="_blank" rel="noopener">
+        <i class="fab fa-weixin"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="
+          javascript:location.href = 'mailto:' + ['hoochanlon','outlook.com'].join('@')" aria-label="email"
+        class="order-5"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/feed.xml" aria-label="rss"
+        class="order-6"
+        >
+        <i class="fas fa-rss"></i>
+      </a>
+      
+
+    
+
+    
+      
+        <span class="icon-border order-2"></span>
+      
+
+      <span id="mode-toggle-wrapper" class="order-1">
+        <!--
+  Switch the mode between dark and light.
+-->
+
+<i class="mode-toggle fas fa-adjust"></i>
+
+<script type="text/javascript">
+
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+
+      var self = this;
+
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+
+          self.clearMode();
+        }
+
+        self.updateMermaid();
+      });
+
+    } /* constructor() */
+
+
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+
+    get hasMode() { return this.mode != null; }
+
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+
+      this.updateMermaid();
+
+    } /* flipMode() */
+
+  } /* ModeToggle */
+
+  let toggle = new ModeToggle();
+
+  $(".mode-toggle").click(function() {
+
+    toggle.flipMode();
+
+  });
+
+</script>
+
+      </span>
+    
+
+  </div> <!-- .sidebar-bottom -->
+
+</div><!-- #sidebar -->
+
+
+    <!--
+  The Top Bar
+-->
+
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+  <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+
+    
+
+    
+
+      
+
+        
+          
+
+        
+
+      
+
+        
+        <!-- <span>
+          
+          
+          <a href="/2018"> 
+            2018
+          </a>
+        </span> -->
+
+        <span>
+          
+          
+          <a href="/archives"> 
+            2018
+          </a>
+        </span> 
+
+        
+
+      
+
+        
+          <span>next爬坑深度魔改（四）</span>
+
+        
+
+      
+
+    
+
+    </span><!-- endof #breadcrumb -->
+
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+
+    <div id="topbar-title">
+      Post
+    </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+  </div>
+
+</div>
+
+
+    <div id="main-wrapper">
+      <div id="main">
+
+        <!--
+  Refactor the HTML structure.
+-->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+<!-- Add attribute 'hide-bullet' to the checkbox list -->
+
+
+
+
+<!-- return -->
+<div class="row">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>next爬坑深度魔改（四）</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Mar 10, 2018, 12:12 AM +0800"
+  >
+
+  
+  
+
+  
+    Mar 10, 2018
+  
+
+  <i class="unloaded">2018-03-10T00:12:38+08:00</i>
+
+</span>
+
+          by
+          <span class="author">
+            hoochanlon
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1956 words">10 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <p>此文章是在hexo已经搭建成功基础之上，且next主题能在显示正确效果下，进行的较为详细的说明。</p>
+
+<!--more-->
+
+<h2 id="参考链接">参考链接</h2>
+
+<p>因为此类教程很多写的还不错且较为详细，所以没必要重复造轮子。这里还有一些插件项目的补充，可看需求自行选择。</p>
+
+<ul>
+  <li><a href="https://www.zxl93.com/2017/10/10/NexT_theme_directory_structure/">Hexo与NexT主题目录结构</a></li>
+  <li><a href="http://shenzekun.cn/hexo的next主题个性化配置教程.html">hexo的next主题个性化配置教程</a></li>
+  <li><a href="https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html">打造个性超赞博客Hexo+NexT+GithubPages的超深度优化</a></li>
+  <li><a href="https://github.com/heytxz/test/issues/20">使用Hexo搭建博客的深度优化与定制</a></li>
+  <li><a href="http://ihaoming.top/archives/d0564105.html#%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8E%9F%E7%90%86">Next主题个性化之自动更换背景图片</a></li>
+  <li><a href="http://www.libinx.com/2017/2017-03-12-hexo-next-beautify/">删除标题上下方横线</a></li>
+  <li><a href="http://www.libinx.com/2017/2017-03-12-hexo-next-beautify/">文章阴影立体层次边框</a></li>
+  <li><a href="https://www.ofind.cn/blog/HEXO/HEXO%E4%BC%98%E5%8C%96%E4%B9%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E6%B7%BB%E5%8A%A0%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD.html">添加代码块复制功能</a></li>
+  <li><a href="http://blog.csdn.net/u014175572/article/details/49148333">各设备图片显示问题</a></li>
+  <li><a href="http://www.tianguolangzi.com/2018/01/17/hexo%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">标签页添加标签云</a></li>
+  <li><a href="https://www.jixian.io/2017/07/15/%E7%BD%91%E7%AB%99%E5%8A%A8%E6%80%81%E6%A0%87%E9%A2%98%E8%AE%BE%E7%BD%AE/">网站动态标题</a></li>
+  <li><a href="http://slowread.cn/2017/12/18/Hexo-Next-%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/">修改阅读全文按钮样式</a></li>
+  <li><a href="https://wenzizhou.com/%E7%BB%99NexT%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%A5%BD%E7%9C%8B%E7%9A%84%E6%A0%B7%E5%BC%8F/">博客部分图标引用</a></li>
+  <li><a href="https://ehlxr.github.io/2016/08/30/使用hexo基于github-pages搭建个人博客三">使用Hexo基于GitHub-Pages搭建个人博客（三）</a>（相册的实现）</li>
+  <li><a href="https://loremwalker.github.io/note/2018/02-26/5e7d6b37.html">对Hexo-nexT进行简单SEO优化基于Google收录站点</a></li>
+  <li><a href="https://eason-yang.com/2016/11/05/add-word-count-to-hexo-next">为Hexo NexT主题添加字数统计功能</a></li>
+  <li><a href="https://github.com/revir/need-more-share2">need-more-share</a>（主题已自带）</li>
+  <li><a href="https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.ZH.md">hexo-tag-cloud</a></li>
+  <li><a href="https://github.com/MikeCoder/hexo-blog-encrypt">hexo-blog-encrypt</a></li>
+</ul>
+
+<h2 id="遇到过的坑">遇到过的坑</h2>
+<p>这里列举常用的，更多详情访问具体项目的issues</p>
+
+<ul>
+  <li>设置副标题后显示不出来，要怎么修改？<a href="https://github.com/iissnan/hexo-theme-next/issues/986">#986</a></li>
+  <li>fancybox能否正常使用？ <a href="https://github.com/iissnan/hexo-theme-next/issues/48">#48</a></li>
+  <li>多图功能 图片不能放大 <a href="https://github.com/iissnan/hexo-theme-next/issues/1043">#1043</a></li>
+  <li><a href="http://blog.csdn.net/ganzhilin520/article/details/79048034">hexo设置网站的图标Favicon</a></li>
+  <li>标签页不能显示标签云<a href="https://github.com/MikeCoder/hexo-tag-cloud/issues/15">#15</a></li>
+</ul>
+
+<p>btw，如果写作完成且没做任何配置的情况下，<code class="language-plaintext highlighter-rouge">hexo g</code>生成有误应该是markdown语法不对</p>
+
+<h2 id="其他细节方面的问题">其他细节方面的问题</h2>
+
+<h3 id="设置cc协议">设置CC协议</h3>
+<p>参考<a href="https://github.com/iissnan/hexo-theme-next/wiki/%E8%AE%BE%E7%BD%AE-Creative-Commons-%E5%8D%8F%E8%AE%AE">wiki</a>，也可选择禁用；使用自己定制的cc协议请参考 <a href="http://shenzekun.cn/hexo的next主题个性化配置教程.html">hexo的next主题个性化配置教程</a>。</p>
+
+<h3 id="修改站点标题字体-本地字体">修改站点标题字体 （本地字体）</h3>
+<p><code class="language-plaintext highlighter-rouge">themes/next/layout/_partials/header.swig</code>中的<code class="language-plaintext highlighter-rouge">custom-logo-site-title</code>div部分下添加</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre> &lt;div class="custom-logo-site-title"&gt;
+      &lt;a href=""  class="brand" rel="start"&gt;
+        &lt;span class="logo-line-before"&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;
+        &lt;span class="site-title" style=" font-family:FreeStyle Script;color: #AC161A;"&gt;
+        
+        &lt;/span&gt;
+        &lt;span class="logo-line-after"&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="远程调用字体库兲朝远程字体">远程调用字体库（兲朝·远程字体）</h3>
+
+<p>注册 <a href="https://www.youziku.com/">有字库</a> 并搜索字体，查看语系 中/英 选择<code class="language-plaintext highlighter-rouge">立即使用</code></p>
+
+<ol>
+  <li>
+    <p>在要使用该字体的标签属性中添加如下代码：<code class="language-plaintext highlighter-rouge">font-family:'FreestyleScriptITC-Normal';</code>；例如：<code class="language-plaintext highlighter-rouge">&lt;h1 style="font-family:'FreestyleScriptITC-Normal';" &gt;你的内容&lt;/h1&gt;</code></p>
+  </li>
+  <li>
+    <p>将以下代码加到你网页的<code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>标签之内。</p>
+  </li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">'https://cdn.webfont.youziku.com/webfonts/nomal/129645/33899/5cf0e452f629d80774a3a155.css'</span>
+<span class="na">rel=</span><span class="s">'stylesheet'</span> <span class="na">type=</span><span class="s">'text/css'</span> <span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>将 link 标签代码块添加至 head.swig，再到<code class="language-plaintext highlighter-rouge">custom.styl</code>调整即可</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c">/*标题*/</span>
+<span class="nc">.site-meta</span> <span class="nc">.site-title</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bolder</span><span class="p">;</span>
+  <span class="nl">font-family</span><span class="p">:</span><span class="n">FreestyleScriptITC-Normal</span>
+  <span class="n">color</span><span class="p">:</span> <span class="m">#AC161A</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="添加readmemd">添加README.md</h3>
+<p>在<code class="language-plaintext highlighter-rouge">source</code>根目录下添加<code class="language-plaintext highlighter-rouge">README.md</code>，再修改hexo的站点配置文件<code class="language-plaintext highlighter-rouge">_config.yml</code>，设置<code class="language-plaintext highlighter-rouge">skip_render: README.md</code>保存退出即可。使用<code class="language-plaintext highlighter-rouge">hexo d</code>命令就不会在渲染<code class="language-plaintext highlighter-rouge">README.md</code>这个文件了。</p>
+
+<h3 id="添加相关文章">添加相关文章</h3>
+<p>添加”相关文章”板块实际上是做一次伪升级，因为v5.x并没有，v6.0.x才新增集成的功能；安装<code class="language-plaintext highlighter-rouge">npm install hexo-related-popular-posts --save</code>,下载新版本next主题；找到<code class="language-plaintext highlighter-rouge">themes\next\layout\_macro\post.swig</code>文件,将如下代码复制在原版本同路径post.swig中,复制位置在支付代码相关部分上方即可例如：代码放在wechat支付的上面。</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>
+  <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">theme</span><span class="p">.</span><span class="nv">related_posts</span><span class="p">.</span><span class="nv">enable</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="err">(</span><span class="nv">theme</span><span class="p">.</span><span class="nv">related_posts</span><span class="p">.</span><span class="nv">display_in_home</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">is_index</span><span class="err">)</span><span class="w"> </span><span class="p">%}</span>
+      <span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="s1">'post-related.swig'</span><span class="w"> </span><span class="nt">with</span><span class="w"> </span>{<span class="w"> </span><span class="na">post</span><span class="o">:</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span>}<span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>将<code class="language-plaintext highlighter-rouge">themes\next\layout\_macro\post-related.swig</code>文件复制在原版本同目录中；打开新版本主题中的<code class="language-plaintext highlighter-rouge">_config.yml</code>将如下代码复制在原版本主题配置文件中</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1"># Related popular posts</span>
+<span class="c1"># Dependencies: https://github.com/tea3/hexo-related-popular-posts</span>
+<span class="na">related_posts</span><span class="pi">:</span>
+  <span class="na">enable</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="c1"># custom header, leave empty to use the default one</span>
+  <span class="na">display_in_home</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">params</span><span class="pi">:</span>
+    <span class="na">maxCount</span><span class="pi">:</span> <span class="m">5</span>
+    <span class="c1">#PPMixingRate: 0.0</span>
+    <span class="c1">#isDate: false</span>
+    <span class="c1">#isImage: false</span>
+    <span class="c1">#isExcerpt: false</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="添加文章结尾标记">添加文章结尾标记</h3>
+<p><code class="language-plaintext highlighter-rouge">themes/next/layout/_macro</code>下添加<code class="language-plaintext highlighter-rouge">passage-end-tag.swig</code>:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre>&lt;div&gt;
+
+    <span class="p">{%</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">passage_end</span><span class="w"> </span><span class="p">%}</span>
+    &lt;style&gt;
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        font-weight:bold;
+        font-family: Vladimir Script;
+    }
+    &lt;/style&gt;
+        &lt;div class="passage_end"&gt;&lt;/div&gt;
+    <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
+    
+&lt;/div&gt;
+</pre></td></tr></tbody></table></code></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">next/layout/_macro/post.swig</code>在相关支付代码之前增加如下代码：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>&lt;div&gt;
+
+  {% if not is_index %}
+    {% include 'passage-end-tag.swig' %}
+  {% endif %}
+&lt;/div&gt;
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>即可在front-matter中使用<code class="language-plaintext highlighter-rouge">passage_end: true</code>打开文章结尾表语</p>
+
+<h3 id="js文章访问密码优化">js文章访问密码优化</h3>
+<p>因为其他博客的文章访问密码章节的js，当用户不输入时点击<code class="language-plaintext highlighter-rouge">确定</code>或是<code class="language-plaintext highlighter-rouge">取消</code>都弹出密码错误，显得不人性化，为此进行的改进方案；在<code class="language-plaintext highlighter-rouge">themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code>文件，meta标签后任意位置插入。</p>
+
+<pre><code class="language-JavaScript">&lt;script&gt;
+    (function(){
+        if(''){
+          var str = prompt('请输入文章密码');
+            if (str == null || str==''){
+                history.back();
+            }else if(str !== ''){
+              alert('密码错误');
+              history.back();
+            }
+        }
+    })();
+&lt;/script&gt;
+</code></pre>
+
+<p>btw，增加确认弹窗，这样就可以在<code class="language-plaintext highlighter-rouge">front-matter</code>中<code class="language-plaintext highlighter-rouge">provision: true</code>激活弹窗</p>
+
+<pre><code class="language-JavaScript">&lt;script&gt;
+    (function(){
+        if(''){
+          var bool = confirm("请阅读一下条款："+"\n"+"以下文章涉及成人内容，"
+                                 + "未满18周岁建议在家长指导下观看" );
+          if(!bool){
+            history.back();
+          }
+        }
+    })();
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="自定义样式喜好概览-customstyl">自定义样式喜好概览 <code class="language-plaintext highlighter-rouge">custom.styl</code></h3>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+</pre></td><td class="rouge-code"><pre><span class="c">/* Custom styles.*/</span>
+<span class="nc">.header</span> <span class="p">{</span> 
+    <span class="c">/*用于完全显示一整块背景*/</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="err">$</span><span class="n">head-bg</span><span class="p">;</span> 
+    <span class="c">/* background:url(https://s1.ax2x.com/2018/03/13/Eoiz6.jpg);*/</span>
+    <span class="c">/*  background: #F5F5F5;*/</span>
+    <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>
+    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">no-repeat</span><span class="p">;</span>
+    
+<span class="p">}</span>
+<span class="c">/*标题*/</span>
+<span class="nc">.site-meta</span> <span class="nc">.site-title</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bolder</span><span class="p">;</span>
+  <span class="nl">font-family</span><span class="p">:</span><span class="n">FreestyleScriptITC-Normal</span>
+  <span class="n">color</span><span class="p">:</span> <span class="m">#AC161A</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*副标题*/</span>
+<span class="c">/* .site-subtitle { display: none; }*/</span>
+<span class="nc">.site-subtitle</span> <span class="p">{</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#555555</span><span class="p">;</span>
+<span class="c">/*   color: #ffdf58;*/</span>
+<span class="p">}</span>
+
+<span class="c">/*菜单字体颜色*/</span>
+<span class="o">//</span> <span class="nc">.menu-item</span> <span class="nt">a</span> <span class="p">{</span><span class="nl">color</span><span class="p">:</span><span class="m">#c7c7c7</span><span class="p">;}</span>
+<span class="c">/*菜单悬停颜色*/</span>
+<span class="c">/*.menu .menu-item a:hover {
+   background: #36363c;
+ }*/</span>
+
+<span class="c">/*移动设备菜单显示扩展*/</span>
+<span class="nc">.site-nav-on</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">-10px</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span>
+    <span class="nl">border-top-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="c">/*border-top: 1px solid #ddd;*/</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+    <span class="c">/*随机换图*/</span>
+    <span class="c">/* background:url(https://source.unsplash.com/random/1600x900);
+     background:url(https://s1.ax2x.com/2018/03/10/EHdHq.jpg);
+     background: #E7E8EA;*/</span>
+    <span class="nl">background-repeat</span><span class="p">:</span> <span class="nb">no-repeat</span><span class="p">;</span>
+    <span class="nl">background-attachment</span><span class="p">:</span><span class="nb">fixed</span><span class="p">;</span>
+    <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>
+    <span class="nl">background-position</span><span class="p">:</span> <span class="m">50%</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="c">/*鼠标样式*/</span>
+    <span class="nl">cursor</span><span class="p">:</span> <span class="sx">url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Arrow.cur)</span><span class="p">,</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">a</span><span class="nd">:hover</span><span class="p">{</span>
+  <span class="c">/*链接鼠标样式*/</span>
+ <span class="nl">cursor</span> <span class="p">:</span> <span class="sx">url(https://cdn.jsdelivr.net/gh/hoochanlon/w3-goto-world/W3UnitTest/Hand.cur)</span><span class="p">,</span><span class="nb">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*文章内容块布局*/</span>
+<span class="nc">.main-inner</span> <span class="p">{</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="c">/*   margin-top: 60px;*/</span>
+  <span class="c">/*padding: 60px 60px 60px 60px;*/</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">1px</span> <span class="m">1px</span> <span class="m">1px</span><span class="p">;</span>
+<span class="c">/*   background: #e6e6e6; */</span>
+  <span class="nl">width</span><span class="p">:</span><span class="m">830px</span><span class="p">;</span>
+<span class="c">/*   hight:720px; */</span>
+  <span class="nl">min-height</span><span class="p">:</span> <span class="m">500px</span><span class="p">;</span>
+  <span class="c">/*透明度*/</span>
+<span class="err">//</span>   <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.91</span><span class="p">;</span>
+<span class="p">}</span>
+ <span class="c">/*内容盒子扩充*/</span>
+<span class="nc">.use-motion</span> <span class="nc">.post</span> <span class="p">{</span>
+    <span class="py">BACKGROUND-COLOR</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">40px</span> <span class="m">30px</span> <span class="m">40px</span> <span class="m">30px</span><span class="p">;</span>
+    <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#eaecee</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">40px</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">-webkit-box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">4px</span> <span class="m">12px</span> <span class="m">-1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">36</span><span class="p">,</span><span class="m">41</span><span class="p">,</span><span class="m">46</span><span class="p">,</span><span class="m">.6</span><span class="p">);</span>
+    <span class="nl">-moz-box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">4px</span> <span class="m">12px</span> <span class="m">-1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">36</span><span class="p">,</span><span class="m">41</span><span class="p">,</span><span class="m">46</span><span class="p">,</span><span class="m">.6</span><span class="p">);</span>
+    <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">4px</span> <span class="m">12px</span> <span class="m">-1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">36</span><span class="p">,</span><span class="m">41</span><span class="p">,</span><span class="m">46</span><span class="p">,</span><span class="m">.6</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c">/*文章顶部内容紧凑*/</span>
+<span class="nc">.posts-expand</span> <span class="nc">.post-meta</span> <span class="p">{</span>
+	<span class="nl">margin</span><span class="p">:</span> <span class="m">3px</span> <span class="m">0</span> <span class="m">5px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*阅读全文按钮部分*/</span>
+<span class="nc">.post-button</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="nl">border-bottom-color</span><span class="p">:</span><span class="m">#a96363</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*阅读全文按钮悬停部分*/</span>
+<span class="nc">.btn</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="nl">border-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*文字以及下划线部分*/</span>
+<span class="nc">.post-button</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="m">#666</span><span class="p">;</span>
+    <span class="nl">transition-property</span><span class="p">:</span> <span class="n">border</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c">/*标签悬停颜色*/</span>
+<span class="nc">.posts-expand</span> <span class="nc">.post-tags</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="no">orange</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*标签背景色*/</span>
+<span class="nc">.posts-expand</span> <span class="nc">.post-tags</span> <span class="nt">a</span> <span class="p">{</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">1px</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="m">#d6af66</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#ea1616</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+    <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+    <span class="nl">margin-right</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*页脚*/</span>
+<span class="nc">.footer</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="err">$</span><span class="n">grey-dark</span><span class="p">;</span>
+<span class="err">//</span><span class="nl">background</span><span class="p">:</span> <span class="m">#2E2E2E</span><span class="p">;</span>
+<span class="nl">background</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+  <span class="err">img</span> <span class="err">{</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="err">}</span>
+<span class="c">/*页脚内容居中*/</span>
+<span class="nc">.footer-inner</span> <span class="p">{</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c">/* 隐藏分类列表占位符以及列表居中样式调整*/</span>
+<span class="nc">.category-list-item</span> <span class="p">{</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">5px</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="err">//</span> <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c">/*侧边信息栏*/</span>
+<span class="c">/* .sidebar-toggle {}*/</span>
+<span class="c">/*侧边回滚顶部栏*/</span>
+<span class="c">/* .back-to-top {}*/</span>
+
+<span class="c">/*时间侧边栏格式*/</span>
+<span class="nf">#days</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#8989A3</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="开发者工具很重要">开发者工具很重要</h3>
+<p>可以先使用开发者模式进行预览；在不更改站点、主题配置文件时，可在<code class="language-plaintext highlighter-rouge">hexo s</code>环境下调试并保存代码。</p>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/blogging/'>Blogging</a>,
+            <a href='/categories/hexo/'>Hexo</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/typography/"
+            class="post-tag no-text-decoration" >typography</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+    
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=next爬坑深度魔改（四） - Hoo.C.Lon&url=https://hoochanlon.github.io/2018/03-10-00.12.html" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=next爬坑深度魔改（四） - Hoo.C.Lon&u=https://hoochanlon.github.io/2018/03-10-00.12.html" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=next爬坑深度魔改（四） - Hoo.C.Lon&url=https://hoochanlon.github.io/2018/03-10-00.12.html" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
+
+  <!--
+  The Pannel on right side (Desktop views)
+-->
+
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+
+  <div class="access">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  
+    <div id="access-tags">
+      <span>Trending Tags</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+      </div>
+    </div>
+  
+  </div> <!-- .access -->
+
+  
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
+
+</div> <!-- #panel-wrapper -->
+
+
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4" style="display:none">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/2018/02-26-04.02.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 26, 2018
+  
+
+  <i class="unloaded">2018-02-26T04:02:40+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>hexo搭建next主题 （一）</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                入门前提
+
+  git安装
+  配置SSH说明
+
+
+
+
+Hexo快速入门
+
+  hexo安装
+  hexo部署
+  hexo主题安装
+  Permission denied (publickey)问题
+  git push输入密码的问题
+  hexo-server sass binding.node下载失败(.npmrc设置部分)
+
+
+NexT轻松上手
+
+  next主题配置
+  next第...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2018/02-26-11.10.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 26, 2018
+  
+
+  <i class="unloaded">2018-02-26T11:10:54+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>hexo备份并推送到github（二）</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                使用git推送至github备份hexo的其他博客主题
+
+
+
+
+  创建远程仓库 …
+  本地初始化 git init
+  创建忽略文件 vi .gitignore
+  Git忽略规则
+  在hexo的根目录下新建README.md
+  
+    按需分配
+
+      .DS_Store
+  Thumbs.db
+  db.json  
+  *.log
+  .deploy*/
+  node_...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2018/02-27-05.52.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    Feb 27, 2018
+  
+
+  <i class="unloaded">2018-02-27T05:52:25+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>NexT简单seo优化（三）</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                设置站点地图
+
+
+  安装sitemap站点地图自动生成插件
+     npm install hexo-generator-sitemap --save
+    
+  
+  在站点配置文件中末尾添加
+     sitemap:
+  path: sitemap.xml
+    
+  
+  站点配置文件url修改为你的网址域名，hexo g之后，在站点根目录的/public生成sitemap....
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/2018/02-27-05.52.html" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>NexT简单seo优化（三）</p>
+  </a>
+  
+
+  
+  <a href="/2018/08-07-05.20.html" class="btn btn-outline-primary"
+    prompt="Newer">
+    <p>空间？最后还是选择了博客</p>
+  </a>
+  
+
+</div>
+
+
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
+
+
+
+
+        <!--
+  The Footer
+-->
+
+<footer class="d-flex w-100 justify-content-center">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="footer-left">
+      <p class="mb-0">
+        ©2018- 2021
+        <a href="https://github.com/hoochanlon">hoochanlon</a>.
+        
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+        
+      </p>
+    </div>
+
+    <div class="showtime" style="text-align: center;">
+      <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span id="busuanzi_container_site_uv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_uv"></span></span> -->
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("3/21/2018 07:27:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "笔记应用在线 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+    </div>    
+
+    <div class="footer-right">
+      <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+      </p>
+    </div>
+
+  </div> <!-- div.d-flex -->
+</footer>
+
+
+      </div>
+
+      <!--
+  The Search results
+-->
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-12 col-sm-11 post-content">
+    <div id="search-hints">
+      <h4 class="text-muted mb-4">Trending Tags</h4>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+
+    </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
+
+    
+
+    <div id="mask"></div>
+
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://hoochanlon.github.io{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+
+
+  </body>
+
+</html>
+

@@ -1,65 +1,59 @@
----
-layout: compress
-
-# The list to be cached by PWA
----
-
 const include = [
 
   /*--- CSS ---*/
-  '{{ "/assets/css/style.css" | relative_url }}',
+  '/assets/css/style.css',
 
   /*--- Javascripts ---*/
-  '{{ "/assets/js/dist/home.min.js" | relative_url }}',
-  '{{ "/assets/js/dist/page.min.js" | relative_url }}',
-  '{{ "/assets/js/dist/post.min.js" | relative_url }}',
-  '{{ "/assets/js/dist/categories.min.js" | relative_url }}',
+  '/assets/js/dist/home.min.js',
+  '/assets/js/dist/page.min.js',
+  '/assets/js/dist/post.min.js',
+  '/assets/js/dist/categories.min.js',
 
   /*--- HTML ---*/
 
   /* Tabs */
-  {% for tab in site.tabs %}
-    '{{ tab.url }}',
-  {% endfor %}
+  
+    '/categories/',
+  
+    '/tags/',
+  
+    '/archives/',
+  
+    '/about/',
+  
+    '/gallery/',
+  
 
-  /*--- Icons ---*/
-
-  {%- capture icon_url -%}
-    {{ "/assets/img/favicons" | relative_url }}
-  {%- endcapture -%}
-  '{{ icon_url }}/favicon.ico',
-  '{{ icon_url }}/apple-icon.png',
-  '{{ icon_url }}/apple-icon-precomposed.png',
-  '{{ icon_url }}/apple-icon-57x57.png',
-  '{{ icon_url }}/apple-icon-60x60.png',
-  '{{ icon_url }}/apple-icon-72x72.png',
-  '{{ icon_url }}/apple-icon-76x76.png',
-  '{{ icon_url }}/apple-icon-114x114.png',
-  '{{ icon_url }}/apple-icon-120x120.png',
-  '{{ icon_url }}/apple-icon-144x144.png',
-  '{{ icon_url }}/apple-icon-152x152.png',
-  '{{ icon_url }}/apple-icon-180x180.png',
-  '{{ icon_url }}/android-icon-192x192.png',
-  '{{ icon_url }}/favicon-32x32.png',
-  '{{ icon_url }}/favicon-96x96.png',
-  '{{ icon_url }}/favicon-16x16.png',
-  '{{ icon_url }}/ms-icon-144x144.png',
-  '{{ icon_url }}/manifest.json',
-  '{{ icon_url }}/browserconfig.xml',
+  /*--- Icons ---*/'/assets/img/favicons/favicon.ico',
+  '/assets/img/favicons/apple-icon.png',
+  '/assets/img/favicons/apple-icon-precomposed.png',
+  '/assets/img/favicons/apple-icon-57x57.png',
+  '/assets/img/favicons/apple-icon-60x60.png',
+  '/assets/img/favicons/apple-icon-72x72.png',
+  '/assets/img/favicons/apple-icon-76x76.png',
+  '/assets/img/favicons/apple-icon-114x114.png',
+  '/assets/img/favicons/apple-icon-120x120.png',
+  '/assets/img/favicons/apple-icon-144x144.png',
+  '/assets/img/favicons/apple-icon-152x152.png',
+  '/assets/img/favicons/apple-icon-180x180.png',
+  '/assets/img/favicons/android-icon-192x192.png',
+  '/assets/img/favicons/favicon-32x32.png',
+  '/assets/img/favicons/favicon-96x96.png',
+  '/assets/img/favicons/favicon-16x16.png',
+  '/assets/img/favicons/ms-icon-144x144.png',
+  '/assets/img/favicons/manifest.json',
+  '/assets/img/favicons/browserconfig.xml',
 
   /*--- Others ---*/
 
-  '{{ "/assets/js/data/search.json" | relative_url }}',
-  '{{ "/404.html" | relative_url }}',
+  '/assets/js/data/search.json',
+  '/404.html',
 
-  '{{ "/app.js" | relative_url }}',
-  '{{ "/sw.js" | relative_url }}'
+  '/app.js',
+  '/sw.js'
 ];
 
-const exclude = [
-  {%- if site.google_analytics.pv.proxy_url and site.google_analytics.pv.enabled -%}
-    '{{ site.google_analytics.pv.proxy_url }}',
-  {%- endif -%}
-  '/assets/js/data/pageviews.json',
+const exclude = ['/assets/js/data/pageviews.json',
   '/img.shields.io/'
 ];
+

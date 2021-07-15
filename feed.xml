@@ -1,60 +1,279 @@
----
-layout: compress
-# Atom Feed, reference: https://validator.w3.org/feed/docs/atom.html
----
 
-{% capture source %}
+
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>{{ "/" | absolute_url }}</id>
-  <title>{{ site.title }}</title>
-  <subtitle>{{ site.description }}</subtitle>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>https://hoochanlon.github.io/</id>
+  <title>Hoo.C.Lon</title>
+  <subtitle>体会·记录·反思</subtitle>
+  <updated>2021-07-15T11:30:26+08:00</updated>
   <author>
-    <name>{{ site.author }}</name>
-    <uri>{{ "/" | absolute_url }}</uri>
+    <name>hoochanlon</name>
+    <uri>https://hoochanlon.github.io/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="{{ page.url | absolute_url }}"/>
-  <link rel="alternate" type="text/html" hreflang="{{ site.lang | default: 'en' }}"
-    href="{{ '/' | absolute_url }}"/>
-  <generator uri="https://jekyllrb.com/" version="{{ jekyll.version }}">Jekyll</generator>
-  <rights> © {{ 'now' | date: '%Y' }} {{ site.author }} </rights>
-  <icon>{{ site.baseurl }}/assets/img/favicons/favicon.ico</icon>
-  <logo>{{ site.baseurl }}/assets/img/favicons/favicon-96x96.png</logo>
+  <link rel="self" type="application/atom+xml" href="https://hoochanlon.github.io/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en-US"
+    href="https://hoochanlon.github.io/"/>
+  <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
+  <rights> © 2021 hoochanlon </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
-{% for post in site.posts limit: 5 %}
-  {% assign post_absolute_url = post.url | absolute_url %}
+
+  
   <entry>
-    <title>{{ post.title }}</title>
-    <link href="{{ post_absolute_url }}" rel="alternate" type="text/html" title="{{ post.title }}" />
-    <published>{{ post.date | date_to_xmlschema }}</published>
-  {% if post.last_modified_at %}
-    <updated>{{ post.last_modified_at | date_to_xmlschema }}</updated>
-  {% else %}
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
-  {% endif %}
-    <id>{{ post_absolute_url }}</id>
-    <content src="{{ post_absolute_url }}" />
+    <title>各地域间学生存在的信息茧房</title>
+    <link href="https://hoochanlon.github.io/2021/07-14-15.44.html" rel="alternate" type="text/html" title="各地域间学生存在的信息茧房" />
+    <published>2021-07-14T15:44:49+08:00</published>
+  
+    <updated>2021-07-14T15:44:49+08:00</updated>
+  
+    <id>https://hoochanlon.github.io/2021/07-14-15.44.html</id>
+    <content src="https://hoochanlon.github.io/2021/07-14-15.44.html" />
     <author>
-      <name>{{ site.author }}</name>
+      <name>hoochanlon</name>
     </author>
 
-  {% if post.categories %}
-    {% for category in post.categories %}
-    <category term="{{ category }}" />
-    {% endfor %}
-  {% endif %}
+  
+    
+    <category term="daily note" />
+    
+    <category term="--2021" />
+    
+    <category term="essay" />
+    
+  
 
-  {% if post.summary %}
-    <summary>{{ post.summary | strip }}</summary>
-  {% else %}
+  
     <summary>
-      {% include no-linenos.html content=post.content %}
-      {{ content  | strip_html | truncate: 400 }}
+      
+
+
+
+
+
+      一些疑问待我发现。
+
+兴宁
+
+现在写到这里，其实心里也是五味杂陈的，但我还是要把它写下来，由于此前妹妹考上了郴州一中，我想我能够发现新的东西。我所接触的中学虽不算多，加入过的往届中学群实际上也就一两个。但我观察到对于我而言一个重要的现象：
+
+四五线往下的小乡镇（市），教育资源确实不发达，陈旧的铁木桌凳，待报废的电脑与投影设备仪器，多数教师都是上了年纪的土生土长的乡村教师，标着地道的乡音在课堂上教学。学生多半是留守儿童成长的，家庭条件充裕的或是重视子女教育的，往往转入市中心城区学校就读了。学生也大多数是“顽皮混蛋街溜子”，现在回想起来，当时年轻气盛跟从“社会人”拉风自嗨、“快手哥”欢乐摇崇拜，加上本身就类冥顽不灵的自顾自享乐，学校为什么大多数都是这种学生也就不奇怪了。
+
+我也有和他们相似的经历，毕竟当时我也是不良少年。基本上也不会去查探了解其他学校的教学设备、师资优势在哪里体现，他们都...
     </summary>
-  {% endif %}
+  
 
   </entry>
-{% endfor %}
+
+  
+  <entry>
+    <title>躺平青年与鸡娃大婶</title>
+    <link href="https://hoochanlon.github.io/2021/07-13-10.03.html" rel="alternate" type="text/html" title="躺平青年与鸡娃大婶" />
+    <published>2021-07-13T10:03:36+08:00</published>
+  
+    <updated>2021-07-13T10:03:36+08:00</updated>
+  
+    <id>https://hoochanlon.github.io/2021/07-13-10.03.html</id>
+    <content src="https://hoochanlon.github.io/2021/07-13-10.03.html" />
+    <author>
+      <name>hoochanlon</name>
+    </author>
+
+  
+    
+    <category term="daily note" />
+    
+    <category term="--2021" />
+    
+    <category term="essay" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      近一两年间新闻及贴吧论坛上不断被提及“躺平”、”摸鱼”，我看过一些自媒体人对此的描述似乎有些混为一谈。努力“奋斗”得不到快速显著的生活质量改善，于是选择躺平，加班劳心伤神，缓解身心做些摸鱼的事情；不过，二者目的是相同的 ———— 为了放松舒服。
+
+有时我在想“读书无用论”是不是和“躺平学”都是同一拨人所提起的。有种微妙的直觉：宣扬“读书无用论”的多是既得利益者，“躺平学”的前提是比起同阶级现状满意的环境与报酬。阶级渐固化的现实，使他们相当难在靠以前积累的优势跨阶级升跃了，于是开始躺平，毕竟这样过活也不差。
+
+这么想起来，“躺平”算是一个不对称的信息，因为对于不同环境的人来说其实并不是适用。对于我们青年人来说，现实与理想的落差，身份的断层尤甚，如大专做流水线普工，多数人也是选择另谋生路的，大抵。毕竟流水线是为资本服务的，说是非人性化的煎熬不为过。
+
+至于鸡娃大婶呢，不少是既得利益者吃到...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>游戏过后是空虚</title>
+    <link href="https://hoochanlon.github.io/2021/07-09-03.01.html" rel="alternate" type="text/html" title="游戏过后是空虚" />
+    <published>2021-07-09T03:01:51+08:00</published>
+  
+    <updated>2021-07-09T03:01:51+08:00</updated>
+  
+    <id>https://hoochanlon.github.io/2021/07-09-03.01.html</id>
+    <content src="https://hoochanlon.github.io/2021/07-09-03.01.html" />
+    <author>
+      <name>hoochanlon</name>
+    </author>
+
+  
+    
+    <category term="daily note" />
+    
+    <category term="--2021" />
+    
+    <category term="essay" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      完成了弹丸论破一周目不知道自己要干嘛了，特别是自己有结石病在身，让我开始思考是不是要冲击更高的方向？虽说以前冲击了好几次，但一直没看路啊。之所以这么说，我以前没注意有如下几点，还被坑过好几回：
+
+
+  贩卖焦虑的培训生意人
+  我所就职的工作环境适合扩展学习哪些技能？
+  如何让他们认可我的所扩展的职业水准？
+
+
+我也想旅行？总不能再当了6-7年之久的宅男吧？我想去一些地方看看，想交一些朋友。这些想法实现的前提，总要在上班时间规划周六日的目的路线图。
+
+
+  积蓄
+  旅行
+  找个伴
+
+
+总要为了梦想实现啊，空想不去主动做，不去尝试实现。
+
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>一场病后才明白关于存钱积蓄的事情</title>
+    <link href="https://hoochanlon.github.io/2021/07-07-04.17.html" rel="alternate" type="text/html" title="一场病后才明白关于存钱积蓄的事情" />
+    <published>2021-07-07T04:17:50+08:00</published>
+  
+    <updated>2021-07-07T04:17:50+08:00</updated>
+  
+    <id>https://hoochanlon.github.io/2021/07-07-04.17.html</id>
+    <content src="https://hoochanlon.github.io/2021/07-07-04.17.html" />
+    <author>
+      <name>hoochanlon</name>
+    </author>
+
+  
+    
+    <category term="daily note" />
+    
+    <category term="--2021" />
+    
+    <category term="essay" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      工作之余所憧憬的兴趣如：数学、日语、极客，这些在日常暴饮暴食所累积的肾结石面前显得不堪一击，毕竟真实的现实可没什么积蓄，消费主义的借贷花销一遇CT体检测出的大病，真的只能束手无策了。
+
+
+
+写到这里，我才想到原来《古巴比伦最富有的人》真是值得一读与实践的书，特别是当下“营销为王”的时代，学习营销、社会学也有助人保持头脑清醒。目前所影响我的三本书，也算是一安利吧。
+
+
+  《人类简史》
+  《国富论》
+  《这本书能让你戒烟》
+
+
+也庆幸在湘科职院认识了宿舍室友，他分享了其中一位室友如今的生活，走关系进海军服役，积攒积蓄在长沙买了房。自回忆从与他在宿舍相识以来，平日较为省吃俭用较为拮据，在同龄人也是如此，简简单单一日三餐，偶尔去超市买副食品，也不沉溺于游戏、电子产品。实在中的实在，生活现实化。
+
+回到开头，做手术的开销，工资以及工作，交房租，这三者确实是值得三思的一件事。也许，对于我来...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>激活改装售后问题汇总</title>
+    <link href="https://hoochanlon.github.io/2021/06-24-12.23.html" rel="alternate" type="text/html" title="激活改装售后问题汇总" />
+    <published>2021-06-24T12:23:31+08:00</published>
+  
+    <updated>2021-06-24T12:23:31+08:00</updated>
+  
+    <id>https://hoochanlon.github.io/2021/06-24-12.23.html</id>
+    <content src="https://hoochanlon.github.io/2021/06-24-12.23.html" />
+    <author>
+      <name>hoochanlon</name>
+    </author>
+
+  
+    
+    <category term="daily note" />
+    
+    <category term="--2021" />
+    
+    <category term="chip" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      目前在处理的Office激活异常中遇到两种激活问题：
+
+
+  
+    账号有Office2019，但本地端没有office2019
+
+    解决办法：卸载365，账号下载2019安装
+  
+  
+    账号没有Office2019，本地端也没预装（也可能之前卸载或升级过）
+  
+
+
+
+
+office2019激活
+
+情景还原
+
+第二个问题比较麻烦，明明标签体贴预装2019家庭版或学生版，但实际情况却没有安装。电话咨询客服，要一份Office2019安装包，可安装之后激活操作画面却并不像客服所描述的ui界面以及激活方式。于是再次咨询戴尔客服，戴尔客服表示微软问题，随即转接微软客服。我在一番陈述异常事由时，微软客服回应是戴尔客服安装包问题。于是致电戴尔客服重新核对安装包并发一份修复工具到邮件。
+
+Office2019修复之后的UI界面正如戴尔客服所描述那样，但依旧不能激活，登录账户还...
+    </summary>
+  
+
+  </entry>
+
 </feed>
-{% endcapture %}
-{{ source | replace: '&', '&amp;' }}
+
+

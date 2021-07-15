@@ -1,0 +1,3204 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en-US" 
+  
+>
+
+  <!--
+  The Head
+-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    <meta name="pv-cache-enabled" content="false">
+
+    
+  
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Linux加入AD域进行Samba共享与账户登录" />
+<meta name="author" content="hoochanlon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。 安装Windows DC与Linux Samba Domain Controller 运行 dcpromo执行下一步，在新林新建域填写域名，并将DNS设置为域控计算机全名，整个安装过程完成。安装完成打开系统属性可以看到对计算机名、域的详细描述。 具体每一步图文可参考文章此类步骤执行：51cto-windows server 2008 R2 enterprise AD域控服务器安装，本章节只做流程概述。 安装Samba 做加域集成前，建议先阅读此前写的 《Samba共享及Linux权限的应用》，看看[sjhf-实例分析—samba的域功能，我认为这篇文章写得 接下来到了Linux安装Samba，支撑Samba加入AD域一系列体系的有： 域账户与UID映射的Samba-winbind组件 主机非安全通信的验证Kerberos 用于与域主机时间同步的ntpdate 这三者都是协作Linux加入AD域完成Samba共享的整个生态周期。了解到这里我们yum开始安装 指令参考自 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 1 2 # samba、winbind、Kerberos 安装 yum -y install samba samba-client samba-common samba-winbind samba-winbind-clients krb5-workstation ntpdate 需要关闭及开启的服务 需要关闭的服务有：selinux、firewall；这带来个问题就是为什么要关闭selinux、firewall？ 简而言之selinux核心是防止root滥用权限，用户要是sudo各种不明软件、病毒能这样吗？这就是运维与日常用户的区别。 firewall方面，多数是因为不清楚各个软件通信该放行什么端口，索性关上防火墙，简单省事；或是企业系统已有外部防火墙或第三方防火墙，所以关掉系统自带防火墙。 参考 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 建议：看上去，这些内容很耗时间，但实际上是值得投入与学习的。 接着，开启samba及winbind组件服务： SMB是Samba 的核心启动服务，主要负责建立 Linux Samba服务器与Samba客户机之间的对话 NMB可以把Linux系统共享的工作组名称与其IP对应起来，若是关闭就只能通过IP来访问共享文件 参考 Samba启动服务中的nmb是什么 1 2 3 chkconfig smb on &amp;&amp; systemtcl start smb chkconfig nmb on &amp;&amp; systemctl start nmb chkconfig winbind on &amp;&amp; systemctl start winbind samba配置文件配置内容解读可以看 将samba加入到windows域《转载》 加域与验证的准备工作 DNS方面需要配置DC主机IP才能加域，在网络通信中hosts优先级是比DNS高的，先访问hosts是否有对应域名映射，再查找DNS解析。 配置hosts与DNS 1 2 3 4 5 6 7 vi /etc/hosts # 配置host # 格式：主机ip地址 主机名（计算机名.域名） 计算机名 # 比方说我写入的hosts 127.0.0.1 linux.win7.local linux vi /etc/resolv.conf # 配置DNS nameserver 172.17.198.34 # DC主机IP 接着配置时间同步 ntpdate dc-01.win7.local，加域与验证都是与需要时间一致的。 搭建Kerberos 前面介绍Kerberos是主机之间非安全通信的验证服务，既然如此就需要服务端与客户端来保持双方的验证。首先DC（Windows Server）搭建Kerberos；在官网下载选择for Windows的msi安装程序傻瓜化安装；初次安装摸索Kerberos配置可参考文章 Windows Kerberos客户端配置并访问CDH 安装完Kerberos打开软件，其配置内容自动生成的。配置文件是C:/programData/mit/kerberos5/krb5.ini。根本就不需要操心，有些文章教程在Windows上安装Kerberos配这配那的，反倒是画蛇添足。 关注的重点是Kerberos的kdc、admin server、default realm具体是谁。 kdc：即密钥分发中心，维护域中所有安全主体账户信息数据库。 admin server：这里为域控DC服务器；default realm：域名 Kerberos 指令klist在Windows中信息中文提示友好 让我们再回到Linux，清除旧票据生成一个新的票据，并查看 1 2 3 4 5 6 7 8 kdestroy &amp;&amp; kinit administrator@WIN7.LOCAL &amp;&amp; klist #注意域名大写 klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0) Ticket cache: KEYRING:persistent:0:0 Default principal: administrator@WIN7.LOCAL Valid starting Expires Service principal 11/11/2020 22:19:34 11/12/2020 08:19:34 krbtgt/WIN7.LOCAL@WIN7.LOCAL renew until 11/18/2020 22:19:31 已指令的方式配置samba与Kerberos，并加入AD域，关于命令的说明可参考：csdn-参考authconfig 用法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 authconfig # 命令参考自：https://linux.cn/article-7695-1.html --smbsecurity ads --smbworkgroup=WIN7 --smbrealm WIN7.LOCAL --smbservers=dc-01.win7.local --enablewinbind --enablewins # WINS实现的是IP地址和计算机名称的映射 --enablewinbindauth # winbind认证Windows AD-Linux用户映射 --enablewinbindoffline # 允许离线脱域情况登录 --winbindtemplateshell=/bin/bash # 给用户分配bash执行指令 --winbindjoin=administrator --enablelocauthorize 本地用户使用本地授权 --enablemkhomedir=/home/%D/%U # 配置AD域用户的家目录，%D域名 %U用户名 --enablewinbindusedefaultdomain --enablekrb5 --krb5realm=WIN7.LOCAL --krb5kdc=dc-01.win7.local --krb5adminserver=dc-01.win7.local --enablekrb5kdcdns --enablekrb5realmdns --update 更新配置 authconfig-tui 所对应的shell配置，这个图形界面集成了pam 完成加域并使用AD账户登录Linux vi /etc/nsswitch.conf添加winbind认证 1 2 3 passwd: files sss winbind shadow: files sss winbind group: files sss winbind 在配置winbind的过程中也查阅了关于sss的资料文档，sssd也是用于集成验证的，粗略来说它是作为一个本地验证的缓冲池降低认证服务器负载的。 Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 net ads join -U administrator@WIN7.LOCAL输入密码并加域 1 2 3 realm join dc-01.win7.local # 确认是否加域成功 net ads testjoin -U administrator@WIN7.LOCAL # 如上二选一 wbinfo -g &amp; wbinfo -u #查看域中的组与用户 域账户登录Linux 直接使用AD域账户登录Linux提示Disconnected from remote host(Samba) ，解决办法参考 chinaunix-winbind实现用windows账户登录linux机器 所说vi /etc/pam.d/sshd 写入以下三行。 1 2 3 auth sufficient pam_winbind.so account sufficient pam_winbind.so session required pam_mkhomedir.so 在这个环节中也涉及到linux可插拔认证模块(PAM)知识，关于PAM可参考： csdn-Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) 个人浅见从设计者角度想相当于我们做的是接入式主机账户认证，必然需要随时取消这样的账户登录服务。现在我们开始以域账户SSH登录测试 ssh od001@172.17.198.35 登录测试成功，配置AD用户映射生成对应家目录也完成了创建，如图。 AD用户访问samba 专为AD共享测试创建了777的adsharp目录chmod -R 777 /adsharp，valid users也写成了AD域的hrs组，hr001登录到smb共享测试成功。 项目搭建所出现的各种问题疑惑 从samba到ad加域实际上一个复杂的过程，对概念理解空白初次入手照葫芦画瓢，忙着忙着一旦遇到报错也显得很是生疏，解决问题毫无头绪，大量时间也在不断查找资料，查找的过程中这边还没解决，又是一个接一个的新问题。于是为了解决问题而解决问题都不知道自己在忙些什么了。 failed: Cannot find KDC for requested realm 初次遇到这个问题时，我在想是不是DNS不对，左核对右核对smb.conf、krb5.conf跟DC域控主机名有关的配置，明明是对的怎么会报错呢？真是摸不着头脑？？？ 没有在用户名加上 “@域名”，如：administrator@WIN7.LOCAL 1 2 3 4 5 [root@linux ~]# net rpc join -U administrator Enter administrator&#39;s password: kerberos_kinit_password administrator@WIN7 failed: Cannot find KDC for requested realm Using short domain name -- WIN7 Joined &#39;LINUX&#39; to realm &#39;win7.local&#39; DNS update failed: NT_STATUS_INVALID_PARAMETER 如下报错参考Samba Net Ads Join “DNS Update Failed” Error Fixed 错误原因为hosts仅写入了计算机名“linux”，而没有在后面跟上域名，也就是没将主机名补充完整 “linux7.win7.local”。 1 2 3 4 5 6 [root@linux ~]# net ads join -U administrator Enter administrator&#39;s password: Using short domain name -- WIN7 Joined &#39;LINUX&#39; to dns domain &#39;win7.local&#39; No DNS domain configured for linux. Unable to perform DNS Update. DNS update failed: NT_STATUS_INVALID_PARAMETER AD域账户id可以显示，但cat /etc/passswd没有记录 如题就证明AD域账户的数据库不是写在了 /etc/passwd中，使用getent passwd 用户名 可查到相应的域账户。翻阅资料根据Samba结合AD实现域帐号认证的文件服务器所述：winbind trusted domains only = yes 决定getent passwd是否能获得域帐号。 根据《Linux菜鸟入门2》Ldap所说的getent passwd 如果用户信息可以正常显示，证明ldap客户端认证成功，没想到这里又引出一个新的概念LDAP： wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 原来域账户是存在winbind的数据库中，登录时根据此前pam.d配置的可插拔模块，完成家目录的创建。图中hr004未登录用户。 pam_krb5.so not found 可以使用whereis来验证模块是否存在，从而验证完整性，再使用yum安装 。 我在翻阅 chinaunix-PAM配置了解到，pam.d/system-auth就是用做账户验证与会话管理的，还有一些关于requisite、required、sufficient、optional这类control_flag的涵义。 结语 直到自己搭建samba项目所遇到各种报错，看着报错提示，似懂非懂又摸不着头脑，明明自己配置的没问题呀，整个人都处于迷糊的状态。 做完项目后，自己想了想原因才发现这些之前自己的教训都是没有一个项目整体的框架图，没有明确各项组件在项目中的作用、组件中的配置是在项目中承载那一块业务支持的，也就是哪些才是核心模块，是真正掌握的重点。也由此想到一些lights： 我们的专业知识学习看似循序渐进章节明确，但又往往很零碎，我们初期阶段整合集成项目很是困难，经常被弄得头晕脑涨的。一个人集成起来实为困难，若是有一个团队每个人承担着不同分工，相对的 一个人集成起来在项目中是不可或缺的存在，若是集成模块分工化，每个人负责不同的业务逻辑，相互协作组装成一个大项目就容易了许多。分工看起来很专业化，假设我把每条指令作为流水线，每个人作为其中一条指令的作业员，其可替代性强，且更换成本低。 集成在初期本身就要投入大量精力且困难的事情，经验尚浅的朋友采取合作完成项目的形式，是高效且快速的，若要在分工项目中体现出重要性就专注某一方面来体现优势。 建议在做集成项目时，用黑板或是白纸手绘一张大概整体功能及结构拓扑，虽说没各项一一详尽，但梳理出了一个整体性的框架，这样项目实施起来方向就明确了许多，也有利于节奏把控与异常排查。 参考文献 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 程序园-Windows AD域用户访问Linux samba服务 将samba加入到windows域《转载》 Windows Active Directory 域故障排错（三） 51cto-windows server 2008 R2 enterprise AD域控服务器安装 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 Samba启动服务中的nmb是什么 Windows Kerberos客户端配置并访问CDH Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) chinaunix-winbind实现用windows账户登录linux机器 Samba Net Ads Join “DNS Update Failed” Error Fixed wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 chinaunix-netid-PAM配置" />
+<meta property="og:description" content="前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。 安装Windows DC与Linux Samba Domain Controller 运行 dcpromo执行下一步，在新林新建域填写域名，并将DNS设置为域控计算机全名，整个安装过程完成。安装完成打开系统属性可以看到对计算机名、域的详细描述。 具体每一步图文可参考文章此类步骤执行：51cto-windows server 2008 R2 enterprise AD域控服务器安装，本章节只做流程概述。 安装Samba 做加域集成前，建议先阅读此前写的 《Samba共享及Linux权限的应用》，看看[sjhf-实例分析—samba的域功能，我认为这篇文章写得 接下来到了Linux安装Samba，支撑Samba加入AD域一系列体系的有： 域账户与UID映射的Samba-winbind组件 主机非安全通信的验证Kerberos 用于与域主机时间同步的ntpdate 这三者都是协作Linux加入AD域完成Samba共享的整个生态周期。了解到这里我们yum开始安装 指令参考自 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 1 2 # samba、winbind、Kerberos 安装 yum -y install samba samba-client samba-common samba-winbind samba-winbind-clients krb5-workstation ntpdate 需要关闭及开启的服务 需要关闭的服务有：selinux、firewall；这带来个问题就是为什么要关闭selinux、firewall？ 简而言之selinux核心是防止root滥用权限，用户要是sudo各种不明软件、病毒能这样吗？这就是运维与日常用户的区别。 firewall方面，多数是因为不清楚各个软件通信该放行什么端口，索性关上防火墙，简单省事；或是企业系统已有外部防火墙或第三方防火墙，所以关掉系统自带防火墙。 参考 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 建议：看上去，这些内容很耗时间，但实际上是值得投入与学习的。 接着，开启samba及winbind组件服务： SMB是Samba 的核心启动服务，主要负责建立 Linux Samba服务器与Samba客户机之间的对话 NMB可以把Linux系统共享的工作组名称与其IP对应起来，若是关闭就只能通过IP来访问共享文件 参考 Samba启动服务中的nmb是什么 1 2 3 chkconfig smb on &amp;&amp; systemtcl start smb chkconfig nmb on &amp;&amp; systemctl start nmb chkconfig winbind on &amp;&amp; systemctl start winbind samba配置文件配置内容解读可以看 将samba加入到windows域《转载》 加域与验证的准备工作 DNS方面需要配置DC主机IP才能加域，在网络通信中hosts优先级是比DNS高的，先访问hosts是否有对应域名映射，再查找DNS解析。 配置hosts与DNS 1 2 3 4 5 6 7 vi /etc/hosts # 配置host # 格式：主机ip地址 主机名（计算机名.域名） 计算机名 # 比方说我写入的hosts 127.0.0.1 linux.win7.local linux vi /etc/resolv.conf # 配置DNS nameserver 172.17.198.34 # DC主机IP 接着配置时间同步 ntpdate dc-01.win7.local，加域与验证都是与需要时间一致的。 搭建Kerberos 前面介绍Kerberos是主机之间非安全通信的验证服务，既然如此就需要服务端与客户端来保持双方的验证。首先DC（Windows Server）搭建Kerberos；在官网下载选择for Windows的msi安装程序傻瓜化安装；初次安装摸索Kerberos配置可参考文章 Windows Kerberos客户端配置并访问CDH 安装完Kerberos打开软件，其配置内容自动生成的。配置文件是C:/programData/mit/kerberos5/krb5.ini。根本就不需要操心，有些文章教程在Windows上安装Kerberos配这配那的，反倒是画蛇添足。 关注的重点是Kerberos的kdc、admin server、default realm具体是谁。 kdc：即密钥分发中心，维护域中所有安全主体账户信息数据库。 admin server：这里为域控DC服务器；default realm：域名 Kerberos 指令klist在Windows中信息中文提示友好 让我们再回到Linux，清除旧票据生成一个新的票据，并查看 1 2 3 4 5 6 7 8 kdestroy &amp;&amp; kinit administrator@WIN7.LOCAL &amp;&amp; klist #注意域名大写 klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0) Ticket cache: KEYRING:persistent:0:0 Default principal: administrator@WIN7.LOCAL Valid starting Expires Service principal 11/11/2020 22:19:34 11/12/2020 08:19:34 krbtgt/WIN7.LOCAL@WIN7.LOCAL renew until 11/18/2020 22:19:31 已指令的方式配置samba与Kerberos，并加入AD域，关于命令的说明可参考：csdn-参考authconfig 用法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 authconfig # 命令参考自：https://linux.cn/article-7695-1.html --smbsecurity ads --smbworkgroup=WIN7 --smbrealm WIN7.LOCAL --smbservers=dc-01.win7.local --enablewinbind --enablewins # WINS实现的是IP地址和计算机名称的映射 --enablewinbindauth # winbind认证Windows AD-Linux用户映射 --enablewinbindoffline # 允许离线脱域情况登录 --winbindtemplateshell=/bin/bash # 给用户分配bash执行指令 --winbindjoin=administrator --enablelocauthorize 本地用户使用本地授权 --enablemkhomedir=/home/%D/%U # 配置AD域用户的家目录，%D域名 %U用户名 --enablewinbindusedefaultdomain --enablekrb5 --krb5realm=WIN7.LOCAL --krb5kdc=dc-01.win7.local --krb5adminserver=dc-01.win7.local --enablekrb5kdcdns --enablekrb5realmdns --update 更新配置 authconfig-tui 所对应的shell配置，这个图形界面集成了pam 完成加域并使用AD账户登录Linux vi /etc/nsswitch.conf添加winbind认证 1 2 3 passwd: files sss winbind shadow: files sss winbind group: files sss winbind 在配置winbind的过程中也查阅了关于sss的资料文档，sssd也是用于集成验证的，粗略来说它是作为一个本地验证的缓冲池降低认证服务器负载的。 Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 net ads join -U administrator@WIN7.LOCAL输入密码并加域 1 2 3 realm join dc-01.win7.local # 确认是否加域成功 net ads testjoin -U administrator@WIN7.LOCAL # 如上二选一 wbinfo -g &amp; wbinfo -u #查看域中的组与用户 域账户登录Linux 直接使用AD域账户登录Linux提示Disconnected from remote host(Samba) ，解决办法参考 chinaunix-winbind实现用windows账户登录linux机器 所说vi /etc/pam.d/sshd 写入以下三行。 1 2 3 auth sufficient pam_winbind.so account sufficient pam_winbind.so session required pam_mkhomedir.so 在这个环节中也涉及到linux可插拔认证模块(PAM)知识，关于PAM可参考： csdn-Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) 个人浅见从设计者角度想相当于我们做的是接入式主机账户认证，必然需要随时取消这样的账户登录服务。现在我们开始以域账户SSH登录测试 ssh od001@172.17.198.35 登录测试成功，配置AD用户映射生成对应家目录也完成了创建，如图。 AD用户访问samba 专为AD共享测试创建了777的adsharp目录chmod -R 777 /adsharp，valid users也写成了AD域的hrs组，hr001登录到smb共享测试成功。 项目搭建所出现的各种问题疑惑 从samba到ad加域实际上一个复杂的过程，对概念理解空白初次入手照葫芦画瓢，忙着忙着一旦遇到报错也显得很是生疏，解决问题毫无头绪，大量时间也在不断查找资料，查找的过程中这边还没解决，又是一个接一个的新问题。于是为了解决问题而解决问题都不知道自己在忙些什么了。 failed: Cannot find KDC for requested realm 初次遇到这个问题时，我在想是不是DNS不对，左核对右核对smb.conf、krb5.conf跟DC域控主机名有关的配置，明明是对的怎么会报错呢？真是摸不着头脑？？？ 没有在用户名加上 “@域名”，如：administrator@WIN7.LOCAL 1 2 3 4 5 [root@linux ~]# net rpc join -U administrator Enter administrator&#39;s password: kerberos_kinit_password administrator@WIN7 failed: Cannot find KDC for requested realm Using short domain name -- WIN7 Joined &#39;LINUX&#39; to realm &#39;win7.local&#39; DNS update failed: NT_STATUS_INVALID_PARAMETER 如下报错参考Samba Net Ads Join “DNS Update Failed” Error Fixed 错误原因为hosts仅写入了计算机名“linux”，而没有在后面跟上域名，也就是没将主机名补充完整 “linux7.win7.local”。 1 2 3 4 5 6 [root@linux ~]# net ads join -U administrator Enter administrator&#39;s password: Using short domain name -- WIN7 Joined &#39;LINUX&#39; to dns domain &#39;win7.local&#39; No DNS domain configured for linux. Unable to perform DNS Update. DNS update failed: NT_STATUS_INVALID_PARAMETER AD域账户id可以显示，但cat /etc/passswd没有记录 如题就证明AD域账户的数据库不是写在了 /etc/passwd中，使用getent passwd 用户名 可查到相应的域账户。翻阅资料根据Samba结合AD实现域帐号认证的文件服务器所述：winbind trusted domains only = yes 决定getent passwd是否能获得域帐号。 根据《Linux菜鸟入门2》Ldap所说的getent passwd 如果用户信息可以正常显示，证明ldap客户端认证成功，没想到这里又引出一个新的概念LDAP： wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 原来域账户是存在winbind的数据库中，登录时根据此前pam.d配置的可插拔模块，完成家目录的创建。图中hr004未登录用户。 pam_krb5.so not found 可以使用whereis来验证模块是否存在，从而验证完整性，再使用yum安装 。 我在翻阅 chinaunix-PAM配置了解到，pam.d/system-auth就是用做账户验证与会话管理的，还有一些关于requisite、required、sufficient、optional这类control_flag的涵义。 结语 直到自己搭建samba项目所遇到各种报错，看着报错提示，似懂非懂又摸不着头脑，明明自己配置的没问题呀，整个人都处于迷糊的状态。 做完项目后，自己想了想原因才发现这些之前自己的教训都是没有一个项目整体的框架图，没有明确各项组件在项目中的作用、组件中的配置是在项目中承载那一块业务支持的，也就是哪些才是核心模块，是真正掌握的重点。也由此想到一些lights： 我们的专业知识学习看似循序渐进章节明确，但又往往很零碎，我们初期阶段整合集成项目很是困难，经常被弄得头晕脑涨的。一个人集成起来实为困难，若是有一个团队每个人承担着不同分工，相对的 一个人集成起来在项目中是不可或缺的存在，若是集成模块分工化，每个人负责不同的业务逻辑，相互协作组装成一个大项目就容易了许多。分工看起来很专业化，假设我把每条指令作为流水线，每个人作为其中一条指令的作业员，其可替代性强，且更换成本低。 集成在初期本身就要投入大量精力且困难的事情，经验尚浅的朋友采取合作完成项目的形式，是高效且快速的，若要在分工项目中体现出重要性就专注某一方面来体现优势。 建议在做集成项目时，用黑板或是白纸手绘一张大概整体功能及结构拓扑，虽说没各项一一详尽，但梳理出了一个整体性的框架，这样项目实施起来方向就明确了许多，也有利于节奏把控与异常排查。 参考文献 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 程序园-Windows AD域用户访问Linux samba服务 将samba加入到windows域《转载》 Windows Active Directory 域故障排错（三） 51cto-windows server 2008 R2 enterprise AD域控服务器安装 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 Samba启动服务中的nmb是什么 Windows Kerberos客户端配置并访问CDH Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) chinaunix-winbind实现用windows账户登录linux机器 Samba Net Ads Join “DNS Update Failed” Error Fixed wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 chinaunix-netid-PAM配置" />
+<link rel="canonical" href="https://hoochanlon.github.io/2020/11-14-01.46.html" />
+<meta property="og:url" content="https://hoochanlon.github.io/2020/11-14-01.46.html" />
+<meta property="og:site_name" content="Hoo.C.Lon" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-14T01:46:29+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linux加入AD域进行Samba共享与账户登录" />
+<meta name="twitter:site" content="@twitter_username" />
+<meta name="twitter:creator" content="@hoochanlon" />
+<meta name="google-site-verification" content="google_meta_tag_verification" />
+<script type="application/ld+json">
+{"description":"前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。 安装Windows DC与Linux Samba Domain Controller 运行 dcpromo执行下一步，在新林新建域填写域名，并将DNS设置为域控计算机全名，整个安装过程完成。安装完成打开系统属性可以看到对计算机名、域的详细描述。 具体每一步图文可参考文章此类步骤执行：51cto-windows server 2008 R2 enterprise AD域控服务器安装，本章节只做流程概述。 安装Samba 做加域集成前，建议先阅读此前写的 《Samba共享及Linux权限的应用》，看看[sjhf-实例分析—samba的域功能，我认为这篇文章写得 接下来到了Linux安装Samba，支撑Samba加入AD域一系列体系的有： 域账户与UID映射的Samba-winbind组件 主机非安全通信的验证Kerberos 用于与域主机时间同步的ntpdate 这三者都是协作Linux加入AD域完成Samba共享的整个生态周期。了解到这里我们yum开始安装 指令参考自 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 1 2 # samba、winbind、Kerberos 安装 yum -y install samba samba-client samba-common samba-winbind samba-winbind-clients krb5-workstation ntpdate 需要关闭及开启的服务 需要关闭的服务有：selinux、firewall；这带来个问题就是为什么要关闭selinux、firewall？ 简而言之selinux核心是防止root滥用权限，用户要是sudo各种不明软件、病毒能这样吗？这就是运维与日常用户的区别。 firewall方面，多数是因为不清楚各个软件通信该放行什么端口，索性关上防火墙，简单省事；或是企业系统已有外部防火墙或第三方防火墙，所以关掉系统自带防火墙。 参考 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 建议：看上去，这些内容很耗时间，但实际上是值得投入与学习的。 接着，开启samba及winbind组件服务： SMB是Samba 的核心启动服务，主要负责建立 Linux Samba服务器与Samba客户机之间的对话 NMB可以把Linux系统共享的工作组名称与其IP对应起来，若是关闭就只能通过IP来访问共享文件 参考 Samba启动服务中的nmb是什么 1 2 3 chkconfig smb on &amp;&amp; systemtcl start smb chkconfig nmb on &amp;&amp; systemctl start nmb chkconfig winbind on &amp;&amp; systemctl start winbind samba配置文件配置内容解读可以看 将samba加入到windows域《转载》 加域与验证的准备工作 DNS方面需要配置DC主机IP才能加域，在网络通信中hosts优先级是比DNS高的，先访问hosts是否有对应域名映射，再查找DNS解析。 配置hosts与DNS 1 2 3 4 5 6 7 vi /etc/hosts # 配置host # 格式：主机ip地址 主机名（计算机名.域名） 计算机名 # 比方说我写入的hosts 127.0.0.1 linux.win7.local linux vi /etc/resolv.conf # 配置DNS nameserver 172.17.198.34 # DC主机IP 接着配置时间同步 ntpdate dc-01.win7.local，加域与验证都是与需要时间一致的。 搭建Kerberos 前面介绍Kerberos是主机之间非安全通信的验证服务，既然如此就需要服务端与客户端来保持双方的验证。首先DC（Windows Server）搭建Kerberos；在官网下载选择for Windows的msi安装程序傻瓜化安装；初次安装摸索Kerberos配置可参考文章 Windows Kerberos客户端配置并访问CDH 安装完Kerberos打开软件，其配置内容自动生成的。配置文件是C:/programData/mit/kerberos5/krb5.ini。根本就不需要操心，有些文章教程在Windows上安装Kerberos配这配那的，反倒是画蛇添足。 关注的重点是Kerberos的kdc、admin server、default realm具体是谁。 kdc：即密钥分发中心，维护域中所有安全主体账户信息数据库。 admin server：这里为域控DC服务器；default realm：域名 Kerberos 指令klist在Windows中信息中文提示友好 让我们再回到Linux，清除旧票据生成一个新的票据，并查看 1 2 3 4 5 6 7 8 kdestroy &amp;&amp; kinit administrator@WIN7.LOCAL &amp;&amp; klist #注意域名大写 klist: No credentials cache found (ticket cache FILE:/tmp/krb5cc_0) Ticket cache: KEYRING:persistent:0:0 Default principal: administrator@WIN7.LOCAL Valid starting Expires Service principal 11/11/2020 22:19:34 11/12/2020 08:19:34 krbtgt/WIN7.LOCAL@WIN7.LOCAL renew until 11/18/2020 22:19:31 已指令的方式配置samba与Kerberos，并加入AD域，关于命令的说明可参考：csdn-参考authconfig 用法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 authconfig # 命令参考自：https://linux.cn/article-7695-1.html --smbsecurity ads --smbworkgroup=WIN7 --smbrealm WIN7.LOCAL --smbservers=dc-01.win7.local --enablewinbind --enablewins # WINS实现的是IP地址和计算机名称的映射 --enablewinbindauth # winbind认证Windows AD-Linux用户映射 --enablewinbindoffline # 允许离线脱域情况登录 --winbindtemplateshell=/bin/bash # 给用户分配bash执行指令 --winbindjoin=administrator --enablelocauthorize 本地用户使用本地授权 --enablemkhomedir=/home/%D/%U # 配置AD域用户的家目录，%D域名 %U用户名 --enablewinbindusedefaultdomain --enablekrb5 --krb5realm=WIN7.LOCAL --krb5kdc=dc-01.win7.local --krb5adminserver=dc-01.win7.local --enablekrb5kdcdns --enablekrb5realmdns --update 更新配置 authconfig-tui 所对应的shell配置，这个图形界面集成了pam 完成加域并使用AD账户登录Linux vi /etc/nsswitch.conf添加winbind认证 1 2 3 passwd: files sss winbind shadow: files sss winbind group: files sss winbind 在配置winbind的过程中也查阅了关于sss的资料文档，sssd也是用于集成验证的，粗略来说它是作为一个本地验证的缓冲池降低认证服务器负载的。 Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 net ads join -U administrator@WIN7.LOCAL输入密码并加域 1 2 3 realm join dc-01.win7.local # 确认是否加域成功 net ads testjoin -U administrator@WIN7.LOCAL # 如上二选一 wbinfo -g &amp; wbinfo -u #查看域中的组与用户 域账户登录Linux 直接使用AD域账户登录Linux提示Disconnected from remote host(Samba) ，解决办法参考 chinaunix-winbind实现用windows账户登录linux机器 所说vi /etc/pam.d/sshd 写入以下三行。 1 2 3 auth sufficient pam_winbind.so account sufficient pam_winbind.so session required pam_mkhomedir.so 在这个环节中也涉及到linux可插拔认证模块(PAM)知识，关于PAM可参考： csdn-Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) 个人浅见从设计者角度想相当于我们做的是接入式主机账户认证，必然需要随时取消这样的账户登录服务。现在我们开始以域账户SSH登录测试 ssh od001@172.17.198.35 登录测试成功，配置AD用户映射生成对应家目录也完成了创建，如图。 AD用户访问samba 专为AD共享测试创建了777的adsharp目录chmod -R 777 /adsharp，valid users也写成了AD域的hrs组，hr001登录到smb共享测试成功。 项目搭建所出现的各种问题疑惑 从samba到ad加域实际上一个复杂的过程，对概念理解空白初次入手照葫芦画瓢，忙着忙着一旦遇到报错也显得很是生疏，解决问题毫无头绪，大量时间也在不断查找资料，查找的过程中这边还没解决，又是一个接一个的新问题。于是为了解决问题而解决问题都不知道自己在忙些什么了。 failed: Cannot find KDC for requested realm 初次遇到这个问题时，我在想是不是DNS不对，左核对右核对smb.conf、krb5.conf跟DC域控主机名有关的配置，明明是对的怎么会报错呢？真是摸不着头脑？？？ 没有在用户名加上 “@域名”，如：administrator@WIN7.LOCAL 1 2 3 4 5 [root@linux ~]# net rpc join -U administrator Enter administrator&#39;s password: kerberos_kinit_password administrator@WIN7 failed: Cannot find KDC for requested realm Using short domain name -- WIN7 Joined &#39;LINUX&#39; to realm &#39;win7.local&#39; DNS update failed: NT_STATUS_INVALID_PARAMETER 如下报错参考Samba Net Ads Join “DNS Update Failed” Error Fixed 错误原因为hosts仅写入了计算机名“linux”，而没有在后面跟上域名，也就是没将主机名补充完整 “linux7.win7.local”。 1 2 3 4 5 6 [root@linux ~]# net ads join -U administrator Enter administrator&#39;s password: Using short domain name -- WIN7 Joined &#39;LINUX&#39; to dns domain &#39;win7.local&#39; No DNS domain configured for linux. Unable to perform DNS Update. DNS update failed: NT_STATUS_INVALID_PARAMETER AD域账户id可以显示，但cat /etc/passswd没有记录 如题就证明AD域账户的数据库不是写在了 /etc/passwd中，使用getent passwd 用户名 可查到相应的域账户。翻阅资料根据Samba结合AD实现域帐号认证的文件服务器所述：winbind trusted domains only = yes 决定getent passwd是否能获得域帐号。 根据《Linux菜鸟入门2》Ldap所说的getent passwd 如果用户信息可以正常显示，证明ldap客户端认证成功，没想到这里又引出一个新的概念LDAP： wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 原来域账户是存在winbind的数据库中，登录时根据此前pam.d配置的可插拔模块，完成家目录的创建。图中hr004未登录用户。 pam_krb5.so not found 可以使用whereis来验证模块是否存在，从而验证完整性，再使用yum安装 。 我在翻阅 chinaunix-PAM配置了解到，pam.d/system-auth就是用做账户验证与会话管理的，还有一些关于requisite、required、sufficient、optional这类control_flag的涵义。 结语 直到自己搭建samba项目所遇到各种报错，看着报错提示，似懂非懂又摸不着头脑，明明自己配置的没问题呀，整个人都处于迷糊的状态。 做完项目后，自己想了想原因才发现这些之前自己的教训都是没有一个项目整体的框架图，没有明确各项组件在项目中的作用、组件中的配置是在项目中承载那一块业务支持的，也就是哪些才是核心模块，是真正掌握的重点。也由此想到一些lights： 我们的专业知识学习看似循序渐进章节明确，但又往往很零碎，我们初期阶段整合集成项目很是困难，经常被弄得头晕脑涨的。一个人集成起来实为困难，若是有一个团队每个人承担着不同分工，相对的 一个人集成起来在项目中是不可或缺的存在，若是集成模块分工化，每个人负责不同的业务逻辑，相互协作组装成一个大项目就容易了许多。分工看起来很专业化，假设我把每条指令作为流水线，每个人作为其中一条指令的作业员，其可替代性强，且更换成本低。 集成在初期本身就要投入大量精力且困难的事情，经验尚浅的朋友采取合作完成项目的形式，是高效且快速的，若要在分工项目中体现出重要性就专注某一方面来体现优势。 建议在做集成项目时，用黑板或是白纸手绘一张大概整体功能及结构拓扑，虽说没各项一一详尽，但梳理出了一个整体性的框架，这样项目实施起来方向就明确了许多，也有利于节奏把控与异常排查。 参考文献 linuxcn-如何让 Linux 机器加入 Windows 的 AD 域 程序园-Windows AD域用户访问Linux samba服务 将samba加入到windows域《转载》 Windows Active Directory 域故障排错（三） 51cto-windows server 2008 R2 enterprise AD域控服务器安装 Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎 Samba启动服务中的nmb是什么 Windows Kerberos客户端配置并访问CDH Sina-sssd 系统安全服务守护进程 RedHat-SSSD vs Winbind csdn-红帽企业级Linux 7和 Windows集成指南 Linux可插拔认证模块的基本概念与架构 ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一) chinaunix-winbind实现用windows账户登录linux机器 Samba Net Ads Join “DNS Update Failed” Error Fixed wilburxu-LDAP概念和原理介绍 jpfss-Linux下LDAP统一认证解决方案 chinaunix-netid-PAM配置","@type":"BlogPosting","url":"https://hoochanlon.github.io/2020/11-14-01.46.html","headline":"Linux加入AD域进行Samba共享与账户登录","datePublished":"2020-11-14T01:46:29+08:00","dateModified":"2020-11-14T01:46:29+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://hoochanlon.github.io/2020/11-14-01.46.html"},"author":{"@type":"Person","name":"hoochanlon"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <title>Linux加入AD域进行Samba共享与账户登录 | Hoo.C.Lon
+  </title>
+
+  <!--
+  The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
+  Generated by: https://www.favicon-generator.org/
+-->
+
+
+
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon">
+<!-- 
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png">
+<link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png">
+
+<link rel="icon" type="image/png" sizes="192x192"  href="/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"> 
+
+<link rel="manifest" href="/assets/img/favicons/manifest.json">
+<meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'>
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"> -->
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- GA -->
+  
+
+  <!-- jsDelivr CDN -->
+  <link rel="preconnect" href="cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="cdn.jsdelivr.net">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ="
+    crossorigin="anonymous">
+
+  <!--
+  CSS selector for site.
+-->
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css">
+
+
+
+  <!-- JavaScripts -->
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+
+  <!--
+  JS selector for site.
+-->
+
+
+  
+
+
+
+
+
+<script defer src="/assets/js/dist/post.min.js"></script>
+
+
+  <!-- MathJax -->
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157837686-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157837686-1');
+</script>
+
+
+</head>
+
+
+  <body data-spy="scroll" data-target="#toc">
+
+    <!--
+  The Side Bar
+-->
+
+<div id="sidebar" class="d-flex flex-column align-items-end">
+
+  <div class="profile-wrapper text-center">
+    <div id="avatar">
+      <a href="/" alt="avatar" class="mx-auto">
+        
+        <img src="/assets/img/avatar/avatar1.png" alt="avatar" onerror="this.style.display='none'">
+      </a>
+    </div>
+
+    <div class="site-title mt-3">
+      <a href="/">Hoo.C.Lon</a>
+    </div>
+
+    <div class="site-subtitle font-italic"><i class="fas fa-pen-nib"></i> A note app by Jekyll theme</div>
+
+  </div><!-- .profile-wrapper -->
+
+  <ul class="w-100">
+    <!-- home -->
+    <li class="nav-item">
+      <a href="/" class="nav-link">
+        <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>INDEX</span>
+      </a>
+    </li>
+    <!-- the real tabs -->
+    
+    <li class="nav-item">
+      <a href="/categories/" class="nav-link">
+        <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>CATEGORIES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/tags/" class="nav-link">
+        <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>TAGS</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/archives/" class="nav-link">
+        <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ARCHIVES</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/about/" class="nav-link">
+        <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>ABOUT</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+    <li class="nav-item">
+      <a href="/gallery/" class="nav-link">
+        <i class="fa-fw fas fa-camera-retro ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>GALLERY</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
+
+  </ul> <!-- ul.nav.flex-column -->
+
+  <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center">
+
+    
+      
+
+      
+      <a href="https://github.com/hoochanlon" aria-label="github"
+        class="order-3"
+        target="_blank" rel="noopener">
+        <i class="fab fa-github-alt"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/assets/qr/wx.png" aria-label="weixin"
+        class="order-4"
+        target="_blank" rel="noopener">
+        <i class="fab fa-weixin"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="
+          javascript:location.href = 'mailto:' + ['hoochanlon','outlook.com'].join('@')" aria-label="email"
+        class="order-5"
+        >
+        <i class="fas fa-envelope"></i>
+      </a>
+      
+
+    
+      
+
+      
+      <a href="/feed.xml" aria-label="rss"
+        class="order-6"
+        >
+        <i class="fas fa-rss"></i>
+      </a>
+      
+
+    
+
+    
+      
+        <span class="icon-border order-2"></span>
+      
+
+      <span id="mode-toggle-wrapper" class="order-1">
+        <!--
+  Switch the mode between dark and light.
+-->
+
+<i class="mode-toggle fas fa-adjust"></i>
+
+<script type="text/javascript">
+
+  class ModeToggle {
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
+
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+
+      var self = this;
+
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addListener(function() {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+
+          self.clearMode();
+        }
+
+        self.updateMermaid();
+      });
+
+    } /* constructor() */
+
+
+    setDark() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+
+    setLight() {
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+
+    clearMode() {
+      $('html').removeAttr(ModeToggle.MODE_KEY);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+
+    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+
+    get hasMode() { return this.mode != null; }
+
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode
+        || (!this.hasMode && this.isSysDarkPrefer) ) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+
+    updateMermaid() {
+      if (typeof mermaid !== "undefined") {
+        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
+        let config = { theme: expectedTheme };
+
+        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
+        $(".mermaid").each(function() {
+          let svgCode = $(this).prev().children().html();
+          $(this).removeAttr("data-processed");
+          $(this).html(svgCode);
+        });
+
+        mermaid.initialize(config);
+        mermaid.init(undefined, ".mermaid");
+      }
+    }
+
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+
+      this.updateMermaid();
+
+    } /* flipMode() */
+
+  } /* ModeToggle */
+
+  let toggle = new ModeToggle();
+
+  $(".mode-toggle").click(function() {
+
+    toggle.flipMode();
+
+  });
+
+</script>
+
+      </span>
+    
+
+  </div> <!-- .sidebar-bottom -->
+
+</div><!-- #sidebar -->
+
+
+    <!--
+  The Top Bar
+-->
+
+<div id="topbar-wrapper" class="row justify-content-center topbar-down">
+  <div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between">
+    <span id="breadcrumb">
+
+    
+
+    
+
+      
+
+        
+          
+
+        
+
+      
+
+        
+        <!-- <span>
+          
+          
+          <a href="/2020"> 
+            2020
+          </a>
+        </span> -->
+
+        <span>
+          
+          
+          <a href="/archives"> 
+            2020
+          </a>
+        </span> 
+
+        
+
+      
+
+        
+          <span>Linux加入AD域进行Samba共享与账户登录</span>
+
+        
+
+      
+
+    
+
+    </span><!-- endof #breadcrumb -->
+
+    <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
+
+    <div id="topbar-title">
+      Post
+    </div>
+    <i id="search-trigger" class="fas fa-search fa-fw"></i>
+    <span id="search-wrapper" class="align-items-center">
+      <i class="fas fa-search fa-fw"></i>
+      <input class="form-control" id="search-input" type="search"
+        aria-label="search" placeholder="Search...">
+      <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
+    </span>
+    <span id="search-cancel" >Cancel</span>
+  </div>
+
+</div>
+
+
+    <div id="main-wrapper">
+      <div id="main">
+
+        <!--
+  Refactor the HTML structure.
+-->
+
+
+
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+<!-- Add attribute 'hide-bullet' to the checkbox list -->
+
+
+
+
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+  
+  
+
+  
+
+  
+
+
+
+<!-- return -->
+<div class="row">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>Linux加入AD域进行Samba共享与账户登录</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, Nov 14, 2020,  1:46 AM +0800"
+  >
+
+  
+  
+
+  
+    Nov 14, 2020
+  
+
+  <i class="unloaded">2020-11-14T01:46:29+08:00</i>
+
+</span>
+
+          by
+          <span class="author">
+            hoochanlon
+          </span>
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="3524 words">19 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <h2 id="前言">前言</h2>
+
+<p>不如NAS，让自己变得舒服，用这个方式友好使用共享。<!--more--></p>
+
+<p>Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。</p>
+
+<p>于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。</p>
+
+<p>文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。</p>
+
+<h2 id="安装windows-dc与linux-samba">安装Windows DC与Linux Samba</h2>
+
+<h3 id="domain-controller">Domain Controller</h3>
+
+<p>运行 <code class="language-plaintext highlighter-rouge">dcpromo</code>执行下一步，在新林新建域填写域名，并将DNS设置为域控计算机全名，整个安装过程完成。安装完成打开系统属性可以看到对计算机名、域的详细描述。</p>
+
+<p>具体每一步图文可参考文章此类步骤执行：<a href="https://blog.51cto.com/12476193/2123191">51cto-windows server 2008 R2 enterprise AD域控服务器安装</a>，本章节只做流程概述。</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/11/kLHV9SramZIGczX.png" alt="image-20201111174222325.png" /></p>
+
+<h2 id="安装samba">安装Samba</h2>
+
+<p><strong><em>做加域集成前，建议先阅读此前写的 《Samba共享及Linux权限的应用》，看看[<a href="http://m.blog.chinaunix.net/uid-11636352-id-1757728.html">sjhf-实例分析—samba的域功能</a>，我认为这篇文章写得</em></strong></p>
+
+<p>接下来到了Linux安装Samba，支撑Samba加入AD域一系列体系的有：</p>
+<ul>
+  <li>域账户与UID映射的Samba-winbind组件</li>
+  <li>主机非安全通信的验证Kerberos</li>
+  <li>用于与域主机时间同步的ntpdate</li>
+</ul>
+
+<p>这三者都是协作Linux加入AD域完成Samba共享的整个生态周期。了解到这里我们yum开始安装</p>
+
+<blockquote>
+  <p>指令参考自 <a href="https://linux.cn/article-7695-1.html">linuxcn-如何让 Linux 机器加入 Windows 的 AD 域</a></p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="c"># samba、winbind、Kerberos 安装</span>
+yum <span class="nt">-y</span> <span class="nb">install </span>samba samba-client samba-common samba-winbind samba-winbind-clients krb5-workstation ntpdate
+</pre></td></tr></tbody></table></code></div></div>
+<h3 id="需要关闭及开启的服务">需要关闭及开启的服务</h3>
+
+<p>需要关闭的服务有：selinux、firewall；这带来个问题就是为什么要关闭selinux、firewall？</p>
+
+<p>简而言之selinux核心是防止root滥用权限，用户要是sudo各种不明软件、病毒能这样吗？这就是运维与日常用户的区别。</p>
+
+<p>firewall方面，多数是因为不清楚各个软件通信该放行什么端口，索性关上防火墙，简单省事；或是企业系统已有外部防火墙或第三方防火墙，所以关掉系统自带防火墙。</p>
+
+<blockquote>
+  <p>参考 <a href="https://www.zhihu.com/question/20559538/answer/761147959">Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎</a></p>
+</blockquote>
+
+<p><strong><em>建议：看上去，这些内容很耗时间，但实际上是值得投入与学习的。</em></strong></p>
+
+<p>接着，开启samba及winbind组件服务：</p>
+
+<ul>
+  <li>SMB是Samba 的核心启动服务，主要负责建立 Linux Samba服务器与Samba客户机之间的对话</li>
+  <li>NMB可以把Linux系统共享的工作组名称与其IP对应起来，若是关闭就只能通过IP来访问共享文件</li>
+</ul>
+
+<blockquote>
+  <p>参考 <a href="https://blog.csdn.net/qq_30782455/article/details/96345259">Samba启动服务中的nmb是什么</a></p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>chkconfig smb on <span class="o">&amp;&amp;</span> systemtcl start smb
+chkconfig nmb on <span class="o">&amp;&amp;</span> systemctl start nmb
+chkconfig winbind on <span class="o">&amp;&amp;</span> systemctl start winbind
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>samba配置文件配置内容解读可以看 <a href="https://www.cnblogs.com/rusking/p/3993148.html">将samba加入到windows域《转载》</a></p>
+
+<h2 id="加域与验证的准备工作">加域与验证的准备工作</h2>
+
+<p>DNS方面需要配置DC主机IP才能加域，在网络通信中hosts优先级是比DNS高的，先访问hosts是否有对应域名映射，再查找DNS解析。</p>
+
+<p>配置hosts与DNS</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>vi /etc/hosts <span class="c"># 配置host</span>
+<span class="c"># 格式：主机ip地址 主机名（计算机名.域名） 计算机名</span>
+<span class="c"># 比方说我写入的hosts</span>
+127.0.0.1 linux.win7.local linux
+
+vi /etc/resolv.conf <span class="c"># 配置DNS</span>
+nameserver 172.17.198.34 <span class="c"># DC主机IP</span>
+</pre></td></tr></tbody></table></code></div></div>
+<p>接着配置时间同步 <code class="language-plaintext highlighter-rouge">ntpdate dc-01.win7.local</code>，加域与验证都是与需要时间一致的。</p>
+
+<h2 id="搭建kerberos">搭建Kerberos</h2>
+<p>前面介绍Kerberos是主机之间非安全通信的验证服务，既然如此就需要服务端与客户端来保持双方的验证。首先DC（Windows Server）搭建Kerberos；在<a href="http://web.mit.edu/kerberos/">官网下载</a>选择for Windows的msi安装程序傻瓜化安装；初次安装摸索Kerberos配置可参考文章 <a href="https://blog.csdn.net/weixin_42438176/article/details/87127632">Windows Kerberos客户端配置并访问CDH</a></p>
+
+<p>安装完Kerberos打开软件，其配置内容自动生成的。配置文件是<code class="language-plaintext highlighter-rouge">C:/programData/mit/kerberos5/krb5.ini</code>。根本就不需要操心，有些文章教程在Windows上安装Kerberos配这配那的，反倒是画蛇添足。</p>
+
+<p>关注的重点是Kerberos的kdc、admin server、default realm具体是谁。</p>
+
+<ul>
+  <li>kdc：即密钥分发中心，维护域中所有安全主体账户信息数据库。</li>
+  <li>admin server：这里为域控DC服务器；default realm：域名</li>
+</ul>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/12/63ilhg5rQaZdpzL.png" alt="image-20201112105519473.png" /></p>
+
+<p>Kerberos 指令<code class="language-plaintext highlighter-rouge">klist</code>在Windows中信息中文提示友好</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/cC8wgvbX1INQYV2.png" alt="image-20201110180534597.png" /></p>
+
+<p><strong>让我们再回到Linux</strong>，清除旧票据生成一个新的票据，并查看</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>kdestroy <span class="o">&amp;&amp;</span>  kinit administrator@WIN7.LOCAL <span class="o">&amp;&amp;</span> klist <span class="c">#注意域名大写</span>
+klist: No credentials cache found <span class="o">(</span>ticket cache FILE:/tmp/krb5cc_0<span class="o">)</span>
+Ticket cache: KEYRING:persistent:0:0
+Default principal: administrator@WIN7.LOCAL
+
+Valid starting       Expires              Service principal
+11/11/2020 22:19:34  11/12/2020 08:19:34  krbtgt/WIN7.LOCAL@WIN7.LOCAL
+	renew <span class="k">until </span>11/18/2020 22:19:31
+</pre></td></tr></tbody></table></code></div></div>
+<p>已指令的方式配置samba与Kerberos，并加入AD域，关于命令的说明可参考：<a href="https://blog.csdn.net/safenli/article/details/70598885">csdn-参考authconfig 用法</a></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>authconfig 
+<span class="c"># 命令参考自：https://linux.cn/article-7695-1.html</span>
+<span class="nt">--smbsecurity</span> ads
+<span class="nt">--smbworkgroup</span><span class="o">=</span>WIN7 
+<span class="nt">--smbrealm</span> WIN7.LOCAL 
+<span class="nt">--smbservers</span><span class="o">=</span>dc-01.win7.local
+
+<span class="nt">--enablewinbind</span> 
+<span class="nt">--enablewins</span> <span class="c"># WINS实现的是IP地址和计算机名称的映射</span>
+<span class="nt">--enablewinbindauth</span> <span class="c"># winbind认证Windows AD-Linux用户映射</span>
+<span class="nt">--enablewinbindoffline</span> <span class="c"># 允许离线脱域情况登录</span>
+<span class="nt">--winbindtemplateshell</span><span class="o">=</span>/bin/bash <span class="c"># 给用户分配bash执行指令</span>
+<span class="nt">--winbindjoin</span><span class="o">=</span>administrator 
+<span class="nt">--enablelocauthorize</span> 本地用户使用本地授权
+<span class="nt">--enablemkhomedir</span><span class="o">=</span>/home/%D/%U <span class="c"># 配置AD域用户的家目录，%D域名 %U用户名 </span>
+<span class="nt">--enablewinbindusedefaultdomain</span>
+
+<span class="nt">--enablekrb5</span> <span class="nt">--krb5realm</span><span class="o">=</span>WIN7.LOCAL <span class="nt">--krb5kdc</span><span class="o">=</span>dc-01.win7.local
+<span class="nt">--krb5adminserver</span><span class="o">=</span>dc-01.win7.local <span class="nt">--enablekrb5kdcdns</span> <span class="nt">--enablekrb5realmdns</span>
+<span class="nt">--update</span> 更新配置 
+</pre></td></tr></tbody></table></code></div></div>
+<p><code class="language-plaintext highlighter-rouge">authconfig-tui</code> 所对应的shell配置，这个图形界面集成了pam</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/fNtgdezVoZXO1cF.png" alt="12-01-41.png" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/VjSc2zE3JgHZLFl.png" alt="12-01-59.png" /></p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/pJ4elQjmILCtGgv.png" alt="12-02-19.png" /></p>
+
+<h2 id="完成加域并使用ad账户登录linux">完成加域并使用AD账户登录Linux</h2>
+
+<p><code class="language-plaintext highlighter-rouge">vi /etc/nsswitch.conf</code>添加winbind认证</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>passwd:     files sss winbind
+shadow:     files sss winbind
+group:      files sss winbind
+</pre></td></tr></tbody></table></code></div></div>
+<p>在配置winbind的过程中也查阅了关于sss的资料文档，sssd也是用于集成验证的，粗略来说它是作为一个本地验证的缓冲池降低认证服务器负载的。</p>
+
+<ul>
+  <li><a href="http://blog.sina.com.cn/s/blog_588c88cb0100ywoh.html">Sina-sssd 系统安全服务守护进程</a></li>
+  <li><a href="https://www.redhat.com/zh/blog/sssd-vs-winbind">RedHat-SSSD vs Winbind</a></li>
+  <li><a href="https://blog.csdn.net/qtm_gitee/article/details/102879486">csdn-红帽企业级Linux 7和 Windows集成指南</a></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">net ads join -U administrator@WIN7.LOCAL</code>输入密码并加域</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>realm <span class="nb">join </span>dc-01.win7.local <span class="c"># 确认是否加域成功</span>
+net ads testjoin <span class="nt">-U</span> administrator@WIN7.LOCAL <span class="c"># 如上二选一</span>
+wbinfo <span class="nt">-g</span> &amp; wbinfo <span class="nt">-u</span> <span class="c">#查看域中的组与用户</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="域账户登录linux">域账户登录Linux</h3>
+
+<p>直接使用AD域账户登录Linux提示Disconnected from remote host(Samba) ，解决办法参考 <a href="http://blog.chinaunix.net/uid-73604-id-2058303.html">chinaunix-winbind实现用windows账户登录linux机器</a> 所说<code class="language-plaintext highlighter-rouge">vi /etc/pam.d/sshd</code> 写入以下三行。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>auth       sufficient   pam_winbind.so
+account    sufficient   pam_winbind.so
+session    required     pam_mkhomedir.so
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>在这个环节中也涉及到linux可插拔认证模块(PAM)知识，关于PAM可参考：</p>
+
+<ul>
+  <li><a href="https://blog.csdn.net/cpongo4/article/details/89166312">csdn-Linux可插拔认证模块的基本概念与架构</a></li>
+  <li><a href="https://www.cnblogs.com/ariclee/p/4723835.html">ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一)</a></li>
+</ul>
+
+<p>个人浅见从设计者角度想相当于我们做的是接入式主机账户认证，必然需要随时取消这样的账户登录服务。现在我们开始以域账户SSH登录测试 <code class="language-plaintext highlighter-rouge">ssh od001@172.17.198.35</code></p>
+
+<p>登录测试成功，配置AD用户映射生成对应家目录也完成了创建，如图。</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/12/hFYOCM4xdn975sK.png" alt="Snipaste_2020-11-11_14-19-49.png" /></p>
+
+<h3 id="ad用户访问samba">AD用户访问samba</h3>
+
+<p>专为AD共享测试创建了777的adsharp目录<code class="language-plaintext highlighter-rouge">chmod -R 777 /adsharp</code>，valid users也写成了AD域的hrs组，hr001登录到smb共享测试成功。</p>
+
+<h2 id="项目搭建所出现的各种问题疑惑">项目搭建所出现的各种问题疑惑</h2>
+
+<p>从samba到ad加域实际上一个复杂的过程，对概念理解空白初次入手照葫芦画瓢，忙着忙着一旦遇到报错也显得很是生疏，解决问题毫无头绪，大量时间也在不断查找资料，查找的过程中这边还没解决，又是一个接一个的新问题。于是为了解决问题而解决问题都不知道自己在忙些什么了。</p>
+
+<h3 id="failed-cannot-find-kdc-for-requested-realm">failed: Cannot find KDC for requested realm</h3>
+
+<p>初次遇到这个问题时，我在想是不是DNS不对，左核对右核对smb.conf、krb5.conf跟DC域控主机名有关的配置，明明是对的怎么会报错呢？真是摸不着头脑？？？</p>
+
+<p>没有在用户名加上 “@域名”，如：<code class="language-plaintext highlighter-rouge">administrator@WIN7.LOCAL</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="o">[</span>root@linux ~]# net rpc <span class="nb">join</span> <span class="nt">-U</span> administrator
+Enter administrator<span class="s1">'s password:
+kerberos_kinit_password administrator@WIN7 failed: Cannot find KDC for requested realm
+Using short domain name -- WIN7
+Joined '</span>LINUX<span class="s1">' to realm '</span>win7.local<span class="s1">'
+</span></pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="dns-update-failed-nt_status_invalid_parameter">DNS update failed: NT_STATUS_INVALID_PARAMETER</h3>
+
+<p>如下报错参考<a href="http://www.kombitz.com/2012/03/05/samba-net-ads-join-dns-update-failed-error-fixed/">Samba Net Ads Join “DNS Update Failed” Error Fixed</a> 错误原因为hosts仅写入了计算机名“linux”，而没有在后面跟上域名，也就是没将主机名补充完整 “linux7.win7.local”。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="o">[</span>root@linux ~]# net ads <span class="nb">join</span> <span class="nt">-U</span> administrator
+Enter administrator<span class="s1">'s password:
+Using short domain name -- WIN7
+Joined '</span>LINUX<span class="s1">' to dns domain '</span>win7.local<span class="s1">'
+No DNS domain configured for linux. Unable to perform DNS Update.
+DNS update failed: NT_STATUS_INVALID_PARAMETER
+</span></pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="ad域账户id可以显示但cat-etcpassswd没有记录">AD域账户id可以显示，但cat /etc/passswd没有记录</h3>
+
+<p>如题就证明AD域账户的数据库不是写在了 <code class="language-plaintext highlighter-rouge">/etc/passwd</code>中，使用<code class="language-plaintext highlighter-rouge">getent passwd 用户名</code> 可查到相应的域账户。翻阅资料根据<a href="https://www.cnblogs.com/IvanChen/p/4739092.html">Samba结合AD实现域帐号认证的文件服务器</a>所述：<code class="language-plaintext highlighter-rouge">winbind trusted domains only = yes</code> 决定getent passwd是否能获得域帐号。</p>
+
+<p>根据<a href="https://blog.51cto.com/12157236/1874077">《Linux菜鸟入门2》Ldap</a>所说的getent passwd  如果用户信息可以正常显示，证明ldap客户端认证成功，没想到这里又引出一个新的概念LDAP：</p>
+
+<ul>
+  <li>
+    <p><a href="https://www.cnblogs.com/wilburxu/p/9174353.html">wilburxu-LDAP概念和原理介绍</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.cnblogs.com/jpfss/p/11021948.html">jpfss-Linux下LDAP统一认证解决方案</a></p>
+  </li>
+</ul>
+
+<p>原来域账户是存在winbind的数据库中，登录时根据此前pam.d配置的可插拔模块，完成家目录的创建。图中hr004未登录用户。</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/Sc1Xu6A7PC2YH5U.png" alt="Snipaste_2020-11-13_09-52-23.png" /></p>
+
+<h3 id="pam_krb5so-not-found">pam_krb5.so not found</h3>
+
+<p>可以使用<code class="language-plaintext highlighter-rouge">whereis</code>来验证模块是否存在，从而验证完整性，再使用yum安装 。</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/sDVfmBPyd53cJYg.png" alt="" /></p>
+
+<p>我在翻阅 <a href="http://blog.chinaunix.net/uid-291705-id-2134362.html">chinaunix-PAM配置</a>了解到，<code class="language-plaintext highlighter-rouge">pam.d/system-auth</code>就是用做账户验证与会话管理的，还有一些关于requisite、required、sufficient、optional这类control_flag的涵义。</p>
+
+<h3 id="结语">结语</h3>
+
+<p>直到自己搭建samba项目所遇到各种报错，看着报错提示，似懂非懂又摸不着头脑，明明自己配置的没问题呀，整个人都处于迷糊的状态。</p>
+
+<p>做完项目后，自己想了想原因才发现这些之前自己的教训都是没有一个项目整体的框架图，没有明确各项组件在项目中的作用、组件中的配置是在项目中承载那一块业务支持的，也就是哪些才是核心模块，是真正掌握的重点。也由此想到一些lights：</p>
+
+<p>我们的专业知识学习看似循序渐进章节明确，但又往往很零碎，我们初期阶段整合集成项目很是困难，经常被弄得头晕脑涨的。一个人集成起来实为困难，若是有一个团队每个人承担着不同分工，相对的</p>
+
+<p>一个人集成起来在项目中是不可或缺的存在，若是集成模块分工化，每个人负责不同的业务逻辑，相互协作组装成一个大项目就容易了许多。分工看起来很专业化，假设我把每条指令作为流水线，每个人作为其中一条指令的作业员，其可替代性强，且更换成本低。</p>
+
+<p>集成在初期本身就要投入大量精力且困难的事情，经验尚浅的朋友采取合作完成项目的形式，是高效且快速的，若要在分工项目中体现出重要性就专注某一方面来体现优势。</p>
+
+<p>建议在做集成项目时，用黑板或是白纸手绘一张大概整体功能及结构拓扑，虽说没各项一一详尽，但梳理出了一个整体性的框架，这样项目实施起来方向就明确了许多，也有利于节奏把控与异常排查。</p>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://i.loli.net/2020/11/13/NvZzM6H3nlERuPq.png" alt="image-20201113153331475.png" /></p>
+
+<h2 id="参考文献">参考文献</h2>
+
+<ul>
+  <li><a href="https://linux.cn/article-7695-1.html">linuxcn-如何让 Linux 机器加入 Windows 的 AD 域</a></li>
+  <li><a href="http://www.voidcn.com/article/p-smihtnxg-bpn.html">程序园-Windows AD域用户访问Linux samba服务</a></li>
+  <li><a href="https://www.cnblogs.com/rusking/p/3993148.html">将samba加入到windows域《转载》</a></li>
+  <li><a href="https://blog.51cto.com/zhangdonghui/62869">Windows Active Directory 域故障排错（三）</a></li>
+  <li><a href="https://blog.51cto.com/12476193/2123191">51cto-windows server 2008 R2 enterprise AD域控服务器安装</a></li>
+  <li><a href="https://www.zhihu.com/question/20559538/answer/761147959">Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎</a></li>
+  <li><a href="https://blog.csdn.net/qq_30782455/article/details/96345259">Samba启动服务中的nmb是什么</a></li>
+  <li><a href="https://blog.csdn.net/weixin_42438176/article/details/87127632">Windows Kerberos客户端配置并访问CDH</a></li>
+  <li><a href="http://blog.sina.com.cn/s/blog_588c88cb0100ywoh.html">Sina-sssd 系统安全服务守护进程</a></li>
+  <li><a href="https://www.redhat.com/zh/blog/sssd-vs-winbind">RedHat-SSSD vs Winbind</a></li>
+  <li><a href="https://blog.csdn.net/qtm_gitee/article/details/102879486">csdn-红帽企业级Linux 7和 Windows集成指南</a></li>
+  <li><a href="https://blog.csdn.net/cpongo4/article/details/89166312">Linux可插拔认证模块的基本概念与架构</a></li>
+  <li><a href="https://www.cnblogs.com/ariclee/p/4723835.html">ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一)</a></li>
+  <li><a href="http://blog.chinaunix.net/uid-73604-id-2058303.html">chinaunix-winbind实现用windows账户登录linux机器</a></li>
+  <li><a href="http://www.kombitz.com/2012/03/05/samba-net-ads-join-dns-update-failed-error-fixed/">Samba Net Ads Join “DNS Update Failed” Error Fixed</a></li>
+  <li><a href="https://www.cnblogs.com/wilburxu/p/9174353.html">wilburxu-LDAP概念和原理介绍</a></li>
+  <li><a href="https://www.cnblogs.com/jpfss/p/11021948.html">jpfss-Linux下LDAP统一认证解决方案</a></li>
+  <li><a href="http://blog.chinaunix.net/uid-291705-id-2134362.html">chinaunix-netid-PAM配置</a></li>
+</ul>
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/daily-note/'>daily note</a>,
+            <a href='/categories/2020/'>--2020</a>,
+            <a href='/categories/chip/'>chip</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/chip/"
+            class="post-tag no-text-decoration" >chip</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+    
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=Linux加入AD域进行Samba共享与账户登录 - Hoo.C.Lon&url=https://hoochanlon.github.io/2020/11-14-01.46.html" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Linux加入AD域进行Samba共享与账户登录 - Hoo.C.Lon&u=https://hoochanlon.github.io/2020/11-14-01.46.html" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=Linux加入AD域进行Samba共享与账户登录 - Hoo.C.Lon&url=https://hoochanlon.github.io/2020/11-14-01.46.html" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
+
+  <!--
+  The Pannel on right side (Desktop views)
+-->
+
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+
+  <div class="access">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  
+    <div id="access-tags">
+      <span>Trending Tags</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+      </div>
+    </div>
+  
+  </div> <!-- .access -->
+
+  
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
+
+</div> <!-- #panel-wrapper -->
+
+
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4" style="display:none">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/2019/05-02-11.45.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May  2, 2019
+  
+
+  <i class="unloaded">2019-05-02T11:45:23+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>浏览plantuml</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                #1
+
+
+搜索jdk进入官网download，接受许可及下载并安装
+
+
+下载graphviz，注意： graphviz 不要安装在C盘上，否则配置环境变量无效
+
+
+安装完成后运行 sysdm.cpl 打开环境变量并点击高级
+
+
+环境变量 path变量 值路径要与JDK的安装路径一致，graphviz同理。
+
+
+#2
+
+
+下载并安装
+
+
+搜索并安装插件
+
+
+打开测试用的流程图 test.wsd
+
+
+
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2019/05-23-23.33.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 23, 2019
+  
+
+  <i class="unloaded">2019-05-23T23:33:08+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>puppeteer的安装方式</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                推荐使用淘宝chromium源安装
+
+简单方便还快速
+
+npm config set puppeteer_download_host=https://npm.taobao.org/mirrors
+npm i puppeteer
+
+使用 puppeteer-cn 安装
+
+npm install puppeteer-cn --save 按此顺序执行以下指令即可
+
+npm install pupp...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/2019/05-26-10.27.html">
+          <div class="card-body">
+            <!--
+  Date format snippet
+-->
+
+
+
+
+
+<span class="timeago small"
+  >
+
+  
+  
+
+  
+    May 26, 2019
+  
+
+  <i class="unloaded">2019-05-26T10:27:05+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Chrome下载视频及音频</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                从网页下载视频文件
+
+打开控制台选择network选项，media处，并右键选择 open in new web
+
+
+右键即可保存(下载视频)
+
+
+
+ps: 之所以有些广告插件屏蔽不了广告，是因为广告已经嵌入视频合二为一形成了一个整体；广告30还是120m时长视频方说了算，因此并不好剪裁。
+
+从网页下载音频文件
+
+qqmusic 下载歌曲
+
+选择一首喜欢的歌曲播放，打开控制台选择networ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/2020/11-09-02.40.html" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>Linux与Samba之间的权限 Part1</p>
+  </a>
+  
+
+  
+  <a href="/2021/02-07-00.41.html" class="btn btn-outline-primary"
+    prompt="Newer">
+    <p>面试项目之自我批判</p>
+  </a>
+  
+
+</div>
+
+
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
+
+
+  <!--
+  image lazy load: https://github.com/ApoorvSaxena/lozad.js
+-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script type="text/javascript">
+  const imgs = document.querySelectorAll('.post-content img');
+  const observer = lozad(imgs);
+  observer.observe();
+</script>
+
+
+
+
+        <!--
+  The Footer
+-->
+
+<footer class="d-flex w-100 justify-content-center">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="footer-left">
+      <p class="mb-0">
+        ©2018- 2021
+        <a href="https://github.com/hoochanlon">hoochanlon</a>.
+        
+        <span data-toggle="tooltip" data-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+        
+      </p>
+    </div>
+
+    <div class="showtime" style="text-align: center;">
+      <!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <span id="busuanzi_container_site_uv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_uv"></span></span> -->
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("3/21/2018 07:27:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "笔记应用在线 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
+    </div>    
+
+    <div class="footer-right">
+      <p class="mb-0">
+        Powered by
+        <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+        with
+        <a href="https://github.com/cotes2020/jekyll-theme-chirpy"
+          target="_blank" rel="noopener">Chirpy</a>
+        theme.
+      </p>
+    </div>
+
+  </div> <!-- div.d-flex -->
+</footer>
+
+
+      </div>
+
+      <!--
+  The Search results
+-->
+<div id="search-result-wrapper" class="d-flex justify-content-center unloaded">
+  <div class="col-12 col-sm-11 post-content">
+    <div id="search-hints">
+      <h4 class="text-muted mb-4">Trending Tags</h4>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+      
+        
+        <a class="post-tag" href="/tags/daily-note/">daily note</a>
+      
+        
+        <a class="post-tag" href="/tags/essay/">essay</a>
+      
+        
+        <a class="post-tag" href="/tags/interview/">interview</a>
+      
+        
+        <a class="post-tag" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag" href="/tags/chip/">chip</a>
+      
+        
+        <a class="post-tag" href="/tags/math/">math</a>
+      
+        
+        <a class="post-tag" href="/tags/cicd/">CICD</a>
+      
+        
+        <a class="post-tag" href="/tags/reading/">reading</a>
+      
+        
+        <a class="post-tag" href="/tags/no-gfw/">NO!GFW</a>
+      
+        
+        <a class="post-tag" href="/tags/piclog/">piclog</a>
+      
+
+    </div>
+    <div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div>
+  </div>
+</div>
+
+
+    </div> <!-- #main-wrapper -->
+
+    
+      <!--
+  mermaid-js loader
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script>
+<script>
+  $(function() {
+    let initTheme = "default";
+
+    if ($("html[mode=dark]").length > 0
+      || ($("html[mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) {
+      initTheme = "dark";
+    }
+
+    let mermaidConf = {
+      theme: initTheme  /* <default|dark|forest|neutral> */
+    };
+
+    /* Markdown converts to HTML */
+    $("pre").has("code.language-mermaid").each(function() {
+      let svgCode = $(this).children().html();
+      $(this).addClass("unloaded");
+      $(this).after(`<div class=\"mermaid\">${svgCode}</div>`);
+    });
+
+    mermaid.initialize(mermaidConf);
+  });
+</script>
+
+    
+
+    <div id="mask"></div>
+
+    <a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script>
+
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('search-results'),
+  json: '/assets/js/data/search.json',
+  searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="https://hoochanlon.github.io{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
+  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  templateMiddleware: function(prop, value, template) {
+    if (prop === 'categories') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+      }
+    }
+
+    if (prop === 'tags') {
+      if (value === '') {
+        return `${value}`;
+      } else {
+        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      }
+    }
+  }
+});
+</script>
+
+
+  </body>
+
+</html>
+
