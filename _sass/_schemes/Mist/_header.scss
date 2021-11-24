@@ -1,6 +1,9 @@
 // Header
 // --------------------------------------------------
-.header { background: $whitesmoke; }
+.header {
+  // background: $whitesmoke;
+  background:#ffffff;
+ }
 .header-inner {
   padding: 25px 0 20px;
   @include clearfix();
