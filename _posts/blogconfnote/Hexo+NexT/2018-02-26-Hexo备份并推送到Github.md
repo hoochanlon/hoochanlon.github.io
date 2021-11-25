@@ -10,8 +10,6 @@ date: 2018-02-26 03:10:54
 
  使用git推送至github备份hexo的其他博客主题
 
- <!--more-->
-
 * 创建远程仓库 ...
 * 本地初始化 `git init`
 * 创建忽略文件 `vi .gitignore`  

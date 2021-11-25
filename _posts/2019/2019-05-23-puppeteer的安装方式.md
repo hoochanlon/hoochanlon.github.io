@@ -14,6 +14,8 @@ date: 2019-05-23 15:33:08
 npm config set puppeteer_download_host=https://npm.taobao.org/mirrors
 npm i puppeteer
 ```
+<!-- more -->
+
 #### 使用 `puppeteer-cn` 安装
 
 `npm install puppeteer-cn --save` 按此顺序执行以下指令即可

@@ -6,7 +6,7 @@ categories: [Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 
-docker免费默认只能用一个私有仓库...这点可以登录docker官网了解价目以及使用详情🔎。alpine linux确实很轻量不到10M，但对Jekyll支持度目前并不是很好，搜索不到安装包。<!--more-->
+docker免费默认只能用一个私有仓库...这点可以登录docker官网了解价目以及使用详情🔎。alpine linux确实很轻量不到10M，但对Jekyll支持度目前并不是很好，搜索不到安装包。<!-- more -->
 
 另外还找到 [yeasy-docker-从入门到实践](https://yeasy.gitbook.io/docker_practice/os/alpine)可供参考。
 

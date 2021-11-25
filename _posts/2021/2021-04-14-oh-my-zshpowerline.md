@@ -8,6 +8,8 @@ tags: [chip]
 
 ![ ](https://i.loli.net/2021/04/14/Mf3Fl5E1rp7jmKS.png)
 
+<!-- more -->
+
 ## oh my zsh
 
 复制粘贴到终端运行。

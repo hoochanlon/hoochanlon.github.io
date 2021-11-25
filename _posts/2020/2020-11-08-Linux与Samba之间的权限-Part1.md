@@ -13,6 +13,8 @@ Samba安装配置过程脚本之家的这篇文章写的很详细： [jb51net-Ce
 * 建议注释掉homes再配置共享（homes生成的目录，反倒成了干扰）
 * smb 读写执行依赖于Linux系统用户权限
 
+<!-- more -->
+
 [第十六章、檔案伺服器之二： SAMBA 伺服器](http://linux.vbird.org/linux_server/0370samba.php)
 
 read：r，write：w，execute：x；rwx整合在一起就是可读可写可执行。

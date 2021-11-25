@@ -11,6 +11,8 @@ tags: [博客配置存档]
 
 在提示：“ruby_dep-1.5.0 requires ruby version >= 2.2.5, ~> 2.2, which is incompatible with the current version, ruby 3.0.0p0”，发现当前版本不兼容，需要安装ruby版本工具rvm；在网上下载安装rvm频繁失败后，看到[简书-安装RVM 失败的解决办法](https://www.jianshu.com/p/e15f6a793c94)安装rvm实际上是bash文件，于是 将[https://get.rvm.io](https://links.jianshu.com/go?to=https%3A%2F%2Fget.rvm.io) 的脚本内容复制粘贴到本地运行成功。
 
+ <!-- more -->
+
 ## 安装Jekyll bundler报错
 
  fatal error: 'openssl/ssl.h' file not found

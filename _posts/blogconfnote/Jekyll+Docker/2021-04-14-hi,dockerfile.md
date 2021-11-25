@@ -16,6 +16,8 @@ tags: [博客配置存档]
 
 4.14 零点 记
 
+ <!-- more -->
+
 ## hello,dockerfile
 
 创建dockerfile，复制如下指令

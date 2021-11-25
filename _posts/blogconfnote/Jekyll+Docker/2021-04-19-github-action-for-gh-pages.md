@@ -10,6 +10,8 @@ fatal: could not read Password for 'https://github.com': No such device or addre
 
 虽然都是为了push gh-pages而实现的，每个action for gh-page实际提供的键值对也是各有迥异。后来部署成功是因为比对如下的repo的用例说明，发现了历史版本键值对的键参数格式的变更问题。
 
+ <!-- more -->
+
 * [vuepress-deploy](https://github.com/jenkey2011/vuepress-deploy)
 * [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
 * [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
