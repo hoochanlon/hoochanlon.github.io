@@ -18,18 +18,16 @@ task :post do
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
   end
 
+# post.puts "title: #{title.gsub(/-/,' ')}"
+# post.puts "title: \"#{title.gsub(/-/,' ')}\""
   puts "Creating new post: #{filename}"
   open(filename, 'w') do |post|
     post.puts "---"
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
     post.puts "date: #{Time.now}"
     post.puts "author: hoochanlon"
-     post.puts "category: []"
-    post.puts "tags: []"
-    post.puts "math: true"
-    post.puts "mermaid: true"
-    post.puts "image:"
-  	post.puts " src:"
+     post.puts "category: [#{Time.now().year()}]"
+    post.puts "tags: [#{Time.now().year()}]"
     post.puts "---"
   end
 end # task :post
