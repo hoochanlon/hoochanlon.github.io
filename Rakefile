@@ -26,7 +26,7 @@ task :post do
     post.puts "title: \"#{title.gsub(/-/,' ')}\""
     post.puts "date: #{Time.now}"
     post.puts "author: hoochanlon"
-     post.puts "category: [#{Time.now().year()}]"
+     post.puts "category: [#{Time.now().year()}年]"
     post.puts "tags: [#{Time.now().year()}]"
     post.puts "---"
   end
