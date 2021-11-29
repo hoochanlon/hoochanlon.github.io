@@ -15,6 +15,7 @@ tags: [博客配置存档]
 在`/_includes/_macro/` 处新建post-end.html
 
 ```html
+{% raw %}
 <div>
     {% if page.passage_end %}
     <style>
@@ -31,6 +32,7 @@ tags: [博客配置存档]
         <div class="passage_end"></div>
     {% endif %}
 </div>
+{% endraw %}
 ```
 在post.html中定位到copyright代码处，加上此代码
 
