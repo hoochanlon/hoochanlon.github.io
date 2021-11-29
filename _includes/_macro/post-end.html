@@ -1,0 +1,16 @@
+{% if site.post_end.enable %}
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+{% endif %}

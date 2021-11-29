@@ -12,7 +12,6 @@
 
   <article class="{{ post_class }}" itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="{{ post.url | absolute_url }}">
-
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="{{ site.author }}">
       <meta itemprop="description" content="{{ site.signature }}">
@@ -345,9 +344,21 @@
 
     <div>
       {% unless is_index %}
+        {% include _macro/post-end.html %}
+      {% endunless %}
+    </div>
+
+    <div>
+      {% unless is_index %}
         {% include _macro/post-copyright.html %}
       {% endunless %}
     </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
 
     <footer class="post-footer">
       {% if post.tags and post.tags.size != 0 and is_index == nil or is_index == false %}
