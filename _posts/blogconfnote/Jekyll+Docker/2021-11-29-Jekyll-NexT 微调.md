@@ -8,7 +8,9 @@ tags: [博客配置存档]
 
 开始对Jekyll-NexT进行主题改动；主题样式及标签美化、添加文章结尾部分、分享评论等其他方面内容修改。 <!-- more -->
 
-## 添加文章结尾
+## 文章结尾及标签美化
+
+### 添加文章结尾
 
 在`/_includes/_macro/` 处新建post-end.html
 
@@ -46,6 +48,10 @@ tags: [博客配置存档]
 post_end:
   enable: true
 ```
+
+### 标签美化
+
+只需要修改模板`/_macro/post.html`，搜索 rel="tag">#，将 # 换成<i class="fa fa-tag"></i>
 
 ## 分享与评论
 
@@ -88,3 +94,5 @@ Authorization callback URL： 填写你主页地址
 
 * https://www.freesion.com/article/5113194603/
 * https://www.jianshu.com/p/b5f509f25872
+
+自动创建issue的问题，参考：https://github.com/gitalk/gitalk/issues/440

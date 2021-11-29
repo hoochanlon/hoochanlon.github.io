@@ -443,7 +443,7 @@ changyan:
 # Support for gitalk comments system.
 gitalk:
   enable: true
-  clientID: 429e75672380074b88a5 
+  clientID: 429e75672380074b88a5
   clientSecret: 9568303c3a0d93762002a14f5b522891e8a89ac0
   repo: hoochanlon.github.io # colingpt.github.io
   owner: hoochanlon # colingpt
