@@ -220,6 +220,7 @@
             {% assign source = post.content %}
             {% include _helper/wordcount.html %}
             <div class="post-wordcount">
+              &nbsp;&nbsp;|&nbsp;&nbsp;
               {% if site.post_wordcount.wordcount %}
                 {% unless site.post_wordcount.separated_meta %}
                   <span class="post-meta-divider">|</span>

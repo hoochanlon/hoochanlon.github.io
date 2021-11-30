@@ -108,7 +108,7 @@ copyright: true
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
-seo: false
+seo: true
 
 # If true, will add site-subtitle to index page, added in jekyll config.
 # subtitle: Subtitle
@@ -156,9 +156,7 @@ menu_icons:
 # Schemes
 scheme: Pisces
 # scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-
+# scheme: Mist
 
 # ---------------------------------------------------------------
 # Font Settings
@@ -310,7 +308,7 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
+  enable: true
   length: 150
 
 # Post meta display settings
@@ -323,7 +321,7 @@ post_meta:
 # Post wordcount display settings
 post_wordcount:
   item_text: true
-  wordcount: false
+  wordcount: true
   min2read: false
   separated_meta: true
 

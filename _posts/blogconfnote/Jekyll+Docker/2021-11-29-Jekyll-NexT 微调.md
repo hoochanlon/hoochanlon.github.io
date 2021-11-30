@@ -8,7 +8,11 @@ tags: [博客配置存档]
 
 开始对Jekyll-NexT进行主题改动；主题样式及标签美化、添加文章结尾部分、分享评论等其他方面内容修改。 <!-- more -->
 
-## 文章结尾及标签美化
+## 首页文章缩减行间距、文章结尾
+
+### 缩减文章首页行间距
+
+在 `_schemes/Mist/_posts-expanded.scss`文件中，修改post的margin-top默认值，初始设定为`.post { margin-top: 120px; }`，
 
 ### 添加文章结尾
 
@@ -51,9 +55,7 @@ post_end:
   enable: true
 ```
 
-### 标签美化
 
-只需要修改模板`/_macro/post.html`，搜索 rel="tag">#，将 # 换成<i class="fa fa-tag"></i>
 
 ## 分享与评论
 
@@ -98,3 +100,41 @@ Authorization callback URL： 填写你主页地址
 * https://www.jianshu.com/p/b5f509f25872
 
 自动创建issue的问题，参考：https://github.com/gitalk/gitalk/issues/440
+
+
+
+## 花里胡哨
+
+### 背景版图形调试
+
+```yaml
+# Canvas-nest
+canvas_nest: false
+
+# three_waves
+three_waves: true
+
+# canvas_lines
+canvas_lines: false
+
+# canvas_sphere
+canvas_sphere: false
+
+# Only fit scheme Pisces
+# Canvas-ribbon
+canvas_ribbon: false
+```
+
+### 标签美化
+
+只需要修改模板`/_macro/post.html`，搜索 rel="tag">#，将 # 换成<i class="fa fa-tag"></i>
+
+### 字数统计加竖条
+
+post.html文件代码post-wordcount下方添加代码如下
+
+```html
+<div class="post-wordcount">
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+```
+
