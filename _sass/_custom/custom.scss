@@ -2,3 +2,7 @@
 // .footer {background: #ffffff;}
 .footer-inner {text-align: center;}
 .category-all-page{text-align: center;}
+
+.darkmode-layer, .darkmode-toggle {
+  z-index: 500;
+}

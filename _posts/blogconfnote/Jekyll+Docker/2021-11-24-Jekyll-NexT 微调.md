@@ -1,6 +1,6 @@
 ---
 title: "Jekyll-NexT 微调"
-date: 2021-11-29 21:41:38 +0800
+date: 2021-11-24 21:41:38 +0800
 author: hoochanlon
 categories: [Blogging, Jekyll]
 tags: [博客配置存档]
@@ -137,4 +137,55 @@ post.html文件代码post-wordcount下方添加代码如下
 <div class="post-wordcount">
       &nbsp;&nbsp;|&nbsp;&nbsp;
 ```
+
+### ⚠️dark mode
+
+***目前该模式会使照片、视频的颜色反转，暂没想出合理的解决办法。***
+
+打开 _scripts 文件夹内的vendors.html文件，在末尾添加以下代码
+
+```js
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    const options = {
+      bottom: '64px', // default: '32px'
+      right: '32px', // default: '32px'
+      left: 'unset', // default: 'unset'
+      time: '0.5s', // default: '0.3s'
+      mixColor: '#fff', // default: '#fff'
+      backgroundColor: '#fff',  // default: '#fff'
+      buttonColorDark: '#100f2c',  // default: '#100f2c'
+      buttonColorLight: '#fff', // default: '#fff'
+      saveInCookies: false, // default: true,
+      label: '🌓', // default: ''
+      autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
+```
+
+在主题配置`_custom/custom.scss`，设置：
+
+```css
+// 应用生效调试参考：https://darkmodejs.learn.uno/#debug。
+.darkmode-layer, .darkmode-toggle {z-index: 500;}
+```
+
+忽略暗黑模式对图像视频渲染。
+
+```scss
+// 过滤图像视频参考：https://gaojiajun.cn/2020/06/css-dark-mode/
+html {
+    filter: invert(100%) hue-rotate(180deg);
+}
+img,video {
+    filter: invert(100%) hue-rotate(180deg);
+}
+```
+
+
 
