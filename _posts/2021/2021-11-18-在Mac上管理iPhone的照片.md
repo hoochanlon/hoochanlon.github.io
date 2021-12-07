@@ -2,8 +2,8 @@
 title: "在Mac上管理iPhone的照片"
 date: 2021-11-18 15:36:40 +0800
 author: hoochanlon
-categories: [chip]
-tags: [chip]
+categories: [Mac/iPhone]
+tags: [Mac/iPhone]
 ---
 
 使用过iPhone的都知道，我们拍摄的所有照片都是在“最近项目”里，各类形形色色照片塞满了着整个屏幕，内容杂乱无章且混乱不堪。所以，我们在拍照之前理解苹果的逻辑，在一开始就有分类的概念，这样我们才能更好的管理大量的照片。
