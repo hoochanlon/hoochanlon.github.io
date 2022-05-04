@@ -14,6 +14,12 @@ steam for Mac经常断线，以前是可以用hosts搞定，现在难度也变�
 * https://sjssr.fun/
 * [Steam++」是一个开源跨平台的多功能游戏工具箱。](https://steampp.net/)
 
+<!-- more -->
+
+steam++需要注意是在Mac上系统会报错不让安装，查了百度，发现一篇文章介绍的解决办法还挺好用的 ——[Mac软件出现【已损坏，打不开。您应该将它移到废纸娄】，应该这样解决]（https://www.jianshu.com/p/fb417163309a）
+
+打开终端复制 `sudo xattr -r -d com.apple.quarantine`
+
 补，steam购买及转区相关：
 
 * [steam港区支付相关](https://zhidao.baidu.com/question/1455646243155895940.html)
