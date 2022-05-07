@@ -2,7 +2,7 @@
 title: "oh my zsh,powerline"
 date: 2021-04-14 11:25:33 +0800
 author: hoochanlon
-categories: [chip]
+categories: [2021]
 tags: [chip]
 ---
 

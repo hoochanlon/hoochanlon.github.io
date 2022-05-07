@@ -1,7 +1,7 @@
 ---
 title: GitHub RST与Git SSL_ERR_SYSCALL综合分析
 author: hoochanlon
-categories: [chip]
+categories: [2020]
 tags: [chip]
 math: true
 mermaid: true

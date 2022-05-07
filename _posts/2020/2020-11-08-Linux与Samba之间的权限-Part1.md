@@ -1,7 +1,7 @@
 ---
 title: Linux与Samba之间的权限 Part1
 author: hoochanlon
-categories: [chip]
+categories: [2020]
 tags: [chip]
 date: 2020-11-08 18:40:12
 ---
