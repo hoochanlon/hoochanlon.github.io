@@ -2,7 +2,7 @@
 title: "Hi,Dockerfile"
 date: 2021-04-14 10:42:06 +0800
 author: hoochanlon
-categories: [2021,Blogging, Jekyll]
+categories: [2021.,Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 

@@ -2,7 +2,7 @@
 title: "latex + atom"
 date: 2021-04-16 17:29:18 +0800
 author: hoochanlon
-category: [2021]
+category: [2021.]
 tags: [chip]
 math: true
 mermaid: true

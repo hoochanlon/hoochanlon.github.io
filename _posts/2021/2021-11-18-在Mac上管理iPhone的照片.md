@@ -2,7 +2,7 @@
 title: "在Mac上管理iPhone的照片"
 date: 2021-11-18 15:36:40 +0800
 author: hoochanlon
-categories: [2021]
+categories: [2021.]
 tags: [Mac/iPad/iPhone]
 ---
 

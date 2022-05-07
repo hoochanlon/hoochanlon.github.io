@@ -1,7 +1,7 @@
 ---
 title: Linux加入AD域进行Samba共享与账户登录
 author: hoochanlon
-categories: [2020]
+categories: [2020.]
 tags: [chip]
 date: 2020-11-13 17:46:29
 ---

@@ -1,7 +1,7 @@
 ---
 title: "puppeteer的安装方式"
 author: hoochanlon
-categories: [2019]
+categories: [2019.]
 tags: [chip]
 date: 2019-05-23 15:33:08
 ---

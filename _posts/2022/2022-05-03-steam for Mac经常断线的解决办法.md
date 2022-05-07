@@ -2,7 +2,7 @@
 title: "steam for Mac经常断线的解决办法"
 date: 2022-05-03 19:14:56 +0800
 author: hoochanlon
-categories: [2022]
+categories: [2022.]
 tags: [Mac/iPad/iPhone]
 ---
 
