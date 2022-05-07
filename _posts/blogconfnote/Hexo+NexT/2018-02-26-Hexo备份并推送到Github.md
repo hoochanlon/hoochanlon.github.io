@@ -1,7 +1,7 @@
 ---
 title: “hexo备份并推送到github（二）”
 author: hoochanlon
-categories: [Blogging, Hexo]
+categories: [2018,Blogging, Hexo]
 tags: [博客配置存档]
 math: true
 mermaid: true

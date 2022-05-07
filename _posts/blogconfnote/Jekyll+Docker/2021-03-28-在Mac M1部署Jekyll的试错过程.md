@@ -1,7 +1,7 @@
 ---
 title: “在Mac M1部署Jekyll的试错过程”
 author: hoochanlon
-categories: [Blogging, Jekyll]
+categories: [2021,Blogging, Jekyll]
 tags: [博客配置存档]
 math: true
 mermaid: true

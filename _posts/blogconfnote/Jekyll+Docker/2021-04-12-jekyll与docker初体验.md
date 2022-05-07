@@ -2,7 +2,7 @@
 title: "jekyll与docker初体验"
 date: 2021-04-12 07:58:12 +0800
 author: hoochanlon
-categories: [Blogging, Jekyll]
+categories: [2021,Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 

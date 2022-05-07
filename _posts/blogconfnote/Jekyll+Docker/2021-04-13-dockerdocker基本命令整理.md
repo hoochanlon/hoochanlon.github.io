@@ -2,7 +2,7 @@
 title: "docker基本命令整理"
 date: 2021-04-13 16:42:06 +0800
 author: hoochanlon
-categories: [Blogging, Jekyll]
+categories: [2021,Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 

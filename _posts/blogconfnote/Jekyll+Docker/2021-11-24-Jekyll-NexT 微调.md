@@ -2,7 +2,7 @@
 title: "Jekyll-NexT 微调"
 date: 2021-11-24 21:41:38 +0800
 author: hoochanlon
-categories: [Blogging, Jekyll]
+categories: [2021,Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 

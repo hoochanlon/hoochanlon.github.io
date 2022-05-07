@@ -2,7 +2,7 @@
 title: "github action for gh pages"
 date: 2021-04-19 12:20:31 +0800
 author: hoochanlon
-categories: [Blogging, Jekyll]
+categories: [2021,Blogging, Jekyll]
 tags: [博客配置存档]
 ---
 
