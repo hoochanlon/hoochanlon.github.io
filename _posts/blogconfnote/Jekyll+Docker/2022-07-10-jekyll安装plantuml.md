@@ -19,3 +19,21 @@ Jekyll安装plantuml，以及格式转换
 
 * [jeffreytse/jekyll-spaceship plantuml等](https://github.com/jeffreytse/jekyll-spaceship)
 
+思维导图测试效果
+
+```plantuml!
+@startmindmap
+* Debian
+** Ubuntu
+*** Linux Mint
+*** Kubuntu
+*** Lubuntu
+*** KDE Neon
+** LMDE
+** SolydXK
+** SteamOS
+** Raspbian with a very long name
+*** <s>Raspmbc</s> => OSMC
+*** <s>Raspyfi</s> => Volumio
+@endmindmap
+```
