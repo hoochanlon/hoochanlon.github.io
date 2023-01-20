@@ -9,8 +9,6 @@ permalink: /:year/:month-:day/01
 
 收集与盘点，在Mac用的不是很舒服的软件，邮箱、清理、网页剪藏。 如果使用的是Chrome的话，网页剪藏倒是不愁（不看重UI，Joplin倒是可以一试），可Chrome实在太吃硬盘了，用了不到一星期就消耗了27G的存储空间...太夸张了。
 
-以下进入正题。
-
 <!-- more -->
 
 free mail for Mac：
