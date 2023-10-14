@@ -14,4 +14,4 @@ permalink: /:year/:month-:day/01
 
 <!-- more -->
 
-just do it.
+just do it. You can't do it without pushing yourself.
