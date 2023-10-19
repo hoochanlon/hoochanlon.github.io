@@ -3,7 +3,7 @@ title: "This month's goal"
 date: 2023-10-14 22:49:31 +0800
 author: hoochanlon
 category: [2023.]
-tags: [2023]
+tags: [生活杂事录]
 permalink: /:year/:month-:day/01
 ---
 

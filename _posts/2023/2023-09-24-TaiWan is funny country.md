@@ -3,7 +3,7 @@ title: "TaiWan is funny country"
 date: 2023-09-24 16:40:41 +0800
 author: hoochanlon
 category: [2023.]
-tags: [生活杂事录]
+tags: [英语练习]
 permalink: /:year/:month-:day/01
 ---
 

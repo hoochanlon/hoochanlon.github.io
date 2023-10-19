@@ -3,7 +3,7 @@ title: "English is class"
 date: 2023-10-04 23:49:35 +0800
 author: hoochanlon
 category: [2023.]
-tags: [2023]
+tags: [生活杂事录]
 permalink: /:year/:month-:day/01
 ---
 
