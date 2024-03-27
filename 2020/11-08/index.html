@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="chip,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hoo.C.lon's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Samba安装配置过程脚本之家的这篇文章写的很详细： jb51net-Centos 7 Samba服务安装方法详解，此外我们还需要注意权限分配的问题： smb、nmb服务开启（nmb服务是负责解析用的，类似与DNS实现的功能） selinux 与 firewalld 禁用 建议注释掉homes再配置共享（homes生成的目录，反倒成了干扰） smb 读写执行依赖于Linux系统用户权限">
+<meta name="keywords" content="chip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux与Samba之间的权限 Part1">
+<meta property="og:url" content="/2020/11-08/">
+<meta property="og:site_name" content="Hoo.C.lon's blog">
+<meta property="og:description" content="Samba安装配置过程脚本之家的这篇文章写的很详细： jb51net-Centos 7 Samba服务安装方法详解，此外我们还需要注意权限分配的问题： smb、nmb服务开启（nmb服务是负责解析用的，类似与DNS实现的功能） selinux 与 firewalld 禁用 建议注释掉homes再配置共享（homes生成的目录，反倒成了干扰） smb 读写执行依赖于Linux系统用户权限">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/11/04/5Q9GfDTuqU2aIzH.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/NVXeuUYiwoagC7O.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/ROABXQvo4xGmkHD.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/4eFEQZ6qOu3GWiU.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/xuqmMH7bf9oFwiI.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/uCNIeLxpV96Kocd.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/5aRG6kiCw4Pojef.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux与Samba之间的权限 Part1">
+<meta name="twitter:description" content="Samba安装配置过程脚本之家的这篇文章写的很详细： jb51net-Centos 7 Samba服务安装方法详解，此外我们还需要注意权限分配的问题： smb、nmb服务开启（nmb服务是负责解析用的，类似与DNS实现的功能） selinux 与 firewalld 禁用 建议注释掉homes再配置共享（homes生成的目录，反倒成了干扰） smb 读写执行依赖于Linux系统用户权限">
+<meta name="twitter:image" content="https://i.loli.net/2020/11/04/5Q9GfDTuqU2aIzH.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>Linux与Samba之间的权限 Part1 | Hoo.C.lon's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-157837686-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoo.C.lon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个安静写作的地方</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2020/11-08/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoochanlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatars/avatar1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoo.C.lon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            Linux与Samba之间的权限 Part1
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-08T18:40:12+00:00">
+                2020-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/2020." itemprop="url" rel="index">
+                    <span itemprop="name">2020.</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                |  
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1614
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>Samba安装配置过程脚本之家的这篇文章写的很详细： <a href="https://www.jb51.net/article/162573.htm">jb51net-Centos 7 Samba服务安装方法详解</a>，此外我们还需要注意权限分配的问题：</p>
+
+<ul>
+  <li>smb、nmb服务开启（nmb服务是负责解析用的，类似与DNS实现的功能）</li>
+  <li>selinux 与 firewalld 禁用</li>
+  <li>建议注释掉homes再配置共享（homes生成的目录，反倒成了干扰）</li>
+  <li>smb 读写执行依赖于Linux系统用户权限</li>
+</ul>
+
+<!-- more -->
+
+<p><a href="http://linux.vbird.org/linux_server/0370samba.php">第十六章、檔案伺服器之二： SAMBA 伺服器</a></p>
+
+<p>read：r，write：w，execute：x；rwx整合在一起就是可读可写可执行。</p>
+
+<blockquote>
+  <p>图片整合自 <a href="https://blog.csdn.net/qq_42325315/article/details/80474607">csdn-qq_42325315-linux权限说明</a></p>
+</blockquote>
+
+<p><img src="https://i.loli.net/2020/11/04/5Q9GfDTuqU2aIzH.png" alt="20180604003458118.png"></p>
+
+<p>samba权限是在Linux分配权限基础之上再进行调配的，例如Linux的普通用户权限不够，在smb设置成777之类权限也无济于事，依旧访问不了smb设定的共享目录；在samba创建了root用户，但在samba中未对root进行配置指定的目录访问权限，就算用root登录也是不能访问该目录的。</p>
+
+<p>关于上述可以用<code class="language-plaintext highlighter-rouge">su 普通用户名</code>切换登录，然后到目录中进行rwx实验，，这也是建议初次搭建samba建议最好也创建一个root级的smb用户的原因，方便研究与故障排查。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</pre></td>
+<td class="code"><pre class="highlight"><code><span class="c"># Linux分配目录权限 </span>
+
+<span class="c">## 创建组并将新创建的用户添加到组内，参数前面第一个guest为组名</span>
+groupadd guest <span class="o">&amp;&amp;</span> useradd <span class="nt">-g</span> guest guest <span class="o">&amp;&amp;</span> passwd
+<span class="c">## 赋给用户guest读写执行权限到 /home/guest/data 目录</span>
+setfacl <span class="nt">-m</span> u:guest:rwx <span class="nt">-R</span> /home/guest/data/
+<span class="c">## 赋给guest组读写执行权限到 /home/guest/data 目录</span>
+setfacl <span class="nt">-m</span> g:guest:rwx <span class="nt">-R</span> /home/guest/data
+
+<span class="c"># 参考 https://www.cnblogs.com/Jimmy1988/p/7260215.html</span>
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>扩展阅读了<a href="https://www.cnblogs.com/Jimmy1988/p/7260215.html">Linux文件权限与属性详解 之 SUID、SGID &amp; SBIT</a>，部分文件除rwx额外带“s”与“t”，s即为设置uid、gid，t即为粘滞位，粘滞位作用是以防止普通用户删除或移动其他用户的文件。</p>
+
+<h2 id="对用户及组所属者与权限踩坑过程">对用户及组“所属者“与”权限“踩坑过程</h2>
+
+<p>我们先创建一个用户public，加入guest组<code class="language-plaintext highlighter-rouge">useradd -g guest public &amp;&amp; passwd</code> 。再将guest用户设置成同名组的管理员<code class="language-plaintext highlighter-rouge"> gpasswd -A guest（用户） guest</code>试下粘滞位。</p>
+
+<p>别忘了创建系统用户的同时，相对的给smb也创建一个，但进入”来宾共享资源目录”出现了意外。😁</p>
+
+<p><img src="https://i.loli.net/2020/11/08/NVXeuUYiwoagC7O.png" alt="1-37-51.png"></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code>setfacl <span class="nt">-m</span> g:guest:rwx <span class="nt">-R</span> /home/guest/来宾共享目录
+systemctl restart smb
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>配置了如上指令还是访问无效，接着将来宾目录的rwx赋给test组，将用户peter加入到该组中，smb的valid users也改成@test，进行测试，还是不成。于是<code class="language-plaintext highlighter-rouge">su peter</code>访问目录发现Linux权限是拒绝的…把peter提升至组管理员也以失败告终。</p>
+
+<p>再阅读配置文件，首先valid user是生效的，因为生效后才能见着共享目录，访问受限是因为Linux的普通用户根本无法访问其他用户的家目录文件。于是又尝试了以下方法：</p>
+
+<ul>
+  <li>chgrp -R 组名 文件/目录名      表示递归修改文件/目录的所属组！</li>
+  <li>create directory mask升级到777</li>
+</ul>
+
+<p>以上都无效，终于</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1</pre></td>
+<td class="code"><pre class="highlight"><code>chown -R peter:test guest # 所有文件与子目录的拥有者皆设为peter，使用群组test
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>成功了进入共享目录，peter是可以rwx的，我们再将此前创建的用户加入到test组测试，结果访问无效！😱怎样才能让smb配置@test生效呢？</p>
+
+<h3 id="跳坑转机">跳坑转机</h3>
+
+<p>我的当前情况是用户public有两个组，test、guest；于是我<code class="language-plaintext highlighter-rouge">usermod -g test public</code> 改成一个test组，去掉guest看看行不行？居然还是不行！！！</p>
+
+<p>最后参考 <a href="https://www.cnblogs.com/html55/p/13516659.html">【Linux】Linux下文件的权限管理和所属用户所属组</a>所说的：</p>
+
+<blockquote>
+  <p><strong>权限要从最外层的文件夹开始进入</strong>，<strong>父级文件夹只要有x权限，那么子级文件夹就不受父级文件夹的影响了。父级文件夹没有x权限，其下的文件和文件夹在操作时会受到影响。</strong></p>
+
+  <p><strong>有点类似大院子嵌套小院子，大院子没有x权限（没有钥匙），就进入不了大院子，那你们的小院子，你有钥匙也没有用。</strong></p>
+</blockquote>
+
+<p>马上用<code class="language-plaintext highlighter-rouge">ls -ll /home</code>查看了下权限，于是发现了其中的端倪，于是将所属组权限改成 4+2+1，这次总算是明白了问题所在，总算搞定了。</p>
+
+<blockquote>
+  <p>参考<a href="https://www.cnblogs.com/xs104/p/4510114.html">Linux 之 用户、用户组以及权限</a></p>
+
+  <ul>
+    <li>图中的d代表目录；另外，l代表link、b储存设备、c键盘、鼠标等。</li>
+  </ul>
+</blockquote>
+
+<p><img src="https://i.loli.net/2020/11/08/ROABXQvo4xGmkHD.png" alt="5-11.png"></p>
+
+<p><strong>将文件目录分配给某个指定组，不代表指定组就有读写执行权限，这才是关键！Windows的思维有些严重了，走了很大的弯路。</strong>但如果 <code class="language-plaintext highlighter-rouge">chmod 770 -R -v /home</code>又出现了同类型状况。</p>
+
+<p><img src="https://i.loli.net/2020/11/08/4eFEQZ6qOu3GWiU.png" alt="4-01.png"></p>
+
+<p>因为不知道home原先权限，大脑也被折腾胀了，无奈将Linux还原😔，Linux初始home权限是755</p>
+
+<p><img src="https://i.loli.net/2020/11/08/xuqmMH7bf9oFwiI.png" alt="4-5.png"></p>
+
+<p>由于我们把Linux还原需要重新配置samba，这里做个小总结：</p>
+
+<ul>
+  <li>创建Linux用户与samba用户，并将用户分配到特定组</li>
+  <li>将目录权限分配到特定组，设置群管理</li>
+  <li>创建共享目录并在smb.conf配置</li>
+  <li>管理-&gt;服务-&gt;workstation重启可以清除smb账号信息，完成重新登录</li>
+</ul>
+
+<h2 id="linux粘滞位">Linux粘滞位</h2>
+
+<p>回顾上节，我们扩展阅读了<a href="https://www.cnblogs.com/Jimmy1988/p/7260215.html">Linux文件权限与属性详解 之 SUID、SGID &amp; SBIT</a>，部分文件除rwx额外带“s”与“t”，s即为设置uid、gid，t即为粘滞位，粘滞位作用是以防止普通用户删除或移动其他用户的文件。处于业务需要，用户也需要向目录写入文件、删除自己的文件，但不能胡乱删除同事的文件，基于这个要求设置</p>
+
+<p><code class="language-plaintext highlighter-rouge">chmod -R o+t  /home/guest/ # 添加目录粘滞位</code>但这么一来，文件所属人又删除不了其他用户的文件了。</p>
+
+<p><img src="https://i.loli.net/2020/11/08/uCNIeLxpV96Kocd.png" alt="8-47.png"></p>
+
+<p>此时smb.conf设置目录的admin user键即可解决这类问题。</p>
+
+<p><img src="https://i.loli.net/2020/11/08/5aRG6kiCw4Pojef.png" alt="44-02.png"></p>
+
+<h2 id="参考文献">参考文献</h2>
+
+<ul>
+  <li><a href="https://www.cnblogs.com/liuquan/p/5644760.html">Samba共享权限分配</a></li>
+  <li><a href="https://www.runoob.com/linux/linux-command-manual.html">菜鸟教程-Linux 命令大全</a></li>
+  <li><a href="https://www.cnblogs.com/Jimmy1988/p/7260215.html">Linux文件权限与属性详解 之 SUID、SGID &amp; SBIT</a></li>
+  <li><a href="https://blog.csdn.net/u010599211/article/details/84969308">Linux中的组管理员-gpasswd</a></li>
+  <li><a href="https://blog.csdn.net/her__0_0/article/details/53930785">【Linux】文件的权限管理及特殊属性-粘滞位（sticky bit）概述</a></li>
+  <li><a href="https://www.cnblogs.com/xs104/p/4510114.html">Linux 之 用户、用户组以及权限</a></li>
+  <li><a href="http://linux.vbird.org/linux_server/0370samba.php">第十六章、檔案伺服器之二： SAMBA 伺服器</a></li>
+  <li><a href="https://www.jb51.net/article/162573.htm">jb51net-Centos 7 Samba服务安装方法详解</a></li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/chip" rel="tag"><i class="fa fa-tag"></i> chip</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11-13/" rel="next" title="Linux加入AD域进行Samba共享与账户登录">
+                <i class="fa fa-chevron-left"></i> Linux加入AD域进行Samba共享与账户登录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10-12/" rel="prev" title="半夜的一只蚊子带来的启发">
+                半夜的一只蚊子带来的启发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/avatars/avatar1.png" alt="Hoochanlon">
+          <p class="site-author-name" itemprop="name">Hoochanlon</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">303</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/hoochanlon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="/assets/qr/wx.png" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("02/25/2018 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%AF%B9%E7%94%A8%E6%88%B7%E5%8F%8A%E7%BB%84%E6%89%80%E5%B1%9E%E8%80%85%E4%B8%8E%E6%9D%83%E9%99%90%E8%B8%A9%E5%9D%91%E8%BF%87%E7%A8%8B"> <span class="nav-number">1</span> <span class="nav-text">对用户及组“所属者“与”权限“踩坑过程</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E8%B7%B3%E5%9D%91%E8%BD%AC%E6%9C%BA"> <span class="nav-number">1.1</span> <span class="nav-text">跳坑转机</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#linux%E7%B2%98%E6%BB%9E%E4%BD%8D"> <span class="nav-number">2</span> <span class="nav-text">Linux粘滞位</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"> <span class="nav-number">3</span> <span class="nav-text">参考文献</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  ©  2018 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoochanlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
