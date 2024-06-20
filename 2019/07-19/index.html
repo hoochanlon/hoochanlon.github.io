@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="事件还原、复盘分析、反省,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hoo.C.lon's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以下真实故事及相关新闻，相信大家也是深有体会和认知；我觉得与其只从问答及贴吧等评论区去了解xx公司是不是培训公司，不如深入理解它的设计模式以及核心运作流程，不然此类公司一旦换个了名字，结果又是不知道了，这就是我写这报告的原因。此外，特别感谢网上结识的 biubiubiu 老哥，勇愿提供珍贵且有价值的信息。">
+<meta name="keywords" content="事件还原、复盘分析、反省">
+<meta property="og:type" content="article">
+<meta property="og:title" content="“培训机构分析报告（TI Analysis）”">
+<meta property="og:url" content="/2019/07-19/">
+<meta property="og:site_name" content="Hoo.C.lon's blog">
+<meta property="og:description" content="以下真实故事及相关新闻，相信大家也是深有体会和认知；我觉得与其只从问答及贴吧等评论区去了解xx公司是不是培训公司，不如深入理解它的设计模式以及核心运作流程，不然此类公司一旦换个了名字，结果又是不知道了，这就是我写这报告的原因。此外，特别感谢网上结识的 biubiubiu 老哥，勇愿提供珍贵且有价值的信息。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.postimg.cc/dVPxDtYm/11.png">
+<meta property="og:image" content="https://i.postimg.cc/5yTxcynT/1s3.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/16/CMqsYpT6V7u9HWr.png">
+<meta property="og:image" content="https://i.loli.net/2021/02/16/7uGfr58PJnHisoY.png">
+<meta property="og:image" content="plantuml">
+<meta property="og:image" content="https://i.postimg.cc/rpmHkMLr/2019-04-05-233908.png">
+<meta property="og:image" content="https://i.postimg.cc/KjvH3LB5/Snipaste-2019-06-23-01-11-47.png">
+<meta property="og:image" content="plantuml">
+<meta property="og:image" content="https://i.postimg.cc/vHVmZnqw/s30.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="“培训机构分析报告（TI Analysis）”">
+<meta name="twitter:description" content="以下真实故事及相关新闻，相信大家也是深有体会和认知；我觉得与其只从问答及贴吧等评论区去了解xx公司是不是培训公司，不如深入理解它的设计模式以及核心运作流程，不然此类公司一旦换个了名字，结果又是不知道了，这就是我写这报告的原因。此外，特别感谢网上结识的 biubiubiu 老哥，勇愿提供珍贵且有价值的信息。">
+<meta name="twitter:image" content="https://i.postimg.cc/dVPxDtYm/11.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>“培训机构分析报告（TI Analysis）” | Hoo.C.lon's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-157837686-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoo.C.lon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个安静写作的地方</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2019/07-19/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoochanlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatars/avatar1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoo.C.lon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            “培训机构分析报告（TI Analysis）”
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T00:00:00+00:00">
+                2019-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/2019." itemprop="url" rel="index">
+                    <span itemprop="name">2019.</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                |  
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  6516
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>以下真实故事及相关新闻，相信大家也是深有体会和认知；我觉得与其只从问答及贴吧等评论区去了解xx公司是不是培训公司，不如深入理解它的设计模式以及核心运作流程，不然此类公司一旦换个了名字，结果又是不知道了，这就是我写这报告的原因。此外，特别感谢网上结识的 biubiubiu 老哥，勇愿提供珍贵且有价值的信息。
+<!-- more --></p>
+
+<p>该篇文章研究所涉及到的培训机构核心运营设计模式及内部员工运作流程，基于国内某培训机构为母版进行分析</p>
+
+<h2 id="培训机构坑人事例">培训机构坑人事例</h2>
+
+<p>关于培训机构诈骗内容，相关媒体曝光链接：</p>
+
+<ul>
+  <li><a href="https://xw.qq.com/edu/20170505012547">南方网 - 免费噱头尽是“套路” 警方侦破培训诈骗案</a></li>
+  <li><a href="https://www.takefoto.cn/viewnews-1598036.html">北京晚报 - 培训贷诈骗案涉事老板被捕 近期全国多地均有此类“招生”陷阱</a></li>
+  <li><a href="http://www.people.com.cn/n1/2017/0818/c413890-29480203.html">人民网 - “培训贷”陷阱有多深：受骗者先被洗脑 维权或困难重重</a></li>
+  <li><a href="https://baijiahao.baidu.com/s?id=1612188261409277598&wfr=spider&for=pc">生活法学家 - 刚出校门又被骗“培训贷”，第一次应聘签合同知道这些法律常识拒骗</a></li>
+  <li><a href="https://baijiahao.baidu.com/s?id=1612486203137671306&wfr=spider&for=pc">大学生陷交2万培训费发现被骗钱却要不回来，我的钱为何不给？</a></li>
+</ul>
+
+<p>近年来培训机构有下沉到幼儿教育，并往三四线城市发展的的趋势，新闻也不断报出996的程序员们猝死到35岁的中年危机失业，发现年轻人不好骗了，又来开始骗小孩了。只要不时留意下新闻、互联网产业相关技术群也是能发现这一点的。</p>
+
+<p>有人说：并不是所有培训机构都是坑钱的，但也存在有良心的；但我认为与其大海捞针般搜寻概率如千万分之一，还不如去想方设法地不断去强化自我的学习、社交、工作、总结能力。</p>
+
+<p>:::tip
+<strong>推荐观看以下视频</strong></p>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1ga4y1e7Z1">朱一旦X罗翔 bilibili-被培训“招转培”套路诈骗，请拿起法律的武器！</a></li>
+  <li>
+<a href="https://www.bilibili.com/video/BV1eJ411x7Ea/">资本涌入及行业发展与人才过剩问题，有一定的启示</a>
+:::</li>
+</ul>
+
+<h2 id="首先站在企业的盈利的角度分析">首先，站在企业的盈利的角度分析</h2>
+
+<h3 id="条件名词用词">条件名词用词</h3>
+
+<p>关键词：本科及以上、2-3年经验及以上、xx专业优先</p>
+
+<p>企业筛选人才的名词用词大致定位，虽无法百分百绝对正确，但这些条件至少过滤较为多数部分不匹配者，减少了必要的面试等，并提高了自身用人的办事效率，节约了很多成本（比如说：多数纸张以及计算机运作成本）。</p>
+
+<h3 id="人才选定及业务盈收">人才选定及业务盈收</h3>
+
+<ul>
+  <li>招聘工作能力强的办事效率高，还是完全重新培养多名应职办事效率高</li>
+  <li>以上，再进一步分析：这两者选择哪一个成本更高？又选择谁而盈利更快呢？</li>
+  <li>最低限度：即使是培养人才也是要有基础的（科班应届、以及自学接触1-2年较长时间的，<strong>所以，校招入职的工作经验很重要</strong>）</li>
+</ul>
+
+<p>时间即是效率和金钱，办事效率高从而盈利更快，使公司更好的运作发展；办事效率低，营收资本过于缓慢，甚至无法在指定期限完成任务，长期进行亏本运作，公司会不会迟早倒闭呢？</p>
+
+<h3 id="培训的资本主义">培训的资本主义</h3>
+
+<p>多数行业都是依靠信息差来赚取利益，信息价值差小的，如常见生活用品靠走量。信息价值差大的，如大件物品车房则依靠信息差赚钱。搜索引擎、专题论坛已被资本商业化，这也就有竞价排名、强制删帖可能，何况魏则西的死亡已经说明了这一切。就是你不懂，我来培训你，我要靠这个敲骨吸髓把你的钱给挣咯!</p>
+
+<p>敢于维权且擅于维权在多数人中始终是少的，所以我们也要留意这些”少部分”的人心声。 正所谓防人之心不可无，以免日后被不怀好心的组织群体里的人套路。</p>
+
+<blockquote>
+  <p><a href="https://www.zhihu.com/question/59218448/answer/490653260">知乎-轮滑培训班的水到底有多深？</a> 的启示</p>
+</blockquote>
+
+<h2 id="为什么培训机构伪装成互联网等其他专业服务外包公司">为什么培训机构伪装成互联网等其他专业服务（外包）公司？</h2>
+
+<h3 id="外包公司人员作业流程性质">外包公司人员作业流程性质</h3>
+
+<p>根据我的好朋友所提供的信息，绝大多数 xx 公司并不会把大量的业务逻辑等关键性处理代码分配给外包公司，多是项目代码大部分时间需要复制粘贴等简单的重复操作。做完一个xx公司分配的外包项目，立马又会有新的项目分发，项目没做完的话，则随时间而堆积越多；一个很形象的比喻：可以说就像是像是流水线作业员一样，捡料-&gt; 组装 -&gt; 下发-&gt; 捡料-&gt; 组装 以此循环。</p>
+
+<p>由于这点，为此外包公司也常常需要招聘多数此类人才，当需求量不够时，则会招收<strong>拥有简单基础（相对经验较低）及所谓科班出身的人</strong>进行内部指导教学（学习最长时间大致一个星期左右）。</p>
+
+<p>也有先给工作机会的底薪资的外包实习，再以强制签下必须在公司满两年的任职及人才培养合同，若是不满则是毁约赔款。伪装成一个外包公司，使应聘求职者更加难以辨认它到底是厂商或代理商、外包、培训公司呢？借此，以增大招转培的可能性。甚至就是混合型培训、代理、外包的中介公司！</p>
+
+<h3 id="解招专项培训费用赔偿金">解招！专项培训费用赔偿金</h3>
+
+<p>首先，普通的岗位培训，不需要要支付违约金；<strong>但是专业技术（专项）培训是要支付违约金的。</strong></p>
+
+<blockquote>
+  <p>因为根据《劳动合同法》第二十二条 【服务期】用人单位为劳动者提供专项培训费用，对其进行专业技术培训的，可以与该劳动者订立协议，约定服务期。</p>
+</blockquote>
+
+<p>这份违约金协议专为找不到工作应届生及行业新人设计的，本身又是一家外包公司正好符合其利益最大化需求。如果签订该协议，既然这个培训机构钻法律的牛角尖以谋暴力私益，我们也可以用法律来解招！</p>
+
+<blockquote>
+  <p>劳动者依据《劳动合同法》第三十八条的规定单方解除劳动合同的，不需要支付违约金。</p>
+</blockquote>
+
+<p>比如做了半月或一年不等，要离职时，消极怠工并疯狂带节奏被炒鱿鱼，就不需要付违约金了。</p>
+
+<p>参考</p>
+
+<ul>
+  <li><a href="https://www.fabao365.com/renliziyuan/92837/">法邦网-单位进行培训要注意什么，单位何时可以主张违约金？</a></li>
+  <li><a href="https://www.zhihu.com/question/316534295/answer/626521110">儒德律师-签了一年的培训和劳动合同，有违约金不想干了怎么办？</a></li>
+  <li><a href="https://www.66law.cn/laws/227680.aspx">华律-培训合同有违约金吗</a></li>
+</ul>
+
+<h2 id="培训机构最大化盈利策略的定制">培训机构最大化盈利策略的定制</h2>
+
+<h3 id="所谓的企业合作">所谓的企业合作</h3>
+
+<ul>
+  <li><strong>与所谓的企业合作，可以由此借用企业实战课之名完成项目外包作业达到营收</strong></li>
+  <li><strong>培训完之后以人才市场公司的形式向合作企业推荐用人，又完成了中介业务的盈利</strong></li>
+  <li><strong>资本家通过人际关系网络输送dead president 达成校企合作，从而更加扩大影响力</strong></li>
+  <li><strong>社交问答、贴吧、文库等其它相关平台及搜索排名进行轰炸式的广告推广</strong></li>
+  <li>
+<strong>名声的建立：</strong>
+    <ul>
+      <li>也许哪家公司发展很好，谁也说不定是成为下一个巨无霸企业呢？；借助此名不副实的“好名声”又进一步的诱骗和广告轰炸式的推广，完成上述循环</li>
+      <li>若是出现较多的恶名，则利用已在职的核心讲师进行搜索优化咨询，然后再以股份持有或足够资金为条件，让第三方SEO搜索优化公司、社交及问答平台及进行洗白操作（删除负面消息内容）；当然，成本过高的话，也会选择皮包公司的形式更换个公司名称继续赚大钱</li>
+    </ul>
+  </li>
+  <li>设备的选购按运行环境的成本最低价采购，难道配 alienware 吗？</li>
+</ul>
+
+<h3 id="定制招转培招聘计划">定制“招转培”招聘计划</h3>
+
+<p>这次培训机构变得更为精明，其实… 培训机构的虚假招聘条件，其实是利用人们的一些养吃白饭的侥幸心理，然后进行剧本化诱使招转培的。</p>
+
+<p><img src="https://i.postimg.cc/dVPxDtYm/11.png" alt=""></p>
+
+<p>站在培训机构招转培招收人效率最大化考虑：</p>
+
+<p>过于正式招聘条件，招收这些自身就有较长的工作及社会经验，还用的找培训吗？反而浪费时间（费口舌）又浪费钱（人头费）</p>
+
+<p>但又不能太过浮夸，上图如是说，一眼看穿意义就不大了…因此取值区间在应届以及初学新人专业基本基础部分作为招聘要求，比较合适，一是应届以及新人们不留意就可能难以看出，二是此人数越多就越有较大概率进行招转培工作。</p>
+
+<p>比如这个招聘简示的招转培目的，相对来说隐藏较深</p>
+
+<p><img src="https://i.postimg.cc/5yTxcynT/1s3.png" alt=""></p>
+
+<h3 id="内部销售招聘">内部销售招聘</h3>
+
+<p>通过招聘网站或app查看并比对了四五家培训机构的内部招聘，例如线上课程顾问、教育咨询师、薪酬绩效专员这三者，我们也就能明白培训机构为什么如此热衷于引诱甚至欺诈式让用户购买高昂的培训课程。</p>
+
+<ul>
+  <li>线上课程顾问：电话销售，有稍高或持平实习生底薪+人头提成。实习生底薪，饭还是要吃的；招聘信息定价近万的人头提成绩效工资范围，当然诱人去做这一职业，使劲拉人钱多一点谁不喜欢？</li>
+  <li>教育咨询师：其实教育咨询师也就是一开始我们面对“招转培”面试我们的人，从本质上来说还是销售，但此类工作不乏有很多HR招聘专员转职的。相对于从业1年的工资水准而言，有较高基础工资，同时具有高提成。</li>
+  <li>薪酬绩效专员：考察以上两者绩效，以及发放薪酬。以上再加上考核专员，这三者也很明显是重销售的内部薪酬体系及流程运作。</li>
+</ul>
+
+<!-- ![image-20210216112539093.png](https://i.postimg.cc/yxZ9HSwf/image-20210216112539093.png)-->
+
+<p><img src="https://i.loli.net/2021/02/16/CMqsYpT6V7u9HWr.png" alt="image-20210216112539093.png"></p>
+
+<h3 id="文案制作">文案制作</h3>
+
+<blockquote>
+  <p>引用节选自 <a href="https://www.grazy.cn/article/10438.htm">格子匠-教育机构如何撰写营销文案？</a></p>
+</blockquote>
+
+<p><img src="https://i.loli.net/2021/02/16/7uGfr58PJnHisoY.png" alt="image-20210216190104690.png"></p>
+
+<p>首先定位人群标签再制造反差达到激发兴趣抓住眼球的吸睛目的，同时建立信任打造代言及品牌背书，文案与剧本流程以及销售相关话术进一步刺激用户购买欲望以及付费成单。</p>
+
+<h3 id="培训机构对pua应用调查">培训机构对PUA应用调查</h3>
+
+<p>特别感谢<a href="https://zhuanlan.zhihu.com/p/47338944">知更鸟网提供 《PUA揭露杀人不见血》的文章</a>，以及结合网上的老哥提供的实例，让我有清晰的类推思路写下去</p>
+
+<p><strong>怎样拉人进入培训？</strong></p>
+
+<p>机构员工合理之剧本：好奇陷阱、情感虐待、探索及着迷陷阱、恩人模式、推荐模式</p>
+
+<h3 id="第一点-好奇陷阱">第一点 好奇陷阱</h3>
+
+<p><strong>关键词：趣味、高级、不俗、立人设、讲故事</strong></p>
+
+<p>利用一些html简单又有效的小把戏，让人听课觉得有趣味；二三流学院毕业出来中的垃圾冒充名牌大学或是留洋，包装出在各大名企任职（实际上是自己也是不入流的外包），哪怕夸大其词，较真查也需要大量的时间，甚至查不到（虚假的）。听课时、下课时递上一杯热茶，不时播放培训成功的故事，让面试者感觉到了希望，产生一种他一定可以帮到我成功的情绪。</p>
+
+<p>总结：在培训初期阶段，他一切行为背后的目的是为了不断营造温暖的大家庭环境，防御弱化（放松警惕），带入第一个坑。</p>
+
+<h3 id="第二点-情感虐待">第二点 情感虐待</h3>
+
+<p><strong>关键词：表明立场、表达感受、表示情况紧急、制造压迫感</strong></p>
+
+<h4 id="培训机构对面试者的两种立场">培训机构对面试者的两种立场</h4>
+
+<ul>
+  <li>如果是自愿被培训的话，则表明自己是做教育的（和蔼态度）</li>
+  <li>如果是招转培，则说能力不行，需要有偿培训一段时间才能上岗，制造压迫感（强硬及高高在上的姿态）</li>
+</ul>
+
+<p><strong>和蔼态度：</strong></p>
+
+<ul>
+  <li>从网上找来的花哨程序，说是他们学员的开发应用，让面试者对此感兴趣</li>
+  <li>给出被他们培训成功者的故事，故意询问面试者他们为什么会成功以催眠面试者入坑</li>
+</ul>
+
+<p>勾起面试者的兴趣，然后给出培训成功的故事，很容易使不少缺乏社会经验的新人落入掏钱的陷阱</p>
+
+<p><strong>强硬姿态：</strong></p>
+
+<ul>
+  <li>以强硬姿态疯狂打击面试者的自尊心，数落面试者这不行、那不行
+    <ul>
+      <li>目的：让面试者心理全面崩溃，迫切想要速成以改善自己的技能的心态，屈从它的指示</li>
+    </ul>
+  </li>
+  <li>当第一个目的达到时，乘胜追击、趁热打铁给出被他们培训成功者的故事以及铁定包就业让新人将血汗钱拱手相送</li>
+</ul>
+
+<h4 id="情感虐待对学员的方式">情感虐待对学员的方式</h4>
+
+<p>培训机构整体师资力量及教学质量差的不堪入目，只能连哄带骗时，所常用的手段：</p>
+
+<ul>
+  <li>教学质量差，自然引起学员的不满，无法得到进一步提高，同时又希望技术得到质的飞越的急切情绪
+    <ul>
+      <li>利用该情绪，不时定期利用“教学人气教师”占用学员的时间，进行循环兜售所谓核心竞争力的课程</li>
+    </ul>
+  </li>
+  <li>利用人们的心绪化，培训机构将教学质量差的弱点，借此转变大发横财的优点。┌(。Д。)┐</li>
+</ul>
+
+<h3 id="第三点-探索及着迷陷阱">第三点 探索及着迷陷阱</h3>
+
+<p>用已知的事实说明xx技术当下具有竞争力、赚钱多、热门的优点，然后将事实开始混淆，满嘴跑火车吹捧自己的课程</p>
+<ul>
+  <li>偷梁换柱：将xx技术具有的优点替换成培训的课程所具有的优点
+    <ul>
+      <li>目的：为了让学员陷入着迷陷阱，从而再次掏钱购买它的课程</li>
+    </ul>
+  </li>
+</ul>
+
+<p>利用软考等国家认证的专业资质证书的权威特点，不断向学员宣导，让学员掏钱以从中赚取报名费</p>
+<ul>
+  <li>偷天换日：让学员感觉到交了报名费就能将证书拿到的心理
+    <ul>
+      <li>目的：诱使学员掏钱以从中赚取高额报名费</li>
+    </ul>
+  </li>
+</ul>
+
+<p>这些过程就像签订契约一样，使学员不断将血汗钱送出。</p>
+
+<h3 id="第四点-恩人模式">第四点 恩人模式</h3>
+
+<p><strong>关键词：“创造就业”、就业率、画大饼、开除、廉价劳动力</strong></p>
+
+<p>教会学员学历等经验作假，再利用合作的小型房贷、催债、股票以及少数同类（培训）推荐给学员面试就业该公司，甚至自己旗下的皮包公司让学员“创造”就业的形式；当然这些公司先以高薪资画大饼，到试用期后直接开除，使其做了个廉价的劳动力。</p>
+
+<p>然后，被开时候还得麻烦培训机构推荐工作，于是由骗子转变成了大背景经济萧条下的就业“恩人”。</p>
+
+<p>目的：以此降低或消除对培训机构不利的情绪的预期行为，扩大就业率宣传，使其收纳更多学员（资金流）</p>
+
+<h3 id="第五点-推荐模式">第五点 推荐模式</h3>
+
+<p><strong>关键词：营造氛围、贪小便宜、坑害朋友</strong></p>
+
+<p>刚入坑时，在专门传授简单入门教程的教室里，不断营造温暖的大家庭学习氛围的环境，贴出拉人头降低学费海报，不时HR进行宣传和推荐。等到培训完找工作过后一段期间，培训机构将以垃圾邮件轰炸等形式发送到各个学员的邮箱、短信，让学员帮助推广该机构。</p>
+
+<ul>
+  <li>营造温暖的氛围，将人防御弱化，使其易于被操控</li>
+  <li>利用人们贪小便宜的特点，拉人降低学费，诱使学员欺骗他人送钱给培训机构</li>
+</ul>
+
+<p>最终的获利赢家还是培训机构，贪小便宜还把朋友坑进去了，到头来只是做个它的一个棋子罢了，实在不应该。</p>
+
+<p>以上所有步骤都为达到一个共同目的：催眠对方，将血汗钱“自愿”拱手相送培训机构！这五点在实际操作中可互为穿插。有了庞大的资金库，当然上市集资了。</p>
+
+<h2 id="培训机构运作模式">培训机构运作模式</h2>
+
+<p>较多数培训机构会伪装成外包、互联网等其他相关专业的服务公司，甚至是人才市场；与此同时，再利用中介（网络招聘平台、线下人才市场）获得应届生、工作年限较短及转行者（新人）等信息，主动电话“是否愿意从事xx工程师”再以能力不够岗前培训为由与邮件发送面试通知等形式招人。</p>
+
+<details><summary>培训机构招生流程 uml</summary>
+
+```
+<img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0d0a73746172740d0a3a20e68ea8e98081e8be83e7ae80e58d95e79a84e69599e7a88be68896e698afe69198e68a84e5908ce4b89ae69687e7aba0e38081e78292e4bd9ce38081e5b9bfe5918ae7ad89e68a95e98081e588b0e5beaee4bfa1e38081e5beaee58d9ae7ad89e585b6e4bb96e585ace4bc97e5b9b3e58fb0efbc8ce4bba5e6ada4e68f90e58d87e79fa5e5908de5baa6efbc9b20e7bb8fe8bf87e4ba94e6af9be8a2abe8afb1e5afbce79a84e4bc97e4babae5928ce8a2abe5878fe5ada6e8b4b9e6b497e88491e79a84e5ada6e59198e4bba5e58f8a4852e68ea8e98081e585ace5918ae588b05151e7bea4e7ad89e585b6e4bb96e7a4bee4baa4e7bea4e890bd3b0d0a3a20e8b59ae5a49fe4ba86e992b1e5b0b1e5bc80e8aebee585b6e4bb96e8a18ce4b89ae59fb9e8aeadefbc8ce58db3e4bdbfe5908de5a3b0e887ade4ba86efbc8ce4bd86e58f88e5809fe6ada4e59ca8e585b6e4bb96e4b893e4b89ae4b88ae59fb9e8aeade58f88e9878de696b0e6b7b7e5908de5a3b0efbc8ce8b49fe99da2e6b688e681afe4baa4e992b1e7bb99e6909ce7b4a2e4bc98e58c96e79a84e8bf9be8a18ce6b497e799bde68896e698afe4bba5e6b395e5be8be5a881e88381e68fade99cb2e880853b0d0a0d0a3a207878e5bc80e58f91e5ae9ee4b9a0e7949fe5b185e5a49aefbc8ce9809ae5b8b8e79a84e68b9be88198e69da1e4bbb6e5be88e6a8a1e7b38aefbc8ce58fafe4bba5e8afb4e698afe99bb6e997a8e6a79be99d9ee4b893e4b89ae7949fe4b99fe883bde5b9b2e79a84e4ba8befbc8ce4be8be5a682efbc9a0d0a2a20e5a4a7e4b893e5ada6e58e86e68896e4b88de99990efbc8ce4bb8ee4ba8be7bb8fe9aa8c31e5b9b4e68896e4b88de99990efbc8ce4bba5e58f8ae4babae695b0e88ba5e5b9b2e8be83e5a49a352d3130e4babae4bba5e4b88ae7949ae887b3e4b88de999900d0a2a20e7869fe7bb83e4bdbfe794a8e8aea1e7ae97e69cbae59fbae69cace6938de4bd9cefbc8ce5969ce6aca2e8aea1e7ae97e69cbae79bb8e585b3e4b893e4b89aefbc8ce4b894e69c89e5bcbae78388e6848fe684bfe59ca84954e4ba92e88194e7bd91e4b88ae58f91e5b1950d0a2a20e5b7a5e4bd9ce8aea4e79c9fe38081e7bb86e887b4e38081e695ace4b89ae38081e8b4a3e4bbbbe5bf83e5bcbae38081e69c89e8be83e5a5bde5ada6e4b9a0e883bde58a9be880850d0a2a20e58c85e4bd8fefbc8820e4b880e888ace58faae69c89e5a4a7e58e82e4b89ae59bade58cbae79a84e585ace58fb8e6898de4bc9ae8bf99e4b988e5819aefbc893b0d0a0d0a3ae9a696e58588e58f91e4b880e4bbbde99da2e8af95e9809ae79fa5efbc8ce69c89e79a84e4bc9ae4b8bbe58aa8e79bb4e68ea5e7a1aee5ae9a35e5a4a9e79a84e99990e69c9fefbc9be5bd93e784b6e69c89e79a84e59fb9e8aeade69cbae69e84e6b2a1e69c89e7a1aee5ae9ae6988ee7a1aee79a84e69c9fe99990efbc8ce58faae698afe79fade4bfa1e4b88ae58699e8af9ae98280e5ba94e88198e88085e5b18ae697b6e99da2e8af953b0d0a0d0a696628e698afe590a6e99da2e8af9529207468656e2028796573290d0a0d0a3a20e99da2e8af95e9a696e58588e5819ae4b8aae887aae68891e4bb8be7bb8de38081e8afa2e997aee59fbae69cace68385e586b5e5908ee380816872e4bc9ae59091e6b182e8818ce88085e7ae80e8bfb0e585ace58fb8e5a4a7e887b4e68385e586b5efbc9b0d0ae784b6e5908eefbc8ce5bc80e5a78be4bba564697373e79a84e696b9e5bc8fe796afe78b82e68993e587bbe887aae4bfa1e5bf83efbc88e4bba5e99d9ee69cace7a791e7949fe68896e698afe6b2a1e69c89e7bb8fe9aa8ce4b8bae794b1e7ad89efbc89e4bba5e4bdbfe585b6e694b6e58f96e8afbee7a88be8af95e590ace8b4b9e68896e698afe8b4b7e6acbee59fb9e8aeade4b99fe5b0b1e698afe699bae59586e7a88e3b0d0a0d0a3a20e4b98be5908ee4bc9ae69c89e4b8aae99da2e5aeb9e5a7a3e5a5bde79a84e5a5b3e680a7e8aeb2e5b888e8aeb2e4ba9be7ae80e58d95e79a84e58685e5aeb9e4be8be5a682efbc9a68746d6ce38081637373efbc9b6872e697b6e4b88de697b6e59ca8e4b88ae8afbee69c9fe997b4e79a84e68993e696ade5b9b6e582ace4bf83e99da2e8af95e88085e7adbee4b88be8b4b7e6acbee58d8fe8aeaeefbc9b0d0ae6ada3e5bc8fe5bc80e5a78be4b88ae8afbee5898defbc8ce8aea9e5ada6e59198e8a782e79c8be585b6e59fb9e585bbe79a84e68890e58a9fe5b0b1e4b89ae4babae5a3abefbc88e6bc94e59198efbc89e79a84e98787e8aebfe8a786e9a291efbc8ce4bba5e58f8ae6b5aee5a4b8e585ace58fb8e79a84e2809ce68890e5b0b1e2809defbc8ce5ae9ae69c9fe5afb9e5ada6e59198e2809ce6b497e88491e2809de69599e882b2e68b89e4babae5a4b4e5878fe5ada6e8b4b93b0d0a0d0a3a20e7bb8fe58c85e8a385e8bf87e79a84e4ba8ce4b889e6b581e5ada6e999a2e587bae69da5e79a84e2809ce5908de5b888e2809de785a7e69cace5aea3e7a791efbc8ce9878de5a48de69f90e4b880e7aba0e88a82e6a8a1e59d97e8afbee697b6e8aeb2e8a7a3efbc9be9a1b9e79baee8afbee6ae8be7bcbae4b88de585a8e695b7e8a18de4ba86e4ba8befbc8ce5bd95e588b6e79a84e58685e5aeb9e8b79fe58da0e58685e5ad98e79a84e59e83e59cbee4b880e6a0b73be7bd91e4b88ae68a84e69da5e8bf87e697b6e79a84e4b89ce8a5bfe8808ce5819ae68890e79a84e9a298e5ba93efbc8ce5ae9ee59ca8e6b2a1e4bb80e4b988e5a4aae5a49ae590abe98791e9878fe58fafe8a8803b0d0a0d0a656c736520286e6f290d0a3a20e4b88de7aea1e7ac94e8af95e8bf87e6b2a1e8bf87efbc8c6872e983bde4bc9ae8afb1e4bdbfe5ba94e88198e88085e8b4b7e6acbee59fb9e8aeadefbc8ce5ae9ee59ca8e4b88de8a18ce5b0b1e4bc9ae68b9be4b8aae587a0e4b98ee5ae8ce585a8e5858de8b4b9e79a84e68993e69d82e88ba6e5b7a5efbc88e4bd8ee4ba8ee5bd93e59cb0e79c81e4bbbde5b882e58cbae69c80e4bd8ee896aae8b584e6a087e58786e7949ae887b3e6b2a1e69c89e896aae6b0b4efbc89efbc9b0d0ae5a682e69e9ce7ac94e8af95e8bf87e4ba86efbc8ce5b0b1e4bc9ae4bba5e5ada6e58e86e4bd8ee4b88be4bba5e58f8ae6b2a1e7bb8fe9aa8ce79a84e79086e794b1e8aea9e8afb1e4bdbfe99da2e8af95e88085e59fb9e8aeadefbc88e8afade6b094e5928ce59684efbc890d0ae5a682e69e9ce7ac94e8af95e6b2a1e8bf87efbc8ce5b0b1e4bc9ae4bba5e8afb4e6988ee588a9e5aeb3efbc88e796afe78b82e68993e587bbe99da2e8af95e88085e79a84e887aae4bfa1e5bf83efbc89e79a84e696b9e5bc8fefbc8cefbc88e68980e8b093e79a84e58c85e58886e9858defbc9ae4bb96e4bbace7bb99e2809ce5ae89e68e92e2809de4b880e4b8aae5b297e4bd8de794a8e5809fe58fa3e58f88e7bb99e8be9ee4ba86efbc8ce5b0b1e698afe5ada6e59198e887aae5b7b1e79a84e4ba8be4ba86efbc893b0d0a0d0a3a20e88ba5e698af6872e79c8be588b0e5ba94e88198e88085e6b2aee4b8a7e79a84e6a0b7e5ad90efbc8ce4bc9ae4bba5e887aae784b6e79a84e7a59ee68081e8aea9e6b182e8818ce88085e7adbee59fb9e8aeade8b4b7e6acbee58d8fe8aeaee68890e4b8bae585b6e59fb9e8aeade5ada6e59198efbc8c0d0ae5a682e69e9ce6b182e8818ce88085e68993e7ae97e8a681e58ebbe588abe79a84e585ace58fb8efbc8ce4bb96e8bf98e4bc9ae2809ce68cbde79599e2809de6b182e8818ce88085e8afb4efbc8ce8bf87e4ba86e8bf99e4b8aae69d91e5b0b1e6b2a1e8bf99e5ba97e883bde68890e58a9fe5ba94e88198e4ba863b0d0a0d0a3a20e5a682e69e9ce5ba94e88198e88085e585a5e5a597e5b0b1e5928ce99da2e8af95e585a5e5a597e4b98be5908ee79a84e6b581e7a88be5b7aee4b88de5a49ae4ba86efbc8ce4bb85e4bb85e58faae698afe5a4a7e5908ce5b08fe5bc82e8808ce5b7b23b0d0a0d0a73746f700d0a0d0a0d0a696628e698afe590a6e8bf9be8a18ce4babae6898de7a79fe8b581efbc88e4b8ade4bb8be79a84e5bda2e5bc8fefbc8929207468656e2028796573290d0a0d0a3a20e4bbbbe8818ce79a84e585ace58fb8e4b88ee4b8ade4bb8be7adbee8aea2e4babae6898de7a79fe8b581e58d8fe8aeaee4b880e6aca1e680a7e4bb98e6acbee7bb99e4b8ade4bb8befbc8ce5b7a5e8b584e794b1e4b8ade4bb8be58f91e694beefbc88e8bf99e782b9e59fb9e8aeade69cbae69e84e58fafe883bde7a88de69c89e4b88de5908cefbc89efbc8c0d0ae8afb4e799bde4ba86e5b0b1e698afe4b8bae59fb9e8aeade69cbae69e84e68993e5b7a5e79a84e4b8b4e697b6e5b7a5efbc88e8b4b7e6acbee8bf98e6aca0e79d80e590b8e8a180e585ace58fb8e79a84e992b1efbc8ce587bae69da5e5b7a5e4bd9ce58f88e8a2abe59fb9e8aeade69cbae69e84e68abde4ba86e4b880e7ac94e8a180e6b197e992b1efbc893b0d0a0d0a656c736520286e6f290d0a0d0a3a20e5ada6e58e86e4bd9ce58187e38081e7bb8fe9aa8ce4bd9ce58187e5a597e8b7afe5a49ae8bf9be4b88ee59fb9e8aeade69cbae69e84e59088e4bd9ce79a84e4b880e4ba9be69d82e4b883e69d82e585abe79a84e585ace58fb8efbc8ce4be8be5a682efbc9a0d0ae5b08fe59e8be688bfe8b4b7e38081e582ace580bae38081e882a1e7a5a8e4bba5e58f8ae5b091e695b0e5908ce7b1bbefbc88e59fb9e8aeadefbc89e7949ae887b3e887aae5b7b1e69797e4b88be79a84e79aaee58c85e585ace58fb83b0d0a0d0a3a20e5a682e8a2abe585b6e68ea8e88d90e588b0e4b88ae8bfb0e585ace58fb8e8808ce5908ee4b88de4b985e58f88e8a2abe5bc80e999a4efbc8ce5868de58ebbe689bee5ae83e68ea8e88d90e5b7a5e4bd9cefbc8ce2809ce88081e5b888e2809de58f88e698af64697373e5ada6e59198e4b880e9a1bfefbc8ce5bd93e784b6e8bf9be585a5e8bf99e7a78de7b1bbe59e8be79a84e585ace58fb8e5afb9e887aae8baabe68a80e883bde696b9e99da2e6b2a1e4bb80e4b988e58f91e5b195e58fafe8a880e79a843b0d0a0d0a3a20e5be88e5a49ae6ada3e7bb8fe585ace58fb8e4b99fe5b9b6e4b88de698afe582bbe5ad90efbc8ce4b99fe4bc9ae8b083e69fa5e68980e8be9ee79a84e585ace58fb8e4bfa1e681afe4bba5e58f8ae6b182e8818ce88085e4babae88489efbc8ce5bd93e784b6e8a2abe58f91e78eb0e4ba86e4b99fe5a5bde4b88de588b0e593aae58ebbefbc813b0d0a0d0a73746f700d0a0d0a40656e64756d6c">
+
+```
+</details>
+
+<p><img src="https://i.postimg.cc/rpmHkMLr/2019-04-05-233908.png" alt=""></p>
+
+<details><summary>关于培训机构的若干问题（自问自答式）json</summary>
+
+```
+{
+	"root": {
+		"id": "gylmvpne",
+		"text": "关于培训机构的若干问题（自问自答式）",
+		"color": "#000",
+		"layout": "graph-right",
+		"shape": "ellipse",
+		"children": [
+			{
+				"id": "hdqgxcwp",
+				"text": "为什么热衷搞网络课堂教学？",
+				"side": "right",
+				"value": 1,
+				"children": [
+					{
+						"id": "xvesrswq",
+						"text": "利用网络远程教学赚钱还可节省人力、物力等经费等"
+					},
+					{
+						"id": "yaiystwk",
+						"text": "网络录制下的视频还可通过自身网站以及淘宝、qq等平台出售赚钱"
+					},
+					{
+						"id": "itrjutkk",
+						"text": "2.1-2.3节点内容已概括，btw，<br>拿的出会说的讲师讲解新人感兴趣的内容，又故意模糊细节，以此来吸引更多"
+					}
+				]
+			},
+			{
+				"id": "ogzvbcia",
+				"text": "为什么有的有大量视频流出而有的却几乎没几个？",
+				"color": "#000",
+				"value": 2,
+				"children": [
+					{
+						"id": "bytfsisk",
+						"text": "大量视频流出原因：",
+						"color": "#fa3",
+						"children": [
+							{
+								"id": "ufqlxdwz",
+								"text": "试水（一般的）或炫教学质量（当家的）",
+								"value": 2.1
+							},
+							{
+								"id": "uflkokhg",
+								"text": "扩张宣传范围搞大知名度",
+								"value": 2.2
+							},
+							{
+								"id": "yzagfolv",
+								"text": "最终目的，当然是拉更多的人了",
+								"value": 2.3
+							}
+						]
+					},
+					{
+						"id": "tyzigmqk",
+						"text": "几乎没几个的缘由",
+						"color": "#fa3",
+						"children": [
+							{
+								"id": "phisqzzj",
+								"text": "法律威胁，观看软件限制",
+								"value": 2.11
+							},
+							{
+								"id": "foeqwcjx",
+								"text": "害怕露底，坑蒙拐骗在行，教学质量过低，<br>发出来都丢人<br>",
+								"value": 2.12
+							},
+							{
+								"id": "ewbepigi",
+								"text": "大学式面授，目前相对来说实际并不多",
+								"value": 2.13
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": "wvciubgl",
+				"text": "还要验证大专学历？",
+				"color": "#000",
+				"value": 3,
+				"children": [
+					{
+						"id": "mhmjhhpq",
+						"text": "套路式装逼，少一句不如多一句，提升自己档次，假正经"
+					},
+					{
+						"id": "zksnwuai",
+						"text": "防止一些虽毕业但想试水接触及了解社会的学生"
+					},
+					{
+						"id": "ohbwpzwc",
+						"text": "ps: 实在没必要花过万的冤枉钱去补习功课以及换就业证明去培训机构；<br>看书比看视频以及完成所谓的脱产式培训效率要高得多"
+					}
+				]
+			}
+		]
+	}
+}
+```
+
+</details>
+
+<p><img src="https://i.postimg.cc/KjvH3LB5/Snipaste-2019-06-23-01-11-47.png" alt=""></p>
+
+<h3 id="培训机构无法规避的主要特征">培训机构无法规避的主要特征:</h3>
+
+<ul>
+  <li>
+    <p><strong>招聘条件要求极低，可以说稍微接触过的都知道，甚至人人都会；工作后每月从工资扣除一部分费用（贷款分期模式）交钱的岗前培训</strong></p>
+  </li>
+  <li>
+    <p><strong>即使没投递简历到该公司，它也会主动找应届及新人</strong>，以各自理由诱使贷款交钱培训</p>
+  </li>
+  <li>
+    <p><strong>没有薪水的上班，倒贴钱学习去应职的专业技能（培训）；到任何公司工作，每个月都是必须拿薪水的，哪怕是拿当地最低薪资标准！自己是来工作赚钱的，而不是去掏钱培训的！（同时，坚定自己的角色）</strong></p>
+  </li>
+  <li>
+    <p>不知名的多数培训公司人数较少为99-150之间，当然也有在500人以上的，如恶名远扬不断被投诉的培训机构：达内；但是达到这个体量时它们自身公司并不会进行更名，而是旗下成立皮包公司继续以此手法继续大球吐小球</p>
+  </li>
+</ul>
+
+<p>以上，我觉得接到公司面试电话时，可以问清对方公司名称以及主营业务、是否投递了该公司、招收多少具体该专业应职人数，借此读出及了解面试方情报；暂未了解公司的信息时，不轻易向对方状态。</p>
+
+<p>我倒想培训机构这个营销方案：</p>
+
+<ul>
+  <li>没学会没找到工作，直接退款</li>
+</ul>
+
+<p>该方案理论上提供一些低价值甚至无关性的产品，断言使用该产品能达到顾客的理想效果，再借助人际网络的推广，品牌名声及效果达到最大化。但这个方案会存在资金断流的问题，培训机构坑来的钱用于投资各类股，大面积的爆发该方案条件下的退款，并不利于敲骨吸髓地稳定发展，存在较高风险性。</p>
+
+<ul>
+  <li>指导大学选专业</li>
+</ul>
+
+<p>依靠自己的三寸不烂之舌一顿忽悠，以xx专业好、就业高又有前途的领路人形式，诱导学生交钱填选专业。最好的效果就是：没有你，我就错过了这唯一的机会，使其紧张来不及思考做出毫不考虑便将血汗钱拱手相送于人的不合理行为。</p>
+
+<ul>
+  <li>以发放就业证明形式进行培训</li>
+</ul>
+
+<p>以当下大学生毕业实习期就业难，而院校又急着催进而影响到毕业进度，为解决这个难题进行打印并提供就业证明的形式收费。但该方案存在极大的个人个人购需产品价值的落差，比方说：用文库搜寻一张就业证明，公司联系写上亲朋好友的，并使用制章软件贴在文档上，成本不过十来块钱；所以，我什么还要花上万去买一张这几块能达到效果的破纸？</p>
+
+<details><summary>ps: 着手分析行业现状用例图 uml </summary>
+
+```
+<img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0d0a0d0a736b696e706172616d2068616e647772697474656e20747275650d0a736b696e706172616d2075736563617365207b0d0a0d0a09426f72646572436f6c6f72204461726b536c617465477261790d0a094172726f77436f6c6f72204f6c6976650d0a094163746f72426f72646572436f6c6f7220626c61636b0d0a094163746f72466f6e744e616d6520436f75726965720d0a0d0a7d0d0a0d0a757365636173652075633120617320222e2ee4ba86e8a7a3e8a18ce4b89ae695b4e4bd93e58f91e5b195e58fb2e79a84e8bf87e7a88b2e2e0d0a20202020312ee8bf91e69c9fe58f8ae69caae69da5e7a4bee4bc9aefbc88e7a791e68a80e58f91e8bebee5baa6efbc89e4b88ee4b8aae4babaefbc88e5b0b1e4b89aefbc89e58f91e5b195e8b68be58abf0d0a20202020322ee7a4bee4bc9ae5afb9e4bb8ee4b89ae4babae59198e99c80e6b182e5baa6e698afe590a6e9a5b1e5928cefbc88e4babae6898de8bf87e589a9efbc890d0a20202020332ee7a9b7e5b0bde59084e7a78de58a9ee6b395e694b6e99b86e8b584e696990d0a20202020342ee8bf99e8a18ce4b8ade5ad98e59ca8e587a0e5a4a7e4b88de5908ce4b8bbe8a681e7b1bbe59e8be4bc81e4b89ae79a84e8bf90e890a5e6a8a1e5bc8f0d0a20202020efbc88e4be8be5a6824954e4b8bae4be8befbc9ae59fb9e8aeade38081e9809ae4bfa1e38081e4ba92e88194e7bd91efbc890d0a20202020352ee4ba86e8a7a3e68980e6849fe585b4e8b6a3e79a84e8a18ce4b89ae79a84e78eb0e78ab6e5868de586b3e5ae9ae98089e68ba9220d0a0d0a28e79bb8e585b3e4b893e4b89ae88083e8af81e38081e6a0a1e68b9b6f72e99da2e8af95e38081e4baa4e6b581e7bea429206173206f626a310d0a28312d33e5b9b4e997b4e79a84e8a18ce4b89ae4bb8ee4b89ae68385e68aa529206173206f626a320d0a28e7bd91e4b88ae69fa5e689bee999a2e6a0a1e79bb8e585b3e69599e5ada6e4b893e4b89ae4b880e8a788e8a1a829206173206f626a330d0a28e6909ce7b4a2e68896e680bbe7bb93e587bae8a18ce4b89ae4baa7e59381e4baa7e4b89ae993bee585a8e699afe59bbe29206173206f626a340d0a3ae5ada6e7949f3a2061732073747564656e740d0a73747564656e74202d3e207563310d0a756331203c7c2d2d206f626a310d0a756331203c7c2d2d206f626a320d0a756331203c7c2d2d206f626a330d0a756331203c7c2d2d206f626a340d0a0d0a72656374616e676c6520e6ada4e59bbee58fafe794a87673636f6465e8bf9be8a18ce7bfbbe9a1b5e8afa6e7bb86e69fa5e79c8b7b0d0a0d0a7d0d0a0d0a6e6f746520626f74746f6d206f6620286f626a33290d0ae8bf9be585a5e5a4a9e69c9de69599e882b2e983a8e9ab98e7ad89e69599e882b2e58fb8e7bd91e7ab99efbc8ce7ab99e782b9e58685e590abe69c89e699aee9809ae9ab98e7ad89e5ada6e6a0a1e69cace7a791e4b893e4b89ae79baee5bd95e696b0e697a7e4b893e4b89ae5afb9e785a7e8a1a82e0d0a656e64206e6f74650d0a0d0a6e6577706167650d0a6e6f7465207269676874206f662028756331290d0a2d2de7a9b7e5b0bde59084e7a78de58a9ee6b395e694b6e99b86e8b584e696992d2d0d0ae694b6e99b86e68385e68aa5efbc9a0d0a2a20e4b880e6898b0d0a20202020312e20e99da2e5afb9e99da2e5ae9ee99985e68ea5e8a7a6e8a18ce4b89ae4babae5a3ab0d0a20202020322e4769744875620d0a2a20e4ba8ce6898b0d0a20202020312ee7bbb4e59fbae799bee7a7910d0a20202020322ee4bc81e4b89ae4bfa1e681afe695b0e68daee5ba93efbc88e4be8be5a682e5a4a9e79cbce69fa5e7ad89efbc890d0a0d0ae79fa5e4b98eefbc9ae5a682e4bd95e79d80e6898be58886e69e90e4b880e4b8aae8a18ce4b89aefbc9f20e59ca8e59b9ee7ad94e9878cefbc8ce7bd91e9a1b5e69fa5e689bee4b88be5ae89e69993e8be89e79a84e7ad94e6a188e4bc9ae69c89e5be88e5a5bde590afe58f910d0a656e64206e6f74650d0a0d0a6e6577706167650d0a6e6f7465207269676874206f6620286f626a31290d0a202020202d2de585a5e7bea4e79baee79a842d2d0d0a202020202a20e88083e8af81e7bea40d0a2020202020202020312ee9809ae8bf87e4bb96e4bbace88083e8af81e4ba86e8a7a3e8a18ce4b89ae8af81e4b9a6e99abee5baa6e38081e590abe98791e9878f0d0a2020202020202020322ee9808fe8bf87e697a5e5b8b8e590b9e6b0b4efbc8ce68ea8e6b58be79bb8e585b3e4bb8ee4b89ae88085e79a84e4b893e4b89ae6b0b4e5b9b30d0a202020202a20e6a0a1e68b9b6f72e99da2e8af95e7bea40d0a2020202020202020312ee5a4a7e887b4e4bb8ee4b89ae5ada3e5baa6e6a682e8a788efbc88e4bb85e4be9be58f82e88083efbc890d0a202020202020202020202020e5ae9ee4b9a0e6af95e4b89ae5ada3efbc88e5a4a7e7baa6352d37e69c88efbc890d0a202020202020202020202020e8b7b3e6a7bde5ada3efbc8833e69c882d34e69c88efbc890d0a202020202020202020202020e5ae89e5ae9ae5ada3efbc88e5b9b4e5898d38e69c882de5b9b4e5908e312d32e69c88efbc890d0a2020202020202020322ee689bee5a5bde8af9de9a298efbc8ce4bba5e8af95e68ea2e680a7e4baa4e8b088e69da5e88eb7e58f96e79bb8e585b3e5ada6e58e86e4b893e4b89ae5ba94e5b18ae7949fe4b88ee696b0e4babae79a84e5b0b1e4b89ae78eb0e78ab60d0a202020202a20e4baa4e6b581e7bea40d0a2020202020202020312ee4ba86e8a7a3e7bb8fe5b8b8e7bea4e8818ae79a84e4bb8ee4b89ae88085e79a84e5b7a5e4bd9ce6b09be59bb40d0a2020202020202020322ee9809ae8bf87e6a0a1e68b9be99da2e8af95e7bea4e69da5e5afb9e6af94e4baa4e6b581e68896e88083e8af81e7bea4e79a84e7bea4e8818ae794bbe5a4a7e9a5bce696b9e5bc8f0d0a20202020e4bf9de68c81e79691e997aeefbc9be4b880e882a1e88491e585a8e4bfa1efbc8ce5aeb9e69893e8a2abe5a4a7e58f94e7baa7e79a84e88081e6b2b9e69da126e69085e5b18ee6a38de68b89e585a5e59d91e68896e8a2abe59fb9e8aeade69cbae69e846872e9aa97e992b10d0a656e64206e6f74650d0a0d0a0d0a6e6577706167650d0a6e6f7465207269676874206f6620286f626a34290d0a2d2de6909ce7b4a2e68896e680bbe7bb93e587bae8a18ce4b89ae4baa7e59381e4baa7e4b89ae993bee585a8e699afe59bbe2d2d0d0a53574f54e58886e69e90e6b395efbc9a737472656e677468efbc88e4bc98e58abfefbc892c207765616b6e657373efbc88e58aa3e58abfefbc892c206f70706f7274756e697479efbc88e69cbae4bc9aefbc892c20746872656174efbc88e5a881e88381efbc892e0d0a50455354e58886e69e90e6b395efbc9a706f6c6974696373efbc88e694bfe6b2bbefbc892c2065636f6e6f6d79efbc88e7bb8fe6b58eefbc892c20736f6369657479efbc88e7a4bee4bc9ae78eafe5a283efbc892c20746563686e6f6c6f6779efbc88e68a80e69cafe78eafe5a283efbc892e0d0ae8bf9be8a18ce680bbe7bb93e79a84e587a0e4b8aae696b9e99da2efbc9a0d0a2a20e7949fe4baa7e79a84e4baa7e59381e794b1e8b081e4b9b0e58d95efbc9f0d0a2a20e4b89ae58aa1e8a686e79b96e4ba86e593aae4ba9be78eafe88a82efbc9f0d0a2a20e8bf99e4b8aae8a18ce4b89ae79a84e7bb8fe6b58ee993bee69da1e698afe5a682e4bd95e8bf90e8bdace8b5b7e69da5e79a84efbc9f0d0a2a20e4baa7e4b89ae89684e5bcb1e78eafe88a82e698afe593aae9878cefbc8ce58f88e99da0e4bb80e4b988e5bca5e8a1a5efbc9f0d0a656e64206e6f74650d0a0d0a40656e64756d6c">
+```
+</details>
+
+<p><img src="https://i.postimg.cc/vHVmZnqw/s30.png" alt=""></p>
+
+<!--
+ 书.
+
+《1984》
+《我们》
+《美丽新世界》
+《动物庄园》
+《活出生命的意义》
+《影响力》
+《乌合之众》
+-->
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/%E4%BA%8B%E4%BB%B6%E8%BF%98%E5%8E%9F%E3%80%81%E5%A4%8D%E7%9B%98%E5%88%86%E6%9E%90%E3%80%81%E5%8F%8D%E7%9C%81" rel="tag"><i class="fa fa-tag"></i> 事件还原、复盘分析、反省</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08-26/" rel="next" title="“2019年8月26日-星期一-阵雨”">
+                <i class="fa fa-chevron-left"></i> “2019年8月26日-星期一-阵雨”
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05-26/" rel="prev" title="Chrome下载视频及音频">
+                Chrome下载视频及音频 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/avatars/avatar1.png" alt="Hoochanlon">
+          <p class="site-author-name" itemprop="name">Hoochanlon</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">306</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/hoochanlon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="/assets/qr/wx.png" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("02/25/2018 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E5%9D%91%E4%BA%BA%E4%BA%8B%E4%BE%8B"> <span class="nav-number">1</span> <span class="nav-text">培训机构坑人事例</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E9%A6%96%E5%85%88%E7%AB%99%E5%9C%A8%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9B%88%E5%88%A9%E7%9A%84%E8%A7%92%E5%BA%A6%E5%88%86%E6%9E%90"> <span class="nav-number">2</span> <span class="nav-text">首先，站在企业的盈利的角度分析</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%90%8D%E8%AF%8D%E7%94%A8%E8%AF%8D"> <span class="nav-number">2.1</span> <span class="nav-text">条件名词用词</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E4%BA%BA%E6%89%8D%E9%80%89%E5%AE%9A%E5%8F%8A%E4%B8%9A%E5%8A%A1%E7%9B%88%E6%94%B6"> <span class="nav-number">2.2</span> <span class="nav-text">人才选定及业务盈收</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E7%9A%84%E8%B5%84%E6%9C%AC%E4%B8%BB%E4%B9%89"> <span class="nav-number">2.3</span> <span class="nav-text">培训的资本主义</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E4%BC%AA%E8%A3%85%E6%88%90%E4%BA%92%E8%81%94%E7%BD%91%E7%AD%89%E5%85%B6%E4%BB%96%E4%B8%93%E4%B8%9A%E6%9C%8D%E5%8A%A1%E5%A4%96%E5%8C%85%E5%85%AC%E5%8F%B8"> <span class="nav-number">3</span> <span class="nav-text">为什么培训机构伪装成互联网等其他专业服务（外包）公司？</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%A4%96%E5%8C%85%E5%85%AC%E5%8F%B8%E4%BA%BA%E5%91%98%E4%BD%9C%E4%B8%9A%E6%B5%81%E7%A8%8B%E6%80%A7%E8%B4%A8"> <span class="nav-number">3.1</span> <span class="nav-text">外包公司人员作业流程性质</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E8%A7%A3%E6%8B%9B%E4%B8%93%E9%A1%B9%E5%9F%B9%E8%AE%AD%E8%B4%B9%E7%94%A8%E8%B5%94%E5%81%BF%E9%87%91"> <span class="nav-number">3.2</span> <span class="nav-text">解招！专项培训费用赔偿金</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E6%9C%80%E5%A4%A7%E5%8C%96%E7%9B%88%E5%88%A9%E7%AD%96%E7%95%A5%E7%9A%84%E5%AE%9A%E5%88%B6"> <span class="nav-number">4</span> <span class="nav-text">培训机构最大化盈利策略的定制</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E6%89%80%E8%B0%93%E7%9A%84%E4%BC%81%E4%B8%9A%E5%90%88%E4%BD%9C"> <span class="nav-number">4.1</span> <span class="nav-text">所谓的企业合作</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%8B%9B%E8%BD%AC%E5%9F%B9%E6%8B%9B%E8%81%98%E8%AE%A1%E5%88%92"> <span class="nav-number">4.2</span> <span class="nav-text">定制“招转培”招聘计划</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%86%85%E9%83%A8%E9%94%80%E5%94%AE%E6%8B%9B%E8%81%98"> <span class="nav-number">4.3</span> <span class="nav-text">内部销售招聘</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E6%96%87%E6%A1%88%E5%88%B6%E4%BD%9C"> <span class="nav-number">4.4</span> <span class="nav-text">文案制作</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E5%AF%B9pua%E5%BA%94%E7%94%A8%E8%B0%83%E6%9F%A5"> <span class="nav-number">4.5</span> <span class="nav-text">培训机构对PUA应用调查</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%82%B9-%E5%A5%BD%E5%A5%87%E9%99%B7%E9%98%B1"> <span class="nav-number">4.6</span> <span class="nav-text">第一点 好奇陷阱</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%82%B9-%E6%83%85%E6%84%9F%E8%99%90%E5%BE%85"> <span class="nav-number">4.7</span> <span class="nav-text">第二点 情感虐待</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E5%AF%B9%E9%9D%A2%E8%AF%95%E8%80%85%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%AB%8B%E5%9C%BA"> <span class="nav-number">4.7.1</span> <span class="nav-text">培训机构对面试者的两种立场</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#%E6%83%85%E6%84%9F%E8%99%90%E5%BE%85%E5%AF%B9%E5%AD%A6%E5%91%98%E7%9A%84%E6%96%B9%E5%BC%8F"> <span class="nav-number">4.7.2</span> <span class="nav-text">情感虐待对学员的方式</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%82%B9-%E6%8E%A2%E7%B4%A2%E5%8F%8A%E7%9D%80%E8%BF%B7%E9%99%B7%E9%98%B1"> <span class="nav-number">4.8</span> <span class="nav-text">第三点 探索及着迷陷阱</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%82%B9-%E6%81%A9%E4%BA%BA%E6%A8%A1%E5%BC%8F"> <span class="nav-number">4.9</span> <span class="nav-text">第四点 恩人模式</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%82%B9-%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%BC%8F"> <span class="nav-number">4.10</span> <span class="nav-text">第五点 推荐模式</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E8%BF%90%E4%BD%9C%E6%A8%A1%E5%BC%8F"> <span class="nav-number">5</span> <span class="nav-text">培训机构运作模式</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%E6%97%A0%E6%B3%95%E8%A7%84%E9%81%BF%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"> <span class="nav-number">5.1</span> <span class="nav-text">培训机构无法规避的主要特征:</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  ©  2018 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoochanlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

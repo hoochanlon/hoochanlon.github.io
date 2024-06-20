@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Mac·iPad·iPhone,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hoo.C.lon's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="淘宝买断scanner pro的后续操作 在钱给到淘宝店家后，店家要了我的ID进行他特有的路子购买流程后，我的ID与软件进行了绑定，只是需要关闭在App Store上关闭更新。手机存下店家给的.ipa程序后（.ipa程序链接，提取码：sfw1），用Mac隔空投送到iPhone上，iPhone就自动安装上软件了，点击软件就可以使用了。 当时我感到惊奇，iOS不是没软件包吗？它这还绕过App Store，怎么搞到的软件包的？店家也回避了这方面的问题回答。我在查了网页资料后找到一些相关线索">
+<meta name="keywords" content="Mac·iPad·iPhone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="淘宝购买iOS学习版软件体会">
+<meta property="og:url" content="/2021/12-07/">
+<meta property="og:site_name" content="Hoo.C.lon's blog">
+<meta property="og:description" content="淘宝买断scanner pro的后续操作 在钱给到淘宝店家后，店家要了我的ID进行他特有的路子购买流程后，我的ID与软件进行了绑定，只是需要关闭在App Store上关闭更新。手机存下店家给的.ipa程序后（.ipa程序链接，提取码：sfw1），用Mac隔空投送到iPhone上，iPhone就自动安装上软件了，点击软件就可以使用了。 当时我感到惊奇，iOS不是没软件包吗？它这还绕过App Store，怎么搞到的软件包的？店家也回避了这方面的问题回答。我在查了网页资料后找到一些相关线索">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.loli.net/2021/12/07/k8dQLjfPFYMHA4q.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="淘宝购买iOS学习版软件体会">
+<meta name="twitter:description" content="淘宝买断scanner pro的后续操作 在钱给到淘宝店家后，店家要了我的ID进行他特有的路子购买流程后，我的ID与软件进行了绑定，只是需要关闭在App Store上关闭更新。手机存下店家给的.ipa程序后（.ipa程序链接，提取码：sfw1），用Mac隔空投送到iPhone上，iPhone就自动安装上软件了，点击软件就可以使用了。 当时我感到惊奇，iOS不是没软件包吗？它这还绕过App Store，怎么搞到的软件包的？店家也回避了这方面的问题回答。我在查了网页资料后找到一些相关线索">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/07/k8dQLjfPFYMHA4q.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>淘宝购买iOS学习版软件体会 | Hoo.C.lon's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-157837686-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoo.C.lon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个安静写作的地方</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2021/12-07/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoochanlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatars/avatar1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoo.C.lon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            淘宝购买iOS学习版软件体会
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-07T07:42:23+00:00">
+                2021-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/2021." itemprop="url" rel="index">
+                    <span itemprop="name">2021.</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                |  
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1283
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="淘宝买断scanner-pro的后续操作">淘宝买断scanner pro的后续操作</h2>
+
+<p>在钱给到淘宝店家后，店家要了我的ID进行他特有的路子购买流程后，我的ID与软件进行了绑定，只是需要关闭在App Store上关闭更新。手机存下店家给的.ipa程序后（<a href="https://pan.baidu.com/s/1n2j_2KjmdnAFkaegw-XPzA">.ipa程序链接，提取码：sfw1</a>），用Mac隔空投送到iPhone上，iPhone就自动安装上软件了，点击软件就可以使用了。</p>
+
+<p>当时我感到惊奇，iOS不是没软件包吗？它这还绕过App Store，怎么搞到的软件包的？店家也回避了这方面的问题回答。我在查了网页资料后找到一些相关线索 <!-- more --> ：</p>
+
+<ul>
+  <li><a href="https://www.jianshu.com/p/fdb50d303ad6">PP助手、爱思助手、Apple Configurator 2抓包获取到安装文件</a></li>
+  <li><a href="https://www.zhihu.com/question/344479701/answer/816525672">ios怎么下载老版本app?-知乎</a></li>
+  <li><a href="https://www.jianshu.com/p/acf915b4bd9a">iTunes+http抓包软件</a></li>
+</ul>
+
+<p>三个链接的内容的核心就是网络抓包，爱思应该是有个软件版本仓，所以可以下载到一些旧版软件。顺便猜测一下淘宝店家的路子：用旧版软件进行购买，在购买时可能对地区及时间做了调整，来完成这一系列的购买操作。</p>
+
+<h2 id="使用-httpcatcher-体会">使用 httpcatcher 体会</h2>
+
+<p>我在淘宝店家又购入一款软件，按照客服提示使用httpcatcher，翻看了httpcatcher软件的原话说明：它可以拦截、查看、修改和重复iOS的http请求。再联系我到之前看视频的一番操作，初步推测类似电脑里写入host来规避验证吧。后来再看了json文件算是明白了，json文件如下：</p>
+
+<blockquote>
+  <p>来源 <a href="https://github.com/baipiaomonster/httpcatcher/blob/master/PDF%20%E7%82%B9%E7%9D%9B%20-%20PDF%E7%BC%96%E8%BE%91%E5%99%A8.json">baipiaomonster</a></p>
+</blockquote>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15</pre></td>
+<td class="code"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"PDF 点睛 - PDF编辑器 A+"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"locations"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scheme"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"enabled"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"port"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"query"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"host"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"license.pdfexpert.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\/</span><span class="s2">api</span><span class="se">\/</span><span class="s2">1.0</span><span class="se">\/</span><span class="s2">pdfexpert6</span><span class="se">\/</span><span class="s2">subscription</span><span class="se">\/</span><span class="s2">refresh"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"PDF 点睛 - PDF编辑器 (PDF Expert 7) 来自 Readdle Inc. https:</span><span class="se">\/\/</span><span class="s2">apps.apple.com</span><span class="se">\/</span><span class="s2">cn</span><span class="se">\/</span><span class="s2">app</span><span class="se">\/</span><span class="s2">pdf-%E7%82%B9%E7%9D%9B-pdf%E7%BC%96%E8%BE%91%E5%99%A8-pdf-expert-7</span><span class="se">\/</span><span class="s2">id743974925"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>与host屏蔽主机不同，它是改写软件版本及用户ID，再用改写的信息对厂商服务器进行欺骗，获取验证。原因是：网上查找到 pdfexpert6版本是可买断的，证据充分。</p>
+
+<p>据我目前所见软件买断转向订阅制的情况，无非二者：</p>
+
+<ul>
+  <li>将买断用户限制在此前更新的版本，如需使用后续版本需要订阅付费。</li>
+  <li>在后续升级过程中会保留此前买断用户的软件功能，新功能需要订阅费用。</li>
+</ul>
+
+<p>PDF expert就属于上面提到的第二种情况。</p>
+
+<h3 id="httpcatcher具体操作">httpcatcher具体操作</h3>
+
+<p>发现：</p>
+
+<ul>
+  <li>https://github.com/baipiaomonster/httpcatcher</li>
+  <li>https://streamja.com/RAmoX</li>
+</ul>
+
+<p><img src="https://s2.loli.net/2021/12/07/k8dQLjfPFYMHA4q.png" alt="截屏2021-12-07 下午12.26.49.png"></p>
+
+<p>httpcatcher操作步骤：</p>
+
+<ol>
+  <li>打开httpcatcher -&gt; 更多 -&gt; 点击 解密https流量 -&gt; 确认弹窗提示项-&gt;再开启 解密https流量 -&gt; 安装；此时会跳出Safari会下载文件，允许下载。</li>
+  <li>下载好文件后，进入设置：
+    <ol>
+      <li>第一步：通用-&gt; 描述文件 -&gt; 安装；第二步：通用-&gt;关于本机-&gt;证书信任设置-&gt;启用</li>
+    </ol>
+  </li>
+  <li>导入hcc内购规则-&gt;更多-&gt;重写-&gt;重写列表开启，并勾选规则-&gt;再点击中心按钮</li>
+  <li>打开需要内购订阅的软件，点击恢复购买。</li>
+</ol>
+
+<h2 id="淘宝共享id--testflight">淘宝共享ID ｜ testflight</h2>
+
+<p><strong>共享ID</strong></p>
+
+<p>店家开通一个号的正版，然后用家庭共享拉号，这样就可以一个帐号买入，其他帐号可以共享正版，然后店家再卖出家庭共享的ID创收。还有一种就是店家提供购买过该付费软件的ID，登录到App Store下载后，进入软件恢复购买。这应该是软件与苹果之间的验证机制问题，点击恢复购买，App Store的ID是在线登录的，软件会调取ID进行验证，该ID用户是否曾买过该软件，然后恢复购买。</p>
+
+<p>店家的具体操作如下图链。顺便说一句：淘宝的好评也是值得留心的，虽然一些用户评测写得挺好，但淘宝店家也会抓顾客痛点，诱导顾客评论的：7天内好评红包返现，包售后、失效补。</p>
+
+<ul>
+  <li>https://imgur.com/a/IXYvw5j</li>
+</ul>
+
+<p>像上图链的操作方式，要想长期使用，软件它是不能自动更新的，一更新软件那边服务器验证到不是此前购买的ID，直接就凉凉了。而且这些ID也是有风险的，不能登录设置里的帐号以及iCloud，只能在App Store上登录，不然极易锁死设备。这也有篇相关链接说明：</p>
+
+<ul>
+  <li>https://www.zhihu.com/question/283094747/answer/1518961762</li>
+  <li>https://www.zhihu.com/question/20807637</li>
+</ul>
+
+<p><strong>testflight</strong></p>
+
+<p>这一般要内测资格的玩家才能获取到testflight版，软件厂家提供给用户一个有期限的内测版本，如：west world vpn。 https://sjssr.fun/</p>
+
+<h2 id="方式汇总">方式汇总</h2>
+
+<p>我目前了解到的iOS低价或免费长期使用的操作方式：</p>
+
+<ul>
+  <li>网络抓包获取应用程序安装文件</li>
+  <li>httpcatcher重写信息</li>
+  <li>共享ID</li>
+  <li>testflight</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/Mac%C2%B7iPad%C2%B7iPhone" rel="tag"><i class="fa fa-tag"></i> Mac·iPad·iPhone</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12-07/01" rel="next" title="看到黑卡消息联系到前月小火箭帐号被封">
+                <i class="fa fa-chevron-left"></i> 看到黑卡消息联系到前月小火箭帐号被封
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12-06/01" rel="prev" title="装机两篇其二：电脑装win7系统">
+                装机两篇其二：电脑装win7系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/avatars/avatar1.png" alt="Hoochanlon">
+          <p class="site-author-name" itemprop="name">Hoochanlon</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">306</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/hoochanlon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="/assets/qr/wx.png" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("02/25/2018 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E6%B7%98%E5%AE%9D%E4%B9%B0%E6%96%ADscanner-pro%E7%9A%84%E5%90%8E%E7%BB%AD%E6%93%8D%E4%BD%9C"> <span class="nav-number">1</span> <span class="nav-text">淘宝买断scanner pro的后续操作</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E4%BD%BF%E7%94%A8-httpcatcher-%E4%BD%93%E4%BC%9A"> <span class="nav-number">2</span> <span class="nav-text">使用 httpcatcher 体会</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#httpcatcher%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"> <span class="nav-number">2.1</span> <span class="nav-text">httpcatcher具体操作</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E6%B7%98%E5%AE%9D%E5%85%B1%E4%BA%ABid--testflight"> <span class="nav-number">3</span> <span class="nav-text">淘宝共享ID ｜ testflight</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB"> <span class="nav-number">4</span> <span class="nav-text">方式汇总</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  ©  2018 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoochanlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

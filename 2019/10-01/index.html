@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="chip,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hoo.C.lon's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。">
+<meta name="keywords" content="chip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于信息开发环境包下载过慢的解决方案">
+<meta property="og:url" content="/2019/10-01/">
+<meta property="og:site_name" content="Hoo.C.lon's blog">
+<meta property="og:description" content="在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于信息开发环境包下载过慢的解决方案">
+<meta name="twitter:description" content="在此之前，你可能需要阅读《这本书能让你连接互联网》作为知识前提。">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>关于信息开发环境包下载过慢的解决方案 | Hoo.C.lon's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-157837686-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoo.C.lon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个安静写作的地方</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2019/10-01/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoochanlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatars/avatar1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoo.C.lon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            关于信息开发环境包下载过慢的解决方案
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T01:01:43+00:00">
+                2019-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/2019." itemprop="url" rel="index">
+                    <span itemprop="name">2019.</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                |  
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1184
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <p>在此之前，你可能需要阅读<a href="https://github.com/hoochanlon/fq-book">《这本书能让你连接互联网》</a>作为知识前提。</p>
+
+<!-- more -->
+
+<h2 id="进入github">进入GitHub</h2>
+
+<p>网速慢或被封锁，<a href="https://github.com.cnpmjs.org/">github.com.cnpmjs.org</a> 、<a href="https://hub.fastgit.org">hub.fastgit.org</a>在这个镜像地址登录访问、下载也是可以的。</p>
+
+<p>然后是使用淘宝源加快国内git下载：https://npm.taobao.org/mirrors/git-for-windows ，npm/yarn下载组件方面，均可使用淘宝镜像</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
+yarn config set registry https://registry.npm.taobao.org
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<h2 id="github下载">GitHub下载</h2>
+
+<p>将以下host复制进<code class="language-plaintext highlighter-rouge">C:\Windows\System32\drivers\etc\hosts</code>，再使用命令行输入<code class="language-plaintext highlighter-rouge">ipconfig /flushdns</code>刷新dns缓存。目的：此host只为解除GFW对GitHub（asw、ssh）下载及克隆的网络限制干扰（不排除服务器吞吐、光缆受地理限制等原因）</p>
+
+<p><strong>如果某条hosts的IP、域名变更，而又没及时更新容易引发浏览器的连接错误重置指向，造成站点无法访问，</strong> 详情 <a href="https://hoochanlon.github.io/note/2020/06-06/74ae1ae6.html">GitHub RST与Git SSL_ERR_SYSCALL综合分析</a></p>
+
+<p>关于releases，它可以是压缩包如zip、7z等格式；也可以是软体程式，比方说：exe、msi</p>
+
+<ol>
+  <li>
+    <p>打开<a href="https://www.ipaddress.com/">www.ipaddress.com</a>，查询以下链接的DNS解析地址</p>
+
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6</pre></td>
+<td class="code"><pre class="highlight"><code> github.com
+ assets-cdn.github.com
+ github.global.ssl.fastly.net
+
+ # 下载链接 raw.githubusercontent.com 的实际地址
+ codeload.github.com
+</code></pre></td>
+</tr></tbody></table></div>    </div>
+  </li>
+  <li>
+    <p>记录下查询到的IP地址，并添加进入<code class="language-plaintext highlighter-rouge">C:\Windows\System32\drivers\etc\Hosts</code>文件</p>
+  </li>
+  <li>
+    <p>添加 aws host</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code> 219.76.4.4 s3.amazonaws.com
+ 219.76.4.4 github-cloud.s3.amazonaws.com
+</code></pre></td>
+</tr></tbody></table></div></div>
+<ol>
+  <li>运行<code class="language-plaintext highlighter-rouge">cmd</code>输入<code class="language-plaintext highlighter-rouge">ipconfig /flushdns</code> 指令刷新系统DNS</li>
+</ol>
+
+<p>我们也可利用<a href="https://www.jsdelivr.com">jsDelivr</a> CDN加速进行下载文件，也可借此搭建访问速度加快的图床；还有站点加速下载也可试试：</p>
+<ul>
+  <li>https://toolwa.com/github/</li>
+  <li>http://g.widyun.com/</li>
+  <li>https://shrill-pond-3e81.hunsh.workers.dev/</li>
+  <li>http://www.toolzl.com/tools/githubjiasu.html</li>
+</ul>
+
+<p>再使用chrome扩展 <a href="https://chrome.google.com/webstore/detail/github%E5%8A%A0%E9%80%9F/mfnkflidjnladnkldfonnaicljppahpg/related?hl=zh-CN">GitHub加速</a> + IDM/FDM 强强联合🤣</p>
+
+<h2 id="githubio-解析">GitHub.io 解析</h2>
+
+<h3 id="rawavatarsgithubusercontentcom-无法解析">raw/avatars.githubusercontent.com 无法解析</h3>
+
+<p>除了host外，还可以配置国内知名的dns进行解析；因为1.1.1.1不一定好使，所以就用国内的。</p>
+
+<ul>
+  <li>百度DNS：180.76.76.76</li>
+  <li>阿里DNS：223.5.5.5、223.6.6.6</li>
+  <li>腾讯DNS：119.29.29.29、182.254.116.116</li>
+</ul>
+
+<h3 id="neterr_cert_authority_invalid">NET::ERR_CERT_AUTHORITY_INVALID</h3>
+
+<p>浏览器会额外提示：攻击者可能试图从 xxx.github.io 窃取你的信息，此服务器无法证明它是 xxx.github.io；你的计算机的操作系统不信任它的安全证书。这可能是由配置错误或者有攻击者截获你的连接而导致的。当继续访问时又会403。</p>
+
+<p>解招！：更改为如上提供的百度、阿里、腾讯DNS，再用<code class="language-plaintext highlighter-rouge">ipconfig/flushdns</code> 刷新缓存。原因简述：ISP提供的DNS发送错误的根证书，换成能向访问网站提供正确证书的第三方DNS。</p>
+
+<h2 id="git-clone-龟速问题">Git Clone 龟速问题</h2>
+
+<h3 id="浅克隆">浅克隆</h3>
+
+<p>git clone 默认会下载项目的完整历史版本，若只关心最新的代码，而不关心之前的历史，可以使用浅复制功能：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1</pre></td>
+<td class="code"><pre class="highlight"><code>$ git clone --depth=1  https://github.com/你的用户名/你的repo.git
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">--depth=1</code> 表示只下载最近一次的版本，使用浅复制可以大大减少下载的数据量，这样即使在红色网络环境下，也可以快速的获得代码；若之后想获取完整历史信息，可以使用指令 <code class="language-plaintext highlighter-rouge">$ git fetch --unshallow</code></p>
+
+<p>git ssh方面: https://github.zhlh6.cn/ 加快速度。</p>
+
+<h3 id="git或终端代理方案">Git或终端代理方案</h3>
+
+<p><strong><em>git</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7</pre></td>
+<td class="code"><pre class="highlight"><code># 代理设置
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+# 取消代理
+git config --global --unset https.proxy 'socks5://127.0.0.1:1080'
+git config --global --unset http.proxy 'socks5://127.0.0.1:1080'
+
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p><strong><em>mac</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</pre></td>
+<td class="code"><pre class="highlight"><code>
+# mac 终端
+
+export http_proxy="socks5://127.0.0.1:1080"
+export https_proxy="socks5://127.0.0.1:1080"
+
+## 在 .bashrc 或 .zshrc 中设置
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
+alias unsetproxy="unset ALL_PROXY"
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p><strong><em>openssh</em></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</pre></td>
+<td class="code"><pre class="highlight"><code>
+# github ssh 配置
+## https://help.github.com/articles/using-ssh-over-the-https-port/
+
+# HTTP 代理
+ProxyCommand socat - PROXY:127.0.0.1:%h:%p,proxyport=8848
+
+# socks5 代理
+ ProxyCommand nc -v -x 127.0.0.1:1080 %h %p
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>反向代理加速 —— Static CDN，用来加载图片、内容等：</p>
+
+<ul>
+  <li>raw.githubusercontent.com 替换raw.staticdn.net</li>
+</ul>
+
+<h2 id="环境包加速">环境包加速</h2>
+
+<h3 id="pip">pip</h3>
+
+<p>由于部分项目需用到python，因附pip下载加速；<code class="language-plaintext highlighter-rouge">pip install 想要安装文件 -i 镜像源地址</code> 指令格式，以镜像源安装。</p>
+
+<p>例：安装jupyter <code class="language-plaintext highlighter-rouge">pip install jupyter - i http://mirrors.aliyun.com/pypi/simple/</code></p>
+
+<p>国内常用pip源：</p>
+
+<ul>
+  <li>清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</li>
+  <li>中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</li>
+  <li>阿里云 http://mirrors.aliyun.com/pypi/simple/</li>
+  <li>中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</li>
+  <li>豆瓣  http://pypi.douban.com/simple/</li>
+</ul>
+
+<p>设定默认值，一劳永逸</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code>pip install pip -U
+pip config set global.index-url https://pypi.douban.com/simple/
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<h3 id="gem">gem</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code>gem sources --remove https://rubygems.org/  #移除默认源
+gem sources -a https://mirrors.ustc.edu.cn/rubygems/  #添加科大源
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<h3 id="npm">npm</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code>npm config set registry https://registry.npm.taobao.org
+npm config get registry
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<h2 id="总结">总结</h2>
+
+<p>环境包下载无非三个问题：</p>
+
+<ul>
+  <li>镜像源</li>
+  <li>代理&amp;VPN，以及hosts</li>
+  <li>包、库文件的互相对应的版本</li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/chip" rel="tag"><i class="fa fa-tag"></i> chip</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10-28/" rel="next" title="2019.10.28 周一 阴">
+                <i class="fa fa-chevron-left"></i> 2019.10.28 周一 阴
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09-20/" rel="prev" title="解构非规范型服务企业">
+                解构非规范型服务企业 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/avatars/avatar1.png" alt="Hoochanlon">
+          <p class="site-author-name" itemprop="name">Hoochanlon</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">306</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/hoochanlon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="/assets/qr/wx.png" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("02/25/2018 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E8%BF%9B%E5%85%A5github"> <span class="nav-number">1</span> <span class="nav-text">进入GitHub</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#github%E4%B8%8B%E8%BD%BD"> <span class="nav-number">2</span> <span class="nav-text">GitHub下载</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#githubio-%E8%A7%A3%E6%9E%90"> <span class="nav-number">3</span> <span class="nav-text">GitHub.io 解析</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#rawavatarsgithubusercontentcom-%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90"> <span class="nav-number">3.1</span> <span class="nav-text">raw/avatars.githubusercontent.com 无法解析</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#neterr_cert_authority_invalid"> <span class="nav-number">3.2</span> <span class="nav-text">NET::ERR_CERT_AUTHORITY_INVALID</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#git-clone-%E9%BE%9F%E9%80%9F%E9%97%AE%E9%A2%98"> <span class="nav-number">4</span> <span class="nav-text">Git Clone 龟速问题</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E6%B5%85%E5%85%8B%E9%9A%86"> <span class="nav-number">4.1</span> <span class="nav-text">浅克隆</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#git%E6%88%96%E7%BB%88%E7%AB%AF%E4%BB%A3%E7%90%86%E6%96%B9%E6%A1%88"> <span class="nav-number">4.2</span> <span class="nav-text">Git或终端代理方案</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8C%85%E5%8A%A0%E9%80%9F"> <span class="nav-number">5</span> <span class="nav-text">环境包加速</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#pip"> <span class="nav-number">5.1</span> <span class="nav-text">pip</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#gem"> <span class="nav-number">5.2</span> <span class="nav-text">gem</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#npm"> <span class="nav-number">5.3</span> <span class="nav-text">npm</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E6%80%BB%E7%BB%93"> <span class="nav-number">6</span> <span class="nav-text">总结</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  ©  2018 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoochanlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
