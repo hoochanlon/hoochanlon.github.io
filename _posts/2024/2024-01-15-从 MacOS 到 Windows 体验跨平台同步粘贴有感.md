@@ -3,7 +3,7 @@ title: "从 MacOS 到 Windows 体验跨平台同步粘贴有感"
 date: 2024-01-15 12:41:14 +0800
 author: hoochanlon
 category: [2024.]
-tags: [2024]
+tags: [Mac·iPad·iPhone]
 permalink: /:year/:month-:day/01
 ---
 
