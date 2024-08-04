@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="chip,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hoo.C.lon's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。">
+<meta name="keywords" content="chip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux加入AD域进行Samba共享与账户登录">
+<meta property="og:url" content="/2020/11-13/">
+<meta property="og:site_name" content="Hoo.C.lon's blog">
+<meta property="og:description" content="前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2020/11/11/kLHV9SramZIGczX.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/12/63ilhg5rQaZdpzL.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/cC8wgvbX1INQYV2.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/fNtgdezVoZXO1cF.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/VjSc2zE3JgHZLFl.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/pJ4elQjmILCtGgv.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/12/hFYOCM4xdn975sK.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/Sc1Xu6A7PC2YH5U.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/sDVfmBPyd53cJYg.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/13/NvZzM6H3nlERuPq.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux加入AD域进行Samba共享与账户登录">
+<meta name="twitter:description" content="前言 不如NAS，让自己变得舒服，用这个方式友好使用共享。 Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。 于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。 文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。">
+<meta name="twitter:image" content="https://i.loli.net/2020/11/11/kLHV9SramZIGczX.png">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="">
+
+
+
+
+
+  <title>Linux加入AD域进行Samba共享与账户登录 | Hoo.C.lon's blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-157837686-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hoo.C.lon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">一个安静写作的地方</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="/2020/11-13/">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hoochanlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatars/avatar1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hoo.C.lon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+          
+          
+            Linux加入AD域进行Samba共享与账户登录
+          
+        </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-13T17:46:29+00:00">
+                2020-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/2020." itemprop="url" rel="index">
+                    <span itemprop="name">2020.</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="post-wordcount">
+                |  
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3357
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="前言">前言</h2>
+
+<p>不如NAS，让自己变得舒服，用这个方式友好使用共享。</p>
+
+<p>Linux跟Samba加AD域是两回事，往深的方面说就是sssd与winbind的ldap访问方式，不少文章以Samba容器来代指Linux，samba及winbind组件底层原理长篇叙述一大论，往往容易让初次搭建项目的新手被搞得很迷糊，这些章节内容也是足够的深，掌握起来也需要耗费大量时间。投入了大量时间进去。</p>
+
+<p>于是投入大量时间好不容易了解了，再学习其章节的另一板块内容，结果发现又如同深渊一般，再投入时间专注费劲功夫搞定了，结果呢？学东忘西的…迷失了，甚至都不知道自己学的是什么东西了，也不知道自己究竟要做什么，如何去做？而且各类知识名词由于特性或历史缘故具有相同属性或不同点，搭建项目的前提是自己又要明确地区分这些内容，所以一旦集成就又会搞混淆把自己弄得头晕脑胀。</p>
+
+<p>文章有我大量的主动式学习向思考及主观看法，不能保证绝对权威的正确性，因此抛砖引玉供同学参考，希望该篇文章也能帮助大家。<!-- more --></p>
+
+<h2 id="安装windows-dc与linux-samba">安装Windows DC与Linux Samba</h2>
+
+<h3 id="domain-controller">Domain Controller</h3>
+
+<p>运行 <code class="language-plaintext highlighter-rouge">dcpromo</code>执行下一步，在新林新建域填写域名，并将DNS设置为域控计算机全名，整个安装过程完成。安装完成打开系统属性可以看到对计算机名、域的详细描述。</p>
+
+<p>具体每一步图文可参考文章此类步骤执行：<a href="https://blog.51cto.com/12476193/2123191">51cto-windows server 2008 R2 enterprise AD域控服务器安装</a>，本章节只做流程概述。</p>
+
+<p><img src="https://i.loli.net/2020/11/11/kLHV9SramZIGczX.png" alt="image-20201111174222325.png"></p>
+
+<h2 id="安装samba">安装Samba</h2>
+
+<p><strong><em>做加域集成前，建议先阅读此前写的 《Samba共享及Linux权限的应用》，看看[<a href="http://m.blog.chinaunix.net/uid-11636352-id-1757728.html">sjhf-实例分析—samba的域功能</a>，我认为这篇文章写得</em></strong></p>
+
+<p>接下来到了Linux安装Samba，支撑Samba加入AD域一系列体系的有：</p>
+<ul>
+  <li>域账户与UID映射的Samba-winbind组件</li>
+  <li>主机非安全通信的验证Kerberos</li>
+  <li>用于与域主机时间同步的ntpdate</li>
+</ul>
+
+<p>这三者都是协作Linux加入AD域完成Samba共享的整个生态周期。了解到这里我们yum开始安装</p>
+
+<blockquote>
+  <p>指令参考自 <a href="https://linux.cn/article-7695-1.html">linuxcn-如何让 Linux 机器加入 Windows 的 AD 域</a></p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2</pre></td>
+<td class="code"><pre class="highlight"><code><span class="c"># samba、winbind、Kerberos 安装</span>
+yum <span class="nt">-y</span> <span class="nb">install </span>samba samba-client samba-common samba-winbind samba-winbind-clients krb5-workstation ntpdate
+</code></pre></td>
+</tr></tbody></table></div></div>
+<h3 id="需要关闭及开启的服务">需要关闭及开启的服务</h3>
+
+<p>需要关闭的服务有：selinux、firewall；这带来个问题就是为什么要关闭selinux、firewall？</p>
+
+<p>简而言之selinux核心是防止root滥用权限，用户要是sudo各种不明软件、病毒能这样吗？这就是运维与日常用户的区别。</p>
+
+<p>firewall方面，多数是因为不清楚各个软件通信该放行什么端口，索性关上防火墙，简单省事；或是企业系统已有外部防火墙或第三方防火墙，所以关掉系统自带防火墙。</p>
+
+<blockquote>
+  <p>参考 <a href="https://www.zhihu.com/question/20559538/answer/761147959">Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎</a></p>
+</blockquote>
+
+<p><strong><em>建议：看上去，这些内容很耗时间，但实际上是值得投入与学习的。</em></strong></p>
+
+<p>接着，开启samba及winbind组件服务：</p>
+
+<ul>
+  <li>SMB是Samba 的核心启动服务，主要负责建立 Linux Samba服务器与Samba客户机之间的对话</li>
+  <li>NMB可以把Linux系统共享的工作组名称与其IP对应起来，若是关闭就只能通过IP来访问共享文件</li>
+</ul>
+
+<blockquote>
+  <p>参考 <a href="https://blog.csdn.net/qq_30782455/article/details/96345259">Samba启动服务中的nmb是什么</a></p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3</pre></td>
+<td class="code"><pre class="highlight"><code>chkconfig smb on <span class="o">&amp;&amp;</span> systemtcl start smb
+chkconfig nmb on <span class="o">&amp;&amp;</span> systemctl start nmb
+chkconfig winbind on <span class="o">&amp;&amp;</span> systemctl start winbind
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>samba配置文件配置内容解读可以看 <a href="https://www.cnblogs.com/rusking/p/3993148.html">将samba加入到windows域《转载》</a></p>
+
+<h2 id="加域与验证的准备工作">加域与验证的准备工作</h2>
+
+<p>DNS方面需要配置DC主机IP才能加域，在网络通信中hosts优先级是比DNS高的，先访问hosts是否有对应域名映射，再查找DNS解析。</p>
+
+<p>配置hosts与DNS</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7</pre></td>
+<td class="code"><pre class="highlight"><code>vi /etc/hosts <span class="c"># 配置host</span>
+<span class="c"># 格式：主机ip地址 主机名（计算机名.域名） 计算机名</span>
+<span class="c"># 比方说我写入的hosts</span>
+127.0.0.1 linux.win7.local linux
+
+vi /etc/resolv.conf <span class="c"># 配置DNS</span>
+nameserver 172.17.198.34 <span class="c"># DC主机IP</span>
+</code></pre></td>
+</tr></tbody></table></div></div>
+<p>接着配置时间同步 <code class="language-plaintext highlighter-rouge">ntpdate dc-01.win7.local</code>，加域与验证都是与需要时间一致的。</p>
+
+<h2 id="搭建kerberos">搭建Kerberos</h2>
+<p>前面介绍Kerberos是主机之间非安全通信的验证服务，既然如此就需要服务端与客户端来保持双方的验证。首先DC（Windows Server）搭建Kerberos；在<a href="http://web.mit.edu/kerberos/">官网下载</a>选择for Windows的msi安装程序傻瓜化安装；初次安装摸索Kerberos配置可参考文章 <a href="https://blog.csdn.net/weixin_42438176/article/details/87127632">Windows Kerberos客户端配置并访问CDH</a></p>
+
+<p>安装完Kerberos打开软件，其配置内容自动生成的。配置文件是<code class="language-plaintext highlighter-rouge">C:/programData/mit/kerberos5/krb5.ini</code>。根本就不需要操心，有些文章教程在Windows上安装Kerberos配这配那的，反倒是画蛇添足。</p>
+
+<p>关注的重点是Kerberos的kdc、admin server、default realm具体是谁。</p>
+
+<ul>
+  <li>kdc：即密钥分发中心，维护域中所有安全主体账户信息数据库。</li>
+  <li>admin server：这里为域控DC服务器；default realm：域名</li>
+</ul>
+
+<p><img src="https://i.loli.net/2020/11/12/63ilhg5rQaZdpzL.png" alt="image-20201112105519473.png"></p>
+
+<p>Kerberos 指令<code class="language-plaintext highlighter-rouge">klist</code>在Windows中信息中文提示友好</p>
+
+<p><img src="https://i.loli.net/2020/11/13/cC8wgvbX1INQYV2.png" alt="image-20201110180534597.png"></p>
+
+<p><strong>让我们再回到Linux</strong>，清除旧票据生成一个新的票据，并查看</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</pre></td>
+<td class="code"><pre class="highlight"><code>kdestroy <span class="o">&amp;&amp;</span>  kinit administrator@WIN7.LOCAL <span class="o">&amp;&amp;</span> klist <span class="c">#注意域名大写</span>
+klist: No credentials cache found <span class="o">(</span>ticket cache FILE:/tmp/krb5cc_0<span class="o">)</span>
+Ticket cache: KEYRING:persistent:0:0
+Default principal: administrator@WIN7.LOCAL
+
+Valid starting       Expires              Service principal
+11/11/2020 22:19:34  11/12/2020 08:19:34  krbtgt/WIN7.LOCAL@WIN7.LOCAL
+	renew <span class="k">until </span>11/18/2020 22:19:31
+</code></pre></td>
+</tr></tbody></table></div></div>
+<p>已指令的方式配置samba与Kerberos，并加入AD域，关于命令的说明可参考：<a href="https://blog.csdn.net/safenli/article/details/70598885">csdn-参考authconfig 用法</a></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20</pre></td>
+<td class="code"><pre class="highlight"><code>authconfig 
+<span class="c"># 命令参考自：https://linux.cn/article-7695-1.html</span>
+<span class="nt">--smbsecurity</span> ads
+<span class="nt">--smbworkgroup</span><span class="o">=</span>WIN7 
+<span class="nt">--smbrealm</span> WIN7.LOCAL 
+<span class="nt">--smbservers</span><span class="o">=</span>dc-01.win7.local
+
+<span class="nt">--enablewinbind</span> 
+<span class="nt">--enablewins</span> <span class="c"># WINS实现的是IP地址和计算机名称的映射</span>
+<span class="nt">--enablewinbindauth</span> <span class="c"># winbind认证Windows AD-Linux用户映射</span>
+<span class="nt">--enablewinbindoffline</span> <span class="c"># 允许离线脱域情况登录</span>
+<span class="nt">--winbindtemplateshell</span><span class="o">=</span>/bin/bash <span class="c"># 给用户分配bash执行指令</span>
+<span class="nt">--winbindjoin</span><span class="o">=</span>administrator 
+<span class="nt">--enablelocauthorize</span> 本地用户使用本地授权
+<span class="nt">--enablemkhomedir</span><span class="o">=</span>/home/%D/%U <span class="c"># 配置AD域用户的家目录，%D域名 %U用户名 </span>
+<span class="nt">--enablewinbindusedefaultdomain</span>
+
+<span class="nt">--enablekrb5</span> <span class="nt">--krb5realm</span><span class="o">=</span>WIN7.LOCAL <span class="nt">--krb5kdc</span><span class="o">=</span>dc-01.win7.local
+<span class="nt">--krb5adminserver</span><span class="o">=</span>dc-01.win7.local <span class="nt">--enablekrb5kdcdns</span> <span class="nt">--enablekrb5realmdns</span>
+<span class="nt">--update</span> 更新配置 
+</code></pre></td>
+</tr></tbody></table></div></div>
+<p><code class="language-plaintext highlighter-rouge">authconfig-tui</code> 所对应的shell配置，这个图形界面集成了pam</p>
+
+<p><img src="https://i.loli.net/2020/11/13/fNtgdezVoZXO1cF.png" alt="12-01-41.png"></p>
+
+<p><img src="https://i.loli.net/2020/11/13/VjSc2zE3JgHZLFl.png" alt="12-01-59.png"></p>
+
+<p><img src="https://i.loli.net/2020/11/13/pJ4elQjmILCtGgv.png" alt="12-02-19.png"></p>
+
+<h2 id="完成加域并使用ad账户登录linux">完成加域并使用AD账户登录Linux</h2>
+
+<p><code class="language-plaintext highlighter-rouge">vi /etc/nsswitch.conf</code>添加winbind认证</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3</pre></td>
+<td class="code"><pre class="highlight"><code>passwd:     files sss winbind
+shadow:     files sss winbind
+group:      files sss winbind
+</code></pre></td>
+</tr></tbody></table></div></div>
+<p>在配置winbind的过程中也查阅了关于sss的资料文档，sssd也是用于集成验证的，粗略来说它是作为一个本地验证的缓冲池降低认证服务器负载的。</p>
+
+<ul>
+  <li><a href="http://blog.sina.com.cn/s/blog_588c88cb0100ywoh.html">Sina-sssd 系统安全服务守护进程</a></li>
+  <li><a href="https://www.redhat.com/zh/blog/sssd-vs-winbind">RedHat-SSSD vs Winbind</a></li>
+  <li><a href="https://blog.csdn.net/qtm_gitee/article/details/102879486">csdn-红帽企业级Linux 7和 Windows集成指南</a></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">net ads join -U administrator@WIN7.LOCAL</code>输入密码并加域</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3</pre></td>
+<td class="code"><pre class="highlight"><code>realm <span class="nb">join </span>dc-01.win7.local <span class="c"># 确认是否加域成功</span>
+net ads testjoin <span class="nt">-U</span> administrator@WIN7.LOCAL <span class="c"># 如上二选一</span>
+wbinfo <span class="nt">-g</span> &amp; wbinfo <span class="nt">-u</span> <span class="c">#查看域中的组与用户</span>
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<h3 id="域账户登录linux">域账户登录Linux</h3>
+
+<p>直接使用AD域账户登录Linux提示Disconnected from remote host(Samba) ，解决办法参考 <a href="http://blog.chinaunix.net/uid-73604-id-2058303.html">chinaunix-winbind实现用windows账户登录linux机器</a> 所说<code class="language-plaintext highlighter-rouge">vi /etc/pam.d/sshd</code> 写入以下三行。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3</pre></td>
+<td class="code"><pre class="highlight"><code>auth       sufficient   pam_winbind.so
+account    sufficient   pam_winbind.so
+session    required     pam_mkhomedir.so
+</code></pre></td>
+</tr></tbody></table></div></div>
+
+<p>在这个环节中也涉及到linux可插拔认证模块(PAM)知识，关于PAM可参考：</p>
+
+<ul>
+  <li><a href="https://blog.csdn.net/cpongo4/article/details/89166312">csdn-Linux可插拔认证模块的基本概念与架构</a></li>
+  <li><a href="https://www.cnblogs.com/ariclee/p/4723835.html">ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一)</a></li>
+</ul>
+
+<p>个人浅见从设计者角度想相当于我们做的是接入式主机账户认证，必然需要随时取消这样的账户登录服务。现在我们开始以域账户SSH登录测试 <code class="language-plaintext highlighter-rouge">ssh od001@172.17.198.35</code></p>
+
+<p>登录测试成功，配置AD用户映射生成对应家目录也完成了创建，如图。</p>
+
+<p><img src="https://i.loli.net/2020/11/12/hFYOCM4xdn975sK.png" alt="Snipaste_2020-11-11_14-19-49.png"></p>
+
+<h3 id="ad用户访问samba">AD用户访问samba</h3>
+
+<p>专为AD共享测试创建了777的adsharp目录<code class="language-plaintext highlighter-rouge">chmod -R 777 /adsharp</code>，valid users也写成了AD域的hrs组，hr001登录到smb共享测试成功。</p>
+
+<h2 id="项目搭建所出现的各种问题疑惑">项目搭建所出现的各种问题疑惑</h2>
+
+<p>从samba到ad加域实际上一个复杂的过程，对概念理解空白初次入手照葫芦画瓢，忙着忙着一旦遇到报错也显得很是生疏，解决问题毫无头绪，大量时间也在不断查找资料，查找的过程中这边还没解决，又是一个接一个的新问题。于是为了解决问题而解决问题都不知道自己在忙些什么了。</p>
+
+<h3 id="failed-cannot-find-kdc-for-requested-realm">failed: Cannot find KDC for requested realm</h3>
+
+<p>初次遇到这个问题时，我在想是不是DNS不对，左核对右核对smb.conf、krb5.conf跟DC域控主机名有关的配置，明明是对的怎么会报错呢？真是摸不着头脑？？？</p>
+
+<p>没有在用户名加上 “@域名”，如：<code class="language-plaintext highlighter-rouge">administrator@WIN7.LOCAL</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5</pre></td>
+<td class="code"><pre class="highlight"><code><span class="o">[</span>root@linux ~]# net rpc <span class="nb">join</span> <span class="nt">-U</span> administrator
+Enter administrator<span class="s1">'s password:
+kerberos_kinit_password administrator@WIN7 failed: Cannot find KDC for requested realm
+Using short domain name -- WIN7
+Joined '</span>LINUX<span class="s1">' to realm '</span>win7.local<span class="s1">'
+</span></code></pre></td>
+</tr></tbody></table></div></div>
+
+<h3 id="dns-update-failed-nt_status_invalid_parameter">DNS update failed: NT_STATUS_INVALID_PARAMETER</h3>
+
+<p>如下报错参考<a href="http://www.kombitz.com/2012/03/05/samba-net-ads-join-dns-update-failed-error-fixed/">Samba Net Ads Join “DNS Update Failed” Error Fixed</a> 错误原因为hosts仅写入了计算机名“linux”，而没有在后面跟上域名，也就是没将主机名补充完整 “linux7.win7.local”。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr>
+<td class="gutter"><pre>1<br>2<br>3<br>4<br>5<br>6</pre></td>
+<td class="code"><pre class="highlight"><code><span class="o">[</span>root@linux ~]# net ads <span class="nb">join</span> <span class="nt">-U</span> administrator
+Enter administrator<span class="s1">'s password:
+Using short domain name -- WIN7
+Joined '</span>LINUX<span class="s1">' to dns domain '</span>win7.local<span class="s1">'
+No DNS domain configured for linux. Unable to perform DNS Update.
+DNS update failed: NT_STATUS_INVALID_PARAMETER
+</span></code></pre></td>
+</tr></tbody></table></div></div>
+
+<h3 id="ad域账户id可以显示但cat-etcpassswd没有记录">AD域账户id可以显示，但cat /etc/passswd没有记录</h3>
+
+<p>如题就证明AD域账户的数据库不是写在了 <code class="language-plaintext highlighter-rouge">/etc/passwd</code>中，使用<code class="language-plaintext highlighter-rouge">getent passwd 用户名</code> 可查到相应的域账户。翻阅资料根据<a href="https://www.cnblogs.com/IvanChen/p/4739092.html">Samba结合AD实现域帐号认证的文件服务器</a>所述：<code class="language-plaintext highlighter-rouge">winbind trusted domains only = yes</code> 决定getent passwd是否能获得域帐号。</p>
+
+<p>根据<a href="https://blog.51cto.com/12157236/1874077">《Linux菜鸟入门2》Ldap</a>所说的getent passwd  如果用户信息可以正常显示，证明ldap客户端认证成功，没想到这里又引出一个新的概念LDAP：</p>
+
+<ul>
+  <li>
+    <p><a href="https://www.cnblogs.com/wilburxu/p/9174353.html">wilburxu-LDAP概念和原理介绍</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.cnblogs.com/jpfss/p/11021948.html">jpfss-Linux下LDAP统一认证解决方案</a></p>
+  </li>
+</ul>
+
+<p>原来域账户是存在winbind的数据库中，登录时根据此前pam.d配置的可插拔模块，完成家目录的创建。图中hr004未登录用户。</p>
+
+<p><img src="https://i.loli.net/2020/11/13/Sc1Xu6A7PC2YH5U.png" alt="Snipaste_2020-11-13_09-52-23.png"></p>
+
+<h3 id="pam_krb5so-not-found">pam_krb5.so not found</h3>
+
+<p>可以使用<code class="language-plaintext highlighter-rouge">whereis</code>来验证模块是否存在，从而验证完整性，再使用yum安装 。</p>
+
+<p><img src="https://i.loli.net/2020/11/13/sDVfmBPyd53cJYg.png" alt=""></p>
+
+<p>我在翻阅 <a href="http://blog.chinaunix.net/uid-291705-id-2134362.html">chinaunix-PAM配置</a>了解到，<code class="language-plaintext highlighter-rouge">pam.d/system-auth</code>就是用做账户验证与会话管理的，还有一些关于requisite、required、sufficient、optional这类control_flag的涵义。</p>
+
+<h3 id="结语">结语</h3>
+
+<p>直到自己搭建samba项目所遇到各种报错，看着报错提示，似懂非懂又摸不着头脑，明明自己配置的没问题呀，整个人都处于迷糊的状态。</p>
+
+<p>做完项目后，自己想了想原因才发现这些之前自己的教训都是没有一个项目整体的框架图，没有明确各项组件在项目中的作用、组件中的配置是在项目中承载那一块业务支持的，也就是哪些才是核心模块，是真正掌握的重点。也由此想到一些lights：</p>
+
+<p>我们的专业知识学习看似循序渐进章节明确，但又往往很零碎，我们初期阶段整合集成项目很是困难，经常被弄得头晕脑涨的。一个人集成起来实为困难，若是有一个团队每个人承担着不同分工，相对的</p>
+
+<p>一个人集成起来在项目中是不可或缺的存在，若是集成模块分工化，每个人负责不同的业务逻辑，相互协作组装成一个大项目就容易了许多。分工看起来很专业化，假设我把每条指令作为流水线，每个人作为其中一条指令的作业员，其可替代性强，且更换成本低。</p>
+
+<p>集成在初期本身就要投入大量精力且困难的事情，经验尚浅的朋友采取合作完成项目的形式，是高效且快速的，若要在分工项目中体现出重要性就专注某一方面来体现优势。</p>
+
+<p>建议在做集成项目时，用黑板或是白纸手绘一张大概整体功能及结构拓扑，虽说没各项一一详尽，但梳理出了一个整体性的框架，这样项目实施起来方向就明确了许多，也有利于节奏把控与异常排查。</p>
+
+<p><img src="https://i.loli.net/2020/11/13/NvZzM6H3nlERuPq.png" alt="image-20201113153331475.png"></p>
+
+<h2 id="参考文献">参考文献</h2>
+
+<ul>
+  <li><a href="https://linux.cn/article-7695-1.html">linuxcn-如何让 Linux 机器加入 Windows 的 AD 域</a></li>
+  <li><a href="http://www.voidcn.com/article/p-smihtnxg-bpn.html">程序园-Windows AD域用户访问Linux samba服务</a></li>
+  <li><a href="https://www.cnblogs.com/rusking/p/3993148.html">将samba加入到windows域《转载》</a></li>
+  <li><a href="https://blog.51cto.com/zhangdonghui/62869">Windows Active Directory 域故障排错（三）</a></li>
+  <li><a href="https://blog.51cto.com/12476193/2123191">51cto-windows server 2008 R2 enterprise AD域控服务器安装</a></li>
+  <li><a href="https://www.zhihu.com/question/20559538/answer/761147959">Linux 下为何要关闭 SELinux？ - Hongbo He的回答 - 知乎</a></li>
+  <li><a href="https://blog.csdn.net/qq_30782455/article/details/96345259">Samba启动服务中的nmb是什么</a></li>
+  <li><a href="https://blog.csdn.net/weixin_42438176/article/details/87127632">Windows Kerberos客户端配置并访问CDH</a></li>
+  <li><a href="http://blog.sina.com.cn/s/blog_588c88cb0100ywoh.html">Sina-sssd 系统安全服务守护进程</a></li>
+  <li><a href="https://www.redhat.com/zh/blog/sssd-vs-winbind">RedHat-SSSD vs Winbind</a></li>
+  <li><a href="https://blog.csdn.net/qtm_gitee/article/details/102879486">csdn-红帽企业级Linux 7和 Windows集成指南</a></li>
+  <li><a href="https://blog.csdn.net/cpongo4/article/details/89166312">Linux可插拔认证模块的基本概念与架构</a></li>
+  <li><a href="https://www.cnblogs.com/ariclee/p/4723835.html">ariclee-常用的Linux可插拔认证模块（PAM）应用举例(一)</a></li>
+  <li><a href="http://blog.chinaunix.net/uid-73604-id-2058303.html">chinaunix-winbind实现用windows账户登录linux机器</a></li>
+  <li><a href="http://www.kombitz.com/2012/03/05/samba-net-ads-join-dns-update-failed-error-fixed/">Samba Net Ads Join “DNS Update Failed” Error Fixed</a></li>
+  <li><a href="https://www.cnblogs.com/wilburxu/p/9174353.html">wilburxu-LDAP概念和原理介绍</a></li>
+  <li><a href="https://www.cnblogs.com/jpfss/p/11021948.html">jpfss-Linux下LDAP统一认证解决方案</a></li>
+  <li><a href="http://blog.chinaunix.net/uid-291705-id-2134362.html">chinaunix-netid-PAM配置</a></li>
+</ul>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div>
+    <style>
+    .passage_end::after{
+        content: "- The End -";
+        text-align:center;
+        color: #252525;
+        display: block;
+        font-size:26px;
+        /* font-weight:bold; */
+        font-family: serif;
+    }
+    </style>
+        <div class="passage_end"></div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <!-- <div class="social-share" style="text-align:center"></div>
+    <!--  css & js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script> -->
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/chip" rel="tag"><i class="fa fa-tag"></i> chip</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+        <div class="post-nav" id="post-nav-id">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02-06/" rel="next" title="面试项目之自我批判">
+                <i class="fa fa-chevron-left"></i> 面试项目之自我批判
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11-08/" rel="prev" title="Linux与Samba之间的权限 Part1">
+                Linux与Samba之间的权限 Part1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/assets/avatars/avatar1.png" alt="Hoochanlon">
+          <p class="site-author-name" itemprop="name">Hoochanlon</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">311</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="https://github.com/hoochanlon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              
+              
+              <span class="links-of-author-item">
+                <a href="/assets/qr/wx.png" target="_blank" title="Wechat">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  Wechat
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+<div id="days"></div>
+<script>
+function show_date_time(){
+    window.setTimeout("show_date_time()", 1000);
+    BirthDay=new Date("02/25/2018 15:13:14");
+    today=new Date();
+    timeold=(today.getTime()-BirthDay.getTime());
+    sectimeold=timeold/1000
+    secondsold=Math.floor(sectimeold);
+    msPerDay=24*60*60*1000
+    e_daysold=timeold/msPerDay
+    daysold=Math.floor(e_daysold);
+    e_hrsold=(e_daysold-daysold)*24;
+    hrsold=setzero(Math.floor(e_hrsold));
+    e_minsold=(e_hrsold-hrsold)*60;
+    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+    seconds=setzero(Math.floor((e_minsold-minsold)*60));
+    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i) {
+    if (i<10) {
+        i="0" + i
+    };
+    return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class="nav">
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%89%8D%E8%A8%80"> <span class="nav-number">1</span> <span class="nav-text">前言</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%AE%89%E8%A3%85windows-dc%E4%B8%8Elinux-samba"> <span class="nav-number">2</span> <span class="nav-text">安装Windows DC与Linux Samba</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#domain-controller"> <span class="nav-number">2.1</span> <span class="nav-text">Domain Controller</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%AE%89%E8%A3%85samba"> <span class="nav-number">3</span> <span class="nav-text">安装Samba</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E9%9C%80%E8%A6%81%E5%85%B3%E9%97%AD%E5%8F%8A%E5%BC%80%E5%90%AF%E7%9A%84%E6%9C%8D%E5%8A%A1"> <span class="nav-number">3.1</span> <span class="nav-text">需要关闭及开启的服务</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%8A%A0%E5%9F%9F%E4%B8%8E%E9%AA%8C%E8%AF%81%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"> <span class="nav-number">4</span> <span class="nav-text">加域与验证的准备工作</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E6%90%AD%E5%BB%BAkerberos"> <span class="nav-number">5</span> <span class="nav-text">搭建Kerberos</span> </a> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%AE%8C%E6%88%90%E5%8A%A0%E5%9F%9F%E5%B9%B6%E4%BD%BF%E7%94%A8ad%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95linux"> <span class="nav-number">6</span> <span class="nav-text">完成加域并使用AD账户登录Linux</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E5%9F%9F%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95linux"> <span class="nav-number">6.1</span> <span class="nav-text">域账户登录Linux</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#ad%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AEsamba"> <span class="nav-number">6.2</span> <span class="nav-text">AD用户访问samba</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E6%89%80%E5%87%BA%E7%8E%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%96%91%E6%83%91"> <span class="nav-number">7</span> <span class="nav-text">项目搭建所出现的各种问题疑惑</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#failed-cannot-find-kdc-for-requested-realm"> <span class="nav-number">7.1</span> <span class="nav-text">failed: Cannot find KDC for requested realm</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#dns-update-failed-nt_status_invalid_parameter"> <span class="nav-number">7.2</span> <span class="nav-text">DNS update failed: NT_STATUS_INVALID_PARAMETER</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#ad%E5%9F%9F%E8%B4%A6%E6%88%B7id%E5%8F%AF%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%BD%86cat-etcpassswd%E6%B2%A1%E6%9C%89%E8%AE%B0%E5%BD%95"> <span class="nav-number">7.3</span> <span class="nav-text">AD域账户id可以显示，但cat /etc/passswd没有记录</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#pam_krb5so-not-found"> <span class="nav-number">7.4</span> <span class="nav-text">pam_krb5.so not found</span> </a> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#%E7%BB%93%E8%AF%AD"> <span class="nav-number">7.5</span> <span class="nav-text">结语</span> </a> </li> </ol> </li> <li class="nav-item nav-level-2"> <a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"> <span class="nav-number">8</span> <span class="nav-text">参考文献</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  
+  ©  2018 - 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hoochanlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
