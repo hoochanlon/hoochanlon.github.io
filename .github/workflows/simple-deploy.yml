@@ -14,9 +14,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
-    - name: Debug
-      run: gem update --system 3.2.3
+        ruby-version: 3.2
     - name: Install dependencies
       run: bundle install
     - name: Run jekyll build
