@@ -17,6 +17,7 @@ jobs:
         ruby-version: 2.6
     - name: Install dependencies
       run: bundle install
+      run: gem update --system 3.2.3
     - name: Run jekyll build
       run: bundle exec jekyll build
     - name: Simple deploy with git
