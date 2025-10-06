@@ -22,8 +22,5 @@ jobs:
     - name: Simple deploy with git
       uses: JamesIves/github-pages-deploy-action@v4
       with: # optional
-        git-user: 'hoochanlon'
-        git-email: 'hoochanlon@outlook.com'
         git-base-folder: '_site'
-        commit-message: 'deploy'
         branch: 'gh-pages'
