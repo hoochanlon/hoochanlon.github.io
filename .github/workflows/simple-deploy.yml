@@ -22,5 +22,5 @@ jobs:
     - name: Simple deploy with git
       uses: JamesIves/github-pages-deploy-action@v4
       with: # optional
-        git-base-folder: '_site'
+        git-base-folder: '_posts'
         branch: 'gh-pages'
