@@ -1,0 +1,19 @@
+name: Label Commenter
+
+on:
+  issues:
+    types:
+      - labeled
+  pull_request_target:
+    types:
+      - labeled
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: master
+      - name: Label Commenter
+        uses: peaceiris/actions-label-commenter@v1

@@ -1,0 +1,154 @@
+if (hexo-config('local_search.enable') or hexo-config('algolia_search.enable')) {
+  .search-active {
+    overflow: hidden;
+    margin-right: var(--dialog-scrollgutter, 0);
+  }
+
+  .search-pop-overlay {
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: visibility .4s, background .4s;
+    visibility: hidden;
+    width: 100%;
+    z-index: $zindex-4;
+
+    .search-active & {
+      background: rgba(0, 0, 0, .3);
+      visibility: visible;
+    }
+  }
+
+  .search-popup {
+    background: var(--card-bg-color);
+    border-radius: 5px;
+    height: 80%;
+    margin: auto;
+    transform: scale(0);
+    transition: transform .4s;
+    width: 700px;
+
+    .search-active & {
+      transform: scale(1);
+    }
+
+    +mobile() {
+      border-radius: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .search-icon, .popup-btn-close {
+      color: $grey-dark;
+      font-size: 18px;
+      padding: 0 10px;
+    }
+
+    .popup-btn-close {
+      cursor: pointer;
+
+      &:hover .fa {
+        color: $black-deep;
+      }
+    }
+
+    .search-header {
+      background: $gainsboro;
+      if (hexo-config('darkmode')) {
+        @media (prefers-color-scheme: dark) {
+          background: $grey-dim;
+        }
+      }
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      display: flex;
+      padding: 5px;
+    }
+
+    input.search-input {
+      background: transparent;
+      border: 0;
+      outline: 0;
+      width: 100%;
+
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    .search-result-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 55px);
+      overflow: auto;
+      padding: 5px 25px;
+
+      hr {
+        flex-shrink: 0;
+        margin: 5px 0 10px;
+
+        &:first-child {
+          display: none;
+        }
+      }
+    }
+
+    .search-result-list {
+      margin: 0 5px;
+      padding: 0;
+    }
+
+    a.search-result-title {
+      font-weight: bold;
+    }
+
+    p.search-result {
+      border-bottom: 1px dashed $grey-light;
+      margin: 0 0 10px;
+      padding: 5px 0;
+    }
+
+    .search-input-container {
+      flex-grow: 1;
+      padding: 2px;
+    }
+
+    .search-result-icon {
+      color: $grey-light;
+      margin: auto;
+    }
+  }
+}
+
+mark.search-keyword {
+  background: transparent;
+  border-bottom: 1px dashed $red;
+  color: $red;
+  font-weight: bold;
+}
+
+if (hexo-config('algolia_search.enable')) {
+  .search-stats {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      height: 1em;
+      margin: 0;
+    }
+  }
+
+  .pagination.algolia-pagination {
+    // Override the default style of pagination
+    // Put pagination at the bottom when there is sufficient height
+    margin-top: auto;
+    padding: 40px 0;
+    // Override motion
+    // https://github.com/theme-next/hexo-theme-next/issues/537
+    visibility: visible;
+  }
+}

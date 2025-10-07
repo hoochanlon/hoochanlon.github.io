@@ -1,0 +1,22 @@
+{%- include 'vendors.njk' -%}
+
+{%- if theme.injects.comment.length > 1 %}
+  {{- next_js('comments.js') }}
+{%- endif %}
+
+{{- next_js('utils.js') }}
+{%- if theme.motion.enable %}
+  {{- next_js('motion.js') }}
+{%- endif %}
+
+{%- if theme.sidebar.display !== 'remove' %}
+  {{- next_js('sidebar.js') }}
+{%- endif %}
+
+{{- next_js('next-boot.js') }}
+{%- if theme.bookmark.enable %}
+  {{- next_js('bookmark.js') }}
+{%- endif %}
+{%- if theme.pjax %}
+  {{- next_js('pjax.js') }}
+{%- endif %}

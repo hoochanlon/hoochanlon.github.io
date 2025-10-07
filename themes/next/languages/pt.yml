@@ -1,0 +1,103 @@
+---
+name: Português
+title:
+  archive: Arquivo
+  category: Categoria
+  tag: Etiqueta
+  schedule: Agenda
+menu:
+  home: Início
+  archives: Arquivos
+  categories: Categorias
+  tags: Etiquetas
+  about: Sobre
+  search: Pesquisa
+  schedule: Agenda
+  sitemap: Sitemap
+  commonweal: Commonweal 404
+sidebar:
+  overview: Visão Geral
+  toc: Tabela de Conteúdo
+  links: Links
+post:
+  posted: Postado em
+  edited: Editado em
+  created: Post created
+  modified: Updated at
+  edit: Modificar este post
+  in: Em
+  read_more: Ler mais
+  untitled: Sem título
+  sticky: Marcado
+  views: Visualizações
+  related_posts: Publicações Relacionadas
+  copyright:
+    author: Autor da publicação
+    link: Link para postagem
+    post_author: Escrito por
+    post_link: Este artigo apareceu originalmente em
+    license_title: Direitos de autor
+    license_content: "Todos os artigos deste blog são licenciados sob %s a não ser que informe adicionalmente."
+    license_content_reprint: "Este artigo é um artigo reimpresso e foi reimpresso com permissão. Por favor, indique a origem!"
+footer:
+  powered: "Desenvolvido com amor com %s"
+  total_views: Total de Visualizações
+  total_visitors: Total de visitantes
+widget:
+  github: Siga-me no GitHub
+  chat: Chat
+counter:
+  tag_cloud:
+    zero: Sem tags
+    one: 1 tag no total
+    other: "%d tags no total"
+  categories:
+    zero: Sem categorias
+    one: 1 categoria no total
+    other: "%d categorias no total"
+  archive_posts:
+    zero: Sem publicações.
+    one: 1 publicação.
+    other: "%d publicações no total."
+state:
+  posts: publicações
+  tags: etiquetas
+  categories: categorias
+search:
+  placeholder: Pesquisando...
+  empty: "Não encontramos nenhum resultado para a pesquisa: %s"
+  hits_time: "%s resultados encontrados em %s ms"
+  hits: "%s resultados encontrados"
+cheers:
+  um: Um..
+  ok: OK
+  nice: Legal
+  good: Bom
+  great: Grandioso
+  excellent: Excelente
+keep_on: Mantenha-se publicando!
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+reward:
+  donate: Doar
+  wechatpay: WeChat Pay
+  alipay: Alipay
+  paypal: PayPal
+  bitcoin: Bitcoin
+  comment: Pague-me um café
+follow_me:
+  welcome: Bem-vindo aos meus outros canais de publicação
+accessibility:
+  nav_toggle: Alternar barra de navegação
+  prev_page: Página anterior
+  next_page: Página seguinte
+  back_to_top: Voltar ao início
+  select_lang: Escolher idioma
+symbols_count_time:
+  count: Symbols count in article
+  count_total: Symbols count total
+  time: Tempo de leitura
+  time_total: Tempo total de leitura
+  time_minutes: mins.
