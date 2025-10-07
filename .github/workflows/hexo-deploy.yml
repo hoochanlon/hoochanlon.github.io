@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # 指定 Node.js 版本
+          node-version: '22'  # 指定 Node.js 版本
  
       - name: Install Dependencies # 安装项目依赖
         run: npm install  
