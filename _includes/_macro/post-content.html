@@ -1,7 +1,0 @@
-{% if site.highlight.line_number %}
-  {% assign source = post.content %}
-  {% include _helper/lineno.html %}
-  {{ lineno }}
-{% else %}
-  {{ post.content }}
-{% endif %}
