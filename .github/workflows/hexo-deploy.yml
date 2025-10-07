@@ -1,0 +1,49 @@
+name: Deploy Hexo Project to GitHub Pages
+on:
+  push:
+    branches:
+      - master  # 当 master 分支有 push 行为时触发这个 action
+ 
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+ 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # 指定 Node.js 版本
+ 
+      - name: Install Dependencies # 安装项目依赖
+        run: npm install  
+ 
+      - name: Install hexo-cli   # 全局安装hexo-cli 
+        run: |
+          npm install -g hexo-cli 
+ 
+      - name: Build Hexo # 生成 Hexo 页面
+        run: |
+          hexo clean
+          hexo generate  
+ 
+      - name: Deploy to GitHub Pages
+        env: 
+          HEXO_DEPLOY: ${{ secrets.HEXO_DEPLOY }}
+ 
+        run: |
+          cd public  # 进入生成的 Hexo 页面目录
+          git init  # 初始化新的 Git 仓库
+          git config --global user.name "${{ github.actor }}"  # 动态获取 GitHub 用户名
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"  # 使用 GitHub 提供的 noreply 邮箱
+          git config --global --add safe.directory $GITHUB_WORKSPACE  # 添加当前工作目录为安全目录
+          git remote add origin https://${{ secrets.HEXO_DEPLOY }}@github.com/hoochanlon/hoochanlon.github.io.git  # 添加公有仓库的远程地址
+          git checkout --orphan gh-pages  # 切换到 gh-pages 分支
+          git add .
+          git commit --allow-empty -m "Deploy Hexo pages"
+          git push -u --force origin gh-pages  # 强制推送到公有仓库的 gh-pages 分支
+ 
+ 
