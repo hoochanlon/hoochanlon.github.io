@@ -7,7 +7,7 @@ title: Chanlon Hoo's Blog
 subtitle: ''
 description: ''
 keywords:
-author: Hoo Chanlon
+author: HooChanlon
 language: zh-CN
 timezone: ''
 
@@ -111,3 +111,12 @@ search:
   field: post
   format: html
   limit: 10000
+
+# 文章加密 hexo-blog-encrypt
+# See: https://github.com/D0n9X1n/hexo-blog-encrypt/blob/master/ReadMe.zh.md
+encrypt:
+  enable: true
+  theme: blink
+  abstract: '内容已加密，请输入密码后阅读'
+  message: '内容已加密，请输入密码后阅读'
+  wrong_pass_message: '密码错误，请重试'
