@@ -32,8 +32,8 @@ menu:
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
-  theme: light
-  macStyle: false
+  theme: darker
+  macStyle: true
   # Code block height limit (unit: px)
   height_limit: false
   word_wrap: false
@@ -49,8 +49,9 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
+  fab fa-github: https://github.com/hoochanlon || Github || '#24292e'
+  fas fa-envelope: mailto:hoochanlon@outlook.com || Email || '#4a7dbe'
+  fa-brands fa-weixin: /images/123456.jpg|| Wechat || '#1AAD19'
 
 # --------------------------------------
 # Image Settings
@@ -69,7 +70,7 @@ disable_top_img: false
 default_top_img:
 
 # The banner image of index page
-index_img: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
+index_img: /img/butterfly.jpg
 
 # The banner image of archive page
 archive_img:
@@ -291,7 +292,7 @@ aside:
       enable: false
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/hoochanlon
   card_announcement:
     enable: true
     content: This is my Blog
@@ -346,7 +347,7 @@ aside:
     # Sort of order. 1, asc for ascending; -1, desc for descending
     order: -1
   card_webinfo:
-    enable: false
+    enable: true
     post_count: true
     last_push_date: true
     sort_order:
@@ -430,7 +431,7 @@ copy:
 
 # Need to install the hexo-wordcount plugin
 wordcount:
-  enable: false
+  enable: true
   # Display the word count of the article in post meta
   post_wordcount: true
   # Display the time to read the article in post meta
@@ -440,9 +441,9 @@ wordcount:
 
 # Busuanzi count for PV / UV in site
 busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
+  site_uv: false
+  site_pv: false
+  page_pv: false
 
 # --------------------------------------
 # Math
@@ -986,6 +987,8 @@ pjax:
   exclude:
     # - /xxxxxx/
 
+
+
 # Inject the css and script (aplayer/meting)
 aplayerInject:
   enable: false
@@ -1053,25 +1056,25 @@ css_prefix: true
 
 # electric_clock
 # see https://blog.anheyu.com/posts/fc18.html
-electric_clock:
-  enable: true # 开关
-  priority: 5 #过滤器优先权
-  enable_page: all # 应用页面
-  exclude:
-  # - /posts/
-  # - /about/
-  layout: # 挂载容器类型
-    type: class
-    name: sticky_layout
-    index: 0
-  loading: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif #加载动画自定义
-  clock_css: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css
-  clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
-  ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
-  qweather_key: f7e9fee0581f487eb9a1955d9bbc894f # 和风天气key
-  gaud_map_key: 24d33836543216dd181a014c3edb3da7 # 高得地图web服务key
-  default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
-  rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
+# electric_clock:
+#   enable: true # 开关
+#   priority: 5 #过滤器优先权
+#   enable_page: all # 应用页面
+#   exclude:
+#   # - /posts/
+#   # - /about/
+#   layout: # 挂载容器类型
+#     type: class
+#     name: sticky_layout
+#     index: 0
+#   loading: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif #加载动画自定义
+#   clock_css: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css
+#   clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
+#   ip_api: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
+#   qweather_key: f7e9fee0581f487eb9a1955d9bbc894f # 和风天气key
+#   gaud_map_key: 24d33836543216dd181a014c3edb3da7 # 高得地图web服务key
+#   default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
+#   rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
 
 
 

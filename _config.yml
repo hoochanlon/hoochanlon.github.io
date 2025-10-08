@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://hoochanlon.github.io
 # permalink: :year/:month:day/:title/
 permalink: posts/:abbrlink.html
 permalink_defaults:
@@ -98,7 +98,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: next
-theme: butterfly
+theme: butterfly # bug 太多了
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
