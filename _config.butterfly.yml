@@ -51,7 +51,7 @@ code_blocks:
 social:
   fab fa-github: https://github.com/hoochanlon || Github || '#24292e'
   fas fa-envelope: mailto:hoochanlon@outlook.com || Email || '#4a7dbe'
-  fa-brands fa-weixin: /images/123456.jpg|| Wechat || '#1AAD19'
+  fa-brands fa-weixin: /img/123456.jpg|| Wechat || '#1AAD19'
 
 # --------------------------------------
 # Image Settings
@@ -73,10 +73,10 @@ default_top_img:
 index_img: /img/p3r.png
 
 # The banner image of archive page
-archive_img: 
+archive_img: /img/p3r.png
 
 # Note: tag page, not tags page
-tag_img:
+tag_img: /img/p3r.png
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
@@ -84,7 +84,7 @@ tag_img:
 tag_per_img:
 
 # Note: category page, not categories page
-category_img: 
+category_img:  /img/p3r.png
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
