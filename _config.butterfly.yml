@@ -18,10 +18,10 @@ nav:
   fixed: false
 
 menu:
-  Home: / || fas fa-home
-  tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
+  主页: / || fas fa-home
+  标签: /tags/ || fa fa-tags
+  分类: /categories/ || fa fa-th
+  时间轴: /archives/ || fa fa-archive
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
@@ -70,10 +70,10 @@ disable_top_img: false
 default_top_img:
 
 # The banner image of index page
-index_img: /img/butterfly.jpg
+index_img: /img/p3r.png
 
 # The banner image of archive page
-archive_img:
+archive_img: 
 
 # Note: tag page, not tags page
 tag_img:
@@ -84,7 +84,7 @@ tag_img:
 tag_per_img:
 
 # Note: category page, not categories page
-category_img:
+category_img: 
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
@@ -92,11 +92,13 @@ category_img:
 category_per_img:
 
 # The background image of footer
-footer_img: false
+# footer_img: false
+footer_img: true
 
 # Website Background
 # Can set it to color or image url
-background:
+# background: /img/p3r.png
+background: 
 
 cover:
   # Disable the cover or not
@@ -476,7 +478,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use:
+  use: local_search
   placeholder:
 
   # Algolia Search

@@ -44,7 +44,8 @@ mixin rightsideItem(array)
   #rightside-config-show
     if needCogBtn
       button#rightside-config(type="button" title=_p("rightside.setting"))
-        i.fas.fa-cog(class=theme.rightside_config_animation ? 'fa-spin' : '')
+        //- i.fas.fa-cog(class=theme.rightside_config_animation ? 'fa-spin' : '')
+        i.fas.fa-cog(class=theme.rightside_config_animation ? '' : '')
 
     if showArray.length
       +rightsideItem(showArray)

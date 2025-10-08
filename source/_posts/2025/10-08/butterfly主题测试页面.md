@@ -38,6 +38,23 @@ i.fas.fa-bullhorn
     //   transform: rotate(360deg)
 ```
 
+禁用设置旋转，在{% label layout\includes\rightside.pug blue %}，去掉`fa-spin`
+
+```
+  #rightside-config-show
+    if needCogBtn
+      button#rightside-config(type="button" title=_p("rightside.setting"))
+        i.fas.fa-cog(class=theme.rightside_config_animation ? 'fa-spin' : '')
+```
+
+
+ 在 {% label `source\css\_layout\footer.styl`  blue %} 修改页脚颜色
+
+```
+  background-color: $light-blue
+  background: #b7b7b5!important
+```
+
 
 * [butterfly文档三主题配置](https://butterfly.js.org/posts/4aa8abbe/)
 * [给butterfly添加侧边栏电子钟](https://blog.anheyu.com/posts/fc18.html)
