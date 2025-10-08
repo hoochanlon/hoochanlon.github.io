@@ -25,12 +25,15 @@
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^7.0.0",
+    "hexo-renderer-markdown-it": "^7.1.1",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-sliding-spoiler": "^1.2.1",
     "hexo-theme-landscape": "^1.0.0",
     "hexo-theme-next": "^8.25.0",
-    "hexo-word-counter": "^0.2.1"
+    "hexo-word-counter": "^0.2.1",
+    "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-expandable": "^1.0.2",
+    "markdown-it-imsize": "^2.0.1"
   }
 }
