@@ -301,9 +301,8 @@ aside:
   card_announcement:
     enable: true
     content: 
-      <p>1. 博客框架由 Jekyll 迁移至 hexo，主题从 Next 改为 Butterfly</p>
-      <p>2. 博客内容偏向日常生活类，会做一些笔记，相关技术类文章已打包成电子书</p>
-      <p>3. 不定期谈点兴趣爱好，分享一些生活见闻</p>
+
+      
   card_recent_post:
     enable: false
     # If set 0 will show all

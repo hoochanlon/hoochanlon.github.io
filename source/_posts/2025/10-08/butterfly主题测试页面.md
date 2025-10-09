@@ -7,9 +7,6 @@ abbrlink: 442
 date: 2020-10-08 18:39:58
 updated: 2020-10-08 18:39:58
 cover: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
-postchat:
-  summary:
-    enableSummary: false
 ---
 
 
@@ -23,7 +20,9 @@ postchat:
 * [butterfly文档三主题配置](https://butterfly.js.org/posts/4aa8abbe/)
 * [给butterfly添加侧边栏电子钟](https://blog.anheyu.com/posts/fc18.html)
 * https://github.com/jerryc127/hexo-theme-butterfly/discussions/878
-
+* 天气插件：https://weatherwidget.org/zh/
+* 时间插件：https://time.is/zh/widgets
+* 自定义插件：https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90
 
 在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。
 
@@ -82,5 +81,15 @@ i.fas.fa-bullhorn
   background: #b7b7b5!important
 ```
 
+添加天气组件 {% label hoochanlon.github.io\source\_data\widget.yml  blue %}
 
-
+```
+top:
+  - class_name: user-weather
+    name: 天气
+    icon: fa-solid fa-sun-cloud
+    order: 5
+    html: |
+     <div id="ww_62f74659400aa" v='1.3' loc='auto' a='{"t":"horizontal","lang":"zh","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/zh/" id="ww_62f74659400aa_u" target="_blank">天气插件</a></div>
+      <script async src="https://app3.weatherwidget.org/js/?id=ww_62f74659400aa"></script>
+```
