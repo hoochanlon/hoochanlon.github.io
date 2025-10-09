@@ -97,7 +97,17 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 plugins:
-  - hexo-plugin-postchat
+  - hexo-generator-search
+  - hexo-blog-encrypt
+  - hexo-asset-image
+  - hexo-renderer-markdown-it
+  - hexo-server
+  - hexo-deployer-git
+  - hexo-generator-index
+  - hexo-generator-archive
+  - hexo-generator-category
+  - hexo-generator-tag
+  - hexo-pagination
 
 ## Themes: https://hexo.io/themes/
 # theme: next
