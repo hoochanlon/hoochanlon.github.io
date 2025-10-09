@@ -7,11 +7,14 @@ abbrlink: 442
 date: 2020-10-08 18:39:58
 updated: 2020-10-08 18:39:58
 cover: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
+postchat:
+  summary:
+    enableSummary: false
 ---
 
 
 * 文章摘要：https://www.myzimu.com/post/978df16.html
-  * AI摘要KEY:https://docs_s.tianli0.top/install.html
+  * AI摘要KEY：https://docs_s.tianli0.top/install.html
 * 文章节选： https://butterfly.js.org/posts/4aa8abbe/?highlight=description
 * 文章过期提醒设置：https://butterfly.js.org/posts/4aa8abbe/?highlight=%E6%8F%90%E9%86%92
 * 动漫图片超分辨率：https://real-cugan.animesales.xyz/
