@@ -1092,7 +1092,7 @@ inject:
   head:
     - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
   bottom:
-    - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = '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';</script>
+    - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'S-12WKHICUWC373WUH';</script>
     - <script src="https://ai.tianli0.top/static/public/tianli_gpt.min.js"></script>
 
 # CDN Settings
