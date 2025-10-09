@@ -11,6 +11,20 @@ top:
       time_is_widget.init({Shanghai_z43d:{}});
       </script>
 
+      <div style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <iframe 
+          src="https://clockzone.net/embed/countdown?locale=en-US&theme=dark&format=day%2Chour%2Cminute%2Csecond&font=Inter&scale=60&showLabels=true&targetDate=2025-12-31T11%3A28%3A01.900Z&title=IE%E8%80%83%E8%AF%95%E5%80%92%E8%AE%A1%E6%97%B6"
+          width="240" 
+          height="180" 
+          style="border: none; border-radius: 8px; display: block;"
+        ></iframe>
+        <div style="text-align: center; margin-top: 4px; opacity: 0.7;">
+          <a href="https://clockzone.net" target="_blank" style="font-size: 11px; color: #666; text-decoration: none;">
+            ⏰ Powered by ClockZone
+          </a>
+        </div>
+      </div>
+
   - class_name: user-weather
     name: 天气
     icon: fa fa-cloud

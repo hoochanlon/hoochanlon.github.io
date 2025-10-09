@@ -73,7 +73,7 @@ default_top_img:
 # The banner image of index page
 index_img: /img/p3r.png
 # The banner image of archive page
-archive_img: /img/p3r1.png
+archive_img: /img/p3r.png
 
 # Note: tag page, not tags page
 tag_img: 
@@ -171,7 +171,6 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub: 
-    - 相见即是缘
     - 欢迎访问我的博客
 
 # Article layout on the homepage
@@ -300,7 +299,10 @@ aside:
       link: https://github.com/hoochanlon
   card_announcement:
     enable: true
-    content: 
+    content: |
+      <p style="font-size:24px; color: #8B0000; font-weight: bold; font-style: italic; text-align: center;">
+      全速备考，极限热爱！
+      </p>
 
       
   card_recent_post:

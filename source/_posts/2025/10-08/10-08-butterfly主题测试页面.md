@@ -4,9 +4,8 @@ categories: 测试
 tags: 测试
 description: 主要测试封面图、时钟、基本效果等
 abbrlink: 442
-date: 2020-10-08 18:39:58
-updated: 2020-10-08 18:39:58
-cover: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
+date: 2025-10-08 18:39:58
+cover: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Papilio_polytes_polytes_bytreef.jpg/1200px-Papilio_polytes_polytes_bytreef.jpg
 ---
 
 
@@ -22,6 +21,7 @@ cover: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
 * https://github.com/jerryc127/hexo-theme-butterfly/discussions/878
 * 天气插件：https://weatherwidget.org/zh/
 * 时间插件：https://time.is/zh/widgets
+* 时间插件：https://clockzone.net/
 * 自定义插件：https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90
 
 在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。
