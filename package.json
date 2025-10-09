@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@waline/hexo-next": "^3.0.1",
+    "axios": "^1.12.2",
     "hexo": "^8.0.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-blog-encrypt": "^3.1.9",
@@ -36,8 +37,11 @@
     "hexo-theme-landscape": "^1.0.0",
     "hexo-theme-next": "^8.25.0",
     "hexo-word-counter": "^0.2.1",
+    "hexo-wordcount": "^6.0.1",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-expandable": "^1.0.2",
-    "markdown-it-imsize": "^2.0.1"
+    "markdown-it-imsize": "^2.0.1",
+    "node-fetch": "^3.3.2",
+    "p-limit": "^7.1.1"
   }
 }

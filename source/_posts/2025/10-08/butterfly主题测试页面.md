@@ -2,25 +2,42 @@
 title: butterfly主题测试页面
 categories: 测试
 tags: 测试
-description: 主要测试封面图、时钟、天气
+description: 主要测试封面图、时钟、基本效果等
 abbrlink: 442
-date: 2025-10-08 18:39:58
+date: 2020-10-08 18:39:58
+updated: 2020-10-08 18:39:58
 cover: https://h2.gifposter.com/bingImages/SwallowtailFlower_1920x1080.jpg
 ---
 
+
+* 文章摘要：https://www.myzimu.com/post/978df16.html
+  * AI摘要KEY:https://docs_s.tianli0.top/install.html
+* 文章节选： https://butterfly.js.org/posts/4aa8abbe/?highlight=description
+* 文章过期提醒设置：https://butterfly.js.org/posts/4aa8abbe/?highlight=%E6%8F%90%E9%86%92
+* 动漫图片超分辨率：https://real-cugan.animesales.xyz/
+* [tag页面图片生效位置](https://github.com/jerryc127/hexo-theme-butterfly/issues/1023)
+* [分割线处理](https://luoyuy.top/posts/5c76ad4123cd/)
+* [butterfly文档三主题配置](https://butterfly.js.org/posts/4aa8abbe/)
+* [给butterfly添加侧边栏电子钟](https://blog.anheyu.com/posts/fc18.html)
+* https://github.com/jerryc127/hexo-theme-butterfly/discussions/878
+
+
+在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。
+
+
 Next 当前不支持设置文章封面。butterfly的侧边时钟看着挺不错，但不能用了...显示的字太小了，看着有点费劲。
 
-在 {% label \butterfly\layout\includes\widget blue %} 注释掉小喇叭
+在 {% label \butterfly\layout\includes\widget\card_announcement.pug blue %}  注释掉小喇叭
 
 
-```
+```pug
 //- i.fas.fa-bullhorn.fa-shake 抖动很烦人
 i.fas.fa-bullhorn 
 ```
 
  在 {% label source\css\_layout\aside.styl blue %} 禁用头像旋转，social 图标旋转也是这样注释。
 
-```
+```styl
 .avatar-img
   overflow: hidden
   margin: 0 auto
@@ -40,24 +57,27 @@ i.fas.fa-bullhorn
 
 禁用设置旋转，在{% label layout\includes\rightside.pug blue %}，去掉`fa-spin`
 
-```
+```pug
   #rightside-config-show
     if needCogBtn
       button#rightside-config(type="button" title=_p("rightside.setting"))
         i.fas.fa-cog(class=theme.rightside_config_animation ? 'fa-spin' : '')
 ```
 
+关闭分割线动画，在 {% label source\css\_global\function.styl blue %}，定位到 `.custom-hr`,注释掉如下代码
 
- 在 {% label `source\css\_layout\footer.styl`  blue %} 修改页脚颜色
-
+```styl
+    &:hover
+      &:before
+        left: calc(95% - 20px)
 ```
+
+ 在 {% label source\css\_layout\footer.styl  blue %} 修改页脚颜色
+
+```styl
   background-color: $light-blue
   background: #b7b7b5!important
 ```
 
-
-* [butterfly文档三主题配置](https://butterfly.js.org/posts/4aa8abbe/)
-* [给butterfly添加侧边栏电子钟](https://blog.anheyu.com/posts/fc18.html)
-* https://github.com/jerryc127/hexo-theme-butterfly/discussions/878
 
 

@@ -67,29 +67,29 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img:
+# default_top_img: /img/p3r.png
+default_top_img: 
 
 # The banner image of index page
 index_img: /img/p3r.png
-
 # The banner image of archive page
-archive_img: /img/p3r.png
+archive_img: /img/p3r1.png
 
 # Note: tag page, not tags page
-tag_img: /img/p3r.png
+tag_img: 
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
 #  - tag name: xxxxx
-tag_per_img:  /img/p3r.png
+tag_per_img:  
 
 # Note: category page, not categories page
-category_img:  /img/p3r.png
+category_img: 
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
 #  - category name: xxxxx
-category_per_img:  /img/p3r.png
+category_per_img:  
 
 # The background image of footer
 # footer_img: false
@@ -99,6 +99,7 @@ footer_img: true
 # Can set it to color or image url
 # background: /img/p3r.png
 background: 
+
 
 cover:
   # Disable the cover or not
@@ -170,6 +171,8 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub: 
+    - 相见即是缘
+    - 欢迎访问我的博客
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -187,7 +190,7 @@ index_layout: 3
 # 3: auto_excerpt (default)
 # false: do not show the article introduction
 index_post_content:
-  method: 3
+  method: 2
   # If you set method to 2 or 3, the length need to config
   length: 500
 
@@ -247,15 +250,15 @@ post_pagination: 1
 
 # Displays outdated notice for a post
 noticeOutdate:
-  enable: false
+  enable: true
   # Style: simple / flat
   style: flat
   # When will it be shown
   limit_day: 365
   # Position: top / bottom
   position: top
-  message_prev: It has been
-  message_next: days since the last update, the content of the article may be outdated.
+  message_prev: 这是一篇更新于
+  message_next: 天前的文章, 部分信息可能已发生改变，请注意甄别。
 
 # --------------------------------------
 # Footer Settings
@@ -264,7 +267,7 @@ footer:
   nav:
   owner:
     enable: true
-    since: 2025
+    since: 2018
   # Copyright of theme and framework
   copyright:
     enable: true
@@ -297,7 +300,10 @@ aside:
       link: https://github.com/hoochanlon
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 
+      <p>1. 博客框架由 Jekyll 迁移至 hexo，主题从 Next 改为 Butterfly</p>
+      <p>2. 博客内容偏向日常生活类，会做一些笔记，相关技术类文章已打包成电子书</p>
+      <p>3. 不定期谈点兴趣爱好，分享一些生活见闻</p>
   card_recent_post:
     enable: false
     # If set 0 will show all
@@ -537,7 +543,7 @@ comments:
   # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   # Format of two comments system : Disqus,Waline
-  use:
+  use: Waline
   # Display the comment name next to the button
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -593,7 +599,7 @@ valine:
 # Waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL:
+  serverURL: walineserver-six.vercel.app
   bg:
   # Use Waline pageview count as the page view count
   pageview: false
@@ -1084,9 +1090,10 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
-    # - <link rel="stylesheet" href="/xxx.css">
+    - <link rel="stylesheet" href="https://ai.tianli0.top/static/public/tianli_gpt.min.css">
   bottom:
-    # - <script src="xxxx"></script>
+    - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = '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';</script>
+    - <script src="https://ai.tianli0.top/static/public/tianli_gpt.min.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
