@@ -4,8 +4,8 @@ categories: 测试
 tags: 测试
 description: 主要测试封面图、时钟、基本效果等
 abbrlink: 442
-date: 2025-10-08 18:39:58
-cover: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Papilio_polytes_polytes_bytreef.jpg/1200px-Papilio_polytes_polytes_bytreef.jpg
+date: 2025-10-07 18:39:58
+cover: https://tu.zbhz.org/i/2025/10/09/114ak04.jpg
 ---
 
 
