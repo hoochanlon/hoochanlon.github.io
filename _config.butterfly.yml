@@ -1087,7 +1087,11 @@ inject:
           })(window, document, "clarity", "script", "tnx9sjz2fj");
       </script>
   bottom:
-    - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'S-12WKHICUWC373WUH';</script>
+    - <script>
+        let tianliGPT_postSelector = '\#post \#article-container';
+        let tianliGPT_key = 'S-12WKHICUWC373WUH';
+        let tianliGPT_blacklist = 'https://raw.githubusercontent.com/hoochanlon/hoochanlon.github.io/refs/heads/master/ban_ai_zhaiyao_json/blacklist.json'
+        </script>
     - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
 
 
