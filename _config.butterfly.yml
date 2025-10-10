@@ -1088,7 +1088,7 @@ inject:
       </script>
   bottom:
     - <script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'S-12WKHICUWC373WUH';</script>
-    - <script src="https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.14/tianli_gpt.min.js"></script>
+    - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
 
 
 # CDN Settings
