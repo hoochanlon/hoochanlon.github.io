@@ -1,0 +1,26 @@
+// 顶部图
+#page-header, #page-header:before
+  background-color: transparent !important
+  background-image: unset !important
+
+.top-img
+  height: 12.5rem
+  display: block
+  margin: -50px -40px 50px -40px
+  border-top-left-radius: inherit
+  border-top-right-radius: inherit
+  background-position: center center
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  background-size: cover
+  background-repeat: no-repeat
+  transition: all 0.3s
+
+  .read-mode
+    display: none
+
+  @media screen and (max-width: 768px)
+    margin: -1.8rem -0.7rem 1.8rem -0.7rem
+
+  [data-theme='dark'] &
+    filter: brightness(0.8)

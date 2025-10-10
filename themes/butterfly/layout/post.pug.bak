@@ -4,7 +4,7 @@ block content
   #post
     if top_img === false
       include includes/header/post-info.pug
-      .top-img.gist(style=`background-image: url(${url_for(top_img)})`)
+
     article#article-container.container.post-content
       if theme.noticeOutdate.enable && page.noticeOutdate !== false
         include includes/post/outdate-notice.pug

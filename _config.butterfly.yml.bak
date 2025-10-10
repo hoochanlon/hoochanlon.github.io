@@ -19,11 +19,10 @@ nav:
 
 menu:
   主页: / || fas fa-home
-  待办清单: /todo/ || fa fa-list
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   时间轴: /archives/ || fa fa-archive
-
+  待办清单: /todo/ || fa fa-list
 
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
@@ -71,12 +70,12 @@ disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
 # default_top_img: /img/p3r.png
-default_top_img: 
+default_top_img: /img/lofi-girl.png
 
 # The banner image of index page
-index_img: transparent
+index_img: /img/p5r.png
 # The banner image of archive page
-archive_img: 
+archive_img: /img/caffe.png
 
 # Note: tag page, not tags page
 tag_img: 
@@ -96,12 +95,12 @@ category_per_img:
 
 # The background image of footer
 # footer_img: false
-footer_img: transparent
+footer_img: false
 
 # Website Background
 # Can set it to color or image url
 # background: /img/p3r.png
-background: /img/lofi-girl.png
+background: 
 
 
 cover:
@@ -110,7 +109,7 @@ cover:
   aside_enable: true
   archives_enable: true
   # When cover is not set, the default cover is displayed
-  default_cover: 
+  default_cover:
     # - xxx.jpg
 
 # Replace Broken Images
@@ -842,10 +841,10 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work
 font:
-  global_font_size: 16px
-  code_font_size: 14px
-  font_family: '"LXGW WenKai Screen", sans-serif'
-  code_font_family: '"JetBrains Mono", monospace'
+  global_font_size:
+  code_font_size:
+  font_family:
+  code_font_family:
 
 # Font settings for the site title and site subtitle
 blog_title_font:
@@ -869,11 +868,6 @@ activate_power_mode:
 
 # Background effects
 # --------------------------------------
-background_settings:
-  opacity: 1       # 必须保持1（透明度通过CSS控制）
-  position: center
-  size: cover
-
 
 # canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
@@ -1083,11 +1077,7 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.12/index.min.css">
-    - <link rel="stylesheet" href="/css/real_css/bg_blur.css">
     - <link rel="stylesheet" href="/css/real_css/bilibili.css">
-    - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <script type="text/javascript">
           (function(c,l,a,r,i,t,y){
@@ -1104,7 +1094,6 @@ inject:
         </script>
     - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
     # - <script src="/js/sakura.js"></script>
-    - <script src="/js/bg_blur.js"></script>
 
 
 # CDN Settings
