@@ -96,7 +96,9 @@ category_per_img:
 
 # The background image of footer
 # footer_img: false
-footer_img: transparent
+# footer_img: transparent
+footer_img:
+
 
 # Website Background
 # Can set it to color or image url
@@ -1088,6 +1090,7 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/bg_blur.css">
     - <link rel="stylesheet" href="/css/real_css/bilibili.css">
     - <link rel="stylesheet" href="/css/real_css/nav.css">
+    - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <script type="text/javascript">
           (function(c,l,a,r,i,t,y){
