@@ -73,9 +73,9 @@ disable_top_img: false
 default_top_img: 
 
 # The banner image of index page
-index_img: /img/p3r.png
+index_img: /img/lofi-girl.png
 # The banner image of archive page
-archive_img: /img/p3r.png
+archive_img: /img/bingguo.gif
 
 # Note: tag page, not tags page
 tag_img: 
@@ -173,7 +173,13 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub: 
-    - 欢迎访问我的博客
+    - 回忆的画面
+    - 记录的语言
+    - —— 笔记
+    - ......
+    - 谁能忘记过去,一路走来陪你受的伤
+    - 谁能预料未来茫茫，漫长你在何方
+    - —— 和你一样
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -365,7 +371,7 @@ aside:
     # Time difference between publish date and now
     # Formal: Month/Day/Year Time or Year/Month/Day Time
     # Leave it empty if you don't enable this feature
-    runtime_date:
+    runtime_date: 2018/11/29
 
 # --------------------------------------
 # Bottom right button
@@ -451,10 +457,12 @@ wordcount:
   total_wordcount: true
 
 # Busuanzi count for PV / UV in site
+# https://www.busuanzi.cc/
 busuanzi:
-  site_uv: false
+  site_uv: true
   site_pv: false
   page_pv: false
+  page_uv: false
 
 # --------------------------------------
 # Math
@@ -1070,6 +1078,13 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/real_css/bilibili.css">
+    - <script type="text/javascript">
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "tnx9sjz2fj");
+      </script>
   bottom:
 
 

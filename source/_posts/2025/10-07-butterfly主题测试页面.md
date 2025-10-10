@@ -2,7 +2,7 @@
 title: butterfly主题测试页面
 categories: 测试
 tags: 测试
-description: 主要测试封面图、时钟、基本效果等
+description: 主要测试AI、封面图、时钟、基本效果等
 abbrlink: 442
 date: 2025-10-07 18:39:58
 cover: https://tu.zbhz.org/i/2025/10/09/114ak04.jpg
@@ -24,6 +24,7 @@ cover: https://tu.zbhz.org/i/2025/10/09/114ak04.jpg
 * 时间插件：https://clockzone.net/
 * todo：https://github.com/ricocc/uiineed-todo-list
 * 自定义插件：https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90
+* Butterfly:为博客添加微软Clarity数据统计：https://blog.yvyang.fun/posts/48347/index.HTML
 
 
 在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。
