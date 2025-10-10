@@ -1108,6 +1108,7 @@ inject:
     - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
     # - <script src="/js/sakura.js"></script>
     - <script src="/js/bg_blur.js"></script>
+    - <script src="/js/suiji_tupian.js"></script>
 
 
 # CDN Settings
