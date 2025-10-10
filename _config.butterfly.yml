@@ -23,10 +23,10 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   时间轴: /archives/ || fa fa-archive
+  音乐馆: /music/ || fas fa-music
 
 
   # List||fas fa-list:
-  #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
 
 # --------------------------------------
@@ -248,7 +248,7 @@ post_edit:
 related_post:
   enable: true
   # Number of posts displayed
-  limit: 6
+  limit: 3
   # Choose: created / updated
   date_type: created
 
@@ -1018,7 +1018,7 @@ pjax:
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
-  enable: false
+  enable: true
   per_page: true
 
 # Snackbar - Toast Notification
@@ -1092,6 +1092,7 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
+    # 微软统计
     - <script type="text/javascript">
           (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -1100,11 +1101,7 @@ inject:
           })(window, document, "clarity", "script", "tnx9sjz2fj");
       </script>
   bottom:
-    - <script>
-        let tianliGPT_postSelector = '\#post \#article-container';
-        let tianliGPT_key = 'S-12WKHICUWC373WUH';
-        let tianliGPT_blacklist = 'https://raw.githubusercontent.com/hoochanlon/hoochanlon.github.io/refs/heads/master/ban-ai-zhaiyao.json'
-        </script>
+    - <script src="/js/aizhaoyao.js"></script>
     - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
     # - <script src="/js/sakura.js"></script>
     - <script src="/js/bg_blur.js"></script>
