@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hoochanlon.github.io/music/index.html</loc>
-    
-    <lastmod>2025-10-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoochanlon.github.io/tags/index.html</loc>
-    
-    <lastmod>2025-10-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/posts/815.html</loc>
     
     <lastmod>2025-10-10</lastmod>
@@ -93,6 +75,24 @@
   
   <url>
     <loc>https://hoochanlon.github.io/categories/index.html</loc>
+    
+    <lastmod>2025-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/music/index.html</loc>
+    
+    <lastmod>2025-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/tags/index.html</loc>
     
     <lastmod>2025-10-10</lastmod>
     
@@ -198,6 +198,13 @@
   </url>
   
   <url>
+    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2025-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://hoochanlon.github.io/tags/%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98/</loc>
     <lastmod>2025-10-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -206,13 +213,6 @@
   
   <url>
     <loc>https://hoochanlon.github.io/tags/%E7%A7%9F%E6%88%BF/</loc>
-    <lastmod>2025-10-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2025-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -256,14 +256,14 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E5%BE%80%E4%BA%8B%E7%BF%BB%E7%9C%8B/</loc>
     <lastmod>2025-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E5%BE%80%E4%BA%8B%E7%BF%BB%E7%9C%8B/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/</loc>
     <lastmod>2025-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
