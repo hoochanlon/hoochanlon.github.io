@@ -22,6 +22,8 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   时间轴: /archives/ || fa fa-archive
+  待办清单: /todo/ || fa fa-list
+
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video

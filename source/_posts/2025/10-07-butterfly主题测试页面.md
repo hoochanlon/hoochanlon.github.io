@@ -22,7 +22,9 @@ cover: https://tu.zbhz.org/i/2025/10/09/114ak04.jpg
 * 天气插件：https://weatherwidget.org/zh/
 * 时间插件：https://time.is/zh/widgets
 * 时间插件：https://clockzone.net/
+* todo：https://github.com/ricocc/uiineed-todo-list
 * 自定义插件：https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90
+
 
 在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。
 
