@@ -186,12 +186,3 @@ markdown:
 aplayer:
   meting: true
   asset_inject: false
-
-# hexo-tag-cloud
-tag_cloud:
-    textFont: Trebuchet MS, Helvetica
-    textColor: '#333'
-    textHeight: 25
-    outlineColor: '#E2E1D1'
-    maxSpeed: 0.5
-    pauseOnSelected: false # true 意味着当选中对应 tag 时,停止转动
