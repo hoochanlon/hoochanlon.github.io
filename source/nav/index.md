@@ -7,5 +7,5 @@ comments: false
 ---
 
 <script>
-  window.location.href = "http://nav-nu-three.vercel.app";
+  window.location.href = "https://nav-lfuv.vercel.app";
 </script>
