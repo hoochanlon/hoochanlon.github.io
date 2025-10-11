@@ -12,6 +12,7 @@
     "version": "8.0.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@waline/hexo-next": "^3.0.1",
     "axios": "^1.12.2",
     "gulp": "^5.0.1",
@@ -45,7 +46,8 @@
     "markdown-it-expandable": "^1.0.2",
     "markdown-it-imsize": "^2.0.1",
     "node-fetch": "^3.3.2",
-    "p-limit": "^7.1.1"
+    "p-limit": "^7.1.1",
+    "v-calendar": "^3.1.2"
   },
   "devDependencies": {
     "gulp-clean-css": "^4.3.0",
