@@ -20,10 +20,13 @@ nav:
 menu:
   主页: / || fas fa-home
   待办清单: /todo/ || fa fa-list
+  日历标记: /calendar/ || fas fa-calendar-alt
+  音乐馆: /music/ || fas fa-music
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   时间轴: /archives/ || fa fa-archive
-  音乐馆: /music/ || fas fa-music
+
+
 
 
   # List||fas fa-list:
