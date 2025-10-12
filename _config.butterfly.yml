@@ -26,6 +26,7 @@ menu:
   清单: /todo/ || fa fa-list
   日历: /calendar/ || fas fa-calendar-alt
   番茄: /tomato/ || fas fa-stopwatch
+  音乐: /music/ || fas fa-music
 
 
   # List||fas fa-list:
@@ -179,8 +180,7 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub: 
-    - 回忆的画面
-    - 记录的语言
+    - 回忆的画面，记录的语言
     - 爱始终是你手中长长的线
     - —— 笔记
 
@@ -1105,7 +1105,7 @@ inject:
   bottom:
     - <script src="/js/aizhaoyao.js"></script>
     - <script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script>
-    # - <script src="/js/sakura.js"></script>
+    - <script src="/js/sakura.js"></script>
     - <script src="/js/bg_blur.js"></script>
     - <script src="/js/suiji_tupian.js"></script>
 

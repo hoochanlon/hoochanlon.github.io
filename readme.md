@@ -1,6 +1,8 @@
 # ***[Chanlon Hoo's Blog](https://hoochanlon.github.io/)***
 
-博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。
+>  [!IMPORTANT]
+> 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。
+
 
 除主题自带，额外实现的效果：
 
@@ -26,11 +28,14 @@
 
 优化部分：
 
-* 必应图片从一天一换，更新成刷新换图
+* 首页图固定，其余页刷新即换
 * 考虑到阅读因素，移除樱花飘落效果
 * 考虑看板娘的情绪价值过低（没AI），已优化
 * 针对归档采用额外规则分页
-* 正对重定向，重写重定向页面
-* 考虑API配置项过多，以及版权问题，去除内置音乐器
+* 针对重定向，重写重定向页面
 
+，图片展示
 
+![ ](https://tu.zbhz.org/i/2025/10/12/10v8rcq.jpg)
+
+![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg)
