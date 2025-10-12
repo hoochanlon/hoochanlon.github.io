@@ -187,3 +187,8 @@ markdown:
 aplayer:
   meting: true
   asset_inject: false
+
+# https://tbfeng.com/hexo-blog-pagination-and-per-page/
+#archive分页每页显示文章数
+archive_generator:
+    per_page: 15
