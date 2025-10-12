@@ -44,6 +44,7 @@
       margin: 0 auto 20px;
     }
 
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -55,24 +56,27 @@
     }
 
     .fallback {
-      font-size: 0.95rem;
-      color: #444;
+      margin-top: 20px;
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: #222;
+      line-height: 1.6;
     }
 
     .fallback a {
+      font-weight: 600;
       color: #007acc;
       text-decoration: underline;
-      word-break: break-all;
     }
   </style>
 </head>
 <body>
   <div class="glass-card">
     <div class="loader"></div>
+
     <div class="message">正在跳转，请稍候...</div>
     <div class="fallback">
-      如果未能自动跳转，请点击访问：
-      <a href="https://nav-lfuv.vercel.app" target="_blank" rel="noopener">https://nav-lfuv.vercel.app</a>
+      如果未能自动跳转，请&nbsp;<a href="https://nav-lfuv.vercel.app" target="_blank" rel="noopener">点击此处&nbsp;</a>访问。
     </div>
   </div>
 
