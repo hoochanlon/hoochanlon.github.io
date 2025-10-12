@@ -130,3 +130,9 @@ Splayer 音乐板块
 - [自动化部署指南](https://goofysatoshi.github.io/2025/08/29/Hexo-GitHub-Actions-实现自动化部署完整指南/index.html)
 
 </details>
+
+---
+
+<p align="center">
+<em><span style="font-size: 1.2em;">Thanks</span></em>
+</p>
