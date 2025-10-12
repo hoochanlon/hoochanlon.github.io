@@ -19,13 +19,13 @@ nav:
 
 menu:
   主页: / || fas fa-home
-  导航: /nav/ || fa fa-compass
-  待办清单: /todo/ || fa fa-list
-  日历标记: /calendar/ || fas fa-calendar-alt
+  导航: /nav/ || fa fa-compass  
+  清单: /todo/ || fa fa-list
+  日历: /calendar/ || fas fa-calendar-alt
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
-  音乐馆: /music/ || fas fa-music  
-  时间轴: /archives/ || fa fa-archive
+  归档: /archives/ || fa fa-archive  
+  音乐: /music/ || fas fa-music  
 
 
 

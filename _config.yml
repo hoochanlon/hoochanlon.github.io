@@ -29,8 +29,9 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
+# 指定不进行渲染的文件或文件夹
 skip_render:
-
+- 'nav/*'
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts
 default_layout: post
