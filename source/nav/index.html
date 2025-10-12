@@ -31,6 +31,7 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.3);
       text-align: center;
+      max-width: 90%;
     }
 
     .loader {
@@ -50,6 +51,18 @@
 
     .message {
       font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .fallback {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .fallback a {
+      color: #007acc;
+      text-decoration: underline;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -57,10 +70,14 @@
   <div class="glass-card">
     <div class="loader"></div>
     <div class="message">正在跳转，请稍候...</div>
+    <div class="fallback">
+      如果未能自动跳转，请点击访问：
+      <a href="https://nav-lfuv.vercel.app" target="_blank" rel="noopener">https://nav-lfuv.vercel.app</a>
+    </div>
   </div>
 
   <script>
-    const targetURL = "https://nav-lfuv.vercel.app/";
+    const targetURL = "https://nav-lfuv.vercel.app";
     const delay = 500;
     setTimeout(() => {
       window.location.href = targetURL;
