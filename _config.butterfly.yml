@@ -25,6 +25,7 @@ menu:
   导航: /nav/ || fa fa-compass  
   清单: /todo/ || fa fa-list
   日历: /calendar/ || fas fa-calendar-alt
+  番茄: /tomato/ || fas fa-stopwatch
 
 
   # List||fas fa-list:
@@ -104,7 +105,8 @@ footer_img:
 # Website Background
 # Can set it to color or image url
 # background: /img/p3r.png
-background: /img/lofi-girl.png
+# background: /img/lofi-girl.png
+background: /img/aegis.png
 
 
 cover:
@@ -179,11 +181,8 @@ subtitle:
   sub: 
     - 回忆的画面
     - 记录的语言
+    - 爱始终是你手中长长的线
     - —— 笔记
-    - ......
-    - 谁能忘记过去,一路走来陪你受的伤
-    - 谁能预料未来茫茫，漫长你在何方
-    - —— 和你一样
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right

@@ -32,6 +32,10 @@ i18n_dir: :lang
 # 指定不进行渲染的文件或文件夹
 skip_render:
 - 'nav/*'
+- 'todo/*'
+- 'tomato/*'
+- 'calendar/*'
+
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts
 default_layout: post
@@ -191,4 +195,4 @@ aplayer:
 # https://tbfeng.com/hexo-blog-pagination-and-per-page/
 #archive分页每页显示文章数
 archive_generator:
-    per_page: 15
+    per_page: 20
