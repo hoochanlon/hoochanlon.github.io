@@ -5,29 +5,25 @@
 
 ### 博客展示
 
-首页部分
-
-一
+Butterfly 首页部分
 
 ![ ](https://tu.zbhz.org/i/2025/10/12/10v8rcq.jpg)
 
-二
+<!-- ![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg) -->
 
-![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg)
-
-
-<details>
-<summary>独立模块内容，包括：导航、音乐、番茄钟、日历、todo</summary>
-
-导航
-
-![ ](https://tu.zbhz.org/i/2025/10/12/12f4lrr.png)
-
-音乐
+Splayer 音乐板块
 
 ![ ](http://image.aibochinese.com/i/2025/10/12/12ruhwr.jpg)
 
 ![ ](http://image.aibochinese.com/i/2025/10/12/12rud51.jpg)
+
+
+<details>
+<summary>其他独立模块内容，包括：导航、番茄钟、日历、todo</summary>
+
+自用导航
+
+![ ](https://tu.zbhz.org/i/2025/10/12/12f4lrr.png)
 
 日历、番茄钟、todo
 
@@ -39,7 +35,6 @@
 ### 功能概述 
 
 除主题自带的效果，额外实现如下：
-
 * 看板娘
 * 樱花飘落
 * 字体采用霞鹜文楷、JetBrains Mono 
@@ -48,7 +43,9 @@
 * 主题亚克力毛玻璃
 * 重定向美化，重定向提醒呈现半透明玻璃卡片效果
 
-除主题现有功能，新增内容如下：
+
+<details>
+<summary>除主题现有功能，新增内容如下：</summary>
 
 * AI摘要
 * 天气
@@ -61,6 +58,7 @@
 * 站点后台数据分析
 * <s>文章过期提示(主题现有)</s>  
 * 文章加密
+</details>
 
 以及优化部分：
 
