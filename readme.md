@@ -15,7 +15,7 @@ Splayer 音乐板块
 
 ![ ](http://image.aibochinese.com/i/2025/10/12/12ruhwr.jpg)
 
-![ ](http://image.aibochinese.com/i/2025/10/12/12rud51.jpg)
+<!-- ![ ](http://image.aibochinese.com/i/2025/10/12/12rud51.jpg) -->
 
 
 <details>
