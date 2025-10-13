@@ -1,0 +1,63 @@
+/* 分类页 */
+.category-lists .category-list {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    margin: 5em 0 3em;
+}
+.category-lists ul {
+    padding: 0;
+}
+.category-lists ul li {
+    display: flex;
+    width: fit-content;
+    font-size: 1.2em !important;
+    padding: 0.2em 0.5em;
+    background: var(--june-card-bg);
+    margin: 0.5em 0.5em;
+    border-radius: 12px;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    border: var(--style-border-always);
+    box-shadow: var(--june-shadow-border);
+    align-items: center;
+}
+.category-lists .category-list a {
+    color: var(--june-fontcolor) !important;
+}
+.category-lists .category-list a:hover {
+    color: var(--june-blue) !important;
+}
+.category-lists ul li:before {
+    position: unset;
+    width: auto;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+    background: 0;
+    color: var(--june-fontcolor) !important;
+    cursor: pointer;
+    content: "\e038" !important;
+    font-family: "iconfont" !important;
+    opacity: 0.4;
+    padding-top: 2px;
+    padding-right: 2px;
+}
+.category-lists .category-list .category-list-count {
+    background: var(--june-secondbg);
+    padding: 4px 4px;
+    border-radius: 6px;
+    color: var(--june-secondtext);
+    line-height: 1;
+    text-align: center;
+    min-width: 35px;
+    display: inline-block;
+    font-size: 1rem;
+    box-shadow: var(--june-shadow-border);
+}
+.category-lists .category-list .category-list-count:before,
+.category-lists .category-list .category-list-count:after {
+    content: '';
+}
