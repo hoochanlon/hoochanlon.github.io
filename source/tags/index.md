@@ -7,4 +7,3 @@ comments: false
 aside: false
 ---
 
-<div id="tags-chart" data-length="10"></div>
