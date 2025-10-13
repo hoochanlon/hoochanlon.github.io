@@ -1090,7 +1090,6 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/bg_blur.css">
     - <link rel="stylesheet" href="/css/real_css/bilibili.css">
     - <link rel="stylesheet" href="/css/real_css/nav.css">
-    - <link rel="stylesheet" href="/css/real_css/custom.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     # Live2D
@@ -1185,29 +1184,3 @@ CDN:
     # valine:
     # waline_css:
     # waline_js:
-
-# hexo-butterfly-categories-card (分类磁贴)
-categoryBar:
-  enable: true # 开关
-  priority: 5 #过滤器优先权
-  enable_page: '/categories/' # 应用页面
-  layout: # 挂载容器类型
-    type: id
-    name: page
-    index: 0
-  column: odd # odd：3列 | even：4列
-  row: 2 #显示行数，默认两行，超过行数切换为滚动显示
-  message:
-    - descr: 
-      cover: 
-    - descr: 
-      cover: 
-    - descr: 
-      cover: 
-    - descr: 
-      cover: 
-    - descr: 
-      cover: 
-    - descr: 
-      cover: 
-  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
