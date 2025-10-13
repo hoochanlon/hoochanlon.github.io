@@ -1,22 +1,4 @@
-/* 标签页文章板块透明设置 */
-.page.type-tags #page {
-  background: rgba(255, 255, 255, 0); /* 完全透明 */
-  box-shadow: none;
-  border: none;
-}
-/* 整个文章、卡片效果、包括标签页等 */
-.cardHover,
-.layout > div:first-child:not(.nc),
-#recent-posts .recent-post-item,
-#article-container .shuoshuo-item,
-#aside-content .card-widget,
-.layout .pagination > *:not(.space) {
-  background: rgba(255, 255, 255, 0.15); /* 半透明白色背景 */
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
-              inset 0 1px 2px rgba(255, 255, 255, 0.25);
-  transition: all 0.3s ease;
-}
+/* 标签页文章板块透明设置 */ 
+.page.type-tags #page { background: rgba(255, 255, 255, 0); /* 完全透明 */ box-shadow: none; border: none; }
+
+
