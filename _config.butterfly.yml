@@ -311,7 +311,7 @@ aside:
   card_announcement:
     enable: true
     content: |
-      <p style="font-size:24px; color: #8B0000; font-weight: bold; font-style: italic; text-align: center;">
+      <p style="font-size:20px; color: #8B0000; font-weight: bold; font-style: italic; text-align: center;">
       全速备考，极限热爱！
       </p>
 
