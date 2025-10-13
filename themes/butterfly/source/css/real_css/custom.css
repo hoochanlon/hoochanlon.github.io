@@ -1,4 +1,17 @@
 /* 标签页文章板块透明设置 */ 
-.page.type-tags #page { background: rgba(255, 255, 255, 0); /* 完全透明 */ box-shadow: none; border: none; }
+/* .page.type-tags #page { background: rgba(255, 255, 255, 0); 完全透明 box-shadow: none; border: none; } */
 
+.cardHover,
+.layout > div:first-child:not(.nc),
+#recent-posts .recent-post-item,
+#article-container .shuoshuo-item,
+#aside-content .card-widget,
+.layout .pagination > *:not(.space) {
+  background: rgba(255, 255, 255, 0.65); /* 半透明白色背景 */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
 

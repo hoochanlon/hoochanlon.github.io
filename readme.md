@@ -40,7 +40,7 @@ Splayer 音乐板块
 * 字体采用霞鹜文楷、JetBrains Mono 
 * 刷新或点击不同栏目更换背景图片
 * 超链接可转成卡片
-* 主题亚克力毛玻璃
+* 实现亚克力、毛玻璃、液态玻璃效果
 * 重定向美化，重定向提醒呈现半透明玻璃卡片效果
 
 
@@ -56,6 +56,7 @@ Splayer 音乐板块
 * 重要日期倒计时
 * 番茄钟
 * 站点后台数据分析
+* 博客文章信息统计
 * <s>文章过期提示(主题现有)</s>  
 * 文章加密
 </details>
@@ -88,6 +89,8 @@ Splayer 音乐板块
 - [固定链接](https://www.rikoneko.xyz/posts/b40f8ae4/index.html)
 - [文章加密](https://alex-mcavoy.github.io/hexo/483939e0.html)
 - [评论系统](https://qianfanguojin.top/2022/01/eb4966ce759b.html)
+- [使用Charts插件给Butterfly增加统计图表](https://blog.guole.fun/posts/18158/)
+- [hexo美化](https://blog.hclonely.com/posts/57bd67ce/)
 
 #### 🎨 UI/渲染优化
 
