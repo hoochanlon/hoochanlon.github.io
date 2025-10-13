@@ -26,7 +26,8 @@ cover: https://image.aibochinese.com/i/2025/10/13/fmak40.jpg
 * 时间插件：https://clockzone.net/
 * todo：https://github.com/ricocc/uiineed-todo-list
 * 自定义插件：https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90
-* Butterfly:为博客添加微软Clarity数据统计：https://blog.yvyang.fun/posts/48347/index.HTML
+* Butterfly:为博客添加微软Clarity数据统计：https://blog.yvyang.fun/posts/48347/index.
+* 信封留言板：https://qianxu.run/butterfly-custom/index.html
 
 
 在文章 front-matter 修改 `updated: 2020-10-08 18:39:58`，加入 `noticeOutdate: false` 测试效果则不显示。

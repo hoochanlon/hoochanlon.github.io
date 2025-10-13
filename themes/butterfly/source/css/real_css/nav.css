@@ -24,9 +24,9 @@
       width: 100%;
       display: flex !important;
       justify-content: space-around; /* 菜单项水平对齐 */
-      padding-left: 5vw;
-      padding-right: 5vw;
-      font-size: 1.5vw !important; /* 导航栏字体大小 */
+      /* padding-left: 5vw; */
+      /* padding-right: 5vw; */
+      font-size: 1.4vw !important; /* 导航栏字体大小 */
     }
 
     .menus_item {

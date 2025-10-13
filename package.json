@@ -22,6 +22,7 @@
     "hexo-blog-encrypt": "^3.1.9",
     "hexo-butterfly-categories-card": "^1.0.0",
     "hexo-butterfly-charts": "^1.1.6",
+    "hexo-butterfly-envelope": "^1.0.15",
     "hexo-charts": "^1.0.3",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
