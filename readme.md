@@ -67,7 +67,7 @@ Splayer 音乐板块
 * 考虑看板娘的情绪价值过低（没AI），已优化
 * 针对归档采用额外规则分页
 * 针对重定向，重写重定向页面
-
+* 微信由跳转二维码链接，改进为下方展示二维码
 
 
 ### 参考部分
@@ -128,6 +128,11 @@ Splayer 音乐板块
 #### 🚀 部署与自动化
 
 - [自动化部署指南](https://goofysatoshi.github.io/2025/08/29/Hexo-GitHub-Actions-实现自动化部署完整指南/index.html)
+
+#### 🧠 AI
+
+- [chatgpt](https://chatgpt.com/)
+- [copilot](https://copilot.microsoft.com/)
 
 </details>
 

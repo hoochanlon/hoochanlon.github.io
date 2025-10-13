@@ -5,9 +5,11 @@ tags: 测试
 description: 主要测试AI、封面图、时钟、基本效果等
 abbrlink: 442
 date: 2025-10-07 18:39:58
-cover: https://tu.zbhz.org/i/2025/10/09/114ak04.jpg
+cover: https://image.aibochinese.com/i/2025/10/13/fmak40.jpg
 ---
 
+<!-- https://rpgamer.com/wp-content/uploads/2022/08/persona-heroes-image.jpg -->
+<!-- https://tu.zbhz.org/i/2025/10/09/114ak04.jpg -->
 
 * 文章摘要：https://www.myzimu.com/post/978df16.html
   * AI摘要KEY：https://docs_s.tianli0.top/install.html

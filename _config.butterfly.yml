@@ -57,7 +57,7 @@ code_blocks:
 social:
   fab fa-github: https://github.com/hoochanlon || Github || '#24292e'
   fas fa-envelope: mailto:hoochanlon@outlook.com || Email || '#4a7dbe'
-  fa-brands fa-weixin: /img/123456.jpg|| Wechat || '#1AAD19'
+  # fa-brands fa-weixin: /img/qr.png|| Wechat || '#1AAD19'
 
 # --------------------------------------
 # Image Settings
@@ -192,7 +192,7 @@ subtitle:
 # 5: Info displayed on the cover
 # 6: Masonry layout - Cover on top, info on the bottom
 # 7: Masonry layout - Info displayed on the cover
-index_layout: 3
+index_layout: 1
 
 # Display the article introduction on homepage
 # 1: description
@@ -1108,6 +1108,7 @@ inject:
     # - <script src="/js/sakura.js"></script>
     - <script src="/js/bg_blur.js"></script>
     - <script src="/js/suiji_tupian.js"></script>
+    - <script src="/js/wechat_qr_popup.js"></script>
 
 
 
