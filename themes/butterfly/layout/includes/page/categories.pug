@@ -1,1 +1,7 @@
-.category-lists!= list_categories()
+.category-lists
+  .category-title.is-center= _p('page.category')
+    |  - 
+    span.category-amount= site.categories.length
+  #categories-chart.js-pjax
+  #categories-radar.js-pjax
+  div!= list_categories()
