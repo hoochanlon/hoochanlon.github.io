@@ -1092,6 +1092,7 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
+    - <link rel="stylesheet" href="/css/real_css/custom.css">
     # Live2D
     # - <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.7/dist/autoload.js"></script>
     # 微软统计
