@@ -21,6 +21,7 @@
     "hexo-abbrlink": "^2.2.1",
     "hexo-blog-encrypt": "^3.1.9",
     "hexo-butterfly-categories-card": "^1.0.0",
+    "hexo-butterfly-charts": "^1.1.6",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-baidu-sitemap": "^0.1.9",
