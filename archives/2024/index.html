@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2024 | Chanlon Hoo's Blog</title><meta name="author" content="HooChanlon"><meta name="copyright" content="HooChanlon"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="22/7粉丝">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2024">
+<meta property="og:url" content="https://hoochanlon.github.io/archives/2024/index.html">
+<meta property="og:site_name" content="Chanlon Hoo's Blog">
+<meta property="og:description" content="22/7粉丝">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hoochanlon.github.io/img/avatar.png">
+<meta property="article:author" content="HooChanlon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hoochanlon.github.io/img/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/avatar.ico"><link rel="canonical" href="https://hoochanlon.github.io/archives/2024/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2024',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.12/index.min.css"><link rel="stylesheet" href="/css/real_css/bg_blur.css"><link rel="stylesheet" href="/css/real_css/bilibili.css"><link rel="stylesheet" href="/css/real_css/nav.css"><link rel="stylesheet" href="/css/real_css/footer.css"><link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css"><link rel="stylesheet" href="/css/real_css/custom.css"><script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "tnx9sjz2fj"); </script><meta name="generator" content="Hexo 8.0.0"></head><style type="text/css">#posts-chart,#posts-calendar,#categories-chart,#categories-radar,#tags-chart{width: 100%;height: 300px;margin: 0.5rem auto;padding: 0.5rem;display: flex;}</style><script type="text/javascript" data-pjax="" src="https://lib.baomitu.com/echarts/4.7.0/echarts.min.js"></script><body><div id="web_bg" style="background-image: url(/img/aegis.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/nav/"><i class="fa-fw fa fa-compass"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/todo/"><i class="fa-fw fa fa-list"></i><span> 清单</span></a></div><div class="menus_item"><a class="site-page" href="/calendar/"><i class="fa-fw fas fa-calendar-alt"></i><span> 日历</span></a></div><div class="menus_item"><a class="site-page" href="/tomato/"><i class="fa-fw fas fa-stopwatch"></i><span> 番茄</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Chanlon Hoo's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/nav/"><i class="fa-fw fa fa-compass"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/todo/"><i class="fa-fw fa fa-list"></i><span> 清单</span></a></div><div class="menus_item"><a class="site-page" href="/calendar/"><i class="fa-fw fas fa-calendar-alt"></i><span> 日历</span></a></div><div class="menus_item"><a class="site-page" href="/tomato/"><i class="fa-fw fas fa-stopwatch"></i><span> 番茄</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div></nav><div id="page-site-info"><h1 id="site-title">2024</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="js-pjax" id="posts-calendar"></div>
+  <script id="postsCalendar" data-pjax="">
+    var color = '#6e7f98';
+    var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : '#afb8c5';
+    let postsCalendar = echarts.init(document.getElementById('posts-calendar'));
+    let postsCalendarOption = {
+        title: {
+            top: 5,
+            text: '',
+            left: 'center',
+            textStyle: {
+                color: color
+            }
+        },
+        tooltip: {
+            padding: 10,
+            backgroundColor: '#555',
+            borderColor: '#777',
+            borderWidth: 1,
+            formatter: function (obj) {
+                var value = obj.value;
+                return '<div style="font-size: 14px;">' + value[0] + '<br/> ✒️文章 : ' + value[1] + '</div>';
+            }
+        },
+        visualMap: {
+            show: true,
+            showLabel: true,
+            categories: [0, 1, 2, 3, ">=4"],
+            calculable: true,
+            inRange: {
+                symbol: 'rect',
+                color: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127']
+            },
+            itemWidth: 12,
+            itemHeight: 12,
+            orient: 'horizontal',
+            left: 'center',
+            textStyle: {
+                color: color
+            },
+            bottom: 30
+        },
+        calendar: [{
+            top: 90,
+            left: 'center',
+            range: ["2024-10-14", "2025-10-14"],
+            cellSize: [14, 14],
+            splitLine: {
+                show: false
+            },
+            itemStyle: {
+                color: color,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            yearLabel: {
+                show: false
+            },
+            monthLabel: {
+                nameMap: 'cn',
+                fontSize: 12,
+                textStyle: {
+                    color: color
+                  }
+            },
+            dayLabel: {
+                formatter: '{start}  1st',
+                nameMap: ['', '周一', '', '周三', '', '周五', ''],
+                fontSize: 12,
+                textStyle: {
+                    color: color
+                  }
+            }
+        }],
+        series: [{
+            type: 'heatmap',
+            coordinateSystem: 'calendar',
+            calendarIndex: 0,
+            data: [["2024-10-14", 0], ["2024-10-15", 0], ["2024-10-16", 0], ["2024-10-17", 0], ["2024-10-18", 0], ["2024-10-19", 0], ["2024-10-20", 0], ["2024-10-21", 0], ["2024-10-22", 0], ["2024-10-23", 0], ["2024-10-24", 0], ["2024-10-25", 0], ["2024-10-26", 0], ["2024-10-27", 0], ["2024-10-28", 0], ["2024-10-29", 0], ["2024-10-30", 0], ["2024-10-31", 0], ["2024-11-01", 0], ["2024-11-02", 0], ["2024-11-03", 0], ["2024-11-04", 0], ["2024-11-05", 0], ["2024-11-06", 0], ["2024-11-07", 0], ["2024-11-08", 0], ["2024-11-09", 0], ["2024-11-10", 0], ["2024-11-11", 0], ["2024-11-12", 0], ["2024-11-13", 0], ["2024-11-14", 0], ["2024-11-15", 0], ["2024-11-16", 0], ["2024-11-17", 0], ["2024-11-18", 0], ["2024-11-19", 0], ["2024-11-20", 0], ["2024-11-21", 0], ["2024-11-22", 0], ["2024-11-23", 0], ["2024-11-24", 0], ["2024-11-25", 0], ["2024-11-26", 0], ["2024-11-27", 0], ["2024-11-28", 0], ["2024-11-29", 0], ["2024-11-30", 0], ["2024-12-01", 0], ["2024-12-02", 0], ["2024-12-03", 0], ["2024-12-04", 0], ["2024-12-05", 0], ["2024-12-06", 0], ["2024-12-07", 0], ["2024-12-08", 0], ["2024-12-09", 0], ["2024-12-10", 0], ["2024-12-11", 0], ["2024-12-12", 0], ["2024-12-13", 0], ["2024-12-14", 0], ["2024-12-15", 0], ["2024-12-16", 0], ["2024-12-17", 0], ["2024-12-18", 0], ["2024-12-19", 0], ["2024-12-20", 0], ["2024-12-21", 0], ["2024-12-22", 0], ["2024-12-23", 0], ["2024-12-24", 0], ["2024-12-25", 0], ["2024-12-26", 0], ["2024-12-27", 0], ["2024-12-28", 0], ["2024-12-29", 0], ["2024-12-30", 0], ["2024-12-31", 0], ["2025-01-01", 0], ["2025-01-02", 0], ["2025-01-03", 0], ["2025-01-04", 0], ["2025-01-05", 0], ["2025-01-06", 0], ["2025-01-07", 0], ["2025-01-08", 0], ["2025-01-09", 0], ["2025-01-10", 0], ["2025-01-11", 0], ["2025-01-12", 0], ["2025-01-13", 0], ["2025-01-14", 0], ["2025-01-15", 0], ["2025-01-16", 0], ["2025-01-17", 0], ["2025-01-18", 0], ["2025-01-19", 0], ["2025-01-20", 0], ["2025-01-21", 0], ["2025-01-22", 0], ["2025-01-23", 0], ["2025-01-24", 0], ["2025-01-25", 0], ["2025-01-26", 0], ["2025-01-27", 0], ["2025-01-28", 0], ["2025-01-29", 0], ["2025-01-30", 0], ["2025-01-31", 0], ["2025-02-01", 0], ["2025-02-02", 0], ["2025-02-03", 0], ["2025-02-04", 0], ["2025-02-05", 0], ["2025-02-06", 0], ["2025-02-07", 0], ["2025-02-08", 0], ["2025-02-09", 0], ["2025-02-10", 0], ["2025-02-11", 0], ["2025-02-12", 0], ["2025-02-13", 0], ["2025-02-14", 0], ["2025-02-15", 0], ["2025-02-16", 0], ["2025-02-17", 0], ["2025-02-18", 0], ["2025-02-19", 0], ["2025-02-20", 0], ["2025-02-21", 0], ["2025-02-22", 0], ["2025-02-23", 0], ["2025-02-24", 0], ["2025-02-25", 0], ["2025-02-26", 0], ["2025-02-27", 0], ["2025-02-28", 0], ["2025-03-01", 0], ["2025-03-02", 0], ["2025-03-03", 0], ["2025-03-04", 0], ["2025-03-05", 0], ["2025-03-06", 0], ["2025-03-07", 0], ["2025-03-08", 0], ["2025-03-09", 0], ["2025-03-10", 0], ["2025-03-11", 0], ["2025-03-12", 0], ["2025-03-13", 0], ["2025-03-14", 0], ["2025-03-15", 0], ["2025-03-16", 0], ["2025-03-17", 0], ["2025-03-18", 0], ["2025-03-19", 0], ["2025-03-20", 0], ["2025-03-21", 0], ["2025-03-22", 0], ["2025-03-23", 0], ["2025-03-24", 0], ["2025-03-25", 0], ["2025-03-26", 0], ["2025-03-27", 0], ["2025-03-28", 0], ["2025-03-29", 0], ["2025-03-30", 0], ["2025-03-31", 0], ["2025-04-01", 0], ["2025-04-02", 0], ["2025-04-03", 0], ["2025-04-04", 0], ["2025-04-05", 0], ["2025-04-06", 0], ["2025-04-07", 0], ["2025-04-08", 0], ["2025-04-09", 0], ["2025-04-10", 0], ["2025-04-11", 0], ["2025-04-12", 0], ["2025-04-13", 0], ["2025-04-14", 0], ["2025-04-15", 0], ["2025-04-16", 0], ["2025-04-17", 0], ["2025-04-18", 0], ["2025-04-19", 0], ["2025-04-20", 0], ["2025-04-21", 0], ["2025-04-22", 0], ["2025-04-23", 0], ["2025-04-24", 0], ["2025-04-25", 0], ["2025-04-26", 0], ["2025-04-27", 0], ["2025-04-28", 0], ["2025-04-29", 0], ["2025-04-30", 0], ["2025-05-01", 0], ["2025-05-02", 0], ["2025-05-03", 0], ["2025-05-04", 0], ["2025-05-05", 0], ["2025-05-06", 0], ["2025-05-07", 0], ["2025-05-08", 0], ["2025-05-09", 0], ["2025-05-10", 0], ["2025-05-11", 0], ["2025-05-12", 0], ["2025-05-13", 0], ["2025-05-14", 0], ["2025-05-15", 0], ["2025-05-16", 0], ["2025-05-17", 0], ["2025-05-18", 0], ["2025-05-19", 0], ["2025-05-20", 0], ["2025-05-21", 0], ["2025-05-22", 0], ["2025-05-23", 0], ["2025-05-24", 0], ["2025-05-25", 0], ["2025-05-26", 0], ["2025-05-27", 0], ["2025-05-28", 0], ["2025-05-29", 0], ["2025-05-30", 0], ["2025-05-31", 0], ["2025-06-01", 0], ["2025-06-02", 0], ["2025-06-03", 0], ["2025-06-04", 0], ["2025-06-05", 0], ["2025-06-06", 0], ["2025-06-07", 0], ["2025-06-08", 0], ["2025-06-09", 0], ["2025-06-10", 0], ["2025-06-11", 0], ["2025-06-12", 0], ["2025-06-13", 0], ["2025-06-14", 0], ["2025-06-15", 0], ["2025-06-16", 0], ["2025-06-17", 0], ["2025-06-18", 0], ["2025-06-19", 0], ["2025-06-20", 0], ["2025-06-21", 0], ["2025-06-22", 0], ["2025-06-23", 0], ["2025-06-24", 0], ["2025-06-25", 0], ["2025-06-26", 0], ["2025-06-27", 0], ["2025-06-28", 0], ["2025-06-29", 0], ["2025-06-30", 0], ["2025-07-01", 0], ["2025-07-02", 0], ["2025-07-03", 0], ["2025-07-04", 0], ["2025-07-05", 0], ["2025-07-06", 0], ["2025-07-07", 0], ["2025-07-08", 0], ["2025-07-09", 0], ["2025-07-10", 0], ["2025-07-11", 0], ["2025-07-12", 0], ["2025-07-13", 0], ["2025-07-14", 0], ["2025-07-15", 0], ["2025-07-16", 0], ["2025-07-17", 0], ["2025-07-18", 0], ["2025-07-19", 0], ["2025-07-20", 0], ["2025-07-21", 0], ["2025-07-22", 0], ["2025-07-23", 0], ["2025-07-24", 0], ["2025-07-25", 0], ["2025-07-26", 0], ["2025-07-27", 0], ["2025-07-28", 0], ["2025-07-29", 0], ["2025-07-30", 0], ["2025-07-31", 0], ["2025-08-01", 0], ["2025-08-02", 0], ["2025-08-03", 0], ["2025-08-04", 0], ["2025-08-05", 0], ["2025-08-06", 0], ["2025-08-07", 0], ["2025-08-08", 0], ["2025-08-09", 0], ["2025-08-10", 0], ["2025-08-11", 0], ["2025-08-12", 0], ["2025-08-13", 0], ["2025-08-14", 0], ["2025-08-15", 0], ["2025-08-16", 0], ["2025-08-17", 0], ["2025-08-18", 0], ["2025-08-19", 0], ["2025-08-20", 0], ["2025-08-21", 0], ["2025-08-22", 0], ["2025-08-23", 0], ["2025-08-24", 0], ["2025-08-25", 0], ["2025-08-26", 0], ["2025-08-27", 0], ["2025-08-28", 0], ["2025-08-29", 0], ["2025-08-30", 0], ["2025-08-31", 0], ["2025-09-01", 0], ["2025-09-02", 0], ["2025-09-03", 0], ["2025-09-04", 0], ["2025-09-05", 0], ["2025-09-06", 0], ["2025-09-07", 0], ["2025-09-08", 0], ["2025-09-09", 0], ["2025-09-10", 0], ["2025-09-11", 0], ["2025-09-12", 0], ["2025-09-13", 0], ["2025-09-14", 0], ["2025-09-15", 0], ["2025-09-16", 0], ["2025-09-17", 0], ["2025-09-18", 0], ["2025-09-19", 0], ["2025-09-20", 0], ["2025-09-21", 0], ["2025-09-22", 0], ["2025-09-23", 0], ["2025-09-24", 0], ["2025-09-25", 0], ["2025-09-26", 0], ["2025-09-27", 0], ["2025-09-28", 0], ["2025-09-29", 0], ["2025-09-30", 0], ["2025-10-01", 0], ["2025-10-02", 0], ["2025-10-03", 0], ["2025-10-04", 0], ["2025-10-05", 0], ["2025-10-06", 0], ["2025-10-07", 2], ["2025-10-08", 0], ["2025-10-09", 1], ["2025-10-10", 1], ["2025-10-11", 1], ["2025-10-12", 1], ["2025-10-13", 1], ["2025-10-14", 1]]
+        }]
+    };
+    postsCalendar.setOption(postsCalendarOption);
+    </script><div class="article-sort-title">全部文章 - 2</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-07-28T12:06:12.000Z" title="发表于 2024-07-28 20:06:12">2024-07-28</time></div><a class="article-sort-item-title" href="/posts/50270.html" title="我对 GitHub 的看法">我对 GitHub 的看法</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-02T00:38:20.000Z" title="发表于 2024-02-02 08:38:20">2024-02-02</time></div><a class="article-sort-item-title" href="/posts/37467.html" title="被亲戚拉着硬着头皮去街头搭讪的回想">被亲戚拉着硬着头皮去街头搭讪的回想</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">HooChanlon</div><div class="author-info-description">22/7粉丝</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hoochanlon" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hoochanlon@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn"> </i><span>通知</span></div><div class="announcement_content"><p style="font-size:20px; color: #8B0000; font-weight: bold; font-style: italic; text-align: center;">
+全速备考，极限热爱！
+</p>
+</div></div><div class="card-widget user-clock"><div class="item-headline"><i class="fa fa-alarm-clock"></i><span>时钟</span></div><div class="item-content"><a target="_blank" href="https://time.is/Shanghai" id="time_is_link" rel="nofollow noopener" style="font-size:24px">上海时间:</a>
+ <span id="Shanghai_z43d" style="font-size:24px"></span>
+ <script src="//widget.time.is/t.js"></script>
+ <script>
+ time_is_widget.init({Shanghai_z43d:{}});
+ </script>
+
+ <div style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+   <iframe src="https://clockzone.net/embed/countdown?locale=en-US&amp;theme=dark&amp;format=day%2Chour%2Cminute%2Csecond&amp;font=Inter&amp;scale=60&amp;showLabels=true&amp;targetDate=2025-12-31T11%3A28%3A01.900Z&amp;title=IE%E8%80%83%E8%AF%95%E5%80%92%E8%AE%A1%E6%97%B6" width="240" height="180" style="border: none; border-radius: 8px; display: block;"></iframe>
+   <div style="text-align: center; margin-top: 4px; opacity: 0.7;">
+     <a href="https://clockzone.net" target="_blank" style="font-size: 11px; color: #666; text-decoration: none;">
+       ⏰ Powered by ClockZone
+     </a>
+   </div>
+ </div>
+</div></div><div class="card-widget user-weather"><div class="item-headline"><i class="fa fa-cloud"></i><span>天气</span></div><div class="item-content"><div id="ww_62f74659400aa" v="1.3" loc="auto" a="{&quot;t&quot;:&quot;horizontal&quot;,&quot;lang&quot;:&quot;zh&quot;,&quot;sl_lpl&quot;:1,&quot;ids&quot;:[],&quot;font&quot;:&quot;Arial&quot;,&quot;sl_ics&quot;:&quot;one_a&quot;,&quot;sl_sot&quot;:&quot;celsius&quot;,&quot;cl_bkg&quot;:&quot;image&quot;,&quot;cl_font&quot;:&quot;#FFFFFF&quot;,&quot;cl_cloud&quot;:&quot;#FFFFFF&quot;,&quot;cl_persp&quot;:&quot;#81D4FA&quot;,&quot;cl_sun&quot;:&quot;#FFC107&quot;,&quot;cl_moon&quot;:&quot;#FFC107&quot;,&quot;cl_thund&quot;:&quot;#FF5722&quot;}"><a href="https://weatherwidget.org/zh/" id="ww_62f74659400aa_u" target="_blank">天气插件</a></div>
+ <script async="" src="https://app3.weatherwidget.org/js/?id=ww_62f74659400aa"></script>
+</div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/"><span class="card-category-list-name">图片日记</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="card-category-list-name">测试</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/"><span class="card-category-list-name">翻看往事</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%80%83%E8%AF%95/"><span class="card-category-list-name">考试</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98/" style="font-size: 1.37em; color: #99a4b2">事件复盘</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">网络</a> <a href="/tags/%E8%80%83%E8%AF%95/" style="font-size: 1.1em; color: #999">考试</a> <a href="/tags/%E7%A7%9F%E6%88%BF/" style="font-size: 1.23em; color: #999ea6">租房</a> <a href="/tags/%E9%9A%8F%E6%83%B3%E7%AE%80%E8%AF%84/" style="font-size: 1.23em; color: #999ea6">随想简评</a> <a href="/tags/%E7%A9%BA%E6%B0%94%E4%B8%AD%E7%9A%84%E8%A7%86%E5%90%AC%E4%B8%8E%E5%B9%BB%E8%A7%89/" style="font-size: 1.23em; color: #999ea6">空气中的视听与幻觉</a> <a href="/tags/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/" style="font-size: 1.1em; color: #999">图片日记</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">测试</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/07/">
+            <span class="card-archive-list-date">
+              七月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/02/">
+            <span class="card-archive-list-date">
+              二月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/11/">
+            <span class="card-archive-list-date">
+              十一月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/01/">
+            <span class="card-archive-list-date">
+              一月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/09/">
+            <span class="card-archive-list-date">
+              九月 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/04/">
+            <span class="card-archive-list-date">
+              四月 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/11/">
+            <span class="card-archive-list-date">
+              十一月 2021
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">21</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishdate="2018-11-28T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">25.5k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2025-10-14T12:11:20.614Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">©&nbsp;2018 - 2025 By HooChanlon</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.0.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"></div><script src="/js/aizhaoyao.js"></script><script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script><script src="/js/bg_blur.js"></script><script src="/js/suiji_tupian.js"></script><script src="/js/wechat_qr_popup.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.1"></script></div></div></body></html>
