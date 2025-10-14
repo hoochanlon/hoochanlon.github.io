@@ -1,6 +1,8 @@
 @echo off
 SETLOCAL EnableDelayedExpansion
 
+:: 适用于在安装了 Node.js 和 Git（可选，推荐） 之后，快速部署 Hexo 博客的脚本
+
 :: 设置 Hexo 项目路径
 SET HEXO_PATH=%USERPROFILE%\Documents\GitHub\hoochanlon.github.io
 cd /d !HEXO_PATH!
