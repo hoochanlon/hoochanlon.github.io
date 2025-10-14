@@ -30,6 +30,8 @@ jobs:
         # 构建静态文件
         hexo clean
         hexo generate
+        # 对站点使用的静态资源进行压缩，来优化网站的访问速度
+        gulp
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
