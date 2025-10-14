@@ -1214,20 +1214,12 @@ categoryBar:
   column: odd # odd：3列 | even：4列
   row: 5 #显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - descr: 1
-      cover: /img/11.png
-    - descr: 2
-      cover: /img/12.png
-    - descr: 3
-      cover: /img/13.png
-    - descr: 4
-      cover: /img/14.png
-    - descr: 5
-      cover: /img/15.png
-    - descr: 6
-      cover: /img/16.png
-    - descr: 7
-      cover: /img/17.png
-    - descr: 8
-      cover: /img/18.png
+    - descr: 测试
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover1.webp
+    - descr: 考试
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp
+    - descr: 往事翻看
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover3.webp
+    - descr: 图片日记
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp
   custom_css: /css/real_css/categorybar.css
