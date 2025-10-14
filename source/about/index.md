@@ -1,11 +1,11 @@
 ---
-title: about
+title: 关于
 date: 2025-10-13 22:20:19
 aside: false
 comments: false
 ---
 
-### [关于](https://hoochanlon.github.io/hoochanlon)
+### [一篇不算简短的陈述](https://hoochanlon.github.io/hoochanlon)
 
 我是一个在技术与现实之间不断拉扯的失败理想主义者，曾发布了当时开创性的作品和项目，如今看来已过时了。但我仍然记录，因为记录是我唯一能控制的输出。仍然表达，因为表达是我对抗沉默的方式。我的博客就是一个写记录的地方。
 
