@@ -15,3 +15,8 @@
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
+/* 隐藏原有分类start */
+#content-inner #page .category-lists {
+  display: none;
+}
+
