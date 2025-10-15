@@ -22,14 +22,13 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   归档: /archives/ || fa fa-archive 
-  留言: /comments/ || fas fa-comments
+  关于: /about/ || fas fa-heart
   导航: /nav/ || fa fa-compass  
   清单: /todo/ || fa fa-list
   日历: /calendar/ || fas fa-calendar-alt
   番茄: /tomato/ || fas fa-stopwatch
   音乐: /music/ || fas fa-music
-  关于: /about/ || fas fa-heart
-
+  留言: /comments/ || fas fa-comments
   # List||fas fa-list:
   #   Movie: /movies/ || fas fa-video
 

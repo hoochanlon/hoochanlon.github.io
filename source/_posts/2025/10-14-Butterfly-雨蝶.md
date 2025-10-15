@@ -12,11 +12,11 @@ sticky: 100
 
 
 
-{% note warning modern %}
+{% note warning %}
 hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了。
 {% endnote %}
 
-{% note info modern %}
+{% note info %}
 菜单栏居中样式，不适配iPad Pro尺寸。
 {% endnote %}
 
