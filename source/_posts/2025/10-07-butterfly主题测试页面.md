@@ -1,7 +1,7 @@
 ---
 title: butterfly主题测试页面
 categories: 测试
-tags: 测试
+tags: 博客测试
 description: 主要测试AI、封面图、时钟、基本效果等
 abbrlink: 442
 date: 2025-10-07 18:39:58

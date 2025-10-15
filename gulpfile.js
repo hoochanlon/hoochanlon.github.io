@@ -8,7 +8,8 @@ var fontmin = require('gulp-fontmin');
 var terser = require('gulp-terser');
 // 压缩js
 gulp.task('compress', async() =>{
-  gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])
+  // gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])
+  gulp.src(['./public/**/*.js', '!./public/**/*.min.js','!./public/js/wow_init.js',,'!./public/comments/index.html'])
     .pipe(terser())
     .pipe(gulp.dest('./public'))
 });
