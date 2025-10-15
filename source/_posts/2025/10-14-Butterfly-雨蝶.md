@@ -11,7 +11,6 @@ sticky: 100
 ---
 
 
-
 {% note warning %}
 hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了。
 {% endnote %}
@@ -38,6 +37,16 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 * [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
 <!-- endtab -->
 
+<!-- tab 试用参考-->
+* [Butterfly主题魔改笔记(Ⅱ)](https://www.yooupi.site/posts/152058-d36d2e01.html)
+<!-- endtab -->
+
 
 {% endtabs %}
 
+
+
+{% hideToggle 标签外挂语法参考 %}
+* [Butterfly外挂标签用法学习](https://www.yooupi.site/posts/235523-d25a2ac1.html)
+* [butterfly常用标签外挂](https://blog.pushihao.com/article/a2b56279.html)
+{% endhideToggle %}
