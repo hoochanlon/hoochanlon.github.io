@@ -56,3 +56,13 @@
     left: 50%;
     translate: -50%;
 }
+#nav .nav-site-title {
+  display: inline-block !important;
+  color: var(--nav-font-color) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  text-shadow: none !important;
+  background-color: transparent !important;
+  z-index: 10 !important;
+}
