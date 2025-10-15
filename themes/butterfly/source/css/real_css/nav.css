@@ -1,5 +1,5 @@
 /* 桌面端布局 */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     #nav {
       display: flex;
       justify-content: space-between; /* 主轴对齐方式为间距平均分布 */

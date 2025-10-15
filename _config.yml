@@ -197,3 +197,4 @@ aplayer:
 #archive分页每页显示文章数
 archive_generator:
     per_page: 20
+
