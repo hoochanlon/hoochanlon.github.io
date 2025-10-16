@@ -334,7 +334,7 @@ aside:
     expand: none
     sort_order:
   card_tags:
-    enable: true
+    enable: false
     # If set 0 will show all
     limit: 40
     color: false
@@ -1105,7 +1105,7 @@ inject:
     - <script src="/js/myjs/wechat_qr_popup.js"></script>
     - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     - <script src="/js/myjs/ip_content.js"></script>
-    - <script src="/js/real_js/chats.js"></script>
+    - <script src="/js/myjs/charts.js"></script>
 
 
 

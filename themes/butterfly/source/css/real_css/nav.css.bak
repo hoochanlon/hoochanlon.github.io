@@ -1,5 +1,5 @@
 /* 桌面端布局 */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     #nav {
       display: flex;
       justify-content: space-between; /* 主轴对齐方式为间距平均分布 */
@@ -26,7 +26,7 @@
       justify-content: space-around; /* 菜单项水平对齐 */
       /* padding-left: 5vw; */
       /* padding-right: 5vw; */
-      font-size: 1.5vw !important; /* 导航栏字体大小 */
+      font-size: 1.3vw !important; /* 导航栏字体大小 */
     }
 
     .menus_item {
@@ -39,6 +39,7 @@
       text-align: right;
       width: calc(100% / 4) !important;
       flex-shrink:0;
+      font-size: 1.3vm !important; /* 导航栏字体大小 */
     }
 }
 

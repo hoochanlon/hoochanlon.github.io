@@ -2,6 +2,10 @@ index.pug
 
 `\butterfly\layout\includes\widget\index.pug`
 
+nav.pug
+
+`\butterfly\layout\includes\header\nav.pug`
+
 archive.pug
 
 `butterfly\layout\archive.pug`
