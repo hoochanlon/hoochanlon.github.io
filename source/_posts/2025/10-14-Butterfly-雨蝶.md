@@ -67,3 +67,4 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 调试完内容会删除。
 
+<div id="categories-chart" data-parent="false" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
