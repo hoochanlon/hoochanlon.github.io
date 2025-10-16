@@ -10,10 +10,18 @@ date: 2025-10-14 20:02:29
 sticky: 100
 ---
 
+### 访问Repo
+
+{%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
+
 ### 更新&调整说明 
 
 {% note warning %}
-hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了。
+hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了
+{% endnote %}
+
+{% note primary flat %}
+edge安装了广告插件会影响到公告侧边栏的JS加载
 {% endnote %}
 
 
@@ -22,12 +30,15 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 * 导航栏现在能根据页面类型正确显示博客标题或文章标题，避免了之前的重叠问题
 * 通过首页加载动画，修复了翻页时页面元素抖动的问题
 * 优化响应式布局，修复 iPad Pro 设备下导航栏错位问题
+* 优化定位频繁获取地址位置
+* 建立独立备份目录以及编写相关说明
 <!-- endtab -->
 
 <!-- tab 新增&调整 -->
 * 首页增加加载动画
 * 导航栏增加留言栏
 * 调整文章目录显示位置
+* 标签外挂增强
 <!-- endtab -->
 
 
@@ -36,6 +47,7 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 * [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * [Hexo 博客文章统计图](https://blog.eurkon.com/census/)
+* [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
 <!-- endtab -->
 
 
@@ -50,11 +62,7 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 
 ---
 
-### 调试内容
+### 调试内容区
 
-<!-- 文章发布时间统计图 -->
-<div id="posts-chart" data-start="2021-01" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章标签统计图 -->
-<div id="tags-chart" data-length="10" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章分类统计图 -->
-<div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+调试完内容会删除。
+

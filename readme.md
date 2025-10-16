@@ -1,7 +1,9 @@
 # ***[Chanlon Hoo's Blog](https://hoochanlon.github.io/)***
 
 >  [!IMPORTANT]
-> 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时6天重构部署完毕。
+> * 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时6天重构部署完毕。
+> * 后续相关调整或更新见：https://hoochanlon.github.io/posts/15347.html
+
 
 ### 博客展示
 
@@ -69,6 +71,7 @@ Splayer 音乐板块
 * 针对归档采用额外规则分页
 * 针对重定向，重写重定向页面
 * 微信由跳转二维码链接，改进为下方展示二维码
+
 
 
 ### 参考部分
