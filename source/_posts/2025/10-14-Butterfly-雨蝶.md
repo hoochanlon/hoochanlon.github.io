@@ -16,7 +16,8 @@ date: 2025-10-14 20:02:29
 ### 更新&调整说明 
 
 {% note warning %}
-hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了
+* hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了
+* 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面
 {% endnote %}
 
 {% note primary flat %}
@@ -47,6 +48,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * [Hexo 博客文章统计图](https://blog.eurkon.com/census/)
 * [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
+* [butterfly 的魔改记录](https://qianxu.run/butterfly-custom/index.html)
 <!-- endtab -->
 
 

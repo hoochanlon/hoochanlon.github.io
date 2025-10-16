@@ -1091,6 +1091,7 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <link rel="stylesheet" href="/css/real_css/custom.css">
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js">
     # 微软统计
     - <script src="/js/myjs/clarity.js"></script>
     # ECharts 
@@ -1107,6 +1108,8 @@ inject:
     - <script src="/js/myjs/wechat_qr_popup.js"></script>
     - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     - <script src="/js/myjs/charts.js"></script>
+    - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
 
 
 
@@ -1221,3 +1224,14 @@ envelope_comment:
     title: 留言板
     comments: true
     aside: false
+
+
+# music
+# see https://anzhiy.cn/
+anzhiyu_music:
+  enable: true #控制开关
+  id: "14428939057" #歌单id
+  server: netease #【可选】服务商
+  customJS: #【可选】自定义js
+  customCSS: /css/real_css/music.css #【可选】自定义css
+  front_matter: /js/myjs/music.js #【可选】自定义页面front_matter
