@@ -35,6 +35,7 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 * [Add Blog Animation -- Wowjs](https://akilar.top/posts/abab51cf)
 * [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
+* [Hexo 博客文章统计图](https://blog.eurkon.com/census/)
 <!-- endtab -->
 
 
@@ -46,3 +47,14 @@ hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表
 * [Butterfly外挂标签用法学习](https://www.yooupi.site/posts/235523-d25a2ac1.html)
 * [butterfly常用标签外挂](https://blog.pushihao.com/article/a2b56279.html)
 {% endhideToggle %}
+
+---
+
+### 调试内容
+
+<!-- 文章发布时间统计图 -->
+<div id="posts-chart" data-start="2021-01" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+<!-- 文章标签统计图 -->
+<div id="tags-chart" data-length="10" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+<!-- 文章分类统计图 -->
+<div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
