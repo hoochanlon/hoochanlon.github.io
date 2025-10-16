@@ -20,7 +20,6 @@
     "hexo": "^8.0.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-blog-encrypt": "^3.1.9",
-    "hexo-butterfly-charts": "^1.1.6",
     "hexo-butterfly-envelope": "^1.0.15",
     "hexo-butterfly-wowjs": "^1.0.5",
     "hexo-charts": "^1.0.3",
