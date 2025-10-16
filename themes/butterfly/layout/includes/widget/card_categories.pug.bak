@@ -1,5 +1,3 @@
-// 仅在文章页显示分类卡片
-if globalPageType === 'post'
 if theme.aside.card_categories.enable
   if site.categories.length
     .card-widget.card-categories

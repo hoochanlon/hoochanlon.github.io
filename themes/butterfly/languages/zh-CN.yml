@@ -83,6 +83,7 @@ aside:
     link: 链接
     code: 代码
   card_toc: 目录
+  card_ip: 访问用户信息
   card_post_series: 系列文章
 
 date_suffix:

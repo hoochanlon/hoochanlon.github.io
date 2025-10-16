@@ -1,3 +1,4 @@
+# 所有页面都会显示
 top:
   - class_name: user-clock
     name: 时钟
@@ -25,6 +26,8 @@ top:
         </div>
       </div>
 
+# 除了文章页都会显示
+bottom:
   - class_name: user-weather
     name: 天气
     icon: fa fa-cloud

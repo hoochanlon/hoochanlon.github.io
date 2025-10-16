@@ -308,10 +308,10 @@ aside:
       icon: fab fa-github
       text: Follow Me
       link: https://github.com/hoochanlon
+  # 公告
   card_announcement:
     enable: true
     content: 
-      
   card_recent_post:
     enable: false
     # If set 0 will show all
@@ -1101,6 +1101,8 @@ inject:
     - <script src="/js/myjs/bg_blur.js"></script>
     - <script src="/js/myjs/suiji_tupian.js"></script>
     - <script src="/js/myjs/wechat_qr_popup.js"></script>
+    - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+    - <script src="/js/myjs/ip_content.js"></script>
 
 
 
