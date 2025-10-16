@@ -7,7 +7,6 @@ description: butterfly主题问题修复的地方。_config.butterfly.yml都1k�
 cover: 'https://tu.zbhz.org/i/2025/10/15/x8ptab.png'
 abbrlink: 15347
 date: 2025-10-14 20:02:29
-sticky: 100
 ---
 
 ### 访问Repo
