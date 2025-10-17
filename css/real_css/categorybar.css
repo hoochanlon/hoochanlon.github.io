@@ -56,7 +56,7 @@ span.categoryBar-list-count::before {
   font-variant: normal;
   font-weight: 600;  /* 两者统一 */
   font-size: 20px;   /* 两者统一 */
-  margin-right: 15px; /* 图标与文字间距统一，可调整 */
+  margin-right: 0.7em; /* 图标与文字间距统一，可调整 */
   -webkit-font-smoothing: antialiased;
   text-rendering: auto;
 }
