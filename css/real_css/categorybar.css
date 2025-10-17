@@ -37,6 +37,28 @@ a.categoryBar-list-link::before {
   font-size: 20px !important;
   font-family: 'Font Awesome 6 Free';
 }
+span.categoryBar-list-count::before {
+  content: '\f02d' !important;
+  display: inline-block;
+  font-weight: 600;
+  font-style: normal;
+  font-variant: normal;
+  font-family: 'Font Awesome 6 Free';
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+a.categoryBar-list-link::before,
+span.categoryBar-list-count::before {
+  display: inline-block;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 600;
+  font-size: 20px;
+  width: 1em;          /* 固定宽度 */
+  text-align: center;   /* 居中图标 */
+  margin-right: 5px;    /* 控制图标和文字间距 */
+}
+
+
 a.categoryBar-list-link:after {
   content: '';
   position: relative;
@@ -57,17 +79,7 @@ span.categoryBar-list-count {
   color: #fff !important;
   font-size: 20px !important;
 }
-span.categoryBar-list-count::before {
-  content: '\f02d' !important;
-  padding-right: 15px !important;
-  display: inline-block;
-  font-weight: 600;
-  font-style: normal;
-  font-variant: normal;
-  font-family: 'Font Awesome 6 Free';
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
+
 span.categoryBar-list-descr {
   padding: 5px;
   display: block !important;
