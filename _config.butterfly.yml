@@ -1256,10 +1256,10 @@ categoryBar:
       cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
     - descr: 问题修复
       cover: https://multigenesys.com/wp-content/uploads/2024/07/ES-20.webp
-    - descr: 空转记录
-      cover: https://www.ntsec.edu.tw/UserFiles/image/Science_study_monthly/2020/59-03/002/6.jpg
-    - descr: 考试
-      cover: https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
-    - descr: 沙漠寂寞
-      cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
+    # - descr: 空转记录
+    #   cover: https://www.ntsec.edu.tw/UserFiles/image/Science_study_monthly/2020/59-03/002/6.jpg
+    # - descr: 考试
+    #   cover: https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
+    # - descr: 沙漠寂寞
+    #   cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
   custom_css: /css/real_css/categorybar.css
