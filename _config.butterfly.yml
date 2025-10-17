@@ -1254,8 +1254,8 @@ categoryBar:
       cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
     - descr: 问题修复
       cover: https://multigenesys.com/wp-content/uploads/2024/07/ES-20.webp
-    - descr: 
-      cover: 
+    - descr: 空转记录
+      cover: https://multigenesys.com/wp-content/uploads/2024/07/ES-20.webp
     - descr: 
       cover: 
   custom_css: /css/real_css/categorybar.css
