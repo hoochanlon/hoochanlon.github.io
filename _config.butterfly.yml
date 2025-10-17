@@ -1258,4 +1258,4 @@ categoryBar:
       cover: 
     - descr: 
       cover: 
-  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
+  custom_css: /css/categorybar.css
