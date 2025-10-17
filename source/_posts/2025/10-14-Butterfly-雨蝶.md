@@ -49,6 +49,8 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [Hexo 博客文章统计图](https://blog.eurkon.com/census/)
 * [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
 * [butterfly 的魔改记录](https://qianxu.run/butterfly-custom/index.html)
+* [【butterfly】分类磁贴插件版](https://ll.sc.cn/posts/ab72/)
+* [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 <!-- endtab -->
 
 
