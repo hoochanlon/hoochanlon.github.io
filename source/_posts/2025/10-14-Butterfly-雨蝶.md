@@ -59,6 +59,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [【butterfly】分类磁贴插件版](https://ll.sc.cn/posts/ab72/)
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
+* [【butterfly教程】更改文章页的文章相关信息布局](https://moonruyan.github.io/post/84dc2e1a.html)
 <!-- endtab -->
 
 {% endtabs %}
