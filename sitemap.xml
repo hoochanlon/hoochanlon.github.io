@@ -284,13 +284,6 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2025-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/tags/%E9%9A%8F%E6%83%B3%E7%AE%80%E8%AF%84/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -299,6 +292,13 @@
   
   <url>
     <loc>https://hoochanlon.github.io/tags/%E7%A9%BA%E6%B0%94%E4%B8%AD%E7%9A%84%E8%A7%86%E5%90%AC%E4%B8%8E%E5%B9%BB%E8%A7%89/</loc>
+    <lastmod>2025-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
