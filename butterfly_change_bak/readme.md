@@ -29,3 +29,7 @@ archive.pug
 layout.pug
 
 `\butterfly\layout\includes\layout.pug`
+
+head.styl
+
+`\themes\butterfly\source\css\_layout\head.styl` 

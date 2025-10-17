@@ -100,10 +100,6 @@
   #post-info
     position: absolute
     width: 100%
-    bottom: 30px  //文章信息距离文章块的高度.改为100px
-    padding: 0 8%
-    width: 100%
-    text-align: center
 
     if hexo-config('post_meta.post.position') == 'center'
       top: calc(50% + 30px)
