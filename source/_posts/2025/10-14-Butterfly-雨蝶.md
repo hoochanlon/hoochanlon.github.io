@@ -83,7 +83,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 {% timeline 2025, green %}
 
 <!-- timeline 10 -->
-* 卡片路径修复...
+* 卡片路径修复..
 <!-- endtimeline -->
 
 {% endtimeline %}
