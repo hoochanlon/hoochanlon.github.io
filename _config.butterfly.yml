@@ -1258,4 +1258,4 @@ categoryBar:
       cover: 
     - descr: 
       cover: 
-  custom_css: /css/categorybar.css
+  custom_css: /css/real_css/categorybar.css
