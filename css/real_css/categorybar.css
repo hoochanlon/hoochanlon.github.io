@@ -64,6 +64,7 @@ a.categoryBar-list-link::before {
   content: '\f192';
   color: #fff !important;
   font-size: 20px !important;
+  font-family: 'Font Awesome 6 Free';
 }
 
 /* 下划线动画 */
