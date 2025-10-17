@@ -25,3 +25,7 @@ categories.pug
 archive.pug
 
 `\butterfly\layout\archive.pug`
+
+layout.pug
+
+`\butterfly\layout\includes\layout.pug`

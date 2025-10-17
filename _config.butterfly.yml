@@ -297,9 +297,9 @@ aside:
   # Position: left / right
   position: right
   display:
-    archive: true
-    tag: true
-    category: true
+    archive: false # 归档页隐藏侧栏
+    tag: false # 标签页隐藏侧栏
+    category: false # 分类页隐藏侧栏
   card_author:
     enable: true
     description:
