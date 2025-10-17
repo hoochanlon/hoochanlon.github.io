@@ -22,18 +22,43 @@ li.categoryBar-list-item:hover {
   background-size: 110% !important;
   box-shadow: inset 500px 50px 50px 50px rgba(50,50,50,0.6);
 }
-li.categoryBar-list-item:hover span.categoryBar-list-descr {
+/* li.categoryBar-list-item:hover span.categoryBar-list-descr {
   transition: all 0.5s;
   transform: translate(-100%, 0);
-}
+} */
 a.categoryBar-list-link {
   color: #fff !important;
   font-size: 20px !important;
 }
 a.categoryBar-list-link::before {
-  content: '|' !important;
+  content: '\f192' !important;
+  display: inline-block;
   color: #fff !important;
   font-size: 20px !important;
+  font-family: 'Font Awesome 6 Free';
+}
+span.categoryBar-list-count::before {
+  content: '\f005' !important;
+  display: inline-block;
+  font-weight: 600;
+  font-style: normal;
+  font-variant: normal;
+  font-family: 'Font Awesome 6 Free';
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+a.categoryBar-list-link::before,
+span.categoryBar-list-count::before {
+  display: inline-block;
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  font-size: 20px;
+  margin-right: 0.5em; /* 增大间距 */
+  padding-right: 0.1em; /* 可选：微调 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
 }
 a.categoryBar-list-link:after {
   content: '';
@@ -55,25 +80,15 @@ span.categoryBar-list-count {
   color: #fff !important;
   font-size: 20px !important;
 }
-span.categoryBar-list-count::before {
-  content: '\f02d' !important;
-  padding-right: 15px !important;
-  display: inline-block;
-  font-weight: 600;
-  font-style: normal;
-  font-variant: normal;
-  font-family: 'Font Awesome 6 Free';
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
-span.categoryBar-list-descr {
+
+/* span.categoryBar-list-descr {
   padding: 5px;
   display: block !important;
   color: #fff !important;
   font-size: 20px !important;
   position: relative;
   right: -100%;
-}
+} */
 @media screen and (max-width: 650px) {
   li.categoryBar-list-item {
     width: 48% !important;

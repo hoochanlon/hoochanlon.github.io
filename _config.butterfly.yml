@@ -1248,18 +1248,12 @@ categoryBar:
   column: odd # odd：3列 | even：4列
   row: 9 #显示行数，默认两行，超过行数切换为滚动显示
   message:
-    # - descr: 图片日记
-    #   cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg
-    # - descr: 翻看往事
-    #   cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
-    # - descr: 测试
-    #   cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
     - descr: 图片日记
-      cover: 
+      cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg
     - descr: 翻看往事
-      cover: 
+      cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
     - descr: 测试
-      cover: 
+      cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
     - descr: 问题修复
       cover: https://multigenesys.com/wp-content/uploads/2024/07/ES-20.webp
     - descr: 空转记录
