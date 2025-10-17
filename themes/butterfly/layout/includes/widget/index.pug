@@ -1,32 +1,24 @@
 #aside-content.aside-content
-  // 📝 文章页
+  //- post
   if globalPageType === 'post'
     - const tocStyle = page.toc_style_simple
     - const tocStyleVal = tocStyle === true || tocStyle === false ? tocStyle : theme.toc.style_simple
-
-    // ====== 固定卡片区 ======
-    !=partial('includes/widget/card_author', {}, {cache: true})
-
-
-    // ====== 📍目录卡片放这里 ======
-    if showToc
-      include ./card_post_toc.pug
-
-    // ====== 公告卡片 ======
-    !=partial('includes/widget/card_announcement', {}, {cache: true})
-
-    // ====== 你的自定义卡片（放在目录之后） ======
-    !=partial('includes/widget/card_top_self', {}, {cache: true})
-
-    // ====== 可滚动区 ======
-    .sticky_layout
-      if page.series
-        include ./card_post_series.pug
-      !=partial('includes/widget/card_recent_post', {}, {cache: true})
-      !=partial('includes/widget/card_ad', {}, {cache: true})
-
+    if showToc && tocStyleVal
+      .sticky_layout
+        include ./card_post_toc.pug
+    else
+      !=partial('includes/widget/card_author', {}, {cache: true})
+      !=partial('includes/widget/card_announcement', {}, {cache: true})
+      !=partial('includes/widget/card_top_self', {}, {cache: true})
+      .sticky_layout
+        if showToc
+          include ./card_post_toc.pug
+        if page.series
+          include ./card_post_series.pug
+        !=partial('includes/widget/card_recent_post', {}, {cache: true})
+        !=partial('includes/widget/card_ad', {}, {cache: true})
   else
-    // 🏠 非文章页（首页 / 分类 / 标签 / 归档 / 其他）
+    //- page
     !=partial('includes/widget/card_author', {}, {cache: true})
     !=partial('includes/widget/card_announcement', {}, {cache: true})
     !=partial('includes/widget/card_top_self', {}, {cache: true})
