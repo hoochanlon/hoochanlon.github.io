@@ -92,7 +92,6 @@ span.categoryBar-list-count {
 span.categoryBar-list-count::before {
   content: '\f005';
   /* Font Awesome 图标 */
-  padding-right: 15px !important;
   display: inline-block;
   font-weight: 600;
   font-style: normal;
