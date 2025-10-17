@@ -9,11 +9,11 @@ abbrlink: 15347
 date: 2025-10-14 20:02:29
 ---
 
-### 访问Repo
+### 注意事项
 
-{%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
-
-### 更新&调整说明 
+{% note danger %}
+由于 Hexo v8 在标签和分类的显示上存在 bug，导致只能通过部署后的线上页面来验证实际效果。而我使用了 GitHub Actions 进行自动化部署，流程中的 npm install 会重新拉取依赖，无法保留我本地对插件源代码的修改。加之我对相关插件进行了定制化修改，因此一度误以为这些改动未能成功应用，因为部署后的页面始终没有发生变化。
+{% endnote %}
 
 {% note warning %}
 * hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了
@@ -23,6 +23,12 @@ date: 2025-10-14 20:02:29
 {% note primary flat %}
 edge安装了广告插件会影响到公告侧边栏的JS加载
 {% endnote %}
+
+### 访问Repo
+
+{%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
+
+### 更新&调整说明 
 
 
 {% tabs %}
@@ -74,9 +80,8 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 ---
 
-### 注意事项
 
-由于hexo的标签、分类bug，导致只能线上看标签、分类效果。而线上部署又是自动化的，我又修改了插件代码，导致以为修改插件代码部署页面一直没有生效过。
+
 
 ### 调试内容区
 
