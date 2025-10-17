@@ -61,6 +61,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 {% folding cyan open, 壁纸选图参考网站 %}
 * [pexels](https://www.pexels.com/zh-cn)（照片式）
 * [wallspic](https://wallspic.com/)（以终端适配为主）
+* [wallhaven.cc](https://wallhaven.cc/) （各类图片搜索）
 {% endfolding %}
 
 
