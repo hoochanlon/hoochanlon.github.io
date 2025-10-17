@@ -1244,10 +1244,10 @@ categoryBar:
     name: page
     index: 0
   column: odd # odd：3列 | even：4列
-  row: 5 #显示行数，默认两行，超过行数切换为滚动显示
+  row: 9 #显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - descr:
-      cover: 
+    - descr: 图片日记
+      cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg
     - descr: 
       cover: 
     - descr: 

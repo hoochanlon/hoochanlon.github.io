@@ -56,6 +56,17 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 {% endtabs %}
 
+
+### 卡片壁纸选图参考网站
+
+{% tabs %}
+<!-- tab 照片式 -->
+* [pexels](https://www.pexels.com/zh-cn)
+<!-- endtab -->
+
+
+{% endtabs %}
+
 ### 编辑文章所参考的语法选项
 
 {% hideToggle 标签外挂语法参考 %}
