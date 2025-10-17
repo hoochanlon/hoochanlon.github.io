@@ -53,23 +53,16 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 <!-- endtab -->
 
-
 {% endtabs %}
 
 
 ### 卡片壁纸选图参考网站
 
-{% tabs %}
-<!-- tab 照片式 -->
-* [pexels](https://www.pexels.com/zh-cn)
-<!-- endtab -->
+{% folding cyan open, 壁纸选图参考网站 %}
+* [pexels](https://www.pexels.com/zh-cn)（照片式）
+* [wallspic](https://wallspic.com/)（以终端适配为主）
+{% endfolding %}
 
-<!-- tab 以终端适配为主 -->
-* [pexels](https://wallspic.com/)
-<!-- endtab -->
-
-
-{% endtabs %}
 
 ### 编辑文章所参考的语法选项
 
