@@ -34,9 +34,7 @@ a.categoryBar-list-link::before {
   content: '\f192' !important;
   display: inline-block;
   color: #fff !important;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
+  font-size: 20px !important;
   font-family: 'Font Awesome 6 Free';
 }
 span.categoryBar-list-count::before {
@@ -48,6 +46,19 @@ span.categoryBar-list-count::before {
   font-family: 'Font Awesome 6 Free';
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+}
+
+a.categoryBar-list-link::before,
+span.categoryBar-list-count::before {
+  display: inline-block;
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;  /* 两者统一 */
+  font-size: 20px;   /* 两者统一 */
+  margin-right: 0.3em; /* 图标与文字间距统一，可调整 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: auto;
 }
 
 
