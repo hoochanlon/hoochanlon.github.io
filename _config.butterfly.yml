@@ -1235,3 +1235,30 @@ anzhiyu_music:
   customJS: #【可选】自定义js
   customCSS: /css/real_css/music.css #【可选】自定义css
   front_matter: /js/myjs/music.js #【可选】自定义页面front_matter
+
+# hexo-butterfly-categories-card
+# see https://akilar.top/posts/a9131002/
+categoryBar:
+  enable: true # 开关
+  priority: 5 #过滤器优先权
+  enable_page: /categories/ # 应用页面
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  column: odd # odd：3列 | even：4列
+  row: 1 #显示行数，默认两行，超过行数切换为滚动显示
+  message:
+    - descr: 图片日记
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover1.webp
+    - descr: 测试
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp
+    - descr: 空转记录
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover3.webp
+    - descr: 翻看往事
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp
+    - descr: 考试
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp
+    - descr: 问题修复
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover6.webp
+  custom_css: /css/real_css/categorybar.css
