@@ -38,7 +38,7 @@ a.categoryBar-list-link::before {
   font-family: 'Font Awesome 6 Free';
 }
 span.categoryBar-list-count::before {
-  content: '\f02d' !important;
+  content: '\f005' !important;
   display: inline-block;
   font-weight: 600;
   font-style: normal;
