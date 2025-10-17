@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Chanlon Hoo's Blog</title><meta name="author" content="HooChanlon"><meta name="copyright" content="HooChanlon"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="@media screen and (max-width: 600px) {   #beforeimg,   #afterimg{     display: none !important;   } } @media screen and (min-width: 600px) {   #article-container img {     margin: 0 auto 0rem;   }   #">
+<meta property="og:type" content="website">
+<meta property="og:title" content="留言板">
+<meta property="og:url" content="https://hoochanlon.github.io/comments/index.html">
+<meta property="og:site_name" content="Chanlon Hoo&#39;s Blog">
+<meta property="og:description" content="@media screen and (max-width: 600px) {   #beforeimg,   #afterimg{     display: none !important;   } } @media screen and (min-width: 600px) {   #article-container img {     margin: 0 auto 0rem;   }   #">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hoochanlon.github.io/img/avatar.png">
+<meta property="article:author" content="HooChanlon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hoochanlon.github.io/img/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/avatar.ico"><link rel="canonical" href="https://hoochanlon.github.io/comments/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '留言板',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.12/index.min.css"><link rel="stylesheet" href="/css/real_css/bg_blur.css"><link rel="stylesheet" href="/css/real_css/bilibili.css"><link rel="stylesheet" href="/css/real_css/nav.css"><link rel="stylesheet" href="/css/real_css/footer.css"><link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css"><link rel="stylesheet" href="/css/real_css/custom.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"><script src="/js/myjs/clarity.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/real_css/music.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.0.0"></head><body><div id="web_bg" style="background-image: url(/img/aegis.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/nav/"><i class="fa-fw fa fa-compass"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/todo/"><i class="fa-fw fa fa-list"></i><span> 清单</span></a></div><div class="menus_item"><a class="site-page" href="/calendar/"><i class="fa-fw fas fa-calendar-alt"></i><span> 日历</span></a></div><div class="menus_item"><a class="site-page" href="/tomato/"><i class="fa-fw fas fa-stopwatch"></i><span> 番茄</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><!-- 非文章页显示站点标题--><a class="nav-site-title" href="/"><span class="site-name">Chanlon Hoo's Blog</span></a><!-- 文章页显示文章标题和返回按钮--></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/nav/"><i class="fa-fw fa fa-compass"></i><span> 导航</span></a></div><div class="menus_item"><a class="site-page" href="/todo/"><i class="fa-fw fa fa-list"></i><span> 清单</span></a></div><div class="menus_item"><a class="site-page" href="/calendar/"><i class="fa-fw fas fa-calendar-alt"></i><span> 日历</span></a></div><div class="menus_item"><a class="site-page" href="/tomato/"><i class="fa-fw fas fa-stopwatch"></i><span> 番茄</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div></nav><div id="site-info"><h1 id="site-title">Chanlon Hoo's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/hoochanlon" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hoochanlon@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="container" id="article-container"><style>@media screen and (max-width: 600px) {
+  #beforeimg,
+  #afterimg{
+    display: none !important;
+  }
+}
+@media screen and (min-width: 600px) {
+  #article-container img {
+    margin: 0 auto 0rem;
+  }
+  #form-wrap {
+    overflow: hidden;
+    height: 447px;
+    position: relative;
+    top: 0px;
+    transition: all 1s ease-in-out .3s;
+    z-index: 0;
+  }
+  #form-wrap:hover {
+    height: 1050px;
+    top: -200px;
+  }
+  #beforeimg {
+    position: absolute;
+    bottom: 126px;
+    left: 0px;
+    background-repeat: no-repeat;
+    width: 530px;
+    height: 317px;
+    z-index: -100;
+    pointer-events: none;
+  }
+
+  #afterimg {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    background-repeat: no-repeat;
+    width: 530px;
+    height: 259px;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  #envelope {
+    position: relative;
+    overflow: visible;
+    width: 500px;
+    margin: 0px auto;
+    transition: all 1s ease-in-out .3s;
+    padding-top: 200px;
+  }
+
+  #maincontent {
+    width: 530px;
+    margin: 20px auto 0;
+  }
+
+  .formmain {
+    background: white;
+    width: 95%;
+    max-width: 800px;
+    margin: auto auto;
+    border-radius: 5px;
+    border: 1px solid;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 20px 0px #000000;
+    box-shadow: 0px 0px 20px 0px #000000;
+  }
+}
+
+/* 夜间模式 */
+[data-theme='dark']
+.formmain {
+  background: #323232;
+}
+[data-theme='dark']
+.comments {
+  background: #5a5a5a !important;
+}</style><div id="maincontent"><div id="form-wrap"><img class="no-lightbox" id="beforeimg" src="https://npm.elemecdn.com/hexo-butterfly-envelope/lib/before.png"/><div id="envelope"><form><div class="formmain" style="pointer-events: none;"><img class="headerimg no-lightbox" src="/img/clannad.png" style="width: 100%;overflow: hidden;pointer-events: none;"/><div class="comments-main"><h3 class="title3" style="text-decoration: none;color: $theme-color;text-align: center;">来自HooChanlon的留言:</h3><div class="comments" style="text-align: center;border-bottom: #ddd 1px solid;border-left: #ddd 1px solid;padding-bottom: 20px;background-color: #eee;margin: 15px 0px;padding-left: 20px;padding-right: 20px;border-top: #ddd 1px solid;border-right: #ddd 1px solid;padding-top: 20px;"><div>有什么想问的？</div><div>有什么想说的？</div><div>都可以在下方留言</div></div><div class="bottomcontent" style="text-align: center;margin-top: 40px;"><img class="bottomimg no-lightbox" src="https://npm.elemecdn.com/hexo-butterfly-envelope/lib/line.png" style="width: 100%;margin: 5px auto 5px auto;display: block;pointer-events: none;"/></div><p class="bottomhr" style="font-size: 12px;text-align: center;color: #999;">在樱花飞散的坡道</p></div></div></form></div><img class="no-lightbox" id="afterimg" src="https://npm.elemecdn.com/hexo-butterfly-envelope/lib/after.png"/></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2018 - 2025 By HooChanlon</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.0.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["回忆的画面，记录的语言","爱始终是你手中长长的线","—— 笔记"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["回忆的画面，记录的语言","爱始终是你手中长长的线","—— 笔记"])
+}
+typedJSFn.run(subtitleType)</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'walineserver-six.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client@3.6.0/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client@3.6.0/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script src="/js/myjs/aizhaoyao.js"></script><script src="https://ai.zhheo.com/static/public/tianli_gpt.min.js"></script><script src="/js/myjs/bg_blur.js"></script><script src="/js/myjs/suiji_tupian.js"></script><script src="/js/myjs/wechat_qr_popup.js"></script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.1"></script></div></div><!-- hexo injector body_end start --><script async data-pjax src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.2/assets/js/music.js"></script><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('page');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'page'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/图片日记/">图片日记</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/翻看往事/">翻看往事</a><span class="categoryBar-list-count">12</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/测试/">测试</a><span class="categoryBar-list-count">7</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/问题修复/">问题修复</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/考试/">考试</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li><li class="categoryBar-list-item" style="background:url(null);"> <a class="categoryBar-list-link" href="/categories/空转记录/">空转记录</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '2s');
+    arr[i].setAttribute('data-wow-delay', '1s');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js"></script><script defer src="https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
