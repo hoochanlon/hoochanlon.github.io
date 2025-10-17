@@ -263,13 +263,6 @@
 
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/</loc>
-    <lastmod>2025-10-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/tags/%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -277,7 +270,7 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E7%A7%9F%E6%88%BF/</loc>
+    <loc>https://hoochanlon.github.io/tags/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -292,6 +285,13 @@
   
   <url>
     <loc>https://hoochanlon.github.io/tags/%E7%A9%BA%E6%B0%94%E4%B8%AD%E7%9A%84%E8%A7%86%E5%90%AC%E4%B8%8E%E5%B9%BB%E8%A7%89/</loc>
+    <lastmod>2025-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/tags/%E7%A7%9F%E6%88%BF/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -335,14 +335,14 @@
 
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E5%9B%BE%E7%89%87%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -363,14 +363,14 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E7%A9%BA%E8%BD%AC%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E8%80%83%E8%AF%95/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E8%80%83%E8%AF%95/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E7%A9%BA%E8%BD%AC%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
