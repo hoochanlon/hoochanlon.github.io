@@ -2,7 +2,7 @@
 top:
   - class_name: user-clock
     name: 时钟
-    icon: fa fa-alarm-clock
+    icon: fa fa-clock
     order: 5
     html: |
      <a href="https://time.is/Shanghai" id="time_is_link" rel="nofollow" style="font-size:24px">上海时间:</a>
