@@ -47,19 +47,20 @@ span.categoryBar-list-count::before {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
-
 a.categoryBar-list-link::before,
 span.categoryBar-list-count::before {
   display: inline-block;
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
   font-variant: normal;
-  font-weight: 600;  /* 两者统一 */
-  font-size: 20px;   /* 两者统一 */
-  margin-right: 0.7em; /* 图标与文字间距统一，可调整 */
+  font-weight: 600;
+  font-size: 20px;
+  margin-right: 0.5em; /* 增大间距 */
+  padding-right: 0.1em; /* 可选：微调 */
   -webkit-font-smoothing: antialiased;
   text-rendering: auto;
 }
+
 
 
 a.categoryBar-list-link:after {
