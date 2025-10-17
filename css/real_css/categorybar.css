@@ -1,101 +1,126 @@
+/* ==========================
+   分类卡片容器
+   ========================== */
 #categoryBar {
-  width: 100%;
+  width: 100% !important; /* 容器全宽 */
 }
 
 ul.categoryBar-list {
-  margin: 5px;
-  padding: 0;
+  margin: 5px 5px 0 5px !important; /* 列表间距 */
+  padding: 0 !important;
 }
 
-/* 卡片样式 */
+/* ==========================
+   卡片样式
+   ========================== */
 li.categoryBar-list-item {
-  font-weight: 600;
+  font-weight: bold;
   display: inline-block;
-  height: 180px;
-  margin: 5px 0.5% 0;
-  border-radius: 12px;
-  padding: 25px 0 25px 25px;
+  height: 180px !important;
+  margin: 5px 0.5% 0 0.5% !important;
+  border-radius: 10px;
+  padding: 25px 0 25px 25px !important;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
-  background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 10%, rgba(0, 0, 0, 0.2) 90%);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+
+  /* 背景图片 + 渐变叠加 */
+  background-image: linear-gradient(rgba(0,0,0,0.4) 25%, rgba(16,16,16,0) 100%);
+  background-size: 100% !important;   /* 保证图片完整显示 */
+  background-position: center !important;
+
+  /* 内阴影效果 */
+  box-shadow: rgba(50,50,50,0.3) 50px 50px 50px 50px inset;
+
+  /* 悬停动画平滑 */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-size 0.4s ease;
-  color: #fff;
 }
 
-/* 悬停效果 */
+/* ==========================
+   卡片悬停效果
+   ========================== */
 li.categoryBar-list-item:hover {
-  transform: translateY(-5px);
-  background-size: 110%;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+  background-size: 110% !important;          /* 背景轻微放大 */
+  box-shadow: inset 500px 50px 50px 50px rgba(50,50,50,0.6);
+  transform: translateY(-3px);               /* 卡片轻微上浮 */
 }
 
-/* 链接样式 */
+/* 描述文字悬停动画 */
+li.categoryBar-list-item:hover span.categoryBar-list-descr {
+  transition: all 0.5s ease;
+  transform: translate(-100%, 0);            /* 左移文字显示隐藏效果 */
+}
+
+/* ==========================
+   链接样式
+   ========================== */
 a.categoryBar-list-link {
-  color: #fefefe;
-  font-size: 20px;
+  color: #fff !important;                     /* 白色字体 */
+  font-size: 20px !important;
   position: relative;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6); /* 增强可读性 */
 }
 
-/* 链接前的小点 */
+/* 链接前的小点 / 装饰符 */
 a.categoryBar-list-link::before {
-  content: '\00B7';
-  color: #ffd166; /* 柔和高亮点 */
-  font-size: 22px;
-  margin-right: 6px;
+  content: '	\f192';
+  color: #fff !important;
+  font-size: 20px !important;
 }
 
 /* 下划线动画 */
-a.categoryBar-list-link::after {
+a.categoryBar-list-link:after {
   content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
+  position: relative;
   width: 0;
+  bottom: 0;
+  display: block;
   height: 3px;
   border-radius: 3px;
-  background-color: #ffd166; /* 与前导点颜色统一 */
-  transition: width 0.4s ease;
+  background-color: #fff;
+  transition: all 0.5s ease;
 }
 
-a.categoryBar-list-link:hover::after {
+a.categoryBar-list-link:hover:after {
   width: 90%;
-  left: 5%;
+  left: 1%;
 }
 
-/* 分类计数 */
+/* ==========================
+   分类计数样式
+   ========================== */
 span.categoryBar-list-count {
-  display: block;
-  color: #eaeaea;
-  font-size: 18px;
-  margin-top: 10px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  display: block !important;
+  color: #fff !important;
+  font-size: 20px !important;
 }
 
 span.categoryBar-list-count::before {
-  content: '\f005';
-  padding-right: 10px;
+  content: '\f005';  /* Font Awesome 图标 */
+  padding-right: 15px !important;
   display: inline-block;
   font-weight: 600;
+  font-style: normal;
+  font-variant: normal;
   font-family: 'Font Awesome 6 Free';
-  text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  color: #ffd166; /* 保持与标题点一致 */
 }
 
-/* 响应式布局 */
+
+/* ==========================
+   响应式
+   ========================== */
 @media screen and (max-width: 650px) {
   li.categoryBar-list-item {
-    width: 48%;
-    height: 150px;
-    margin: 5px 1% 0;
-    padding: 20px;
+    width: 48% !important;
+    height: 150px !important;
+    margin: 5px 1% 0 1% !important;
   }
+
   a.categoryBar-list-link {
-    font-size: 18px;
+    font-size: 18px !important;
+  }
+
+  span.categoryBar-list-count,
+  span.categoryBar-list-descr {
+    font-size: 16px !important;
   }
 }
