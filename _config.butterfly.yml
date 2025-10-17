@@ -1107,7 +1107,6 @@ inject:
     - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
-    - <script src="/js/myjs/categories_card_bug.js"></script>
 
 
 
