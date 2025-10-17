@@ -1,12 +1,15 @@
 ---
 title: Butterfly-雨蝶
 noticeOutdate: false
-categories: 问题修复
+categories: 
+- 问题修复
+- 测试
 tags: 博客主题修复
-description: butterfly主题问题修复的地方。_config.butterfly.yml都1k多代码行了，这也太长了...
+description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://tu.zbhz.org/i/2025/10/15/x8ptab.png'
 abbrlink: 15347
 date: 2025-10-14 20:02:29
+sticky: 100
 ---
 
 ### 注意事项
@@ -46,6 +49,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * 调整文章目录显示位置
 * 标签外挂增强
 * 卡片分类布局
+* <s>文章标题信息居中</s>
 <!-- endtab -->
 
 
@@ -53,13 +57,13 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [Add Blog Animation -- Wowjs](https://akilar.top/posts/abab51cf)
 * [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
-* [Hexo 博客文章统计图](https://blog.eurkon.com/census/)
+* [Hexo 博客文章统计图](https://blog.eurkon.com/post/1213ef82.html)
 * [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
 * [butterfly 的魔改记录](https://qianxu.run/butterfly-custom/index.html)
 * [【butterfly】分类磁贴插件版](https://ll.sc.cn/posts/ab72/)
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
-* [【butterfly教程】更改文章页的文章相关信息布局](https://moonruyan.github.io/post/84dc2e1a.html)
+* [Butterfly导航栏美化](https://blog.june-pj.cn/posts/7bed0b4e/)
 <!-- endtab -->
 
 {% endtabs %}
@@ -76,6 +80,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 <!-- tab awesome图标对应字符编码表 -->
 * [font awesome图标对应字符编码表](https://www.cnblogs.com/ytkah/p/12605237.html)
+* [Font Awesome 5.15.2 版本全部图标Unicode对照表大全](https://fa.uutool.cn/unicode/5.15.2/)
 <!-- endtab -->
 {% endtabs %}
 
@@ -89,20 +94,16 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 ---
 
 
-
-
 ### 调试内容区
 
-调试完内容。
-
-
-
+调试完内容，部署后，空空如也。
 
 
 {% timeline 2025, green %}
 
 <!-- timeline 10 -->
-* test
+* 完成分类页卡片适配
+* 标签、分类、归档页隐藏侧边栏
 <!-- endtimeline -->
 
 {% endtimeline %}
