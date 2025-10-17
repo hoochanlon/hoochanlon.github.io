@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2018年11月29日 星期四 ☁</title>
+    <url>/posts/30067.html</url>
+    <content><![CDATA[<p><img src="https://i.loli.net/2018/11/29/5bffc658e40c5.jpg" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/29/5bffc54e62e3b.jpg" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/29/5bffc30638b44.jpg" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/29/5bffc6fa964d4.jpg" alt=""></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>图片日记</category>
+      </categories>
+      <tags>
+        <tag>图片日记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2019.11.19 周二 🌤</title>
     <url>/posts/20117.html</url>
     <content><![CDATA[<p>在接到一份关于“客户判断系统开启不来，判断是硬盘故障，确认是否可修复”的工单，赶到客户所在地，电话联系两次客户主管未果，在与前台说明来意后，又共同确认正好是前台的机器出现故障。 <span id="more"></span></p>
@@ -287,317 +302,6 @@
       </categories>
       <tags>
         <tag>租房</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2018年11月29日 星期四 ☁</title>
-    <url>/posts/30067.html</url>
-    <content><![CDATA[<p><img src="https://i.loli.net/2018/11/29/5bffc658e40c5.jpg" alt=""></p>
-<p><img src="https://i.loli.net/2018/11/29/5bffc54e62e3b.jpg" alt=""></p>
-<p><img src="https://i.loli.net/2018/11/29/5bffc30638b44.jpg" alt=""></p>
-<p><img src="https://i.loli.net/2018/11/29/5bffc6fa964d4.jpg" alt=""></p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>图片日记</category>
-      </categories>
-      <tags>
-        <tag>图片日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub RST与Git SSL_ERR_SYSCALL综合分析</title>
-    <url>/posts/28547.html</url>
-    <content><![CDATA[<ul class="lvl-0">
-<li class="lvl-2">
-<p>杜绝主观情绪化因素</p>
-</li>
-<li class="lvl-2">
-<p>多方面考虑原因（多种可能）</p>
-</li>
-<li class="lvl-2">
-<p>查找及建立两者关联（共同点）</p>
-</li>
-</ul>
-<p>主观情绪化会失去客观分析判断能力，正确率几乎忽略不计，必须杜绝主观情绪化再去分析！</p>
-<span id="more"></span>
-<h3 id="RST">RST</h3>
-<p>网络封锁重置、hosts IP-DNS映射指向问题</p>
-<h3 id="SSL-ERR-SYSCALL">SSL_ERR_SYSCALL</h3>
-<p>调用传输层自行设置的代理套接字，出现的无法访问的问题。可能存在代理配置或是网址有问题，网址问题则涉及到hosts映射设定内容。</p>
-<h3 id="小插曲">小插曲</h3>
-<p>对GitHub进行ping测试，发现虽然ping不通，但还是能访问。处于网络安全的考量，应该是网站禁用了ICMP回应或者开启了ICMP过滤。</p>
-<p>参考 <a href="https://www.cnblogs.com/kunlunmountain/p/5945756.html">kunlunmountain-为什么有些网站PING不通但又能访问.</a></p>
-<p>由此从ping转向curl测试，因为该工具也提供了很直观的信息。</p>
-<p><img src="https://i.postimg.cc/brH28KhX/010.png" alt=""></p>
-<h3 id="汇总">汇总</h3>
-<p>RST与SSL_ERR_SYSCALL有一个共同的问题：hosts IP-DNS映射</p>
-<p>应用层的Hosts通过IP-DNS映射，网址解析被指向特定IP地址。而代理只是转达客户端这特定指向访问IP请求，并不会对IP进行路径转换。若Hosts映射IP、DNS任一方不存在，则会造成即使翻墙配置了代理也无法进行访问的情况。所以代理也被称作<a href="https://baike.baidu.com/item/%E5%BA%94%E7%94%A8%E7%BD%91%E5%85%B3/6324513">应用网关</a>，也是有原因的。</p>
-<p><img src="https://i.postimg.cc/SKjbkkk8/008.png" alt=""></p>
-<p>由于Hosts比远程的DNS优先级高，主机最先进入Hosts查询DNS映射，只有在hosts中没查到该条访问映射才进行远程DNS服务器查询，VPN方面虽建立一条专用隧道进行外部服务器访问，但主机给到外部服务器解析的DNS映射还是错误的，所以还是会造成主机不可达，依旧无法访问。</p>
-<p><img src="https://i.postimg.cc/fT1p9pnn/009.png" alt=""></p>
-<p>有时就算进行Host设定重定向也能短时间内也正常访问站点，这与keep-alive、浏览器及系统DNS缓存有关，参考 <a href="https://www.cnblogs.com/hustskyking/p/hosts-modify.html">小胡子哥-修改Hosts为何不生效，是DNS缓存？</a></p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>流水线工厂陷阱</title>
-    <url>/posts/815.html</url>
-    <content><![CDATA[<p>序：</p>
-<p>工厂自来各个专业领域的中专生有很多，不过听说大专的流水工在华为是很多的，从招聘上看确实如此，底薪高于富士康两倍多，学历要求大专，美其名曰促进了社会基层制造业工职学历提升。<span id="more"></span>原因推测：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>面子工程，企业形象问题</p>
-</li>
-<li class="lvl-2">
-<p>拉开企业之间的档次（如：<a href="http://www.cyshu.cn/s/news/149.html">高新技术企业认定</a>，企业有国家补贴）</p>
-</li>
-<li class="lvl-2">
-<p>高工资的橄榄枝，同时素质较高的也便于管理</p>
-<ul class="lvl-2">
-<li class="lvl-4">吸引积蓄不够且求职碰壁的大专生</li>
-<li class="lvl-4">拉拢自考大专的中专优秀上进人才</li>
-<li class="lvl-4">让人们潜意识觉得就是做这个的料</li>
-</ul>
-</li>
-</ul>
-<p>不过华为太过拉低与贬损我们大专了，我们可以且有能力去做体面的事情！最多待一年进行积蓄，了解身边的人和事，并总结所见的现象。在家两、三月磨炼自己专业，投简历找专业相辅的工作，大专投中专、本科投大专进行一定程度的降维打击，尽量展现自己的优势，用积蓄租房及进行一个月左右的时间找工作。</p>
-<!-- more -->
-<p>不过，现在很多人做起了外卖、快递，大概也含包括这原因，可这本质上又陷入了同种陷阱。下面我回忆曾在流水线一线工作的室友，加上自己也曾舍去CQE职位，深入一线体会工友们白夜加班的工作生活，以此总结分析下多数工友未能走出流水线普工身份的原因。</p>
-<h3 id="普工加班陷阱">普工加班陷阱</h3>
-<p>早8点工作到近12点左右，午间1.30再上班，排队吃饭的人很多，12.25分左右吃完饭回到工位也近40左右，实际休息时间也就半小时至四十近五十分不等左右。五点半开始，每条生产线10分钟左右按批次轮流去吃晚餐，晚七点半左右拥挤的人流进行排队打卡下班。</p>
-<p>下班通勤时间晚8点下班搭上班车，到宿舍也8点半左右了，忙碌的一天，休息半小时，再刷着40来分钟的抖音或两三局王者，洗衣搓澡也大概40来分钟左右，再循环一遍抖音、王者，就睡觉了。因为我们知道最晚也要搭上7点10分的班车去打卡上班。在园区买早餐吃，7.40-50间左右打卡，开始了8点的流水作业。</p>
-<p>绝大部分时间都被机械重复的流水线工作占据，长达几小时重复，人的精神都会变得麻木疲惫。吃完饭或是下班回宿舍也是第一时间想着休息，休息完看短视频、打王者放松。毕竟实在是很累也太疲惫了。</p>
-<p>我们也没有相关专业性质的培训与质量考试，这些都是线长、组长之类的管理职才能接触并涉及到的内容。而我们几乎接触不到更深层次的内容，我也是在下班前做报表偶然在组长办公室座位发现的。后来自己找工作时也发现想要跳槽更好的职位，也确实需要这些知识储备才有资格求职应聘。</p>
-<p>节假日休息的一天，无非就是睡个懒觉，到中午打局王者，下午上网或外出溜达。一到晚上简单聊会天，打局王者后洗衣搓澡，躺着或坐在床上刷着短视频，到点睡觉罢了。</p>
-<p>想要8小时5天工作制？可以，我们大家做的事情都是一样的，尼每天也就少了1.5-2小时左右，双休可没双倍工资哦。到最后你就只能拿到2200社会最低薪资了，真的要这样做吗？这就是不少人选择了加班的原因，以自己剩余时间换报酬。</p>
-<h3 id="消费观念陷阱">消费观念陷阱</h3>
-<p>身为普工又想受人尊重，体面上也要过得去，发了工资买起了阿迪、耐克，分期购高价款iPhone。毕竟不用考虑外出租房，厂分配的宿舍租金加水电不超过二百元，相当于白送，情侣也多为合租；吃饭方面，富士康也会预发400整充值到工卡里给员工用于吃饭，综上所述到手4、5k的工资，可支配资金是较充足的。</p>
-<p>为了买所谓的高端名牌大气上档次的物品，来衬托自己，可能以这样的方式更能靠近有钱人的生活吧。想要让人心理认为“买这么贵的衣服，这人应该从事体面职位、薪资很高，是个有身份的人”，以获得脑补受人认可、称赞效果的满足感。</p>
-<p>娱乐方面，原本打局王者本为放松，由于游戏的竞争机制，所见所得即时反馈来的快感/损失厌恶，想要获得所需要快感：1、定制私有化，2、攀比炫耀展现自己优势，3、打赢别人回报损失厌恶的满足，这三点的体现如：充钱买皮肤、军备升级等等，“好牛逼！大佬，带带我”；人人都玩，于是它成为人们必要娱乐消遣方式，为了融入群体又或是从众效应影响，新人也开始入坑，由最初的娱乐转向电竞白热化心态，继续循环这一过程。烟酒也是同理，由最初用来缓解焦虑痛苦，渐渐人们反而被它所操纵。</p>
-<h3 id="结语">结语</h3>
-<p>说起普工加班陷阱与消费观念陷阱，联想到富士康连环跳楼事件，以及自己与工友们过度消费买买买，这也让我有必要看看《自杀论》、《上瘾》、《贫穷的本质》三本书进行求解。</p>
-<p>普工工友们的剩余时间也被用来重复劳作，最后休息时间几乎所剩无几，生活就这样如此循环着，工友们跌入甚至连自己都不知道的加班陷阱中。没有了充裕时间进行自我思考，自然也不会进行反思去总结身边现象的更深层次的成因，也就是现象原因中的原因，不会想着从而以此进行谋划一份未来能够拥有更好的工作，一步步去实现它。</p>
-<p>每周不多的充足剩余时间也被投入到游戏、刷短视频中，为了更好的体面，分期消费升级换代了自己电子产品、服饰也配上国际大牌范，工友潜意识认为以这样的方式能迅速置身于有钱人的生活中吧。因为眼前所见这些有钱人、综艺明星也是用的这些，身边得到的信息也是用iPhone、穿XX，就是有钱人这类二元论。</p>
-<p>可工友这些行为实际上就是让自己为这产品分期的钱所打工，自己的思想觉悟并没有得到本质上的提高。其实我们仔细想想，购买这类批量制造价格不等的同质产品只是消费理念的不同，是否信仰其品牌营造的理念价格。真正想要获取的可能真的仅是能衬托出是有钱人的物质而已。</p>
-<p>每个人的经历各不相同，因学历低找不到对口专业或理想的工作，受限于眼前，仅认为自己只能做流水线普工了，基于这一共同点让我们走在了一起。在工厂制度与偏差的消费观双向影响下，不少工友陷入了上述的两个陷阱，这必然也会大幅削减自己购买书籍、文档资料进行自我提升的必要投入，无形之中将自己与普工身份绑定得更深，这就是大概多数普工未能走出的更深层次的原因吧。</p>
-<p>参阅资料</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.bilibili.com/video/BV1bt4y1q7Hm">观视频-有进无出，700万外卖骑手的内卷人生</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://www.bilibili.com/video/BV15y4y1y7XA/">知乎3万赞！那些正在毁掉年轻人的“贫困陷阱”！【歌白】</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://terminus2049.github.io/archive/2018/07/07/Shen-Mengyu.html">端点星-梦雨：无悔选择 —— 从中大硕士到流水线女工</a></p>
-</li>
-</ul>
-<p>忽然想到我最近看完的《美丽新世界》，在这本小说中领导者有意强制通过胚胎，进行划分不同种族人群阶级，甚至连思维都如同程序般被写死的，不具有可塑性，下等种族也能无脑沉浸于欢乐；而我们不是，我们能够感知痛苦想要改变，因此我们的人性具有可塑性。</p>
-<!--那些读书人认为自己在读书时已经奋斗过了，就本该享受成果，自然也不会深入一线了解基层，只是看着他们风餐露宿的表象，劝告着子女别像我们流水线工人这样，过着舒服的日子，唱着赞歌爱着他们所信仰的布尔什维克。-->
-<!--他们其中不乏看不上我们这类学识低、文化少且处于社会基层的后知后觉者。-->
-<!--短期欢乐，长期享受是持续不断实现的过程。-->
-<!--现实的统治者制定规则，由于每个人的出生背景、经历都具有独特性，对规则的适应程度各有差异，发展的路径都各有不同，亦或是殊途同归，就像大自然各类生物生态周期这般均衡的协调着。-->
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>事件复盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一次单向一厢情愿的沉思</title>
-    <url>/posts/16279.html</url>
-    <content><![CDATA[<p>就根据我了解的已婚或成伴侣的朋友，我从他们那听到一个核心概念就是“双向选择”或者说是“双向奔赴”。必须两人要处在这一“认可”平台上才能建立这种关系。</p>
-<span id="more"></span>
-<p>关于这内心上的认可其实是挺有横纵空间概念的。比如常见物资上的：钱、房子、车子；这是客观上认可的东西。在社会上结识的人，我们所遇到的每个人，他的家庭资本、家庭背景比较起来的话都差序的。之所以我们能相见交流也是在共有平台上，如在相同的学校、同一个公司这样进行的，而这些人能够成为双向共同的伴侣，从一定程度上说明也不完全是这些物资上的东西。</p>
-<p>选择以物质为主的择偶，其本身是一种家庭联结的相亲标准，谈不上什么感情，在情感上是没选择的，更像是事业群体为利益的结合。这和自由恋爱还是有所差别的，自由恋爱更多是建立在双方内心沟通的契洽上，至于物质虽说重要，但那是一种追求的希望，一个更好的生存环境；即使换做更好的生存环境，只要有一方不遂愿，那双方的结合还是不能成立的。</p>
-<p>说到这内心认可，个人装扮的外貌、外在表现的态度，整体所反映的个人独特的魅力，这个挺关键的，是吸引力的所在。光有联系交流的套路是不够用的，而且现在女性也不傻，像对PUA、养鱼这方面的认知来说，可真一点不比我们少。另一个就是需要了解的就是对方是怎么划定朋友、同学、同事的，这一点很重要，可以看出双方在朋友、恋人界限的差别。</p>
-<p>在情感上的交流还真不是在同一横纵平面上进行的。以我来说，我自己却没怎么把“朋友”这概念定位的很明确，只是从情感选择上进行区分；但每个人是不一样的，应该是交际的缘故，在这方面上定位是很精确明细的，以我结识的一个高岭之花为例，她的定位：“朋友分为异性和同性，普通朋友和密友，普通朋友就是偶尔联系分享一下生活趣事，密友有相同的爱好、三观一致，知无不言、言无不尽。在我这里，离职后不再联系的都是前同事，偶尔联系的就是普通朋友”。从“相同的爱好和三观一致”，从一定程度上说在双方言语交流过程中探寻对方喜好，问及对朋友与对自己的看法，顺便问及对方想法与家庭出身。明白了这些，自己与对方就能分晓出差别，在对方心中大概又是什么样的定位。</p>
-<p>如果不清楚这方面定位，很容易出现像我一样的局面：“一方面我把心事诉诸忠肠，对于我来说，这是她对感情上的信任，也是将对方看重的体现。而她呢，只不过是认为普通朋友的心事解疑罢了，并不会在这上寄托很重的情感”；至于这位高岭之花也向我表态了也给出了她的建议：</p>
-<p>她不想与我彼此之间存在模棱两可的关系，毕竟都是成年人，有疑惑就应该直白点说清楚，误会只会让事态往不好的方向发展。不要太过于相信自己的直觉。都是成年人，有疑惑直接说。不要让自己陷入幻想里，喜欢就是喜欢，不喜欢就直接拒绝，不要搞暧昧，不要养鱼。异性朋友之间还是有纯友谊的，至少我是相信有的。</p>
-<p>说和做不一致，那说明有一个动作已经产生了拒绝，只是不想伤害你，所以比较含蓄，只是你还在误会，导致误会越来越深。（这是我对高岭之花提出的关于其他女性与我表态含蓄的手法）</p>
-<p>回到魅力上来说吧，我也是第一次感受到魅力是可以具体形象化的，就以我向这高岭之花表白的评价吧：“我也觉得你与一般人不同，也是这种直白。所以对于我来说，你在我心中很独特；你也知道现在的’委婉托辞’也挺常见的，所以你的直白，至少在我看来挺特别、挺好的”。接下来就是这位高岭之花对我的评价：“你和我其他的异性朋友没什么区别，自然我也是以同样的心态对待每一个朋友。唯一的不同是，你有时候话比较多”。</p>
-<p>从这些方面来说确实能反应出许多问题，我在她看来魅力方面什么的，自然是啥都没有了…兴趣爱好也是不甚了解，加上自从她离职后面对面的交集很少。有一点我没想到的是在公司内向的她，在公司不善言语的她，居然在社会上又是另一面广结各路朋友的展现。</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>空气中的视听与幻觉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>龙岗坂田租房新知</title>
-    <url>/posts/36020.html</url>
-    <content><![CDATA[<p>我知道了一些看似八九百块钱至一千的公寓房租为什么普遍选择押二付一，主要是为了延缓、牵制租客搬迁到别处。八九百至一千乘以二后，押在房东那的钱也不算是小数目了，这时就不太好违约退租了。 <span id="more"></span></p>
-<h2 id="合同涨价与促销">合同涨价与促销</h2>
-<p>下图的合同押二付一确实也不算也一个小数目，差不多近两千块钱了。</p>
-<p><img src="https://s1.ax1x.com/2022/04/11/LEmGAf.md.png" alt=""></p>
-<p>一些农民房、公寓的合同签半年一年不等就涨7%，一些稍有良心的会涨3%-5%左右，然后他们微信又是一套促销处理，当自己用一千多块去租七八百的小单间，想想就自己深感背刺。</p>
-<p><a href="https://imgtu.com/i/LEnhRg"><img src="https://s1.ax1x.com/2022/04/11/LEnhRg.md.jpg" alt="LEnhRg.md.jpg"></a></p>
-<h2 id="退租及免费换租的心眼">退租及免费换租的心眼</h2>
-<p>退租，没到合同最后一月一般是房东直接砍掉我们的全款押金，一分也不给。通知房东转租给别人或许能退一部分，具体看房东怎么来了。退租其实也难退到全款，打扫干净房间，其实还是会扣一些卫生费。家私设备自然破损，没上报给房东，看房东人品，房东人品差，你有没切实证据证明，到最后还是会算在你头上…</p>
-<p>所谓免费换租呢，实际上还是要收取换租之前的那些天每一天的入住费。有的中介或房产商对换租的时限也是有所差异，自如是3天，泊寓是15天以内，超过了这个期限收取百分比的手续费，各商家也不尽相同：自如是50%，泊寓是10%，而且这个钱是按照房租的百分比算的。</p>
-<p>换租重新签约方面，比方说自如，换租是重新签约需要再来一次押一付一，过三至五天才退还换租前的押金及房租。老实说，换租其实对钱包很伤…</p>
-<h2 id="租房环境">租房环境</h2>
-<p>工业区的房子嘛，如图所见很烂，隐私也没啥保障，洗澡都很容易被人偷窥的那种，一到晚上野猫乱叫也特别刺耳。城中村至少比烂成这个样子的工业区拆迁房要好点…但采光特别差，有时环境太差也是很影响心情的。</p>
-<p><a href="https://imgtu.com/i/LEK64f"><img src="https://s1.ax1x.com/2022/04/11/LEK64f.md.png" alt="LEK64f.md.png"></a></p>
-<p><a href="https://imgtu.com/i/LEKbCT"><img src="https://s1.ax1x.com/2022/04/11/LEKbCT.md.png" alt="LEKbCT.md.png"></a></p>
-<p>再对比附近的大型房地产开发的小区，这落差感…</p>
-<p><a href="https://imgtu.com/i/LEMtZn"><img src="https://s1.ax1x.com/2022/04/11/LEMtZn.md.png" alt="LEMtZn.md.png"></a></p>
-<p>处在明亮的房间，心情实际上也会好不少，也很舒服。 <strong>（注意，一定要问清楚是否有带小孩的租户，吵死了！ 2022.5.4 补）</strong></p>
-<p><img src="https://s3.xoimg.com/i/2022/04/11/f4eh9r.png" alt="iShot2022-04-11_09.10.53"></p>
-<h2 id="不同单间价位上感知落差">不同单间价位上感知落差</h2>
-<p>八九百至一千左右的房间仅是能住，没有什么让人的舒心体验，房屋多是阴暗潮湿、家私配套不全，房屋漏水、开关插座等或多或少有些小毛病的那种，仅满足基本落脚需求而已…</p>
-<p>一千二三的房间，最明显的就是没八九百的房间那么多小毛病。透光度上，不仔细观察和八九百的也没多少区别，空气流通方面，周围都被楼房贴着，除非住在你对面的租户开门又开窗空气流通才算过得去；从一千四这个价位段起，在不开灯的情况下，农民房、工业区公寓单间也比较明亮，透气也好了不少；一千六及以上，采光/透气/空间都会有大幅提升，但城中村、工业区公寓这个价位对比小区合租就有些乏力了，小区在外部环境、内部安防、物业服务上都远超城中村、工业区一大截。</p>
-<h2 id="最后">最后</h2>
-<p>到这里基本上龙岗坂田部分已经讲完了，如果是南山、福田普遍起价到2300-2600左右，1800租到小区的5、6平米的单间都不错了…这个社会对35以上的打工人相当不友好了，泊寓、自如都限制在40左右，如果真到四十用只能安居客？我估摸着看来是自己去城中村、工业区找房吧…存钱不够多，这才是最大的烦恼…</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>租房</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>某某学院学生妹最后的吟持</title>
-    <url>/posts/40753.html</url>
-    <content><![CDATA[<p>对于这个特殊服务的学生妹，矜持不至于，“吟持”这一词是最贴切的。这些学生妹通常是外地的，读完本科顺手在落脚点上业了，而在本地她们怕遇到嫖娼的亲戚朋友，也怕被亲戚朋友知道后指指点点，说得太难听。</p>
-<p>如果家里有钱，或者需求相对来说不大手大脚（包括虚荣心），不去酒吧歌舞厅拍拖，基本上是不会做这行的。远在外头也可以假以普通的正当职业正名（普工、医美等），花钱的名牌包包、万元手机等都可以是“男友”们送的。</p>
-<p>挑选服务小妹无关学历，而在于身材长相与活好，由于照片（写真/艺术/P图）与现实较大，但由于长得像曾经的中学、大学同学还会接受。不过，想来我的同学朋友比我领先了十几年了，在我读初中的时候就知道某某学院鸡多，只是有认识老鸨的人脉，不同于会所，由于“扫黄打非”查得严，通常采取上门服务。</p>
-<span id="more"></span>
-<p>按摩服务的会所技师除了不能亲嘴、做爱、口交，其他的都能做，比方说：摸胸、胸交、下体摩擦、打飞机；有些鸡由于化妆的原因也是不能要求亲嘴亲脸，<br>
-B罩杯由于胸太小是不能进行站立式的胸交的，大腿细如枝条，脊柱骨凸显，整身龙骨嶙峋，屁股冲撞的时候，鸡巴的两侧骨头也会痛，体验并不舒服。通常来说，大部分技师特殊服务的活比鸡要好些，鸡的话看做过一两年的这些活起码比刚开始做个把月不到的是要好不少的。</p>
-<p>不过这些鸡是怎么认识老鸨的，有些好奇。想到的一点，做过技师经人推荐。其他的点，暂无，后续补充。目前找到的其他参考，如下。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.yicai.com/news/3508431.html">“中国性学教父”潘绥铭：研究红灯区最大的危险是被小姐爱上</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://sex.ncu.edu.tw/news_archive/?p=3102">生存與體驗－－對一個紅燈區的追蹤調查》節選</a></p>
-</li>
-</ul>
-<p>后来与朋友的讨论中也想到了一些事，故补充：</p>
-<p>上层名流请吃饭，又或是做一两星期、一个月的女友，也无非名义合法化。小温泉也无非穷人的<a href="https://www.bilibili.com/video/BV14C4y1v72s">萝莉岛</a>。知乎上对于会所技师也是“懂得都懂”般的不说破，B站关于<a href="https://www.bilibili.com/video/BV1jC4y1S7aP">警方抓获卖淫女后，为何不用交易记录寻嫖客？</a>话题下方评论区的倒是挺实在的，只是这次经过让我没想到原来嫖娼的这么多人。</p>
-<p>2024.2.17 updated： <a href="https://www.bilibili.com/video/BV1ST4y1b7d3">b站-隐秘的圈子，女大学生的“双面生活”#扫黄#宁波大案#大案纪实 #侦破纪实 #案件故事解说</a></p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>空气中的视听与幻觉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>书店、自习室与图书馆简评</title>
-    <url>/posts/40198.html</url>
-    <content><![CDATA[<p>今天去的三个主要位置，大学城站与西丽湖站（野生动物园）、塘朗站。大学城站D出口附近有个时代广场（书店与自习室），西丽湖站直走百来米就是深圳科技书城（需要预约）。西丽这一块，公共图书馆可真的少…之后在塘朗宝能城，总算是找到了一家公共图书馆，桃源之光。</p>
-<p>以九祥岭湿地公园为中心，西丽、大学城、西丽湖，这三个地铁站点都离得不是很远。我从西丽到塘朗只有两站的距离，也还可以接受。</p>
-<span id="more"></span>
-<h2 id="西西弗书店（丽山路店）">西西弗书店（丽山路店）</h2>
-<p>书店里头的咖啡馆比南山书城的那家相对来说动静没那么大，比较小孩没那么多；书店对面的肯德基虽人流量不多，但外头声音比较嘈杂。第一次买杯咖啡，占个座，问个Wi-Fi基本上就差不多了。</p>
-<p>书店就最便宜的36块的咖啡桌位来说，而且带小孩的家长一多，也会比较吵，个人感觉不适合常来自习，划不来。</p>
-<h2 id="觅岸自习室（大学城站D出口）">觅岸自习室（大学城站D出口）</h2>
-<p>概貌：一小时10块钱，一天是38块。整体来说比较安静，地段虽说在马路边，不过写字楼比较高档，隔音很不错。一般来说，家长也不会带小孩来这个地方，女性来自习室较多。</p>
-<p>配套：桌台有自助膨化小包零食、咖啡粉冲剂；有微波炉和冰箱在茶水间，楼下有独立较空旷的休闲区，本质上是洽谈室；打印纸张比较便宜，黑白也就几毛钱，彩打不到一块钱。</p>
-<p>这个自习室比书店实际上要划算一些的。</p>
-<h2 id="桃源之光（塘朗D出口出站直走）">桃源之光（塘朗D出口出站直走）</h2>
-<p>这是我能找到的日常开放的公共图书馆，距离算比较近的一个了。没有工地噪音，大部分的声音基本上是离开座位走动一小会儿（走路的脚步声比较响），与时不时有人清嗓子发出的声响。</p>
-<p>一些小孩看书也算比较安静的，图书馆将儿童座位与成人座位相对间隔较远，总体还行吧。</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>随想简评</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分析我工作上没有层次、时间概念的原因</title>
-    <url>/posts/16112.html</url>
-    <content><![CDATA[<p>在看到这幅图，我恍然大悟，才开始明白工作上主管一直叫我处理桌面问题，而他自己则在规划流程及维护网络、业务数据后台的原因。</p>
-<p><img src="https://z3.ax1x.com/2021/11/22/IxDVyQ.jpg" alt="IxDVyQ.jpg"></p>
-<span id="more"></span>
-<p>￼<br>
-主管相当于把桌面问题这类第三象限不重要但紧急的事安排给我做，但到我这里后就成了第一象限，原因如下：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>同事电脑有问题影响他办公，第一时间就会想到我，同事会要求我最好尽快、立即、马上处理，处理不好又会遭投诉，再加上此事也是主管吩咐我照办，这也让我更加不敢有丝毫懈怠。</p>
-</li>
-</ul>
-<p>长此以往我也感精神疲惫，也正好如图所说，近期我一直经常在回家深夜一直看游戏、动画等娱乐节目放松消遣、打发时间，随着时间一天天这样过去了。现在我才开始意识到我从工作到现在一直在白“穷忙”，实际上没真正想过该怎样去改善目前的现状，建立好自己的有序的计划。</p>
-<p>看到图中的第二象限，我似乎明白了什么。将第一象限的事情转化为第二象限处理，不论工作有多么紧急也要有计划有安排地去做。无意中也发现第二象限也体现了做事的态度。想到了一个很好例子：对方交代我主管做的事情，他都会把事情问得特别清楚：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>事情谁主导（负责）？其中又有哪些人参与？</p>
-</li>
-<li class="lvl-2">
-<p>事件的目前进展及影响如何？</p>
-</li>
-</ul>
-<p>说完事情概貌后，他接下来考虑处理问题：我们有哪些办法？又该分几步处理？同时产生新问题又该怎么解决？最后落实到具体时间上执行。</p>
-<p>再由以上想到第一象限还真是为了解决问题而解决问题，而不是把事情办好办漂亮，同时也想到第三象限也有一个解决方式：明晰事件，划清责任。落实到执行上也给出了自己的空余时间，也有着第四象限的缓冲带；联想到我自己：待办事项是第一步，四象限法则是第二步。第一步我做到了，目前的目标是开始持续进行第二步。</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>事件复盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly主题测试页面</title>
-    <url>/posts/442.html</url>
-    <content><![CDATA[<!-- https://rpgamer.com/wp-content/uploads/2022/08/persona-heroes-image.jpg -->
-<!-- https://tu.zbhz.org/i/2025/10/09/114ak04.jpg -->
-<ul class="lvl-0">
-<li class="lvl-2">文章摘要：<a href="https://www.myzimu.com/post/978df16.html">https://www.myzimu.com/post/978df16.html</a>
-<ul class="lvl-2">
-<li class="lvl-4">AI摘要KEY：https://docs_s.tianli0.top/install.html</li>
-</ul>
-</li>
-<li class="lvl-2">文章节选： <a href="https://butterfly.js.org/posts/4aa8abbe/?highlight=description">https://butterfly.js.org/posts/4aa8abbe/?highlight=description</a></li>
-<li class="lvl-2">文章过期提醒设置：<a href="https://butterfly.js.org/posts/4aa8abbe/?highlight=%E6%8F%90%E9%86%92">https://butterfly.js.org/posts/4aa8abbe/?highlight=提醒</a></li>
-<li class="lvl-2">动漫图片超分辨率：<a href="https://real-cugan.animesales.xyz/">https://real-cugan.animesales.xyz/</a></li>
-<li class="lvl-2"><a href="https://github.com/jerryc127/hexo-theme-butterfly/issues/1023">tag页面图片生效位置</a></li>
-<li class="lvl-2"><a href="https://luoyuy.top/posts/5c76ad4123cd/">分割线处理</a></li>
-<li class="lvl-2"><a href="https://butterfly.js.org/posts/4aa8abbe/">butterfly文档三主题配置</a></li>
-<li class="lvl-2"><a href="https://blog.anheyu.com/posts/fc18.html">给butterfly添加侧边栏电子钟</a></li>
-<li class="lvl-2"><a href="https://github.com/jerryc127/hexo-theme-butterfly/discussions/878">https://github.com/jerryc127/hexo-theme-butterfly/discussions/878</a></li>
-<li class="lvl-2">天气插件：<a href="https://weatherwidget.org/zh/">https://weatherwidget.org/zh/</a></li>
-<li class="lvl-2">时间插件：<a href="https://time.is/zh/widgets">https://time.is/zh/widgets</a></li>
-<li class="lvl-2">时间插件：<a href="https://clockzone.net/">https://clockzone.net/</a></li>
-<li class="lvl-2">todo：<a href="https://github.com/ricocc/uiineed-todo-list">https://github.com/ricocc/uiineed-todo-list</a></li>
-<li class="lvl-2">自定义插件：<a href="https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90">https://butterfly.js.org/posts/ea33ab97/#例子</a></li>
-<li class="lvl-2">Butterfly:为博客添加微软Clarity数据统计：<a href="https://blog.yvyang.fun/posts/48347/index">https://blog.yvyang.fun/posts/48347/index</a>.</li>
-<li class="lvl-2">信封留言板：<a href="https://qianxu.run/butterfly-custom/index.html">https://qianxu.run/butterfly-custom/index.html</a></li>
-</ul>
-<p>在文章 front-matter 修改 <code>updated: 2020-10-08 18:39:58</code>，加入 <code>noticeOutdate: false</code> 测试效果则不显示。</p>
-<p>Next 当前不支持设置文章封面。butterfly的侧边时钟看着挺不错，但不能用了…显示的字太小了，看着有点费劲。</p>
-<p>在 <mark class="hl-label blue">\butterfly\layout\includes\widget\card_announcement.pug</mark>  注释掉小喇叭</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//- i.fas.fa-bullhorn.fa-shake 抖动很烦人</span><br><span class="line">i.fas.fa-bullhorn </span><br></pre></td></tr></table></figure>
-<p>在 <mark class="hl-label blue">source\css\_layout\aside.styl</mark> 禁用头像旋转，social 图标旋转也是这样注释。</p>
-<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar-img</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">110px</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">110px</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">70px</span></span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">img</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span></span><br><span class="line">    <span class="attribute">transition</span>: filter <span class="number">375ms</span> ease-in .<span class="number">2s</span>, transform .<span class="number">3s</span></span><br><span class="line">    <span class="attribute">object-fit</span>: cover</span><br><span class="line">    <span class="comment">// 禁止旋转</span></span><br><span class="line">    <span class="comment">// &amp;:hover</span></span><br><span class="line">    <span class="comment">//   transform: rotate(360deg)</span></span><br></pre></td></tr></table></figure>
-<p>禁用设置旋转，在<mark class="hl-label blue">layout\includes\rightside.pug</mark>，去掉<code>fa-spin</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#rightside-config-show</span><br><span class="line">  if needCogBtn</span><br><span class="line">    button#rightside-config(type=&quot;button&quot; title=_p(&quot;rightside.setting&quot;))</span><br><span class="line">      i.fas.fa-cog(class=theme.rightside_config_animation ? &#x27;fa-spin&#x27; : &#x27;&#x27;)</span><br></pre></td></tr></table></figure>
-<p>关闭分割线动画，在 <mark class="hl-label blue">source\css\_global\function.styl</mark>，定位到 <code>.custom-hr</code>,注释掉如下代码</p>
-<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">&amp;:hover</span></span><br><span class="line">  <span class="selector-pseudo">&amp;:before</span></span><br><span class="line">    <span class="attribute">left</span>: <span class="built_in">calc</span>(<span class="number">95%</span> - <span class="number">20px</span>)</span><br></pre></td></tr></table></figure>
-<p>在 <mark class="hl-label blue">source\css\_layout\footer.styl</mark> 修改页脚颜色</p>
-<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="variable">$light</span>-blue</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#b7b7b5</span><span class="meta">!important</span></span><br></pre></td></tr></table></figure>
-<p>添加天气组件 <mark class="hl-label blue">hoochanlon.github.io\source\_data\widget.yml</mark></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top:</span><br><span class="line">  - class_name: user-weather</span><br><span class="line">    name: 天气</span><br><span class="line">    icon: fa-solid fa-sun-cloud</span><br><span class="line">    order: 5</span><br><span class="line">    html: |</span><br><span class="line">     &lt;div id=&quot;ww_62f74659400aa&quot; v=&#x27;1.3&#x27; loc=&#x27;auto&#x27; a=&#x27;&#123;&quot;t&quot;:&quot;horizontal&quot;,&quot;lang&quot;:&quot;zh&quot;,&quot;sl_lpl&quot;:1,&quot;ids&quot;:[],&quot;font&quot;:&quot;Arial&quot;,&quot;sl_ics&quot;:&quot;one_a&quot;,&quot;sl_sot&quot;:&quot;celsius&quot;,&quot;cl_bkg&quot;:&quot;image&quot;,&quot;cl_font&quot;:&quot;#FFFFFF&quot;,&quot;cl_cloud&quot;:&quot;#FFFFFF&quot;,&quot;cl_persp&quot;:&quot;#81D4FA&quot;,&quot;cl_sun&quot;:&quot;#FFC107&quot;,&quot;cl_moon&quot;:&quot;#FFC107&quot;,&quot;cl_thund&quot;:&quot;#FF5722&quot;&#125;&#x27;&gt;&lt;a href=&quot;https://weatherwidget.org/zh/&quot; id=&quot;ww_62f74659400aa_u&quot; target=&quot;_blank&quot;&gt;天气插件&lt;/a&gt;&lt;/div&gt;</span><br><span class="line">      &lt;script async src=&quot;https://app3.weatherwidget.org/js/?id=ww_62f74659400aa&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-      <tags>
-        <tag>博客测试</tag>
       </tags>
   </entry>
   <entry>
@@ -941,6 +645,336 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
       </tags>
   </entry>
   <entry>
+    <title>GitHub RST与Git SSL_ERR_SYSCALL综合分析</title>
+    <url>/posts/28547.html</url>
+    <content><![CDATA[<ul class="lvl-0">
+<li class="lvl-2">
+<p>杜绝主观情绪化因素</p>
+</li>
+<li class="lvl-2">
+<p>多方面考虑原因（多种可能）</p>
+</li>
+<li class="lvl-2">
+<p>查找及建立两者关联（共同点）</p>
+</li>
+</ul>
+<p>主观情绪化会失去客观分析判断能力，正确率几乎忽略不计，必须杜绝主观情绪化再去分析！</p>
+<span id="more"></span>
+<h3 id="RST">RST</h3>
+<p>网络封锁重置、hosts IP-DNS映射指向问题</p>
+<h3 id="SSL-ERR-SYSCALL">SSL_ERR_SYSCALL</h3>
+<p>调用传输层自行设置的代理套接字，出现的无法访问的问题。可能存在代理配置或是网址有问题，网址问题则涉及到hosts映射设定内容。</p>
+<h3 id="小插曲">小插曲</h3>
+<p>对GitHub进行ping测试，发现虽然ping不通，但还是能访问。处于网络安全的考量，应该是网站禁用了ICMP回应或者开启了ICMP过滤。</p>
+<p>参考 <a href="https://www.cnblogs.com/kunlunmountain/p/5945756.html">kunlunmountain-为什么有些网站PING不通但又能访问.</a></p>
+<p>由此从ping转向curl测试，因为该工具也提供了很直观的信息。</p>
+<p><img src="https://i.postimg.cc/brH28KhX/010.png" alt=""></p>
+<h3 id="汇总">汇总</h3>
+<p>RST与SSL_ERR_SYSCALL有一个共同的问题：hosts IP-DNS映射</p>
+<p>应用层的Hosts通过IP-DNS映射，网址解析被指向特定IP地址。而代理只是转达客户端这特定指向访问IP请求，并不会对IP进行路径转换。若Hosts映射IP、DNS任一方不存在，则会造成即使翻墙配置了代理也无法进行访问的情况。所以代理也被称作<a href="https://baike.baidu.com/item/%E5%BA%94%E7%94%A8%E7%BD%91%E5%85%B3/6324513">应用网关</a>，也是有原因的。</p>
+<p><img src="https://i.postimg.cc/SKjbkkk8/008.png" alt=""></p>
+<p>由于Hosts比远程的DNS优先级高，主机最先进入Hosts查询DNS映射，只有在hosts中没查到该条访问映射才进行远程DNS服务器查询，VPN方面虽建立一条专用隧道进行外部服务器访问，但主机给到外部服务器解析的DNS映射还是错误的，所以还是会造成主机不可达，依旧无法访问。</p>
+<p><img src="https://i.postimg.cc/fT1p9pnn/009.png" alt=""></p>
+<p>有时就算进行Host设定重定向也能短时间内也正常访问站点，这与keep-alive、浏览器及系统DNS缓存有关，参考 <a href="https://www.cnblogs.com/hustskyking/p/hosts-modify.html">小胡子哥-修改Hosts为何不生效，是DNS缓存？</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>流水线工厂陷阱</title>
+    <url>/posts/815.html</url>
+    <content><![CDATA[<p>序：</p>
+<p>工厂自来各个专业领域的中专生有很多，不过听说大专的流水工在华为是很多的，从招聘上看确实如此，底薪高于富士康两倍多，学历要求大专，美其名曰促进了社会基层制造业工职学历提升。<span id="more"></span>原因推测：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>面子工程，企业形象问题</p>
+</li>
+<li class="lvl-2">
+<p>拉开企业之间的档次（如：<a href="http://www.cyshu.cn/s/news/149.html">高新技术企业认定</a>，企业有国家补贴）</p>
+</li>
+<li class="lvl-2">
+<p>高工资的橄榄枝，同时素质较高的也便于管理</p>
+<ul class="lvl-2">
+<li class="lvl-4">吸引积蓄不够且求职碰壁的大专生</li>
+<li class="lvl-4">拉拢自考大专的中专优秀上进人才</li>
+<li class="lvl-4">让人们潜意识觉得就是做这个的料</li>
+</ul>
+</li>
+</ul>
+<p>不过华为太过拉低与贬损我们大专了，我们可以且有能力去做体面的事情！最多待一年进行积蓄，了解身边的人和事，并总结所见的现象。在家两、三月磨炼自己专业，投简历找专业相辅的工作，大专投中专、本科投大专进行一定程度的降维打击，尽量展现自己的优势，用积蓄租房及进行一个月左右的时间找工作。</p>
+<!-- more -->
+<p>不过，现在很多人做起了外卖、快递，大概也含包括这原因，可这本质上又陷入了同种陷阱。下面我回忆曾在流水线一线工作的室友，加上自己也曾舍去CQE职位，深入一线体会工友们白夜加班的工作生活，以此总结分析下多数工友未能走出流水线普工身份的原因。</p>
+<h3 id="普工加班陷阱">普工加班陷阱</h3>
+<p>早8点工作到近12点左右，午间1.30再上班，排队吃饭的人很多，12.25分左右吃完饭回到工位也近40左右，实际休息时间也就半小时至四十近五十分不等左右。五点半开始，每条生产线10分钟左右按批次轮流去吃晚餐，晚七点半左右拥挤的人流进行排队打卡下班。</p>
+<p>下班通勤时间晚8点下班搭上班车，到宿舍也8点半左右了，忙碌的一天，休息半小时，再刷着40来分钟的抖音或两三局王者，洗衣搓澡也大概40来分钟左右，再循环一遍抖音、王者，就睡觉了。因为我们知道最晚也要搭上7点10分的班车去打卡上班。在园区买早餐吃，7.40-50间左右打卡，开始了8点的流水作业。</p>
+<p>绝大部分时间都被机械重复的流水线工作占据，长达几小时重复，人的精神都会变得麻木疲惫。吃完饭或是下班回宿舍也是第一时间想着休息，休息完看短视频、打王者放松。毕竟实在是很累也太疲惫了。</p>
+<p>我们也没有相关专业性质的培训与质量考试，这些都是线长、组长之类的管理职才能接触并涉及到的内容。而我们几乎接触不到更深层次的内容，我也是在下班前做报表偶然在组长办公室座位发现的。后来自己找工作时也发现想要跳槽更好的职位，也确实需要这些知识储备才有资格求职应聘。</p>
+<p>节假日休息的一天，无非就是睡个懒觉，到中午打局王者，下午上网或外出溜达。一到晚上简单聊会天，打局王者后洗衣搓澡，躺着或坐在床上刷着短视频，到点睡觉罢了。</p>
+<p>想要8小时5天工作制？可以，我们大家做的事情都是一样的，尼每天也就少了1.5-2小时左右，双休可没双倍工资哦。到最后你就只能拿到2200社会最低薪资了，真的要这样做吗？这就是不少人选择了加班的原因，以自己剩余时间换报酬。</p>
+<h3 id="消费观念陷阱">消费观念陷阱</h3>
+<p>身为普工又想受人尊重，体面上也要过得去，发了工资买起了阿迪、耐克，分期购高价款iPhone。毕竟不用考虑外出租房，厂分配的宿舍租金加水电不超过二百元，相当于白送，情侣也多为合租；吃饭方面，富士康也会预发400整充值到工卡里给员工用于吃饭，综上所述到手4、5k的工资，可支配资金是较充足的。</p>
+<p>为了买所谓的高端名牌大气上档次的物品，来衬托自己，可能以这样的方式更能靠近有钱人的生活吧。想要让人心理认为“买这么贵的衣服，这人应该从事体面职位、薪资很高，是个有身份的人”，以获得脑补受人认可、称赞效果的满足感。</p>
+<p>娱乐方面，原本打局王者本为放松，由于游戏的竞争机制，所见所得即时反馈来的快感/损失厌恶，想要获得所需要快感：1、定制私有化，2、攀比炫耀展现自己优势，3、打赢别人回报损失厌恶的满足，这三点的体现如：充钱买皮肤、军备升级等等，“好牛逼！大佬，带带我”；人人都玩，于是它成为人们必要娱乐消遣方式，为了融入群体又或是从众效应影响，新人也开始入坑，由最初的娱乐转向电竞白热化心态，继续循环这一过程。烟酒也是同理，由最初用来缓解焦虑痛苦，渐渐人们反而被它所操纵。</p>
+<h3 id="结语">结语</h3>
+<p>说起普工加班陷阱与消费观念陷阱，联想到富士康连环跳楼事件，以及自己与工友们过度消费买买买，这也让我有必要看看《自杀论》、《上瘾》、《贫穷的本质》三本书进行求解。</p>
+<p>普工工友们的剩余时间也被用来重复劳作，最后休息时间几乎所剩无几，生活就这样如此循环着，工友们跌入甚至连自己都不知道的加班陷阱中。没有了充裕时间进行自我思考，自然也不会进行反思去总结身边现象的更深层次的成因，也就是现象原因中的原因，不会想着从而以此进行谋划一份未来能够拥有更好的工作，一步步去实现它。</p>
+<p>每周不多的充足剩余时间也被投入到游戏、刷短视频中，为了更好的体面，分期消费升级换代了自己电子产品、服饰也配上国际大牌范，工友潜意识认为以这样的方式能迅速置身于有钱人的生活中吧。因为眼前所见这些有钱人、综艺明星也是用的这些，身边得到的信息也是用iPhone、穿XX，就是有钱人这类二元论。</p>
+<p>可工友这些行为实际上就是让自己为这产品分期的钱所打工，自己的思想觉悟并没有得到本质上的提高。其实我们仔细想想，购买这类批量制造价格不等的同质产品只是消费理念的不同，是否信仰其品牌营造的理念价格。真正想要获取的可能真的仅是能衬托出是有钱人的物质而已。</p>
+<p>每个人的经历各不相同，因学历低找不到对口专业或理想的工作，受限于眼前，仅认为自己只能做流水线普工了，基于这一共同点让我们走在了一起。在工厂制度与偏差的消费观双向影响下，不少工友陷入了上述的两个陷阱，这必然也会大幅削减自己购买书籍、文档资料进行自我提升的必要投入，无形之中将自己与普工身份绑定得更深，这就是大概多数普工未能走出的更深层次的原因吧。</p>
+<p>参阅资料</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://www.bilibili.com/video/BV1bt4y1q7Hm">观视频-有进无出，700万外卖骑手的内卷人生</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://www.bilibili.com/video/BV15y4y1y7XA/">知乎3万赞！那些正在毁掉年轻人的“贫困陷阱”！【歌白】</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://terminus2049.github.io/archive/2018/07/07/Shen-Mengyu.html">端点星-梦雨：无悔选择 —— 从中大硕士到流水线女工</a></p>
+</li>
+</ul>
+<p>忽然想到我最近看完的《美丽新世界》，在这本小说中领导者有意强制通过胚胎，进行划分不同种族人群阶级，甚至连思维都如同程序般被写死的，不具有可塑性，下等种族也能无脑沉浸于欢乐；而我们不是，我们能够感知痛苦想要改变，因此我们的人性具有可塑性。</p>
+<!--那些读书人认为自己在读书时已经奋斗过了，就本该享受成果，自然也不会深入一线了解基层，只是看着他们风餐露宿的表象，劝告着子女别像我们流水线工人这样，过着舒服的日子，唱着赞歌爱着他们所信仰的布尔什维克。-->
+<!--他们其中不乏看不上我们这类学识低、文化少且处于社会基层的后知后觉者。-->
+<!--短期欢乐，长期享受是持续不断实现的过程。-->
+<!--现实的统治者制定规则，由于每个人的出生背景、经历都具有独特性，对规则的适应程度各有差异，发展的路径都各有不同，亦或是殊途同归，就像大自然各类生物生态周期这般均衡的协调着。-->
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>事件复盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分析我工作上没有层次、时间概念的原因</title>
+    <url>/posts/16112.html</url>
+    <content><![CDATA[<p>在看到这幅图，我恍然大悟，才开始明白工作上主管一直叫我处理桌面问题，而他自己则在规划流程及维护网络、业务数据后台的原因。</p>
+<p><img src="https://z3.ax1x.com/2021/11/22/IxDVyQ.jpg" alt="IxDVyQ.jpg"></p>
+<span id="more"></span>
+<p>￼<br>
+主管相当于把桌面问题这类第三象限不重要但紧急的事安排给我做，但到我这里后就成了第一象限，原因如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>同事电脑有问题影响他办公，第一时间就会想到我，同事会要求我最好尽快、立即、马上处理，处理不好又会遭投诉，再加上此事也是主管吩咐我照办，这也让我更加不敢有丝毫懈怠。</p>
+</li>
+</ul>
+<p>长此以往我也感精神疲惫，也正好如图所说，近期我一直经常在回家深夜一直看游戏、动画等娱乐节目放松消遣、打发时间，随着时间一天天这样过去了。现在我才开始意识到我从工作到现在一直在白“穷忙”，实际上没真正想过该怎样去改善目前的现状，建立好自己的有序的计划。</p>
+<p>看到图中的第二象限，我似乎明白了什么。将第一象限的事情转化为第二象限处理，不论工作有多么紧急也要有计划有安排地去做。无意中也发现第二象限也体现了做事的态度。想到了一个很好例子：对方交代我主管做的事情，他都会把事情问得特别清楚：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>事情谁主导（负责）？其中又有哪些人参与？</p>
+</li>
+<li class="lvl-2">
+<p>事件的目前进展及影响如何？</p>
+</li>
+</ul>
+<p>说完事情概貌后，他接下来考虑处理问题：我们有哪些办法？又该分几步处理？同时产生新问题又该怎么解决？最后落实到具体时间上执行。</p>
+<p>再由以上想到第一象限还真是为了解决问题而解决问题，而不是把事情办好办漂亮，同时也想到第三象限也有一个解决方式：明晰事件，划清责任。落实到执行上也给出了自己的空余时间，也有着第四象限的缓冲带；联想到我自己：待办事项是第一步，四象限法则是第二步。第一步我做到了，目前的目标是开始持续进行第二步。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>事件复盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>书店、自习室与图书馆简评</title>
+    <url>/posts/40198.html</url>
+    <content><![CDATA[<p>今天去的三个主要位置，大学城站与西丽湖站（野生动物园）、塘朗站。大学城站D出口附近有个时代广场（书店与自习室），西丽湖站直走百来米就是深圳科技书城（需要预约）。西丽这一块，公共图书馆可真的少…之后在塘朗宝能城，总算是找到了一家公共图书馆，桃源之光。</p>
+<p>以九祥岭湿地公园为中心，西丽、大学城、西丽湖，这三个地铁站点都离得不是很远。我从西丽到塘朗只有两站的距离，也还可以接受。</p>
+<span id="more"></span>
+<h2 id="西西弗书店（丽山路店）">西西弗书店（丽山路店）</h2>
+<p>书店里头的咖啡馆比南山书城的那家相对来说动静没那么大，比较小孩没那么多；书店对面的肯德基虽人流量不多，但外头声音比较嘈杂。第一次买杯咖啡，占个座，问个Wi-Fi基本上就差不多了。</p>
+<p>书店就最便宜的36块的咖啡桌位来说，而且带小孩的家长一多，也会比较吵，个人感觉不适合常来自习，划不来。</p>
+<h2 id="觅岸自习室（大学城站D出口）">觅岸自习室（大学城站D出口）</h2>
+<p>概貌：一小时10块钱，一天是38块。整体来说比较安静，地段虽说在马路边，不过写字楼比较高档，隔音很不错。一般来说，家长也不会带小孩来这个地方，女性来自习室较多。</p>
+<p>配套：桌台有自助膨化小包零食、咖啡粉冲剂；有微波炉和冰箱在茶水间，楼下有独立较空旷的休闲区，本质上是洽谈室；打印纸张比较便宜，黑白也就几毛钱，彩打不到一块钱。</p>
+<p>这个自习室比书店实际上要划算一些的。</p>
+<h2 id="桃源之光（塘朗D出口出站直走）">桃源之光（塘朗D出口出站直走）</h2>
+<p>这是我能找到的日常开放的公共图书馆，距离算比较近的一个了。没有工地噪音，大部分的声音基本上是离开座位走动一小会儿（走路的脚步声比较响），与时不时有人清嗓子发出的声响。</p>
+<p>一些小孩看书也算比较安静的，图书馆将儿童座位与成人座位相对间隔较远，总体还行吧。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>随想简评</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>某某学院学生妹最后的吟持</title>
+    <url>/posts/40753.html</url>
+    <content><![CDATA[<p>对于这个特殊服务的学生妹，矜持不至于，“吟持”这一词是最贴切的。这些学生妹通常是外地的，读完本科顺手在落脚点上业了，而在本地她们怕遇到嫖娼的亲戚朋友，也怕被亲戚朋友知道后指指点点，说得太难听。</p>
+<p>如果家里有钱，或者需求相对来说不大手大脚（包括虚荣心），不去酒吧歌舞厅拍拖，基本上是不会做这行的。远在外头也可以假以普通的正当职业正名（普工、医美等），花钱的名牌包包、万元手机等都可以是“男友”们送的。</p>
+<p>挑选服务小妹无关学历，而在于身材长相与活好，由于照片（写真/艺术/P图）与现实较大，但由于长得像曾经的中学、大学同学还会接受。不过，想来我的同学朋友比我领先了十几年了，在我读初中的时候就知道某某学院鸡多，只是有认识老鸨的人脉，不同于会所，由于“扫黄打非”查得严，通常采取上门服务。</p>
+<span id="more"></span>
+<p>按摩服务的会所技师除了不能亲嘴、做爱、口交，其他的都能做，比方说：摸胸、胸交、下体摩擦、打飞机；有些鸡由于化妆的原因也是不能要求亲嘴亲脸，<br>
+B罩杯由于胸太小是不能进行站立式的胸交的，大腿细如枝条，脊柱骨凸显，整身龙骨嶙峋，屁股冲撞的时候，鸡巴的两侧骨头也会痛，体验并不舒服。通常来说，大部分技师特殊服务的活比鸡要好些，鸡的话看做过一两年的这些活起码比刚开始做个把月不到的是要好不少的。</p>
+<p>不过这些鸡是怎么认识老鸨的，有些好奇。想到的一点，做过技师经人推荐。其他的点，暂无，后续补充。目前找到的其他参考，如下。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://www.yicai.com/news/3508431.html">“中国性学教父”潘绥铭：研究红灯区最大的危险是被小姐爱上</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://sex.ncu.edu.tw/news_archive/?p=3102">生存與體驗－－對一個紅燈區的追蹤調查》節選</a></p>
+</li>
+</ul>
+<p>后来与朋友的讨论中也想到了一些事，故补充：</p>
+<p>上层名流请吃饭，又或是做一两星期、一个月的女友，也无非名义合法化。小温泉也无非穷人的<a href="https://www.bilibili.com/video/BV14C4y1v72s">萝莉岛</a>。知乎上对于会所技师也是“懂得都懂”般的不说破，B站关于<a href="https://www.bilibili.com/video/BV1jC4y1S7aP">警方抓获卖淫女后，为何不用交易记录寻嫖客？</a>话题下方评论区的倒是挺实在的，只是这次经过让我没想到原来嫖娼的这么多人。</p>
+<p>2024.2.17 updated： <a href="https://www.bilibili.com/video/BV1ST4y1b7d3">b站-隐秘的圈子，女大学生的“双面生活”#扫黄#宁波大案#大案纪实 #侦破纪实 #案件故事解说</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>空气中的视听与幻觉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>被亲戚拉着硬着头皮去街头搭讪的回想</title>
+    <url>/posts/37467.html</url>
+    <content><![CDATA[<p>家里亲戚说我：没积蓄、没老婆没车、又没本事，还挑三拣四。如今个人所谓的自由恋爱与婚姻，也被家里人强行干涉与撮合。 <span id="more"></span></p>
+<p>一开始亲戚说带我去白廊，我以为是在那看看风景吃吃饭，没想到突如其来的让我看妹子，去与妹子街头搭讪。让我十分的诧异，亲戚看我惊讶的表情解释道：“本来是带起你来玩的，这是你妈老叫我带你去看妹子，找个夫娘”，“总带起他去玩，不带他找老婆”，接着并笑着说：“你要是不去，我就把你丢在这，不管你了”。</p>
+<p>我被亲戚与几个与他随行的路人朋友生拉硬拽及怂恿下，强行与陌生的路人妹子搭讪。“美女，可以加一个微信吗？”、“美女，我看你们挺喜欢拍照，（你要是有个相机就好了，搭讪成功机率要高些）我也爱好摄影，一起加个微信。”，亲戚说的诸如此类的话，我是真说不出来口。可硬被这番拉扯、“加油打气”，无可奈何地去第二次搭讪，硬着头皮加了对方微信，最后一起吃了个饭。</p>
+<p>加上微信的当时，我有些完全无法理解，亲戚给我搜到的小视频对“妹子被男人搭讪是什么感觉？”的解答让我有些出乎意料 —— “不应该是反感吗？”，“不认为是流氓吗？怎么居然妹子还自认为有魅力，而开心接受了？离谱！”。而加我的女性给的回复是“我看你像销售，出于礼貌加的”，事后的几天，我咨询了下女同事、比较要好的女性朋友，她们的回答分别是：“不加”、“担心诈骗”、“看脸，好看是艳遇”、“只不过萍水相逢”。</p>
+<p>第一次“搭讪”那会，那两个妹子也看出来我与亲戚的随行几人。在妹子们下坡时，但我了方便本以为跳下去就能双脚踩到土里，没想到一只脚着地了硬邦邦的水泥平台，导致了骨折。到最后我实在开不了口，并没有要对方微信，第一次“搭讪”回来只能对亲戚应付地说了声：“她没加”。亲戚看到我的囧样，开玩笑的说：“本来你脑袋就不行，这下好了，脚也摔了，脑袋不行，脚也瘸了。” 不由得想起此前他对我说的话：“外公葬礼是6万块，跟婚礼其实差不多；你爸妈要是老了怎么办呢？你到时候连他们的葬礼钱都出不起！”、“你又没什么本事，要钱也没有钱，谁跟你？以后未来结婚都结不起！老婆也找不到！”，我心中十分的恼火。</p>
+<p>想起教练对我说过的一番话：“你是家里的独子，不可能要你单着的。” 确实如此我的所谓自由婚恋都是强行干预的，并没什么自我可言。我本来还想在个人经济与婚姻上摆烂躺平，却发现我连资格都没有，现在的情况只能是攒钱先保本，还谈什么车子，红白喜事与人身意外有了底再说。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>事件复盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我对 GitHub 的看法</title>
+    <url>/posts/50270.html</url>
+    <content><![CDATA[<p>我对 GitHub 的看法：一个写日记的地方，就和有些人爱发朋友圈、小红书、QQ空间差不多。 但早几年用过VPN定位到俄罗斯，GitHub也被封过几天，搞得我 GitHub 都实名双持身份证照证明了一回我是中国人…我对 GitHub 也不是太信任了，不过至少还是能想说啥说啥，自说自话吧。</p>
+<span id="more"></span>
+<p>早几年刷到过无聊的帖子，类似有 1k 项目是什么感受什么的，那时候的 Star 有比较高的含金量，对我来说跟祛魅差不多，GitHub Star并未对我带来半分改变，还不是一样的作为底层牛马上班，常常受人颐指气使，做的不好该挨骂，还不是得挨骂。</p>
+<p>去年电话面试启明星辰网络、iDC方向的运维工程师，面我的是一位女负责人，当时确实让我惊讶了片刻，她说看过我的 GitHub，并认可我的一些有关网络、脚本的项目，建议我去面安服。最终结果自然也是没面试上，我的这些项目几乎对我找工作没什么帮助，顶多算是聊胜于无的加分项，在 GitHub 投入了这么多精力，简直可笑。 —— 有这些精力，涨些学历、考个专业资格证、又或是早几年考公，都比投入 GitHub 值得多。</p>
+<p>像什么看了 GitHub，对你感兴趣，发出远程办公邀请的邮件，对我来说简直扯淡。要么实际面试后对方看不上，要么作为免费的苦力。对于这个 <a href="https://github.com/liupan1890/aliyunpan/issues/882">issue#882</a> 其中的这一条信息：“现实中一千star的都能直接甩面试官脸上砸他了,我是想不通 是不是你所在城市岗位太少 多的不说 找个3w的很轻松吧 哪怕是没学历”。对我来说这简直是蠢话。记得朋友给我发过一张是知乎评论的一张截图，不少人也和这言论差不多，想当然的断言。真是无聊至极。说句难听的，我的 GitHub 资历，比起找到合适的工作来说，简直就是狗屁。</p>
+<p>忽然由此产生的感受：一开始 GitHub 是乐趣兴趣，当附带了找工作加成的属性，对我来说就是厌烦了。想到以前媒体老是喜欢在计算机行业“造神”，宣传类似林纳斯·托马斯的事迹，可大部分都是普通人，也没那样的条件，还真是“认真你就输了”，真信了、入戏太深了，付出精力产出的成果，连照亮别人的蜡烛都算不上，顶多也成了餐馆里的便利一次性筷子。更多的是没有成果，埋头苦干，闭门造车，对生活没半分改善，沉浸于自己的世界，久久不能自拔。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>随想简评</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一次单向一厢情愿的沉思</title>
+    <url>/posts/16279.html</url>
+    <content><![CDATA[<p>就根据我了解的已婚或成伴侣的朋友，我从他们那听到一个核心概念就是“双向选择”或者说是“双向奔赴”。必须两人要处在这一“认可”平台上才能建立这种关系。</p>
+<span id="more"></span>
+<p>关于这内心上的认可其实是挺有横纵空间概念的。比如常见物资上的：钱、房子、车子；这是客观上认可的东西。在社会上结识的人，我们所遇到的每个人，他的家庭资本、家庭背景比较起来的话都差序的。之所以我们能相见交流也是在共有平台上，如在相同的学校、同一个公司这样进行的，而这些人能够成为双向共同的伴侣，从一定程度上说明也不完全是这些物资上的东西。</p>
+<p>选择以物质为主的择偶，其本身是一种家庭联结的相亲标准，谈不上什么感情，在情感上是没选择的，更像是事业群体为利益的结合。这和自由恋爱还是有所差别的，自由恋爱更多是建立在双方内心沟通的契洽上，至于物质虽说重要，但那是一种追求的希望，一个更好的生存环境；即使换做更好的生存环境，只要有一方不遂愿，那双方的结合还是不能成立的。</p>
+<p>说到这内心认可，个人装扮的外貌、外在表现的态度，整体所反映的个人独特的魅力，这个挺关键的，是吸引力的所在。光有联系交流的套路是不够用的，而且现在女性也不傻，像对PUA、养鱼这方面的认知来说，可真一点不比我们少。另一个就是需要了解的就是对方是怎么划定朋友、同学、同事的，这一点很重要，可以看出双方在朋友、恋人界限的差别。</p>
+<p>在情感上的交流还真不是在同一横纵平面上进行的。以我来说，我自己却没怎么把“朋友”这概念定位的很明确，只是从情感选择上进行区分；但每个人是不一样的，应该是交际的缘故，在这方面上定位是很精确明细的，以我结识的一个高岭之花为例，她的定位：“朋友分为异性和同性，普通朋友和密友，普通朋友就是偶尔联系分享一下生活趣事，密友有相同的爱好、三观一致，知无不言、言无不尽。在我这里，离职后不再联系的都是前同事，偶尔联系的就是普通朋友”。从“相同的爱好和三观一致”，从一定程度上说在双方言语交流过程中探寻对方喜好，问及对朋友与对自己的看法，顺便问及对方想法与家庭出身。明白了这些，自己与对方就能分晓出差别，在对方心中大概又是什么样的定位。</p>
+<p>如果不清楚这方面定位，很容易出现像我一样的局面：“一方面我把心事诉诸忠肠，对于我来说，这是她对感情上的信任，也是将对方看重的体现。而她呢，只不过是认为普通朋友的心事解疑罢了，并不会在这上寄托很重的情感”；至于这位高岭之花也向我表态了也给出了她的建议：</p>
+<p>她不想与我彼此之间存在模棱两可的关系，毕竟都是成年人，有疑惑就应该直白点说清楚，误会只会让事态往不好的方向发展。不要太过于相信自己的直觉。都是成年人，有疑惑直接说。不要让自己陷入幻想里，喜欢就是喜欢，不喜欢就直接拒绝，不要搞暧昧，不要养鱼。异性朋友之间还是有纯友谊的，至少我是相信有的。</p>
+<p>说和做不一致，那说明有一个动作已经产生了拒绝，只是不想伤害你，所以比较含蓄，只是你还在误会，导致误会越来越深。（这是我对高岭之花提出的关于其他女性与我表态含蓄的手法）</p>
+<p>回到魅力上来说吧，我也是第一次感受到魅力是可以具体形象化的，就以我向这高岭之花表白的评价吧：“我也觉得你与一般人不同，也是这种直白。所以对于我来说，你在我心中很独特；你也知道现在的’委婉托辞’也挺常见的，所以你的直白，至少在我看来挺特别、挺好的”。接下来就是这位高岭之花对我的评价：“你和我其他的异性朋友没什么区别，自然我也是以同样的心态对待每一个朋友。唯一的不同是，你有时候话比较多”。</p>
+<p>从这些方面来说确实能反应出许多问题，我在她看来魅力方面什么的，自然是啥都没有了…兴趣爱好也是不甚了解，加上自从她离职后面对面的交集很少。有一点我没想到的是在公司内向的她，在公司不善言语的她，居然在社会上又是另一面广结各路朋友的展现。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>空气中的视听与幻觉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>butterfly主题测试页面</title>
+    <url>/posts/442.html</url>
+    <content><![CDATA[<!-- https://rpgamer.com/wp-content/uploads/2022/08/persona-heroes-image.jpg -->
+<!-- https://tu.zbhz.org/i/2025/10/09/114ak04.jpg -->
+<ul class="lvl-0">
+<li class="lvl-2">文章摘要：<a href="https://www.myzimu.com/post/978df16.html">https://www.myzimu.com/post/978df16.html</a>
+<ul class="lvl-2">
+<li class="lvl-4">AI摘要KEY：https://docs_s.tianli0.top/install.html</li>
+</ul>
+</li>
+<li class="lvl-2">文章节选： <a href="https://butterfly.js.org/posts/4aa8abbe/?highlight=description">https://butterfly.js.org/posts/4aa8abbe/?highlight=description</a></li>
+<li class="lvl-2">文章过期提醒设置：<a href="https://butterfly.js.org/posts/4aa8abbe/?highlight=%E6%8F%90%E9%86%92">https://butterfly.js.org/posts/4aa8abbe/?highlight=提醒</a></li>
+<li class="lvl-2">动漫图片超分辨率：<a href="https://real-cugan.animesales.xyz/">https://real-cugan.animesales.xyz/</a></li>
+<li class="lvl-2"><a href="https://github.com/jerryc127/hexo-theme-butterfly/issues/1023">tag页面图片生效位置</a></li>
+<li class="lvl-2"><a href="https://luoyuy.top/posts/5c76ad4123cd/">分割线处理</a></li>
+<li class="lvl-2"><a href="https://butterfly.js.org/posts/4aa8abbe/">butterfly文档三主题配置</a></li>
+<li class="lvl-2"><a href="https://blog.anheyu.com/posts/fc18.html">给butterfly添加侧边栏电子钟</a></li>
+<li class="lvl-2"><a href="https://github.com/jerryc127/hexo-theme-butterfly/discussions/878">https://github.com/jerryc127/hexo-theme-butterfly/discussions/878</a></li>
+<li class="lvl-2">天气插件：<a href="https://weatherwidget.org/zh/">https://weatherwidget.org/zh/</a></li>
+<li class="lvl-2">时间插件：<a href="https://time.is/zh/widgets">https://time.is/zh/widgets</a></li>
+<li class="lvl-2">时间插件：<a href="https://clockzone.net/">https://clockzone.net/</a></li>
+<li class="lvl-2">todo：<a href="https://github.com/ricocc/uiineed-todo-list">https://github.com/ricocc/uiineed-todo-list</a></li>
+<li class="lvl-2">自定义插件：<a href="https://butterfly.js.org/posts/ea33ab97/#%E4%BE%8B%E5%AD%90">https://butterfly.js.org/posts/ea33ab97/#例子</a></li>
+<li class="lvl-2">Butterfly:为博客添加微软Clarity数据统计：<a href="https://blog.yvyang.fun/posts/48347/index">https://blog.yvyang.fun/posts/48347/index</a>.</li>
+<li class="lvl-2">信封留言板：<a href="https://qianxu.run/butterfly-custom/index.html">https://qianxu.run/butterfly-custom/index.html</a></li>
+</ul>
+<p>在文章 front-matter 修改 <code>updated: 2020-10-08 18:39:58</code>，加入 <code>noticeOutdate: false</code> 测试效果则不显示。</p>
+<p>Next 当前不支持设置文章封面。butterfly的侧边时钟看着挺不错，但不能用了…显示的字太小了，看着有点费劲。</p>
+<p>在 <mark class="hl-label blue">\butterfly\layout\includes\widget\card_announcement.pug</mark>  注释掉小喇叭</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//- i.fas.fa-bullhorn.fa-shake 抖动很烦人</span><br><span class="line">i.fas.fa-bullhorn </span><br></pre></td></tr></table></figure>
+<p>在 <mark class="hl-label blue">source\css\_layout\aside.styl</mark> 禁用头像旋转，social 图标旋转也是这样注释。</p>
+<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar-img</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">110px</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">110px</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">70px</span></span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">img</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span></span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span></span><br><span class="line">    <span class="attribute">transition</span>: filter <span class="number">375ms</span> ease-in .<span class="number">2s</span>, transform .<span class="number">3s</span></span><br><span class="line">    <span class="attribute">object-fit</span>: cover</span><br><span class="line">    <span class="comment">// 禁止旋转</span></span><br><span class="line">    <span class="comment">// &amp;:hover</span></span><br><span class="line">    <span class="comment">//   transform: rotate(360deg)</span></span><br></pre></td></tr></table></figure>
+<p>禁用设置旋转，在<mark class="hl-label blue">layout\includes\rightside.pug</mark>，去掉<code>fa-spin</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#rightside-config-show</span><br><span class="line">  if needCogBtn</span><br><span class="line">    button#rightside-config(type=&quot;button&quot; title=_p(&quot;rightside.setting&quot;))</span><br><span class="line">      i.fas.fa-cog(class=theme.rightside_config_animation ? &#x27;fa-spin&#x27; : &#x27;&#x27;)</span><br></pre></td></tr></table></figure>
+<p>关闭分割线动画，在 <mark class="hl-label blue">source\css\_global\function.styl</mark>，定位到 <code>.custom-hr</code>,注释掉如下代码</p>
+<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">&amp;:hover</span></span><br><span class="line">  <span class="selector-pseudo">&amp;:before</span></span><br><span class="line">    <span class="attribute">left</span>: <span class="built_in">calc</span>(<span class="number">95%</span> - <span class="number">20px</span>)</span><br></pre></td></tr></table></figure>
+<p>在 <mark class="hl-label blue">source\css\_layout\footer.styl</mark> 修改页脚颜色</p>
+<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span>: <span class="variable">$light</span>-blue</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#b7b7b5</span><span class="meta">!important</span></span><br></pre></td></tr></table></figure>
+<p>添加天气组件 <mark class="hl-label blue">hoochanlon.github.io\source\_data\widget.yml</mark></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">top:</span><br><span class="line">  - class_name: user-weather</span><br><span class="line">    name: 天气</span><br><span class="line">    icon: fa-solid fa-sun-cloud</span><br><span class="line">    order: 5</span><br><span class="line">    html: |</span><br><span class="line">     &lt;div id=&quot;ww_62f74659400aa&quot; v=&#x27;1.3&#x27; loc=&#x27;auto&#x27; a=&#x27;&#123;&quot;t&quot;:&quot;horizontal&quot;,&quot;lang&quot;:&quot;zh&quot;,&quot;sl_lpl&quot;:1,&quot;ids&quot;:[],&quot;font&quot;:&quot;Arial&quot;,&quot;sl_ics&quot;:&quot;one_a&quot;,&quot;sl_sot&quot;:&quot;celsius&quot;,&quot;cl_bkg&quot;:&quot;image&quot;,&quot;cl_font&quot;:&quot;#FFFFFF&quot;,&quot;cl_cloud&quot;:&quot;#FFFFFF&quot;,&quot;cl_persp&quot;:&quot;#81D4FA&quot;,&quot;cl_sun&quot;:&quot;#FFC107&quot;,&quot;cl_moon&quot;:&quot;#FFC107&quot;,&quot;cl_thund&quot;:&quot;#FF5722&quot;&#125;&#x27;&gt;&lt;a href=&quot;https://weatherwidget.org/zh/&quot; id=&quot;ww_62f74659400aa_u&quot; target=&quot;_blank&quot;&gt;天气插件&lt;/a&gt;&lt;/div&gt;</span><br><span class="line">      &lt;script async src=&quot;https://app3.weatherwidget.org/js/?id=ww_62f74659400aa&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>博客测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>龙岗坂田租房新知</title>
+    <url>/posts/36020.html</url>
+    <content><![CDATA[<p>我知道了一些看似八九百块钱至一千的公寓房租为什么普遍选择押二付一，主要是为了延缓、牵制租客搬迁到别处。八九百至一千乘以二后，押在房东那的钱也不算是小数目了，这时就不太好违约退租了。 <span id="more"></span></p>
+<h2 id="合同涨价与促销">合同涨价与促销</h2>
+<p>下图的合同押二付一确实也不算也一个小数目，差不多近两千块钱了。</p>
+<p><img src="https://s1.ax1x.com/2022/04/11/LEmGAf.md.png" alt=""></p>
+<p>一些农民房、公寓的合同签半年一年不等就涨7%，一些稍有良心的会涨3%-5%左右，然后他们微信又是一套促销处理，当自己用一千多块去租七八百的小单间，想想就自己深感背刺。</p>
+<p><a href="https://imgtu.com/i/LEnhRg"><img src="https://s1.ax1x.com/2022/04/11/LEnhRg.md.jpg" alt="LEnhRg.md.jpg"></a></p>
+<h2 id="退租及免费换租的心眼">退租及免费换租的心眼</h2>
+<p>退租，没到合同最后一月一般是房东直接砍掉我们的全款押金，一分也不给。通知房东转租给别人或许能退一部分，具体看房东怎么来了。退租其实也难退到全款，打扫干净房间，其实还是会扣一些卫生费。家私设备自然破损，没上报给房东，看房东人品，房东人品差，你有没切实证据证明，到最后还是会算在你头上…</p>
+<p>所谓免费换租呢，实际上还是要收取换租之前的那些天每一天的入住费。有的中介或房产商对换租的时限也是有所差异，自如是3天，泊寓是15天以内，超过了这个期限收取百分比的手续费，各商家也不尽相同：自如是50%，泊寓是10%，而且这个钱是按照房租的百分比算的。</p>
+<p>换租重新签约方面，比方说自如，换租是重新签约需要再来一次押一付一，过三至五天才退还换租前的押金及房租。老实说，换租其实对钱包很伤…</p>
+<h2 id="租房环境">租房环境</h2>
+<p>工业区的房子嘛，如图所见很烂，隐私也没啥保障，洗澡都很容易被人偷窥的那种，一到晚上野猫乱叫也特别刺耳。城中村至少比烂成这个样子的工业区拆迁房要好点…但采光特别差，有时环境太差也是很影响心情的。</p>
+<p><a href="https://imgtu.com/i/LEK64f"><img src="https://s1.ax1x.com/2022/04/11/LEK64f.md.png" alt="LEK64f.md.png"></a></p>
+<p><a href="https://imgtu.com/i/LEKbCT"><img src="https://s1.ax1x.com/2022/04/11/LEKbCT.md.png" alt="LEKbCT.md.png"></a></p>
+<p>再对比附近的大型房地产开发的小区，这落差感…</p>
+<p><a href="https://imgtu.com/i/LEMtZn"><img src="https://s1.ax1x.com/2022/04/11/LEMtZn.md.png" alt="LEMtZn.md.png"></a></p>
+<p>处在明亮的房间，心情实际上也会好不少，也很舒服。 <strong>（注意，一定要问清楚是否有带小孩的租户，吵死了！ 2022.5.4 补）</strong></p>
+<p><img src="https://s3.xoimg.com/i/2022/04/11/f4eh9r.png" alt="iShot2022-04-11_09.10.53"></p>
+<h2 id="不同单间价位上感知落差">不同单间价位上感知落差</h2>
+<p>八九百至一千左右的房间仅是能住，没有什么让人的舒心体验，房屋多是阴暗潮湿、家私配套不全，房屋漏水、开关插座等或多或少有些小毛病的那种，仅满足基本落脚需求而已…</p>
+<p>一千二三的房间，最明显的就是没八九百的房间那么多小毛病。透光度上，不仔细观察和八九百的也没多少区别，空气流通方面，周围都被楼房贴着，除非住在你对面的租户开门又开窗空气流通才算过得去；从一千四这个价位段起，在不开灯的情况下，农民房、工业区公寓单间也比较明亮，透气也好了不少；一千六及以上，采光/透气/空间都会有大幅提升，但城中村、工业区公寓这个价位对比小区合租就有些乏力了，小区在外部环境、内部安防、物业服务上都远超城中村、工业区一大截。</p>
+<h2 id="最后">最后</h2>
+<p>到这里基本上龙岗坂田部分已经讲完了，如果是南山、福田普遍起价到2300-2600左右，1800租到小区的5、6平米的单间都不错了…这个社会对35以上的打工人相当不友好了，泊寓、自如都限制在40左右，如果真到四十用只能安居客？我估摸着看来是自己去城中村、工业区找房吧…存钱不够多，这才是最大的烦恼…</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>翻看往事</category>
+      </categories>
+      <tags>
+        <tag>租房</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自动化部署测试页面，密码123456</title>
     <url>/posts/23830.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误，请重试" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -1169,49 +1203,6 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
       </tags>
   </entry>
   <entry>
-    <title>测试微信图标交互，以及标签页、分类页样式改动</title>
-    <url>/posts/64070.html</url>
-    <content><![CDATA[<h2 id="微信">微信</h2>
-<p>由点击微信图标跳转图片连接，改为点击图标展开图片。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.card-info-social-icons&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (!container) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> links = container.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> insertIndex = <span class="number">1</span>; <span class="comment">// 插入到第二个位置</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建微信图标按钮</span></span><br><span class="line">  <span class="keyword">const</span> wechatBtn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  wechatBtn.<span class="property">className</span> = <span class="string">&#x27;social-icon wechat-icon&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">title</span> = <span class="string">&#x27;微信&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">href</span> = <span class="string">&#x27;javascript:void(0);&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">innerHTML</span> = <span class="string">&#x27;&lt;i class=&quot;fab fa-weixin&quot; style=&quot;color: #1AAD19;&quot;&gt;&lt;/i&gt;&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&#x27;relative&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建弹窗元素（插入到 body，避免 overflow 限制）</span></span><br><span class="line">  <span class="keyword">const</span> qrPopup = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  qrPopup.<span class="property">className</span> = <span class="string">&#x27;wechat-qr-popup&#x27;</span>;</span><br><span class="line">  qrPopup.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">`</span></span><br><span class="line"><span class="string">    position: fixed;</span></span><br><span class="line"><span class="string">    padding: 10px;</span></span><br><span class="line"><span class="string">    background: rgba(255,255,255,0.95);</span></span><br><span class="line"><span class="string">    backdrop-filter: blur(6px);</span></span><br><span class="line"><span class="string">    border-radius: 8px;</span></span><br><span class="line"><span class="string">    box-shadow: 0 4px 12px rgba(0,0,0,0.15);</span></span><br><span class="line"><span class="string">    display: none;</span></span><br><span class="line"><span class="string">    z-index: 9999;</span></span><br><span class="line"><span class="string">    transition: opacity 0.2s ease, transform 0.2s ease;</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line">  qrPopup.<span class="property">innerHTML</span> = <span class="string">&#x27;&lt;img src=&quot;/img/qr.png&quot; alt=&quot;微信二维码&quot; style=&quot;width:120px;height:120px;&quot;&gt;&#x27;</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(qrPopup);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 插入微信图标到指定位置</span></span><br><span class="line">  <span class="keyword">if</span> (links.<span class="property">length</span> &gt; insertIndex) &#123;</span><br><span class="line">    container.<span class="title function_">insertBefore</span>(wechatBtn, links[insertIndex]);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    container.<span class="title function_">appendChild</span>(wechatBtn);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 状态标记：是否显示弹窗</span></span><br><span class="line">  <span class="keyword">let</span> isVisible = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 点击图标切换弹窗显示/隐藏</span></span><br><span class="line">  wechatBtn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">    <span class="keyword">const</span> rect = wechatBtn.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line">    <span class="keyword">if</span> (!isVisible) &#123;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">left</span> = <span class="string">`<span class="subst">$&#123;rect.left + rect.width / <span class="number">2</span>&#125;</span>px`</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">top</span> = <span class="string">`<span class="subst">$&#123;rect.bottom + <span class="number">8</span>&#125;</span>px`</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">&#x27;translateX(-50%)&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span><br><span class="line">      isVisible = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">      isVisible = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 点击空白处关闭弹窗</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    isVisible = <span class="literal">false</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 阻止点击弹窗时关闭</span></span><br><span class="line">  qrPopup.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>在 <code>_config.butterfly.yml</code> 中该位置插入</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="标签页、分类页">标签页、分类页</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://meuicat.com/posts/73a5ae75.html">重构记录3</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://www.oryoy.com/news/qing-song-zhang-wo-hexo-yi-zhao-jiao-ni-wan-mei-diao-yong-zi-ding-yi-css-yang-shi.html">轻松掌握Hexo：一招教你完美调用自定义CSS样式</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://blog.guole.fun/posts/18158/">使用Charts插件给Butterfly增加统计图表</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://blog.hclonely.com/posts/57bd67ce/">Hexo 博客美化(统计图表)</a></p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2025-10-07 13:48:52</span><br><span class="line">type: tags</span><br><span class="line">layout: tags</span><br><span class="line">comments: false</span><br><span class="line">aside: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<p><code>npm install hexo-charts -S</code></p>
-<p>标签</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- &quot;data-length&quot;为显示标签个数(从多到少)，默认为10 --&gt;</span><br><span class="line">&lt;div id=&quot;tags-chart&quot; data-length=&quot;10&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<div id="tags-chart" data-length="10"></div>
-<p>文章发布</p>
-<p><code>&lt;div id=&quot;posts-chart&quot;&gt;&lt;/div&gt;</code></p>
-<div id="posts-chart"></div>
-<p>文章分类</p>
-<p><code>&lt;div id=&quot;categories-chart&quot;&gt;&lt;/div&gt;</code></p>
-<div id="categories-chart"></div>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-      <tags>
-        <tag>博客测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客音乐播放器测试</title>
     <url>/posts/41798.html</url>
     <content><![CDATA[<h3 id="试水">试水</h3>
@@ -1221,7 +1212,7 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
 <p>在文章页上音乐盒</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% meting &quot;14405552446&quot; &quot;netease&quot; &quot;playlist&quot; &quot;mutex:true&quot; &quot;listmaxheight:300px&quot; &quot;preload:auto&quot; &quot;theme:#ad7a86&quot; %&#125;</span><br></pre></td></tr></table></figure>
 
-    <div id="aplayer-gAcUelpe" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-ERzylsxI" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="14405552446" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="300px" data-preload="auto" data-theme="#ad7a86"
     ></div>
 <h3 id="在线播放器部署前">在线播放器部署前</h3>
@@ -1293,6 +1284,49 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
 <hr>
 <p>线下发布网页正常，然后发到gh-page不正常，很大可能与 <a href="https://github.com/hoochanlon/img">https://github.com/hoochanlon/img</a> 冲突了。</p>
 <p>已处理，确认为 hoochanlon/img 发布网页的问题，修正后repo：<a href="https://github.com/hoochanlon/tuchuang">https://github.com/hoochanlon/tuchuang</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>博客测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试微信图标交互，以及标签页、分类页样式改动</title>
+    <url>/posts/64070.html</url>
+    <content><![CDATA[<h2 id="微信">微信</h2>
+<p>由点击微信图标跳转图片连接，改为点击图标展开图片。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.card-info-social-icons&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (!container) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> links = container.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> insertIndex = <span class="number">1</span>; <span class="comment">// 插入到第二个位置</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建微信图标按钮</span></span><br><span class="line">  <span class="keyword">const</span> wechatBtn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  wechatBtn.<span class="property">className</span> = <span class="string">&#x27;social-icon wechat-icon&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">title</span> = <span class="string">&#x27;微信&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">href</span> = <span class="string">&#x27;javascript:void(0);&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">innerHTML</span> = <span class="string">&#x27;&lt;i class=&quot;fab fa-weixin&quot; style=&quot;color: #1AAD19;&quot;&gt;&lt;/i&gt;&#x27;</span>;</span><br><span class="line">  wechatBtn.<span class="property">style</span>.<span class="property">position</span> = <span class="string">&#x27;relative&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建弹窗元素（插入到 body，避免 overflow 限制）</span></span><br><span class="line">  <span class="keyword">const</span> qrPopup = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">  qrPopup.<span class="property">className</span> = <span class="string">&#x27;wechat-qr-popup&#x27;</span>;</span><br><span class="line">  qrPopup.<span class="property">style</span>.<span class="property">cssText</span> = <span class="string">`</span></span><br><span class="line"><span class="string">    position: fixed;</span></span><br><span class="line"><span class="string">    padding: 10px;</span></span><br><span class="line"><span class="string">    background: rgba(255,255,255,0.95);</span></span><br><span class="line"><span class="string">    backdrop-filter: blur(6px);</span></span><br><span class="line"><span class="string">    border-radius: 8px;</span></span><br><span class="line"><span class="string">    box-shadow: 0 4px 12px rgba(0,0,0,0.15);</span></span><br><span class="line"><span class="string">    display: none;</span></span><br><span class="line"><span class="string">    z-index: 9999;</span></span><br><span class="line"><span class="string">    transition: opacity 0.2s ease, transform 0.2s ease;</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line">  qrPopup.<span class="property">innerHTML</span> = <span class="string">&#x27;&lt;img src=&quot;/img/qr.png&quot; alt=&quot;微信二维码&quot; style=&quot;width:120px;height:120px;&quot;&gt;&#x27;</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(qrPopup);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 插入微信图标到指定位置</span></span><br><span class="line">  <span class="keyword">if</span> (links.<span class="property">length</span> &gt; insertIndex) &#123;</span><br><span class="line">    container.<span class="title function_">insertBefore</span>(wechatBtn, links[insertIndex]);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    container.<span class="title function_">appendChild</span>(wechatBtn);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 状态标记：是否显示弹窗</span></span><br><span class="line">  <span class="keyword">let</span> isVisible = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 点击图标切换弹窗显示/隐藏</span></span><br><span class="line">  wechatBtn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">    <span class="keyword">const</span> rect = wechatBtn.<span class="title function_">getBoundingClientRect</span>();</span><br><span class="line">    <span class="keyword">if</span> (!isVisible) &#123;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">left</span> = <span class="string">`<span class="subst">$&#123;rect.left + rect.width / <span class="number">2</span>&#125;</span>px`</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">top</span> = <span class="string">`<span class="subst">$&#123;rect.bottom + <span class="number">8</span>&#125;</span>px`</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">&#x27;translateX(-50%)&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;block&#x27;</span>;</span><br><span class="line">      isVisible = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">      qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">      isVisible = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 点击空白处关闭弹窗</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    qrPopup.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    qrPopup.<span class="property">style</span>.<span class="property">opacity</span> = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    isVisible = <span class="literal">false</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 阻止点击弹窗时关闭</span></span><br><span class="line">  qrPopup.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>在 <code>_config.butterfly.yml</code> 中该位置插入</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="标签页、分类页">标签页、分类页</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://meuicat.com/posts/73a5ae75.html">重构记录3</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://www.oryoy.com/news/qing-song-zhang-wo-hexo-yi-zhao-jiao-ni-wan-mei-diao-yong-zi-ding-yi-css-yang-shi.html">轻松掌握Hexo：一招教你完美调用自定义CSS样式</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://blog.guole.fun/posts/18158/">使用Charts插件给Butterfly增加统计图表</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://blog.hclonely.com/posts/57bd67ce/">Hexo 博客美化(统计图表)</a></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2025-10-07 13:48:52</span><br><span class="line">type: tags</span><br><span class="line">layout: tags</span><br><span class="line">comments: false</span><br><span class="line">aside: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p><code>npm install hexo-charts -S</code></p>
+<p>标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- &quot;data-length&quot;为显示标签个数(从多到少)，默认为10 --&gt;</span><br><span class="line">&lt;div id=&quot;tags-chart&quot; data-length=&quot;10&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<div id="tags-chart" data-length="10"></div>
+<p>文章发布</p>
+<p><code>&lt;div id=&quot;posts-chart&quot;&gt;&lt;/div&gt;</code></p>
+<div id="posts-chart"></div>
+<p>文章分类</p>
+<p><code>&lt;div id=&quot;categories-chart&quot;&gt;&lt;/div&gt;</code></p>
+<div id="categories-chart"></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>测试</category>
@@ -1431,6 +1465,22 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
       </tags>
   </entry>
   <entry>
+    <title>X园区耗费一个月居然什么也没做好</title>
+    <url>/posts/6488.html</url>
+    <content><![CDATA[<div class="note danger flat"><p>从培训机构买的服务有效期一年，浪费了一个月，还剩九个月了，抓紧点。先解决考证问题，然后才是其他。这个目前是第一优先位。</p>
+</div>
+<div class="note danger flat"><p>人家一天看两次3小时的视频，一天做一次实验，自己呢？三天打鱼，两天撒网，根本沉淀不下来。</p>
+</div>
+<div class="note warning flat"><p>博客功能已完善，专心做题就好，时间不多了。</p>
+</div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>空转记录</category>
+      </categories>
+      <tags>
+        <tag>考试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1500道以上背题技巧</title>
     <url>/posts/12950.html</url>
     <content><![CDATA[<p>该背题技巧适用于含有单选、多选、判断、填空、连线题，类似于驾照科目一、科目四考试，难点在于没有像科目一、科目四存在一定的常识题，全是专业题。但只要背下题库就不存在问题。</p>
@@ -1513,56 +1563,6 @@ HR们幸幸苦苦看了那么多简历，筛选出可能合适的人，如约通
       <tags>
         <tag>考试</tag>
         <tag>背题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>X园区耗费一个月居然什么也没做好</title>
-    <url>/posts/6488.html</url>
-    <content><![CDATA[<div class="note danger flat"><p>从培训机构买的服务有效期一年，浪费了一个月，还剩九个月了，抓紧点。先解决考证问题，然后才是其他。这个目前是第一优先位。</p>
-</div>
-<div class="note danger flat"><p>人家一天看两次3小时的视频，一天做一次实验，自己呢？三天打鱼，两天撒网，根本沉淀不下来。</p>
-</div>
-<div class="note warning flat"><p>博客功能已完善，专心做题就好，时间不多了。</p>
-</div><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>空转记录</category>
-      </categories>
-      <tags>
-        <tag>考试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>被亲戚拉着硬着头皮去街头搭讪的回想</title>
-    <url>/posts/37467.html</url>
-    <content><![CDATA[<p>家里亲戚说我：没积蓄、没老婆没车、又没本事，还挑三拣四。如今个人所谓的自由恋爱与婚姻，也被家里人强行干涉与撮合。 <span id="more"></span></p>
-<p>一开始亲戚说带我去白廊，我以为是在那看看风景吃吃饭，没想到突如其来的让我看妹子，去与妹子街头搭讪。让我十分的诧异，亲戚看我惊讶的表情解释道：“本来是带起你来玩的，这是你妈老叫我带你去看妹子，找个夫娘”，“总带起他去玩，不带他找老婆”，接着并笑着说：“你要是不去，我就把你丢在这，不管你了”。</p>
-<p>我被亲戚与几个与他随行的路人朋友生拉硬拽及怂恿下，强行与陌生的路人妹子搭讪。“美女，可以加一个微信吗？”、“美女，我看你们挺喜欢拍照，（你要是有个相机就好了，搭讪成功机率要高些）我也爱好摄影，一起加个微信。”，亲戚说的诸如此类的话，我是真说不出来口。可硬被这番拉扯、“加油打气”，无可奈何地去第二次搭讪，硬着头皮加了对方微信，最后一起吃了个饭。</p>
-<p>加上微信的当时，我有些完全无法理解，亲戚给我搜到的小视频对“妹子被男人搭讪是什么感觉？”的解答让我有些出乎意料 —— “不应该是反感吗？”，“不认为是流氓吗？怎么居然妹子还自认为有魅力，而开心接受了？离谱！”。而加我的女性给的回复是“我看你像销售，出于礼貌加的”，事后的几天，我咨询了下女同事、比较要好的女性朋友，她们的回答分别是：“不加”、“担心诈骗”、“看脸，好看是艳遇”、“只不过萍水相逢”。</p>
-<p>第一次“搭讪”那会，那两个妹子也看出来我与亲戚的随行几人。在妹子们下坡时，但我了方便本以为跳下去就能双脚踩到土里，没想到一只脚着地了硬邦邦的水泥平台，导致了骨折。到最后我实在开不了口，并没有要对方微信，第一次“搭讪”回来只能对亲戚应付地说了声：“她没加”。亲戚看到我的囧样，开玩笑的说：“本来你脑袋就不行，这下好了，脚也摔了，脑袋不行，脚也瘸了。” 不由得想起此前他对我说的话：“外公葬礼是6万块，跟婚礼其实差不多；你爸妈要是老了怎么办呢？你到时候连他们的葬礼钱都出不起！”、“你又没什么本事，要钱也没有钱，谁跟你？以后未来结婚都结不起！老婆也找不到！”，我心中十分的恼火。</p>
-<p>想起教练对我说过的一番话：“你是家里的独子，不可能要你单着的。” 确实如此我的所谓自由婚恋都是强行干预的，并没什么自我可言。我本来还想在个人经济与婚姻上摆烂躺平，却发现我连资格都没有，现在的情况只能是攒钱先保本，还谈什么车子，红白喜事与人身意外有了底再说。</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>事件复盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我对 GitHub 的看法</title>
-    <url>/posts/50270.html</url>
-    <content><![CDATA[<p>我对 GitHub 的看法：一个写日记的地方，就和有些人爱发朋友圈、小红书、QQ空间差不多。 但早几年用过VPN定位到俄罗斯，GitHub也被封过几天，搞得我 GitHub 都实名双持身份证照证明了一回我是中国人…我对 GitHub 也不是太信任了，不过至少还是能想说啥说啥，自说自话吧。</p>
-<span id="more"></span>
-<p>早几年刷到过无聊的帖子，类似有 1k 项目是什么感受什么的，那时候的 Star 有比较高的含金量，对我来说跟祛魅差不多，GitHub Star并未对我带来半分改变，还不是一样的作为底层牛马上班，常常受人颐指气使，做的不好该挨骂，还不是得挨骂。</p>
-<p>去年电话面试启明星辰网络、iDC方向的运维工程师，面我的是一位女负责人，当时确实让我惊讶了片刻，她说看过我的 GitHub，并认可我的一些有关网络、脚本的项目，建议我去面安服。最终结果自然也是没面试上，我的这些项目几乎对我找工作没什么帮助，顶多算是聊胜于无的加分项，在 GitHub 投入了这么多精力，简直可笑。 —— 有这些精力，涨些学历、考个专业资格证、又或是早几年考公，都比投入 GitHub 值得多。</p>
-<p>像什么看了 GitHub，对你感兴趣，发出远程办公邀请的邮件，对我来说简直扯淡。要么实际面试后对方看不上，要么作为免费的苦力。对于这个 <a href="https://github.com/liupan1890/aliyunpan/issues/882">issue#882</a> 其中的这一条信息：“现实中一千star的都能直接甩面试官脸上砸他了,我是想不通 是不是你所在城市岗位太少 多的不说 找个3w的很轻松吧 哪怕是没学历”。对我来说这简直是蠢话。记得朋友给我发过一张是知乎评论的一张截图，不少人也和这言论差不多，想当然的断言。真是无聊至极。说句难听的，我的 GitHub 资历，比起找到合适的工作来说，简直就是狗屁。</p>
-<p>忽然由此产生的感受：一开始 GitHub 是乐趣兴趣，当附带了找工作加成的属性，对我来说就是厌烦了。想到以前媒体老是喜欢在计算机行业“造神”，宣传类似林纳斯·托马斯的事迹，可大部分都是普通人，也没那样的条件，还真是“认真你就输了”，真信了、入戏太深了，付出精力产出的成果，连照亮别人的蜡烛都算不上，顶多也成了餐馆里的便利一次性筷子。更多的是没有成果，埋头苦干，闭门造车，对生活没半分改善，沉浸于自己的世界，久久不能自拔。</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-      <categories>
-        <category>翻看往事</category>
-      </categories>
-      <tags>
-        <tag>随想简评</tag>
       </tags>
   </entry>
 </search>
