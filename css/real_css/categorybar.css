@@ -61,7 +61,7 @@ a.categoryBar-list-link {
 
 /* 链接前的小点 / 装饰符 */
 a.categoryBar-list-link::before {
-  content: '	\f192';
+  content: '\f192';
   color: #fff !important;
   font-size: 20px !important;
 }
