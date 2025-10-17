@@ -31,11 +31,11 @@ a.categoryBar-list-link {
   font-size: 20px !important;
 }
 a.categoryBar-list-link::before {
-  content: '|' !important;
-  padding-right: 15px !important;
+  content: '\f192' !important;
   display: inline-block;
   color: #fff !important;
   font-size: 20px !important;
+  font-family: 'Font Awesome 6 Free';
 }
 a.categoryBar-list-link:after {
   content: '';
