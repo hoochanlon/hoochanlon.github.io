@@ -1258,4 +1258,4 @@ categoryBar:
       cover: https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp
     - descr: 问题修复
       cover: https://npm.elemecdn.com/akilar-candyassets/image/cover6.webp
-  custom_css: /css/real_css/categorybar.css
+  custom_css: https://npm.elemecdn.com/hexo-butterfly-categories-card@1.0.0/lib/categorybar.css
