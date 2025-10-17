@@ -88,3 +88,4 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 {% endtimeline %}
 
+既然浏览器会https://hoochanlon.github.io/categories/categories/%E7%BF%BB%E7%9C%8B%E5%BE%80%E4%BA%8B/ 直接 去掉 categories 算了，反正我的页面也是 https://hoochanlon.github.io/categories
