@@ -32,6 +32,8 @@ a.categoryBar-list-link {
 }
 a.categoryBar-list-link::before {
   content: '|' !important;
+  padding-right: 15px !important;
+  display: inline-block;
   color: #fff !important;
   font-size: 20px !important;
 }
