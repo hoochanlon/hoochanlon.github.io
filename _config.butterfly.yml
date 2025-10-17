@@ -214,7 +214,7 @@ toc:
   number: true
   expand: false
   # Only for post
-  style_simple: true
+  style_simple: false
   scroll_percent: true
 
 post_copyright:
