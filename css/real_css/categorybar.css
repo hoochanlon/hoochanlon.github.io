@@ -1,0 +1,101 @@
+#categoryBar {
+  width: 100%;
+}
+
+ul.categoryBar-list {
+  margin: 5px;
+  padding: 0;
+}
+
+/* 卡片样式 */
+li.categoryBar-list-item {
+  font-weight: 600;
+  display: inline-block;
+  height: 180px;
+  margin: 5px 0.5% 0;
+  border-radius: 12px;
+  padding: 25px 0 25px 25px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 10%, rgba(0, 0, 0, 0.2) 90%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-size 0.4s ease;
+  color: #fff;
+}
+
+/* 悬停效果 */
+li.categoryBar-list-item:hover {
+  transform: translateY(-5px);
+  background-size: 110%;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* 链接样式 */
+a.categoryBar-list-link {
+  color: #fefefe;
+  font-size: 20px;
+  position: relative;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* 链接前的小点 */
+a.categoryBar-list-link::before {
+  content: '\00B7';
+  color: #ffd166; /* 柔和高亮点 */
+  font-size: 22px;
+  margin-right: 6px;
+}
+
+/* 下划线动画 */
+a.categoryBar-list-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #ffd166; /* 与前导点颜色统一 */
+  transition: width 0.4s ease;
+}
+
+a.categoryBar-list-link:hover::after {
+  width: 90%;
+  left: 5%;
+}
+
+/* 分类计数 */
+span.categoryBar-list-count {
+  display: block;
+  color: #eaeaea;
+  font-size: 18px;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+span.categoryBar-list-count::before {
+  content: '\f005';
+  padding-right: 10px;
+  display: inline-block;
+  font-weight: 600;
+  font-family: 'Font Awesome 6 Free';
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: #ffd166; /* 保持与标题点一致 */
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 650px) {
+  li.categoryBar-list-item {
+    width: 48%;
+    height: 150px;
+    margin: 5px 1% 0;
+    padding: 20px;
+  }
+  a.categoryBar-list-link {
+    font-size: 18px;
+  }
+}
