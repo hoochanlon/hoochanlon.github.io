@@ -117,7 +117,7 @@ plugins:
 
 ## Themes: https://hexo.io/themes/
 # theme: next
-theme: butterfly # bug 太多了
+theme: butterfly 
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -198,3 +198,5 @@ aplayer:
 archive_generator:
     per_page: 10
 
+# https://github.com/chenzhutian/hexo-all-minifier
+all_minifier: true
