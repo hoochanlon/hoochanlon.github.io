@@ -20,6 +20,7 @@ sticky: 100
 * hexo v8 标签和分类有bug，这也就意味着相关生成文章统计图表插件部分功能用不了
 * 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面
 * 配置了`#content-inner #page .category-lists {display: none;}`会导致hexo-butterfly-charts的分类图拿不到数值
+* 自定义加载动画易出现主题配置文件无法关闭加载动画功能的情况。
 {% endnote %}
 
 {% note primary flat %}
