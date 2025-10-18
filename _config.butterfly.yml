@@ -1111,7 +1111,7 @@ inject:
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
     - <script src="/js/myjs/charts.js"></script>
-    - <script src="/js/myjs/categorybar_categorieschart.js"></script>
+    # - <script src="/js/myjs/categorybar_categorieschart.js"></script>
     # - <script src="/js/myjs/post_title.js"></script>
 
 
@@ -1266,7 +1266,6 @@ categoryBar:
       cover: https://www.ntsec.edu.tw/UserFiles/image/Science_study_monthly/2020/59-03/002/6.jpg
     - descr: 考试
       cover: https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
-
   custom_css: /css/real_css/categorybar.css
 
 # 统计图表，支持发布文章统计、发布日历、Top标签统计、分类统计、分类雷达。
