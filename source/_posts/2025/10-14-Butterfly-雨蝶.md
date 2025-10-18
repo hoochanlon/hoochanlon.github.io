@@ -1,9 +1,7 @@
 ---
 title: Butterfly-雨蝶
 noticeOutdate: false
-categories: 
-  - Butterfly-雨蝶
-  - Butterfly-雨
+categories: Butterfly-雨蝶
 tags: 博客主题修复
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://tu.zbhz.org/i/2025/10/15/x8ptab.png'
@@ -117,6 +115,7 @@ npm install hexo@7.2
 {% timeline 2025, green %}
 
 <!-- timeline 10 -->
+* 完成插件改写
 * 完成分类页卡片适配
 * 标签、分类、归档页隐藏侧边栏
 <!-- endtimeline -->
