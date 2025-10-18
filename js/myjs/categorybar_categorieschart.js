@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("categories-chart"),t=document.getElementById("categoryBar"),n=document.querySelector(".category-lists");e&&t&&t.parentNode&&t.parentNode.insertBefore(e,t),n&&(n.style.display="none")});
+document.addEventListener("DOMContentLoaded",function(){const e=document.getElementById("tiantianquan-categories"),t=document.getElementById("categoryBar"),n=document.querySelector(".category-lists");e&&t&&t.parentNode&&t.parentNode.insertBefore(e,t),n&&(n.style.display="none")});
