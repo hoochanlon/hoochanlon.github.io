@@ -15,10 +15,6 @@
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-/* 隐藏原有分类start */
-#content-inner #page .category-lists {
-  display: none;
-}
 
 /* 添加过渡效果 */
 /* #post-info .post-title,
@@ -26,3 +22,8 @@
 #post-info #post-meta {
     transition: color 0.3s ease; 
 }  */
+
+/* 隐藏原有分类*/
+/* #content-inner #page .category-lists {
+  display: none;
+} */
