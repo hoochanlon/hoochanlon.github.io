@@ -22,9 +22,8 @@
 
 
 
-/*访客地图自适应尺寸及圆角*/
-.card-ip a>img{
-    border-radius: 7px!important;
-    width: 100% !important;
-    margin-top: 5px!important;
+@media screen and (min-width: 900px) {
+    html.hide-aside .layout>div:first-child {
+        width: 80%
+    }
 }
