@@ -2,7 +2,7 @@
 title: Butterfly-雨蝶
 noticeOutdate: false
 categories: 
-    - 问题修复
+    - Butterfly-雨蝶
     - Butterfly-沙漠寂寞
 tags: 博客主题修复
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
