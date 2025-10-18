@@ -96,8 +96,3 @@ span.categoryBar-list-count {
     margin: 5px 1% 0 1% !important;
   }
 }
-
-/* 隐藏原有分类*/
-#content-inner #page .category-lists {
-  display: none;
-}
