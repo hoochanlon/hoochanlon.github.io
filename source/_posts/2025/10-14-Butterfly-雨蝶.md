@@ -58,12 +58,14 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * [Hexo 博客文章统计图](https://blog.eurkon.com/post/1213ef82.html)
+* [使用Charts插件给Butterfly增加统计图表](https://blog.guole.fun/posts/18158/index.html)
 * [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
 * [butterfly 的魔改记录](https://qianxu.run/butterfly-custom/index.html)
 * [【butterfly】分类磁贴插件版](https://ll.sc.cn/posts/ab72/)
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化](https://blog.june-pj.cn/posts/7bed0b4e/)
+* https://github.com/jerryc127/hexo-theme-butterfly/discussions/566
 <!-- endtab -->
 
 {% endtabs %}
@@ -98,12 +100,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 调试完内容，部署后，空空如也。
 
-<!-- 文章发布时间统计图 -->
-<div id="posts-chart" data-start="2018-01" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章标签统计图 -->
-<div id="tags-chart" data-length="10" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章分类统计图 -->
-<div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+<div id="posts-calendar" class="js-pjax"></div>
 
 
 {% timeline 2025, green %}

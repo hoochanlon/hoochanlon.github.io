@@ -19,3 +19,10 @@
 /* #content-inner #page .category-lists {
   display: none;
 } */
+
+/* 添加过渡效果 */
+/* #post-info .post-title,
+#post-info #post-meta a,
+#post-info #post-meta {
+    transition: color 0.3s ease; 
+}  */
