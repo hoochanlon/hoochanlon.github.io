@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hoochanlon.github.io/tags/index.html</loc>
+    
+    <lastmod>2025-10-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hoochanlon.github.io/music/index.html</loc>
     
     <lastmod>2025-10-18</lastmod>
@@ -11,7 +20,16 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/index.html</loc>
+    <loc>https://hoochanlon.github.io/posts/815.html</loc>
+    
+    <lastmod>2025-10-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/posts/16112.html</loc>
     
     <lastmod>2025-10-18</lastmod>
     
@@ -182,24 +200,6 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/posts/815.html</loc>
-    
-    <lastmod>2025-10-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hoochanlon.github.io/posts/16112.html</loc>
-    
-    <lastmod>2025-10-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/posts/40753.html</loc>
     
     <lastmod>2023-11-27</lastmod>
@@ -277,14 +277,14 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E7%A7%9F%E6%88%BF/</loc>
+    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <loc>https://hoochanlon.github.io/tags/%E7%A7%9F%E6%88%BF/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
