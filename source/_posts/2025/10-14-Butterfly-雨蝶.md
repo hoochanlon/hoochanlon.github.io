@@ -70,7 +70,6 @@ npm install hexo@7.2
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化](https://blog.june-pj.cn/posts/7bed0b4e/)
-* [秒开的艺术：Hexo 博客首屏耗时优化实践](https://imkero.net/posts/hexo-page-performance/)
 <!-- endtab -->
 
 {% endtabs %}
