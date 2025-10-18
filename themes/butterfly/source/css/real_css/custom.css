@@ -19,11 +19,3 @@
 /* #content-inner #page .category-lists {
   display: none;
 } */
-
-
-
-@media screen and (min-width: 900px) {
-    html.hide-aside .layout>div:first-child {
-        width: 80%
-    }
-}
