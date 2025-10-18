@@ -1271,7 +1271,7 @@ categoryBar:
 # 统计图表，支持发布文章统计、发布日历、Top标签统计、分类统计、分类雷达。
 # see https://www.npmjs.com/package/hexo-butterfly-charts
 charts:
-  enable: false # 是否启用功能
+  enable: true # 是否启用功能
   postsChart:
     title: 文章发布统计 # 设置文章发布统计的标题，默认为空
     interval: 1 # 横坐标间隔
