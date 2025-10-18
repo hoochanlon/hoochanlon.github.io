@@ -1,1 +1,1 @@
-window.addEventListener("scroll",function(){const o=.3*window.innerHeight;window.scrollY>o?document.body.classList.add("scrolled"):document.body.classList.remove("scrolled")});
+window.addEventListener("scroll",function(){.3*window.innerHeight<window.scrollY?document.body.classList.add("scrolled"):document.body.classList.remove("scrolled")});
