@@ -22,3 +22,8 @@
 #post-info #post-meta {
     transition: color 0.3s ease; 
 }  */
+
+/* 隐藏原有分类*/
+/* #content-inner #page .category-lists {
+  display: none;
+} */
