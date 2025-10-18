@@ -1243,30 +1243,35 @@ anzhiyu_music:
 # see https://akilar.top/posts/a9131002/
 categoryBar:
   enable: true # 开关
-  priority: 5 #过滤器优先权
+  priority: 5 # 过滤器优先权
   enable_page: /categories/ # 应用页面
   layout: # 挂载容器类型
     type: id
     name: page
     index: 0
   column: odd # odd：3列 | even：4列
-  row: 9 #显示行数，默认两行，超过行数切换为滚动显示
+  row: 9 # 显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - descr: Butterfly-沙漠寂寞
+    - cname: Butterfly-雨蝶
+      descr: 谁又在远处点亮霓虹？
       cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
-    - descr: Butterfly-雨蝶
-      cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
-    - descr: 图片日记
-      cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg
-    - descr: 翻看往事
-      cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
-    - descr: 测试
+    - cname: 测试
+      descr: 
       cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
-    - descr: 空转记录
+    - cname: 翻看往事
+      descr: 
+      cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
+    - cname: 考试
+      descr: 
+      cover:  https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
+    - cname: 空转记录
+      descr: 
       cover: https://www.ntsec.edu.tw/UserFiles/image/Science_study_monthly/2020/59-03/002/6.jpg
-    - descr: 考试
-      cover: https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
+    - cname: 图片日记
+      descr: 
+      cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg 
   custom_css: /css/real_css/categorybar.css
+
 
 # 统计图表，支持发布文章统计、发布日历、Top标签统计、分类统计、分类雷达。
 # see https://www.npmjs.com/package/hexo-butterfly-charts

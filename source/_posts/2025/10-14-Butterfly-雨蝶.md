@@ -2,7 +2,8 @@
 title: Butterfly-雨蝶
 noticeOutdate: false
 categories: 
- - [Butterfly-雨蝶, Butterfly-沙漠寂寞]
+  - Butterfly-雨蝶
+  - Butterfly-雨
 tags: 博客主题修复
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://tu.zbhz.org/i/2025/10/15/x8ptab.png'
@@ -26,6 +27,11 @@ sticky: 100
 {% note primary flat %}
 edge安装了广告插件会影响到公告侧边栏的JS加载
 {% endnote %}
+
+```shell
+npm uninstall hexo
+npm install hexo@7.2
+```
 
 ### 访问Repo
 
@@ -102,6 +108,10 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 
 <div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+
+
+![PixPin_2025-10-18_18-58-09](https://tu.zbhz.org/i/2025/10/18/vfa9ub.jpg)
+
 
 
 {% timeline 2025, green %}

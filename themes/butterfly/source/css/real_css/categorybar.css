@@ -22,10 +22,10 @@ li.categoryBar-list-item:hover {
   background-size: 110% !important;
   box-shadow: inset 500px 50px 50px 50px rgba(50,50,50,0.6);
 }
-/* li.categoryBar-list-item:hover span.categoryBar-list-descr {
+li.categoryBar-list-item:hover span.categoryBar-list-descr {
   transition: all 0.5s;
   transform: translate(-100%, 0);
-} */
+}
 a.categoryBar-list-link {
   color: #fff !important;
   font-size: 20px !important;
@@ -81,14 +81,14 @@ span.categoryBar-list-count {
   font-size: 20px !important;
 }
 
-/* span.categoryBar-list-descr {
+span.categoryBar-list-descr {
   padding: 5px;
   display: block !important;
   color: #fff !important;
   font-size: 20px !important;
   position: relative;
   right: -100%;
-} */
+}
 @media screen and (max-width: 650px) {
   li.categoryBar-list-item {
     width: 48% !important;
@@ -96,7 +96,4 @@ span.categoryBar-list-count {
     margin: 5px 1% 0 1% !important;
   }
 }
-/* 隐藏原有分类start
-#content-inner #page .category-lists {
-  display: none;
-} */
+
