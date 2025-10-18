@@ -1,8 +1,1 @@
-(function (document) {
-    [].forEach.call(document.getElementsByClassName('spoiler'), function(panel) {
-        panel.getElementsByClassName('spoiler-title')[0].onclick = function() {
-            panel.classList.toggle("collapsed");
-            panel.classList.toggle("expanded");
-        }
-    });
-})(document);
+!function(e){[].forEach.call(e.getElementsByClassName("spoiler"),function(e){e.getElementsByClassName("spoiler-title")[0].onclick=function(){e.classList.toggle("collapsed"),e.classList.toggle("expanded")}})}(document);
