@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   // 获取元素
-  const chart = document.getElementById('categories-chart');
+  const chart = document.getElementById('tiantianquan-categories');
   const bar = document.getElementById('categoryBar');
   const categoryLists = document.querySelector('.category-lists');
 

@@ -105,7 +105,7 @@ npm install hexo@7.2
 调试完内容，部署后，空空如也。
 
 
-<div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
+<div id="tiantianquan-categories" style="width: 100%; height: 400px;"></div>
 
 
 ![PixPin_2025-10-18_18-58-09](https://tu.zbhz.org/i/2025/10/18/vfa9ub.jpg)
