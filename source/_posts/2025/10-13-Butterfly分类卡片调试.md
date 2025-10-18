@@ -8,7 +8,7 @@ abbrlink: 342
 date: 2025-10-13 11:34:16
 ---
 
-改造效果：
+改造效果：https://github.com/hoochanlon/hexo-butterfly-category-card-fork
 
 
 2025.10.18
