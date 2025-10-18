@@ -312,13 +312,6 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E4%BF%AE%E5%A4%8D/</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/tags/%E8%80%83%E8%AF%95/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -327,6 +320,13 @@
   
   <url>
     <loc>https://hoochanlon.github.io/tags/%E8%83%8C%E9%A2%98/</loc>
+    <lastmod>2025-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hoochanlon.github.io/tags/%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E4%BF%AE%E5%A4%8D/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -356,14 +356,14 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/Butterfly-%E9%9B%A8%E8%9D%B6/</loc>
+    <loc>https://hoochanlon.github.io/categories/%E8%80%83%E8%AF%95/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/categories/%E8%80%83%E8%AF%95/</loc>
+    <loc>https://hoochanlon.github.io/categories/Butterfly-%E9%9B%A8%E8%9D%B6/</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
