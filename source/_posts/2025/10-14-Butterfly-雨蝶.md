@@ -100,8 +100,6 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 调试完内容，部署后，空空如也。
 
-<div id="posts-calendar" class="js-pjax"></div>
-
 
 {% timeline 2025, green %}
 
