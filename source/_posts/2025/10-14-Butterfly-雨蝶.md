@@ -98,12 +98,6 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 调试完内容，部署后，空空如也。
 
-<!-- 文章发布时间统计图 -->
-<div id="posts-chart" data-start="2021-01" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章标签统计图 -->
-<div id="tags-chart" data-length="10" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
-<!-- 文章分类统计图 -->
-<div id="categories-chart" data-parent="true" style="border-radius: 8px; height: 300px; padding: 10px;"></div>
 
 
 {% timeline 2025, green %}
