@@ -10,7 +10,9 @@ if (isHomePage) {
   // 主页使用默认背景图
   const target = document.getElementById(targetId);
   if (target) {
-    target.style.backgroundImage = `url(/img/aegis.png)`;
+    // /img/lofi-girl.png
+    // /img/aegis.png
+    target.style.backgroundImage = `url(/img/lofi-girl.png)`;
     target.style.backgroundSize = "cover";
     target.style.backgroundPosition = "center";
   }
@@ -40,7 +42,7 @@ if (isHomePage) {
       };
       img.onerror = () => {
         console.warn("图片加载失败，使用备用图");
-        const fallback = "/img/lofi-girl.png";
+        const fallback = "/img/aegis.png";
         const target = document.getElementById(targetId);
         if (target) {
           target.style.backgroundImage = `url(${fallback})`;

@@ -1,0 +1,69 @@
+/* 桌面端布局 */
+@media (min-width: 1200px) {
+    #nav {
+      display: flex;
+      justify-content: space-between; /* 主轴对齐方式为间距平均分布 */
+      font-size: 1.5rem !important; /* 导航栏字体大小 */
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    #blog-info {
+      width: calc(100% / 4) !important;
+      flex-shrink:0;
+    }
+
+    /* 菜单容器设置为弹性容器并居中 */
+    #menus {
+      display: flex !important;
+      width: calc(100% / 2) !important;
+      flex-shrink:1;
+    }
+
+    .menus_items {
+      width: 100%;
+      display: flex !important;
+      justify-content: space-around; /* 菜单项水平对齐 */
+      /* padding-left: 5vw; */
+      /* padding-right: 5vw; */
+      font-size: 1.3vw !important; /* 导航栏字体大小 */
+    }
+
+    .menus_item {
+      flex-shrink:1;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+
+    #search-button {
+      text-align: right;
+      width: calc(100% / 4) !important;
+      flex-shrink:0;
+      font-size: 1.3vm !important; /* 导航栏字体大小 */
+    }
+}
+
+/* 二级导航栏水平展示 */
+.menus_item_child li:not(#sidebar-menus li) {
+    float: left;
+    border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -ms-border-radius: 6px !important;
+    -o-border-radius: 6px !important;
+}
+
+.menus_item_child:not(#sidebar-menus ul) {
+    left: 50%;
+    translate: -50%;
+}
+#nav .nav-site-title {
+  display: inline-block !important;
+  color: var(--nav-font-color) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  text-shadow: none !important;
+  background-color: transparent !important;
+  z-index: 10 !important;
+}

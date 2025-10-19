@@ -1,0 +1,23 @@
+/* 默认浅色模式 */
+#footer {
+  background: rgba(255, 255, 255, 0.3); /* 半透明白色 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 夜间模式下的样式 */
+[data-theme="dark"] #footer {
+  background: rgba(18, 18, 18, 0.3); /* 半透明深灰色 */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 页脚字体 */
+#footer > * {
+   color: var(--nav-text-color);
+}
+
+/* 页脚链接字体 */
+#footer a {
+   color: var(--nav-text-color);
+}

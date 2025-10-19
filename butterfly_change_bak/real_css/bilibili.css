@@ -1,0 +1,14 @@
+/*哔哩哔哩视频适配*/
+.bilibili{
+    position: relative;
+    width: 100%;
+    height: 0;              /*高度设置这里无效，设置为0，用padding撑开div*/
+    padding-bottom: 75%;    /*68%到80%都可以*/
+}
+.bilibili iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
