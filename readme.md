@@ -13,7 +13,9 @@ Butterfly 首页部分
 
 <!-- ![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg) -->
 
-Splayer 音乐板块
+Splayer 音乐板块[^1]
+
+[^1]: 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面
 
 ![ ](http://image.aibochinese.com/i/2025/10/12/12ruhwr.jpg)
 
