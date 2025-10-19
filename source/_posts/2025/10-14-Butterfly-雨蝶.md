@@ -67,6 +67,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 * [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化](https://blog.june-pj.cn/posts/7bed0b4e/)
+* [基于Artitalk的说说和清单功能](https://zhsher.cn/posts/33243/index.html)
 {% endhideToggle %}
 <!-- endtab -->
 
@@ -77,8 +78,12 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 ### 更新
 
 {% timeline 2025, blue %}
+<!-- timeline 10.19 -->
+* 添加说说功能
+<!-- endtimeline -->
 <!-- timeline 10.18 -->
 * 完成 hexo-butterfly-category-card 插件修复：[hexo-butterfly-category-card-fork](https://github.com/hoochanlon/hexo-butterfly-category-card-fork)
+<!-- endtimeline -->
 <!-- timeline 10.15 -->
 * 建立独立备份目录以及编写相关说明
 * 优化访客地图定位频繁获取地址位置

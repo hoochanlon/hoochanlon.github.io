@@ -22,13 +22,14 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-th
   归档: /archives/ || fa fa-archive 
-  关于: /about/ || fas fa-circle-info
+  说说: /shuoshuo/ || fas fa-sms
   导航: /nav/ || fa fa-compass  
   清单: /todo/ || fa fa-list
   日历: /calendar/ || fas fa-calendar-alt
   番茄: /tomato/ || fas fa-stopwatch
   音乐: /music/ || fas fa-music
-  留言: /comments/ || fas fa-comments
+  留言: /comments/ || fas fa-location-arrow
+  关于: /about/ || fas fa-circle-info
   # List||fas fa-list:
   #   Movie: /movies/ || fas fa-video
 
@@ -1287,3 +1288,5 @@ charts:
   categoriesChart_title: # 设置分类统计的标题，默认为空
   categoriesRadar_title: # 设置分类雷达的标题，默认为空
 + echarts_CDN: # https://lib.baomitu.com/echarts/4.7.0/echarts.min.js
+
+
