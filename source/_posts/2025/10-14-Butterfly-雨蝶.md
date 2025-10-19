@@ -80,6 +80,7 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 {% timeline 2025, blue %}
 <!-- timeline 10.19 -->
 * 添加说说功能
+* issue：https://github.com/jerryc127/hexo-theme-butterfly/issues/1748
 <!-- endtimeline -->
 <!-- timeline 10.18 -->
 * 完成 hexo-butterfly-category-card 插件修复：[hexo-butterfly-category-card-fork](https://github.com/hoochanlon/hexo-butterfly-category-card-fork)
