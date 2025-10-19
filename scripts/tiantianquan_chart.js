@@ -59,7 +59,8 @@ function doughnutCategoriesChart() {
           top: '10px',
           textStyle: { 
             color: '#4c4948',
-            fontSize: 16,
+            fontSize: 21,
+            fontFamily: 'Microsoft YaHei',
             fontWeight: 'bold'
           } 
         },
