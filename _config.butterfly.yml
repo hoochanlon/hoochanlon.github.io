@@ -1113,7 +1113,6 @@ inject:
     - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
-    - <script src="/js/myjs/charts.js"></script>
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>
     # - <script src="/js/myjs/post_title.js"></script>
 
@@ -1256,7 +1255,7 @@ categoryBar:
   row: 9 # 显示行数，默认两行，超过行数切换为滚动显示
   message:
     - cname: Butterfly-雨蝶
-      descr: 谁又在远处点亮霓虹？
+      descr: Butterfly-沙漠寂寞
       cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
     - cname: 测试
       descr: 
