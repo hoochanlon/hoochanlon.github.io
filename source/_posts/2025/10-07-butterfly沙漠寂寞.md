@@ -1,8 +1,6 @@
 ---
 title: Butterfly-沙漠寂寞
-categories: 
-- Butterfly-雨蝶
-- Butterfly-沙漠寂寞
+categories: 博客主题
 tags: 博客效果代码
 description: 代码展示
 abbrlink: 442

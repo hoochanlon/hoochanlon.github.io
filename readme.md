@@ -1,7 +1,7 @@
 # ***[Chanlon Hoo's Blog](https://hoochanlon.github.io/)***
 
 >  [!IMPORTANT]
-> * 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时6天重构部署完毕。
+> * 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时15天重构部署完毕。
 > * 后续相关调整或更新见：https://hoochanlon.github.io/posts/15347.html
 
 

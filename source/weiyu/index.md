@@ -1,5 +1,5 @@
 ---
-title: 说说
+title: 微语
 date: 2025-10-19 15:46:45
 type: artitalk
 aside: false

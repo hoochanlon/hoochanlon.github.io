@@ -1,14 +1,13 @@
 ---
 title: Butterfly-雨蝶
 noticeOutdate: false
-categories: 
-- Butterfly-雨蝶
-- Butterfly-沙漠寂寞
+categories: 博客主题
 tags: 博客效果调整与更新
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://image.aibochinese.com/i/2025/10/13/fmak40.jpg'
 abbrlink: 15347
 date: 2025-10-14 20:02:29
+# password: 123456
 # sticky: 100
 ---
 
@@ -29,6 +28,9 @@ npm install hexo@7.2
 edge安装了广告插件会影响到公告侧边栏的JS加载
 {% endnote %}
 
+`{% link 链接,标题,图标,介绍 %}`
+
+{%link https://ai.zhheo.com/console/login, AI摘要登录页 postai, https://favicon.im//ai.zhheo.com %}
 
 {%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
 

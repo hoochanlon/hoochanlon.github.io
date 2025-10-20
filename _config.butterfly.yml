@@ -28,7 +28,7 @@ menu:
     番茄钟: /tomato/ || fas fa-stopwatch
     音乐: /music/ || fas fa-music
   导航: /nav/ || fa fa-compass
-  说说: /shuoshuo/ || fas fa-quote-right
+  微语: /weiyu/ || fas fa-quote-right
   留言: /comments/ || fas fa-location-arrow
   关于: /about/ || fas fa-circle-info
   # List||fas fa-list:
@@ -1254,12 +1254,12 @@ categoryBar:
   column: odd # odd：3列 | even：4列
   row: 9 # 显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - cname: Butterfly-雨蝶
-      descr: Butterfly-沙漠寂寞
+    - cname: 博客主题
+      descr: Butterfly
       cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
-    - cname: 测试
+    - cname: 折腾记录
       descr: 
-      cover: https://w.wallhaven.cc/full/0q/wallhaven-0qd577.jpg
+      cover: https://cdn.jsdelivr.net/gh/hoochanlon/tuchuang@main//up/20251020144609324.jpg
     - cname: 翻看往事
       descr: 
       cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
