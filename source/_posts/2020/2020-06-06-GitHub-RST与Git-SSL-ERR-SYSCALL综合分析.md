@@ -1,7 +1,7 @@
 ---
 title: GitHub RST与Git SSL_ERR_SYSCALL综合分析
 author: hoochanlon
-categories: 翻看往事
+categories: 折腾记录
 tags: 网络
 abbrlink: 28547
 date: 2020-06-06 00:53:01

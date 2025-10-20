@@ -1255,14 +1255,17 @@ categoryBar:
   row: 9 # 显示行数，默认两行，超过行数切换为滚动显示
   message:
     - cname: 博客主题
-      descr: Butterfly
+      descr: 
       cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
+    - cname: 随笔
+      descr: 
+      cover: https://tu.zbhz.org/i/2025/10/20/pr874p.jpg
     - cname: 折腾记录
       descr: 
       cover: https://cdn.jsdelivr.net/gh/hoochanlon/tuchuang@main//up/20251020144609324.jpg
-    - cname: 翻看往事
+    - cname: 封存
       descr: 
-      cover: https://img1.wallspic.com/previews/9/2/1/1/8/181129/181129-gong_lu_lu_xing-yun_shu-jie-tu_lu-xing_zhi-x750.jpg
+      cover: https://tu.zbhz.org/i/2025/10/20/r853ur.jpg
     - cname: 考试
       descr: 
       cover:  https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
