@@ -25,8 +25,6 @@ npm install hexo@7.2
 ```
 {% endnote %}
 
-
-
 {% note primary flat %}
 edge安装了广告插件会影响到公告侧边栏的JS加载
 {% endnote %}
@@ -35,51 +33,12 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 {%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
 
 
-### 杂项
-
-{% tabs %}
-<!-- tab 壁纸 -->
-* [pexels](https://www.pexels.com/zh-cn)（照片式）
-* [wallspic](https://wallspic.com/)（以终端适配为主）
-* [wallhaven.cc](https://wallhaven.cc/) （各类图片搜索）
-<!-- endtab -->
-
-<!-- tab awesome图标对应字符编码表 -->
-* [font awesome图标对应字符编码表](https://www.cnblogs.com/ytkah/p/12605237.html)
-* [Font Awesome 5.15.2 版本全部图标Unicode对照表大全](https://fa.uutool.cn/unicode/5.15.2/)
-<!-- endtab -->
-
-<!-- tab 标签外挂 -->
-{% hideToggle 标签外挂语法参考 %}
-* [Butterfly外挂标签用法学习](https://www.yooupi.site/posts/235523-d25a2ac1.html)
-* [butterfly常用标签外挂](https://blog.pushihao.com/article/a2b56279.html)
-{% endhideToggle %}
-<!-- endtab -->
-
-<!-- tab 参考链接 -->
-{% hideToggle 参考链接 %}
-* [Add Blog Animation -- Wowjs](https://akilar.top/posts/abab51cf)
-* [信笺样式留言板](https://akilar.top/posts/e2d3c450/)
-* [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
-* [Hexo 博客文章统计图](https://blog.eurkon.com/post/1213ef82.html)
-* [使用Charts插件给Butterfly增加统计图表](https://blog.guole.fun/posts/18158/index.html)
-* [Tag Plugins Plus](https://akilar.top/posts/615e2dec/)
-* [butterfly 的魔改记录](https://qianxu.run/butterfly-custom/index.html)
-* [【butterfly】分类磁贴插件版](https://ll.sc.cn/posts/ab72/)
-* [butterfly主题魔改10：分类页面魔改](https://kukual.github.io/posts/a7bebfb0/index.html)
-* [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
-* [Butterfly导航栏美化](https://blog.june-pj.cn/posts/7bed0b4e/)
-* [基于Artitalk的说说和清单功能](https://zhsher.cn/posts/33243/index.html)
-{% endhideToggle %}
-<!-- endtab -->
-
-{% endtabs %}
-
-
-
 ### 更新
 
 {% timeline 2025, blue %}
+<!-- timeline 10.20 -->
+* 整理博客链接，删除不必要的测试文章，增加部分关键代码说明。
+<!-- endtimeline -->
 <!-- timeline 10.19 -->
 * 添加说说功能
 * 提出需求issue：https://github.com/jerryc127/hexo-theme-butterfly/issues/1748

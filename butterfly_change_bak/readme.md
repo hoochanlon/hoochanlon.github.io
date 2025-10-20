@@ -33,3 +33,8 @@ layout.pug
 head.styl
 
 `\themes\butterfly\source\css\_layout\head.styl` 
+
+
+footer.styl
+
+`\themes\butterfly\source\css\_layout\footer.styl` 

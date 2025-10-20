@@ -1088,15 +1088,15 @@ inject:
   head:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.12/index.min.css">
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js">
+    - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    - <script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script>
+    - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <link rel="stylesheet" href="/css/real_css/bg_blur.css">
     - <link rel="stylesheet" href="/css/real_css/bilibili.css">
     - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
-    - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <link rel="stylesheet" href="/css/real_css/custom.css">
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js">
-    - <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    - <script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script>
 
     # 微软统计
     - <script src="/js/myjs/clarity.js"></script>
