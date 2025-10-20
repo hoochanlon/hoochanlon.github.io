@@ -4,7 +4,7 @@ noticeOutdate: false
 categories: 
 - Butterfly-雨蝶
 - Butterfly-沙漠寂寞
-tags: 博客主题修复
+tags: 博客效果调整与更新
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://image.aibochinese.com/i/2025/10/13/fmak40.jpg'
 abbrlink: 15347
