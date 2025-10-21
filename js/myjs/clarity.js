@@ -1,1 +1,1 @@
-!function(t,e,n,c,s,a,r){t[n]=t[n]||function(){(t[n].q=t[n].q||[]).push(arguments)},(a=e.createElement(c)).async=1,a.src="https://www.clarity.ms/tag/tnx9sjz2fj",(r=e.getElementsByTagName(c)[0]).parentNode.insertBefore(a,r)}(window,document,"clarity","script");
+((t,e,n,s,a,c)=>{t[n]=t[n]||function(){(t[n].q=t[n].q||[]).push(arguments)},(a=e.createElement(s)).async=1,a.src="https://www.clarity.ms/tag/tnx9sjz2fj",(c=e.getElementsByTagName(s)[0]).parentNode.insertBefore(a,c)})(window,document,"clarity","script");
