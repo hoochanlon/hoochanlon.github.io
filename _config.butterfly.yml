@@ -939,7 +939,8 @@ clickShowText:
 # https://github.com/francoischalifour/medium-zoom
 # https://fancyapps.com/fancybox/
 # Leave it empty if you don't need lightbox
-lightbox:
+# https://github.com/ruanyi/ruanyi.github.io/blob/master/_config.butterfly.yml
+lightbox: fancybox
 
 # --------------------------------------
 # Tag Plugins settings
@@ -1114,6 +1115,8 @@ inject:
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>
+    # - <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    # - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js" defer data-pjax></script>
     # - <script src="/js/myjs/post_title.js"></script>
 
 

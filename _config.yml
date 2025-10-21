@@ -199,6 +199,6 @@ archive_generator:
     per_page: 10
 
 # https://github.com/chenzhutian/hexo-all-minifier
-all_minifier: false
+all_minifier: true
 
 

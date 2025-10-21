@@ -116,6 +116,7 @@ Splayer 音乐板块[^1]
 * [Add Blog Animation – Wowjs](https://akilar.top/posts/abab51cf)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化 | June's Blog](https://blog.june-pj.cn/posts/7bed0b4e/)
+* [解决Butterfly页脚养鱼在切换页面时不生效的问题](https://ihave.news/post/20240818194045.html)
 
 ####  插件与功能扩展
 
