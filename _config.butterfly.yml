@@ -339,7 +339,7 @@ aside:
     expand: none
     sort_order:
   card_tags:
-    enable: true
+    enable: false
     # If set 0 will show all
     limit: 40
     color: false
@@ -349,7 +349,7 @@ aside:
     order: 1
     sort_order:
   card_archives:
-    enable: true
+    enable: false
     # Type: monthly / yearly
     type: monthly
     # Eg: YYYY年MM月
