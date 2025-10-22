@@ -563,7 +563,7 @@ comments:
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: true
+  # lazyload:
   # Display comment count in post's top_img
   count: false
   # Display comment count in Home Page
@@ -1039,13 +1039,14 @@ instantpage: false
 
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
+# https://butterfly.js.org/posts/198a4240/?highlight=loading
 lazyload:
-  enable: false
+  enable: true
   # Use browser's native lazyload instead of vanilla-lazyload
   native: false
   # Specify the field to use lazyload (site or post)
-  field: site
-  placeholder:
+  field: post  
+  placeholder: /img/sonic-fnf.gif
   blur: false
 
 # PWA
@@ -1296,23 +1297,26 @@ charts:
   categoriesRadar_title: # 设置分类雷达的标题，默认为空
 + echarts_CDN: # https://lib.baomitu.com/echarts/4.7.0/echarts.min.js
 
+
 # electric_clock
-# see https://anzhiy.cn/posts/fc18.html
+# see：https://github.com/hoochanlon/hexo-butterfly-clock-remake
 electric_clock:
-  enable: true # 开关
-  priority: 6 #过滤器优先权
-  enable_page: all # 应用页面
-  exclude:
-       #  - /posts/
-       # - /about/
-  layout: # 挂载容器类型
-    type: class
-    name: sticky_layout
-    index: 0
-  loading: https://cdn.cbd.int/hexo-butterfly-e-clock/lib/loading.gif #加载动画自定义
+  enable: true           # 插件开关
+  priority: 5            # 过滤器优先级
+  enable_page: all       # 应用页面，可写特定路径或 "all"
+  exclude:            # 排除页面，可留空或写具体路径
+    # - /posts/
+    # - /about/
+  layout:
+    type: class          # 容器类型，class 或 id
+    name: aside-content  # 目标容器的 class 或 id
+    # insert_before: user-countdown   # 插入到该元素前面
+    insert_after: card-announcement  # 插入到该元素后面（二选一）
+  loading: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/loading.gif
   clock_css: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/clock-min.css
   clock_js: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/clock-min.js
-  qweather_api_host: https://pp6tupe4xx.re.qweatherapi.com # 和风天气API地址
-  qweather_key: b3dceab537c74f96a77ede4b7dff13d9  # 和风天气key
-  default_city: "资兴" # 默认城市
+  qweather_api_host: https://pp6tupe4xx.re.qweatherapi.com
+  qweather_key: b3dceab537c74f96a77ede4b7dff13d9
+  default_city: "资兴"
+
 

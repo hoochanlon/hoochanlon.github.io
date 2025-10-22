@@ -1,42 +1,32 @@
 # 所有页面都会显示
 top:
+  - class_name: user-countdown
+    name: 倒计时
+    icon: fa fa-hourglass-half
+    order: 7
+    html: |
 
+      <div style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+          <iframe
+            src="https://clockzone.net/embed/countdown?locale=zh-CN&amp;theme=dark&amp;
+                  format=day%2Chour%2Cminute%2Csecond&amp;font=Inter&amp;scale=90&amp;
+                  showLabels=true&amp;targetDate=2025-12-31T11%3A28%3A01.900Z&amp;title=IE考试倒计时"
+            width="240"
+            height="180"
+            style="border:none; border-radius:8px; display:block; margin:auto;">
+          </iframe>
+
+        <div style="text-align: center; margin-top: 4px; opacity: 0.7;">
+          <a href="https://clockzone.net" target="_blank" style="font-size: 11px; color: #666; text-decoration: none;">
+            ⏰ Powered by ClockZone
+          </a>
+        </div>
+      </div>
 
 # 除了文章页都会显示
 bottom:
-  # - class_name: user-clock
-  #   name: 时钟
-  #   icon: fa fa-clock
-  #   order: 5
-  #   html: |
-  #    <a href="https://time.is/Shanghai" id="time_is_link" rel="nofollow" style="font-size:24px">上海时间:</a>
-  #     <span id="Shanghai_z43d" style="font-size:24px"></span>
-  #     <script src="//widget.time.is/t.js"></script>
-  #     <script>
-  #     time_is_widget.init({Shanghai_z43d:{}});
-  #     </script>
 
-  #     <div style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  #       <iframe 
-  #         src="https://clockzone.net/embed/countdown?locale=en-US&theme=dark&format=day%2Chour%2Cminute%2Csecond&font=Inter&scale=60&showLabels=true&targetDate=2025-12-31T11%3A28%3A01.900Z&title=IE%E8%80%83%E8%AF%95%E5%80%92%E8%AE%A1%E6%97%B6"
-  #         width="240" 
-  #         height="180" 
-  #         style="border: none; border-radius: 8px; display: block;"
-  #       ></iframe>
-  #       <div style="text-align: center; margin-top: 4px; opacity: 0.7;">
-  #         <a href="https://clockzone.net" target="_blank" style="font-size: 11px; color: #666; text-decoration: none;">
-  #           ⏰ Powered by ClockZone
-  #         </a>
-  #       </div>
-  #     </div>
 
-  # - class_name: user-weather
-  #   name: 天气
-  #   icon: fa fa-cloud
-  #   order: 6
-  #   html: |
-  #    <div id="ww_62f74659400aa" v='1.3' loc='auto' a='{"t":"horizontal","lang":"zh","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/zh/" id="ww_62f74659400aa_u" target="_blank">天气插件</a></div>
-  #     <script async src="https://app3.weatherwidget.org/js/?id=ww_62f74659400aa"></script>
       
       
       

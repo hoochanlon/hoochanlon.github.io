@@ -38,6 +38,10 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 ### 更新
 
 {% timeline 2025, blue %}
+<!-- timeline 10.21 -->
+* 新增懒加载动画
+* 电子时钟插件移除index排序，改成根据类名插入式排序
+<!-- endtimeline -->
 <!-- timeline 10.20 -->
 * 重制电子时钟插件
 <!-- endtimeline -->

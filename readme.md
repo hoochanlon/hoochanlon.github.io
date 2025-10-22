@@ -117,6 +117,8 @@ Splayer 音乐板块[^1]
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化 | June's Blog](https://blog.june-pj.cn/posts/7bed0b4e/)
 * [解决Butterfly页脚养鱼在切换页面时不生效的问题](https://ihave.news/post/20240818194045.html)
+* [懒加载动画效果](https://butterfly.js.org/posts/198a4240/?highlight=loading)
+
 
 ####  插件与功能扩展
 
@@ -149,6 +151,11 @@ Splayer 音乐板块[^1]
 
 * [Hexo + GitHub Actions 实现自动化部署完整指南 | GoofySatoshi's Blog](https://icarus-blog.top/2025/08/29/Hexo-GitHub-Actions-实现自动化部署完整指南/index.html)
 
+#### font awesome图标对应字符编码表
+
+- [font awesome图标对应字符编码表](https://www.cnblogs.com/ytkah/p/12605237.html)
+- [Font Awesome 5.15.2 版本全部图标Unicode对照表大全](https://fa.uutool.cn/unicode/5.15.2/)
+
 #### 壁纸
 
 * [pexels](https://www.pexels.com/zh-cn)（照片式）
@@ -158,10 +165,12 @@ Splayer 音乐板块[^1]
 * [随机二次元图片API接口 - 免费高清动漫壁纸服务 | UAPI](https://uapis.cn/docs/api-reference/get-random-image)
 * [butterfly随机背景最简单的写法 | 小冰博客](https://zfe.space/post/55346.html)
 
-#### font awesome图标对应字符编码表
+#### 加载动画
 
-- [font awesome图标对应字符编码表](https://www.cnblogs.com/ytkah/p/12605237.html)
-- [Font Awesome 5.15.2 版本全部图标Unicode对照表大全](https://fa.uutool.cn/unicode/5.15.2/)
+* https://loading.io
+* https://css-loaders.com
+* https://tenor.com
+* https://products.conholdate.app
 
 #### AI
 
