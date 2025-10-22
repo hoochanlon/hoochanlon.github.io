@@ -43,15 +43,16 @@ code_blocks:
   theme: darker
   macStyle: true
   # Code block height limit (unit: px)
-  height_limit: false
+  height_limit: 300
   word_wrap: false
+  
 
   # Toolbar
   copy: true
   language: true
   # true: shrink the code blocks | false: expand the code blocks | none: expand code blocks and hide the button
   shrink: false
-  fullpage: false
+  fullpage: true
 
 # Social media links
 # Formal:
@@ -1321,5 +1322,4 @@ electric_clock:
   qweather_api_host: https://pp6tupe4xx.re.qweatherapi.com
   qweather_key: b3dceab537c74f96a77ede4b7dff13d9
   default_city: "资兴"
-
 

@@ -6,7 +6,7 @@ description: 代码展示
 abbrlink: 442
 date: 2025-10-07 18:39:58
 cover: https://tu.zbhz.org/i/2025/10/15/x8ptab.png
-sticky: 99
+# sticky: 99
 ---
 
 
@@ -100,7 +100,7 @@ inject:
 
 从自己站点中随机选的图片
 
-```
+```yml
 inject:
   head:
   bottom:
@@ -109,7 +109,7 @@ inject:
 
 从bing中随机选的图片
 
-```
+```js
 const minPage = 300;
 const maxPage = 350;
 const limit = 10;

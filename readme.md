@@ -99,6 +99,8 @@ Splayer 音乐板块[^1]
 * [Butterfly外挂标签用法学习](https://www.yooupi.site/posts/235523-d25a2ac1.html)
 * [butterfly常用标签外挂](https://blog.pushihao.com/article/a2b56279.html)
 * [暴涨75k星！本地部署超强备忘录Memos，不只是记笔记！ - 知乎](https://zhuanlan.zhihu.com/p/1926331659915104675)
+* [butterfly 代码块中的所有功能](https://butterfly.js.org/posts/4aa8abbe/?highlight=height_limit)
+
 
 #### UI/渲染优化
 
