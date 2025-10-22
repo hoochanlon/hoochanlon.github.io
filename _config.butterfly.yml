@@ -376,6 +376,7 @@ aside:
     # Formal: Month/Day/Year Time or Year/Month/Day Time
     # Leave it empty if you don't enable this feature
     runtime_date: 2018/11/29
+  
 
 # --------------------------------------
 # Bottom right button
@@ -1099,6 +1100,7 @@ inject:
     - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="/css/real_css/custom.css">
+    - <link rel="stylesheet" href="/css/real_css/calendar.css">
 
     # 微软统计
     - <script src="/js/myjs/clarity.js"></script>
@@ -1116,10 +1118,11 @@ inject:
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>
+    - <script src="/js/myjs/calendar.js"></script>
+    - <script src="https://unpkg.com/chinese-lunar@0.1.4/lib/chinese-lunar.js"></script>
     # - <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     # - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js" defer data-pjax></script>
     # - <script src="/js/myjs/post_title.js"></script>
-
 
 
 # CDN Settings
@@ -1309,9 +1312,9 @@ electric_clock:
     # - /about/
   layout:
     type: class          # 容器类型，class 或 id
-    name: aside-content  # 目标容器的 class 或 id
-    # insert_before: user-countdown   # 插入到该元素前面
-    insert_after: card-announcement  # 插入到该元素后面（二选一）
+    name: sticky_layout  # 目标容器的 class 或 id
+    insert_before: card-calendar   # 插入到该元素前面
+    # insert_after: card-announcement  # 插入到该元素后面（二选一）
   loading: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/loading.gif
   clock_css: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/clock-min.css
   clock_js: https://cdn.cbd.int/hexo-butterfly-clock-remake@2.0.6/lib/clock-min.js

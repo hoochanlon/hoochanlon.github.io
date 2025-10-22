@@ -144,6 +144,7 @@ Splayer 音乐板块[^1]
 * [【butterfly】分类磁贴插件版 | 雷雷的个人博客](https://ll.sc.cn/posts/ab72/)
 * [butterfly主题魔改10：分类页面魔改 | kukualのblog](https://kukual.github.io/posts/a7bebfb0/index.html)
 * [hoochanlon/hexo-butterfly-category-card-fork: hexo-butterfly-category-card-fork](https://github.com/hoochanlon/hexo-butterfly-category-card-fork)
+* [Butterfly日历卡片](https://blog.june-pj.cn/posts/c8344523)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * https://artitalk.js.org
 

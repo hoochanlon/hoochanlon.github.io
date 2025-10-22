@@ -1,0 +1,27 @@
+.card-widget#card-schedule
+    #schedule-area-left
+        #schedule-title 距离节日
+        #schedule-days 0
+        #schedule-date 0000-00-00
+    #schedule-area-right
+        .schedule-r0
+            .schedule-d0 本年
+            .schedule-d1
+                span#p_span_year.aside-span1
+                span.aside-span2 还剩
+                    a 0
+                progress#pBar_year(max="365")
+        .schedule-r1
+            .schedule-d0 本月
+            .schedule-d1
+                span#p_span_month.aside-span1
+                span.aside-span2 还剩
+                    a 0
+                progress#pBar_month(max="30")
+        .schedule-r2
+            .schedule-d0 本周
+            .schedule-d1
+                span#p_span_week.aside-span1
+                span.aside-span2 还剩
+                    a 0
+                progress#pBar_week(max="7")
