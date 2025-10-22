@@ -6,6 +6,7 @@ description: 代码展示
 abbrlink: 442
 date: 2025-10-07 18:39:58
 cover: https://tu.zbhz.org/i/2025/10/15/x8ptab.png
+sticky: 99
 ---
 
 
@@ -385,16 +386,11 @@ skip_render:
 <div class="aplayer no-destroy" data-id="9593638671" data-server="tencent" data-type="playlist" data-fixed="true" data-autoplay="true"> </div>
 ```
 
-<div class="aplayer no-destroy" data-id="9593638671" data-server="tencent" data-type="playlist" data-fixed="true" data-autoplay="true"> </div>
-
 在文章页上音乐盒
 
 ```
 {% meting "14405552446" "netease" "playlist" "mutex:true" "listmaxheight:300px" "preload:auto" "theme:#ad7a86" %}
 ```
-
-{% meting "14405552446" "netease" "playlist" "mutex:true" "listmaxheight:300px" "preload:auto" "theme:#ad7a86" %}
-
 
 ### 杂项
 
