@@ -12,13 +12,6 @@ cover: https://tu.zbhz.org/i/2025/10/15/x8ptab.png
 
 ### 由点击微信图标展开二维码图片
 
-在主题配置文件插入该js
-
-```yml
-inject:
-  bottom:
-```
-
 自定义js
 
 ```JS
@@ -94,6 +87,13 @@ inject:
     e.stopPropagation();
   });
 })();
+```
+
+在主题配置文件插入该js
+
+```yml
+inject:
+  bottom:
 ```
 
 ### 随机选图
