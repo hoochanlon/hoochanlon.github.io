@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hoochanlon.github.io/weiyu/index.html</loc>
+    
+    <lastmod>2025-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hoochanlon.github.io/posts/50270.html</loc>
     
     <lastmod>2025-10-22</lastmod>
@@ -83,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/comments/index.html</loc>
-    
-    <lastmod>2025-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hoochanlon.github.io/categories/index.html</loc>
     
     <lastmod>2025-10-22</lastmod>
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/tags/index.html</loc>
+    <loc>https://hoochanlon.github.io/comments/index.html</loc>
     
     <lastmod>2025-10-22</lastmod>
     
@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://hoochanlon.github.io/weiyu/index.html</loc>
+    <loc>https://hoochanlon.github.io/tags/index.html</loc>
     
     <lastmod>2025-10-22</lastmod>
     

@@ -1,3 +1,4 @@
+https://hoochanlon.github.io/weiyu/index.html
 https://hoochanlon.github.io/posts/50270.html
 https://hoochanlon.github.io/posts/442.html
 https://hoochanlon.github.io/posts/15347.html
@@ -7,11 +8,10 @@ https://hoochanlon.github.io/posts/18776.html
 https://hoochanlon.github.io/posts/59603.html
 https://hoochanlon.github.io/posts/211.html
 https://hoochanlon.github.io/about/index.html
-https://hoochanlon.github.io/comments/index.html
 https://hoochanlon.github.io/categories/index.html
-https://hoochanlon.github.io/tags/index.html
+https://hoochanlon.github.io/comments/index.html
 https://hoochanlon.github.io/music/index.html
-https://hoochanlon.github.io/weiyu/index.html
+https://hoochanlon.github.io/tags/index.html
 https://hoochanlon.github.io/posts/30067.html
 https://hoochanlon.github.io/posts/20117.html
 https://hoochanlon.github.io/posts/14281.html
