@@ -22,6 +22,20 @@ date: 2025-10-14 20:02:29
 npm uninstall hexo
 npm install hexo@7.2
 ```
+
+**并检查 package.json 是否已经固定版本**
+
+package.json
+
+```json
+  "dependencies": {
+    "hexo": "7.2",
+    "hexo-theme-butterfly": "^5.5.1"
+}
+```
+
+
+
 {% endnote %}
 
 {% note primary flat %}

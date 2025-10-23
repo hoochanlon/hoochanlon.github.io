@@ -1,7 +1,7 @@
 # ***[Chanlon Hoo's Blog](https://hoochanlon.github.io/)***
 
 >  [!IMPORTANT]
-> * 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时15天重构部署完毕。
+> * 博客由 Jekyll Next到 Hexo Butterfly，此次属于跨代升级了（2018 —— 2025）。历时近一个月重构部署完毕。
 > * 后续相关调整或更新见：https://hoochanlon.github.io/posts/15347.html
 
 
@@ -102,6 +102,7 @@ Splayer 音乐板块[^1]
 * [butterfly 代码块中的所有功能](https://butterfly.js.org/posts/4aa8abbe/?highlight=height_limit)
 
 
+
 #### UI/渲染优化
 
 * [hexo-theme-butterfly 修改分割线的样式 - 洛语 の Blog](https://luoyuy.top/posts/5c76ad4123cd/)
@@ -167,6 +168,11 @@ Splayer 音乐板块[^1]
 * [动漫图片超分辨率 Real-CUGAN](https://real-cugan.animesales.xyz/)
 * [随机二次元图片API接口 - 免费高清动漫壁纸服务 | UAPI](https://uapis.cn/docs/api-reference/get-random-image)
 * [butterfly随机背景最简单的写法 | 小冰博客](https://zfe.space/post/55346.html)
+
+#### 图床
+
+* https://img.remit.ee
+* [2025 年，我们还有哪些免费图床可用？（长期更新）](https://sspai.com/post/98911)
 
 #### 加载动画
 
