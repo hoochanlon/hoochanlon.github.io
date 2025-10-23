@@ -1264,25 +1264,25 @@ categoryBar:
   message:
     - cname: 博客主题
       descr: 
-      cover: https://wallpapers.com/images/featured-full/blue-butterfly-aesthetic-zzhvssxq8lu8p7g6.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/blue-butterfly.webp
     - cname: 随笔
       descr: 
-      cover: https://tu.zbhz.org/i/2025/10/20/pr874p.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/blog-post.webp
     - cname: 折腾记录
       descr: 
-      cover: https://cdn.jsdelivr.net/gh/hoochanlon/tuchuang@main//up/20251020144609324.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/coding.webp
     - cname: 封存
       descr: 
-      cover: https://tu.zbhz.org/i/2025/10/20/r853ur.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/archived.webp
     - cname: 考试
       descr: 
-      cover:  https://tu.zbhz.org/i/2025/10/17/ufu5xs.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/kaoshi.webp
     - cname: 空转记录
       descr: 
-      cover: https://www.ntsec.edu.tw/UserFiles/image/Science_study_monthly/2020/59-03/002/6.jpg
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/woniu.webp
     - cname: 图片日记
       descr: 
-      cover: https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg 
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/cloud.jpeg
   custom_css: /css/real_css/categorybar.css
 
 
