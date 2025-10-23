@@ -11,6 +11,5 @@ _multiconfig.yml
 *.log
 *.iml
 yarn.lock
-package-lock.json
 .nyc_output/
 coverage/
