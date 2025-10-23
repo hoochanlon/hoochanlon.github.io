@@ -314,7 +314,7 @@ aside:
       link: https://github.com/hoochanlon
   # 公告 通知
   card_announcement:
-    enable: true
+    enable: false
     content: |
         <div class="visitor_content">正在进行时...</div>
         <script src="/js/myjs/visitor_info.js"></script>

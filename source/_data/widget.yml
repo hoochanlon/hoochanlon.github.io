@@ -1,11 +1,12 @@
+# https://butterfly.js.org/posts/ea33ab97/?highlight=widget
 # 所有页面都会显示
 top:
   - class_name: user-countdown
-    name: 倒计时
-    icon: fa fa-hourglass-half
     order: 5
     html: |
 
+      <div style="padding-top: 10px;"></div>
+      <!-- 包裹倒计时框的容器 -->
       <div style="display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
           <iframe
             src="https://clockzone.net/embed/countdown?locale=zh-CN&amp;theme=dark&amp;
@@ -15,13 +16,10 @@ top:
             height="180"
             style="border:none; border-radius:8px; display:block; margin:auto;">
           </iframe>
-
-        <div style="text-align: center; margin-top: 4px; opacity: 0.7;">
-          <a href="https://clockzone.net" target="_blank" style="font-size: 11px; color: #666; text-decoration: none;">
-            ⏰ Powered by ClockZone
-          </a>
-        </div>
       </div>
+      <script src="/js/myjs/countdown_style.js"></script>   
+    
+
 
 # 除了文章页都会显示
 bottom:
