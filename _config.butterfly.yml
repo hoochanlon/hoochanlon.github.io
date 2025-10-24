@@ -1283,6 +1283,9 @@ categoryBar:
     - cname: 图片日记
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/cloud.jpeg
+    - cname: 游戏王
+      descr: 打牌拯救世界
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/yogioh-1.webp
   custom_css: /css/real_css/categorybar.css
 
 
