@@ -222,6 +222,7 @@ DB_PATH=/app/data/noise.db
 反代步骤可参考 [1Panel Docker 超详细 Misskey 部署教程](https://liubing.me/article/self-deploy/1panel-docker-deployment-misskey.html) 这篇文章。证书配置 [Kerry的学习笔记
  - 如何申请 Cloudflare 免费 SSL 证书](https://kerrynotes.com/apply-ssl-certificate-from-cloudflare/)
 
+
 ### 中国银行visa借记卡申请过程 
 
 * [中国银行visa借记卡申请过程](https://linux.do/t/topic/173844)
