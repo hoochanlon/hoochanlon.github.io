@@ -225,4 +225,3 @@ DB_PATH=/app/data/noise.db
 ### 中国银行visa借记卡申请过程 
 
 * [中国银行visa借记卡申请过程](https://linux.do/t/topic/173844)
-* [2025年虚拟卡野卡WildCard跑路，推荐这家免实名Coinepay成功绑定ChatGPT等平台](https://sites.google.com/view/coinepaynet/WildCard)
