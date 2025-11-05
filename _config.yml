@@ -35,6 +35,7 @@ skip_render:
 - 'todo/*'
 - 'tomato/*'
 - 'calendar/*'
+- 'weiyu/*'
 # - 'music/*'
 
 # Writing

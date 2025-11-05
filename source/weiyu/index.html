@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>正在跳转...</title>
+
+  <!-- 字体引入 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.12/index.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('/img/caffe.png') no-repeat center center;
+      background-size: cover;
+      font-family: 'LXGW WenKai Screen', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .fallback {
+      margin-top: 20px;
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .fallback a {
+      font-weight: 600;
+      color: #007acc;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-card">
+    <div class="loader"></div>
+
+    <div class="message">正在跳转，请稍候...</div>
+    <div class="fallback">
+      如果未能自动跳转，请&nbsp;<a href="https://memos.hoochanlon.space/explore" target="_blank" rel="noopener">点击此处&nbsp;</a>访问。
+    </div>
+  </div>
+
+  <script>
+    const targetURL = "https://memos.hoochanlon.space/explore";
+    const delay = 500;
+    setTimeout(() => {
+      window.location.href = targetURL;
+    }, delay);
+  </script>
+</body>
+</html>
