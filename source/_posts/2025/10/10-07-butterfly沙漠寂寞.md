@@ -392,6 +392,380 @@ skip_render:
 {% meting "14405552446" "netease" "playlist" "mutex:true" "listmaxheight:300px" "preload:auto" "theme:#ad7a86" %}
 ```
 
+
+### 加载动画
+
+
+指定相关页面不需要加载动画
+
+
+`_config.butterfly.yml`
+
+```yml
+# Loading Animation
+preloader:
+  enable: true           # true 开启，false 关闭
+  source: 1              # 1: fullpage-loading, 2: pace
+  # 排除页面列表，路径以 / 开头
+  # 使用 HOME 可以指定首页进行排除
+  exclude:
+    - HOME       
+    - "/posts/"
+    - "/about/" 
+    - "/tags/"
+    - "/categories/"
+    - "/archives/"
+    - "/comments/"           
+  pace_css_url: ""    
+```
+
+`\themes\butterfly\layout\includes\loading\fullpage-loading.pug`
+
+这个相对适合我，因为页面侧边栏元素抖动的问题，我没解决所以用加载动画过渡一下
+
+```
+- loading_img = theme.preloader.avatar
+
+if theme.preloader && theme.preloader.enable
+  #loading-box
+    .loading-bg
+      img.loading-img(class='nolazyload' src=loading_img ? url_for(loading_img) : "/img/avatar")
+      .loading-image-dot
+      #loading-percentage 0%
+  script.
+    (function() {
+      const excludePages = !{JSON.stringify(theme.preloader.exclude || [])};
+      const path = window.location.pathname;
+
+      // 判断是否在排除列表中
+      const isExcluded = excludePages.some(p => {
+        if(p === "HOME") return path === "/"; // 首页特殊标识
+        return path.startsWith(p);            // 其他页面按前缀匹配
+      });
+
+      if(isExcluded){
+        const box = document.getElementById("loading-box");
+        if(box) box.classList.add("loaded");
+        return;
+      }
+
+      const loadingPercentage = document.getElementById("loading-percentage");
+      let progress = 0;
+      let timer = setInterval(() => {
+        progress += Math.random() * (progress < 70 ? 5 : 1);
+        if(progress >= 99) progress = 99;
+        loadingPercentage.textContent = Math.floor(progress) + "%";
+      }, 100);
+
+      const preloader = {
+        endLoading: () => {
+          clearInterval(timer);
+          loadingPercentage.textContent = "100%";
+          const box = document.getElementById("loading-box");
+          if(box){
+            box.classList.add("loaded");
+            document.body.style.overflow = 'auto';
+          }
+          if(window.WOW) new WOW().init();
+        },
+        initLoading: () => {
+          const box = document.getElementById("loading-box");
+          if(box) box.classList.remove("loaded");
+          document.body.style.overflow = '';
+        }
+      };
+
+      window.addEventListener('load', () => preloader.endLoading());
+
+      if(theme.pjax && theme.pjax.enable){
+        document.addEventListener('pjax:send', () => preloader.initLoading());
+        document.addEventListener('pjax:complete', () => preloader.endLoading());
+      }
+    })();
+```
+
+`\themes\butterfly\source\css\_layout\loading.styl`
+
+```styl
+#loading-box
+  position fixed
+  width 100%
+  height 100%
+  top 0
+  left 0
+  z-index 1001
+  overflow hidden
+
+.loading-bg
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 100%
+  background #4e9eff
+  transition opacity 0.3s
+  opacity 1
+
+.loading-img
+  width 100px
+  height 100px
+  border-radius 50%
+  border 4px solid #f0f0f2
+  animation loadingAction 0.6s infinite alternate
+  background url(/img/avatar.png) no-repeat center center
+  background-size cover        // ✅ 确保头像完整显示
+
+.loading-image-dot
+  width 30px                    // ✅ 保持原始大小
+  height 30px
+  background #6bdf8f
+  border-radius 50%
+  border 6px solid #fff
+  position absolute
+  top 50%
+  left 50%
+  transform translate(18px, 24px)   // ✅ 保持在线状态点原位
+
+#loading-percentage
+  position absolute
+  top 58%                       // ✅ 百分比靠近头像
+  left 50%
+  transform translateX(-50%)
+  font-weight bold
+  &::before
+    content "「"
+    margin-right 10px
+  &::after
+    content "」"
+    margin-left 10px
+
+#loading-box.loaded
+  pointer-events none           // ✅ 不阻挡点击
+  .loading-bg
+    opacity 0
+    z-index -1000
+
+@keyframes loadingAction
+  0%
+    opacity 1
+  100%
+    opacity 0.4
+```
+
+
+### 加载动画优化版
+
+之前逻辑是完全阻塞的：#loading-box 一出现就覆盖整个页面，百分比动画跑到 99% 前都不消失，即使首页内容已经可以交互，也被挡住。我们要改成非阻塞式加载动画，让页面可用时动画先消失，同时保留百分比动画和 PJAX 支持。
+
+`\themes\butterfly\layout\includes\loading\fullpage-loading.pug`
+
+```
+- loading_img = theme.preloader.avatar
+
+if theme.preloader && theme.preloader.enable
+  #loading-box
+    .loading-bg
+      img.loading-img(class='nolazyload' src=loading_img ? url_for(loading_img) : "/img/avatar")
+      .loading-image-dot
+      #loading-percentage 0%
+  script.
+    (function() {
+      const excludePages = !{JSON.stringify(theme.preloader.exclude || [])};
+      const path = window.location.pathname;
+
+      const isExcluded = excludePages.some(p => {
+        if(p === "HOME") return path === "/";
+        return path.startsWith(p);
+      });
+
+      const loadingBox = document.getElementById("loading-box");
+      const loadingPercentage = document.getElementById("loading-percentage");
+
+      if(isExcluded){
+        if(loadingBox) loadingBox.classList.add("loaded");
+        return;
+      }
+
+      let progress = 0;
+      let timer = setInterval(() => {
+        progress += Math.random() * (progress < 70 ? 5 : 1);
+        if(progress >= 99) progress = 99;
+        if(loadingPercentage) loadingPercentage.textContent = Math.floor(progress) + "%";
+      }, 100);
+
+      const preloader = {
+        endLoading: () => {
+          clearInterval(timer);
+          if(loadingPercentage) loadingPercentage.textContent = "100%";
+          if(loadingBox) {
+            loadingBox.classList.add("loaded");
+            loadingBox.style.pointerEvents = "none"; // ✅ 不阻塞点击
+            document.body.style.overflow = 'auto';
+          }
+          if(window.WOW) new WOW().init();
+        },
+        initLoading: () => {
+          if(loadingBox){
+            loadingBox.classList.remove("loaded");
+            loadingBox.style.pointerEvents = "auto";
+          }
+          document.body.style.overflow = '';
+        }
+      };
+
+      // 页面可交互就结束动画
+      if(document.readyState === "interactive" || document.readyState === "complete"){
+        preloader.endLoading();
+      }
+
+      // DOMContentLoaded 时也结束动画
+      document.addEventListener('DOMContentLoaded', preloader.endLoading);
+
+      if(theme.pjax && theme.pjax.enable){
+        document.addEventListener('pjax:send', preloader.initLoading);
+        document.addEventListener('pjax:complete', preloader.endLoading);
+      }
+    })();
+```
+
+
+`\themes\butterfly\layout\includes\loading\fullpage-loading.pug` 
+
+* 进化 -> 加载动画的主要作用是缓解等待焦虑，让用户知道“页面正在加载”。如果加载时间极短（比如几百毫秒甚至毫秒级），动画不仅没必要，反而会让用户感觉页面反应被拖慢。
+
+```
+script.
+  (function() {
+    try {
+      // 从主题配置读取排除列表（Pug 安全插值）
+      const excludePages = #{JSON.stringify(theme.preloader && theme.preloader.exclude ? theme.preloader.exclude : [])};
+      const path = window.location.pathname || '/';
+
+      console.log('[preloader] path=', path, 'exclude=', excludePages);
+
+      const isExcluded = excludePages.some(p => {
+        if (p === 'HOME') return path === '/';
+        return p && path.startsWith(p);
+      });
+
+      const loadingBox = document.getElementById('loading-box');
+      const loadingPercentage = document.getElementById('loading-percentage');
+
+      if (isExcluded) {
+        console.log('[preloader] page excluded, hide loader');
+        if (loadingBox) loadingBox.classList.add('loaded');
+        return;
+      }
+
+      if (!loadingPercentage) {
+        console.warn('[preloader] #loading-percentage not found — aborting percentage animation');
+      }
+
+      // 智能开始时间：记录起始时间
+      const tStart = performance.now();
+
+      // 只有当 loadingPercentage 存在时才启动计时器
+      let progress = 0;
+      let timer = null;
+      if (loadingPercentage) {
+        loadingPercentage.textContent = '0%';
+        timer = setInterval(() => {
+          try {
+            // 增长策略：前快后慢
+            progress += Math.random() * (progress < 70 ? 5 : 1.2);
+            if (progress >= 99) progress = 99;
+            loadingPercentage.textContent = Math.floor(progress) + '%';
+          } catch (e) {
+            console.error('[preloader] timer err', e);
+          }
+        }, 100);
+        console.log('[preloader] percentage timer started');
+      }
+
+      const endInternal = () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+        if (loadingPercentage) loadingPercentage.textContent = '100%';
+      };
+
+      const hideLoader = (fast) => {
+        endInternal();
+        // 如果时间非常短（fast === true 或加载耗时 < 400ms）直接隐藏，不做延迟
+        const elapsed = performance.now() - tStart;
+        const delay = (fast || elapsed < 400) ? 0 : 300; // 可调整的平滑延迟
+        console.log('[preloader] hiding loader after', elapsed.toFixed(1), 'ms delay=', delay);
+        setTimeout(() => {
+          if (loadingBox) {
+            loadingBox.classList.add('loaded');
+            // 使 loader 不阻塞交互（如果你希望允许交互，也可设置 pointer-events none）
+            loadingBox.style.pointerEvents = 'none';
+          }
+          document.body.style.overflow = 'auto';
+          if (window.WOW) {
+            try { new WOW().init(); } catch(e){ console.warn('[preloader] WOW init err', e); }
+          }
+        }, delay);
+      };
+
+      // 智能触发：如果文档已经可交互或完成，立即结束
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        console.log('[preloader] document already interactive/complete -> hide immediately');
+        hideLoader(true);
+      } else {
+        // DOMContentLoaded 更早，优先使用它
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('[preloader] DOMContentLoaded fired -> hide loader');
+          hideLoader(false);
+        }, { once: true });
+
+        // 作为兜底，若 window.load 更晚触发也隐藏
+        window.addEventListener('load', () => {
+          console.log('[preloader] window.load fired -> hide loader');
+          hideLoader(false);
+        }, { once: true });
+
+        // 另一个兜底：最长等待时间（比如 3s），避免 loader 永久停留
+        setTimeout(() => {
+          if (!loadingBox || !loadingBox.classList.contains('loaded')) {
+            console.log('[preloader] fallback timeout reached -> hide loader');
+            hideLoader(false);
+          }
+        }, 3000);
+      }
+
+      // PJAX 支持（若使用）
+      if (typeof theme !== 'undefined' && theme.pjax && theme.pjax.enable) {
+        document.addEventListener('pjax:send', () => {
+          console.log('[preloader] pjax:send -> initLoading');
+          if (loadingBox) {
+            loadingBox.classList.remove('loaded');
+            loadingBox.style.pointerEvents = 'auto';
+          }
+          document.body.style.overflow = '';
+          // restart percentage
+          progress = 0;
+          if (loadingPercentage) loadingPercentage.textContent = '0%';
+        });
+        document.addEventListener('pjax:complete', () => {
+          console.log('[preloader] pjax:complete -> endLoading');
+          hideLoader(false);
+        });
+      }
+
+    } catch (err) {
+      console.error('[preloader] unexpected error', err);
+      // 如果出错，尝试清理并隐藏 loader，避免页面被卡住
+      try {
+        const box = document.getElementById('loading-box');
+        if (box) box.classList.add('loaded');
+        document.body.style.overflow = 'auto';
+      } catch(e){}
+    }
+  })();
+```
+
 ### 杂项
 
  在 {% label source\css\_layout\footer.styl  blue %} 修改页脚颜色
@@ -413,3 +787,5 @@ top:
      <div id="ww_62f74659400aa" v='1.3' loc='auto' a='{"t":"horizontal","lang":"zh","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/zh/" id="ww_62f74659400aa_u" target="_blank">天气插件</a></div>
       <script async src="https://app3.weatherwidget.org/js/?id=ww_62f74659400aa"></script>
 ```
+
+
