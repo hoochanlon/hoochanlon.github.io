@@ -1,34 +1,28 @@
-// 确保 DOM 完全加载后执行脚本
-document.addEventListener('DOMContentLoaded', function () {
-    // 获取所有包含 'card-widget user-countdown wow animate__zoomIn' 类的元素
-    const elements = document.querySelectorAll('.card-widget.user-countdown.wow.animate__zoomIn');
+(function() {
+    // 隐藏父容器，防止闪现
+    document.querySelectorAll('.card-widget.user-countdown').forEach(el => {
+        el.style.visibility = 'hidden';
+    });
 
-    // 遍历这些元素并删除其中的 .item-headline 元素
-    elements.forEach(element => {
-        const headline = element.querySelector('.item-headline');
-        console.log('Found .item-headline:', headline); // 调试：查看是否找到 .item-headline 元素
-        if (headline) {
-            headline.remove(); // 删除该元素
-            console.log('Removed .item-headline'); // 调试：删除时的提示
+    // 删除 .item-headline 函数
+    function removeItemHeadline(context = document) {
+        context.querySelectorAll('.item-headline').forEach(el => el.remove());
+    }
+
+    // 处理现有 DOM
+    removeItemHeadline();
+    document.querySelectorAll('.card-widget.user-countdown').forEach(el => {
+        el.style.visibility = 'visible'; // 删除完成再显示
+    });
+
+    // MutationObserver 处理动态添加元素
+    const observer = new MutationObserver(mutations => {
+        for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+                if (node.nodeType !== 1) continue;
+                removeItemHeadline(node);
+            }
         }
     });
-});
-
-// 使用 MutationObserver 监视 DOM 的变化，确保动态加载的元素也能被删除
-const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-            // 如果是 .item-headline 元素，删除它
-            if (node.matches && node.matches('.item-headline')) {
-                console.log('Removed dynamically added .item-headline'); // 调试：动态添加的元素被删除
-                node.remove();
-            }
-        });
-    });
-});
-
-// 开始观察文档的变化
-observer.observe(document.body, {
-    childList: true,  // 观察子节点的添加与删除
-    subtree: true     // 观察所有子元素
-});
+    observer.observe(document.body, { childList: true, subtree: true });
+})();

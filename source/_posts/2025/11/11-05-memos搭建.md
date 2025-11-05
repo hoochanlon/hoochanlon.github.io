@@ -1,11 +1,12 @@
 ---
 title: memos搭建
 noticeOutdate: false
-date: 2025-11-05 00:05:13
 categories: 折腾记录
 tags:
   - 搭建网站
 description: 从bluesky、misskey、mastodon部署建站成功，再到ech0-noise部署，最终决定memos。
+abbrlink: 15670
+date: 2025-11-05 00:05:13
 ---
 
 一键安装1panel，方便下载docker、web配置Linux
