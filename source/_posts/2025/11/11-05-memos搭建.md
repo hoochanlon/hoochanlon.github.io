@@ -76,4 +76,7 @@ docker compose up -d
 * https://github.com/blinkospace/blinko
 * https://github.com/AppFlowy-IO/AppFlowy
 
+---
+
+vercel绑定域名：https://docs.tangly1024.com/article/vercel-domain 好累。
 

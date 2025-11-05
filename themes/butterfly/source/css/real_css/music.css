@@ -1,3 +1,11 @@
+#page-header.not-top-img #nav a, 
+#page-header.not-top-img #nav span.site-page,
+#page-header.not-top-img #nav .site-name {
+    color: #fff;
+    text-shadow: none;
+}
+
+
 body:has(#anMusic-page) .layout.hide-aside {
   max-width: 85%;
 }
