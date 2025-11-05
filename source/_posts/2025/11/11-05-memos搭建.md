@@ -38,3 +38,41 @@ Commands:
 * [github page搭建个人博客绑定域名问题](https://blog.csdn.net/jinweilin/article/details/79607349?)
 * [github.io绑定域名](https://blog.csdn.net/weixin_45961774/article/details/108402406)
 
+找回旧版ui
+
+```yml
+version: "3.8"
+services:
+  memos:
+    image: neosmemo/memos:0.24.0
+    container_name: memos
+    ports:
+      - "5230:5230"
+    volumes:
+      - ./data:/var/opt/memos
+    restart: unless-stopped
+```
+
+```
+cd /opt/1panel/www/memos
+# 这会安全停止容器，但不会删除 ./data 文件夹（数据还在）
+docker compose down
+docker stop memos
+docker rm memos
+docker compose up -d
+```
+
+0.24.0 UI
+
+![ ](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-05_18-11-00.webp)
+
+在没有大版本迭代之前，依然是充满残念的项目。
+
+
+魔改或其他类似物，但我对这些并不感兴趣
+
+* https://github.com/Vespa314/cflow
+* https://github.com/blinkospace/blinko
+* https://github.com/AppFlowy-IO/AppFlowy
+
+
