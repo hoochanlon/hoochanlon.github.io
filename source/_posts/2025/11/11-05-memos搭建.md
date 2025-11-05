@@ -36,4 +36,5 @@ Commands:
 * [为1panel面板中托管到CloudFlare的网站配置HTTPS](https://blog.gusmin.net/2025/03/23/%E4%B8%BA1panel%E9%9D%A2%E6%9D%BF%E4%B8%AD%E6%89%98%E7%AE%A1%E5%88%B0cloudflare%E7%9A%84%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AEhttps/)
 * [使用1panel自动申请和续签通配符证书](https://hin.cool/posts/sslfor1panel.html)
 * [github page搭建个人博客绑定域名问题](https://blog.csdn.net/jinweilin/article/details/79607349?)
+* [github.io绑定域名](https://blog.csdn.net/weixin_45961774/article/details/108402406)
 
