@@ -19,16 +19,16 @@ nav:
 
 menu:
   主页: / || fas fa-home
+  微语: /weiyu/ || fas fa-quote-right 
+  导航: /nav/ || fa fa-compass
   博客|| fa fa-blog:
     标签: /tags/ || fa fa-tags
     分类: /categories/ || fa fa-th
     归档: /archives/ || fa fa-archive
-  微语: /weiyu/ || fas fa-quote-right 
   工作台|| fa fa-laptop-code:
     todo: /todo/ || fa fa-circle-check
     日历: /calendar/ || fas fa-calendar-alt
     番茄钟: /tomato/ || fas fa-stopwatch
-  导航: /nav/ || fa fa-compass
   音乐: /music/ || fas fa-music
   留言: /comments/ || fas fa-location-arrow
   关于: /about/ || fas fa-circle-info
@@ -1122,8 +1122,8 @@ inject:
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>
     - <script src="/js/myjs/calendar.js"></script>
     - <script src="https://unpkg.com/chinese-lunar@0.1.4/lib/chinese-lunar.js"></script>
-    # - <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    # - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js" defer data-pjax></script>
+    - <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js" defer data-pjax></script>
     # - <script src="/js/myjs/post_title.js"></script>
 
 
@@ -1212,7 +1212,7 @@ wowjs:
       offset: 50                 # ✅ 提前触发动画
       iteration: 1
     - class: card-widget
-      style: animate__fadeIn
+      style: animate__zoomIn
       duration: 0.6s
   animate_css: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/animate.min.css
   wow_js: https://npm.elemecdn.com/hexo-butterfly-wowjs/lib/wow.min.js

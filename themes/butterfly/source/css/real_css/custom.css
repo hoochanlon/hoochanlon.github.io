@@ -30,3 +30,8 @@
 /* #content-inner #page .category-lists {
   display: none;
 } */
+
+/* 隐藏页脚养鱼 */
+.footer-other {
+  display: none; /* 完全隐藏元素，且不占用空间 */
+}
