@@ -561,10 +561,10 @@ comments:
   # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   # Format of two comments system : Disqus,Waline
-  use: Waline
+  use: Twikoo
   # Display the comment name next to the button
   text: true
-  # Lazyload: The comment system will be load when comment element enters the browser's viewport.
+  Lazyload: true # The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
   # lazyload:
   # Display comment count in post's top_img
@@ -617,7 +617,7 @@ valine:
 # Waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL: walineserver-six.vercel.app
+  serverURL: # walineserver-six.vercel.app
   bg:
   # Use Waline pageview count as the page view count
   pageview: false
@@ -649,7 +649,7 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
+  envId: https://twikoo-six-beta.vercel.app
   region:
   # Use Twikoo visitor count as the page view count
   visitor: false
