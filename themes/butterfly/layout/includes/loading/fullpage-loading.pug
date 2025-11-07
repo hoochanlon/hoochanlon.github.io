@@ -1,42 +1,67 @@
-#loading-box
-  .loading-left-bg
-  .loading-right-bg
-  .spinner-box
-    .configure-border-1
-      .configure-core
-    .configure-border-2
-      .configure-core
-    .loading-word= _p('loading')
+if theme.preloader && theme.preloader.enable
+  #loading-box
+    .loading-bg
+      img.loading-img(
+        class='nolazyload',
+        src=loading_img ? url_for(loading_img) : "/img/avatar"
+      )
+      .loading-image-dot
+  script.
+    (function() {
+      const mode = "!{theme.preloader.mode || 'exclude'}"; // 'exclude' 或 'include'
+      const pages = !{JSON.stringify(theme.preloader.pages || [])};
+      const path = window.location.pathname;
 
-script.
-  (()=>{
-    const $loadingBox = document.getElementById('loading-box')
-    const $body = document.body
-    const preloader = {
-      endLoading: () => {
-        if ($loadingBox.classList.contains('loaded')) return
-        $body.style.overflow = ''
-        $loadingBox.classList.add('loaded')
-      },
-      initLoading: () => {
-        $body.style.overflow = 'hidden'
-        $loadingBox.classList.remove('loaded')
+      // 判断当前页面是否需要显示加载动画
+      let showLoading = true;
+      if(mode === "exclude") {
+        // 排除模式：列表里的页面不显示动画
+        showLoading = !pages.some(p => p === "HOME" ? path === "/" : path.startsWith(p));
+      } else if(mode === "include") {
+        // 指定模式：只有列表里的页面显示动画
+        showLoading = pages.some(p => p === "HOME" ? path === "/" : path.startsWith(p));
       }
-    }
 
-    preloader.initLoading()
+      if(!showLoading){
+        const box = document.getElementById("loading-box");
+        if(box) box.classList.add("loaded");
+        return;
+      }
 
-    if (document.readyState === 'complete') {
-      preloader.endLoading()
-    } else {
-      window.addEventListener('load', preloader.endLoading)
-      document.addEventListener('DOMContentLoaded', preloader.endLoading)
-      // Add timeout protection: force end after 7 seconds
-      setTimeout(preloader.endLoading, 7000)
-    }
+      const preloader = {
+        show: () => {
+          const box = document.getElementById("loading-box");
+          if(box) box.classList.remove("loaded");
+          document.body.style.overflow = '';
+          preloader._startTime = Date.now(); // 记录开始时间
+        },
+        hide: () => {
+          const box = document.getElementById("loading-box");
+          const elapsed = Date.now() - (preloader._startTime || 0);
+          const minDelay = 500; // 最短显示 500 毫秒
+          const maxDelay = 500; // 最长显示 500 毫秒
+          const remaining = Math.max(minDelay - elapsed, 0);
+          setTimeout(() => {
+            if(box) box.classList.add("loaded");
+            document.body.style.overflow = 'auto';
+            if(window.WOW) new WOW().init();
+          }, Math.min(remaining + elapsed, maxDelay));
+        }
+      };
 
-    if (!{theme.pjax && theme.pjax.enable}) {
-      btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
-      btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
-    }
-  })()
+      // 页面一开始就显示动画（早开始）
+      preloader.show();
+
+      // 页面加载完成后隐藏动画
+      window.addEventListener('load', () => preloader.hide());
+
+      // PJAX 页面切换支持
+      if(theme.pjax && theme.pjax.enable){
+        document.addEventListener('pjax:send', () => {
+          preloader.show();
+        });
+        document.addEventListener('pjax:complete', () => {
+          preloader.hide();
+        });
+      }
+    })();

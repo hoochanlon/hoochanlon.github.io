@@ -1,95 +1,56 @@
-if hexo-config('preloader.enable') && hexo-config('preloader.source') == 1
+#loading-box
+  position fixed
+  width 100%
+  height 100%
+  top 0
+  left 0
+  z-index 1001
+  overflow hidden
+
+.loading-bg
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 100%
+  background rgb(250, 251, 253)// ✅ 纯色背景，可改成任意颜色
+  transition opacity 0.3s
+  opacity 1
+  z-index 1001
+
+// 夜间模式支持（可选）
+body.dark
   .loading-bg
-    position: fixed
-    z-index: 1000
-    width: 50%
-    height: 100%
-    background-color: var(--preloader-bg)
+    background #1a1a1a    // 夜间模式纯色背景，可根据需要修改
 
-  #loading-box
-    .loading-left-bg
-      @extend .loading-bg
+.loading-img
+  width 100px
+  height 100px
+  border-radius 50%
+  border 4px solid #f0f0f2
+  animation loadingAction 0.6s infinite alternate
+  background url(/img/avatar.png) no-repeat center center
+  background-size cover
 
-    .loading-right-bg
-      @extend .loading-bg
-      right: 0
+.loading-image-dot
+  width 30px
+  height 30px
+  background #6bdf8f
+  border-radius 50%
+  border 6px solid #fff
+  position absolute
+  top 50%
+  left 50%
+  transform translate(18px, 24px)
 
-    .spinner-box
-      position: fixed
-      z-index: 1001
-      display: flex
-      justify-content: center
-      align-items: center
-      width: 100%
-      height: 100vh
+#loading-box.loaded
+  pointer-events none
+  .loading-bg
+    opacity 0
+    z-index -1000
 
-      .configure-border-1
-        position: absolute
-        padding: 3px
-        width: 115px
-        height: 115px
-        background: #ffab91
-        animation: configure-clockwise 3s ease-in-out 0s infinite alternate
-
-      .configure-border-2
-        left: -115px
-        padding: 3px
-        width: 115px
-        height: 115px
-        background: rgb(63, 249, 220)
-        transform: rotate(45deg)
-        animation: configure-xclockwise 3s ease-in-out 0s infinite alternate
-
-      .loading-word
-        position: absolute
-        color: var(--preloader-color)
-        font-size: 16px
-
-      .configure-core
-        width: 100%
-        height: 100%
-        background-color: var(--preloader-bg)
-
-    &.loaded
-      .loading-left-bg
-        transition: all .5s
-        transform: translate(-100%, 0)
-
-      .loading-right-bg
-        transition: all .5s
-        transform: translate(100%, 0)
-
-      .spinner-box
-        display: none
-
-  @keyframes configure-clockwise
-    0%
-      transform: rotate(0)
-
-    25%
-      transform: rotate(90deg)
-
-    50%
-      transform: rotate(180deg)
-
-    75%
-      transform: rotate(270deg)
-
-    100%
-      transform: rotate(360deg)
-
-  @keyframes configure-xclockwise
-    0%
-      transform: rotate(45deg)
-
-    25%
-      transform: rotate(-45deg)
-
-    50%
-      transform: rotate(-135deg)
-
-    75%
-      transform: rotate(-225deg)
-
-    100%
-      transform: rotate(-315deg)
+@keyframes loadingAction
+  0%
+    opacity 1
+  100%
+    opacity 0.4

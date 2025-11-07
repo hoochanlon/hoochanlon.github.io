@@ -819,15 +819,22 @@ mask:
   header: true
   footer: true
 
-# Loading Animation
 preloader:
-  enable: false
-  # source
-  # 1. fullpage-loading
-  # 2. pace (progress bar)
+  enable: true
   source: 1
-  # pace theme (see https://codebyzach.github.io/pace/)
-  pace_css_url:
+  mode: "include"
+  pages:
+    - "/page/"
+
+  # pace CSS 文件路径
+  # pace_css_url: /css/real_css/progressbar.css
+
+
+
+
+
+
+
 
 # Page Transition
 enter_transitions: true

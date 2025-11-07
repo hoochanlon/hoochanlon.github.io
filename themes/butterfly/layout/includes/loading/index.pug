@@ -1,5 +1,10 @@
-if theme.preloader.enable
+//- index.pug
+if theme.preloader && theme.preloader.enable
   if theme.preloader.source === 1
     include ./fullpage-loading.pug
+  else if theme.preloader.source === 2
+    include ./pace.pug
   else
+    // 默认全屏动画 + Pace
+    include ./fullpage-loading.pug
     include ./pace.pug
