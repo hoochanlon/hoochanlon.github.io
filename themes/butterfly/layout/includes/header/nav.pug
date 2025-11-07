@@ -51,3 +51,36 @@ script.
       backText.textContent = ' ' + '#{_p("post.back_to_home")}';
     }
   })();
+
+
+//- ✅ JS 动态判断标题宽度，超出则启用滚动效果
+script.
+  (function() {
+    function checkTitleScroll() {
+      const title = document.querySelector('.nav-page-title .site-name:first-child');
+      const container = document.querySelector('.nav-page-title');
+      if (!title || !container) return;
+      // 触发布局计算
+      title.offsetWidth;
+
+      if (title.scrollWidth > container.clientWidth) {
+        title.classList.add('scroll-enabled');
+      } else {
+        title.classList.remove('scroll-enabled');
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(checkTitleScroll, 300);
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => setTimeout(checkTitleScroll, 100));
+      }
+    });
+
+    if (document.fonts) {
+      document.fonts.addEventListener('loadingdone', checkTitleScroll);
+    }
+
+    window.addEventListener('resize', checkTitleScroll);
+  })();

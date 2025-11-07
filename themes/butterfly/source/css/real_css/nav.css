@@ -67,3 +67,46 @@
   background-color: transparent !important;
   z-index: 10 !important;
 }
+
+
+/* 公交车电子屏效果 */
+.nav-page-title {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 220px;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.nav-page-title .site-name:first-child {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 0;
+  animation: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.nav-page-title .site-name:first-child.scroll-enabled {
+  padding-left: 100%;
+  animation: navMarquee 15s linear infinite;
+}
+
+.nav-page-title:hover .site-name:first-child.scroll-enabled {
+  animation-play-state: paused;
+}
+
+.nav-page-title .site-name:last-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: none !important;
+}
+
+@keyframes navMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}

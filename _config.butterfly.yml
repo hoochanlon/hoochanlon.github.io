@@ -1017,7 +1017,6 @@ inject:
     - <script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script>
     - <link rel="stylesheet" href="https://ai.zhheo.com/static/public/tianli_gpt.min.css">
     - <link rel="stylesheet" href="/css/real_css/bg_blur.css">
-    - <link rel="stylesheet" href="/css/real_css/bilibili.css">
     - <link rel="stylesheet" href="/css/real_css/nav.css">
     - <link rel="stylesheet" href="/css/real_css/footer.css">
     - <link rel="stylesheet" href="/css/real_css/custom.css">
