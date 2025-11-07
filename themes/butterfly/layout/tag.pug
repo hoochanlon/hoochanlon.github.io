@@ -1,12 +1,19 @@
 extends includes/layout.pug
 
 block content
-  if theme.tag_ui == 'index'
-    include ./includes/mixins/indexPostUI.pug
-    +indexPostUI
-  else
-    include ./includes/mixins/article-sort.pug
-    #tag
-      .article-sort-title= _p('page.tag') + ' - ' + page.tag
-      +articleSort(page.posts)
-      include includes/pagination.pug
+  // ============================================================
+  // 标签页模板 tag.pug
+  // 为文章链接附带 from=tags/<标签名>&page=页码
+  // ============================================================
+
+  include ./includes/mixins/article-sort.pug
+
+  #tag
+    .article-sort-title
+      i.fa-solid.fa-tags
+      |  #{_p('page.tag')} - #{page.tag}
+
+    // ✅ 传递标签路径与页码
+    +articleSort(page.posts, { fromPath: 'tags/' + page.tag, currentPage: page.current })
+
+    include includes/pagination.pug

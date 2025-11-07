@@ -1,6 +1,13 @@
+// ============================================================
+// Butterfly 主题导航栏 nav.pug
+// 支持动态返回分类 / 标签 / 归档 / 首页分页来源
+// ============================================================
+
 nav#nav
   span#blog-info
-    // 非文章页显示站点标题
+    // ========================
+    // 非文章页：显示站点标题
+    // ========================
     if globalPageType !== 'post'
       a.nav-site-title(href=url_for('/'))
         if theme.nav.logo
@@ -8,9 +15,11 @@ nav#nav
         if theme.nav.display_title
           span.site-name=config.title
 
-    // 文章页显示文章标题和返回按钮
+    // ========================
+    // 文章页：显示文章标题与返回按钮
+    // ========================
     if globalPageType === 'post' && theme.nav.display_post_title
-      // 初始为主页链接，稍后通过 JS 改为分页来源
+      // 初始为主页链接，稍后 JS 动态修改为来源路径
       a.nav-page-title#nav-back(href=url_for('/'))
         span.site-name= page.title || config.title
         span.site-name
@@ -18,6 +27,9 @@ nav#nav
           // 默认显示“返回首页”，JS 动态切换
           span#nav-back-text= ' ' + _p('post.back_to_home')
 
+  // ========================
+  // 菜单区域
+  // ========================
   #menus
     if theme.menu
       != partial('includes/header/menu_item', {}, {cache: true})
@@ -25,6 +37,9 @@ nav#nav
         span.site-page
           i.fas.fa-bars.fa-fw
 
+  // ========================
+  // 搜索按钮
+  // ========================
   if theme.search.use
     #search-button
       span.site-page.social-icon.search
@@ -32,28 +47,50 @@ nav#nav
         //- span= ' ' + _p('search.title')
 
 
-// ✅ JS 动态判断来源：分页 → “返回所在页”，否则 → “返回首页”
+// ============================================================
+// ✅ JS 动态判断来源：分页 / 分类 / 标签 / 归档 → 返回所在页，否则返回首页
+// ============================================================
 script.
   (function() {
     var backLink = document.getElementById('nav-back');
     var backText = document.getElementById('nav-back-text');
     if (!backLink || !backText) return;
 
-    var from = new URLSearchParams(window.location.search).get('from');
+    // 读取 URL 参数
+    var params = new URLSearchParams(window.location.search);
+    var from = params.get('from');     // 来源路径，如 categories/考试、tags/笔记、archives、page
+    var pageNum = params.get('page');  // 当前页码（数字）
 
-    if (from && /^\d+$/.test(from)) {
-      // 来自分页页，例如 ?from=3
-      backLink.href = (from === '1') ? '/' : '/page/' + from + '/#content-inner';
+    if (from) {
+      // ✅ 确保路径结尾带斜杠
+      var base = from.replace(/\/?$/, '/');
+      var href = '/'; // 默认返回首页
+
+      if (pageNum && /^\d+$/.test(pageNum)) {
+        // 有页码时返回对应分页
+        href = (pageNum === '1')
+          ? '/' + base
+          : '/' + base + 'page/' + pageNum + '/#content-inner';
+      } else {
+        // 无页码 → 第一页（分类第一页 / 标签第一页）
+        href = '/' + base;
+      }
+
+      // 设置返回按钮
+      backLink.href = href;
       backText.textContent = ' ' + '#{_p("post.back_to_current_page")}';
+
+      // 🧩 调试输出，可查看实际返回路径
+      console.log('[Butterfly] 返回路径:', href);
+
     } else {
-      // 其他来源，返回首页
+      // ✅ 没有 from 参数 → 返回首页
       backLink.href = '/';
       backText.textContent = ' ' + '#{_p("post.back_to_home")}';
     }
   })();
 
 
-//- ✅ JS 动态判断标题宽度，超出则启用滚动效果
 script.
   (function() {
     function checkTitleScroll() {

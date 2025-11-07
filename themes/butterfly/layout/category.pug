@@ -1,12 +1,22 @@
 extends includes/layout.pug
 
 block content
+  // ============================================================
+  // 分类页模板 category.pug
+  // 为文章链接附带 from=categories/<分类名>&page=页码
+  // ============================================================
+
   if theme.category_ui == 'index'
     include ./includes/mixins/indexPostUI.pug
     +indexPostUI
   else
     include ./includes/mixins/article-sort.pug
     #category
-      .article-sort-title= _p('page.category') + ' - ' + page.category
-      +articleSort(page.posts)
+      .article-sort-title
+        i.fa-solid.fa-folder-open
+        |  #{_p('page.category')} - #{page.category}
+
+      // ✅ 传递分类路径与页码
+      +articleSort(page.posts, { fromPath: 'categories/' + page.category, currentPage: page.current })
+
       include includes/pagination.pug

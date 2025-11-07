@@ -1,9 +1,20 @@
 extends includes/layout.pug
 
 block content
+  // ============================================================
+  // 归档页模板 archive.pug
+  // 自动为文章链接附加来源参数：from=archives&page=页码
+  // ============================================================
+
   include ./includes/mixins/article-sort.pug
+
   #archive
     #posts-calendar.js-pjax
-    .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
-    +articleSort(page.posts)
+    .article-sort-title
+      i.fa-solid.fa-box-archive
+      |  #{_p('page.articles')} - #{getArchiveLength()}
+
+    // ✅ 传递固定来源路径 "archives"
+    +articleSort(page.posts, { fromPath: 'archives', currentPage: page.current })
+
     include includes/pagination.pug
