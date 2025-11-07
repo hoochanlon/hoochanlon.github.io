@@ -15,17 +15,24 @@ if page.total !== 1
     const prevGroupText = '<i class="fas fa-angles-left fa-fw"></i>'
     const nextGroupText = '<i class="fas fa-angles-right fa-fw"></i>'
 
+    // ✅ 自动识别当前分页基础路径（首页 / 分类 / 标签 / 归档）
+    const base = page.base || '/'
+
+    // ✅ 通用分页链接生成函数
+    const pageLink = (num) => {
+      if (num === 1) return url_for(base)
+      return url_for(`${base.replace(/\/?$/, '/') }page/${num}/#content-inner`)
+    }
+
   nav#pagination
     .pagination
       // 上一组
       if prevGroupPage >= 1
-        a.extend.group-prev(href=url_for(prevGroupPage === 1 ? '/' : `/page/${prevGroupPage}/#content-inner`))
-          != prevGroupText
+        a.extend.group-prev(href=pageLink(prevGroupPage))!= prevGroupText
 
       // 上一页
       if current > 1
-        a.extend.prev(href=url_for(current === 2 ? '/' : `/page/${current - 1}/#content-inner`))
-          != prevText
+        a.extend.prev(href=pageLink(current - 1))!= prevText
 
       // 当前组页码循环（带安全判断）
       if endPage >= startPage
@@ -33,14 +40,12 @@ if page.total !== 1
           if i === current
             span.page-number.current= i
           else
-            a.page-number(href=url_for(i === 1 ? '/' : `/page/${i}/#content-inner`))= i
+            a.page-number(href=pageLink(i))= i
 
       // 下一页
       if current < total
-        a.extend.next(href=url_for(`/page/${current + 1}/#content-inner`))
-          != nextText
+        a.extend.next(href=pageLink(current + 1))!= nextText
 
       // 下一组
       if nextGroupPage <= total
-        a.extend.group-next(href=url_for(`/page/${nextGroupPage}/#content-inner`))
-          != nextGroupText
+        a.extend.group-next(href=pageLink(nextGroupPage))!= nextGroupText
