@@ -17,16 +17,18 @@
 }
 
 
+/* 单栏模式下（html 带 hide-aside 类）让标题信息整体居中 */
+html.hide-aside #post-info {
+  text-align: center;         /* 居中对齐 */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;     /* 垂直堆叠 */
+  align-items: center;        /* 水平居中 */
+}
 
 
-/* 添加过渡效果 */
-/* #post-info .post-title,
-#post-info #post-meta a,
-#post-info #post-meta {
-    transition: color 0.3s ease; 
-}  */
-
-/* 隐藏原有分类*/
+/* 隐藏原有分类，已通过 js 实现*/
 /* #content-inner #page .category-lists {
   display: none;
 } */
@@ -35,3 +37,5 @@
 .footer-other {
   display: none; /* 完全隐藏元素，且不占用空间 */
 }
+
+
