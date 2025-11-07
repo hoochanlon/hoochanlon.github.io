@@ -48,6 +48,8 @@ Splayer 音乐板块[^1]
 * 重定向美化，重定向提醒呈现半透明玻璃卡片效果
 * 以头像作为加载动画的特效，并支持自定义排除相关页面
 * 分页支持按组显示：[hexo-theme-butterfly/issues/1757](https://github.com/jerryc127/hexo-theme-butterfly/issues/1757)
+* 文章标题返回页优化：返回文章所在页面
+* 长标题实现电子屏播放
 
 
 <details>
