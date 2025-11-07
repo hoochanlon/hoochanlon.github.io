@@ -10,11 +10,13 @@ nav#nav
 
     // 文章页显示文章标题和返回按钮
     if globalPageType === 'post' && theme.nav.display_post_title
-      a.nav-page-title(href=url_for('/'))
+      // 初始为主页链接，稍后通过 JS 改为分页来源
+      a.nav-page-title#nav-back(href=url_for('/'))
         span.site-name= page.title || config.title
         span.site-name
           i.fa-solid.fa-circle-arrow-left
-          span= ' ' + _p('post.back_to_home')
+          // 默认显示“返回首页”，JS 动态切换
+          span#nav-back-text= ' ' + _p('post.back_to_home')
 
   #menus
     if theme.menu
@@ -28,3 +30,24 @@ nav#nav
       span.site-page.social-icon.search
         i.fas.fa-search.fa-fw
         //- span= ' ' + _p('search.title')
+
+
+// ✅ JS 动态判断来源：分页 → “返回所在页”，否则 → “返回首页”
+script.
+  (function() {
+    var backLink = document.getElementById('nav-back');
+    var backText = document.getElementById('nav-back-text');
+    if (!backLink || !backText) return;
+
+    var from = new URLSearchParams(window.location.search).get('from');
+
+    if (from && /^\d+$/.test(from)) {
+      // 来自分页页，例如 ?from=3
+      backLink.href = (from === '1') ? '/' : '/page/' + from + '/#content-inner';
+      backText.textContent = ' ' + '#{_p("post.back_to_current_page")}';
+    } else {
+      // 其他来源，返回首页
+      backLink.href = '/';
+      backText.textContent = ' ' + '#{_p("post.back_to_home")}';
+    }
+  })();

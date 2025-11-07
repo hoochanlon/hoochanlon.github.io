@@ -34,6 +34,7 @@ post:
   recommend: 相关推荐
   edit: 编辑
   back_to_home: 返回首页
+  back_to_current_page: 返回文章所在页
 
 search:
   title: 搜索

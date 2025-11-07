@@ -1,33 +1,3 @@
----
-title: 秋天的心事
-noticeOutdate: false
-categories: 博客主题
-tags:
-  - 博客效果代码
-description: 相关优化部分
-abbrlink: 48976
-date: 2025-11-07 14:52:09
----
-
-### 返回首页 优化 返回文章所在页
-
-`themes\butterfly\languages\zh-CN.yml`
-
-```
-post:
-  back_to_home: 返回首页
-  back_to_current_page: 返回文章所在页
-```
-
-`\themes\butterfly\layout\includes\mixins\indexPostUI.pug`
-
-
-```
-// ==========================
-// Butterfly 首页文章列表模板
-// 增加分页来源参数 (?from=page.current)
-// ==========================
-
 mixin indexPostUI()
   - const indexLayout = theme.index_layout
   - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
@@ -40,22 +10,19 @@ mixin indexPostUI()
           - const leftOrRight = indexLayout === 3 ? (index % 2 === 0 ? 'left' : 'right') : (indexLayout === 2 ? 'right' : '')
           - const post_cover = article.cover
           - const no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
-          - const linkWithPage = link + (page.current ? '?from=' + page.current : '') // ✅ 分页参数核心
 
           if post_cover && theme.cover.index_enable
             .post_cover(class=leftOrRight)
-              a(href=url_for(linkWithPage) title=title)
+              a(href=url_for(link) title=title)
                 if article.cover_type === 'img'
                   img.post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
                 else
                   div.post-bg(style=`background: ${post_cover}`)
           .recent-post-info(class=no_cover)
-            // ✅ 带分页参数的标题链接
-            a.article-title(href=url_for(linkWithPage) title=title)
+            a.article-title(href=url_for(link) title=title)
               if globalPageType === 'home' && (article.top || article.sticky > 0)
                 i.fas.fa-thumbtack.sticky
               = title
-
             .article-meta-wrap
               if theme.post_meta.page.date_type
                 span.post-meta-date
@@ -75,7 +42,6 @@ mixin indexPostUI()
                     i(class=date_icon)
                     span.article-meta-label= date_title
                     time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))= date(article[date_type], config.date_format)
-
               if theme.post_meta.page.categories && article.categories.data.length > 0
                 span.article-meta
                   span.article-meta-separator |
@@ -84,7 +50,6 @@ mixin indexPostUI()
                     a(href=url_for(item.path)).article-meta__categories #[=item.name]
                     if index < article.categories.data.length - 1
                       i.fas.fa-angle-right.article-meta-link
-
               if theme.post_meta.page.tags && article.tags.length > 0
                 span.article-meta.tags
                   span.article-meta-separator |
@@ -108,37 +73,38 @@ mixin indexPostUI()
                   when 'Disqus'
                   when 'Disqusjs'
                     +countBlockInIndex
-                      a.disqus-count(href=full_url_for(linkWithPage) + '#post-comment')
+                      a.disqus-count(href=full_url_for(link) + '#post-comment')
                         i.fa-solid.fa-spinner.fa-spin
                   when 'Valine'
                     +countBlockInIndex
-                      a(href=url_for(linkWithPage) + '#post-comment')
-                        span.valine-comment-count(data-xid=url_for(linkWithPage))
+                      a(href=url_for(link) + '#post-comment')
+                        span.valine-comment-count(data-xid=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Waline'
                     +countBlockInIndex
-                      a(href=url_for(linkWithPage) + '#post-comment')
-                        span.waline-comment-count(data-path=url_for(linkWithPage))
+                      a(href=url_for(link) + '#post-comment')
+                        span.waline-comment-count(data-path=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Twikoo'
                     +countBlockInIndex
-                      a.twikoo-count(href=url_for(linkWithPage) + '#post-comment')
+                      a.twikoo-count(href=url_for(link) + '#post-comment')
                         i.fa-solid.fa-spinner.fa-spin
                   when 'Facebook Comments'
                     +countBlockInIndex
-                      a(href=url_for(linkWithPage) + '#post-comment')
+                      a(href=url_for(link) + '#post-comment')
                         span.fb-comments-count(data-href=urlNoIndex(article.permalink))
                   when 'Remark42'
                     +countBlockInIndex
-                      a(href=url_for(linkWithPage) + '#post-comment')
+                      a(href=url_for(link) + '#post-comment')
                         span.remark42__counter(data-url=urlNoIndex(article.permalink))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Artalk'
                     +countBlockInIndex
-                      a(href=url_for(linkWithPage) + '#post-comment')
-                        span.artalk-count(data-page-key=url_for(linkWithPage))
+                      a(href=url_for(link) + '#post-comment')
+                        span.artalk-count(data-page-key=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
 
+            //- Display the article introduction on homepage
             - const content = postDesc(article)
             if content
               .content!=content
@@ -148,64 +114,3 @@ mixin indexPostUI()
             .recent-post-item.ads-wrap!= theme.ad.index
 
     include ../pagination.pug
-```
-
-
-`\themes\butterfly\layout\includes\header\nav.pug`
-
-
-```
-nav#nav
-  span#blog-info
-    // 非文章页显示站点标题
-    if globalPageType !== 'post'
-      a.nav-site-title(href=url_for('/'))
-        if theme.nav.logo
-          img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
-        if theme.nav.display_title
-          span.site-name=config.title
-
-    // 文章页显示文章标题和返回按钮
-    if globalPageType === 'post' && theme.nav.display_post_title
-      // 初始为主页链接，稍后通过 JS 改为分页来源
-      a.nav-page-title#nav-back(href=url_for('/'))
-        span.site-name= page.title || config.title
-        span.site-name
-          i.fa-solid.fa-circle-arrow-left
-          // 默认显示“返回首页”，JS 动态切换
-          span#nav-back-text= ' ' + _p('post.back_to_home')
-
-  #menus
-    if theme.menu
-      != partial('includes/header/menu_item', {}, {cache: true})
-      #toggle-menu
-        span.site-page
-          i.fas.fa-bars.fa-fw
-
-  if theme.search.use
-    #search-button
-      span.site-page.social-icon.search
-        i.fas.fa-search.fa-fw
-        //- span= ' ' + _p('search.title')
-
-
-// ✅ JS 动态判断来源：分页 → “返回所在页”，否则 → “返回首页”
-script.
-  (function() {
-    var backLink = document.getElementById('nav-back');
-    var backText = document.getElementById('nav-back-text');
-    if (!backLink || !backText) return;
-
-    var from = new URLSearchParams(window.location.search).get('from');
-
-    if (from && /^\d+$/.test(from)) {
-      // 来自分页页，例如 ?from=3
-      backLink.href = (from === '1') ? '/' : '/page/' + from + '/#content-inner';
-      backText.textContent = ' ' + '#{_p("post.back_to_current_page")}';
-    } else {
-      // 其他来源，返回首页
-      backLink.href = '/';
-      backText.textContent = ' ' + '#{_p("post.back_to_home")}';
-    }
-  })();
-```
