@@ -3,7 +3,7 @@ extends includes/layout.pug
 block content
   // ============================================================
   // 分类页模板 category.pug
-  // 为文章链接附带 from=categories/<分类名>&page=页码
+  // 自动为文章链接附带来源参数：from=categories/<分类名>&page=页码
   // ============================================================
 
   if theme.category_ui == 'index'
@@ -11,10 +11,11 @@ block content
     +indexPostUI
   else
     include ./includes/mixins/article-sort.pug
+
     #category
       .article-sort-title
         i.fa-solid.fa-folder-open
-        |  #{_p('page.category')} - #{page.category}
+        | #{_p('page.category')} - #{page.category}
 
       // ✅ 传递分类路径与页码
       +articleSort(page.posts, { fromPath: 'categories/' + page.category, currentPage: page.current })

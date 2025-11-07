@@ -6,7 +6,7 @@ tags: 博客效果调整与更新
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
 cover: 'https://image.aibochinese.com/i/2025/10/13/fmak40.jpg'
 abbrlink: 15347
-date: 2025-10-14 20:02:29
+date: 2025-10-10 20:02:29
 # password: 123456
 # sticky: 100
 ---

@@ -407,16 +407,11 @@ readmode: true
 # Dark Mode
 darkmode:
   enable: true
-  # Toggle Button to switch dark/light mode
   button: true
-  # Switch dark/light mode automatically
-  # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
-  # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
-  # autoChangeMode: false
-  autoChangeMode: true
-  # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
-  start: 23
-  end: 5
+  autoChangeMode: 2   # 跟随系统；系统不支持时晚上自动切换
+  start: 23           # 可选：晚上7点开启
+  end: 8              # 可选：早上8点关闭
+
 
 # Show scroll percent in scroll-to-top button
 rightside_scroll_percent: false
@@ -737,11 +732,17 @@ mask:
   footer: true
 
 preloader:
+# * exclude 模式：列表里的页面不显示动画，其余页面显示动画。
+# * include 模式：列表里的页面才显示动画，其余页面都跳过。
+# * HOME 标识词 表示 首页
   enable: true
   source: 1
-  mode: "include"
+  mode: "include" 
   pages:
     - "/page/"
+    - "/archives/"
+    - "/categories/"
+    - "/tags/"
 
   # pace CSS 文件路径
   # pace_css_url: /css/real_css/progressbar.css
@@ -1034,6 +1035,7 @@ inject:
     - <script src="/js/myjs/bg_blur.js"></script>
     - <script src="/js/myjs/suiji_tupian.js"></script>
     - <script src="/js/myjs/wechat_qr_popup.js"></script>
+    - <script src="/js/myjs/title_scroll.js"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>

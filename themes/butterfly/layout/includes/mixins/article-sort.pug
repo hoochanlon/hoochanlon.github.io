@@ -1,5 +1,5 @@
 // ============================================================
-// 文章列表排序组件（适用于分类页、标签页、归档页等）
+// 文章列表排序组件（适用于分类页、标签页、归档页）
 // 自动识别来源路径 (fromPath) 和当前分页页码 (currentPage)
 // ============================================================
 
@@ -22,10 +22,11 @@ mixin articleSort(posts, opts)
       // 4️⃣ 生成文章基础链接
       - const baseLink = url_for(article.path)
 
-      // 5️⃣ 拼接来源参数（必须一行写完！）
-      - const href = (fromPath && currentPage) ? baseLink + '?from=' + fromPath + '&page=' + currentPage : baseLink
+      // 5️⃣ 拼接带来源参数的链接（⚠️ 使用字符串拼接，Pug 不支持模板字符串）
+      - const hasFromInfo = fromPath && currentPage
+      - const href = hasFromInfo ? (baseLink + '?from=' + fromPath + '&page=' + currentPage) : baseLink
 
-      // 6️⃣ 当年份变化时显示年份标签
+      // 6️⃣ 年份标签（仅在年份变化时输出）
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year= year

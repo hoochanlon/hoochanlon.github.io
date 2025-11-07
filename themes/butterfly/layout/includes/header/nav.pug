@@ -1,6 +1,6 @@
 // ============================================================
 // Butterfly 主题导航栏 nav.pug
-// 支持动态返回分类 / 标签 / 归档 / 首页分页来源
+// 支持动态返回 分类 / 标签 / 归档 / 首页分页 来源（精准页码返回）
 // ============================================================
 
 nav#nav
@@ -48,7 +48,7 @@ nav#nav
 
 
 // ============================================================
-// ✅ JS 动态判断来源：分页 / 分类 / 标签 / 归档 → 返回所在页，否则返回首页
+// ✅ JS：动态判断来源 → 精确返回到所在页（含 page/2/#content-inner）
 // ============================================================
 script.
   (function() {
@@ -58,66 +58,41 @@ script.
 
     // 读取 URL 参数
     var params = new URLSearchParams(window.location.search);
-    var from = params.get('from');     // 来源路径，如 categories/考试、tags/笔记、archives、page
-    var pageNum = params.get('page');  // 当前页码（数字）
+    var from = params.get('from');     // 来源：page / categories/... / tags/... / archives
+    var pageNum = params.get('page');  // 当前页码
 
     if (from) {
-      // ✅ 确保路径结尾带斜杠
-      var base = from.replace(/\/?$/, '/');
-      var href = '/'; // 默认返回首页
+      // ✅ 解码中文路径并规范化（去除首尾斜杠）
+      var normalized = decodeURIComponent(from).replace(/^\/|\/$/g, '');
+      var isHomePagePager = (normalized === 'page'); // 是否为首页分页
+      var href = '/';
 
+      // ✅ 有分页号时
       if (pageNum && /^\d+$/.test(pageNum)) {
-        // 有页码时返回对应分页
-        href = (pageNum === '1')
-          ? '/' + base
-          : '/' + base + 'page/' + pageNum + '/#content-inner';
+        if (isHomePagePager) {
+          // 首页分页 → /page/2/#content-inner
+          href = (pageNum === '1')
+            ? '/'
+            : '/page/' + pageNum + '/#content-inner';
+        } else {
+          // 分类 / 标签 / 归档分页
+          href = (pageNum === '1')
+            ? '/' + normalized + '/#content-inner'
+            : '/' + normalized + '/page/' + pageNum + '/#content-inner';
+        }
       } else {
-        // 无页码 → 第一页（分类第一页 / 标签第一页）
-        href = '/' + base;
+        // ✅ 无分页号 → 第一页
+        href = isHomePagePager ? '/' : '/' + normalized + '/#content-inner';
       }
 
-      // 设置返回按钮
+      // ✅ 更新返回按钮
       backLink.href = href;
       backText.textContent = ' ' + '#{_p("post.back_to_current_page")}';
 
-      // 🧩 调试输出，可查看实际返回路径
       console.log('[Butterfly] 返回路径:', href);
-
     } else {
       // ✅ 没有 from 参数 → 返回首页
       backLink.href = '/';
       backText.textContent = ' ' + '#{_p("post.back_to_home")}';
     }
-  })();
-
-
-script.
-  (function() {
-    function checkTitleScroll() {
-      const title = document.querySelector('.nav-page-title .site-name:first-child');
-      const container = document.querySelector('.nav-page-title');
-      if (!title || !container) return;
-      // 触发布局计算
-      title.offsetWidth;
-
-      if (title.scrollWidth > container.clientWidth) {
-        title.classList.add('scroll-enabled');
-      } else {
-        title.classList.remove('scroll-enabled');
-      }
-    }
-
-    window.addEventListener('load', () => {
-      setTimeout(checkTitleScroll, 300);
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => setTimeout(checkTitleScroll, 100));
-      }
-    });
-
-    if (document.fonts) {
-      document.fonts.addEventListener('loadingdone', checkTitleScroll);
-    }
-
-    window.addEventListener('resize', checkTitleScroll);
   })();
