@@ -565,63 +565,25 @@ comments:
   # Display the comment name next to the button
   text: true
   Lazyload: true # The comment system will be load when comment element enters the browser's viewport.
-  # If you set it to true, the comment count will be invalid
-  # lazyload:
-  # Display comment count in post's top_img
   count: false
-  # Display comment count in Home Page
   card_post_count: false
 
-# Disqus
-# https://disqus.com/
-disqus:
-  shortname:
-  # For newest comments widget
-  apikey:
 
-# Alternative Disqus - Render comments with Disqus API
-# https://github.com/SukkaW/DisqusJS
-disqusjs:
-  shortname:
-  apikey:
+# Twikoo
+# https://github.com/imaegoo/twikoo
+twikoo:
+  envId: https://twikoo.hoochanlon.space
+  region:
+  # Use Twikoo visitor count as the page view count
+  visitor: false
   option:
+
 
 # Livere
 # https://www.livere.com/
 livere:
   uid:
 
-# Gitalk
-# https://github.com/gitalk/gitalk
-gitalk:
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
-  option:
-
-# Valine
-# https://valine.js.org
-valine:
-  appId:
-  appKey:
-  avatar: monsterid
-  # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  serverURLs:
-  bg:
-  # Use Valine visitor count as the page view count
-  visitor: false
-  option:
-
-# Waline - A simple comment system with backend support fork from Valine
-# https://waline.js.org/
-waline:
-  serverURL: # walineserver-six.vercel.app
-  bg:
-  # Use Waline pageview count as the page view count
-  pageview: false
-  option:
 
 # Utterances
 # https://utteranc.es/
@@ -635,52 +597,7 @@ utterances:
   js:
   option:
 
-# Facebook Comments Plugin
-# https://developers.facebook.com/docs/plugins/comments/
-facebook_comments:
-  app_id:
-  # optional
-  user_id:
-  pageSize: 10
-  # Choose: social / time / reverse_time
-  order_by: social
-  lang: en_US
 
-# Twikoo
-# https://github.com/imaegoo/twikoo
-twikoo:
-  envId: https://twikoo-six-beta.vercel.app
-  region:
-  # Use Twikoo visitor count as the page view count
-  visitor: false
-  option:
-
-# Giscus
-# https://giscus.app/
-giscus:
-  repo:
-  repo_id:
-  category_id:
-  light_theme: light
-  dark_theme: dark
-  js:
-  option:
-
-# Remark42
-# https://remark42.com/docs/configuration/frontend/
-remark42:
-  host:
-  siteId:
-  option:
-
-# Artalk
-# https://artalk.js.org/guide/frontend/config.html
-artalk:
-  server:
-  site:
-  # Use Artalk visitor count as the page view count
-  visitor: false
-  option:
 
 # --------------------------------------
 # Chat Services
@@ -828,11 +745,6 @@ preloader:
 
   # pace CSS 文件路径
   # pace_css_url: /css/real_css/progressbar.css
-
-
-
-
-
 
 
 
@@ -1123,7 +1035,6 @@ inject:
     - <script src="/js/myjs/bg_blur.js"></script>
     - <script src="/js/myjs/suiji_tupian.js"></script>
     - <script src="/js/myjs/wechat_qr_popup.js"></script>
-    - <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script>
     - <script src="/js/myjs/categorybar_categorieschart.js"></script>
@@ -1156,56 +1067,6 @@ CDN:
     # activate_power_mode:
     # algolia_js:
     # algolia_search:
-    # aplayer_css:
-    # aplayer_js:
-    # artalk_css:
-    # artalk_js:
-    # blueimp_md5:
-    # busuanzi:
-    # canvas_fluttering_ribbon:
-    # canvas_nest:
-    # canvas_ribbon:
-    # chartjs:
-    # click_heart:
-    # clickShowText:
-    # disqusjs:
-    # disqusjs_css:
-    # docsearch_css:
-    # docsearch_js:
-    # egjs_infinitegrid:
-    # fancybox:
-    # fancybox_css:
-    # fireworks:
-    # fontawesome:
-    # gitalk:
-    # gitalk_css:
-    # giscus:
-    # instantpage:
-    # katex:
-    # katex_copytex:
-    # lazyload:
-    # local_search:
-    # main:
-    # main_css:
-    # mathjax:
-    # medium_zoom:
-    # mermaid:
-    # meting_js:
-    # prismjs_autoloader:
-    # prismjs_js:
-    # prismjs_lineNumber_js:
-    # pjax:
-    # sharejs:
-    # sharejs_css:
-    # snackbar:
-    # snackbar_css:
-    # translate:
-    # twikoo:
-    # typed:
-    # utils:
-    # valine:
-    # waline_css:
-    # waline_js:
 
 wowjs:
   enable: true

@@ -46,6 +46,7 @@ Splayer 音乐板块[^1]
 * 超链接可转成卡片
 * 实现亚克力、毛玻璃、液态玻璃效果
 * 重定向美化，重定向提醒呈现半透明玻璃卡片效果
+* 以头像作为加载动画的特效，并支持自定义排除相关页面
 
 
 <details>
@@ -57,6 +58,7 @@ Splayer 音乐板块[^1]
 * todo  
 * 日历
 * 时钟 
+* 私有微博
 * 重要日期倒计时
 * 番茄钟
 * 站点后台数据分析
@@ -151,6 +153,7 @@ Splayer 音乐板块[^1]
 * [Butterfly日历卡片](https://blog.june-pj.cn/posts/c8344523)
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * https://artitalk.js.org
+*  [使用 Twikoo 架設匿名留言板](https://mrpeelblog.com/posts/twikoo/)
 
 ####  部署与自动化
 
