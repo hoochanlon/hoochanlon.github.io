@@ -47,6 +47,7 @@ Splayer 音乐板块[^1]
 * 实现亚克力、毛玻璃、液态玻璃效果
 * 重定向美化，重定向提醒呈现半透明玻璃卡片效果
 * 以头像作为加载动画的特效，并支持自定义排除相关页面
+* 分页支持按组显示：[hexo-theme-butterfly/issues/1757](https://github.com/jerryc127/hexo-theme-butterfly/issues/1757)
 
 
 <details>
