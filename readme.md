@@ -120,7 +120,7 @@ Splayer 音乐板块[^1]
 * [Butterfly 主题一图流背景及文章顶部图修改 | Gzzz's Blog](https://blog.gzzz.pro/posts/22283ba3/index.html)
 * [butterfly主题美化之背景毛玻璃效果 | Welcome To My-Blog](https://eisem.github.io/2025/03/08/butter/)
 * [Hexo动态效果 | LuosBlog](https://seashore.top/Blog_ButterFly/2024/03/22/Hexo动态效果/)
-* [Butterfly 引入卡片链接 | 欢迎来到爱谦 717 的博客](https://bczblog.online/2025/08/28/Butterfly/Butterfly 引入卡片链接/index.html)
+* [Butterfly 引入卡片链接 | 欢迎来到爱谦 717 的博客](https://bczblog.online/2025/08/28/Butterfly/Butterfly引入卡片链接/index.html)
 * [Add Blog Animation – Wowjs](https://akilar.top/posts/abab51cf)
 * [Butterffly 分类页和标签页隐藏侧栏](https://blog.eurkon.com/post/d498d8b1.html)
 * [Butterfly导航栏美化 | June's Blog](https://blog.june-pj.cn/posts/7bed0b4e/)
