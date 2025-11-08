@@ -31,11 +31,10 @@ mixin rightsideItem(array)
           a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments
 
-
 - const { enable, hide, show } = theme.rightside_item_order
 - const hideArray = enable && hide ? hide.split(',') : ['readmode','translate','darkmode','hideAside']
 - const showArray = enable && show ? show.split(',') : ['toc','chat','comment']
-- const needCogBtn = (enable && hide) || (!enable && ((globalPageType === 'post' && (readmode || translate.enable || (darkmode.enable && darkmode.button))) || (translate.enable || (darkmode.enable && darkmode.button))))  
+- const needCogBtn = (enable && hide) || (!enable && ((globalPageType === 'post' && (readmode || translate.enable || (darkmode.enable && darkmode.button))) || (translate.enable || (darkmode.enable && darkmode.button))))
 
 #rightside
   #rightside-config-hide
@@ -54,5 +53,3 @@ mixin rightsideItem(array)
     button#go-up(type="button" title=_p("rightside.back_to_top"))
       span.scroll-percent
       i.fas.fa-arrow-up
-    button#go-down(type="button" title=_p("直达底部"))
-      i.fas.fa-arrow-down

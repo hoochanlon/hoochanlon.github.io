@@ -943,5 +943,3 @@ window.addEventListener('scroll', () => {
     goDown.style.display = 'flex'
   }
 })
-
-

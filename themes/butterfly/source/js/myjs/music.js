@@ -1,6 +1,6 @@
-/**
- * copy from anzhiyu-hexo-music
- */
+// /**
+//  * copy from anzhiyu-hexo-music
+//  */
 // custom api
 var meting_api =
   "https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r";
@@ -58,3 +58,7 @@ var anzhiyu_music = {
 };
 
 anzhiyu_music.changeMusicBg(false);
+
+
+
+

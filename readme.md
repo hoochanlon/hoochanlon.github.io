@@ -157,6 +157,7 @@ Splayer 音乐板块[^1]
 * [Hexo添加访客信息和地图](https://1477017264.github.io/posts/22511/)
 * https://artitalk.js.org
 *  [使用 Twikoo 架設匿名留言板](https://mrpeelblog.com/posts/twikoo/)
+* [Butterfly右下角悬浮菜单](https://blog.june-pj.cn/posts/64f3c586/#1-%E5%9C%86%E5%BD%A2%E6%82%AC%E6%B5%AE%E8%8F%9C%E5%8D%95)
 
 ####  部署与自动化
 
