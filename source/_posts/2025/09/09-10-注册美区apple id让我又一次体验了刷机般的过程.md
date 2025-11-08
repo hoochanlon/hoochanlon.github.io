@@ -1,9 +1,9 @@
 ---
-title: 又一次体验了“刷机”的过程
+title: 注册美区apple id让我又一次体验了刷机般的过程
 categories: 折腾记录
 tags: iOS
 abbrlink: 16819
-date: 2025-10-27 07:28:55
+date: 2025-09-10 07:28:55
 description: 可能是年纪上了来了，这种经历，我不想再有第三次了。
 ---
 

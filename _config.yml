@@ -35,8 +35,7 @@ skip_render:
 - 'todo/*'
 - 'tomato/*'
 - 'calendar/*'
-- 'weiyu/*'
-# - 'music/*'
+- 'weibo/*'
 
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts

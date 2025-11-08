@@ -463,6 +463,8 @@ if theme.preloader && theme.preloader.enable
 
 `\themes\butterfly\source\css\_layout\loading.styl`
 
+在线闪烁
+
 ```styl
 #loading-box
   position fixed
@@ -479,9 +481,15 @@ if theme.preloader && theme.preloader.enable
   align-items center
   width 100%
   height 100%
-  background #4e9eff
+  background rgb(250, 251, 253)// ✅ 纯色背景，可改成任意颜色
   transition opacity 0.3s
   opacity 1
+  z-index 1001
+
+// 夜间模式支持（可选）
+body.dark
+  .loading-bg
+    background #1a1a1a    // 夜间模式纯色背景，可根据需要修改
 
 .loading-img
   width 100px
@@ -490,10 +498,10 @@ if theme.preloader && theme.preloader.enable
   border 4px solid #f0f0f2
   animation loadingAction 0.6s infinite alternate
   background url(/img/avatar.png) no-repeat center center
-  background-size cover        // ✅ 确保头像完整显示
+  background-size cover
 
 .loading-image-dot
-  width 30px                    // ✅ 保持原始大小
+  width 30px
   height 30px
   background #6bdf8f
   border-radius 50%
@@ -501,23 +509,10 @@ if theme.preloader && theme.preloader.enable
   position absolute
   top 50%
   left 50%
-  transform translate(18px, 24px)   // ✅ 保持在线状态点原位
-
-#loading-percentage
-  position absolute
-  top 58%                       // ✅ 百分比靠近头像
-  left 50%
-  transform translateX(-50%)
-  font-weight bold
-  &::before
-    content "「"
-    margin-right 10px
-  &::after
-    content "」"
-    margin-left 10px
+  transform translate(18px, 24px)
 
 #loading-box.loaded
-  pointer-events none           // ✅ 不阻挡点击
+  pointer-events none
   .loading-bg
     opacity 0
     z-index -1000
@@ -528,6 +523,57 @@ if theme.preloader && theme.preloader.enable
   100%
     opacity 0.4
 ```
+
+旋转
+
+```
+#loading-box
+  position fixed
+  width 100%
+  height 100%
+  top 0
+  left 0
+  z-index 1001
+  overflow hidden
+
+.loading-bg
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 100%
+  background rgb(250, 251, 253)  // ✅ 纯色背景，可改成任意颜色
+  transition opacity 0.3s
+  opacity 1
+  z-index 1001
+
+// 夜间模式支持（可选）
+body.dark
+  .loading-bg
+    background #1a1a1a  // 夜间模式纯色背景，可根据需要修改
+
+.loading-img
+  width 100px
+  height 100px
+  border-radius 50%
+  border 4px solid #f0f0f2
+  animation rotateAvatar 1.2s linear infinite   // ✅ 修改为旋转动画
+  background url(/img/avatar.png) no-repeat center center
+  background-size cover
+
+#loading-box.loaded
+  pointer-events none
+  .loading-bg
+    opacity 0
+    z-index -1000
+
+@keyframes rotateAvatar
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(360deg)
+```
+
 
 
 ### 加载动画优化版

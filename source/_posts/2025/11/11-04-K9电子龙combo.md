@@ -6,7 +6,7 @@ tags:
   - 游戏王
   - 打牌
 abbrlink: 51512
-date: 2025-10-27 10:11:25
+date: 2025-11-04 10:11:25
 description: combo链真的巨长...
 cover: https://hoochanlon.github.io/picx-images-hosting/uploads/2025/2025-1027-160610.webp
 ---

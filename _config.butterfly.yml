@@ -19,9 +19,9 @@ nav:
 
 menu:
   主页: / || fas fa-home
-  微语: /weiyu/ || fas fa-quote-right 
+  微博: /weibo/ || fas fa-blog 
   导航: /nav/ || fa fa-compass
-  博客|| fa fa-blog:
+  文章集|| fa fa-feather-pointed:
     标签: /tags/ || fa fa-tags
     分类: /categories/ || fa fa-th
     归档: /archives/ || fa fa-archive
@@ -59,7 +59,7 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  fab fa-github: https://github.com/hoochanlon || Github || '#24292e'
+  fab fa-github-alt: https://github.com/hoochanlon || Github || '#24292e'
   fas fa-envelope: mailto:hoochanlon@outlook.com || Email || '#4a7dbe'
   # fa-brands fa-weixin: /img/qr.png|| Wechat || '#1AAD19'
 
@@ -1149,9 +1149,9 @@ categoryBar:
     - cname: 考试
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/kaoshi.webp
-    - cname: 空转记录
-      descr: 
-      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/woniu.webp
+    - cname: 心累了
+      descr: 长的感想写博客，短的发微博
+      cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/renshenga.webp
     - cname: 图片日记
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/cloud.jpeg

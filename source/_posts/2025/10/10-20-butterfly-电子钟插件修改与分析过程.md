@@ -1,11 +1,12 @@
 ---
-title: 电子时钟插件源码修改与分析过程
+title: butterfly-电子钟插件修改与分析过程
 noticeOutdate: false
 abbrlink: 59603
 date: 2025-10-20 19:19:48
-categories: [折腾记录]
+categories: [博客主题]
 tags: [博客效果代码]
 description: 对hexo-butterfly-clock进行重制，这是继hexo-butterfly-category-card又一次开发主题插件了。
+cover: https://cbu01.alicdn.com/img/ibank/2017/593/390/4565093395_1531931073.jpg
 ---
 
 ### repo
