@@ -1,20 +1,11 @@
-// ============================================================
-// Butterfly - 无白屏加载动画样式 (Stylus)
-// ============================================================
-
 #loading-box
   position fixed
-  top 0
-  left 0
   width 100%
   height 100%
-  display flex                    // ✅ 默认显示（防白屏）
-  justify-content center
-  align-items center
+  top 0
+  left 0
   z-index 1001
-  opacity 1
   overflow hidden
-  transition opacity 0.4s ease    // ✅ 添加淡出过渡
 
 .loading-bg
   display flex
@@ -22,14 +13,14 @@
   align-items center
   width 100%
   height 100%
-  position relative
+  position relative  // ✅ 为伪元素定位准备
   background url(/img/cloud.png) no-repeat center center
   background-size cover
   transition opacity 0.3s
   opacity 1
   z-index 1001
 
-  // ✅ 亚克力遮罩层
+  // ✅ 添加遮罩亚克力层
   &::before
     content ''
     position absolute
@@ -37,13 +28,13 @@
     left 0
     width 100%
     height 100%
-    background rgba(250, 251, 253, 0.6)
-    backdrop-filter blur(12px) saturate(180%)
+    background rgba(250, 251, 253, 0.6)  // ✅ 半透明白遮罩
+    backdrop-filter blur(12px) saturate(180%)  // ✅ 模糊 + 色彩饱和
     -webkit-backdrop-filter blur(12px) saturate(180%)
     border 1px solid rgba(255, 255, 255, 0.2)
-    z-index 0
+    z-index 0  // ✅ 在背景图之上但在内容之下
 
-// ✅ 夜间模式支持
+// 夜间模式支持
 body.dark
   .loading-bg::before
     background rgba(26, 26, 26, 0.45)
@@ -60,13 +51,10 @@ body.dark
   background url(/img/avatar.png) no-repeat center center
   background-size cover
   position relative
-  z-index 1
+  z-index 1  // ✅ 确保头像在遮罩之上
 
-// ✅ 当 loaded 类生效时淡出隐藏
 #loading-box.loaded
-  opacity 0
   pointer-events none
-  transition opacity 0.4s ease
   .loading-bg
     opacity 0
     z-index -1000

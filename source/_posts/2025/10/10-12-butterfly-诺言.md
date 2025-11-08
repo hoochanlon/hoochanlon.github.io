@@ -574,3 +574,258 @@ if page.total !== 1
   window.addEventListener('resize', checkTitleScroll);
 })();
 ```
+
+
+
+
+### 加载动画优化
+
+| 环节              | 原因                                 | 解决方案                                                      | 说明                              |
+| --------------- | ---------------------------------- | --------------------------------------------------------- | ------------------------------- |
+| **内容被 PJAX 清空** | 页面局部更新时，旧 DOM 被移除而加载层未及时显示         | **在捕获阶段监听 `pjax:send`**，提前触发 `preloader.show()`           | 捕获阶段可保证在内容被清空前执行，避免空窗期。         |
+| **浏览器渲染延迟**     | JS 已修改样式，但浏览器未立即重绘                 | **强制重绘 `box.offsetHeight` 或使用 `requestAnimationFrame()`** | 让浏览器立即执行一次渲染队列，确保动画层立刻出现。       |
+| **JS 控制显示滞后**   | 若 JS 文件未加载或延迟执行，初始状态为隐藏            | **CSS 默认显示 (`display:flex; opacity:1`)**                  | 确保加载动画在 HTML 阶段即存在，JS 只负责隐藏。    |
+| **突兀闪烁**        | 加载层淡出过快，或与内容同时显隐                   | **添加 `opacity` 过渡动画与最短展示时长**                              | `transition` + 600ms 显示延迟，避免闪现。 |
+| **归档页加载较慢**     | 内容体积大，PJAX 回调与渲染不同步                | **在 `pjax:complete` 延迟 150ms 调用 `preloader.hide()`**      | 保证内容绘制完成后再隐藏动画层。                |
+| **锚点跳转 (hash)** | `#` 跳转不会触发 PJAX 或 DOMContentLoaded | **监听 `hashchange` 手动触发加载动画**                              | 兜底方案，避免页面局部滚动时出现短暂白屏。           |
+
+💡 总结原理:白屏不是 Bug，而是渲染时机错位。
+
+通过：
+
+* CSS 默认可见（先显示）
+* 捕获阶段监听（提前触发）
+* 强制重绘（立即渲染）
+* 延迟隐藏（后收尾）
+
+四个层次的策略，可以让加载动画在任意跳转路径下都不缺席，真正实现：🌈 “在页面还没来得及显示任何内容前，用户看到的就是动画层。”
+
+
+
+`\layout\includes\loading\fullpage-loading.pug`
+
+
+```
+// ============================================================
+// Butterfly 无白屏加载动画增强版 ✅ (PJAX + Hash + CSS先显示)
+// ============================================================
+
+if theme.preloader && theme.preloader.enable
+  #loading-box
+    .loading-bg
+      img.loading-img(
+        class='nolazyload',
+        src=loading_img ? url_for(loading_img) : "/img/avatar.png"
+      )
+      .loading-image-dot
+
+script.
+  (function() {
+    const mode = "!{theme.preloader.mode || 'exclude'}";
+    const pages = !{JSON.stringify(theme.preloader.pages || [])};
+    const path = window.location.pathname;
+    const box = document.getElementById("loading-box");
+
+    let showLoading = true;
+    if (mode === "exclude") {
+      showLoading = !pages.some(p => p === "HOME" ? path === "/" : path.startsWith(p));
+    } else if (mode === "include") {
+      showLoading = pages.some(p => p === "HOME" ? path === "/" : path.startsWith(p));
+    }
+
+    if (!showLoading) {
+      if (box) box.classList.add("loaded");
+      return;
+    }
+
+    const preloader = {
+      _start: 0,
+      show() {
+        if (!box) return;
+        // 🚀 确保立刻可见
+        box.classList.remove("loaded");
+        box.style.display = "flex";
+        box.style.opacity = "1";
+        box.style.visibility = "visible";
+        document.body.style.overflow = "hidden";
+        preloader._start = Date.now();
+      },
+      hide(delay = 0) {
+        if (!box) return;
+        const elapsed = Date.now() - (preloader._start || 0);
+        const minDelay = 600;
+        const remain = Math.max(minDelay - elapsed, 0);
+        setTimeout(() => {
+          box.classList.add("loaded");
+          document.body.style.overflow = "auto";
+          if (window.WOW) new WOW().init();
+        }, remain + delay);
+      }
+    };
+
+    // 初始页面显示
+    preloader._start = Date.now();
+
+    document.addEventListener("DOMContentLoaded", () => preloader.hide());
+
+    // === ✅ PJAX 加载动画增强逻辑 ===
+    document.addEventListener("pjax:send", () => {
+      if (!box) return;
+      // ⚡️ 防止竞态：在清空旧 DOM 前立即显示
+      requestAnimationFrame(() => {
+        preloader.show();
+      });
+    }, true);
+
+    document.addEventListener("pjax:complete", () => {
+      // ⚡️ 延迟隐藏，防止内容尚未完全渲染
+      setTimeout(() => preloader.hide(150), 150);
+    }, true);
+
+    // === Hash 跳转 ===
+    window.addEventListener("hashchange", () => {
+      if (!box) return;
+      preloader.show();
+      setTimeout(() => preloader.hide(200), 300);
+    });
+  })();
+
+
+```
+
+`themes\butterfly\source\css\_layout\loading.styl`
+
+```
+// ============================================================
+// Butterfly - 无白屏加载动画样式 (Stylus)
+// ============================================================
+
+#loading-box
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  display flex                    // ✅ 默认显示（防白屏）
+  justify-content center
+  align-items center
+  z-index 1001
+  opacity 1
+  overflow hidden
+  transition opacity 0.4s ease    // ✅ 添加淡出过渡
+
+.loading-bg
+  display flex
+  justify-content center
+  align-items center
+  width 100%
+  height 100%
+  position relative
+  background url(/img/cloud.png) no-repeat center center
+  background-size cover
+  transition opacity 0.3s
+  opacity 1
+  z-index 1001
+
+  // ✅ 亚克力遮罩层
+  &::before
+    content ''
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background rgba(250, 251, 253, 0.6)
+    backdrop-filter blur(12px) saturate(180%)
+    -webkit-backdrop-filter blur(12px) saturate(180%)
+    border 1px solid rgba(255, 255, 255, 0.2)
+    z-index 0
+
+// ✅ 夜间模式支持
+body.dark
+  .loading-bg::before
+    background rgba(26, 26, 26, 0.45)
+    backdrop-filter blur(10px) saturate(160%)
+    -webkit-backdrop-filter blur(10px) saturate(160%)
+    border 1px solid rgba(255, 255, 255, 0.1)
+
+.loading-img
+  width 100px
+  height 100px
+  border-radius 50%
+  border 4px solid #f0f0f2
+  animation rotateAvatar 1.2s linear infinite
+  background url(/img/avatar.png) no-repeat center center
+  background-size cover
+  position relative
+  z-index 1
+
+// ✅ 当 loaded 类生效时淡出隐藏
+#loading-box.loaded
+  opacity 0
+  pointer-events none
+  transition opacity 0.4s ease
+  .loading-bg
+    opacity 0
+    z-index -1000
+
+@keyframes rotateAvatar
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(360deg)
+```
+
+
+
+`\themes\butterfly\layout\includes\layout.pug`
+
+
+```
+// ============================================================
+// Butterfly Layout - 无白屏加载动画版 ✅
+// ============================================================
+
+- var globalPageType = getPageType(page, is_home)
+- var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
+- page.aside = globalPageType === 'archive' ? theme.aside.display.archive: globalPageType === 'category' ? theme.aside.display.category : globalPageType === 'tag' ? theme.aside.display.tag : page.aside
+- var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
+- var pageType = globalPageType === 'post' ? 'post' : 'page'
+- pageType = page.type ? pageType + ' type-' + page.type : pageType
+
+doctype html
+html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
+  head
+    include ./head.pug
+  body
+    // ✅ 加载动画放在最顶层（全局常驻，不被 PJAX 清空）
+    include ./loading/fullpage-loading.pug
+
+    if theme.background
+      #web_bg(style=getBgPath(theme.background))
+
+    !=partial('includes/sidebar', {}, {cache: true})
+
+    #body-wrap(class=pageType)
+      include ./header/index.pug
+
+      main#content-inner.layout(class=hideAside)
+        if body
+          div!= body
+        else
+          block content
+          if theme.aside.enable && page.aside !== false
+            include widget/index.pug
+
+      - const footerBg = theme.footer_img
+      - const footer_bg = footerBg ? footerBg === true ? bg_img : getBgPath(footerBg) : ''
+      footer#footer(style=footer_bg)
+        !=partial('includes/footer', {}, {cache: true})
+
+    include ./rightside.pug
+    include ./additional-js.pug
+
+```
+
+
+

@@ -1,7 +1,3 @@
-// ============================================================
-// Butterfly Layout - 无白屏加载动画版 ✅
-// ============================================================
-
 - var globalPageType = getPageType(page, is_home)
 - var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
 - page.aside = globalPageType === 'archive' ? theme.aside.display.archive: globalPageType === 'category' ? theme.aside.display.category : globalPageType === 'tag' ? theme.aside.display.tag : page.aside
@@ -14,8 +10,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
   head
     include ./head.pug
   body
-    // ✅ 加载动画放在最顶层（全局常驻，不被 PJAX 清空）
-    include ./loading/fullpage-loading.pug
+    !=partial('includes/loading/index', {}, {cache: true})
 
     if theme.background
       #web_bg(style=getBgPath(theme.background))
