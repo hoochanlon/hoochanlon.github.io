@@ -60,7 +60,6 @@ html.hide-aside #post-info {
 
 
 /* 分页当前页样式 */
-
 #pagination .page-number.current{
     background: #49B1F5;
     color: var(--white);

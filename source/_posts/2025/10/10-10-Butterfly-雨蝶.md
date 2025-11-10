@@ -3,7 +3,7 @@ title: Butterfly-雨蝶
 noticeOutdate: false
 categories: 博客主题
 tags: 博客效果调整与更新
-description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
+description: butterfly主题更新及问题修复记录的地方。
 cover: https://tu.zbhz.org/i/2025/11/10/114oywo.jpg
 abbrlink: 15347
 date: 2025-10-10 20:02:29
@@ -36,8 +36,6 @@ package.json
 }
 ```
 
-362 X 266
-
 
 {% endnote %}
 
@@ -51,8 +49,15 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 {%link hoochanlon/hoochanlon.github.io,https://github.com/hoochanlon/hoochanlon.github.io,https://favicon.im/github.com %}
 
+### 其他
 
+插件重制：
 
+* https://github.com/hoochanlon/hexo-butterfly-swiper-x
+* https://github.com/hoochanlon/hexo-butterfly-category-card
+* https://github.com/hoochanlon/hexo-butterfly-clock-remake
+
+图床工具：https://github.com/hoochanlon/picx-images-hosting
 
 ### 更新
 

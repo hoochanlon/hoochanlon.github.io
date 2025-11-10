@@ -1219,7 +1219,7 @@ electric_clock:
 swiper:
   enable: true
   priority: 5
-  enable_page: all
+  enable_page: /
   timemode: date
   layout:
     type: id
