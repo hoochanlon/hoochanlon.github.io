@@ -4,11 +4,13 @@ noticeOutdate: false
 categories: 博客主题
 tags: 博客效果调整与更新
 description: butterfly主题问题修复的地方，临时置顶。_config.butterfly.yml都1k多代码行了，这也太长了...
-cover: 'https://image.aibochinese.com/i/2025/10/13/fmak40.jpg'
+cover: https://tu.zbhz.org/i/2025/11/10/114oywo.jpg
 abbrlink: 15347
 date: 2025-10-10 20:02:29
 # password: 123456
 # sticky: 100
+# swiper_index: 100
+random_swiper_index: true
 ---
 
 ### 注意
@@ -34,6 +36,7 @@ package.json
 }
 ```
 
+362 X 266
 
 
 {% endnote %}
@@ -54,6 +57,11 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 ### 更新
 
 {% timeline 2025, blue %}
+<!-- timeline 11.10 -->
+* 新增轮播文章效果
+* 优化分页显示
+* 更换评论系统
+<!-- endtimeline -->
 <!-- timeline 10.21 -->
 * 新增懒加载动画
 * 电子时钟插件移除index排序，改成根据类名插入式排序

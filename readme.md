@@ -15,7 +15,7 @@ Butterfly 首页部分
 
 Splayer 音乐板块[^1]
 
-[^1]: 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面
+[^1]: 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面，吸底音乐开启PJAX存在与主题部分插件不兼容，故取消。
 
 ![ ](http://image.aibochinese.com/i/2025/10/12/12ruhwr.jpg)
 
@@ -50,6 +50,7 @@ Splayer 音乐板块[^1]
 * 分页支持按组显示：[hexo-theme-butterfly/issues/1757](https://github.com/jerryc127/hexo-theme-butterfly/issues/1757)
 * 文章标题返回页优化：返回文章所在页面
 * 长标题实现电子屏播放
+* 文章轮播效果
 
 
 <details>

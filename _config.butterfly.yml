@@ -1214,3 +1214,17 @@ electric_clock:
   qweather_key: b3dceab537c74f96a77ede4b7dff13d9
   default_city: "资兴"
 
+
+# hexo-butterfly-swiper-x
+swiper:
+  enable: true
+  priority: 5
+  enable_page: all
+  timemode: date
+  layout:
+    type: id
+    name: recent-posts
+    index: 0
+  default_img: https://hoochanlon.github.io/picx-images-hosting/special/author.png
+  default_img_mode: false
+
