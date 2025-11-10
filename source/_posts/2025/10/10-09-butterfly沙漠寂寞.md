@@ -5,7 +5,7 @@ tags: 博客效果代码
 description: 博客相关效果代码展示，内容比较长。
 abbrlink: 442
 date: 2025-10-09 18:39:58
-cover: https://tu.zbhz.org/i/2025/11/10/114oywo.jpg
+cover: https://tu.zbhz.org/i/2025/11/10/12814rg.png
 # sticky: 99
 # swiper_index: 99
 random_swiper_index: true
