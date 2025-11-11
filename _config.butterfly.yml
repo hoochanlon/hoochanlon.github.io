@@ -133,7 +133,7 @@ error_img:
 error_404:
   enable: false
   subtitle: 'Page Not Found'
-  background: /img/error-page.png
+  background: /img/404.png
 
 post_meta:
   # Home Page

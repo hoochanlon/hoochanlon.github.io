@@ -106,6 +106,10 @@ Splayer 音乐板块[^1]
 * [butterfly常用标签外挂](https://blog.pushihao.com/article/a2b56279.html)
 * [暴涨75k星！本地部署超强备忘录Memos，不只是记笔记！ - 知乎](https://zhuanlan.zhihu.com/p/1926331659915104675)
 * [butterfly 代码块中的所有功能](https://butterfly.js.org/posts/4aa8abbe/?highlight=height_limit)
+* [安全跳转页面·插件版](https://blog.liushen.fun/posts/1dfd1f41/)
+* [hexo 外链设置](https://www.luotian.cyou/post/exlinks4hexo.html)
+* [智能的给Hexo全站外链加上rel标签，解决seo权重外流问题](https://blog.hslzz.cn/posts/20250305191500.html)
+* [tcatche/hexo-filter-link-post](https://github.com/tcatche/hexo-filter-link-post)
 
 
 

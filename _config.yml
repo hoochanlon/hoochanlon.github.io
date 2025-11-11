@@ -15,7 +15,7 @@ timezone: ''
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://hoochanlon.github.io
 # permalink: :year/:month:day/:title/
-permalink: posts/:abbrlink.html
+permalink: posts/:year:month:day:hour:minute:second.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -36,6 +36,7 @@ skip_render:
 - 'tomato/*'
 - 'calendar/*'
 - 'weibo/*'
+- '404/*'
 
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts
@@ -197,6 +198,3 @@ aplayer:
 #archive分页每页显示文章数
 archive_generator:
     per_page: 10
-
-
-
