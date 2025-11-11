@@ -36,7 +36,7 @@ skip_render:
 - 'tomato/*'
 - 'calendar/*'
 - 'weibo/*'
-- '404/*'
+- 404.html
 
 # Writing
 new_post_name: :year/:month-:day-:title.md # File name of new posts
