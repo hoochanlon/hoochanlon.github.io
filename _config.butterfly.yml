@@ -739,6 +739,7 @@ preloader:
   source: 1
   mode: "include" 
   pages:
+    # - "HOME"
     - "/page/"
     - "/archives/"
     - "/categories/"
