@@ -87,7 +87,7 @@ if (isHomePage) {
   if (target) {
     // /img/lofi-girl.png
     // /img/aegis.png
-    target.style.backgroundImage = `url(/img/coral.png)`;
+    target.style.backgroundImage = `url(/img/blue-sea-and-sky.png)`;
     target.style.backgroundSize = "cover";
     target.style.backgroundPosition = "center";
   }
@@ -117,7 +117,7 @@ if (isHomePage) {
       };
       img.onerror = () => {
         console.warn("图片加载失败，使用备用图");
-        const fallback = "/img/aegis.png";
+        const fallback = "https://bing.img.run/rand.php";
         const target = document.getElementById(targetId);
         if (target) {
           target.style.backgroundImage = `url(${fallback})`;
