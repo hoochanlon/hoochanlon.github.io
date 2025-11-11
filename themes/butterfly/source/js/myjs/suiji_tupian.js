@@ -87,7 +87,7 @@ if (isHomePage) {
   if (target) {
     // /img/lofi-girl.png
     // /img/aegis.png
-    target.style.backgroundImage = `url(/img/lofi-girl.png)`;
+    target.style.backgroundImage = `url(/img/coral.png)`;
     target.style.backgroundSize = "cover";
     target.style.backgroundPosition = "center";
   }

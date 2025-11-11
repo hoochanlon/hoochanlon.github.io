@@ -737,13 +737,13 @@ preloader:
 # * HOME 标识词 表示 首页
   enable: true
   source: 1
-  mode: "include" 
-  pages:
-    # - "HOME"
-    - "/page/"
-    - "/archives/"
-    - "/categories/"
-    - "/tags/"
+  mode: "exclude" 
+  # pages:
+  #   # - "HOME"
+  #   - "/page/"
+  #   - "/archives/"
+  #   - "/categories/"
+  #   - "/tags/"
 
   # pace CSS 文件路径
   # pace_css_url: /css/real_css/progressbar.css
