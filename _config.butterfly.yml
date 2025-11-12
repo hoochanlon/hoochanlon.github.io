@@ -1225,6 +1225,7 @@ swiper:
     type: id
     name: recent-posts
     index: 0
-  default_img: https://hoochanlon.github.io/picx-images-hosting/special/author.png
+  # default_img: https://hoochanlon.github.io/picx-images-hosting/special/author.png
+  default_img: https://picsum.photos/200/200
   default_img_mode: false
 
