@@ -4,10 +4,11 @@ categories: 游戏王
 tags:
   - 游戏王
   - 打牌
-abbrlink: 27332
+cover: >-
+  https://hoochanlon.github.io/picx-images-hosting/uploads/2025/2025-10-28_09-57-20.webp
+abbrlink: 30266
 date: 2025-11-04 16:15:52
 description:
-cover: https://hoochanlon.github.io/picx-images-hosting/uploads/2025/2025-10-28_09-57-20.webp
 ---
 
 

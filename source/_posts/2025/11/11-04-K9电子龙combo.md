@@ -5,10 +5,11 @@ categories: 游戏王
 tags:
   - 游戏王
   - 打牌
+description: combo链真的巨长...
+cover: >-
+  https://hoochanlon.github.io/picx-images-hosting/uploads/2025/2025-1027-160610.webp
 abbrlink: 51512
 date: 2025-11-04 10:11:25
-description: combo链真的巨长...
-cover: https://hoochanlon.github.io/picx-images-hosting/uploads/2025/2025-1027-160610.webp
 ---
 
 搬运 https://www.bilibili.com/video/BV1NQEvzgEqM combo，说书背书：

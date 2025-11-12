@@ -4,13 +4,10 @@ noticeOutdate: false
 categories: 博客主题
 tags: 博客效果调整与更新
 description: butterfly主题更新及问题修复记录的地方。
-cover: https://tu.zbhz.org/i/2025/11/10/114oywo.jpg
+cover: 'https://tu.zbhz.org/i/2025/11/10/114oywo.jpg'
+random_swiper_index: true
 abbrlink: 15347
 date: 2025-10-10 20:02:29
-# password: 123456
-# sticky: 100
-# swiper_index: 100
-random_swiper_index: true
 ---
 
 ### 注意

@@ -1,12 +1,15 @@
 ---
 title: butterfly-电子钟插件修改与分析过程
 noticeOutdate: false
-abbrlink: 59603
-date: 2025-10-20 19:19:48
-categories: [博客主题]
-tags: [博客效果代码]
+categories:
+  - 博客主题
+tags:
+  - 博客效果代码
 description: 对hexo-butterfly-clock进行重制，这是继hexo-butterfly-category-card又一次开发主题插件了。
-cover: https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-09_00-45-15.webp
+cover: >-
+  https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-09_00-45-15.webp
+abbrlink: 51603
+date: 2025-10-20 19:19:48
 ---
 
 ### repo
