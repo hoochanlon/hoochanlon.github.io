@@ -408,9 +408,9 @@ readmode: true
 darkmode:
   enable: true
   button: true
-  autoChangeMode: 2   # 跟随系统；系统不支持时晚上自动切换
-  start: 23           # 可选：晚上7点开启
-  end: 8              # 可选：早上8点关闭
+  autoChangeMode: false   # 跟随系统；系统不支持时晚上自动切换
+  am: 7                   # 可选：早7和晚10
+  end: 22                 
 
 
 # Show scroll percent in scroll-to-top button
@@ -1060,6 +1060,8 @@ inject:
 
     # 可选特效
     # - <script src="/js/myjs/sakura.js" defer></script>
+    - <canvas id="universe"></canvas>
+    - <script defer src="/js/myjs/universe.js"></script>
 
 
 

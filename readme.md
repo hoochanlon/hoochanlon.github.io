@@ -134,6 +134,9 @@ Splayer 音乐板块[^1]
 * [解决Butterfly页脚养鱼在切换页面时不生效的问题](https://ihave.news/post/20240818194045.html)
 * [懒加载动画效果](https://butterfly.js.org/posts/198a4240/?highlight=loading)
 * [一款基于Butterfly主题的loading动画](https://legacy.happylee.cn/2023/05/03/%E4%B8%80%E6%AC%BE%E5%9F%BA%E4%BA%8Ebutterfly%E4%B8%BB%E9%A2%98%E7%9A%84loading%E5%8A%A8%E7%94%BB/)
+* [Butterfly主题修改“自动切换模式”的时间](https://blog.leonus.cn/2023/butterflyDarkmode.html)
+* [butterfly切换夜间模式更换背景](https://www.app966.cn/post/26fa8bad.html)
+* [【Hexo博客】如何使博客拥有星空背景和流星特效](https://blog.meta-code.top/2021/09/30/2021-7/)
 
 
 ####  插件与功能扩展

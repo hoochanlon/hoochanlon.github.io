@@ -29,18 +29,6 @@
   opacity 1
   z-index 1001
 
-// 夜间模式：加载动画背景图
-html[data-theme="dark"] #loading-box .loading-bg
-  background url(/img/moon.png) no-repeat center center !important
-  background-size cover !important
-
-// 夜间模式：更暗、更柔和的遮罩
-html[data-theme="dark"] #loading-box .loading-bg::before
-  background rgba(0, 0, 0, 0.35) !important
-  backdrop-filter blur(6px)      // 夜间降低模糊
-  -webkit-backdrop-filter blur(6px)
-  border none                    // 夜间不需要亮边框
-
   // ✅ 亚克力遮罩层
   &::before
     content ''
