@@ -1,10 +1,11 @@
 ---
 title: 注册美区apple id让我又一次体验了刷机般的过程
 categories: 折腾记录
-tags: iOS
+tags: 美区ID
 description: 可能是年纪上了来了，这种经历，我不想再有第三次了。
 abbrlink: 12589
 date: 2025-09-10 07:28:55
+cover: https://cdn.sa.net/2025/11/13/LbchNECFWd89TGP.png
 ---
 
 美区号被盗了已有三年了，这一次将号牢牢掌握在自己手中[^1]。apple id和注册谷歌账号还是有点差别，当时我以为和雅虎台湾一样，用国内手机号注册不了美区ID，以及我也忘了是哪个网站来着，注册账号必须要vsia提供信用卡。这些步骤可谓劝退一大部分人。直到今天，自己创建了美区id才知道我想多了...
@@ -24,3 +25,5 @@ date: 2025-09-10 07:28:55
 以上过程让我又经历了一次“刷机”，太累了。
 
 [^1]: 我的谷歌账号、chatgpt都是买的，但苹果ID最好还是要自己亲自注册，防止邮箱用自己的，手机号、手机设备是别人的，导致账号被盗。
+
+长截图下载：https://github.com/hoochanlon/picx-images-hosting/blob/master/fkca/PixPin_2025-11-13_12-52-53.png
