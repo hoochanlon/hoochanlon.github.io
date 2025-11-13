@@ -309,10 +309,10 @@ aside:
     enable: true
     description:
     button:
-      enable: false
+      enable: true
       icon: fab fa-github
-      text: Follow Me
-      link: https://github.com/hoochanlon
+      text: hoochanlon.github.io
+      link: https://github.com/hoochanlon/hoochanlon.github.io
   # 公告 通知
   card_announcement:
     enable: false
