@@ -5,6 +5,7 @@ tags: 心累
 description: 调试
 abbrlink: 27849
 date: 2025-10-30 10:54:12
+cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/renshenga.webp
 ---
 
 配置mongodb实在太折腾了，可我想不起来当初看的reddit提供方法链接了，也没有在chatgpt留心记录。只希望后续不会换主题了，毕竟我不想再折腾了，太累了。

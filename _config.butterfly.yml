@@ -19,16 +19,17 @@ nav:
 
 menu:
   主页: / || fas fa-home
-  微博: /weibo/ || fas fa-blog 
-  导航: /nav/ || fa fa-compass
+  微博: https://memos.hoochanlon.space || fas fa-blog 
+  导航: https://nav.hoochanlon.space || fa fa-compass
+  图床: https://cf-imgbed.hoochanlon.space || fas fa-image
   文章集|| fa fa-feather-pointed:
     标签: /tags/ || fa fa-tags
     分类: /categories/ || fa fa-th
     归档: /archives/ || fa fa-archive
   工作台|| fa fa-laptop-code:
-    todo: /todo/ || fa fa-circle-check
-    日历: /calendar/ || fas fa-calendar-alt
-    番茄钟: /tomato/ || fas fa-stopwatch
+    todo: https://hoochanlon.github.io/todo || fa fa-circle-check
+    日历: https://hoochanlon.github.io/calendar || fas fa-calendar-alt
+    番茄钟: https://hoochanlon.github.io/tomato || fas fa-stopwatch
   音乐: /music/ || fas fa-music
   留言: /comments/ || fas fa-location-arrow
   关于: /about/ || fas fa-circle-info
@@ -1168,7 +1169,7 @@ categoryBar:
     - cname: 心累了
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/renshenga.webp
-    - cname: 图像整理
+    - cname: 图片整理
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/macos-wallpaper.webp
     - cname: 游戏王
