@@ -198,3 +198,22 @@ aplayer:
 #archive分页每页显示文章数
 archive_generator:
     per_page: 10
+
+
+algolia:
+  appId: "4MPI4PSQGN"
+  apiKey: "89600468530a435e6fd4f505ddeb82b8"
+  adminApiKey: "07c665355f523d519af97e5b625e089d"
+  chunkSize: 5000
+  indexName: "myblog_index"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title
+
+
