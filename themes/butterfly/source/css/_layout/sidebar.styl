@@ -202,13 +202,14 @@
     }
   }
 
-  // Mobile responsiveness for vertical alignment
+  // Mobile responsiveness for vertical alignment and no offset
   @media (max-width: 768px) {
     #sidebar-menus {
       width: 100%;
       position: relative;
       top: auto;
       right: auto;
+      padding: 0;
     }
 
     .menus_items {
@@ -238,6 +239,18 @@
     .site-page.group:not(.hide) + .menus_item_child {
       max-height: none;
       opacity: 1;
+    }
+  }
+
+  // Ensure no padding or extra space that could cause unwanted offsets
+  @media (max-width: 480px) {
+    .menus_items {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .site-page {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
