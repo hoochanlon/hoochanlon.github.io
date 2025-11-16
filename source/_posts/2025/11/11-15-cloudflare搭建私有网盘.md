@@ -18,6 +18,7 @@ date: 2025-11-15 14:27:53
 
 * https://github.com/ling-drag0n/CloudPaste/issues/122
 * https://github.com/ling-drag0n/CloudPaste/issues/124
+* https://github.com/ling-drag0n/CloudPaste/issues/126
 
 
 分享文本测试：https://cloudpaste.hoochanlon.space/paste/MEFujD ，由 https://lipsum.app 提供支持
