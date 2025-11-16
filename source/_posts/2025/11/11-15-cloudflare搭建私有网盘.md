@@ -19,6 +19,7 @@ date: 2025-11-15 14:27:53
 * https://github.com/ling-drag0n/CloudPaste/issues/122
 * https://github.com/ling-drag0n/CloudPaste/issues/124
 * https://github.com/ling-drag0n/CloudPaste/issues/126
+* https://github.com/MarSeventh/CloudFlare-ImgBed/issues/356
 
 
 分享文本测试：https://cloudpaste.hoochanlon.space/paste/MEFujD ，由 https://lipsum.app 提供支持
@@ -28,8 +29,6 @@ date: 2025-11-15 14:27:53
 还是差点意思...
 
 ### 部署
-
-cloudflare当前政策：R2免费存储10G，支持重新创建R2再使用。每日调用请求上限为 10 万次。
 
 项目：
 
