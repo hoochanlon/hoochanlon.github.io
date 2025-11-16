@@ -1,133 +1,97 @@
-/* 确保正确的视口设置 */
-meta[name="viewport"] {
-  content: width=device-width, initial-scale=1;
-}
+#sidebar
+  #menu-mask
+    position: fixed
+    z-index: 102
+    display: none
+    width: 100%
+    height: 100%
+    background: alpha($dark-black, .8)
 
-/* 全局CSS变量定义 */
-:root {
-  --sidebar-bg: #fff; /* 侧边栏背景色 */
-  --sidebar-menu-bg: #f0f0f0; /* 菜单项背景色 */
-  --font-color: #333; /* 字体颜色 */
-  --text-bg-hover: #e0e0e0; /* 悬停背景色 */
-  --white: #fff;
-  --dark-black: #000000;
-}
+  #sidebar-menus
+    position: fixed
+    top: 0
+    right: -($sidebar-width)
+    z-index: 103
+    overflow-x: hidden
+    overflow-y: scroll
+    padding-left: 5px
+    width: $sidebar-width
+    height: 100%
+    background: var(--sidebar-bg)
+    transition: all .5s
 
-/* 菜单遮罩层 */
-#menu-mask {
-  position: fixed;
-  z-index: 102;
-  display: none;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* 更改alpha为rgba以确保兼容性 */
-}
+    &.open
+      transform: translate3d(-100%, 0, 0)
 
-/* 侧边栏菜单 */
-#sidebar-menus {
-  position: fixed;
-  top: 0;
-  right: -300px; /* 假设 $sidebar-width = 300px */
-  z-index: 103;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding-left: 5px;
-  width: 300px; /* 设置固定宽度 */
-  height: 100%;
-  background: var(--sidebar-bg);
-  transition: transform 0.5s ease; /* 确保只有transform动画 */
-}
+    & > .avatar-img
+      margin: 20px auto
 
-/* 侧边栏打开时的动画 */
-#sidebar-menus.open {
-  transform: translateX(0); /* 使用translateX代替translate3d */
-}
+    .site-data
+      padding: 0 10px
 
-/* 头像样式 */
-#sidebar-menus > .avatar-img {
-  margin: 20px auto;
-}
+    hr
+      margin: 20px auto
 
-/* 分隔线样式 */
-#sidebar-menus .site-data hr {
-  margin: 20px auto;
-}
+    .menus_items
+      margin: 20px
+      padding: 15px
+      background: var(--sidebar-menu-bg)
+      box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05)
+      addBorderRadius(10)
 
-/* 菜单项样式 */
-.menus_items {
-  margin: 20px;
-  padding: 15px;
-  background: var(--sidebar-menu-bg);
-  box-shadow: 0 0 1px 1px rgba(7, 17, 27, 0.05);
-  border-radius: 10px;
-}
+      .site-page
+        @extend .limit-one-line
+        position: relative
+        display: block
+        margin: 4px 0
+        padding: 2px 23px 2px 15px
+        color: var(--font-color)
+        font-size: 1.15em
+        cursor: pointer
+        addBorderRadius(6)
 
-/* 单个菜单项样式 */
-.menus_items .site-page {
-  position: relative;
-  display: block;
-  margin: 4px 0;
-  padding: 2px 23px 2px 15px;
-  color: var(--font-color);
-  font-size: 1.15em;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.2s ease; /* 增加平滑的过渡效果 */
-}
+        &:hover
+          background: var(--text-bg-hover)
+          box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
+          color: var(--white)
+          transition: all .2s ease
+          transform: translateX(3px)
 
-/* 鼠标悬停效果 */
-.menus_items .site-page:hover {
-  background: var(--text-bg-hover);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  color: var(--white);
-  transform: translateX(3px); /* 增加平滑的滑动效果 */
-}
+        i:first-child
+          width: 15%
+          text-align: left
 
-/* 菜单项中的图标 */
-.menus_items .site-page i:first-child {
-  width: 15%;
-  text-align: left;
-}
+        &.group
+          & > i:last-child
+            position: absolute
+            top: .6em
+            right: 10px
+            transition: transform .3s
 
-/* 菜单组，包含折叠功能 */
-.menus_items .site-page.group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+          &.hide
+            & > i:last-child
+              transform: rotate(90deg)
 
-.menus_items .site-page.group > i:last-child {
-  position: absolute;
-  top: 0.6em;
-  right: 10px;
-  transition: transform 0.3s ease; /* 平滑的旋转动画 */
-}
+            & + .menus_item_child
+              overflow: hidden
+              max-height: 0
+              opacity: 0
+              transform: scaleY(0)
+              transform-origin: top
 
-.menus_items .site-page.group.hide > i:last-child {
-  transform: rotate(90deg); /* 旋转效果 */
-}
+      .menus_item_child
+        margin: 0
+        padding-left: 25px
+        max-height: 0
+        list-style: none
+        opacity: 0
+        transition: transform .3s ease, opacity .3s ease, max-height .3s ease
+        transform: scaleY(0)
+        transform-origin: top
+        will-change: transform, opacity, max-height
 
-/* 子菜单项 */
-.menus_item_child {
-  margin: 0;
-  padding-left: 25px;
-  max-height: 0;
-  opacity: 0;
-  list-style: none;
-  transform: scaleY(0);
-  transition: transform 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
-  transform-origin: top;
-  will-change: transform, opacity, max-height;
-}
-
-/* 当父菜单没有.hide类时，显示子菜单 */
-.menus_items .site-page.group:not(.hide) + .menus_item_child {
-  max-height: 1000px;
-  opacity: 1;
-  transform: scaleY(1);
-}
-
-/* 侧边栏遮罩层的显示控制 */
-#menu-mask.show {
-  display: block;
-}
+    // 當父元素沒有 .hide 類時，顯示子目錄
+    .site-page.group:not(.hide) + .menus_item_child
+      max-height: 1000px
+      opacity: 1
+      transform: scaleY(1)
