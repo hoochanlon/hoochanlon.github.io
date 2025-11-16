@@ -33,7 +33,7 @@ jobs:
         # algolia 搜索索引更新
         hexo algolia
         # 压缩，加快静态资源访问
-        gulp 
+        # gulp 
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
