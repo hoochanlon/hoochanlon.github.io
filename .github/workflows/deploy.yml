@@ -25,8 +25,7 @@ jobs:
         # 清除缓存，避免镜像切换不生效
         npm cache clean --force
         # 安装依赖（全局和项目依赖都用国内镜像）
-        # npm install -g hexo-cli --registry=https://registry.npmmirror.com/
-        npm install hexo@7.2 --registry=https://registry.npmmirror.com/
+        npm install -g hexo-cli --registry=https://registry.npmmirror.com/
         npm install --registry=https://registry.npmmirror.com/
 
         # 构建静态文件
