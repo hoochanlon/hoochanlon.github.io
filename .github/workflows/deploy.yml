@@ -1,45 +1,44 @@
 name: Deploy Hexo Blog
+
 on:
   push:
-    branches: [master]  # 当push到master分支时触发自动部署
+    branches: [ master ]  # 监听 push 到 master 分支的事件
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v5
+    - name: Checkout source code
+      uses: actions/checkout@v5
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-          cache: 'npm'
+    - name: Setup Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: '22'
+        cache: 'npm'  # 启用 npm 缓存，减少重复下载
 
-      - name: Install dependencies and build
-        run: |
-          npm config set registry https://registry.npmmirror.com/
-          npm cache clean --force
-          npm install -g hexo-cli --registry=https://registry.npmmirror.com/
-          npm install --registry=https://registry.npmmirror.com/
-          hexo clean
-          hexo generate
-          hexo algolia
-          gulp
+    - name: Install dependencies and build
+      run: |
+        # 关键：切换为国内淘宝镜像，彻底解决 github 频率限制报错 429 限制
+        npm config set registry https://registry.npmmirror.com/
+        # 清除缓存，避免镜像切换不生效
+        npm cache clean --force
+        # 安装依赖（全局和项目依赖都用国内镜像）
+        npm install -g hexo-cli --registry=https://registry.npmmirror.com/
+        npm install --registry=https://registry.npmmirror.com/
 
-      - name: Set Git user identity
-        run: |
-          git config --global user.email "hoochanlon@outlook.com"
-          git config --global user.name "hoochanlon"
+        # 构建静态文件
+        hexo clean
+        hexo generate
+        # algolia 搜索索引更新
+        hexo algolia
+        # 压缩，加快静态资源访问
+        gulp
 
-      - name: Set up GitHub token for authentication
-        run: |
-          git config --global credential.helper store
-          echo "https://${{ secrets.GITHUB_TOKEN }}:@github.com" > ~/.git-credentials
-
-      - name: Install gh-pages and deploy
-        run: |
-          npm install gh-pages --save-dev
-          npx gh-pages -d public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages  # 指定要部署的目标分支
+        folder: public  # 指定要部署的目录
+        token: ${{ secrets.GITHUB_TOKEN }}  # 使用默认的 GitHub token 来进行部署
