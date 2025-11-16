@@ -8,6 +8,7 @@ tags:
 description: 根据cloudflare产品现有优惠政策，搭建无服务器私人小型图床及网盘。
 abbrlink: 16642
 date: 2025-11-15 14:27:53
+cover: https://hoochanlon.github.io/picx-images-hosting/special/cloudflare.webp
 ---
 
 ## cloudpaste （新）
