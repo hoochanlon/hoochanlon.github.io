@@ -19,9 +19,11 @@
     height: 100%
     background: var(--sidebar-bg)
     transition: all .5s
+    display: none;  // 默认隐藏
 
     &.open
-      transform: translate3d(-100%, 0, 0)
+      right: 0;  // 菜单打开时显示
+      display: block;  // 显示菜单
 
     & > .avatar-img
       margin: 20px auto
@@ -33,65 +35,101 @@
       margin: 20px auto
 
     .menus_items
-      margin: 20px
-      padding: 15px
+      margin: 0;  // 清除外边距
+      padding: 10px;
       background: var(--sidebar-menu-bg)
       box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05)
       addBorderRadius(10)
+      width: 100%;  // 确保菜单项占满宽度
+      padding-left: 5px;
 
-      .site-page
-        @extend .limit-one-line
-        position: relative
-        display: block
-        margin: 4px 0
-        padding: 2px 23px 2px 15px
-        color: var(--font-color)
-        font-size: 1.15em
-        cursor: pointer
-        addBorderRadius(6)
+      @media (max-width: 768px)
+        padding: 10px 5px;  // 在移动设备上减少内边距
 
-        &:hover
-          background: var(--text-bg-hover)
-          box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
-          color: var(--white)
-          transition: all .2s ease
-          transform: translateX(3px)
+    .site-page
+      @extend .limit-one-line
+      position: relative
+      display: block
+      margin: 4px 0
+      padding: 2px 15px
+      color: var(--font-color)
+      font-size: 1.15em
+      cursor: pointer
+      addBorderRadius(6)
 
-        i:first-child
-          width: 15%
-          text-align: left
+      &:hover
+        background: var(--text-bg-hover)
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
+        color: var(--white)
+        transition: all .2s ease
+        transform: translateX(3px)
 
-        &.group
+      i:first-child
+        width: 15%
+        text-align: left
+
+      &.group
+        & > i:last-child
+          position: absolute
+          top: .6em
+          right: 10px
+          transition: transform .3s
+
+        &.hide
           & > i:last-child
-            position: absolute
-            top: .6em
-            right: 10px
-            transition: transform .3s
+            transform: rotate(90deg)
 
-          &.hide
-            & > i:last-child
-              transform: rotate(90deg)
+          & + .menus_item_child
+            overflow: hidden
+            max-height: 0
+            opacity: 0
+            transform: scaleY(0)
+            transform-origin: top
 
-            & + .menus_item_child
-              overflow: hidden
-              max-height: 0
-              opacity: 0
-              transform: scaleY(0)
-              transform-origin: top
+    .menus_item_child
+      margin: 0
+      padding-left: 25px
+      max-height: 0
+      list-style: none
+      opacity: 0
+      transition: transform .3s ease, opacity .3s ease, max-height .3s ease
+      transform: scaleY(0)
+      transform-origin: top
+      will-change: transform, opacity, max-height
+      display: flex
+      flex-direction: column;  // 确保子菜单垂直排列
 
-      .menus_item_child
-        margin: 0
-        padding-left: 25px
-        max-height: 0
-        list-style: none
-        opacity: 0
-        transition: transform .3s ease, opacity .3s ease, max-height .3s ease
-        transform: scaleY(0)
-        transform-origin: top
-        will-change: transform, opacity, max-height
-
-    // 當父元素沒有 .hide 類時，顯示子目錄
+    // 当父菜单没有 .hide 类时，显示子菜单
     .site-page.group:not(.hide) + .menus_item_child
       max-height: 1000px
       opacity: 1
       transform: scaleY(1)
+
+  // 针对移动端的样式调整
+  @media (max-width: 768px)
+    #sidebar-menus
+      width: 75%;  // 更小的侧边栏宽度
+      right: 0;    // 使菜单从右侧滑出
+
+    .site-page
+      font-size: 1em;  // 减小字体大小
+      padding: 5px 15px;    // 减小菜单项的内边距
+
+    .menus_item_child li
+      float: none;    // 去除浮动，确保垂直排列
+      display: block; // 让菜单项垂直排列
+
+    .menus_items
+      width: 100%;  // 确保菜单项宽度占满
+
+    .site-page.group
+      & > i:last-child
+        right: 15px; // 调整小屏幕下图标的位置
+
+    .menus_item_child
+      left: 0;
+      transform: translate(0, 0);  // 修正子菜单的定位
+
+
+
+
