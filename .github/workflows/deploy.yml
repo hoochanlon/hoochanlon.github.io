@@ -25,16 +25,17 @@ jobs:
         # 清除缓存，避免镜像切换不生效
         npm cache clean --force
         # 安装依赖（全局和项目依赖都用国内镜像）
-        npm install -g hexo-cli --registry=https://registry.npmmirror.com/
+        # npm install -g hexo-cli --registry=https://registry.npmmirror.com/
+        npm install hexo@7.2 --registry=https://registry.npmmirror.com/
         npm install --registry=https://registry.npmmirror.com/
 
         # 构建静态文件
         hexo clean
         hexo generate
         # algolia 搜索索引更新
-        # hexo algolia
+        hexo algolia
         # 压缩，加快静态资源访问
-        # gulp 
+        gulp 
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
