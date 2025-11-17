@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22'  # 使用 Node.js 22 版本
           cache: 'npm'
 
       - name: Install dependencies
@@ -45,7 +45,7 @@ jobs:
       - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public  # 上传 Hexo 生成的 public 文件夹
 
   deploy_github_pages:
     environment:
@@ -70,10 +70,15 @@ jobs:
           npm ci
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
-      - name: Publish on Netlify
-        uses: netlify/actions/cli@master
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
         with:
-          args: deploy --dir=public --prod
+          publish-dir: './public'  # Netlify 发布目录设置为 public 文件夹
+          production-branch: master
+          deploy-message: "Deploy Hexo site to Netlify"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Netlify 身份验证令牌
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Netlify 网站 ID
