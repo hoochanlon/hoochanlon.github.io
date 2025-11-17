@@ -44,4 +44,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          token: ${{ secrets.HEXO_DEPLOY_PRI }}  # 使用自定义的部署密钥
+          token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 默认的 token
