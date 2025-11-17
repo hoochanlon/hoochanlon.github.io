@@ -3,7 +3,7 @@ name: Pages
 on:
   push:
     branches:
-      - main  # 默认分支
+      - master  # 默认分支
 
 jobs:
   build:
