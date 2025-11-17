@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-node@v6
       with:
         node-version: '22'
-        cache: 'npm'  # 启用 npm 缓存，减少重复下载
+        # cache: 'npm'  # 启用 npm 缓存，减少重复下载
 
     - name: Install dependencies and build
       run: |
