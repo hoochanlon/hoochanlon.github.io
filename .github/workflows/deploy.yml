@@ -2,7 +2,7 @@ name: Build and Deploy to GitHub Pages and Netlify
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ]  # 或者你选择的任何分支
   workflow_dispatch:
 
 permissions:
@@ -39,10 +39,9 @@ jobs:
           npx hexo clean
           npx hexo generate
 
-      - name: Print working directory
+      - name: List files in the public directory
         run: |
-          pwd  # 打印当前工作目录
-          ls -R ./  # 列出当前目录下的所有文件和文件夹
+          ls -R ./public  # 确保 public 文件夹生成
 
       - name: Setup Pages for GitHub
         uses: actions/configure-pages@v4
@@ -59,9 +58,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (gh-pages branch)
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages  # 确保部署到 gh-pages 分支
 
   deploy_netlify:
     runs-on: ubuntu-latest
