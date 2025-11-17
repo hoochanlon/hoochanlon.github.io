@@ -35,7 +35,7 @@ jobs:
           # Ensure all required renderers are installed
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
-      - name: Build
+      - name: Build Hexo site
         run: |
           npx hexo clean
           npx hexo generate
@@ -66,10 +66,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Netlify CLI setup
-        uses: netlify/actions/cli@master
+      - name: Install Netlify CLI
+        run: |
+          npm install -g netlify-cli
+
+      - name: Build with Netlify
+        run: |
+          netlify build
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@v1
+        with:
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with: 
-          args: netlify deploy --dir=public --prod
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Deploy to Netlify (prod)
+        run: |
+          netlify deploy --dir=public --prod
