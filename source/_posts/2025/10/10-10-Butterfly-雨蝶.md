@@ -56,6 +56,19 @@ edge安装了广告插件会影响到公告侧边栏的JS加载
 
 图床工具：https://github.com/hoochanlon/picx-images-hosting
 
+### 遗憾
+
+总结搭建博客的一些遗憾:
+
+* 个人资料框做不到缩放显示介绍
+* 锚点功能异常
+* 加载动画略有残影
+* CMS内容至今来看依旧是勉强能用的水平
+* action不能做到netlify手动部署，不能控制额度。
+* 选博客框架、主题没多看，lighthouse性能偏低
+* 折腾过程写得很潦草
+* GFW、备案、~~visa、mastercard~~
+
 ### 更新
 
 {% timeline 2025, blue %}
