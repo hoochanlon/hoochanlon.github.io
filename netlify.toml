@@ -1,0 +1,6 @@
+[build]
+  command = "npx hexo generate"  
+  publish = "public"             
+
+[context.production.environment]
+  NODE_VERSION = "22"  
