@@ -44,4 +44,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 默认的 token
+          token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub Token
+          branch: gh-pages  # 指定部署目标分支为 gh-pages
