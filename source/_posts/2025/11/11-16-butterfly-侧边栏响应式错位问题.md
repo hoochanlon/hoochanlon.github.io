@@ -34,3 +34,9 @@ netlify部署参考：
 
 * https://io-oi.me/tech/deploy-static-site-to-netlify
 * https://www.wevg.org/archives/hexo-with-netlify-cms
+
+
+
+
+
+https://stackoverflow.com/questions/76937061/branch-master-is-not-allowed-to-deploy-to-github-pages-due-to-environment-prot
