@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.HEXO_DEPLOY_PRI }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
 
       - name: Use Node.js 22
@@ -28,7 +28,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./public
+          path: ./public  # 上传构建好的静态文件
 
   deploy:
     needs: build
@@ -44,5 +44,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_path: ./public
-          branch: gh-pages  # 指定部署分支为 gh-pages
+          token: ${{ secrets.HEXO_DEPLOY_PRI }}  # 使用自定义的部署密钥
