@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy to GitHub Pages and Netlify
 
 on:
   push:
@@ -35,20 +35,20 @@ jobs:
           # 确保安装所有必需的渲染器
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
-      - name: Build
+      - name: Build Hexo site
         run: |
           npx hexo clean
           npx hexo generate
 
-      - name: Setup Pages
+      - name: Setup Pages for GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public  # 上传 Hexo 生成的 public 文件夹
 
-  deploy:
+  deploy_github_pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -58,3 +58,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy_netlify:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies for Netlify
+        run: |
+          npm ci
+          npm install hexo-renderer-pug hexo-renderer-stylus --save
+
+      - name: List files in the public directory
+        run: |
+          ls -R ./public  # 确保 public 文件夹生成
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './public'  # Netlify 发布目录设置为 public 文件夹
+          production-branch: master
+          deploy-message: "Deploy Hexo site to Netlify"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}  # Netlify 身份验证令牌
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Netlify 网站 ID
