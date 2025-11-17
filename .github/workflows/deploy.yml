@@ -26,13 +26,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'  # Recommended to use the latest LTS version
+          node-version: '22'  # 推荐使用最新 LTS 版本
           cache: 'npm'
 
       - name: Install dependencies
         run: |
           npm ci
-          # Ensure all required renderers are installed
+          # 确保安装所有需要的渲染器
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
       - name: Build Hexo site
@@ -66,23 +66,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Netlify CLI
-        run: |
-          npm install -g netlify-cli
-
-      - name: Build with Netlify
-        run: |
-          netlify build
-
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@v1
+      - name: Publish on Netlify
+        uses: netlify/actions/cli@master
         with:
-          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
+          args: deploy --dir=public --prod
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-      - name: Deploy to Netlify (prod)
-        run: |
-          netlify deploy --dir=public --prod
