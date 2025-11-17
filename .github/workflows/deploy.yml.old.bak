@@ -1,0 +1,44 @@
+name: Deploy Hexo Blog
+# https://goofysatoshi.github.io/2025/08/29/Hexo-GitHub-Actions-实现自动化部署完整指南/index.html
+
+on:
+  push:
+    branches: [ master ] # 方括号内填入拉取代码分支 当监听到push事件就会开启自动部署deploy
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: '22'
+        cache: 'npm'  # 启用 npm 缓存，减少重复下载
+
+    - name: Install dependencies and build
+      run: |
+        # 关键：切换为国内淘宝镜像，彻底解决 github 频率限制报错 429 限制
+        npm config set registry https://registry.npmmirror.com/
+        # 清除缓存，避免镜像切换不生效
+        npm cache clean --force
+        # 安装依赖（全局和项目依赖都用国内镜像）
+        npm install -g hexo-cli --registry=https://registry.npmmirror.com/
+        npm install --registry=https://registry.npmmirror.com/
+
+        # 构建静态文件
+        hexo clean
+        hexo generate
+        # algolia 搜索索引更新
+        hexo algolia
+        # 压缩，加快静态资源访问
+        gulp 
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        deploy_key: ${{ secrets.HEXO_DEPLOY_PRI }}
+        publish_dir: ./public
+        publish_branch: gh-pages  # 与 _config.yml 中的 deploy.branch 一致
