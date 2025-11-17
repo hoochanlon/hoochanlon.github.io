@@ -26,27 +26,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22'  # Recommended to use the latest LTS version
           cache: 'npm'
 
       - name: Install dependencies
         run: |
           npm ci
+          # Ensure all required renderers are installed
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
       - name: Build
         run: |
           npx hexo clean
           npx hexo generate
-          ls -al  # 检查 public 目录是否存在
 
-      - name: Setup Pages
+      - name: Setup Pages for GitHub
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public  # 确保 public 目录路径正确
+          path: ./public
 
   deploy_github_pages:
     environment:
@@ -59,11 +59,19 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Deploy to netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+  deploy_netlify:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Netlify CLI setup
+        uses: netlify/actions/cli@v1
         with:
-          args: deploy --dir=public --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Deploy to Netlify
+        run: |
+          netlify deploy --dir=public --prod
