@@ -1,6 +1,6 @@
 [build]
-  command = "npx hexo generate"  
-  publish = "public"             
+  command = "npm install && npx hexo generate"  # 安装依赖后生成 Hexo 站点
+  publish = "public"  # 发布目录是 Hexo 生成的 public 文件夹
 
 [context.production.environment]
-  NODE_VERSION = "22"  
+  NODE_VERSION = "22"  # 设置 Node.js 版本为 22
