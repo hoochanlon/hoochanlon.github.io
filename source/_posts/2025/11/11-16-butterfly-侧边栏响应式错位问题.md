@@ -266,5 +266,3 @@ jobs:
 ```
 
 GitHub 提供的专门保存 secret values 的地方，在你的 GitHub 代码库的 Setting -> Secrets 中可以保存以上两个值。
-
-A deploy that was created manually and is not linked to a repository or Git provider
