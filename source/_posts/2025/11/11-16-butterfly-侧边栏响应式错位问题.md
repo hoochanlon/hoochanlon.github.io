@@ -156,12 +156,29 @@ netlify看看能不能用吧...
     * [使用 GitHub Actions 部署网站到 Netlify](https://zhuanlan.zhihu.com/p/149508734)
 * 加速参考：https://github.com/xingpingcn/enhanced-FaaS-in-China
 
-### netlify again
 
-锁定自动部署
+### 如何才能设定netlify不会自动部署，而是根据我的action配置部署呢？
+
+{%note warning%}
+完全锁定自动部署，这会导致手动也不生效。所以如下图示操作，不是我们所考虑的。
 
 ![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-17_13-20-15.webp)
+{%endnote%}
 
+**build & deploy -> Continuous deployment  -> Manage repository** Unlink你部署的repo
+
+![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-17_13-53-36.webp)
+
+你会看到如下警告
+
+![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-17_13-55-37.webp)
+
+设置完成，试试aciton
+
+
+### netlify again
+
+官方文档：https://docs.netlify.com
 
 {% blockquote %}
 获取 NETLIFY_AUTH_TOKEN 的方法是在 Netlify 网站的 User settings -> Applications -> Personal access tokens 点击按钮 New access token 就可以了。
@@ -249,3 +266,4 @@ jobs:
 ```
 
 GitHub 提供的专门保存 secret values 的地方，在你的 GitHub 代码库的 Setting -> Secrets 中可以保存以上两个值。
+
