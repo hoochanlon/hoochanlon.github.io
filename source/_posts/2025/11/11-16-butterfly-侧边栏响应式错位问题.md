@@ -158,6 +158,10 @@ netlify看看能不能用吧...
 
 ### netlify again
 
+锁定自动部署
+
+![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-17_13-20-15.webp)
+
 
 {% blockquote %}
 获取 NETLIFY_AUTH_TOKEN 的方法是在 Netlify 网站的 User settings -> Applications -> Personal access tokens 点击按钮 New access token 就可以了。
@@ -167,3 +171,81 @@ netlify看看能不能用吧...
  ***@全是技术*** &mdash; https://zhuanlan.zhihu.com/p/149508734
 {% endblockquote %}
 
+部署站点才能看到site id
+
+![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-17_13-01-31.webp)
+
+action yml
+
+```yml
+name: Build and Deploy to GitHub Pages and Netlify
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # 推荐使用最新 LTS 版本
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          # 确保安装所有必需的渲染器
+          npm install hexo-renderer-pug hexo-renderer-stylus --save
+
+      - name: Build
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=public --prod
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+```
+
+GitHub 提供的专门保存 secret values 的地方，在你的 GitHub 代码库的 Setting -> Secrets 中可以保存以上两个值。
