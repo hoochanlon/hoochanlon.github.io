@@ -1,256 +1,97 @@
-// #sidebar
-//   #menu-mask
-//     position: fixed
-//     z-index: 102
-//     display: none
-//     width: 100%
-//     height: 100%
-//     background: alpha($dark-black, .8)
+#sidebar
+  #menu-mask
+    position: fixed
+    z-index: 102
+    display: none
+    width: 100%
+    height: 100%
+    background: alpha($dark-black, .8)
 
-//   #sidebar-menus
-//     position: fixed
-//     top: 0
-//     right: -($sidebar-width)
-//     z-index: 103
-//     overflow-x: hidden
-//     overflow-y: scroll
-//     padding-left: 5px
-//     width: $sidebar-width
-//     height: 100%
-//     background: var(--sidebar-bg)
-//     transition: all .5s
+  #sidebar-menus
+    position: fixed
+    top: 0
+    right: -($sidebar-width)
+    z-index: 103
+    overflow-x: hidden
+    overflow-y: scroll
+    padding-left: 5px
+    width: $sidebar-width
+    height: 100%
+    background: var(--sidebar-bg)
+    transition: all .5s
 
-//     &.open
-//       transform: translate3d(-100%, 0, 0)
+    &.open
+      transform: translate3d(-100%, 0, 0)
 
-//     & > .avatar-img
-//       margin: 20px auto
+    & > .avatar-img
+      margin: 20px auto
 
-//     .site-data
-//       padding: 0 10px
+    .site-data
+      padding: 0 10px
 
-//     hr
-//       margin: 20px auto
+    hr
+      margin: 20px auto
 
-//     .menus_items
-//       margin: 20px
-//       padding: 15px
-//       background: var(--sidebar-menu-bg)
-//       box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05)
-//       addBorderRadius(10)
+    .menus_items
+      margin: 20px
+      padding: 15px
+      background: var(--sidebar-menu-bg)
+      box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05)
+      addBorderRadius(10)
 
-//       .site-page
-//         @extend .limit-one-line
-//         position: relative
-//         display: block
-//         margin: 4px 0
-//         padding: 2px 23px 2px 15px
-//         color: var(--font-color)
-//         font-size: 1.15em
-//         cursor: pointer
-//         addBorderRadius(6)
+      .site-page
+        @extend .limit-one-line
+        position: relative
+        display: block
+        margin: 4px 0
+        padding: 2px 23px 2px 15px
+        color: var(--font-color)
+        font-size: 1.15em
+        cursor: pointer
+        addBorderRadius(6)
 
-//         &:hover
-//           background: var(--text-bg-hover)
-//           box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
-//           color: var(--white)
-//           transition: all .2s ease
-//           transform: translateX(3px)
+        &:hover
+          background: var(--text-bg-hover)
+          box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
+          color: var(--white)
+          transition: all .2s ease
+          transform: translateX(3px)
 
-//         i:first-child
-//           width: 15%
-//           text-align: left
+        i:first-child
+          width: 15%
+          text-align: left
 
-//         &.group
-//           & > i:last-child
-//             position: absolute
-//             top: .6em
-//             right: 10px
-//             transition: transform .3s
+        &.group
+          & > i:last-child
+            position: absolute
+            top: .6em
+            right: 10px
+            transition: transform .3s
 
-//           &.hide
-//             & > i:last-child
-//               transform: rotate(90deg)
+          &.hide
+            & > i:last-child
+              transform: rotate(90deg)
 
-//             & + .menus_item_child
-//               overflow: hidden
-//               max-height: 0
-//               opacity: 0
-//               transform: scaleY(0)
-//               transform-origin: top
+            & + .menus_item_child
+              overflow: hidden
+              max-height: 0
+              opacity: 0
+              transform: scaleY(0)
+              transform-origin: top
 
-//       .menus_item_child
-//         margin: 0
-//         padding-left: 25px
-//         max-height: 0
-//         list-style: none
-//         opacity: 0
-//         transition: transform .3s ease, opacity .3s ease, max-height .3s ease
-//         transform: scaleY(0)
-//         transform-origin: top
-//         will-change: transform, opacity, max-height
+      .menus_item_child
+        margin: 0
+        padding-left: 25px
+        max-height: 0
+        list-style: none
+        opacity: 0
+        transition: transform .3s ease, opacity .3s ease, max-height .3s ease
+        transform: scaleY(0)
+        transform-origin: top
+        will-change: transform, opacity, max-height
 
-//     // 當父元素沒有 .hide 類時，顯示子目錄
-//     .site-page.group:not(.hide) + .menus_item_child
-//       max-height: 1000px
-//       opacity: 1
-//       transform: scaleY(1)
-
-
-
-
-#sidebar-menus {
-  position: fixed;
-  top: 0;
-  right: -($sidebar-width);
-  z-index: 103;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding-left: 5px;
-  width: $sidebar-width;
-  height: 100%;
-  background: var(--sidebar-bg);
-  transition: all .5s;
-
-  &.open {
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  & > .avatar-img {
-    margin: 20px auto;
-  }
-
-  .site-data {
-    padding: 0 10px;
-  }
-
-  hr {
-    margin: 20px auto;
-  }
-
-  .menus_items {
-    margin: 20px;
-    padding: 15px;
-    background: var(--sidebar-menu-bg);
-    box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05);
-    addBorderRadius(10);
-
-    .site-page {
-      @extend .limit-one-line;
-      position: relative;
-      display: block;
-      margin: 4px 0;
-      padding: 2px 23px 2px 15px;
-      color: var(--font-color);
-      font-size: 1.15em;
-      cursor: pointer;
-      addBorderRadius(6);
-
-      &:hover {
-        background: var(--text-bg-hover);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
-        color: var(--white);
-        transition: all .2s ease;
-        transform: translateX(3px);
-      }
-
-      i:first-child {
-        width: 15%;
-        text-align: left;
-      }
-
-      &.group {
-        & > i:last-child {
-          position: absolute;
-          top: .6em;
-          right: 10px;
-          transition: transform .3s;
-        }
-
-        &.hide {
-          & > i:last-child {
-            transform: rotate(90deg);
-          }
-
-          & + .menus_item_child {
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transform: scaleY(0);
-            transform-origin: top;
-          }
-        }
-      }
-
-      .menus_item_child {
-        margin: 0;
-        padding-left: 25px;
-        max-height: 0;
-        list-style: none;
-        opacity: 0;
-        transition: transform .3s ease, opacity .3s ease, max-height .3s ease;
-        transform: scaleY(0);
-        transform-origin: top;
-        will-change: transform, opacity, max-height;
-      }
-    }
-
-    .site-page.group:not(.hide) + .menus_item_child {
-      max-height: 1000px;
-      opacity: 1;
-      transform: scaleY(1);
-    }
-  }
-
-  // Mobile responsiveness for vertical alignment and no offset
-  @media (max-width: 768px) {
-    #sidebar-menus {
-      width: 100%;
-      position: relative;
-      top: auto;
-      right: auto;
-      padding: 0;
-    }
-
-    .menus_items {
-      padding: 10px;
-      margin: 0;
-      box-shadow: none;
-      background: transparent;
-    }
-
-    .site-page {
-      width: 100%;
-      padding: 10px 15px;
-      margin: 5px 0;
-      text-align: left;
-      font-size: 1em;
-      display: block;
-    }
-
-    .menus_item_child {
-      padding-left: 20px;
-      margin-top: 10px;
-      transform: none;
-      opacity: 1;
-      max-height: none;
-    }
-
-    .site-page.group:not(.hide) + .menus_item_child {
-      max-height: none;
-      opacity: 1;
-    }
-  }
-
-  // Ensure no padding or extra space that could cause unwanted offsets
-  @media (max-width: 480px) {
-    .menus_items {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    .site-page {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-}
+    // 當父元素沒有 .hide 類時，顯示子目錄
+    .site-page.group:not(.hide) + .menus_item_child
+      max-height: 1000px
+      opacity: 1
+      transform: scaleY(1)

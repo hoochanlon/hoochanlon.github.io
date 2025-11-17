@@ -1,19 +1,19 @@
 name: Deploy Hexo Blog
+# https://goofysatoshi.github.io/2025/08/29/Hexo-GitHub-Actions-实现自动化部署完整指南/index.html
 
 on:
   push:
-    branches: [ master ]  # 监听 push 到 master 分支的事件
+    branches: [ master ] # 方括号内填入拉取代码分支 当监听到push事件就会开启自动部署deploy
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout source code
       uses: actions/checkout@v5
 
     - name: Setup Node.js
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v6
       with:
         node-version: '22'
         cache: 'npm'  # 启用 npm 缓存，减少重复下载
@@ -34,11 +34,11 @@ jobs:
         # algolia 搜索索引更新
         hexo algolia
         # 压缩，加快静态资源访问
-        gulp
+        gulp 
 
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: peaceiris/actions-gh-pages@v4
       with:
-        branch: gh-pages  # 指定要部署的目标分支
-        folder: public  # 指定要部署的目录
-        token: ${{ secrets.GITHUB_TOKEN }}  # 使用默认的 GitHub token 来进行部署
+        deploy_key: ${{ secrets.HEXO_DEPLOY_PRI }}
+        publish_dir: ./public
+        publish_branch: gh-pages  # 与 _config.yml 中的 deploy.branch 一致
