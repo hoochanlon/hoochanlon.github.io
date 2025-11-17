@@ -67,11 +67,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Netlify CLI setup
-        uses: netlify/actions/cli@v1
-        with:
-          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: Deploy to Netlify
-        run: |
-          netlify deploy --dir=public --prod
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with: 
+          args: netlify deploy --dir=public --prod
