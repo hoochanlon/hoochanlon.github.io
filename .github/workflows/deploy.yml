@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'  # 使用 Node.js 22 版本
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -38,6 +38,11 @@ jobs:
         run: |
           npx hexo clean
           npx hexo generate
+
+      - name: Print working directory
+        run: |
+          pwd  # 打印当前工作目录
+          ls -R ./  # 列出当前目录下的所有文件和文件夹
 
       - name: Setup Pages for GitHub
         uses: actions/configure-pages@v4
@@ -70,10 +75,14 @@ jobs:
           npm ci
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
+      - name: List files in the public directory
+        run: |
+          ls -R ./public  # 确保 public 文件夹生成
+
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: './public'  # Netlify 发布目录设置为 public 文件夹
+          publish-dir: './public'  # 确保路径正确
           production-branch: master
           deploy-message: "Deploy Hexo site to Netlify"
           enable-pull-request-comment: false
