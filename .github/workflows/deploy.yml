@@ -3,7 +3,7 @@ name: Pages
 on:
   push:
     branches:
-      - master  # 默认分支
+      - master  # 监听 master 分支的推送事件
 
 jobs:
   build:
@@ -43,3 +43,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_path: ./public
+          branch: gh-pages  # 指定部署分支为 gh-pages
