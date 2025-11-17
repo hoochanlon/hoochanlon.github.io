@@ -26,19 +26,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'  # 推荐使用最新 LTS 版本
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
         run: |
           npm ci
-          # 确保安装所有必需的渲染器
           npm install hexo-renderer-pug hexo-renderer-stylus --save
 
       - name: Build
         run: |
           npx hexo clean
           npx hexo generate
+          ls -al  # 检查 public 目录是否存在
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public  # 确保 public 目录路径正确
 
   deploy_github_pages:
     environment:
@@ -69,7 +69,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: './public'  # 请根据实际输出目录调整
+          publish-dir: './public'  # 确保使用正确的目录
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
