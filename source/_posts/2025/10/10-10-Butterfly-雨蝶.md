@@ -1,8 +1,9 @@
 ---
 title: Butterfly-雨蝶
 noticeOutdate: false
-categories: 博客主题
-tags: 博客效果调整与更新
+categories: hexo-butterfly
+tags: 
+- hexo-butterfly
 description: butterfly主题更新及问题修复记录的地方。
 cover: 'https://tu.zbhz.org/i/2025/11/10/114oywo.jpg'
 random_swiper_index: true

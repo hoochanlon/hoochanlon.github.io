@@ -1160,7 +1160,7 @@ categoryBar:
   column: odd # odd：3列 | even：4列
   row: 9 # 显示行数，默认两行，超过行数切换为滚动显示
   message:
-    - cname: 博客主题
+    - cname: hexo-butterfly
       descr: 
       cover: https://hoochanlon.github.io/picx-images-hosting/category-covers/blue-butterfly.webp
     - cname: 随笔

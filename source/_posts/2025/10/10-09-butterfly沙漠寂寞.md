@@ -1,7 +1,8 @@
 ---
 title: Butterfly-沙漠寂寞
-categories: 博客主题
-tags: 博客效果代码
+categories: hexo-butterfly
+tags: 
+- hexo-butterfly
 description: 博客相关效果代码展示，内容比较长。
 cover: 'https://tu.zbhz.org/i/2025/11/10/12814rg.png'
 random_swiper_index: true

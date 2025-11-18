@@ -1,9 +1,10 @@
 ---
 title: butterfly-由侧边栏错位问题，从gh-pages转向到netlify部署
 noticeOutdate: false
-categories: 博客主题
-tags: 博客效果调整与更新
-description: 侧边栏错位问题。
+categories: hexo-butterfly
+tags: 
+- hexo-butterfly
+description: 针对手机访问博客发现侧边栏错位问题进行改进。
 abbrlink: 6082
 date: 2025-11-16 23:14:05
 cover: https://hoochanlon.github.io/picx-images-hosting/special/Netlify.webp
