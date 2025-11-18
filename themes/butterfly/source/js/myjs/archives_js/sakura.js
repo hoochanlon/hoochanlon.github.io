@@ -152,15 +152,4 @@ function stopp() {
     }
 }
 
-// 判断当前月份是否为春季 (3月-5月)
-function isSpring() {
-    var currentMonth = new Date().getMonth();
-    return currentMonth >= 2 && currentMonth <= 4; // 春季：3月到5月
-}
 
-// 在页面加载时判断是否为春季，并激活樱花动画
-img.onload = function () {
-    if (isSpring()) {
-        startSakura();  // 如果是春季，则启动樱花动画
-    }
-};

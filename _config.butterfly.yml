@@ -188,8 +188,6 @@ subtitle:
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub: 
     - 回忆的画面，记录的语言
-    - 爱始终是你手中长长的线
-    - —— 笔记
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -1067,9 +1065,10 @@ inject:
     - <script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js" defer data-pjax></script>
 
     # 可选特效
-    # - <script src="/js/myjs/sakura.js" defer></script>
+    - <script src="/js/myjs/sakura.js" defer></script>
     - <canvas id="universe"></canvas>
     - <script defer src="/js/myjs/universe.js"></script>
+    - <script defer src="/js/myjs/snow.js"></script>
 
 
 
