@@ -10,7 +10,7 @@ backend:
     openAuthoring: '{{message}}'
 
 
-logo_url: /favicon.svg # 你的 logo
+logo_url: /img/avatar.svg # 你的 logo
 
 
 # 禁用部署预览链接
