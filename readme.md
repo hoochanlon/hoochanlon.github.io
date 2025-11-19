@@ -7,33 +7,10 @@
 
 ### 博客展示
 
-Butterfly 首页部分
+视频记录
 
-![](https://youke1.picui.cn/s1/2025/11/19/691d88be06ccc.jpg)
+https://github.com/user-attachments/assets/51fca78f-5808-42c8-ac73-5e1db4465a96
 
-<!-- ![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg) -->
-
-Splayer 音乐板块[^1]
-
-[^1]: 因流量负载过大音乐播放器由Splayer更换为安知鱼音乐页面，吸底音乐开启PJAX存在与主题部分插件不兼容，故取消。
-
-![ ](http://image.aibochinese.com/i/2025/10/12/12ruhwr.jpg)
-
-<!-- ![ ](http://image.aibochinese.com/i/2025/10/12/12rud51.jpg) -->
-
-
-<details>
-<summary>其他独立模块内容，包括：导航、番茄钟、日历、todo</summary>
-
-自用导航
-
-![ ](https://tu.zbhz.org/i/2025/10/12/12f4lrr.png)
-
-日历、番茄钟、todo
-
-![ ](https://tu.zbhz.org/i/2025/10/12/12dvoeu.jpg)
-
-</details>
 
 在已经成功完成过一次 Hexo 部署，且完成全局文件替换的前提下，后续的使用方式：
 
