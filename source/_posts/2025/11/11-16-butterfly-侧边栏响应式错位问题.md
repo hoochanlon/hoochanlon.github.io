@@ -156,5 +156,3 @@ netlify看看能不能用吧...
     * [解决Netlify免费Build额度太少的问题](https://182.254.147.27/solving-netlify-free-build-limit/)
     * [使用 GitHub Actions 部署网站到 Netlify](https://zhuanlan.zhihu.com/p/149508734)
 * 加速参考：https://github.com/xingpingcn/enhanced-FaaS-in-China
-
-至于再搭hexo + CMS，随便在自建的云盘写点内容复制过去就好了。反正都不完善，有的为了适配相关框架安装起来又特别复杂，算了算了。
