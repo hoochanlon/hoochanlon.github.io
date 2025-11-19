@@ -26,6 +26,6 @@ decap cms写作效果：
 
 hexo butterfly 的 lighthouse 评分实在有点太低，即使有netlify加速也救不了，所以这次估计是要全面迁移至 astro pure 了。
 
-![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-19_15-27-17.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-19_14-42-45.webp)
 
 也许可能[qexo](https://oplog.cn/qexo/configs/provider.html)是比较好的选择，但算了算了，讲到这里，我TM还是要骂一句“jekyll就跟屎一样”，hexo毕竟这么多年，网页加载慢真是痛点，还是太旧了。
