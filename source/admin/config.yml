@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: master # 要更新的分支(可选；默认为主分支)
+  commit_messages:
+    create: Create {{collection}} “{{slug}}”
+    update: Update {{collection}} “{{slug}}”
+    delete: Delete {{collection}} “{{slug}}”
+    uploadMedia: Upload “{{path}}”
+    deleteMedia: Delete “{{path}}”
+    openAuthoring: '{{message}}'
+
+
+logo_url: /favicon.svg # 你的 logo
+
+
+# 禁用部署预览链接
+# show_preview_links: false
+
+
+# This line should *not* be indented
+publish_mode: editorial_workflow
+
+
+# This line should *not* be indented
+media_folder: "source/images/uploads" # 媒体文件将存储在图片/上载下的Repo中。
+public_folder: "/images/uploads" # 上传的媒体的src属性将以/images/uploads开头。
+
+
+site_url: https://blogger.hoochanlon.space # 网站网址
+display_url: https://blogger.hoochanlon.space # 显示网址
+
+
+locale: "zh_Hans" # 语言环境
+
+
+collections: 
+
+
+  - name: "posts" # 在路由中使用，例如：/admin/collections/blog。
+    label: "Posts" # 在用户界面中使用
+    folder: "source/_posts/" # 存储文件的文件夹的路径。
+    # filter: {field: "categories", value: "Posts"} # 筛选
+    create: true # 允许用户在这个集合中创建新的文件。
+    fields: # 每份文件的字段，通常是前面的内容。
+      - {label: "标题", name: "title", default: "Posts: ", widget: "string"}
+      - {label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss", dateFormat: "YYYY-MM-DD", timeFormat: "HH:mm:ss", required: false}
+      - {label: "更新日期", name: "updated", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss", dateFormat: "YYYY-MM-DD", timeFormat: "HH:mm:ss", required: false}
+      - {label: "标签", name: "tags", widget: "list", required: false}
+      - {label: "分类", name: "categories", widget: "list", required: false}
+      - {label: "关键词", name: "keywords", widget: "list", required: false}
+      - {label: "摘要", name: "description", widget: "string", required: false}
+      - {label: "永久链接", name: "permalink", widget: "string", required: false}
+      - {label: "评论", name: "comments", widget: "boolean", default: true, required: false}
+      - {label: "置顶", name: "pin", widget: "boolean", default: false, required: false}
+      - {label: "密码", name: "password", widget: "string", required: false}
+      - {label: "abstract", name: "abstract", default: "有东西被加密了, 请输入密码查看.", widget: "string", required: false}
+      - {label: "message", name: "message", default: "您好, 这里需要密码.", widget: "string", required: false}
+      - {label: "wrong_pass_message", name: "wrong_pass_message", default: "抱歉, 这个密码看着不太对, 请再试试.", widget: "string", required: false}
+      - {label: "wrong_hash_message", name: "wrong_hash_message", default: "抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.", widget: "string", required: false}
+      - {label: "内容", name: "body", widget: "markdown", required: false}
+
