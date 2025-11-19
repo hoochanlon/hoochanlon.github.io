@@ -1,5 +1,5 @@
 ---
-title: "Posts: 测试我的第一篇 cms for blog 部署"
+title: 测试我的第一篇 cms for blog 部署
 date: 2025-11-19 13:47:00
 updated: 2025-11-19 13:47:00
 tags:
