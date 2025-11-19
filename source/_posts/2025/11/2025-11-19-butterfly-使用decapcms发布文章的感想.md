@@ -14,7 +14,7 @@ date: 2025-11-19 16:19:47
 
 Decap CMS搭建方式：[使用 Decap CMS 作为 Hexo 后端以实现在线编辑（保姆级教程）](https://blog.csdn.net/y223421/article/details/141259451)
 
-decap cms写作效果：
+decapcms写作效果：
 
 ![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-19_15-27-17.webp)
 
