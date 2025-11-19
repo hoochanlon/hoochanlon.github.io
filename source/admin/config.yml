@@ -24,7 +24,7 @@ locale: "zh_Hans"
 collections:
   - name: "posts"
     label: "文章" # 在用户界面中使用，必须要配置的，不然会报错
-    folder: "source/_posts/{{date.year}}/{{date.month}}/{{date.day}}-{{slug}}.md"  # 文件路径格式
+    folder: "source/_posts/{{year}}/{{month}}"  # 文件路径格式
     create: true
     fields:
       - {label: "标题", name: "title", widget: "string"}
