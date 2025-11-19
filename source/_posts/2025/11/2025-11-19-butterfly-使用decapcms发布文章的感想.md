@@ -1,13 +1,15 @@
 ---
 title: butterfly-使用decapcms发布文章的感想
 noticeOutdate: false
-date: 2025-11-19 16:19:47
 categories: hexo-butterfly
 tags:
-- hexo-cms
-- hexo-butterfly
-cover: https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/special/cms.webp
+  - hexo-cms
+  - hexo-butterfly
+cover: >-
+  https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/special/cms.webp
 description: 一言蔽之：decapcms虽然解决了静态博客不能即时发文章的痛点，但文章编辑器的体验只能说是灾难。
+abbrlink: 43439
+date: 2025-11-19 16:19:47
 ---
 
 Decap CMS搭建方式：[使用 Decap CMS 作为 Hexo 后端以实现在线编辑（保姆级教程）](https://blog.csdn.net/y223421/article/details/141259451)
