@@ -40,7 +40,7 @@ skip_render:
 - 404.html
 
 # Writing
-new_post_name: :year/:month-:day-:title.md # File name of new posts
+new_post_name: :year/:month/:year:month-:day-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
