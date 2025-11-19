@@ -9,7 +9,7 @@
 
 Butterfly 首页部分
 
-![ ](https://tu.zbhz.org/i/2025/10/12/10v8rcq.jpg)
+![](https://youke1.picui.cn/s1/2025/11/19/691d88be06ccc.jpg)
 
 <!-- ![ ](https://tu.zbhz.org/i/2025/10/12/112gauh.jpg) -->
 
@@ -35,12 +35,19 @@ Splayer 音乐板块[^1]
 
 </details>
 
+在已经成功完成过一次 Hexo 部署，且完成全局文件替换的前提下，后续的使用方式：
+
+```
+npm uninstall hexo
+npm install hexo@7.2
+npm install hexo-renderer-pug hexo-renderer-stylus --save
+npm install
+```
 
 ### 功能概述 
 
 除主题自带的效果，额外实现如下：
-* 看板娘
-* 樱花飘落
+* 根据四季换对应壁纸，开启樱花、雪花效果
 * 字体采用霞鹜文楷、JetBrains Mono 
 * 刷新或点击不同栏目更换背景图片
 * 超链接可转成卡片
