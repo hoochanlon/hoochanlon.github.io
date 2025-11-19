@@ -10,7 +10,7 @@ backend:
     openAuthoring: '{{message}}'
 
 
-logo_url: /img/avatar.svg # 你的 logo
+logo_url: https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/special/avatar.svg # 你的 logo
 
 
 # 禁用部署预览链接
