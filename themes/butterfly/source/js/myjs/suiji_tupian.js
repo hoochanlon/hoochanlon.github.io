@@ -71,16 +71,23 @@ if (target) {
   target.style.backgroundSize = "cover";
   target.style.backgroundPosition = "center";
   target.style.transition = "background-image 0.5s ease"; // 过渡效果
-  
+
   let imageUrl = (isHomePage || isPage) ? seasonImage : "https://bing.img.run/rand.php";
 
-  // 创建一个 Image 对象来加载图片
+  // 创建一个 Image 对象来加载图片并缓存
   const img = new Image();
+  img.src = imageUrl; // 触发图片加载
+
+  // 图片加载完成后，再设置背景图，避免白闪
   img.onload = () => {
-    // 图片加载完成后，更新背景图片并进行渐变过渡
     target.style.backgroundImage = `url(${imageUrl})`;
-    target.classList.add("image-loaded"); // 添加已加载的class
+    target.classList.add("image-loaded"); // 图片加载完后添加class，触发渐变效果
   };
 
-  img.src = imageUrl; // 开始加载图片
+  // 如果图片已经缓存，直接设置背景图
+  if (img.complete) {
+    target.style.backgroundImage = `url(${imageUrl})`;
+    target.classList.add("image-loaded");
+  }
 }
+
