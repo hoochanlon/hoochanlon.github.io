@@ -125,3 +125,13 @@ html[data-theme="dark"] body::before {
   pointer-events: none;
   z-index: -1;
 }
+
+/* 背景图淡入效果 */
+#web_bg {
+  opacity: 0;
+  transition: opacity 0.5s ease; /* 在0.5秒内渐变 */
+}
+
+#web_bg.image-loaded {
+  opacity: 1;
+}
