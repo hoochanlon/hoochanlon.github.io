@@ -26,19 +26,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'  # 推荐使用最新 LTS 版本
+          node-version: '22'  # Use the latest LTS version
           cache: 'npm'
 
       - name: Install dependencies
         run: |
-          npm ci
-          # 确保安装所有必需的渲染器
-          npm install hexo-renderer-pug hexo-renderer-stylus --save
+          npm install
 
-      - name: Build
+      - name: Build Astro project
         run: |
-          npx hexo clean
-          npx hexo generate
+          npm run build  # Astro builds the project into the 'dist' directory by default
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./dist  # Path to the output directory of the built Astro project
 
   deploy:
     environment:
