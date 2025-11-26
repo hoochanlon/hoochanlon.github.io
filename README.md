@@ -13,7 +13,7 @@ https://github.com/user-attachments/assets/51fca78f-5808-42c8-ac73-5e1db4465a96
 
 <p align="center">
   <a href="https://pagespeed.web.dev/">
-    <img width="710" alt="AstroPaper Lighthouse Score" src="/public/assets/imgs/AstroPaper-lighthouse-score.svg">
+    <img width="710" alt="AstroPaper Lighthouse Score" src="./public/assets/imgs/lighthouse-score.svg">
   <a>
 </p>
 
