@@ -1,0 +1,91 @@
+@import "tailwindcss";
+@import "./typography.css";
+@import "../assets/fonts/JetBrainsMono/result.css";
+@import "../assets/fonts/lxgw-wenkai/result.css";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+h1, h2, h3, h4, h5, h6,span,figcaption,div{font-family: 'LXGW WenKai GB', sans-serif;}
+li{font-family: 'JetBrains Mono', sans-serif;}
+p {font-family: 'LXGW WenKai GB', sans-serif;font-size: 18px;}
+
+/* 博客标题字体 */
+a.absolute {
+font-size: 22px;  
+font-family: lxgw wenkai, sans-serif;  
+}
+
+:root,
+html[data-theme="light"] {
+  --background: #fdfdfd;
+  --foreground: #282728;
+  --accent: #006cac;
+  --muted: #e6e6e6;
+  --border: #ece9e9;
+}
+
+html[data-theme="dark"] {
+  --background: #212737;
+  --foreground: #eaedf3;
+  --accent: #ff6b01;
+  --muted: #343f60;
+  --border: #ab4b08;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-accent/75;
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-muted) transparent;
+  }
+  html {
+    @apply overflow-y-scroll scroll-smooth;
+  }
+  body {
+    @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/75 selection:text-background;
+  }
+  a,
+  button {
+    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  section,
+  footer {
+    @apply mx-auto max-w-app px-4;
+  }
+}
+
+@utility max-w-app {
+  @apply max-w-3xl;
+}
+
+.active-nav {
+  @apply underline decoration-wavy decoration-2 underline-offset-4;
+}
+
+/* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 1rem;
+}
+
+.expired-banner {
+  background: #fff8c5;
+  color: #8a6d00;
+  padding: 12px 16px;
+  border-left: 4px solid #f5d000;
+  border-radius: 4px;
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}

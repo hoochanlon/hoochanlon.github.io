@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import PostDetails from "@/layouts/PostDetails.astro";
+import { getPath } from "@/utils/getPath";
+import getSortedPosts from "@/utils/getSortedPosts";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);  // 获取所有非草稿文章
+  const postResult = posts.map(post => ({
+    params: { slug: getPath(post.id, post.filePath, false) },  // 使用 getPath 生成路径
+    props: { post },
+  }));
+
+  return postResult;
+}
+
+const { post } = Astro.props;
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+
+// 渲染 PostDetails 组件，显示当前文章和排序后的所有文章
+---
+<PostDetails post={post} posts={sortedPosts} />

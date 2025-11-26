@@ -1,0 +1,18 @@
+---
+const { pubDatetime, expiryDays = 30 } = Astro.props;
+
+const now = new Date();
+const pubDate = new Date(pubDatetime);
+
+// 计算整数天数
+const daysDiff = Math.floor((now.getTime() - pubDate.getTime()) / (1000 * 3600 * 24));
+
+// 是否过期
+const isExpired = daysDiff > expiryDays;
+---
+
+{isExpired && (
+  <div class="expired-banner">
+    本文发布于 {pubDate.toLocaleDateString()}，距今已过去 {daysDiff} 天，内容可能已过期。
+  </div>
+)}
