@@ -22,7 +22,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 7  # 设置你需要的 pnpm 版本
       - name: Install dependencies
         run: pnpm install
       - name: Build TinaCMS
@@ -30,7 +34,6 @@ jobs:
           CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: pnpm run build  # 确保你有 TinaCMS 的构建脚本
-
 
   deploy:
     needs: build
