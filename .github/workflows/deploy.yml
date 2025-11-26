@@ -40,8 +40,6 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm tinacms build
 
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
       - name: Install, build, and upload your site
         env:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
