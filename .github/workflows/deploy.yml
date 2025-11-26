@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -33,11 +33,24 @@ jobs:
       - name: Install missing packages
         run: pnpm add react-dnd react-dnd-html5-backend
 
-      - name: Build TinaCMS
+      - name: TinaCMS build
         env:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-        run: pnpm run build
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: pnpm tinacms build
+
+      - name: Astro check
+        run: pnpm astro check
+
+      - name: Astro build
+        run: pnpm astro build
+
+      - name: Pagefind index
+        run: pnpm pagefind --site dist
+
+      - name: Copy Pagefind output
+        run: cp -r dist/pagefind public/
 
   deploy:
     needs: build
