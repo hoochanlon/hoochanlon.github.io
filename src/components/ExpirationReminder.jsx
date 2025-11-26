@@ -1,5 +1,4 @@
 // src/components/ExpirationReminder.jsx
-import React from "react";
 
 const ExpirationReminder = ({ pubDatetime }) => {
   const currentDate = new Date();  // 获取当前日期
