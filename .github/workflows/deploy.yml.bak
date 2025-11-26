@@ -19,18 +19,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build TinaCMS
-        env:
-          CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-        run: pnpm run build  # 确保你有 TinaCMS 的构建脚本
-
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5  # 更新为最新的 withastro action 版本
 
   deploy:
     needs: build
