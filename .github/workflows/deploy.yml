@@ -1,13 +1,10 @@
 name: GitHub Pages Astro CI
 
 on:
-  # 每次推送到 `main` 分支时触发这个“工作流程”
   push:
     branches: [ main ]
-  # 允许你在 GitHub 上的 Actions 标签中手动触发此“工作流程”
   workflow_dispatch:
-  
-# 允许 job 克隆 repo 并创建一个 page deployment
+
 permissions:
   contents: read
   pages: write
@@ -19,23 +16,28 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 16
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 7  # 设置你需要的 pnpm 版本
+          version: 7
+
       - name: Install dependencies
-        run: pnpm install  # 安装项目的所有依赖
+        run: pnpm install
+
       - name: Install missing packages
-        run: pnpm add react-dnd react-dnd-html5-backend  # 安装缺失的依赖
+        run: pnpm add react-dnd react-dnd-html5-backend
+
       - name: Build TinaCMS
         env:
-          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-        run: pnpm run build  # 执行 TinaCMS 构建命令
+        run: pnpm run build
 
   deploy:
     needs: build
@@ -46,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # 使用 deploy-pages v4 版本
+        uses: actions/deploy-pages@v4
