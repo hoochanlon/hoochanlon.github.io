@@ -40,13 +40,6 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm tinacms build
 
-      # 上传构建产物到 GitHub Actions
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: dist  # 确保这是正确的构建输出目录路径
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -54,12 +47,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # 从 build 步骤上传的构建产物中部署文件
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
