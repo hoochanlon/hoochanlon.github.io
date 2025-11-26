@@ -14,6 +14,7 @@ import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
+import Comments from "@/components/Comments";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -128,6 +129,23 @@ const nextPost =
     <BackToTopButton />
 
     <ShareLinks />
+    <!-- <script
+      src="https://giscus.app/client.js"
+      data-repo="hoochanlon/hoochanlon.github.io"
+      data-repo-id="MDEwOlJlcG9zaXRvcnkxMzIzMjYzMjM="
+      data-category="Announcements"
+      data-category-id="DIC_kwDOB-Mjs84COzES"
+      data-mapping="title"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async></script> -->
+      <Comments client:only="react" />
 
     <hr class="my-6 border-dashed" />
 

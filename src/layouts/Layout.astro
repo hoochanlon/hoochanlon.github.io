@@ -61,6 +61,9 @@ const structuredData = {
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- umami -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e8dda199-cdc2-4bb5-8aeb-1a6bd156ada7"></script>
+
     <!-- General Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -132,6 +135,10 @@ const structuredData = {
     <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+    />
   </head>
   <body>
     <slot />

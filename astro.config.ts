@@ -12,29 +12,36 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import rehypeExternalLinks from "rehype-external-links";
+
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
-  integrations: [sitemap({
+  integrations: [
+
+    sitemap({
     filter: page => SITE.showArchives || !page.endsWith("/archives"),
-  }), mdx(), react()],
+  }), mdx(), react()
+  ],
   markdown: {
     remarkPlugins: [
+      remarkMath,
       remarkToc, 
       [remarkCollapse, { test: "Table of contents" }]
     ],
 
      rehypePlugins: [
-      [
+       rehypeKatex,
+       [
         rehypeExternalLinks,
         {
           target: "\_blank",
           rel: ["noopener", "noreferrer", "external"],
-        },
-      ],
+        }
+      ]
     ],
 
     shikiConfig: {

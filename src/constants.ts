@@ -7,7 +7,23 @@ import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import IconWechat from "@/assets/icons/IconWechat.svg";
+import IconSubway from "@/assets/icons/IconSubway.svg";
+import type { GiscusProps } from "@giscus/react";
 import { SITE } from "@/config";
+
+
+export const GISCUS: GiscusProps = {
+  repo: "hoochanlon/hoochanlon.github.io",
+  repoId: "MDEwOlJlcG9zaXRvcnkxMzIzMjYzMjM=",
+  category: "Announcements",
+  categoryId: "DIC_kwDOB-Mjs84COzES",
+  mapping: "title",
+  reactionsEnabled: "1",
+  emitMetadata: "0",
+  inputPosition: "bottom",
+  lang: "zh-CN",
+  loading: "lazy"
+};
 
 interface Social {
   name: string;
@@ -35,6 +51,12 @@ export const SOCIALS: Social[] = [
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
   },
+    {
+    name: "Subway",
+    href: "https://www.travellings.cn/go.html",
+    linkTitle: `Going to a random place by subway!`,
+    icon: IconSubway,
+  }
 ] as const;
 
 export const SHARE_LINKS: Social[] = [

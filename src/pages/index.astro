@@ -56,7 +56,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         // 只在 SOCIALS 数组中有链接时显示
         SOCIALS.length > 0 && (
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 sm:mb-0">社交链接：</div>
+            <div class="me-2 mb-1 sm:mb-0" style="font-size: 18px;">讯息连结：</div>
             <Socials />
           </div>
         )
