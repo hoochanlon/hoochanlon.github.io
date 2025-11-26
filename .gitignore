@@ -26,3 +26,4 @@ pnpm-debug.log*
 # pagefind
 
 public/pagefind
+node_modules
