@@ -8,7 +8,7 @@ const branch =
   "main";
 
 export default defineConfig({
-  branch: "main",
+  branch,
 
   // Get this from tina.io
   clientId: "b8890683-2142-4fb7-83da-651657c222df", // Get this from tina.io
