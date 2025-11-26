@@ -19,23 +19,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '22'
-      
-      - name: Install dependencies
-        run: npm install
-        env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}  # 从 GitHub Secrets 获取
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}  # 从 GitHub Secrets 获取
-
-      - name: Build the site
-        run: npm run build
-        env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5  # 更新为最新的 withastro action 版本
 
   deploy:
     needs: build
@@ -46,7 +31,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+        uses: actions/deploy-pages@v4  # 已是 v4 版本，确保版本匹配
