@@ -33,7 +33,7 @@ jobs:
         run: pnpm add react-dnd react-dnd-html5-backend  # 安装缺失的依赖
       - name: Build TinaCMS
         env:
-          CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
+          TINA_PUBLIC_CLIENT_ID: ${{ secrets.TINA_PUBLIC_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: pnpm run build  # 执行 TinaCMS 构建命令
 
