@@ -40,18 +40,6 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm tinacms build
 
-      - name: Astro check
-        run: pnpm astro check
-
-      - name: Astro build
-        run: pnpm astro build
-
-      - name: Pagefind index
-        run: pnpm pagefind --site dist
-
-      - name: Copy Pagefind output
-        run: cp -r dist/pagefind public/
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
