@@ -40,12 +40,10 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
         run: pnpm tinacms build
 
-      # 上传构建产物到 GitHub Actions
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: dist  # 确保这是正确的构建输出目录路径
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5  # 更新为最新的 withastro action 版本
 
   deploy:
     needs: build
