@@ -11,9 +11,9 @@ export default defineConfig({
   branch,
 
   // Get this from tina.io
-  clientId: "b8890683-2142-4fb7-83da-651657c222df", // Get this from tina.io
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   // Get this from tina.io
-  token: "8d92c2ad25963e2702ca7ae12962d6b5b436242c",
+  token: process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
@@ -31,19 +31,13 @@ export default defineConfig({
       {
         name: "post",
         label: "Posts",
-        path: "src/data/blog",
+        path: "content/posts",
         fields: [
           {
             type: "string",
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
-          },
-          {
-            type: "datetime",
-            name: "pubDatetime",
-            label: "Date Posted",
             required: true,
           },
           {
