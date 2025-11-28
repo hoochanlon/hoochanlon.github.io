@@ -15,6 +15,7 @@ import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
 import Comments from "@/components/Comments";
+import PasswordWrapper from "@/components/PasswordWrapper.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -115,7 +116,9 @@ const nextPost =
       id="article"
       class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
     >
-      <Content />
+      <PasswordWrapper password={post.data.password}>
+        <Content />
+      </PasswordWrapper>
     </article>
 
     <hr class="my-8 border-dashed" />
@@ -165,9 +168,8 @@ const nextPost =
     </div>
     <Comments client:only="react" />
   </main>
-
-  <Footer />
 </Layout>
+<Footer />
 
 <script is:inline data-astro-rerun>
   /** Create a progress indicator
