@@ -24,8 +24,12 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
     id="password-btn"
     class="bg-skin-full border-skin-fill border-opacity-50 text-skin-base hover:border-skin-accent rounded-md border p-2"
   >
-    验证！
+    确认
   </button>
+  <!-- 错误提示元素 -->
+  <div id="error-message" class="text-red-600 hidden">
+    密码错误，请重新输入。
+  </div>
 </div>
 
 <script is:inline data-astro-rerun>
@@ -38,17 +42,13 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
    * @returns 解密后的明文字符串
    */
   async function decrypt(data, key) {
-    // AES-CBC key 补齐 16 字节
-    key = key.padEnd(16, "0");
-    // Base64 -> Uint8Array
+    key = key.padEnd(16, "0"); // AES-CBC key 补齐 16 字节
     const dataBuffer = new Uint8Array(
       atob(data)
         .split("")
         .map(c => c.charCodeAt(0))
     );
-    // key -> Uint8Array
     const keyBuffer = new TextEncoder().encode(key);
-    // 导入 key
     const cryptoKey = await crypto.subtle.importKey(
       "raw",
       keyBuffer,
@@ -56,97 +56,66 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
       false,
       ["decrypt"]
     );
-    // 前 16 字节是 IV，剩余是加密数据
     const iv = dataBuffer.slice(0, 16);
     const encryptedData = dataBuffer.slice(16);
-    // 解密
     const decryptedData = await crypto.subtle.decrypt(
       { name: "AES-CBC", iv },
       cryptoKey,
       encryptedData
     );
-    // Uint8Array -> 字符串
     return new TextDecoder().decode(new Uint8Array(decryptedData));
   }
 
   /**
    * 初始化页面解密逻辑
-   * 绑定按钮点击事件，输入密码后尝试解密文章内容
    */
   function prepare() {
-    // 获取 <meta name="encrypted" content="..."> 中的加密数据
     const encrypted = document
-      .querySelector("meta[name=encrypted]")
-      ?.getAttribute("content");
-    // 获取输入框和按钮 DOM
+      .querySelector("meta[name=encrypted]")?.getAttribute("content");
     const input = document.getElementById("password");
     const btn = document.getElementById("password-btn");
-    // 文章容器 DOM（解密后插入）
     const article = document.querySelector("#encryption");
-    // 获取页面路径作为 key
     const key = window.location.pathname;
-    // 绑定click事件，点击按钮时尝试解密
+    const errorMessage = document.getElementById("error-message");
+
     btn?.addEventListener("click", async () => {
-      const password = input.value; // 用户输入的密码
+      const password = input.value;
       try {
-        // 解密 HTML
         const html = await decrypt(encrypted, password);
-        // 解密成功，更新文章内容
         article.innerHTML = html;
-        // 解密成功，存储密码到 localStorage，有效期 86400 秒
         setItemWithExpire(key, password, 86400);
       } catch {
-        // 解密失败（密码错误）
-        alert("密码错误");
+        if (errorMessage) {
+          errorMessage.classList.remove("hidden"); // 显示错误消息
+        }
       }
     });
-    // 页面初始化时尝试自动解密，没问题了把这个注释打开
-    // const savedPassword = getItemWithExpire(key);
-    // if (savedPassword) {
-    //   input.value = savedPassword; // 填充密码
-    //   btn?.click(); // 触发点击事件解密
-    // }
+
+    const savedPassword = getItemWithExpire(key);
+    if (savedPassword) {
+      input.value = savedPassword;
+      btn?.click();
+    }
   }
 
-  /**
-   * 存储密码信息
-   *
-   * @param key 页面路径
-   * @param value 密码
-   * @param ttl 有效时间（秒）
-   *
-   * @returns 解密后的明文字符串
-   */
   function setItemWithExpire(key, value, ttl) {
-    const item = {
-      value: value,
-      expire: new Date().getTime() + ttl * 1000,
-    };
+    const item = { value: value, expire: new Date().getTime() + ttl * 1000 };
     localStorage.setItem(key, JSON.stringify(item));
   }
 
-  /**
-   * 获取密码信息
-   *
-   * @param key 页面路径
-   *
-   * @returns 解密后的明文字符串
-   */
   function getItemWithExpire(key) {
     const itemStr = localStorage.getItem(key);
     if (!itemStr) return null;
 
     const item = JSON.parse(itemStr);
     if (new Date().getTime() > item.expire) {
-      localStorage.removeItem(key); // 自动过期删除
+      localStorage.removeItem(key);
       return null;
     }
     return item.value;
   }
 
-  // 页面首次加载时初始化
   prepare();
 
-  // 当 Astro SPA 页面切换时，重新绑定事件
   document.addEventListener("astro:after-swap", prepare);
 </script>

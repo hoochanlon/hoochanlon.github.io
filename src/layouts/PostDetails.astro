@@ -132,19 +132,16 @@ const nextPost =
         <BackToTopButton />
 
         <ShareLinks />
-        <Comments client:only="react" />
-      </PasswordWrapper>
-    </div>
-    <hr class="my-6 border-dashed" />
-
-    <!-- Previous/Next Post Buttons -->
-    <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {
-        prevPost && (
-          <a
-            href={getPath(prevPost.id, prevPost.filePath)}
-            class="flex w-full gap-1 hover:opacity-75"
-          >
+        <hr class="my-6 border-dashed" />
+        
+        <!-- Previous/Next Post Buttons -->
+        <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {
+            prevPost && (
+              <a
+              href={getPath(prevPost.id, prevPost.filePath)}
+              class="flex w-full gap-1 hover:opacity-75"
+              >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
               <span>Previous Post</span>
@@ -156,8 +153,8 @@ const nextPost =
       {
         nextPost && (
           <a
-            href={getPath(nextPost.id, nextPost.filePath)}
-            class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+          href={getPath(nextPost.id, nextPost.filePath)}
+          class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
           >
             <div>
               <span>Next Post</span>
@@ -167,6 +164,9 @@ const nextPost =
           </a>
         )
       }
+    <Comments client:only="react" />
+    </PasswordWrapper>
+  </div>
     </div>
   </main>
 </Layout>
