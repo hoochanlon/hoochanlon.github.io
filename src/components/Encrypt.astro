@@ -82,7 +82,7 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
     const input = document.getElementById("password");
     const btn = document.getElementById("password-btn");
     // 文章容器 DOM（解密后插入）
-    const article = document.querySelector("#article");
+    const article = document.querySelector("#encryption");
     // 获取页面路径作为 key
     const key = window.location.pathname;
     // 绑定click事件，点击按钮时尝试解密
@@ -100,12 +100,12 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
         alert("密码错误");
       }
     });
-    // 页面初始化时尝试自动解密
-    const savedPassword = getItemWithExpire(key);
-    if (savedPassword) {
-      input.value = savedPassword; // 填充密码
-      btn?.click(); // 触发点击事件解密
-    }
+    // 页面初始化时尝试自动解密，没问题了把这个注释打开
+    // const savedPassword = getItemWithExpire(key);
+    // if (savedPassword) {
+    //   input.value = savedPassword; // 填充密码
+    //   btn?.click(); // 触发点击事件解密
+    // }
   }
 
   /**
