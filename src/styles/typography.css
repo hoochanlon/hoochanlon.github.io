@@ -116,4 +116,8 @@
       @apply rounded-sm border border-border px-0.5 py-px;
     }
   }
+  /* Katex text color */
+  .prose .katex-display {
+    @apply text-foreground;
+  }  
 }

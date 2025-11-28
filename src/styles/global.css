@@ -10,11 +10,13 @@
 h1, h2, h3, h4, h5, h6,span,figcaption,div{font-family: 'LXGW WenKai GB', sans-serif;}
 li{font-family: 'JetBrains Mono', sans-serif;}
 p {font-family: 'LXGW WenKai GB', sans-serif;font-size: 18px;}
-/* 博客标题字体 */
 a.absolute {
 font-size: 22px;  
 font-family: lxgw wenkai, sans-serif; 
 }
+
+
+
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -82,3 +84,4 @@ html[data-theme="dark"] {
 :target {
   scroll-margin-block: 1rem;
 }
+
