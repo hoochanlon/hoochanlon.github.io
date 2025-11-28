@@ -7,7 +7,24 @@ import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
+import IconWechat from "@/assets/icons/IconWechat.svg";
 import { SITE } from "@/config";
+import type { GiscusProps } from "@giscus/react";
+
+
+export const GISCUS: GiscusProps = {
+  repo: "hoochanlon/hoochanlon.github.io",
+  repoId: "MDEwOlJlcG9zaXRvcnkxMzIzMjYzMjM=",
+  category: "Announcements",
+  categoryId: "DIC_kwDOB-Mjs84COzES",
+  mapping: "title",
+  strict: "0",
+  reactionsEnabled: "1",
+  emitMetadata: "0",
+  inputPosition: "top",
+  lang: "zh-CN",
+  loading: "lazy"
+};
 
 interface Social {
   name: string;
@@ -19,28 +36,28 @@ interface Social {
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "https://github.com/hoochanlon",
     linkTitle: `${SITE.title} on GitHub`,
     icon: IconGitHub,
   },
   {
-    name: "X",
-    href: "https://x.com/username",
-    linkTitle: `${SITE.title} on X`,
-    icon: IconBrandX,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    icon: IconLinkedin,
+    name: "Wechat",
+    href: "./about",
+    linkTitle: `${SITE.title} on Wechat`,
+    icon: IconWechat,
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:hoochanlon@outlook.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
   },
+  {
+    name: "Telegram",
+    href: "https://t.me/s/at1234560",
+    linkTitle: `${SITE.title} on Telegram`,
+    icon: IconTelegram,
+  }
 ] as const;
 
 export const SHARE_LINKS: Social[] = [
