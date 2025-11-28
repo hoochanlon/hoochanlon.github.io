@@ -1,10 +1,9 @@
+
 import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
-
-
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -19,7 +18,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
-    }),react()
+    }),
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
