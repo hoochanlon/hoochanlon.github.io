@@ -2,12 +2,17 @@ import type { Props } from "astro";
 import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
-import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import IconWechat from "@/assets/icons/IconWechat.svg";
+import IconTodo from "@/assets/icons/IconTodo.svg";
+import IconCalendar from "@/assets/icons/IconCalendar.svg";
+import IconImgbed from "@/assets/icons/IconImgbed.svg"
+import IconTomato from "@/assets/icons/IconTomato.svg"
+import IconPaste from "@/assets/icons/IconPaste.svg"
+import IconMemo from "@/assets/icons/IconMemo.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -27,6 +32,13 @@ export const GISCUS: GiscusProps = {
 };
 
 interface Social {
+  name: string;
+  href: string;
+  linkTitle: string;
+  icon: (_props: Props) => Element;
+}
+
+interface DEPLOY {
   name: string;
   href: string;
   linkTitle: string;
@@ -98,3 +110,42 @@ export const SHARE_LINKS: Social[] = [
     icon: IconMail,
   },
 ] as const;
+
+export const DEPLOY_LINKS: DEPLOY[] = [
+  {
+    name: "Todo",
+    href: "https://hoochanlon.github.io/todo",
+    linkTitle: `${SITE.title} on Todo`,
+    icon: IconTodo,
+  },
+  {
+    name: "Tomato",
+    href: "https://hoochanlon.github.io/tomato",
+    linkTitle: `${SITE.title} on Tomato`,
+    icon: IconTomato,
+  },
+  {
+    name: "Calendar",
+    href: "https://hoochanlon.github.io/calendar",
+    linkTitle: `${SITE.title} on Calendar`,
+    icon: IconCalendar,
+  },
+  {
+    name: "Imgbed",
+    href: "https://cf-imgbed.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Imgbed`,
+    icon: IconImgbed,
+  },
+  {
+    name: "CloudPaste",
+    href: "https://cloudpaste.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Paste`,
+    icon: IconPaste,
+  },
+  {
+    name: "memos-worker",
+    href: "https://memos-worker.hoochanlon.moe",
+    linkTitle: `${SITE.title} on memos-worker`,
+    icon: IconMemo,
+  },
+  ] as const;

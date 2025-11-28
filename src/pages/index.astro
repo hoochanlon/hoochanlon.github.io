@@ -10,8 +10,10 @@ import Hr from "@/components/Hr.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import DeployLinks from "@/components/DeployLinks.astro"; 
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
+import { DEPLOY_LINKS } from "@/constants";
 
 const posts = await getCollection("blog");
 
@@ -50,16 +52,39 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         >
           hoochanlon.github.io
         </LinkButton> 
-      </p>
+      </p>   
+      <!--
       {
         // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
           <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>Social Links:</b></div>
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>社交连结:</b></div>
             <Socials />
           </div>
         )
-      }
+      } 
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:gap-4"></div>
+      -->
+
+        {
+          // only display if at least one social link is enabled
+          SOCIALS.length > 0 && (
+            <div class="flex flex-col sm:flex-row sm:items-center">
+              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>社交连结:</b></div>
+              <Socials /> {/* 渲染 Socials 组件 */}
+            </div>
+          )
+        }
+        {
+          // only display if at least one deploy link is enabled
+          DEPLOY_LINKS.length > 0 && (
+            <div class="flex flex-col sm:flex-row sm:items-center">
+              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>来自 GitHub 的精选部署应用:</b></div>
+              <DeployLinks /> {/* 渲染 DeployLinks 组件 */}
+            </div>
+          )
+        }            
+
     </section>
 
     <Hr />

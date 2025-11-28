@@ -1,0 +1,27 @@
+---
+// 导入部署链接常量
+import { DEPLOY_LINKS } from "@/constants";
+import LinkButton from "./LinkButton.astro";
+
+export interface Props {
+  centered?: boolean;
+}
+
+const { centered = false } = Astro.props;
+---
+
+<div class:list={["flex-wrap justify-center gap-1", { flex: centered }]}>
+  {
+    DEPLOY_LINKS.map(link => (
+      <LinkButton
+        href={link.href}
+        class="p-2 hover:rotate-6 sm:p-1"
+        title={link.linkTitle}
+      >
+        <!-- 动态渲染图标 -->
+        <link.icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
+        <span class="sr-only">{link.linkTitle}</span>
+      </LinkButton>
+    ))
+  }
+</div>
