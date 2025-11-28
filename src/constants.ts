@@ -13,6 +13,7 @@ import IconImgbed from "@/assets/icons/IconImgbed.svg"
 import IconTomato from "@/assets/icons/IconTomato.svg"
 import IconPaste from "@/assets/icons/IconPaste.svg"
 import IconMemo from "@/assets/icons/IconMemo.svg"
+import IconSafari from "@/assets/icons/IconSafari.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -143,9 +144,15 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     icon: IconPaste,
   },
   {
-    name: "memos-worker",
+    name: "Memos-Worker",
     href: "https://memos-worker.hoochanlon.moe",
     linkTitle: `${SITE.title} on memos-worker`,
     icon: IconMemo,
+  },
+  {
+    name: "Nav",
+    href: "https://nav.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Nav`,
+    icon: IconSafari,
   },
   ] as const;
