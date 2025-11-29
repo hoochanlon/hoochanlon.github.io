@@ -48,23 +48,23 @@ description: 根据cloudflare产品现有优惠政策，搭建无服务器私人
 
 1 点击快速部署按钮
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_14-46-17.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_14-46-17.webp)
 
 2 绑定域名
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_12-25-16.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_12-25-16.webp)
 
 3 进入 Zero Trust，应用程序调出access，创建策略，邮箱验证访问。
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_12-34-19.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_12-34-19.webp)
 
 4 配置域名、access策略
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_12-37-01.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_12-37-01.webp)
 
 成功
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_12-46-49.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_12-46-49.webp)
 
 ## 测试
 
@@ -82,6 +82,6 @@ cf-imgbed-8xy.pages.dev
 
 网盘内部图片存在显示问题
 
-![](https://hoochanlon.github.io/picx-images-hosting/uploads/2025/PixPin_2025-11-15_15-59-48.webp)
+![](https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/uploads/2025/PixPin_2025-11-15_15-59-48.webp)
 
 
