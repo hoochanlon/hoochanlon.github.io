@@ -133,6 +133,12 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     icon: IconCalendar,
   },
   {
+    name: "Rename",
+    href: "https://rename.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Rename`,
+    icon: IconRename,
+  },
+  {
     name: "Imgbed",
     href: "https://cf-imgbed.hoochanlon.moe",
     linkTitle: `${SITE.title} on Imgbed`,
@@ -149,12 +155,6 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     href: "https://memos-worker.hoochanlon.moe",
     linkTitle: `${SITE.title} on memos-worker`,
     icon: IconMemo,
-  },
-  {
-    name: "Rename",
-    href: "https://rename.hoochanlon.moe",
-    linkTitle: `${SITE.title} on Rename`,
-    icon: IconRename,
   },
   {
     name: "Nav",
