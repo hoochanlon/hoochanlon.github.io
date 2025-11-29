@@ -25,9 +25,10 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 <Layout>
   <Header />
   <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
+    <!-- <section id="hero" class="pt-8 pb-6"> -->
+      <section id="hero" class="pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Nihao
+        NiHao
       </h1>
       <a
         target="_blank"
@@ -45,13 +46,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       </a>
 
       <p class="mt-2">
-        基于 Astro Paper 构建的 GitHub Pages 个人博客：
-        <LinkButton
+        基于 Astro Paper 构建的 GitHub Pages 个人博客。
+        <!-- <LinkButton
           class="underline decoration-dashed underline-offset-4 hover:text-accent"
           href="https://github.com/hoochanlon/hoochanlon.github.io"
         >
           hoochanlon.github.io
-        </LinkButton> 
+        </LinkButton>  -->
       </p>   
       <!--
       {
@@ -70,7 +71,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           // only display if at least one social link is enabled
           SOCIALS.length > 0 && (
             <div class="flex flex-col sm:flex-row sm:items-center">
-              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>社交连结:</b></div>
+              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>社交链接:</b></div>
               <Socials /> {/* 渲染 Socials 组件 */}
             </div>
           )

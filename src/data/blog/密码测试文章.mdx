@@ -1,10 +1,10 @@
 ---
 title: '密码测试文章'
 tags:
-  - 'Hello, World!'
-slug: '20251026120915'
+  - '文章加密'
+slug: '20251126120915'
 featured: true
-pubDatetime: 2025-10-26T04:09:15.000Z
+pubDatetime: 2025-11-26T04:09:15.000Z
 description: '前端密码测试，密码：123456'
 password: '123456'
 ---
@@ -14,4 +14,273 @@ import ExpiredBanner from '@/components/ExpiredBanner.astro'
 
 <ExpiredBanner pubDatetime={frontmatter.pubDatetime} expiryDays={30} />
 
-实现方式：
+***感谢：[zxc7563598](https://github.com/zxc7563598) 的帮助，以及原文章 [mmf.moe - blog-02-password](https://blog.mmf.moe/post/blog-02-password/)，才能顺利使用 astro-paper 加密效果。使用方式：创建对应文件，全文复制粘贴。***
+
+
+## 创建 Encrypt.astro
+
+
+`/src/components/Encrypt.astro`
+
+```astro file="/src/components/Encrypt.astro"
+---
+import { encrypt } from "@/utils/encrypt";
+
+export interface Props {
+  password: string;
+}
+
+const html = await Astro.slots.render("default");
+const encryptedHtml = await encrypt(html, Astro.props.password);
+---
+
+<meta name="encrypted" content={encryptedHtml} />
+
+<div>
+  <input
+    id="password"
+    class="border-skin-fill border-opacity-40 bg-skin-fill text-skin-base placeholder:text-opacity-75 focus:border-skin-accent w-auto rounded border p-2 placeholder:italic focus:outline-none"
+    placeholder="请输入密码"
+    type="text"
+    autocomplete="off"
+    autofocus
+  />
+  <button
+    id="password-btn"
+    class="bg-skin-full border-skin-fill border-opacity-50 text-skin-base hover:border-skin-accent rounded-md border p-2"
+  >
+    验证！
+  </button>
+</div>
+
+<script is:inline data-astro-rerun>
+  /**
+   * 异步解密函数
+   *
+   * @param data Base64 加密字符串
+   * @param key 密码
+   *
+   * @returns 解密后的明文字符串
+   */
+  async function decrypt(data, key) {
+    // AES-CBC key 补齐 16 字节
+    key = key.padEnd(16, "0");
+    // Base64 -> Uint8Array
+    const dataBuffer = new Uint8Array(
+      atob(data)
+        .split("")
+        .map(c => c.charCodeAt(0))
+    );
+    // key -> Uint8Array
+    const keyBuffer = new TextEncoder().encode(key);
+    // 导入 key
+    const cryptoKey = await crypto.subtle.importKey(
+      "raw",
+      keyBuffer,
+      { name: "AES-CBC", length: 256 },
+      false,
+      ["decrypt"]
+    );
+    // 前 16 字节是 IV，剩余是加密数据
+    const iv = dataBuffer.slice(0, 16);
+    const encryptedData = dataBuffer.slice(16);
+    // 解密
+    const decryptedData = await crypto.subtle.decrypt(
+      { name: "AES-CBC", iv },
+      cryptoKey,
+      encryptedData
+    );
+    // Uint8Array -> 字符串
+    return new TextDecoder().decode(new Uint8Array(decryptedData));
+  }
+
+  /**
+   * 初始化页面解密逻辑
+   * 绑定按钮点击事件，输入密码后尝试解密文章内容
+   */
+  function prepare() {
+    // 获取 <meta name="encrypted" content="..."> 中的加密数据
+    const encrypted = document
+      .querySelector("meta[name=encrypted]")
+      ?.getAttribute("content");
+    // 获取输入框和按钮 DOM
+    const input = document.getElementById("password");
+    const btn = document.getElementById("password-btn");
+    // 文章容器 DOM（解密后插入）
+    const article = document.querySelector("#encryption");
+    // 获取页面路径作为 key
+    const key = window.location.pathname;
+    // 绑定click事件，点击按钮时尝试解密
+    btn?.addEventListener("click", async () => {
+      const password = input.value; // 用户输入的密码
+      try {
+        // 解密 HTML
+        const html = await decrypt(encrypted, password);
+        // 解密成功，更新文章内容
+        article.innerHTML = html;
+        // 解密成功，存储密码到 localStorage，有效期 86400 秒
+        setItemWithExpire(key, password, 86400);
+      } catch {
+        // 解密失败（密码错误）
+        alert("密码错误");
+      }
+    });
+    // 页面初始化时尝试自动解密，没问题了把这个注释打开
+    // const savedPassword = getItemWithExpire(key);
+    // if (savedPassword) {
+    //   input.value = savedPassword; // 填充密码
+    //   btn?.click(); // 触发点击事件解密
+    // }
+  }
+
+  /**
+   * 存储密码信息
+   *
+   * @param key 页面路径
+   * @param value 密码
+   * @param ttl 有效时间（秒）
+   *
+   * @returns 解密后的明文字符串
+   */
+  function setItemWithExpire(key, value, ttl) {
+    const item = {
+      value: value,
+      expire: new Date().getTime() + ttl * 1000,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  /**
+   * 获取密码信息
+   *
+   * @param key 页面路径
+   *
+   * @returns 解密后的明文字符串
+   */
+  function getItemWithExpire(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null;
+
+    const item = JSON.parse(itemStr);
+    if (new Date().getTime() > item.expire) {
+      localStorage.removeItem(key); // 自动过期删除
+      return null;
+    }
+    return item.value;
+  }
+
+  // 页面首次加载时初始化
+  prepare();
+
+  // 当 Astro SPA 页面切换时，重新绑定事件
+  document.addEventListener("astro:after-swap", prepare);
+</script>
+
+```
+
+## 创建 PasswordWrapper.astro
+
+`\src\components\PasswordWrapper.astro`
+
+```ASTRO file="/src/components/PasswordWrapper.astro"
+---
+import Encrypt from "./Encrypt.astro";
+
+export interface Props {
+  password?: string;
+}
+
+const password = Astro.props.password;
+---
+
+{
+  !password ? (
+    <slot />
+  ) : (
+    <Encrypt password={password}>
+      <slot />
+    </Encrypt>
+  )
+}
+
+```
+
+## 创建 encrypt.ts
+
+`/src/utils/encrypt.ts`
+
+```ts file="/src/utils/encrypt.ts"
+/**
+ * 异步加密函数
+ * 
+ * @param data 要加密的字符串
+ * @param key 密码
+ * 
+ * @returns 加密后的 Base64 字符串
+ */
+export async function encrypt(data: string, key: string): Promise<string> {
+  // AES-CBC 要求 key 长度至少 16 字节，不够用 '0' 补齐
+  key = key.padEnd(16, "0");
+  // 将字符串编码为 Uint8Array
+  const dataBuffer = new TextEncoder().encode(data);
+  const keyBuffer = new TextEncoder().encode(key);
+  // 导入 key，生成加密用的 CryptoKey
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw",
+    keyBuffer,
+    { name: "AES-CBC", length: 256 },
+    false,
+    ["encrypt"]
+  );
+  // 生成随机 16 字节 IV
+  const iv = crypto.getRandomValues(new Uint8Array(16));
+  // 加密
+  const encryptedData = await crypto.subtle.encrypt(
+    { name: "AES-CBC", iv },
+    cryptoKey,
+    dataBuffer
+  );
+  // 将 IV 和密文组合，前 16 字节为 IV
+  const combinedData = new Uint8Array(iv.length + encryptedData.byteLength);
+  combinedData.set(iv);
+  combinedData.set(new Uint8Array(encryptedData), iv.length);
+  // 转成 Base64 字符串返回
+  return btoa(String.fromCharCode(...combinedData));
+}
+
+```
+
+## content.config.ts 插入 `password: z.string().optional()`
+
+`\src\content.config.ts`
+
+```astro file="/src/content.config.ts"
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+import { SITE } from "@/config";
+
+export const BLOG_PATH = "src/data/blog";
+
+const blog = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
+  schema: ({ image }) =>
+    z.object({
+      author: z.string().default(SITE.author),
+      pubDatetime: z.date(),
+      modDatetime: z.date().optional().nullable(),
+      title: z.string(),
+      featured: z.boolean().optional(),
+      draft: z.boolean().optional(),
+      tags: z.array(z.string()).default(["others"]),
+      ogImage: image().or(z.string()).optional(),
+      description: z.string(),
+      canonicalURL: z.string().optional(),
+      hideEditPost: z.boolean().optional(),
+      timezone: z.string().optional(),
+      password: z.string().optional(),  // [!code ++]
+    }),
+});
+
+export const collections = { blog };
+
+```

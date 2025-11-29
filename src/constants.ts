@@ -15,6 +15,8 @@ import IconPaste from "@/assets/icons/IconPaste.svg"
 import IconMemo from "@/assets/icons/IconMemo.svg"
 import IconSafari from "@/assets/icons/IconSafari.svg"
 import IconRename from "@/assets/icons/IconRename.svg"
+import IconCompressImg from "@/assets/icons/IconCompressImg.svg"
+import IconBluesky from "@/assets/icons/IconBluesky.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -65,6 +67,12 @@ export const SOCIALS: Social[] = [
     href: "mailto:hoochanlon@outlook.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
+  },
+  {
+    name: "BlueSky",
+    href: "https://bsky.app/profile/hoochanlon.bsky.social",
+    linkTitle: `${SITE.title} on BlueSky`,
+    icon: IconBluesky,
   },
   {
     name: "Telegram",
@@ -137,6 +145,12 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     href: "https://rename.hoochanlon.moe",
     linkTitle: `${SITE.title} on Rename`,
     icon: IconRename,
+  },
+  {
+    name: "Pic-smaller",
+    href: "https://pic-smaller.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Pic-smaller`,
+    icon: IconCompressImg,
   },
   {
     name: "Imgbed",
