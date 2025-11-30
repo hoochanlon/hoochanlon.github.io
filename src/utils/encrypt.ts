@@ -1,9 +1,9 @@
 /**
  * 异步加密函数
- * 
+ *
  * @param data 要加密的字符串
  * @param key 密码
- * 
+ *
  * @returns 加密后的 Base64 字符串
  */
 export async function encrypt(data: string, key: string): Promise<string> {
@@ -33,5 +33,14 @@ export async function encrypt(data: string, key: string): Promise<string> {
   combinedData.set(iv);
   combinedData.set(new Uint8Array(encryptedData), iv.length);
   // 转成 Base64 字符串返回
-  return btoa(String.fromCharCode(...combinedData));
+  return uint8ToBase64(combinedData);
+}
+
+function uint8ToBase64(bytes: Uint8Array): string {
+  let binary = "";
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
 }
