@@ -2,6 +2,7 @@
   "name": "adorable-aurora",
   "type": "module",
   "version": "5.5.0",
+  "packageManager": "pnpm@7.5.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
