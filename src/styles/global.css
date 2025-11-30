@@ -2,17 +2,30 @@
 @import "./typography.css";
 @import "../assets/fonts/JetBrainsMono/result.css";
 @import "../assets/fonts/PingFangSC-Regular/result.css";
+@import "../assets/fonts/KesawanScript/result.css";
+
 
 :root {
---font-mono: 'JetBrains Mono', 'JetBrainsMono', 'Fira Mono', 'Menlo', 'Consolas', monospace;
---font-cn: 'LXGW WenKai GB', 'Microsoft YaHei', 'PingFang SC', 'WenQuanYi Micro Hei', sans-serif;
+    --font-mono: 'JetBrains Mono', 'JetBrainsMono', 'Fira Mono', 'Menlo', 'Consolas', monospace;
+    --font-cn: 'LXGW WenKai GB', 'Microsoft YaHei', 'PingFang SC', 'WenQuanYi Micro Hei', sans-serif;
 }
-h1, h2, h3, h4, h5, h6,span,figcaption,div{font-family: 'PingFang SC', sans-serif;}
-li{font-family: 'JetBrains Mono', sans-serif;}
-p {font-family: 'PingFang SC', sans-serif;font-size: 18px;}
+
+h1,h2,h3,h4,h5,h6,span,figcaption,div {
+    font-family: 'PingFang SC', sans-serif;
+}
+
+li {
+    font-family: 'JetBrains Mono', sans-serif;
+}
+
+p {
+    font-family: 'PingFang SC', sans-serif;
+    font-size: 18px;
+}
+
 a.absolute {
-font-size: 22px;  
-font-family: PingFang SC, sans-serif; 
+    font-size: 32px;
+    font-family: "Kesawan Script";
 }
 
 
