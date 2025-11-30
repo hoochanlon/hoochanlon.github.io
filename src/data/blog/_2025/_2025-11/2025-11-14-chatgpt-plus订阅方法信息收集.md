@@ -25,9 +25,6 @@ description: 抽选不依赖淘宝或咸鱼卖家的代充方式
 * [（不适用苹果手机）不需要visa或mastercard，不用第三方代充，不用虚拟卡，使用国内银联卡绑定谷歌商店订阅ChatGPTPlus](https://www.bilibili.com/video/BV1NJYaziEXv)
 * [bewild.ai](https://bewild.ai/)
 
-
 btw:
 
-从 [美区 PayPal 注册教程 ｜ 绑定中国信用卡 ｜ 解决没有美国手机号的问题 ｜ 风控防范和账户安全建议 ｜ 支持绑定苹果美区ID支付方式(https://www.bilibili.com/video/BV1ye4HzXE1A) 评论区信息得到：招行的万事达普卡，全球人民币支付，绑定美区app store不行，但美区google可以。
-
-看了 [【最新情况】英国保号神卡 giffgaff 突然暂停向中国邮寄实体卡 ｜ 原因分析 ｜ 解决办法](https://www.bilibili.com/video/BV1Rs2MBcE3n) 给我的感触就是“无利不起早，当福利知道的人多了也就没福利了”。
+从 [美区 PayPal 注册教程](https://www.bilibili.com/video/BV1ye4HzXE1A) 评论区信息得到：招行的万事达普卡，全球人民币支付，绑定美区app store不行，但美区google可以。看了 [【最新情况】英国保号神卡 giffgaff 突然暂停向中国邮寄实体卡 ｜ 原因分析 ｜ 解决办法](https://www.bilibili.com/video/BV1Rs2MBcE3n) 给我的感触就是“无利不起早，当福利知道的人多了也就没福利了”。
