@@ -182,7 +182,8 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
 
 `\src\components\PasswordWrapper.astro`
 
-```ASTRO file="/src/components/PasswordWrapper.astro"
+```astro file="/src/components/PasswordWrapper.astro"
+
 ---
 import Encrypt from "./Encrypt.astro";
 
@@ -250,11 +251,13 @@ export async function encrypt(data: string, key: string): Promise<string> {
 
 ```
 
-## content.config.ts 插入 `password: z.string().optional()`
+## 修改content.config.ts 
 
 `\src\content.config.ts`
 
-```astro file="/src/content.config.ts"
+
+```ts file="/src/content.config.ts"
+
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import { SITE } from "@/config";
@@ -268,16 +271,11 @@ const blog = defineCollection({
       author: z.string().default(SITE.author),
       pubDatetime: z.date(),
       modDatetime: z.date().optional().nullable(),
-      title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
-      ogImage: image().or(z.string()).optional(),
-      description: z.string(),
-      canonicalURL: z.string().optional(),
-      hideEditPost: z.boolean().optional(),
-      timezone: z.string().optional(),
-      password: z.string().optional(),  // [!code ++]
+      ...
+      password: z.string().optional(), 
     }),
 });
 
