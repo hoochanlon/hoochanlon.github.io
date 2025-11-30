@@ -26,4 +26,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}  # 使用GitHub Token进行身份验证
           repository: 'hoochanlon/hoochanlon.github.io'  # 替换为你的GitHub用户名和仓库
           retain_days: 1  # 保留最近 1 天的工作流记录（基于中国时区）
-          keep_minimum_runs: 3  # 至少保留 3 条工作流记录
+          keep_minimum_runs: 1  # 至少保留 X 条工作流记录
