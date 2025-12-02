@@ -14,6 +14,10 @@ h1,h2,h3,h4,h5,h6,span,figcaption,div {
     font-family: 'PingFang SC', sans-serif;
 }
 
+h3 {
+  font-style: normal !important;   /* 强制取消斜体 */
+}
+
 li {
     font-family: 'JetBrains Mono', sans-serif;
 }
