@@ -80,7 +80,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           // only display if at least one deploy link is enabled
           DEPLOY_LINKS.length > 0 && (
             <div class="flex flex-col sm:flex-row sm:items-center">
-              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>来自 GitHub 的精选部署应用:</b></div>
+              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>GitHub 精选部署应用:</b></div>
               <DeployLinks /> {/* 渲染 DeployLinks 组件 */}
             </div>
           )
