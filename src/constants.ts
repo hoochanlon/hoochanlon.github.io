@@ -20,6 +20,7 @@ import IconBluesky from "@/assets/icons/IconBluesky.svg"
 import IconTwitter from "@/assets/icons/IconTwitter.svg"
 import IconDoc from "@/assets/icons/IconDoc.svg"
 import IconTools from "@/assets/icons/IconTools.svg"
+import IconChat from "@/assets/icons/IconChat.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -78,6 +79,12 @@ export const SOCIALS: Social[] = [
     icon: IconBluesky,
   },
   {
+    name: "Memos-Chat",
+    href: "https://memos-chat.hoochanlon.moe/explore",
+    linkTitle: `${SITE.title} on memos-chat`,
+    icon: IconChat,
+  },
+  {
     name: "Telegram",
     href: "https://t.me/s/at1234560",
     linkTitle: `${SITE.title} on Telegram`,
@@ -125,6 +132,12 @@ export const SHARE_LINKS: Social[] = [
 ] as const;
 
 export const DEPLOY_LINKS: DEPLOY[] = [
+  {
+    name: "Nav",
+    href: "https://nav.hoochanlon.moe",
+    linkTitle: `${SITE.title} on Nav`,
+    icon: IconSafari,
+  },
   {
     name: "Todo",
     href: "https://hoochanlon.github.io/todo",
@@ -174,27 +187,21 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     icon: IconPaste,
   },
   {
-    name: "Memos-Worker",
-    href: "https://memos-worker.hoochanlon.moe",
-    linkTitle: `${SITE.title} on memos-worker`,
-    icon: IconMemo,
-  },
-  {
     name: "Starlight-Notes",
     href: "https://hoochanlon.github.io/starlight-notes",
     linkTitle: `${SITE.title} on Starlight-Notes`,
     icon: IconDoc,
   },
   {
+    name: "Memos-Worker",
+    href: "https://memos-worker.hoochanlon.moe",
+    linkTitle: `${SITE.title} on memos-worker`,
+    icon: IconMemo,
+  },
+  {
     name: "Twitter",
     href: "https://hoochanlon.github.io/twitter",
     linkTitle: `${SITE.title} on Twitter`,
     icon: IconTwitter,
-  },
-  {
-    name: "Nav",
-    href: "https://nav.hoochanlon.moe",
-    linkTitle: `${SITE.title} on Nav`,
-    icon: IconSafari,
   },
   ] as const;
