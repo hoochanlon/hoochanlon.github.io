@@ -133,9 +133,13 @@ const structuredData = {
     <script is:inline src="/toggle-theme.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"/>
     <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="e8dda199-cdc2-4bb5-8aeb-1a6bd156ada7"></script>
+    <!-- GLightbox styles: required for the lightbox UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
   </head>
   <body>
     <slot />
+    <script src="@/plugins/glightbox-init.js"></script>
   </body>
 </html>
 

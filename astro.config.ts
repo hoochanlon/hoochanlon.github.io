@@ -15,6 +15,7 @@ import react from "@astrojs/react";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import mdx from "@astrojs/mdx";
+import rehypeGlightboxImages from "./src/plugins/rehype-glightbox-images";
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,6 +29,7 @@ export default defineConfig({
       remarkToc, [remarkCollapse, { test: "Table of contents" }]
     ],
     rehypePlugins: [
+      rehypeGlightboxImages,
       rehypeKatex,
       [rehypeExternalLinks,
         {

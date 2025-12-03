@@ -74,10 +74,6 @@ cf-imgbed-8xy.pages.dev
 
 ![](https://cf-imgbed-8xy.pages.dev/file/uploads/bh0gVaGT.jpg)
 
- cf-imgbed.hoochanlon.space
-
-![](https://cf-imgbed.hoochanlon.space/file/uploads/bh0gVaGT.jpg)
-
 **网盘**
 
 网盘内部图片存在显示问题
