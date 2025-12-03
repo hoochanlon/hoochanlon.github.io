@@ -19,6 +19,7 @@ import IconCompressImg from "@/assets/icons/IconCompressImg.svg"
 import IconBluesky from "@/assets/icons/IconBluesky.svg"
 import IconTwitter from "@/assets/icons/IconTwitter.svg"
 import IconDoc from "@/assets/icons/IconDoc.svg"
+import IconTools from "@/assets/icons/IconTools.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -153,6 +154,12 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     href: "https://pic-smaller.hoochanlon.moe",
     linkTitle: `${SITE.title} on Pic-smaller`,
     icon: IconCompressImg,
+  },
+  {
+    name: "IT-tools",
+    href: "https://tools.hoochanlon.moe",
+    linkTitle: `${SITE.title} on IT-tools`,
+    icon: IconTools,
   },
   {
     name: "Imgbed",

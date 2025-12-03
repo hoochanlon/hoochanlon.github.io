@@ -53,7 +53,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         >
           hoochanlon.github.io
         </LinkButton>  -->
-      </p>   
+      </p><br/>  
       <!--
       {
         // only display if at least one social link is enabled
@@ -71,16 +71,17 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           // only display if at least one social link is enabled
           SOCIALS.length > 0 && (
             <div class="flex flex-col sm:flex-row sm:items-center">
-              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>社交链接:</b></div>
+              <b>社交链接:</b>
               <Socials /> {/* 渲染 Socials 组件 */}
             </div>
           )
         }
         {
+          
           // only display if at least one deploy link is enabled
           DEPLOY_LINKS.length > 0 && (
-            <div class="flex flex-col sm:flex-row sm:items-center">
-              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0"><b>GitHub 精选部署应用:</b></div>
+              <b>GitHub 精选部署应用:</b>
+              <div class="flex flex-col sm:flex-row sm:items-center">
               <DeployLinks /> {/* 渲染 DeployLinks 组件 */}
             </div>
           )

@@ -10,7 +10,7 @@
     --font-cn: 'LXGW WenKai GB', 'Microsoft YaHei', 'PingFang SC', 'WenQuanYi Micro Hei', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6,span,figcaption,div {
+h1,h2,h3,h4,h5,h6,span,figcaption,div,b {
     font-family: 'PingFang SC', sans-serif;
 }
 
