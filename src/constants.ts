@@ -183,13 +183,13 @@ export const DEPLOY_LINKS: DEPLOY[] = [
   {
     name: "CloudPaste",
     href: "https://cloudpaste.hoochanlon.moe",
-    linkTitle: `${SITE.title} on Paste`,
+    linkTitle: `${SITE.title} onCloudPaste`,
     icon: IconPaste,
   },
   {
     name: "Starlight-Notes",
-    href: "https://hoochanlon.github.io/starlight-notes",
-    linkTitle: `${SITE.title} on Starlight-Notes`,
+    href: "https://hoochanlon.github.io/docs",
+    linkTitle: `${SITE.title} on Docs`,
     icon: IconDoc,
   },
   {
