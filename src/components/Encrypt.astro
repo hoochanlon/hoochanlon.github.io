@@ -34,6 +34,39 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
 
 <script is:inline data-astro-rerun>
   /**
+   * Base64 解码函数（替代已弃用的 atob）
+   *
+   * @param base64 Base64 字符串
+   * @returns Uint8Array
+   */
+  function base64ToUint8(base64) {
+    // 移除空白字符
+    const cleanBase64 = base64.replace(/\s/g, "");
+    const base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    // 计算输出长度（考虑填充）
+    const padding = (cleanBase64.match(/=/g) || []).length;
+    const outputLength = Math.floor((cleanBase64.length * 3) / 4) - padding;
+    const result = new Uint8Array(outputLength);
+    let resultIndex = 0;
+    
+    for (let i = 0; i < cleanBase64.length; i += 4) {
+      const enc1 = base64Chars.indexOf(cleanBase64.charAt(i));
+      const enc2 = base64Chars.indexOf(cleanBase64.charAt(i + 1));
+      const enc3 = cleanBase64.charAt(i + 2) === "=" ? -1 : base64Chars.indexOf(cleanBase64.charAt(i + 2));
+      const enc4 = cleanBase64.charAt(i + 3) === "=" ? -1 : base64Chars.indexOf(cleanBase64.charAt(i + 3));
+      
+      const bitmap = (enc1 << 18) | (enc2 << 12) | 
+                     ((enc3 >= 0 ? enc3 : 0) << 6) | 
+                     (enc4 >= 0 ? enc4 : 0);
+      
+      if (resultIndex < result.length) result[resultIndex++] = (bitmap >> 16) & 255;
+      if (resultIndex < result.length && enc3 >= 0) result[resultIndex++] = (bitmap >> 8) & 255;
+      if (resultIndex < result.length && enc4 >= 0) result[resultIndex++] = bitmap & 255;
+    }
+    return result;
+  }
+
+  /**
    * 异步解密函数
    *
    * @param data Base64 加密字符串
@@ -43,11 +76,8 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
    */
   async function decrypt(data, key) {
     key = key.padEnd(16, "0"); // AES-CBC key 补齐 16 字节
-    const dataBuffer = new Uint8Array(
-      atob(data)
-        .split("")
-        .map(c => c.charCodeAt(0))
-    );
+    // 使用现代方法替代已弃用的 atob
+    const dataBuffer = base64ToUint8(data);
     const keyBuffer = new TextEncoder().encode(key);
     const cryptoKey = await crypto.subtle.importKey(
       "raw",

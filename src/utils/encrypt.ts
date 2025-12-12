@@ -37,10 +37,22 @@ export async function encrypt(data: string, key: string): Promise<string> {
 }
 
 function uint8ToBase64(bytes: Uint8Array): string {
-  let binary = "";
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
+  // 使用 Buffer 在 Node.js 环境
+  if (typeof Buffer !== "undefined") {
+    return Buffer.from(bytes).toString("base64");
   }
-  return btoa(binary);
+  // 浏览器环境：手动实现 Base64 编码（替代已弃用的 btoa）
+  const base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  let result = "";
+  for (let i = 0; i < bytes.length; i += 3) {
+    const a = bytes[i];
+    const b = i + 1 < bytes.length ? bytes[i + 1] : 0;
+    const c = i + 2 < bytes.length ? bytes[i + 2] : 0;
+    const bitmap = (a << 16) | (b << 8) | c;
+    result += base64Chars.charAt((bitmap >> 18) & 63);
+    result += base64Chars.charAt((bitmap >> 12) & 63);
+    result += i + 1 < bytes.length ? base64Chars.charAt((bitmap >> 6) & 63) : "=";
+    result += i + 2 < bytes.length ? base64Chars.charAt(bitmap & 63) : "=";
+  }
+  return result;
 }
