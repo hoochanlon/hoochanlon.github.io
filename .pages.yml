@@ -13,115 +13,14 @@ media:
     path: /assets
 
 content:
-  - name: posts-md
-    label: 博客文章 (.md)
+  - name: posts
+    label: 博客文章
     type: collection
     path: src/data/blog
     format: yaml-frontmatter
     subfolders: true
+    extensions: [ md, mdx ]
     filename: "{slug}.md"
-    exclude:
-      - index.md
-      - index.mdx
-      - README.md
-    view:
-      fields:
-        - title
-        - description
-        - pubDatetime
-        - modDatetime
-        - featured
-        - tags
-        - password
-      primary: title
-      sort:
-        - pubDatetime
-        - modDatetime
-        - title
-      defaultSort:
-        field: pubDatetime
-        order: desc
-      search:
-        - title
-        - description
-        - tags
-    fields:
-      # 标题 - 必需字段
-      - name: title
-        label: 标题
-        type: string
-        required: true
-        description: 文章标题
-
-      # Slug - 自定义 URL 路径
-      - name: slug
-        label: 自定义路径
-        type: string
-        required: true
-        description: 文章 URL 路径标识符（必需）
-        pattern:
-          regex: "^[a-zA-Z0-9_-]+$"
-          message: "路径只能包含字母、数字、下划线和连字符"
-
-      # 发布时间
-      - name: pubDatetime
-        label: 发布时间
-        type: date
-        required: true
-        options:
-          time: true
-        description: 文章发布日期和时间
-
-      # 最后更新时间
-      - name: modDatetime
-        label: 最后更新
-        type: date
-        options:
-          time: true
-        description: 文章最后更新时间
-
-      # 描述
-      - name: description
-        label: 描述
-        type: text
-        description: 文章简短描述，用于 SEO 和预览
-
-      # 标签 - 支持多个标签
-      - name: tags
-        label: 标签
-        type: string
-        list: true
-        description: 文章标签，可添加多个
-
-      # 精选文章
-      - name: featured
-        label: 精选文章
-        type: boolean
-        default: false
-        description: 是否标记为精选文章
-
-      # 密码保护
-      - name: password
-        label: 密码
-        type: string
-        description: 文章密码（可选，设置后文章将被加密保护）
-        pattern:
-          regex: "^[a-zA-Z0-9!@#$%^&*()_+-=]{1,50}$"
-          message: "密码只能包含字母、数字和常用特殊字符，长度不超过 50 个字符"
-
-      # 正文内容
-      - name: body
-        label: 正文内容
-        type: rich-text
-        description: 文章正文内容（Markdown 格式）
-
-  - name: posts-mdx
-    label: 博客文章 (.mdx)
-    type: collection
-    path: src/data/blog
-    format: yaml-frontmatter
-    subfolders: true
-    filename: "{slug}.mdx"
     exclude:
       - index.md
       - index.mdx
