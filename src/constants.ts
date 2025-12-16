@@ -79,9 +79,9 @@ export const SOCIALS: Social[] = [
     icon: IconBluesky,
   },
   {
-    name: "Memos-Chat",
-    href: "https://memos-chat.hoochanlon.moe/explore",
-    linkTitle: `${SITE.title} on memos-chat`,
+    name: "Memos",
+    href: "https://memos.hoochanlon.moe/explore",
+    linkTitle: `${SITE.title} on Memos`,
     icon: IconChat,
   },
   {
