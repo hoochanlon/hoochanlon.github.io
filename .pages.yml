@@ -17,14 +17,7 @@ content:
     label: 博客文章
     type: collection
     path: src/data/blog
-    format: yaml-frontmatter
-    subfolders: true
-    extensions: [ md, mdx ]
-    filename: "{slug}.md"
-    exclude:
-      - index.md
-      - index.mdx
-      - README.md
+
     view:
       fields:
         - title
