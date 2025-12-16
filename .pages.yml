@@ -20,7 +20,7 @@ content:
     format: yaml-frontmatter
     subfolders: true
     filename: "{slug}.md"
-    filename: "{slug}.mdx"
+    extensions: [ md, mdx ]
     exclude:
       - index.md
       - index.mdx
