@@ -19,7 +19,7 @@ content:
     path: src/data/blog
     format: yaml-frontmatter
     subfolders: true
-    filename: "{slug}.md"
+    filename: ["{slug}.md", "{slug}.mdx"]
     exclude:
       - index.md
       - index.mdx
