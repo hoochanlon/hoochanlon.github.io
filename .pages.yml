@@ -1,10 +1,4 @@
 media:
-  - name: images
-    label: 图片资源
-    input: public/assets/imgs
-    output: /assets/imgs
-    categories: [ image ]
-    path: /assets/imgs
   - name: hero-images
     label: 英雄图片
     input: public/assets/hero-images
@@ -25,8 +19,9 @@ content:
     path: src/data/blog
     format: yaml-frontmatter
     subfolders: true
-    filename: "{slug}.mdx"
+    filename: "{slug}.md"
     exclude:
+      - index.md
       - index.mdx
       - README.md
     view:
@@ -119,27 +114,6 @@ content:
         label: 正文内容
         type: rich-text
         description: 文章正文内容（Markdown 格式）
-
-  - name: about
-    label: 关于页面
-    type: file
-    path: src/pages/about.md
-    fields:
-      - name: layout
-        type: string
-        hidden: true
-        default: "../layouts/AboutLayout.astro"
-      - name: title
-        label: 标题
-        type: string
-        description: 页面标题
-      - name: body
-        label: 正文内容
-        type: rich-text
-        description: 页面正文内容
-        options:
-          input: public/assets
-          output: /assets
 
 settings:
   content:
