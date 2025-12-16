@@ -1,55 +1,146 @@
 media:
-  input: public
-  output: /
+  - name: images
+    label: 图片资源
+    input: public/assets/imgs
+    output: /assets/imgs
+    categories: [ image ]
+    path: /assets/imgs
+  - name: hero-images
+    label: 英雄图片
+    input: public/assets/hero-images
+    output: /assets/hero-images
+    categories: [ image ]
+    extensions: [ png, jpg, jpeg, webp, svg ]
+    path: /assets/hero-images
+  - name: assets
+    label: 其他资源
+    input: public/assets
+    output: /assets
+    path: /assets
+
 content:
   - name: posts
-    label: Posts
+    label: 博客文章
     type: collection
     path: src/data/blog
     format: yaml-frontmatter
+    subfolders: true
     filename: "{slug}.mdx"
+    exclude:
+      - index.mdx
+      - README.md
     view:
+      fields:
+        - title
+        - description
+        - pubDatetime
+        - modDatetime
+        - featured
+        - tags
+        - password
       primary: title
-      fields: [ title, pubDatetime, featured, tags ]
-      sort: [ pubDatetime, title ]
+      sort:
+        - pubDatetime
+        - modDatetime
+        - title
+      defaultSort:
+        field: pubDatetime
+        order: desc
+      search:
+        - title
+        - description
+        - tags
     fields:
+      # 标题 - 必需字段
       - name: title
-        label: Title
+        label: 标题
         type: string
         required: true
+        description: 文章标题
+
+      # Slug - 自定义 URL 路径
       - name: slug
-        label: Slug
+        label: 自定义路径
         type: string
         required: true
+        description: 文章 URL 路径标识符（必需）
+        pattern:
+          regex: "^[a-zA-Z0-9_-]+$"
+          message: "路径只能包含字母、数字、下划线和连字符"
+
+      # 发布时间
       - name: pubDatetime
-        label: Publish Time
+        label: 发布时间
         type: date
         required: true
+        options:
+          time: true
+        description: 文章发布日期和时间
+
+      # 最后更新时间
       - name: modDatetime
-        label: Modified Time
+        label: 最后更新
         type: date
-      - name: featured
-        label: Featured
-        type: boolean
-        default: false
+        options:
+          time: true
+        description: 文章最后更新时间
+
+      # 描述
+      - name: description
+        label: 描述
+        type: text
+        description: 文章简短描述，用于 SEO 和预览
+
+      # 标签 - 支持多个标签
       - name: tags
-        label: Tags
+        label: 标签
         type: string
         list: true
-      - name: description
-        label: Description
-        type: string
+        description: 文章标签，可添加多个
+
+      # 精选文章
+      - name: featured
+        label: 精选文章
+        type: boolean
+        default: false
+        description: 是否标记为精选文章
+
+      # 密码保护
       - name: password
-        label: Password
+        label: 密码
         type: string
+        description: 文章密码（可选，设置后文章将被加密保护）
+        pattern:
+          regex: "^[a-zA-Z0-9!@#$%^&*()_+-=]{1,50}$"
+          message: "密码只能包含字母、数字和常用特殊字符，长度不超过 50 个字符"
+
+      # 正文内容
       - name: body
-        label: Body
+        label: 正文内容
         type: rich-text
+        description: 文章正文内容（Markdown 格式）
+
   - name: about
-    label: About page
+    label: 关于页面
     type: file
     path: src/pages/about.md
     fields:
-      - { name: layout, type: string, hidden: true, default: "../layouts/AboutLayout.astro" }
-      - { name: title, label: Title, type: string }
-      - { name: body, label: Body, type: rich-text, options: { input: public/assets, output: /assets } }
+      - name: layout
+        type: string
+        hidden: true
+        default: "../layouts/AboutLayout.astro"
+      - name: title
+        label: 标题
+        type: string
+        description: 页面标题
+      - name: body
+        label: 正文内容
+        type: rich-text
+        description: 页面正文内容
+        options:
+          input: public/assets
+          output: /assets
+
+settings:
+  content:
+    merge: true
