@@ -6,18 +6,45 @@ content:
     label: Posts
     type: collection
     path: src/data/blog
+    format: yaml-frontmatter
+    filename: "{slug}.mdx"
     view:
-      fields: [ title, draft, date ]
+      primary: title
+      fields: [ title, pubDatetime, featured, tags ]
+      sort: [ pubDatetime, title ]
     fields:
-      - { name: pubDatetime, label: Date, type: date }
-      - { name: modDatetime, label: Date, type: date }
-      - { name: title, label: Title, type: string, required: true }
-      - { name: slug, label: Slug, type: string }
-      - { name: password, label: Password, type: string }
-      - { name: featured, label: Featured, type: boolean }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: description, label: Description, type: string }
-      - { name: body, label: Body, type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+      - name: pubDatetime
+        label: Publish Time
+        type: date
+        required: true
+      - name: modDatetime
+        label: Modified Time
+        type: date
+      - name: featured
+        label: Featured
+        type: boolean
+        default: false
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: description
+        label: Description
+        type: string
+      - name: password
+        label: Password
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
   - name: about
     label: About page
     type: file
