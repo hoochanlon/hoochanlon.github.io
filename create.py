@@ -29,7 +29,7 @@ folder_path = os.path.join('src', 'data', 'blog', f"_{year}", f"_{year}-{month}"
 os.makedirs(folder_path, exist_ok=True)
 
 # 设置文件路径，包括基于时间戳生成的 slug
-file_path = os.path.join(folder_path, f"{file_name_prefix}-{file_name}.md")
+file_path = os.path.join(folder_path, f"{file_name_prefix}-{file_name}.mdx")
 
 # 设置 pubDatetime 格式，带时区
 pub_datetime_str = current_date.strftime(f"{year}-{month}-{day} {hour}:{minute}:{second}+08:00")
