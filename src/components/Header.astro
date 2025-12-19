@@ -7,6 +7,7 @@ import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconAnalysis from "@/assets/icons/IconAnalysis.svg";
+import IconSpotify from "@/assets/icons/IconSpotify.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
@@ -114,6 +115,20 @@ const isActive = (path: string) => {
             >
               <IconSearch />
               <span class="sr-only">Search</span>
+            </LinkButton>
+          </li>
+          <li class="col-span-1 flex items-center justify-center">
+            <LinkButton
+              href="https://open.spotify.com/album/0BlM8Qd8rxj4wLd9ioGZZU"
+              class:list={[
+                "focus-outline flex p-3 sm:p-1",
+                { "[&>svg]:stroke-accent": isActive("/home") },
+              ]}
+              ariaLabel="spotify"
+              title="spotify"
+            >
+              <IconSpotify />
+              <span class="sr-only">Spotify</span>
             </LinkButton>
           </li>
           <li class="col-span-1 flex items-center justify-center">
