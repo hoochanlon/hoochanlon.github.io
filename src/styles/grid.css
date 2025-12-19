@@ -1,0 +1,46 @@
+/* 网格背景样式，独立文件便于维护 */
+
+/* 网格尺寸与颜色变量 */
+:root {
+  --grid-size: 24px;
+  --grid-line-light: #e5efff;
+  --grid-line-dark: rgba(255, 255, 255, 0.06);
+}
+
+/* 默认和亮色主题下的网格线颜色 */
+html[data-theme="light"],
+html:not([data-theme]) {
+  --grid-line-color: var(--grid-line-light);
+}
+
+/* 暗色主题下的网格线颜色 */
+html[data-theme="dark"] {
+  --grid-line-color: var(--grid-line-dark);
+}
+
+/* 整个页面使用网格背景（作用在 html，保证导航区域也能看到） */
+html {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0;
+}
+
+/* 让 body 透明，避免覆盖 html 的网格背景 */
+body {
+  background-color: transparent !important;
+}
+
+/* 顶部导航容器本身也要透明，避免挡住网格 */
+#top-nav-wrap {
+  background-color: transparent !important;
+}
+
+/* 浅色模式下让分隔线（Hr）稍微深一点，便于看清 */
+html[data-theme="light"] hr.border-border,
+html:not([data-theme]) hr.border-border {
+  border-color: #cbd5e1; /* 接近 Tailwind slate-300，比当前边框略深 */
+}
+
