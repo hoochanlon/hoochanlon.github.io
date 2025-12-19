@@ -116,3 +116,11 @@ html[data-theme="dark"] {
     top: 0;
     border: 0;
 }
+
+#pagefind-search{
+ font-family: 'PingFang SC', sans-serif;
+}
+
+.pagefind-ui * {
+  font-family: 'PingFang SC', sans-serif !important;
+}
