@@ -117,10 +117,7 @@ html[data-theme="dark"] {
     border: 0;
 }
 
-#pagefind-search{
- font-family: 'PingFang SC', sans-serif;
-}
 
-.pagefind-ui * {
-  font-family: 'PingFang SC', sans-serif !important;
+li.my-6 > p {
+  font-size: 16px;
 }

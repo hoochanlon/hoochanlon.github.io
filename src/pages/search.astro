@@ -91,7 +91,7 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
 
 <style is:global>
   #pagefind-search {
-    --pagefind-ui-font: var(--font-mono);
+    --pagefind-ui-font: 'PingFang SC', sans-serif;
     --pagefind-ui-text: var(--foreground);
     --pagefind-ui-background: var(--background);
     --pagefind-ui-border: var(--border);
@@ -101,6 +101,7 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
     --pagefind-ui-border-width: 1px;
     --pagefind-ui-image-border-radius: 8px;
     --pagefind-ui-image-box-ratio: 3 / 2;
+    font-size: 18px;
 
     form::before {
       background-color: var(--foreground);
@@ -108,6 +109,7 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
 
     input {
       font-weight: 400;
+      font-size: 18px;
       border: 1px solid var(--border);
     }
 
@@ -115,10 +117,22 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
       outline: 1px solid var(--accent);
     }
 
+    .pagefind-ui__result-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
     .pagefind-ui__result-title a {
       color: var(--accent);
+      font-size: 18px;
+      font-weight: 500;
       outline-offset: 1px;
       outline-color: var(--accent);
+    }
+
+    .pagefind-ui__result-excerpt,
+    .pagefind-ui__result-text {
+      font-size: 16px;
     }
 
     .pagefind-ui__result-title a:focus-visible,
@@ -135,5 +149,6 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
     .pagefind-ui__result-nested .pagefind-ui__result-link:before {
       font-family: system-ui;
     }
+
   }
 </style>

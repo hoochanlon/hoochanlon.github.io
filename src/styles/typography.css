@@ -36,7 +36,7 @@
     }
 
     li {
-      @apply marker:text-accent;
+      @apply marker:text-accent break-words;
     }
 
     hr {
@@ -87,13 +87,13 @@
     }
 
     pre {
-      @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-dashed;
+      @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-dashed break-words overflow-x-auto;
     }
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
   .astro-code {
-    @apply flex border bg-(--shiki-light-bg) text-(--shiki-light) outline-border [&_span]:text-(--shiki-light);
+    @apply flex border bg-(--shiki-light-bg) text-(--shiki-light) outline-border [&_span]:text-(--shiki-light) break-words overflow-x-auto;
   }
 
   html[data-theme="dark"] .astro-code {
