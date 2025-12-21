@@ -21,6 +21,7 @@ import IconTwitter from "@/assets/icons/IconTwitter.svg"
 import IconDoc from "@/assets/icons/IconDoc.svg"
 import IconTools from "@/assets/icons/IconTools.svg"
 import IconChat from "@/assets/icons/IconChat.svg"
+import IconSpotify from "@/assets/icons/IconSpotify.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
 
@@ -79,6 +80,12 @@ export const SOCIALS: Social[] = [
     icon: IconBluesky,
   },
   {
+    name: "Spotify",
+    href: "https://bsky.app/profile/hoochanlon.bsky.social",
+    linkTitle: `${SITE.title} on BlueSky`,
+    icon: IconSpotify,
+  },
+  {
     name: "Memos",
     href: "https://memos.hoochanlon.moe/explore",
     linkTitle: `${SITE.title} on Memos`,
@@ -132,12 +139,6 @@ export const SHARE_LINKS: Social[] = [
 ] as const;
 
 export const DEPLOY_LINKS: DEPLOY[] = [
-  {
-    name: "Nav",
-    href: "https://nav.hoochanlon.moe",
-    linkTitle: `${SITE.title} on Nav`,
-    icon: IconSafari,
-  },
   {
     name: "Todo",
     href: "https://hoochanlon.github.io/todo",

@@ -7,7 +7,7 @@ import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconAnalysis from "@/assets/icons/IconAnalysis.svg";
-import IconSpotify from "@/assets/icons/IconSpotify.svg";
+import IconMemos from "@/assets/icons/IconMemos.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
@@ -119,7 +119,7 @@ const isActive = (path: string) => {
           </li>
           <li class="col-span-1 flex items-center justify-center">
             <LinkButton
-              href="https://open.spotify.com/album/0BlM8Qd8rxj4wLd9ioGZZU"
+              href="https://hoochanlon.github.io/memos/notes/links"
               class:list={[
                 "focus-outline flex p-3 sm:p-1",
                 { "[&>svg]:stroke-accent": isActive("/home") },
@@ -127,8 +127,8 @@ const isActive = (path: string) => {
               ariaLabel="spotify"
               title="spotify"
             >
-              <IconSpotify />
-              <span class="sr-only">Spotify</span>
+              <IconMemos />
+              <span class="sr-only">Memos</span>
             </LinkButton>
           </li>
           <li class="col-span-1 flex items-center justify-center">
