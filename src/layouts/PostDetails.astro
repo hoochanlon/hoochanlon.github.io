@@ -291,4 +291,83 @@ const nextPost =
   document.addEventListener("astro:after-swap", () =>
     window.scrollTo({ left: 0, top: 0, behavior: "instant" })
   );
+
+  /** Optimize image loading for seamless user experience
+   *  Uses browser-native priority hints instead of preload to avoid warnings
+   */
+  function optimizeImageLoading() {
+    const images = Array.from(document.querySelectorAll("article img"));
+    
+    if (images.length === 0) return;
+    
+    // Use Intersection Observer to optimize image loading
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const img = entry.target;
+            
+            if (entry.isIntersecting) {
+              // Image is entering viewport, set high priority
+              img.setAttribute("loading", "eager");
+              img.setAttribute("fetchpriority", "high");
+              observer.unobserve(img);
+            }
+          });
+        },
+        {
+          // Start loading when image is 200px away from viewport
+          rootMargin: "200px",
+          threshold: 0.01,
+        }
+      );
+
+      // Check initial viewport state after a short delay to ensure layout is complete
+      setTimeout(() => {
+        images.forEach((img) => {
+          const rect = img.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          
+          // Check if image is in or near viewport (within 200px)
+          const isNearViewport = rect.top < viewportHeight + 200 && rect.bottom > -200;
+          
+          if (isNearViewport) {
+            // Image is already visible or near viewport
+            img.setAttribute("loading", "eager");
+            img.setAttribute("fetchpriority", "high");
+          } else {
+            // Image is far from viewport, use lazy loading
+            img.setAttribute("loading", "lazy");
+            observer.observe(img);
+          }
+        });
+      }, 100); // Small delay to ensure layout is complete
+    } else {
+      // Fallback: set loading attributes based on position
+      setTimeout(() => {
+        images.forEach((img, index) => {
+          const rect = img.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const isNearViewport = rect.top < viewportHeight + 200 && rect.bottom > -200;
+          
+          if (isNearViewport || index < 2) {
+            img.setAttribute("loading", "eager");
+            img.setAttribute("fetchpriority", "high");
+          } else {
+            img.setAttribute("loading", "lazy");
+          }
+        });
+      }, 100);
+    }
+  }
+
+  // Run optimization on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", optimizeImageLoading);
+  } else {
+    optimizeImageLoading();
+  }
+
+  // Also run on Astro page transitions
+  document.addEventListener("astro:after-swap", optimizeImageLoading);
 </script>
