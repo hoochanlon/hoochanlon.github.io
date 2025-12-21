@@ -35,6 +35,8 @@ const {
   timezone,
   tags,
   hideEditPost,
+  password,
+  passwordSubtitle,
 } = post.data;
 
 const { Content } = await render(post);
@@ -113,7 +115,7 @@ const nextPost =
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
     <div id="encryption">
-      <PasswordWrapper password={post.data.password}>
+      <PasswordWrapper password={password} passwordSubtitle={passwordSubtitle}>
         <article
           id="article"
           class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
@@ -221,6 +223,10 @@ const nextPost =
       document.querySelectorAll("h2, h3, h4, h5, h6")
     );
     for (const heading of headings) {
+      // 排除密码容器内的标题
+      if (heading.closest(".password-container")) {
+        continue;
+      }
       heading.classList.add("group");
       const link = document.createElement("a");
       link.className =

@@ -1,33 +1,72 @@
 ---
 import { encrypt } from "@/utils/encrypt";
+import "@/styles/password.css";
 
 export interface Props {
   password: string;
+  passwordSubtitle?: string;
 }
 
+const { password, passwordSubtitle = "请输入密码以查看内容" } = Astro.props;
+
 const html = await Astro.slots.render("default");
-const encryptedHtml = await encrypt(html, Astro.props.password);
+const encryptedHtml = await encrypt(html, password);
 ---
 
 <meta name="encrypted" content={encryptedHtml} />
 
-<div>
-  <input
-    id="password"
-    class="border-skin-fill border-opacity-40 bg-skin-fill text-skin-base placeholder:text-opacity-75 focus:border-skin-accent w-auto rounded border p-2 placeholder:italic focus:outline-none"
-    placeholder="请输入密码"
-    type="text"
-    autocomplete="off"
-    autofocus
-  />
+<div class="password-container">
+  <!-- 锁图标 -->
+  <div class="password-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    </svg>
+  </div>
+
+  <!-- 标题 -->
+  <h2 class="password-title">该笔记已加密</h2>
+  <p class="password-subtitle">{passwordSubtitle}</p>
+
+  <!-- 密码输入框容器 -->
+  <div class="password-input-wrapper">
+    <input
+      id="password"
+      class="password-input"
+      placeholder="请输入密码"
+      type="password"
+      autocomplete="off"
+      autofocus
+    />
+    <!-- 眼睛图标按钮 -->
+    <button
+      id="password-toggle"
+      class="password-toggle"
+      type="button"
+      aria-label="切换密码显示"
+    >
+      <!-- 眼睛图标 - 默认显示（密码隐藏时） -->
+      <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      </svg>
+      <!-- 眼睛斜线图标 - 密码显示时 -->
+      <svg id="eye-off-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.29 3.29m0 0L3 3m3.29 3.29L12 12m-5.71-5.71L12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- 解锁按钮 -->
   <button
     id="password-btn"
-    class="bg-skin-full border-skin-fill border-opacity-50 text-skin-base hover:border-skin-accent rounded-md border p-2"
+    class="password-button"
+    type="button"
   >
-    确认
+    解锁文章
   </button>
+
   <!-- 错误提示元素 -->
-  <div id="error-message" class="text-red-600 hidden">
+  <div id="error-message" class="password-error" style="display: none;">
     密码错误，请重新输入。
   </div>
 </div>
@@ -107,17 +146,69 @@ const encryptedHtml = await encrypt(html, Astro.props.password);
     const article = document.querySelector("#encryption");
     const key = window.location.pathname;
     const errorMessage = document.getElementById("error-message");
+    const toggleBtn = document.getElementById("password-toggle");
+    const eyeIcon = document.getElementById("eye-icon");
+    const eyeOffIcon = document.getElementById("eye-off-icon");
+
+    // 初始化密码显示/隐藏切换
+    if (input && eyeIcon && eyeOffIcon && toggleBtn) {
+      // 使用 once 选项或者检查是否已绑定
+      if (!toggleBtn.dataset.bound) {
+        toggleBtn.dataset.bound = "true";
+        toggleBtn.addEventListener("click", () => {
+          if (input.type === "password") {
+            input.type = "text";
+            eyeIcon.style.display = "none";
+            eyeOffIcon.style.display = "block";
+          } else {
+            input.type = "password";
+            eyeIcon.style.display = "block";
+            eyeOffIcon.style.display = "none";
+          }
+        });
+      }
+    }
+
+    // 回车键提交
+    input?.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        btn?.click();
+      }
+    });
 
     btn?.addEventListener("click", async () => {
       const password = input.value;
+      if (!password) {
+        if (errorMessage) {
+          errorMessage.textContent = "请输入密码";
+          errorMessage.style.display = "block";
+        }
+        return;
+      }
+
+      // 禁用按钮，显示加载状态
+      btn.disabled = true;
+      btn.textContent = "解锁中...";
+
       try {
         const html = await decrypt(encrypted, password);
         article.innerHTML = html;
         setItemWithExpire(key, password, 86400);
+        // 隐藏错误消息
+        if (errorMessage) {
+          errorMessage.style.display = "none";
+        }
       } catch {
         if (errorMessage) {
-          errorMessage.classList.remove("hidden"); // 显示错误消息
+          errorMessage.textContent = "密码错误，请重新输入。";
+          errorMessage.style.display = "block";
         }
+        // 恢复按钮状态
+        btn.disabled = false;
+        btn.textContent = "解锁文章";
+        // 清空输入框
+        input.value = "";
+        input.focus();
       }
     });
 
