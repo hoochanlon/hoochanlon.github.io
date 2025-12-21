@@ -16,6 +16,7 @@ import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
 import Comments from "@/components/Comments";
 import PasswordWrapper from "@/components/PasswordWrapper.astro";
+import "@/styles/image-loading.css";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -175,58 +176,90 @@ const nextPost =
 <Footer />
 
 <script is:inline data-astro-rerun>
-  /** Create a progress indicator
-   *  at the top */
-  function createProgressBar() {
-    // Create the main container div
-    const progressContainer = document.createElement("div");
-    progressContainer.className =
-      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+  // 使用立即执行函数避免变量重复声明
+  (function() {
+    // 只在文章详情页运行脚本
+    const isPostPage = document.querySelector("article#article") !== null;
+    
+    if (!isPostPage) return;
+    /** Create a progress indicator
+     *  at the top */
+    function createProgressBar() {
+      // 检查是否已存在
+      if (document.getElementById("myBar")) return;
+      
+      // Create the main container div
+      const progressContainer = document.createElement("div");
+      progressContainer.className =
+        "progress-container fixed top-0 z-10 h-1 w-full bg-background";
 
-    // Create the progress bar div
-    const progressBar = document.createElement("div");
-    progressBar.className = "progress-bar h-1 w-0 bg-accent";
-    progressBar.id = "myBar";
+      // Create the progress bar div
+      const progressBar = document.createElement("div");
+      progressBar.className = "progress-bar h-1 w-0 bg-accent";
+      progressBar.id = "myBar";
 
-    // Append the progress bar to the progress container
-    progressContainer.appendChild(progressBar);
+      // Append the progress bar to the progress container
+      progressContainer.appendChild(progressBar);
 
-    // Append the progress container to the document body or any other desired parent element
-    document.body.appendChild(progressContainer);
-  }
-  createProgressBar();
-
-  /** Update the progress bar
-   *  when user scrolls */
-  function updateScrollProgress() {
-    document.addEventListener("scroll", () => {
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      if (document) {
-        const myBar = document.getElementById("myBar");
-        if (myBar) {
-          myBar.style.width = scrolled + "%";
+      // Append the progress container to the document body or any other desired parent element
+      document.body.appendChild(progressContainer);
+    }
+    
+    // 延迟创建进度条，避免阻塞渲染（使用 requestIdleCallback）
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(createProgressBar, { timeout: 1000 });
+    } else {
+      setTimeout(createProgressBar, 100);
+    }
+    /** Update the progress bar
+     *  when user scrolls */
+    function updateScrollProgress() {
+      const myBar = document.getElementById("myBar");
+      if (!myBar) return;
+      
+      // 使用节流优化滚动事件
+      let ticking = false;
+      document.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const winScroll =
+              document.body.scrollTop || document.documentElement.scrollTop;
+            const height =
+              document.documentElement.scrollHeight -
+              document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            myBar.style.width = scrolled + "%";
+            ticking = false;
+          });
+          ticking = true;
         }
-      }
-    });
-  }
-  updateScrollProgress();
+      }, { passive: true });
+    }
+    // 延迟初始化滚动进度条，避免阻塞页面加载
+    setTimeout(updateScrollProgress, 200);
 
-  /** Attaches links to headings in the document,
-   *  allowing sharing of sections easily */
-  function addHeadingLinks() {
+    /** Attaches links to headings in the document,
+     *  allowing sharing of sections easily */
+    function addHeadingLinks() {
+    // 只在文章详情页运行（检查是否存在 article 标签）
+    const article = document.querySelector("article#article");
+    if (!article) return; // 如果不是文章详情页，直接返回
+
     const headings = Array.from(
-      document.querySelectorAll("h2, h3, h4, h5, h6")
+      article.querySelectorAll("h2, h3, h4, h5, h6")
     );
+    
+    // 检查是否已经添加过链接，避免重复
     for (const heading of headings) {
       // 排除密码容器内的标题
       if (heading.closest(".password-container")) {
         continue;
       }
+      // 如果已经有链接，跳过
+      if (heading.querySelector(".heading-link")) {
+        continue;
+      }
+      
       heading.classList.add("group");
       const link = document.createElement("a");
       link.className =
@@ -239,14 +272,17 @@ const nextPost =
       link.appendChild(span);
       heading.appendChild(link);
     }
-  }
-  addHeadingLinks();
+    }
 
-  /** Attaches copy buttons to code blocks in the document,
-   * allowing users to copy code easily. */
-  function attachCopyButtons() {
+    /** Attaches copy buttons to code blocks in the document,
+     * allowing users to copy code easily. */
+    function attachCopyButtons() {
+      // 只在文章详情页运行
+    const article = document.querySelector("article#article");
+    if (!article) return; // 如果不是文章详情页，直接返回
+
     const copyButtonLabel = "Copy";
-    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+    const codeBlocks = Array.from(article.querySelectorAll("pre"));
 
     for (const codeBlock of codeBlocks) {
       const wrapper = document.createElement("div");
@@ -290,90 +326,301 @@ const nextPost =
         button.innerText = copyButtonLabel;
       }, 700);
     }
-  }
-  attachCopyButtons();
-
-  /* Go to page start after page swap */
-  document.addEventListener("astro:after-swap", () =>
-    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
-
-  /** Optimize image loading for seamless user experience
-   *  Uses browser-native priority hints instead of preload to avoid warnings
-   */
-  function optimizeImageLoading() {
-    const images = Array.from(document.querySelectorAll("article img"));
-    
-    if (images.length === 0) return;
-    
-    // Use Intersection Observer to optimize image loading
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const img = entry.target;
-            
-            if (entry.isIntersecting) {
-              // Image is entering viewport, set high priority
-              img.setAttribute("loading", "eager");
-              img.setAttribute("fetchpriority", "high");
-              observer.unobserve(img);
-            }
-          });
-        },
-        {
-          // Start loading when image is 200px away from viewport
-          rootMargin: "200px",
-          threshold: 0.01,
-        }
-      );
-
-      // Check initial viewport state after a short delay to ensure layout is complete
-      setTimeout(() => {
-        images.forEach((img) => {
-          const rect = img.getBoundingClientRect();
-          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-          
-          // Check if image is in or near viewport (within 200px)
-          const isNearViewport = rect.top < viewportHeight + 200 && rect.bottom > -200;
-          
-          if (isNearViewport) {
-            // Image is already visible or near viewport
-            img.setAttribute("loading", "eager");
-            img.setAttribute("fetchpriority", "high");
-          } else {
-            // Image is far from viewport, use lazy loading
-            img.setAttribute("loading", "lazy");
-            observer.observe(img);
-          }
-        });
-      }, 100); // Small delay to ensure layout is complete
-    } else {
-      // Fallback: set loading attributes based on position
-      setTimeout(() => {
-        images.forEach((img, index) => {
-          const rect = img.getBoundingClientRect();
-          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-          const isNearViewport = rect.top < viewportHeight + 200 && rect.bottom > -200;
-          
-          if (isNearViewport || index < 2) {
-            img.setAttribute("loading", "eager");
-            img.setAttribute("fetchpriority", "high");
-          } else {
-            img.setAttribute("loading", "lazy");
-          }
-        });
-      }, 100);
     }
-  }
 
-  // Run optimization on page load
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", optimizeImageLoading);
-  } else {
-    optimizeImageLoading();
-  }
+    // Defer non-critical UI enhancements to avoid blocking rendering
+    function initUIEnhancements() {
+      addHeadingLinks();
+      attachCopyButtons();
+    }
 
-  // Also run on Astro page transitions
-  document.addEventListener("astro:after-swap", optimizeImageLoading);
+    // 延迟初始化 UI 增强功能，使用 requestIdleCallback 避免阻塞
+    function scheduleUIEnhancements() {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(initUIEnhancements, { timeout: 1000 });
+      } else {
+        setTimeout(initUIEnhancements, 100);
+      }
+    }
+
+    // 页面加载完成后初始化
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", scheduleUIEnhancements, { once: true });
+    } else {
+      scheduleUIEnhancements();
+    }
+
+    // Astro 页面切换时重新初始化，延迟执行避免阻塞切换
+    document.addEventListener("astro:after-swap", () => {
+      // 检查是否仍然是文章详情页
+      if (document.querySelector("article#article")) {
+        // 使用 requestIdleCallback 延迟执行，不阻塞页面切换
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(initUIEnhancements, { timeout: 500 });
+        } else {
+          setTimeout(initUIEnhancements, 50);
+        }
+      }
+    }, { passive: true });
+
+    /* Optimize page transitions for faster navigation */
+    // 在页面切换前准备，减少延迟 - 使用异步避免阻塞
+    document.addEventListener("astro:before-preparation", () => {
+      // 异步清理，不阻塞页面切换
+      requestAnimationFrame(() => {
+        // 清理旧的预加载链接，避免重复
+        const oldPreloads = document.querySelectorAll('link[rel="preload"][as="image"]');
+        oldPreloads.forEach(link => {
+          const href = link.getAttribute("href");
+          const currentPageImages = Array.from(document.querySelectorAll("figure img"))
+            .map(img => img.getAttribute("src"));
+          if (!currentPageImages.includes(href)) {
+            link.remove();
+          }
+        });
+      });
+    }, { passive: true });
+
+    // 在页面切换前，最小化阻塞操作
+    document.addEventListener("astro:before-swap", () => {
+      // 不执行任何阻塞操作，让页面快速切换
+    }, { passive: true });
+
+    // 优化链接点击性能 - 提前准备页面切换
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("a[href]");
+      if (link && link.href.startsWith(window.location.origin)) {
+        // 如果是内部链接，提前准备，减少延迟
+        // 使用 requestIdleCallback 不阻塞点击事件
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(() => {
+            // 提前清理，为页面切换做准备
+          }, { timeout: 10 });
+        }
+      }
+    }, { passive: true, capture: true });
+
+    /* Go to page start after page swap - 使用 requestAnimationFrame 避免阻塞 */
+    document.addEventListener("astro:after-swap", () => {
+      // 使用 requestAnimationFrame 确保不阻塞页面渲染
+      requestAnimationFrame(() => {
+        window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+      });
+    }, { passive: true });
+
+    /** Add loading animation to images */
+    function addImageLoadingAnimation() {
+      // 只在文章详情页运行
+      const article = document.querySelector("article#article");
+      if (!article) return;
+
+      const images = Array.from(article.querySelectorAll("img"));
+      
+      images.forEach((img) => {
+        // 跳过已经有包装器的图片
+        if (img.closest(".image-loading-wrapper")) return;
+        
+        const src = img.getAttribute("src");
+        if (!src) return;
+        
+        // 创建包装器
+        const wrapper = document.createElement("div");
+        wrapper.className = "image-loading-wrapper";
+        
+        // 创建加载占位符
+        const placeholder = document.createElement("div");
+        placeholder.className = "image-loading-placeholder";
+        const loadingImg = document.createElement("img");
+        loadingImg.src = "/loading.gif";
+        loadingImg.alt = "Loading...";
+        placeholder.appendChild(loadingImg);
+        
+        // 包装图片
+        img.parentNode?.insertBefore(wrapper, img);
+        wrapper.appendChild(placeholder);
+        wrapper.appendChild(img);
+        
+        // 图片加载完成事件
+        if (img.complete && img.naturalHeight !== 0) {
+          // 图片已经加载完成
+          img.classList.add("loaded");
+          setTimeout(() => {
+            placeholder.style.display = "none";
+          }, 100);
+        } else {
+          // 监听加载事件
+          img.addEventListener("load", () => {
+            img.classList.add("loaded");
+            setTimeout(() => {
+              placeholder.style.display = "none";
+            }, 300);
+          }, { once: true });
+          
+          // 监听错误事件
+          img.addEventListener("error", () => {
+            placeholder.style.display = "none";
+            img.style.opacity = "1";
+            img.classList.add("loaded");
+          }, { once: true });
+        }
+        
+        // 添加点击放大功能
+        wrapper.addEventListener("click", () => {
+          openImageModal(img.src, img.alt || "");
+        });
+      });
+    }
+
+    /** 图片放大查看功能 */
+    function initImageModal() {
+      // 创建模态框（如果不存在）
+      let modal = document.getElementById("image-modal");
+      if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "image-modal";
+        modal.className = "image-modal";
+        
+        const modalContent = document.createElement("div");
+        modalContent.className = "image-modal-content";
+        
+        const modalImg = document.createElement("img");
+        modalImg.id = "image-modal-img";
+        modalImg.alt = "";
+        
+        const closeBtn = document.createElement("span");
+        closeBtn.className = "image-modal-close";
+        closeBtn.setAttribute("aria-label", "关闭");
+        
+        modalContent.appendChild(modalImg);
+        modal.appendChild(modalContent);
+        modal.appendChild(closeBtn);
+        document.body.appendChild(modal);
+        
+        // 关闭按钮事件
+        closeBtn.addEventListener("click", closeImageModal);
+        
+        // 点击背景关闭
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeImageModal();
+          }
+        });
+        
+        // ESC 键关闭
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeImageModal();
+          }
+        });
+      }
+    }
+
+    function openImageModal(src, alt) {
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("image-modal-img");
+      if (modal && modalImg) {
+        modalImg.src = src;
+        modalImg.alt = alt;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden"; // 防止背景滚动
+      }
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById("image-modal");
+      if (modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = ""; // 恢复滚动
+      }
+    }
+
+    /** Optimize image loading for seamless user experience
+     *  Only preload images inside <figure> tags, others use lazy loading
+     */
+    function optimizeImageLoading() {
+      // 只在文章详情页运行
+      const article = document.querySelector("article#article");
+      if (!article) return;
+
+      // 先添加加载动画
+      addImageLoadingAnimation();
+
+      // 查找 <figure> 标签内的图片进行预加载
+      const figureImages = Array.from(article.querySelectorAll("figure img"));
+      // 其他图片使用懒加载
+      const otherImages = Array.from(article.querySelectorAll("img")).filter(
+        img => !img.closest("figure")
+      );
+      
+      // 立即预加载 <figure> 内的图片（关键内容）
+      if (figureImages.length > 0) {
+        figureImages.forEach((img) => {
+          const src = img.getAttribute("src");
+          if (src) {
+            // 设置图片属性为立即加载
+            img.setAttribute("loading", "eager");
+            img.setAttribute("fetchpriority", "high");
+            
+            // 使用 link preload 预加载图片（仅在图片可见时）
+            const rect = img.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight + 500 && rect.bottom > -500;
+            
+            if (isVisible) {
+              // 检查是否已经预加载过
+              const existingPreload = document.querySelector(`link[rel="preload"][href="${src}"]`);
+              if (!existingPreload) {
+                const link = document.createElement("link");
+                link.rel = "preload";
+                link.as = "image";
+                link.href = src;
+                link.setAttribute("fetchpriority", "high");
+                document.head.appendChild(link);
+              }
+            }
+          }
+        });
+      }
+      
+      // 其他图片使用懒加载
+      if (otherImages.length > 0) {
+        otherImages.forEach((img) => {
+          // 如果还没有设置 loading 属性，则设置为 lazy
+          if (!img.getAttribute("loading")) {
+            img.setAttribute("loading", "lazy");
+          }
+        });
+      }
+    }
+
+    // Run optimization on page load - 优先处理 <figure> 图片
+    function runOptimization() {
+      // 初始化图片模态框
+      initImageModal();
+      // 立即处理 <figure> 图片（关键内容）
+      optimizeImageLoading();
+    }
+
+    // 页面加载时立即优化图片（特别是 <figure> 内的）
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runOptimization, { once: true });
+    } else {
+      // 如果 DOM 已加载，立即执行
+      runOptimization();
+    }
+
+    // Astro 页面切换时也立即优化图片 - 使用 requestAnimationFrame 避免阻塞
+    document.addEventListener("astro:after-swap", () => {
+      // 使用 requestAnimationFrame 确保不阻塞页面渲染
+      requestAnimationFrame(() => {
+        // 检查是否仍然是文章详情页
+        if (document.querySelector("article#article")) {
+          // 页面切换后立即优化图片，确保 <figure> 图片快速加载
+          // 延迟一点时间，确保 DOM 完全更新
+          setTimeout(() => {
+            runOptimization();
+          }, 0);
+        }
+      });
+    }, { passive: true });
+  })(); // 立即执行函数结束
 </script>

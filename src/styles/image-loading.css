@@ -1,0 +1,261 @@
+/* 图片加载容器 */
+.image-loading-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  background-color: var(--muted);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 200px; /* 最小高度，避免布局跳动 */
+  margin-top: 0 !important; /* 移除上边距 */
+  margin-bottom: 0 !important; /* 移除下边距 */
+  padding-top: 0 !important; /* 移除上内边距 */
+  padding-bottom: 0 !important; /* 移除下内边距 */
+  cursor: pointer; /* 添加指针样式，提示可点击 */
+  /* 默认添加相册式边框（figure 标签内的会被覆盖） */
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* 加载动画占位符 */
+.image-loading-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--muted);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+}
+
+.image-loading-placeholder img {
+  width: 48px;
+  height: 48px;
+  opacity: 0.6;
+}
+
+/* 图片元素 */
+.image-loading-wrapper > img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  border: none !important; /* 移除图片边框 */
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important; /* 移除图片轮廓 */
+  box-shadow: none !important; /* 移除可能的阴影边框 */
+}
+
+/* 图片加载完成后 */
+.image-loading-wrapper > img.loaded {
+  opacity: 1;
+}
+
+.image-loading-wrapper > img.loaded ~ .image-loading-placeholder {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* figure 标签内的图片 - 保持无边框 */
+figure .image-loading-wrapper {
+  width: 100%;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 移除 figure 标签本身的边框（如果有） */
+figure {
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 文章内图片 - 默认添加边框（figure 内的会被覆盖） */
+article img:not(figure img) {
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px;
+  outline: none !important;
+}
+
+/* 移除占位符内 loading.gif 的边框 */
+.image-loading-placeholder img {
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 覆盖 prose 样式中的图片边框 */
+.app-prose img:not(figure img),
+.prose img:not(figure img),
+article img:not(figure img) {
+  outline: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 非 figure 标签内的图片容器 - 添加相册式边框 */
+article .image-loading-wrapper:not(figure .image-loading-wrapper) {
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* figure 标签内的图片 - 保持无边框 */
+article figure img,
+article figure .image-loading-wrapper {
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 图片放大查看模态框 */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.image-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto;
+  animation: zoomIn 0.3s ease;
+}
+
+.image-modal-content img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: none !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.image-modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.image-modal-close::before {
+  content: "×";
+  line-height: 1;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+

@@ -139,6 +139,11 @@ const encryptedHtml = await encrypt(html, password);
    * 初始化页面解密逻辑
    */
   function prepare() {
+    // 检查是否已经初始化过（避免重复绑定）
+    if (document.getElementById("encryption")?.dataset.initialized === "true") {
+      return;
+    }
+
     const encrypted = document
       .querySelector("meta[name=encrypted]")?.getAttribute("content");
     const input = document.getElementById("password");
@@ -150,33 +155,39 @@ const encryptedHtml = await encrypt(html, password);
     const eyeIcon = document.getElementById("eye-icon");
     const eyeOffIcon = document.getElementById("eye-off-icon");
 
+    if (!input || !btn || !article) return;
+
+    // 标记为已初始化
+    article.dataset.initialized = "true";
+
     // 初始化密码显示/隐藏切换
-    if (input && eyeIcon && eyeOffIcon && toggleBtn) {
-      // 使用 once 选项或者检查是否已绑定
-      if (!toggleBtn.dataset.bound) {
-        toggleBtn.dataset.bound = "true";
-        toggleBtn.addEventListener("click", () => {
-          if (input.type === "password") {
-            input.type = "text";
-            eyeIcon.style.display = "none";
-            eyeOffIcon.style.display = "block";
-          } else {
-            input.type = "password";
-            eyeIcon.style.display = "block";
-            eyeOffIcon.style.display = "none";
-          }
-        });
-      }
+    if (eyeIcon && eyeOffIcon && toggleBtn && !toggleBtn.dataset.bound) {
+      toggleBtn.dataset.bound = "true";
+      toggleBtn.addEventListener("click", () => {
+        if (input.type === "password") {
+          input.type = "text";
+          eyeIcon.style.display = "none";
+          eyeOffIcon.style.display = "block";
+        } else {
+          input.type = "password";
+          eyeIcon.style.display = "block";
+          eyeOffIcon.style.display = "none";
+        }
+      });
     }
 
     // 回车键提交
-    input?.addEventListener("keypress", (e) => {
+    input.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
-        btn?.click();
+        btn.click();
       }
     });
 
-    btn?.addEventListener("click", async () => {
+    // 解密按钮点击事件
+    let isDecrypting = false;
+    btn.addEventListener("click", async () => {
+      if (isDecrypting) return;
+      
       const password = input.value;
       if (!password) {
         if (errorMessage) {
@@ -186,7 +197,7 @@ const encryptedHtml = await encrypt(html, password);
         return;
       }
 
-      // 禁用按钮，显示加载状态
+      isDecrypting = true;
       btn.disabled = true;
       btn.textContent = "解锁中...";
 
@@ -194,7 +205,6 @@ const encryptedHtml = await encrypt(html, password);
         const html = await decrypt(encrypted, password);
         article.innerHTML = html;
         setItemWithExpire(key, password, 86400);
-        // 隐藏错误消息
         if (errorMessage) {
           errorMessage.style.display = "none";
         }
@@ -203,19 +213,25 @@ const encryptedHtml = await encrypt(html, password);
           errorMessage.textContent = "密码错误，请重新输入。";
           errorMessage.style.display = "block";
         }
-        // 恢复按钮状态
         btn.disabled = false;
         btn.textContent = "解锁文章";
-        // 清空输入框
         input.value = "";
         input.focus();
+      } finally {
+        isDecrypting = false;
       }
     });
 
+    // 延迟自动解密，确保页面先渲染
     const savedPassword = getItemWithExpire(key);
-    if (savedPassword) {
+    if (savedPassword && encrypted) {
       input.value = savedPassword;
-      btn?.click();
+      // 使用更长的延迟，确保页面完全渲染后再解密
+      setTimeout(() => {
+        if (btn && !btn.disabled) {
+          btn.click();
+        }
+      }, 100);
     }
   }
 
@@ -236,7 +252,22 @@ const encryptedHtml = await encrypt(html, password);
     return item.value;
   }
 
-  prepare();
+  // 延迟初始化，确保页面先渲染
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(prepare, 0);
+    });
+  } else {
+    setTimeout(prepare, 0);
+  }
 
-  document.addEventListener("astro:after-swap", prepare);
+  // Astro 页面切换时重新初始化
+  document.addEventListener("astro:after-swap", () => {
+    // 清除初始化标记，允许重新初始化
+    const encryption = document.getElementById("encryption");
+    if (encryption) {
+      encryption.dataset.initialized = "false";
+    }
+    setTimeout(prepare, 0);
+  });
 </script>
