@@ -20,6 +20,7 @@ import IconTwitter from "@/assets/icons/IconTwitter.svg"
 import IconDoc from "@/assets/icons/IconDoc.svg"
 import IconTools from "@/assets/icons/IconTools.svg"
 import IconChat from "@/assets/icons/IconChat.svg"
+import IconEcho from "@/assets/icons/IconEcho.svg"
 import IconSpotify from "@/assets/icons/IconSpotify.svg"
 import { SITE } from "@/config";
 import type { GiscusProps } from "@giscus/react";
@@ -61,6 +62,18 @@ export const SOCIALS: Social[] = [
     icon: IconMail,
   },
   {
+    name: "Spotify",
+    href: "https://open.spotify.com/playlist/4KclVWrNTkpM1sB2pP8ItO",
+    linkTitle: `${SITE.title} on Spotify`,
+    icon: IconSpotify,
+  },
+  {
+    name: "Reddit",
+    href: "https://www.reddit.com/user/hoochanlon/m/chou_xiang/new/",
+    linkTitle: `${SITE.title} on Reddit`,
+    icon: IconReddit,
+  },
+  {
     name: "Wechat",
     href: "./about",
     linkTitle: `${SITE.title} on Wechat`,
@@ -73,16 +86,10 @@ export const SOCIALS: Social[] = [
     icon: IconTwitter,
   },
   {
-    name: "Reddit",
-    href: "https://www.reddit.com/user/hoochanlon/m/chou_xiang/new/",
-    linkTitle: `${SITE.title} on Reddit`,
-    icon: IconReddit,
-  },
-  {
-    name: "Memos",
-    href: "https://memos.hoochanlon.moe/explore",
-    linkTitle: `${SITE.title} on Memos`,
-    icon: IconChat,
+    name: "Echo",
+    href: "https://echo.hoochanlon.moe/explore",
+    linkTitle: `${SITE.title} on Echo`,
+    icon: IconEcho,
   },
 ] as const;
 
