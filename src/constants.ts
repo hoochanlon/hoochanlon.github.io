@@ -1,6 +1,5 @@
 import type { Props } from "astro";
 import IconMail from "@/assets/icons/IconMail.svg";
-import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
@@ -13,10 +12,10 @@ import IconImgbed from "@/assets/icons/IconImgbed.svg"
 import IconTomato from "@/assets/icons/IconTomato.svg"
 import IconPaste from "@/assets/icons/IconPaste.svg"
 import IconMemo from "@/assets/icons/IconMemo.svg"
-import IconSafari from "@/assets/icons/IconSafari.svg"
 import IconRename from "@/assets/icons/IconRename.svg"
 import IconCompressImg from "@/assets/icons/IconCompressImg.svg"
 import IconBluesky from "@/assets/icons/IconBluesky.svg"
+import IconReddit from "@/assets/icons/IconReddit.svg"
 import IconTwitter from "@/assets/icons/IconTwitter.svg"
 import IconDoc from "@/assets/icons/IconDoc.svg"
 import IconTools from "@/assets/icons/IconTools.svg"
@@ -56,10 +55,10 @@ interface DEPLOY {
 
 export const SOCIALS: Social[] = [
   {
-    name: "GitHub",
-    href: "https://github.com/hoochanlon",
-    linkTitle: `${SITE.title} on GitHub`,
-    icon: IconGitHub,
+    name: "Mail",
+    href: "mailto:hoochanlon@outlook.com",
+    linkTitle: `Send an email to ${SITE.title}`,
+    icon: IconMail,
   },
   {
     name: "Wechat",
@@ -68,22 +67,16 @@ export const SOCIALS: Social[] = [
     icon: IconWechat,
   },
   {
-    name: "Mail",
-    href: "mailto:hoochanlon@outlook.com",
-    linkTitle: `Send an email to ${SITE.title}`,
-    icon: IconMail,
+    name: "Twitter",
+    href: "https://hoochanlon.github.io/twitter",
+    linkTitle: `${SITE.title} on Twitter`,
+    icon: IconTwitter,
   },
   {
-    name: "BlueSky",
-    href: "https://bsky.app/profile/hoochanlon.bsky.social",
-    linkTitle: `${SITE.title} on BlueSky`,
-    icon: IconBluesky,
-  },
-  {
-    name: "Spotify",
-    href: "https://bsky.app/profile/hoochanlon.bsky.social",
-    linkTitle: `${SITE.title} on BlueSky`,
-    icon: IconSpotify,
+    name: "Reddit",
+    href: "https://www.reddit.com/user/hoochanlon/m/chou_xiang/new/",
+    linkTitle: `${SITE.title} on Reddit`,
+    icon: IconReddit,
   },
   {
     name: "Memos",
@@ -91,12 +84,6 @@ export const SOCIALS: Social[] = [
     linkTitle: `${SITE.title} on Memos`,
     icon: IconChat,
   },
-  {
-    name: "Telegram",
-    href: "https://t.me/s/at1234560",
-    linkTitle: `${SITE.title} on Telegram`,
-    icon: IconTelegram,
-  }
 ] as const;
 
 export const SHARE_LINKS: Social[] = [
@@ -198,11 +185,5 @@ export const DEPLOY_LINKS: DEPLOY[] = [
     href: "https://memos-worker.hoochanlon.moe",
     linkTitle: `${SITE.title} on memos-worker`,
     icon: IconMemo,
-  },
-  {
-    name: "Twitter",
-    href: "https://hoochanlon.github.io/twitter",
-    linkTitle: `${SITE.title} on Twitter`,
-    icon: IconTwitter,
   },
   ] as const;

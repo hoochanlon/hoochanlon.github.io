@@ -7,7 +7,8 @@ import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconAnalysis from "@/assets/icons/IconAnalysis.svg";
-import IconMemos from "@/assets/icons/IconMemos.svg";
+import IconBookMark from "@/assets/icons/IconBookMark.svg";
+import IconNote from "@/assets/icons/IconNote.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
@@ -124,10 +125,8 @@ const isActive = (path: string) => {
                 "focus-outline flex p-3 sm:p-1",
                 { "[&>svg]:stroke-accent": isActive("/home") },
               ]}
-              ariaLabel="spotify"
-              title="spotify"
             >
-              <IconMemos />
+              <IconBookMark />
               <span class="sr-only">Memos</span>
             </LinkButton>
           </li>
