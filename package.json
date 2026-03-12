@@ -39,20 +39,20 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.7",
     "@pagefind/default-ui": "^1.3.0",
-    "@shikijs/transformers": "^3.23.0",
+    "@shikijs/transformers": "^4.0.2",
     "@tailwindcss/typography": "^0.5.16",
     "@types/lodash.kebabcase": "^4.1.9",
-    "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^10.0.2",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
     "eslint-plugin-astro": "^1.6.0",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "pagefind": "^1.3.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.57.0"
   }
 }
