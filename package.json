@@ -14,18 +14,18 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.1",
-    "@astrojs/react": "^5.0.0",
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/react": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@giscus/react": "^3.1.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.18.1",
     "dayjs": "^1.11.20",
-    "katex": "^0.16.38",
+    "katex": "^0.16.45",
     "lodash.kebabcase": "^4.1.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -34,9 +34,9 @@
     "remark-collapse": "^0.1.2",
     "remark-math": "^6.0.0",
     "remark-toc": "^9.0.0",
-    "satori": "^0.25.0",
+    "satori": "^0.26.0",
     "sharp": "^0.34.2",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
