@@ -1,6 +1,6 @@
 # hoochanlon.github.io
 
-基于 astro paper 构建的 gitHub pages 个人博客。
+基于 astro paper 构建的 gitHub pages 个人博客。过于折腾...
 
 ## hexo-butterfly to astro-paper
 
