@@ -23,6 +23,7 @@ jobs:
         uses: withastro/action@v5  # 更新为最新的 withastro action 版本
         with:
           package-manager: pnpm
+          pnpm-version: 10.22.0
 
   deploy:
     needs: build
