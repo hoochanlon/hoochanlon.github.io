@@ -41,18 +41,18 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@pagefind/default-ui": "^1.5.2",
-    "@shikijs/transformers": "^4.1.0",
-    "@tailwindcss/typography": "^0.5.19",
+    "@shikijs/transformers": "^4.2.0",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/lodash.kebabcase": "^4.1.9",
-    "@typescript-eslint/parser": "^8.59.4",
-    "eslint": "^10.4.0",
+    "@typescript-eslint/parser": "^8.61.1",
+    "eslint": "^10.5.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "pagefind": "^1.5.2",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.59.4"
+    "typescript-eslint": "^8.61.1"
   }
 }
