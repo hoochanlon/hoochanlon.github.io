@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://hoochanlon.github.io", // replace this with your deployed domain
   author: "Chanlon Hoo",
   profile: "https://hoochanlon.github.io",
-  desc: "由Github Action搭建的个人博客，用于写作与记录。",
+  desc: "基于 Astro Paper 构建的 GitHub Pages 个人博客，用于写作与记录。",
   title: "Hoochanlon",
   ogImage: "og.jpg",
   lightAndDarkMode: true,
