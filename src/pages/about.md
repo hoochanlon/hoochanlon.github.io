@@ -13,6 +13,7 @@ showTitle: false
 <br/>
 <!-- <img src="/assets/imgs/"  /> -->
 
+
 AKB48 「恋するフォーチュンクッキー」
 
 <img src="https://hoochanlon.github.io/picx-images-hosting/imgs/Idol/akb48-1.png" />
@@ -28,3 +29,5 @@ AKB48 「恋するフォーチュンクッキー」
 22/7　「曇り空の向こうは晴れている」
 
 <img src="https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/imgs/Idol/22-7-1.png" />
+
+我对内娱不感兴趣...
