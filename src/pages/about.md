@@ -13,6 +13,9 @@ showTitle: false
 <br/>
 <!-- <img src="/assets/imgs/"  /> -->
 
+在短平快的时代，也难消遣过长时间的产品。对内娱不感兴趣...
+
+---
 
 AKB48 「恋するフォーチュンクッキー」
 
@@ -30,4 +33,4 @@ AKB48 「恋するフォーチュンクッキー」
 
 <img src="https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/imgs/Idol/22-7-1.png" />
 
-我对内娱不感兴趣...
+
