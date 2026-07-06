@@ -18,7 +18,7 @@ AKB48 「恋するフォーチュンクッキー」
 <img src="https://hoochanlon.github.io/picx-images-hosting/imgs/Idol/akb48-1.png" />
  -->
 
-在短平快的时代，也难消遣过长时间的产品。对内娱不感兴趣...
+在短平快的时代，也难消遣时间过长的产品。对内娱不感兴趣...
 
 ---
 
