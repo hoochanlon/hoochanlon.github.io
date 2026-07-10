@@ -10,34 +10,37 @@ import {
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
+import { unified } from "@astrojs/markdown-remark";
 import { SITE } from "./src/config";
 import react from "@astrojs/react";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import mdx from "@astrojs/mdx";
 
-// https://astro.build/config
 export default defineConfig({
   site: SITE.website,
   integrations: [sitemap({
     filter: page => SITE.showArchives || !page.endsWith("/archives"),
   }), react(), mdx()],
   markdown: {
-    remarkPlugins: [
-      remarkMath,
-      remarkToc, [remarkCollapse, { test: "Table of contents" }]
-    ],
-    rehypePlugins: [
-      rehypeKatex,
-      [rehypeExternalLinks,
-        {
-          target: "\_blank",
-          rel: ["noopener", "noreferrer", "external"],
-        },
+    processor: unified({
+      remarkPlugins: [
+        remarkMath,
+        remarkToc,
+        [remarkCollapse, { test: "Table of contents" }],
       ],
-    ],
+      rehypePlugins: [
+        rehypeKatex,
+        [
+          rehypeExternalLinks,
+          {
+            target: "_blank",
+            rel: ["noopener", "noreferrer", "external"],
+          },
+        ],
+      ],
+    }),
     shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,
       wrap: false,
