@@ -14,9 +14,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.2.0",
-    "@astrojs/mdx": "^6.0.3",
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/markdown-remark": "^7.2.1",
+    "@astrojs/mdx": "^7.0.3",
+    "@astrojs/react": "^6.0.1",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
     "@giscus/react": "^3.1.0",
@@ -36,7 +36,7 @@
     "remark-collapse": "^0.1.2",
     "remark-math": "^6.0.0",
     "remark-toc": "^9.0.0",
-    "satori": "^0.26.0",
+    "satori": "^0.28.0",
     "sharp": "^0.35.1",
     "tailwindcss": "^4.3.1"
   },
