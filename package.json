@@ -45,15 +45,15 @@
     "@pagefind/default-ui": "^1.5.2",
     "@tailwindcss/typography": "^0.5.20",
     "@types/lodash.kebabcase": "^4.1.9",
-    "@typescript-eslint/parser": "^8.63.0",
-    "eslint": "^10.6.0",
-    "eslint-plugin-astro": "^2.1.1",
+    "@typescript-eslint/parser": "^8.64.0",
+    "eslint": "^10.7.0",
+    "eslint-plugin-astro": "^3.0.0",
     "globals": "^17.7.0",
     "pagefind": "^1.5.2",
     "prettier": "^3.9.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.63.0"
+    "typescript-eslint": "^8.64.0"
   }
 }
