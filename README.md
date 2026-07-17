@@ -16,3 +16,5 @@
     <img width="710" alt="AstroPaper Lighthouse Score" src="public/assets/imgs/lighthouse-score.svg">
   <a>
 </p>
+
+计划更换到 hugo
