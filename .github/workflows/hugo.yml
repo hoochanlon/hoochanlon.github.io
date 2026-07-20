@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: "0.164.0"
-      # 与线上自定义域名一致（Congo 资源用绝对 Permalink）
-      HUGO_BASEURL: "https://blog.hoochanlon.moe/"
+      # 稳定主域名；CSS/JS 已用 RelPermalink，不绑死自定义域
+      HUGO_BASEURL: "https://hoochanlon.github.io/"
     steps:
       - name: Checkout
         uses: actions/checkout@v4

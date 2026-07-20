@@ -1,8 +1,8 @@
 # -- Site Configuration --
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/getting-started/
-# 正式访问域名（自定义域名）；Congo 用 .Permalink 会写成绝对 URL，必须与线上一致
-baseURL = "https://blog.hoochanlon.moe/"
+# 稳定主域名（自定义域会过期）；资源用 RelPermalink 根相对路径，双域名访问也不挂样式
+baseURL = "https://hoochanlon.github.io/"
 theme = "congo"
 defaultContentLanguage = "zh-cn"
 
