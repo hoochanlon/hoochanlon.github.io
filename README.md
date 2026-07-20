@@ -41,4 +41,25 @@ pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 - 本地跑会**改仓库里的原图**；提交后仓库与线上都变小
 - 推 `main` 时 CI 也会压一遍，但只作用于构建产物，**不会**回写 git
 
+### Dependabot
+
+对于个人 Hugo 博客 来说，关掉或大幅收紧 Dependabot 通常更合适。
+
+| 点         | 说明                                          |
+| :--------- | :-------------------------------------------- |
+| 站点本质   | 内容站，不是长期维护的 npm 应用               |
+| 噪音来源   | 主要是 `themes/congo` 的主题开发依赖          |
+| 收益有限   | 合这些 PR 几乎不提升站点安全，还可能弄乱主题  |
+| 真正该管的 | Hugo 版本、主题大版本、根目录 `sharp`（偶尔） |
+
+主题 `themes/congo` 自带 npm 清单时，Dependabot 容易对主题依赖刷 PR，一般**不要合并**（跟上游主题即可）。
+
+少 PR：仓库 **Settings → Code security / Advanced Security → Dependabot**  
+
+- 关 **security updates**（自动开 PR 的主开关）  
+- **version updates** 保持关，不要 Enable  
+- alerts 可留可关  
+
+按钮写 **Disable** = 当前已开；写 **Enable** = 当前已关。旧 PR 需手动 Close。
+
 
