@@ -1,13 +1,16 @@
 {{/*
   主页精选文章
-  数据：front matter featured: true
-  顺序：默认按日期（RegularPages 排序）
+  数据：front matter
+    featured: true
+    featuredWeight: 1   # 可选；越小越靠前；未设则排在有权重的后面，再按站点默认日期序
   配置：homepage.showFeatured / featuredLimit
 */}}
 {{ if .Site.Params.homepage.showFeatured | default false }}
   {{ $sections := .Site.Params.mainSections }}
   {{ $pages := where .Site.RegularPages "Type" "in" $sections }}
   {{ $featured := where $pages "Params.featured" true }}
+  {{/* ByParam：按 featuredWeight 升序；缺省该字段的页面排在后面 */}}
+  {{ $featured = $featured.ByParam "featuredWeight" }}
   {{ $limit := .Site.Params.homepage.featuredLimit | default 5 }}
   {{ if $featured }}
     <h2 class="mt-8 text-2xl font-extrabold">

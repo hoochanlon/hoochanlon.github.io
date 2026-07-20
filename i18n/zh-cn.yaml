@@ -1,3 +1,7 @@
-# 站点 i18n 增量（与主题合并）
+# 站点 i18n 增量（与主题合并；defaultContentLanguage = zh-cn）
 shortcode:
   featured_articles: "精选文章"
+
+article:
+  date: "创建于 {{ .Date }}"
+  date_updated: "更新于 {{ .Date }}"

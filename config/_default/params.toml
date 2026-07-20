@@ -38,9 +38,9 @@ fingerprintAlgorithm = "sha256"
 [homepage]
   layout = "profile" # valid options: page, profile, custom
   showRecent = false
-  recentLimit = 5
+  recentLimit = 10
   showFeatured = true   # 文章 front matter: featured: true
-  featuredLimit = 5
+  featuredLimit = 10     # 精选条数；排序用 front matter featuredWeight（越小越靠前）
 
 [article]
   showDate = true

@@ -1,0 +1,331 @@
+---
+title: "用 Hugo 写日记"
+date: 2019-09-09T18:20:16+0800
+lastmod: 2026-07-20
+draft: false
+slug: "20190909182016"
+categories: ["写作"]
+tags: ["排版","标注"]
+summary: "构建日记内容相关配置说明。"
+featured: true
+featuredWeight: 2
+featureAlt: "本文封面示例"
+coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面与列表缩略图"
+---
+
+## 新建日记
+
+Hugo 不会「猜」你今天该放哪：你给出**内容路径**，它用 `archetypes/default.md` 生成 front matter，再按 `config` 里的 permalink 出站。本站磁盘目录与对外 URL **解耦**。
+
+### 目录约定（作者侧）
+
+```text
+content/posts/
+  {十年桶}/          # 如 2010s、2020s
+    {年}/            # 如 2026
+      {月}/          # 两位数，如 07（2026 起按月归类）
+        YYYY-MM-DD-标题/index.md   # 推荐：page bundle
+        # 或 YYYY-MM-DD-标题.md    # 单文件亦可
+```
+
+| 层 | 作用 | 是否进对外 URL |
+|----|------|----------------|
+| `2010s` / `2020s` | 十年整理桶 | 否 |
+| `2026` | 年 | 否（URL 的年来自 front matter `date`） |
+| `07` | 月（便于本地翻找） | 否 |
+| 文章目录或 `.md` | 正文 | 路径不进 URL；`slug` 进 URL |
+
+十年 / 年 / 月 的 `_index.md` 一律：
+
+```yaml
+build:
+  render: never
+  list: never
+```
+
+只当文件夹说明，不生成独立列表页。对外固定：
+
+```text
+/posts/:year/:slug/   →  例 /posts/2026/20260720124200/
+```
+
+`year` 取文章 `date` 的年份，不是文件夹名。
+
+### 模板会写什么
+
+`archetypes/default.md` 大致生成：
+
+```yaml
+title: "（由文件名推导，可改）"
+date: （创建时刻）
+draft: true          # 默认草稿；hugo 不带 -D 时不发布
+slug: "20060102150405 形态时间戳"
+categories: ["随笔"]
+tags: []
+summary: ""
+featured: false
+```
+
+### 推荐：`create.py`
+
+仓库根目录执行；按 **Asia/Shanghai 当天** 拼路径、补 `_index.md`、写草稿 front matter。
+
+```bash
+python create.py 今日随笔
+```
+
+会先问形态（直接回车 = 单文件，多数无封面日记）：
+
+```text
+生成形态（多数文章无封面选 1）:
+  1) 单文件  2026-07-20-今日随笔.md
+  2) bundle  2026-07-20-今日随笔/index.md   ← 需要 feature 封面图时
+选择 [1/2]:
+```
+
+路径形态：
+
+```text
+# 1 单文件（默认回车）
+content/posts/2020s/2026/07/2026-07-20-今日随笔.md
+
+# 2 bundle（要封面时）
+content/posts/2020s/2026/07/2026-07-20-今日随笔/index.md
+```
+
+之后改 front matter → 写正文：
+
+```bash
+hugo server -D    # draft: true 需 -D
+# 定稿：draft: false
+hugo
+```
+
+不依赖脚本时，在仓库根目录：
+
+```bash
+hugo new content "posts/2020s/2026/07/2026-07-20-今日随笔.md"
+hugo new content "posts/2020s/2026/07/2026-07-20-今日随笔/index.md"
+```
+
+| 步骤 | 做什么 |
+|------|--------|
+| 新建 | `python create.py 标题` → 选单文件或 bundle |
+| 落盘 | 自动 `content/posts/{十年}/{年}/{月}/YYYY-MM-DD-标题…` |
+| 草稿 | 默认 `draft: true`；预览加 `-D` |
+| 发布 | `draft: false` 后 `hugo` |
+| 访问 | `/posts/{date 的年}/{slug}/` |
+
+## 封面图
+
+Congo **不会**去扫仓库根目录或随便一个 `static/` 路径当文章封面。封面来自 **页面资源（page resources）**：图必须和这篇 `index.md` 放在**同一个目录**（page bundle）。
+
+### 本文的实际目录
+
+你现在看到的文首大图、首页精选列表上的小图，就是下面这套结构生成的：
+
+```text
+content/posts/2010s/2019/2026-09-09-用hugo写日记/
+  index.md       # 正文（本文件）
+  feature.jpg    # 文件名里带 feature → 自动当封面 + 列表缩略图
+```
+
+对应 front matter 里只需可选说明文字，**不必写图片路径**：
+
+```yaml
+featureAlt: "本文封面示例"
+coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面与列表缩略图"
+```
+
+主题按文件名匹配资源，逻辑等价于：
+
+```text
+文章目录下的图片
+  ├─ 文件名含 feature  → 列表缩略图 + 文首封面（优先）
+  ├─ 文件名含 cover    → 仅文首封面
+  └─ 文件名含 thumb    → 仅列表缩略图
+```
+
+### 三种图各管什么
+
+{{< callout type="note" >}}
+参考 [Congo：feature / cover / thumb](https://jpanther.github.io/congo/docs/getting-started/#feature-cover-and-thumbnail-images)
+{{< /callout >}}
+
+| 文件名包含 | 列表缩略图 | 文首封面 | 社交分享元数据 |
+|------------|------------|----------|----------------|
+| `feature` | 有 | 有 | 有 |
+| `cover` | 无 | 有 | 视主题而定 |
+| `thumb` | 有 | 无 | 无 |
+
+日常一篇日记只要一张图时：命名为 `feature.jpg` / `feature.png` 即可，列表和正文都用它。
+
+## 嵌入 YouTube 与 X（推文）
+
+Hugo **内置**短代码，写日记时直接嵌即可，不用装插件。下面是可运行的示例（语法 + 渲染结果）。
+
+### YouTube
+
+只需 **视频 ID**（完整链接里 `v=` 或 `youtu.be/` 后面那一段）。
+
+| 完整链接 | 取出 ID |
+|----------|---------|
+| `https://www.youtube.com/watch?v=ZJthWmvUzzc` | `ZJthWmvUzzc` |
+| `https://youtu.be/ZJthWmvUzzc` | `ZJthWmvUzzc` |
+
+写法（二选一）：
+
+```md
+{{</* youtube ZJthWmvUzzc */>}}
+{{</* youtube id="ZJthWmvUzzc" */>}}
+```
+
+实际效果：
+
+{{< youtube ZJthWmvUzzc >}}
+
+### X（原 Twitter）推文
+
+需要两个命名参数：
+
+| 参数 | 含义 | 从哪抄 |
+|------|------|--------|
+| `user` | 账号名（不要 `@`） | 主页 `x.com/DesignReviewed` → `DesignReviewed` |
+| `id` | 推文数字 ID | 推文链接末尾一长串数字 |
+
+例：推文链接
+
+```text
+https://x.com/DesignReviewed/status/1085870671291310081
+         └──── user ────┘         └──────── id ────────┘
+```
+
+写法：
+
+```md
+{{</* x user="DesignReviewed" id="1085870671291310081" */>}}
+```
+
+实际效果：
+
+{{< x user="DesignReviewed" id="1085870671291310081" >}}
+
+## 数学公式（KaTeX）
+
+本页先放一次 **`katex` 短代码**（无参数），Congo 才会加载 KaTeX；之后全文的 `\( \)` / `$$ $$` 都会渲染。
+
+```md
+{{</* katex */>}}
+```
+
+{{< katex >}}
+
+### 行内公式
+
+定界符：`\(` … `\)`（在 Markdown 源码里常写成 `\\(` `\\)`，见下方示例块）。
+
+```tex
+质能关系：\(E = mc^2\)；黄金比 \(\varphi = \dfrac{1+\sqrt{5}}{2}\)
+```
+
+实际效果：质能关系：\(E = mc^2\)；黄金比 \(\varphi = \dfrac{1+\sqrt{5}}{2}\)
+
+### 块级公式
+
+定界符：独立一行的 `$$` … `$$`（或 `\[` … `\]`，见 `config/_default/markup.toml` 的 passthrough）。
+
+```tex
+$$
+\varphi = 1+\frac{1}{1+\frac{1}{1+\frac{1}{1+\cdots}}}
+$$
+```
+
+实际效果：
+
+$$
+\varphi = 1+\frac{1}{1+\frac{1}{1+\frac{1}{1+\cdots}}}
+$$
+
+再举一个日记里常见的「说明型」块公式：
+
+```tex
+$$
+\sum_{k=1}^{n} k = \frac{n(n+1)}{2}
+$$
+```
+
+$$
+\sum_{k=1}^{n} k = \frac{n(n+1)}{2}
+$$
+
+{{< callout type="tip" >}}
+语法参考：[KaTeX 支持的 TeX 函数](https://katex.org/docs/supported.html)。本站已开 Goldmark passthrough，行内 `\(...\)`、块级 `$$...$$` 不会被 Markdown 拆坏。
+{{< /callout >}}
+
+## 时序图（Mermaid）
+
+用 Congo 的 **`mermaid` 短代码**包住 [Mermaid](https://mermaid.js.org/) 文本；主题色会跟站点 `colorScheme` 走。
+
+写法骨架：
+
+```md
+{{</* mermaid */>}}
+sequenceDiagram
+  ...
+{{</* /mermaid */>}}
+```
+
+### 示例：写一篇日记的发布流程
+
+{{< mermaid >}}
+sequenceDiagram
+  autonumber
+  actor 作者
+  participant 磁盘 as content/posts
+  participant Hugo
+  participant 浏览器
+
+  作者->>磁盘: create.py / hugo new（草稿）
+  作者->>磁盘: 改 front matter、写正文
+  作者->>Hugo: hugo server -D
+  Hugo-->>浏览器: 本地预览
+  作者->>磁盘: draft: false
+  作者->>Hugo: hugo
+  Hugo-->>浏览器: 静态页 /posts/{年}/{slug}/
+{{< /mermaid >}}
+
+### 示例：带注释的请求时序
+
+{{< mermaid >}}
+sequenceDiagram
+  participant C as Client
+  participant S as Server
+  participant DB as Database
+
+  C->>+S: GET /posts/2019/xxx/
+  Note right of S: 已是构建好的 HTML
+  S-->>-C: 200 + 静态资源
+  C->>+S: （可选）评论 API
+  S->>+DB: query
+  DB-->>-S: rows
+  S-->>-C: JSON
+{{< /mermaid >}}
+
+常用时序语法备忘：
+
+| 写法 | 含义 |
+|------|------|
+| `A->>B: 消息` | 实线请求 |
+| `B-->>A: 回复` | 虚线响应 |
+| `A->>+B` / `B-->>-A` | 激活 / 结束激活 |
+| `Note right of A: …` | 注释 |
+| `autonumber` | 自动编号 |
+| `loop` / `alt` / `par` | 循环 / 分支 / 并行 |
+
+更多图类型（流程图、类图等）见 [Mermaid 文档](https://mermaid.js.org/intro/)；本站 Congo 文档入口：[短代码 · mermaid](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)。
+
+## 其他配置
+
+* [短代码总览](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)
+* [数学符号示例](https://jpanther.github.io/congo/zh-hans/samples/mathematical-notation/)
+* [图表与流程图示例](https://jpanther.github.io/congo/zh-hans/samples/diagrams-flowcharts/)

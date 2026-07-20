@@ -287,6 +287,18 @@ html.image-zoom-open {
   color: var(--sc-body);
 }
 
+/* not-prose 会吃掉 typography 的 a 样式；正文链接单独补回 */
+.sc-callout__body a {
+  color: var(--sc-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  font-weight: 500;
+}
+
+.sc-callout__body a:hover {
+  opacity: 0.85;
+}
+
 .sc-callout__body > :first-child {
   margin-top: 0;
 }
@@ -487,4 +499,168 @@ html.image-zoom-open {
   .taxonomy-chart--tags .taxonomy-chart__canvas-wrap {
     min-height: 28rem;
   }
+}
+
+/* ---------- 诗词短代码 sc-poem：拼音 + 横/竖排 ---------- */
+.sc-poem {
+  margin: 1.75rem auto;
+  padding: 1.25rem 1rem 1.5rem;
+  max-width: 40rem;
+  border-radius: 0.5rem;
+  background: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-neutral-700));
+}
+
+.dark .sc-poem {
+  background: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-200));
+}
+
+.sc-poem__meta {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sc-poem__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+
+.sc-poem__author {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: rgb(var(--color-neutral-500));
+  letter-spacing: 0.06em;
+}
+
+.dark .sc-poem__author {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-poem__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sc-poem__line {
+  margin: 0;
+  padding: 0.15rem 0;
+  font-size: 1.05rem;
+  line-height: 2.35; /* 给 ruby 留高度 */
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.sc-poem__line--bare {
+  line-height: 1.9;
+}
+
+.sc-poem__gap {
+  height: 0.75rem;
+}
+
+.sc-poem__ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.sc-poem__ruby rt {
+  font-size: 0.55em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgb(var(--color-primary-600));
+  user-select: none;
+}
+
+.dark .sc-poem__ruby rt {
+  color: rgb(var(--color-primary-400));
+}
+
+.sc-poem__punct,
+.sc-poem__latn,
+.sc-poem__char {
+  display: inline;
+}
+
+/* 横排 */
+.sc-poem--h .sc-poem__body {
+  width: 100%;
+}
+
+/*
+ * 竖排（中文传统）：writing-mode: vertical-rl
+ * - 字：上 → 下
+ * - 行/列：右 → 左（DOM 第一句 = 最右列）
+ * 切勿再套 flex row-reverse，会把列序翻反。
+ */
+.sc-poem--v {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  width: fit-content;
+  max-width: 100%;
+  max-height: min(70vh, 36rem); /* 列过高时纵向滚动 */
+  margin-inline: auto;
+  padding: 1.5rem 1.35rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sc-poem--v .sc-poem__meta {
+  display: block;
+  margin: 0;
+  /* block-end 在 vertical-rl 里 = 视觉上的左侧，题名与正文隔开 */
+  margin-block-end: 1.35rem;
+  text-align: center;
+}
+
+.sc-poem--v .sc-poem__title {
+  letter-spacing: 0.2em;
+}
+
+.sc-poem--v .sc-poem__author {
+  margin-top: 0;
+  margin-block-start: 0.5rem;
+}
+
+.sc-poem--v .sc-poem__body {
+  display: block; /* 块级子元素自然按「右→左」成列 */
+  width: auto;
+  align-items: unset;
+  gap: 0;
+}
+
+.sc-poem--v .sc-poem__line {
+  display: block;
+  margin: 0;
+  /* 列间距：下一列在左侧 */
+  margin-block-end: 0.9rem;
+  padding: 0;
+  letter-spacing: 0.18em;
+  line-height: 2.15; /* 给旁注拼音留宽 */
+  text-align: start;
+  white-space: nowrap; /* 一句一列，不中途折行 */
+}
+
+.sc-poem--v .sc-poem__gap {
+  display: block;
+  inline-size: 1em;
+  block-size: 0.55rem; /* 阙/段之间多留一点列距 */
+  margin: 0;
+  margin-block-end: 0.35rem;
+}
+
+/* 竖排注音：落在字的「上侧」= 视觉右侧（旁注） */
+.sc-poem--v .sc-poem__ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.sc-poem--v .sc-poem__ruby rt {
+  font-size: 0.48em;
+  letter-spacing: 0;
+  text-orientation: mixed; /* 拼音保持横读，避免侧躺 */
 }

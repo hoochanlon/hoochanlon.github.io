@@ -1,0 +1,76 @@
+{{/*
+  poem — 诗词 / 词曲容器：拼音注音 + 横排 / 竖排
+
+  参数:
+    title   题名（可选）
+    author  作者 / 朝代（可选）
+    dir     h | v | horizontal | vertical（默认 h）
+    pinyin  true|false 是否按「汉字行 + 拼音行」配对（默认 true）
+
+  正文（pinyin=true）示例:
+    人生无根蒂，飘如陌上尘。
+    rén shēng wú gēn dì piāo rú mò shàng chén
+
+    分散逐风转，此已非常身。
+    fēn sàn zhú fēng zhuǎn cǐ yǐ fēi cháng shēn
+
+  规则:
+    - 空行分段
+    - 非空行两两配对：奇数行为汉字，偶数行为拼音（空格分音节）
+    - 标点不消耗拼音音节
+*/}}
+{{- $title := .Get "title" | default "" -}}
+{{- $author := .Get "author" | default "" -}}
+{{- $dirRaw := .Get "dir" | default "h" | lower -}}
+{{- $dir := "h" -}}
+{{- if or (eq $dirRaw "v") (eq $dirRaw "vertical") (eq $dirRaw "竖") (eq $dirRaw "竖排") -}}
+  {{- $dir = "v" -}}
+{{- end -}}
+
+{{- $usePinyin := true -}}
+{{- with .Get "pinyin" -}}
+  {{- if or (eq . "false") (eq . "0") (eq . false) -}}
+    {{- $usePinyin = false -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $class := printf "sc-poem sc-poem--%s not-prose" $dir -}}
+
+<figure class="{{ $class }}">
+  {{- if or $title $author -}}
+  <header class="sc-poem__meta">
+    {{- with $title -}}
+    <div class="sc-poem__title">{{ . }}</div>
+    {{- end -}}
+    {{- with $author -}}
+    <div class="sc-poem__author">{{ . }}</div>
+    {{- end -}}
+  </header>
+  {{- end -}}
+
+  <div class="sc-poem__body">
+    {{- if not $usePinyin -}}
+      {{- /* 纯文本 / Markdown，无注音 */ -}}
+      <div class="sc-poem__plain">{{ .Inner | markdownify }}</div>
+    {{- else -}}
+      {{- /* 去掉首尾空白，按行处理 */ -}}
+      {{- $raw := trim .Inner "\n\r \t" -}}
+      {{- $lines := split $raw "\n" -}}
+      {{- $buf := slice -}}
+      {{- range $lines -}}
+        {{- $line := trim . "\r \t" -}}
+        {{- if ne $line "" -}}
+          {{- $buf = $buf | append $line -}}
+        {{- else if gt (len $buf) 0 -}}
+          {{- /* 空行：冲刷已缓冲的配对行，并插入段间隔 */ -}}
+          {{- partial "poem-flush.html" (dict "lines" $buf) -}}
+          {{- $buf = slice -}}
+          <div class="sc-poem__gap" aria-hidden="true"></div>
+        {{- end -}}
+      {{- end -}}
+      {{- if gt (len $buf) 0 -}}
+        {{- partial "poem-flush.html" (dict "lines" $buf) -}}
+      {{- end -}}
+    {{- end -}}
+  </div>
+</figure>
