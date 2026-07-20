@@ -1,0 +1,210 @@
+/* —— 站内 shortcode：callout / fold / outdated（GitHub Alerts 色系） —— */
+.sc-callout {
+  /* GitHub 风格：浅底 + 左侧强调条；标签/图标用 accent，正文更中性 */
+  --sc-bg: #f6f8fa;
+  --sc-border: #d0d7de;
+  --sc-accent: #57606a;
+  --sc-body: #24292f;
+  margin: 1.15rem 0;
+  border: 1px solid var(--sc-border);
+  border-left: 0.25rem solid var(--sc-accent);
+  border-radius: 0.375rem;
+  background: var(--sc-bg);
+  color: var(--sc-body);
+  overflow: hidden;
+}
+
+.dark .sc-callout {
+  --sc-bg: #161b22;
+  --sc-border: #30363d;
+  --sc-accent: #8b949e;
+  --sc-body: #c9d1d9;
+}
+
+/* note — 蓝 */
+.sc-callout--note {
+  --sc-bg: #ddf4ff;
+  --sc-border: #54aeff66;
+  --sc-accent: #0969da;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--note {
+  --sc-bg: #0c2d6b33;
+  --sc-border: #1f6feb66;
+  --sc-accent: #2f81f7;
+  --sc-body: #e6edf3;
+}
+
+/* tip — 绿 */
+.sc-callout--tip {
+  --sc-bg: #dafbe1;
+  --sc-border: #4ac26b66;
+  --sc-accent: #1a7f37;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--tip {
+  --sc-bg: #12261e;
+  --sc-border: #3fb95066;
+  --sc-accent: #3fb950;
+  --sc-body: #e6edf3;
+}
+
+/* important — 紫 */
+.sc-callout--important {
+  --sc-bg: #fbefff;
+  --sc-border: #c297ff66;
+  --sc-accent: #8250df;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--important {
+  --sc-bg: #2a1a40;
+  --sc-border: #a371f766;
+  --sc-accent: #a371f7;
+  --sc-body: #e6edf3;
+}
+
+/* warning — 琥珀/黄 */
+.sc-callout--warning {
+  --sc-bg: #fff8c5;
+  --sc-border: #d4a72c66;
+  --sc-accent: #9a6700;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--warning {
+  --sc-bg: #3d2e00;
+  --sc-border: #d2992266;
+  --sc-accent: #d29922;
+  --sc-body: #e6edf3;
+}
+
+/* caution — 红（forbid/danger/critical 别名共用） */
+.sc-callout--caution {
+  --sc-bg: #ffebe9;
+  --sc-border: #ff818266;
+  --sc-accent: #cf222e;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--caution {
+  --sc-bg: #3d1214;
+  --sc-border: #f8514966;
+  --sc-accent: #f85149;
+  --sc-body: #e6edf3;
+}
+
+/* success — 站内扩展（非 GitHub 五类） */
+.sc-callout--success {
+  --sc-bg: #dafbe1;
+  --sc-border: #4ac26b66;
+  --sc-accent: #1a7f37;
+  --sc-body: #1f2328;
+}
+.dark .sc-callout--success {
+  --sc-bg: #12261e;
+  --sc-border: #3fb95066;
+  --sc-accent: #3fb950;
+  --sc-body: #e6edf3;
+}
+
+.sc-callout--neutral {
+  /* 中性灰，沿用默认变量 */
+}
+
+/* 非折叠：标题行（图标+类型名）+ 正文，对齐 GitHub Alerts */
+.sc-callout:not(.sc-callout--fold) {
+  padding: 0.85rem 1rem;
+}
+
+.sc-callout__content {
+  min-width: 0;
+}
+
+.sc-callout__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.sc-callout__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--sc-accent);
+}
+
+.sc-callout__icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sc-callout__title {
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sc-accent);
+}
+
+.sc-callout__body {
+  min-width: 0;
+  color: var(--sc-body);
+}
+
+/* not-prose 会吃掉 typography 的 a 样式；正文链接单独补回 */
+.sc-callout__body a {
+  color: var(--sc-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  font-weight: 500;
+}
+
+.sc-callout__body a:hover {
+  opacity: 0.85;
+}
+
+.sc-callout__body > :first-child {
+  margin-top: 0;
+}
+.sc-callout__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 折叠形态 */
+.sc-callout--fold > .sc-callout__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-weight: 600;
+  color: var(--sc-accent);
+}
+
+.sc-callout--fold > .sc-callout__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sc-callout--fold > .sc-callout__summary::after {
+  content: "";
+  margin-inline-start: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-inline-end: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.75;
+  transition: transform 0.15s ease;
+}
+
+.sc-callout--fold[open] > .sc-callout__summary::after {
+  transform: rotate(225deg);
+  translate: 0 0.15rem;
+}
+
+.sc-callout--fold > .sc-callout__body {
+  padding: 0 1rem 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--sc-border) 70%, transparent);
+}
+
+.sc-callout--fold > .sc-callout__body > :first-child {
+  margin-top: 0.75rem;
+}

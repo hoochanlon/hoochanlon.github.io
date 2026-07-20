@@ -1,0 +1,107 @@
+/* 分类/标签总览 Chart：整块在主栏内水平居中 */
+.taxonomy-chart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 3rem 0 2rem;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+/* 标签：保持原来的整宽点线顶部分隔 */
+.taxonomy-chart--tags {
+  padding-top: 1.5rem;
+  border-top: 1px dotted color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.taxonomy-chart__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
+/* 仅分类：短分隔线居中 */
+.taxonomy-chart__rule {
+  display: block;
+  width: 9rem;
+  max-width: 40%;
+  height: 0;
+  margin: 0 auto 1.25rem;
+  border: 0;
+  border-top: 1px dotted rgba(161, 161, 170, 0.95);
+}
+
+.dark .taxonomy-chart__rule {
+  border-top-color: rgba(113, 113, 122, 0.95);
+}
+
+.taxonomy-chart__title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: rgb(var(--color-neutral-700));
+}
+
+.dark .taxonomy-chart__title {
+  color: rgb(var(--color-neutral-300));
+}
+
+.taxonomy-chart__caption {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  align-self: stretch;
+  margin: 0 0 1rem;
+  padding: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(var(--color-neutral-500));
+}
+
+.dark .taxonomy-chart__caption {
+  color: rgb(var(--color-neutral-400));
+}
+
+.taxonomy-chart__canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
+  margin: 0 auto;
+}
+
+.taxonomy-chart--categories .taxonomy-chart__canvas-wrap {
+  min-height: 22rem;
+  max-width: 42rem;
+}
+
+.taxonomy-chart--tags .taxonomy-chart__canvas-wrap {
+  min-height: 26rem;
+  max-width: 36rem;
+}
+
+.taxonomy-chart canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .taxonomy-chart--tags .taxonomy-chart__canvas-wrap {
+    min-height: 28rem;
+  }
+}

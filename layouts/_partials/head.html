@@ -27,9 +27,14 @@
   {{ $assets.Add "css" (slice $cssScheme) }}
   {{ $cssMain := resources.Get "css/compiled/main.css" }}
   {{ $assets.Add "css" (slice $cssMain) }}
+  {{/* 可选：assets/css/custom.css（说明/兜底）；规则按职责拆在 css/custom/*.css */}}
   {{ $cssCustom := resources.Get "css/custom.css" }}
   {{ if $cssCustom }}
     {{ $assets.Add "css" (slice $cssCustom) }}
+  {{ end }}
+  {{/* Match 按文件名排序；用 10- 20- 前缀固定加载顺序 */}}
+  {{ range resources.Match "css/custom/*.css" }}
+    {{ $assets.Add "css" (slice .) }}
   {{ end }}
   {{ $bundleCSS := $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint $algorithm }}
   <link

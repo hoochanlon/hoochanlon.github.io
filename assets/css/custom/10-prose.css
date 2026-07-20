@@ -1,0 +1,37 @@
+/* 块级公式限制在正文栏宽度内；仍过长时横向滚动，避免盖住 TOC */
+.prose .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* flex 子项默认 min-width:auto 会阻止收缩，导致公式把栏撑破 */
+.prose {
+  min-width: 0;
+}
+
+/*
+ * 正文插图：别让手机竖图按栏宽无限放大
+ * - 横图：仍可接近栏宽（高度通常碰不到上限）
+ * - 竖图/手机截图：受 max-height 约束，宽度随比例收缩并居中（接近 X/微博时间线）
+ */
+.prose img,
+.prose picture img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(70vh, 36rem); /* ≈576px 与 70vh 取小 */
+  margin-inline: auto;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
+.prose figure {
+  text-align: center;
+}
+
+.prose figure > * {
+  margin-inline: auto;
+}
