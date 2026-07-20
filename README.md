@@ -30,9 +30,12 @@ Pages 里若还挂着旧域就 Remove；DNS 记录可顺手删掉。外链仍指
 ## 本地 / 部署
 
 ```bash
-hugo server -D   # 需 Hugo Extended
+hugo server -D          # 需 Hugo Extended
+npm install             # 仅压图脚本需要（生成 package-lock.json 后可提交，CI 会走 npm ci）
+npm run optimize-images # 批量压 content/static/assets 大图（可先 :dry）
 ```
 
-推送 `main` 后由 Actions 发布到 Pages。
+推送 `main` 后 Actions 会先装 `sharp`、跑 `optimize-images`，再 `hugo` 发布。  
+本地若装不了 npm 依赖，可只依赖 CI 压图；源文件仍会在 runner 里被压缩进 `public/`。
 
 

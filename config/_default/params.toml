@@ -58,7 +58,8 @@ fingerprintAlgorithm = "sha256"
   showTableOfContents = true
   showTaxonomies = false
   showWordCount = false
-  showComments = false
+  # 文章页脚 Giscus；单篇 front matter 可 showComments: false 关闭
+  showComments = true
   # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "threads", "telegram", "line", "weibo", "xing", "bluesky"]
    sharingLinks = ["x-twitter","email","bluesky"]
 
@@ -96,3 +97,23 @@ fingerprintAlgorithm = "sha256"
   # bing = ""
   # pinterest = ""
   # yandex = ""
+
+# Giscus 评论（https://giscus.app/zh-CN）
+# 1. 仓库 Settings → General → Features → Discussions 勾选
+# 2. 安装 https://github.com/apps/giscus 到本仓库
+# 3. 打开 giscus.app，选 hoochanlon/hoochanlon.github.io，复制 repo id / category id 填到下面
+[giscus]
+  repo = "hoochanlon/hoochanlon.github.io"
+  repoID = "MDEwOlJlcG9zaXRvcnkxMzIzMjYzMjM="       # 必填，形如 R_kgDO...
+  category = "Announcements"
+  categoryID = "DIC_kwDOB-Mjs84COzES"   # 必填，形如 DIC_kwDO...
+  mapping = "pathname"
+  strict = "0"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "top"
+  lang = "zh-CN"
+  loading = "lazy"
+  # 明暗由脚本读 html.dark，勿再用 preferred_color_scheme（那是跟系统，不跟站点）
+  themeLight = "noborder_light"
+  themeDark = "noborder_dark"

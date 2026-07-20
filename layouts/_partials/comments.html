@@ -1,0 +1,60 @@
+{{- /*
+  Giscus：HTML data-* 用普通插值；JS 字符串必须 jsonify|safeJS，否则引号被转义导致 404/CSP。
+*/ -}}
+{{- with .Site.Params.giscus }}
+  {{- if and .repo .repoID .categoryID }}
+    {{- $light := .themeLight | default "noborder_light" }}
+    {{- $dark := .themeDark | default "noborder_dark" }}
+    <div class="giscus"></div>
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="{{ .repo }}"
+      data-repo-id="{{ .repoID }}"
+      data-category="{{ .category | default `Announcements` }}"
+      data-category-id="{{ .categoryID }}"
+      data-mapping="{{ .mapping | default `pathname` }}"
+      data-strict="{{ .strict | default `0` }}"
+      data-reactions-enabled="{{ .reactionsEnabled | default `1` }}"
+      data-emit-metadata="{{ .emitMetadata | default `0` }}"
+      data-input-position="{{ .inputPosition | default `top` }}"
+      data-theme="{{ $light }}"
+      data-lang="{{ .lang | default `zh-CN` }}"
+      data-loading="{{ .loading | default `lazy` }}"
+      crossorigin="anonymous"
+      async
+    ></script>
+    <script>
+      (function () {
+        var light = {{ $light | jsonify | safeJS }};
+        var dark = {{ $dark | jsonify | safeJS }};
+        function siteTheme() {
+          return document.documentElement.classList.contains("dark") ? dark : light;
+        }
+        function setGiscusTheme() {
+          var frame = document.querySelector("iframe.giscus-frame");
+          if (!frame || !frame.contentWindow) return;
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: siteTheme() } } },
+            "https://giscus.app"
+          );
+        }
+        // 首屏若已是夜间，等 iframe 起来后改主题
+        var done = false;
+        window.addEventListener("message", function (e) {
+          if (e.origin !== "https://giscus.app") return;
+          if (!(e.data && e.data.giscus)) return;
+          if (!done) {
+            done = true;
+            if (document.documentElement.classList.contains("dark")) setGiscusTheme();
+          }
+        });
+        new MutationObserver(setGiscusTheme).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+      })();
+    </script>
+  {{- else }}
+    {{ warnf "[giscus] params.giscus.repoID / categoryID 未配置" }}
+  {{- end }}
+{{- end }}

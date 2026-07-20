@@ -3,9 +3,9 @@
 /resources/
 .hugo_build.lock
 
-# --- 依赖 / 锁文件（本站是 Hugo，不需要 Node 构建）---
+# --- 依赖 / 锁文件（站点本体是 Hugo；sharp 仅用于可选压图脚本）---
 node_modules/
-package-lock.json
+# package-lock.json 提交以便 CI npm ci 可复现
 pnpm-lock.yaml
 yarn.lock
 

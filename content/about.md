@@ -4,6 +4,7 @@ date: 1996-01-01
 description: "了解更多关于我的信息"
 summary: "个人简介与联系方式"
 showAuthor: false
+showComments: false
 ---
 
 <div style="font-size: 32px; line-height: 1.8;">

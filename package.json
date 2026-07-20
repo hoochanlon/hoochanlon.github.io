@@ -1,0 +1,12 @@
+{
+  "name": "hoochanlon-github-io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "optimize-images:dry": "node scripts/optimize-images.mjs --dry-run"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}
