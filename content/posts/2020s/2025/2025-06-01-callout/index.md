@@ -402,3 +402,8 @@ text-decoration: underline wavy red 2px;
             ↓         ↓       ↓    ↓
           "装饰"  "在哪里" "什么样" "什么色" "多粗"
 ```
+
+## 其他配置
+
+* [短代码](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)
+* [富文本](https://jpanther.github.io/congo/samples/rich-content/)
