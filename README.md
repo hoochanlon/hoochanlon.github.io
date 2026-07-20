@@ -1,20 +1,12 @@
 # hoochanlon.github.io
 
-基于 astro paper 构建的 gitHub pages 个人博客。过于折腾...
+不想折腾了博客主题了...
 
-## hexo-butterfly to astro-paper
-
-* hexo butterfly 视频演示：https://www.bilibili.com/video/BV1e8ynBbEBG
-* astro-paper 主题源仓库：https://github.com/satnaing/astro-paper
-
-![AstroPaper](public/assets/imgs/astropaper-og.jpg)
 
 ## lighthouse Score
 
 <p align="center">
   <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fastro-paper.pages.dev%2F&form_factor=desktop">
-    <img width="710" alt="AstroPaper Lighthouse Score" src="public/assets/imgs/lighthouse-score.svg">
+    <img width="710" alt="Lighthouse Score" src="https://cdn.jsdelivr.net/gh/hoochanlon/picx-images-hosting@master/imgs/special/lighthouse-score.svg">
   <a>
 </p>
-
-计划更换到 hugo congo
