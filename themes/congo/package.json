@@ -1,0 +1,85 @@
+{
+  "name": "hugo-congo-theme",
+  "version": "2.14.0",
+  "description": "Congo theme for Hugo",
+  "scripts": {
+    "preinstall": "rimraf assets/lib",
+    "postinstall": "vendor-copy",
+    "assets": "rimraf assets/lib && vendor-copy",
+    "dev": "NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
+    "build": "NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit",
+    "example": "hugo server --bind 0.0.0.0 -p 8008 --source exampleSite --themesDir ../.. --buildDrafts -b http://localhost/congo/ ",
+    "lighthouse": "lhci autorun",
+    "add-icon": "node scripts/index.js add-icon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpanther/congo.git"
+  },
+  "keywords": [
+    "hugo",
+    "hugo-theme",
+    "tailwind",
+    "dark-mode"
+  ],
+  "author": "James Panther",
+  "funding": "https://github.com/sponsors/jpanther",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpanther/congo/issues"
+  },
+  "homepage": "https://github.com/jpanther/congo#readme",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "chart.js": "^4.5.1",
+    "fuse.js": "^7.1.0",
+    "jsdom": "^29.1.1",
+    "katex": "^0.17.0",
+    "mermaid": "^11.15.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "quicklink": "^3.0.1",
+    "rimraf": "^6.1.3",
+    "tailwindcss": "^3.4.19",
+    "vendor-copy": "^3.0.1"
+  },
+  "vendorCopy": [],
+  "devVendorCopy": [
+    {
+      "from": "node_modules/mermaid/dist/mermaid.min.js",
+      "to": "assets/lib/mermaid/mermaid.min.js"
+    },
+    {
+      "from": "node_modules/chart.js/dist/chart.umd.js",
+      "to": "assets/lib/chart/chart.umd.js"
+    },
+    {
+      "from": "node_modules/katex/dist/katex.min.js",
+      "to": "assets/lib/katex/katex.min.js"
+    },
+    {
+      "from": "node_modules/katex/dist/katex.min.css",
+      "to": "assets/lib/katex/katex.min.css"
+    },
+    {
+      "from": "node_modules/katex/dist/contrib/auto-render.min.js",
+      "to": "assets/lib/katex/auto-render.min.js"
+    },
+    {
+      "from": "node_modules/katex/dist/fonts/",
+      "to": "assets/lib/katex/fonts/"
+    },
+    {
+      "from": "node_modules/fuse.js/dist/fuse.min.js",
+      "to": "assets/lib/fuse/fuse.min.js"
+    },
+    {
+      "from": "node_modules/quicklink/dist/quicklink.umd.js",
+      "to": "assets/lib/quicklink/quicklink.umd.js"
+    }
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0"
+  }
+}

@@ -1,0 +1,34 @@
+# -- Site Configuration --
+# Refer to the theme docs for more details about each of these parameters.
+# https://jpanther.github.io/congo/docs/getting-started/
+# GitHub Pages 用户站（username.github.io）根路径
+# CI 里也会用 --baseURL 覆盖；本地 preview 可忽略绝对域名
+baseURL = "https://hoochanlon.github.io/"
+theme = "congo"
+defaultContentLanguage = "zh-cn"
+
+enableRobotsTXT = true
+summaryLength = 0
+
+# 内容可按 2010s/2020s 等十年桶整理；对外 URL 固定为 /posts/年/slug/
+[permalinks]
+  [permalinks.page]
+    posts = "/posts/:year/:slug/"
+
+[pagination]
+  pagerSize = 10
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[privacy]
+  [privacy.vimeo]
+    enableDNT = true
+  [privacy.x]
+    enableDNT = true
+  [privacy.youTube]
+    privacyEnhanced = true
+
+[services]
+  [services.x]
+    disableInlineCSS = true

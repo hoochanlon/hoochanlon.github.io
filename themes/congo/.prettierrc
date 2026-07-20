@@ -1,0 +1,18 @@
+{
+  "plugins": ["prettier-plugin-go-template", "prettier-plugin-tailwindcss"],
+  "goTemplateBracketSpacing": true,
+  "htmlWhitespaceSensitivity": "css",
+  "printWidth": 100,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": ["*.html", "layouts/_default/*.json"],
+      "options": {
+        "parser": "go-template"
+      }
+    }
+  ]
+}

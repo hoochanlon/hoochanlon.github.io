@@ -1,0 +1,69 @@
+{{ if .Get "default" }}
+  <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+    {{- if .Get "link" -}}
+      <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+    {{- end -}}
+
+    {{- $u := urls.Parse (.Get "src") -}}
+    {{- $src := $u.String -}}
+    {{- if not $u.IsAbs -}}
+      {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+        {{- $src = .RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+
+    <img src="{{ $src }}"
+      {{- if or (.Get "alt") (.Get "caption") }}
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+      {{- end -}}
+      {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+      {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+      {{- with .Get "loading" }} loading="{{ . }}"{{ end -}}
+    ><!-- Closing img tag -->
+    {{- if .Get "link" }}</a>{{ end -}}
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+      <figcaption>
+        {{ with (.Get "title") -}}
+          <h4>{{ . }}</h4>
+        {{- end -}}
+        {{- if or (.Get "caption") (.Get "attr") -}}<p>
+          {{- .Get "caption" | markdownify -}}
+          {{- with .Get "attrlink" }}
+            <a href="{{ . }}">
+          {{- end -}}
+          {{- .Get "attr" | markdownify -}}
+          {{- if .Get "attrlink" }}</a>{{ end }}</p>
+        {{- end }}
+      </figcaption>
+    {{- end }}
+  </figure>
+{{ else }}
+  {{ $url := urls.Parse (.Get "src") }}
+  {{ $altText := .Get "alt" }}
+  {{ $caption := .Get "caption" }}
+  {{ $href := .Get "href" }}
+  {{ $class := default "mx-auto my-0 rounded-md" (.Get "class") }}
+
+  {{ $file := $url.Path }}
+  {{ $img := .Page.Resources.GetMatch $file }}
+  {{- if and (not $img) .Page.File }}
+    {{ $path := path.Join .Page.File.Dir $file }}
+    {{ $img = resources.Get $path }}
+  {{ end -}}
+
+  <!-- prettier-ignore -->
+  <figure{{ with $class }} class="{{ . }}"{{ end }}>
+    {{ with $href }}<a href="{{ . }}">{{ end }}
+
+    {{- with $img -}}
+      {{ $lazy := $.Page.Site.Params.enableImageLazyLoading | default true }}
+      {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
+      {{ partial "picture.html" (dict "img" . "alt" $altText "class" $class "lazy" $lazy "webp" $webp) }}
+    {{- else -}}
+      <img src="{{ $url.String }}" alt="{{ $altText }}" class="{{ $class }}"/>
+    {{- end -}}
+
+    {{ with $href }}</a>{{ end }}
+    {{ with $caption }}<figcaption class="text-center">{{ . | markdownify }}</figcaption>{{ end }}
+  </figure>
+{{ end }}

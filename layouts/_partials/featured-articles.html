@@ -1,0 +1,24 @@
+{{/*
+  主页精选文章
+  数据：front matter featured: true
+  顺序：默认按日期（RegularPages 排序）
+  配置：homepage.showFeatured / featuredLimit
+*/}}
+{{ if .Site.Params.homepage.showFeatured | default false }}
+  {{ $sections := .Site.Params.mainSections }}
+  {{ $pages := where .Site.RegularPages "Type" "in" $sections }}
+  {{ $featured := where $pages "Params.featured" true }}
+  {{ $limit := .Site.Params.homepage.featuredLimit | default 5 }}
+  {{ if $featured }}
+    <h2 class="mt-8 text-2xl font-extrabold">
+      {{ with i18n "shortcode.featured_articles" }}
+        {{ . | emojify }}
+      {{ else }}
+        精选文章
+      {{ end }}
+    </h2>
+    {{ range first $limit $featured }}
+      {{ partial "article-link.html" . }}
+    {{ end }}
+  {{ end }}
+{{ end }}

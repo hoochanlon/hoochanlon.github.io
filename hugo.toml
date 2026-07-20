@@ -1,0 +1,3 @@
+# 站点主配置在 config/_default/。
+# 保留此文件仅作 Hugo 根入口提示；勿再写 example.org 之类默认值。
+# baseURL / theme 等请改 config/_default/hugo.toml

@@ -1,0 +1,159 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="{{ .Site.Params.defaultThemeColor | default "#ffffff" }}" />
+  {{/* Title */}}
+  {{ if .IsHome -}}
+    <title>{{ .Site.Title | emojify }}</title>
+    <meta name="title" content="{{ .Site.Title | emojify }}" />
+  {{- else -}}
+    <title>{{ .Title | emojify }} &middot; {{ .Site.Title | emojify }}</title>
+    <meta name="title" content="{{ .Title | emojify }} &middot; {{ .Site.Title | emojify }}" />
+  {{- end }}
+  {{/* Asset bundles */}}
+  {{ $assets := newScratch }}
+  {{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }}
+  {{ $jsAppearance := resources.Get "js/appearance.js" }}
+  {{ $jsAppearance = $jsAppearance | resources.Minify | resources.Fingerprint $algorithm }}
+  <script
+    type="text/javascript"
+    src="{{ $jsAppearance.Permalink }}"
+    integrity="{{ $jsAppearance.Data.Integrity }}"
+  ></script>
+  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (lower .Site.Params.colorScheme | default "congo")) }}
+  {{ if not $cssScheme }}
+    {{ $cssScheme = resources.Get "css/schemes/congo.css" }}
+  {{ end }}
+  {{ $assets.Add "css" (slice $cssScheme) }}
+  {{ $cssMain := resources.Get "css/compiled/main.css" }}
+  {{ $assets.Add "css" (slice $cssMain) }}
+  {{ $cssCustom := resources.Get "css/custom.css" }}
+  {{ if $cssCustom }}
+    {{ $assets.Add "css" (slice $cssCustom) }}
+  {{ end }}
+  {{ $bundleCSS := $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint $algorithm }}
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="{{ $bundleCSS.Permalink }}"
+    integrity="{{ $bundleCSS.Data.Integrity }}"
+  />
+  {{ if .Site.Params.enableSearch | default false }}
+    {{ $jsFuse := resources.Get "lib/fuse/fuse.min.js" }}
+    {{ $jsSearch := resources.Get "js/search.js" }}
+    {{ $assets.Add "js" (slice $jsFuse $jsSearch) }}
+  {{ end }}
+  {{ if .Site.Params.enableQuicklink | default false }}
+    {{ $jsQuicklink := resources.Get "lib/quicklink/quicklink.umd.js" }}
+    {{ $jsQuicklinkInit := resources.Get "js/quicklink.js" }}
+    {{ $assets.Add "js" (slice $jsQuicklink $jsQuicklinkInit) }}
+  {{ end }}
+  {{ if .Site.Params.enableCodeCopy | default false }}
+    {{ $jsCode := resources.Get "js/code.js" }}
+    {{ $assets.Add "js" (slice $jsCode) }}
+  {{ end }}
+  {{ if or (eq .Site.Params.header.layout "hamburger") (eq .Site.Params.header.layout "hybrid") }}
+    {{ $jsMenu := resources.Get "js/menu.js" }}
+    {{ $assets.Add "js" (slice $jsMenu) }}
+  {{ end }}
+  {{ if eq (site.Language.Direction | default "ltr") "rtl" }}
+    {{ $jsRTL := resources.Get "js/rtl.js" }}
+    {{ $assets.Add "js" (slice $jsRTL) }}
+  {{ end }}
+  {{ if $assets.Get "js" }}
+    {{ $bundleJS := $assets.Get "js" | resources.Concat "js/main.bundle.js" | resources.Minify | resources.Fingerprint $algorithm }}
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="{{ $bundleJS.Permalink }}"
+      integrity="{{ $bundleJS.Data.Integrity }}"
+      data-copy="{{ i18n "code.copy" }}"
+      data-copied="{{ i18n "code.copied" }}"
+    ></script>
+  {{ end }}
+  {{/* Metadata */}}
+  <meta
+    name="description"
+    content="{{ with .Description }}
+      {{ . }}
+    {{ else }}
+      {{ if .IsPage }}
+        {{ .Summary }}
+      {{ else }}
+        {{ with .Site.Params.description }}{{ . }}{{ end }}
+      {{ end }}
+    {{ end }}"
+  />
+  {{ with union .Site.Params.keywords .Params.keywords -}}
+    <meta name="keywords" content="{{ delimit . `, ` }}" />
+  {{- end }}
+  {{ with .Site.Params.robots }}
+    <meta name="robots" content="{{ . }}" />
+  {{ end }}
+  {{ with .Params.robots }}
+    <meta name="robots" content="{{ . }}" />
+  {{ end }}
+  {{ if .Params.canonicalUrl }}
+    <link rel="canonical" href="{{ .Params.canonicalUrl }}" />
+  {{ else }}
+    <link rel="canonical" href="{{ .Permalink }}" />
+  {{ end }}
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink ($.Site.Title | emojify) | safeHTML }}
+  {{ end -}}
+  {{/* Icons */}}
+  {{ if templates.Exists "_partials/favicons.html" }}
+    {{ partialCached "favicons.html" .Site }}
+  {{ else }}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
+    <link rel="manifest" href="{{ "site.webmanifest" | relURL }}" />
+  {{ end }}
+  {{/* Site Verification */}}
+  {{ with .Site.Params.verification.google }}
+    <meta name="google-site-verification" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.bing }}
+    <meta name="msvalidate.01" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.pinterest }}
+    <meta name="p:domain_verify" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.yandex }}
+    <meta name="yandex-verification" content="{{ . }}" />
+  {{ end }}
+  {{ with $.Params.externalUrl }}
+    <meta http-equiv="refresh" content="0; url={{ . }}" />
+  {{ end }}
+  {{/* Social */}}
+  {{ partial "opengraph.html" . }}
+  {{ partial "twitter_cards.html" . }}
+  {{/* Schema */}}
+  {{ partial "schema.html" . }}
+  {{/* Me */}}
+  {{ with .Site.Language.Params.Author.name }}
+    <meta name="author" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Language.Params.Author.links }}
+    {{ range $links := . }}
+      {{ range $name, $url := $links }}<link href="{{ $url }}" rel="me" />{{ end }}
+    {{ end }}
+  {{ end }}
+  {{/* Vendor */}}
+  {{ partial "vendor.html" . }}
+  {{/* Analytics */}}
+  {{ partial "analytics.html" . }}
+  {{/* Declare alternates */}}
+  {{- if .IsTranslated -}}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+    {{- range .Translations -}}
+      <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+    {{- end -}}
+  {{- end -}}
+  {{/* Extend head - eg. for custom analytics scripts, etc. */}}
+  {{ if templates.Exists "_partials/extend-head.html" }}
+    {{ partial "extend-head.html" . }}
+  {{ end }}
+</head>

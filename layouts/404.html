@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <div class="flex flex-col items-center text-center">
+    <img
+      src="{{ "img/404.png" | relURL }}"
+      alt="404"
+      class="mb-8 max-h-72 w-auto max-w-full object-contain"
+      width="480"
+      height="360"
+      loading="eager"
+      decoding="async"
+    />
+    <h1 class="mb-3 text-4xl font-extrabold">{{ i18n "error.404_title" | emojify }}</h1>
+    <p class="mb-8 mt-4 text-neutral-400 dark:text-neutral-500">
+      {{ i18n "error.404_error" | emojify }}
+    </p>
+    <div class="prose dark:prose-invert">
+      <p>{{ i18n "error.404_description" | emojify }}</p>
+    </div>
+    <a
+      href="{{ "" | relURL }}"
+      class="mt-10 inline-flex items-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-neutral-50 no-underline hover:bg-primary-500"
+    >
+      返回首页
+    </a>
+  </div>
+{{ end }}

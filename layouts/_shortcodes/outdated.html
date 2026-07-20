@@ -1,0 +1,90 @@
+{{/*
+  outdated — 超过 N 年后显示过期提示（默认满 1 年才显示）
+
+  用法：from / 位置参数填基准日；省略则用文章 date
+  参数：
+    from / since / 位置参数 0：基准日（2025-06-01、2025.6.1、2025/6/1）
+    years：满几年才显示，默认 1（阈值，不是文案里的数字）
+    icon：默认 triangle-exclamation
+  默认文案（数字随实际年龄变）：
+    该内容已超过 X 年，可能已过期，注意甄别
+  有正文则用自定义文案；未到期输出 hidden，访问时再判
+*/}}
+{{- $raw := .Get "from" | default (.Get "since") | default (.Get 0) | default "" -}}
+{{- $thresholdYears := 1 -}}
+{{- with .Get "years" -}}{{- $thresholdYears = int . -}}{{- end -}}
+{{- $icon := .Get "icon" | default "triangle-exclamation" -}}
+
+{{- $base := .Page.Date -}}
+{{- if $raw -}}
+  {{- $norm := $raw | replaceRE `\.` `-` | replaceRE `/` `-` -}}
+  {{- $parts := split $norm "-" -}}
+  {{- if eq (len $parts) 3 -}}
+    {{- $y := index $parts 0 -}}
+    {{- $m := printf "%02d" (int (index $parts 1)) -}}
+    {{- $d := printf "%02d" (int (index $parts 2)) -}}
+    {{- $norm = printf "%s-%s-%s" $y $m $d -}}
+  {{- end -}}
+  {{- $base = time.AsTime $norm -}}
+{{- else if or (not $base) $base.IsZero -}}
+  {{- $base = .Page.Lastmod -}}
+{{- end -}}
+
+{{- $baseUnix := 0 -}}
+{{- $baseLabel := "" -}}
+{{- if and $base (not $base.IsZero) -}}
+  {{- $baseUnix = $base.Unix -}}
+  {{- $baseLabel = $base.Format "2006-01-02" -}}
+{{- end -}}
+
+{{- /* 显示阈值：基准日 + threshold 年 */ -}}
+{{- $deadlineUnix := 0 -}}
+{{- if and $base (not $base.IsZero) -}}
+  {{- $deadlineUnix = ($base.AddDate $thresholdYears 0 0).Unix -}}
+{{- end -}}
+
+{{- /* 实际已满整年数（日历年，非 365 天近似） */ -}}
+{{- $ageYears := 0 -}}
+{{- if and $base (not $base.IsZero) -}}
+  {{- $ageYears = sub now.Year $base.Year -}}
+  {{- if lt $ageYears 0 -}}{{- $ageYears = 0 -}}{{- end -}}
+  {{- $anniv := $base.AddDate $ageYears 0 0 -}}
+  {{- if gt $anniv.Unix now.Unix -}}
+    {{- $ageYears = sub $ageYears 1 -}}
+  {{- end -}}
+  {{- if lt $ageYears 0 -}}{{- $ageYears = 0 -}}{{- end -}}
+{{- end -}}
+
+{{- $show := false -}}
+{{- if and $deadlineUnix (ge now.Unix $deadlineUnix) -}}
+  {{- $show = true -}}
+{{- end -}}
+{{- /* 显示时年龄至少为阈值，避免边界抖动写成 0 年 */ -}}
+{{- if and $show (lt $ageYears $thresholdYears) -}}
+  {{- $ageYears = $thresholdYears -}}
+{{- end -}}
+
+{{- $custom := trim .Inner " \n\r\t" -}}
+{{- $auto := not $custom -}}
+
+<aside
+  class="sc-outdated not-prose"
+  role="note"
+  data-sc-outdated
+  {{- if $baseUnix }} data-base-unix="{{ $baseUnix }}" data-base-label="{{ $baseLabel }}"{{ end }}
+  data-threshold-years="{{ $thresholdYears }}"
+  {{- if $deadlineUnix }} data-deadline-unix="{{ $deadlineUnix }}"{{ end }}
+  {{- if $auto }} data-sc-outdated-auto="1"{{ end }}
+  {{- if not $show }} hidden{{ end }}
+>
+  <span class="sc-outdated__icon" aria-hidden="true">
+    {{- partial "icon.html" $icon -}}
+  </span>
+  <div class="sc-outdated__body prose dark:prose-invert">
+    {{- if $auto -}}
+      该内容已超过 <span data-sc-outdated-age-years>{{ $ageYears }}</span> 年，可能已过期，注意甄别
+    {{- else -}}
+      {{- $custom | markdownify -}}
+    {{- end -}}
+  </div>
+</aside>

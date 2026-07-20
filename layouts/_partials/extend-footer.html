@@ -1,0 +1,28 @@
+{{/* 正文图片点击放大 */}}
+{{ with resources.Get "js/image-zoom.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+
+{{/* 过期提示：按访问时间刷新年龄与显隐 */}}
+{{ with resources.Get "js/outdated.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+
+{{/* 分类/标签总览：加载 Congo 自带 Chart.js（taxonomy 页无 chart shortcode） */}}
+{{ if and (eq .Kind "taxonomy") (.Site.Params.taxonomy.showChart | default true) }}
+  {{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }}
+  {{ $chartLib := resources.Get "lib/chart/chart.umd.js" }}
+  {{ $chartConfig := resources.Get "js/chart.js" }}
+  {{ if and $chartLib $chartConfig }}
+    {{ $chartConfig = $chartConfig | resources.Minify }}
+    {{ $chartJS := slice $chartLib $chartConfig | resources.Concat "js/chart.bundle.js" | resources.Fingerprint $algorithm }}
+    <script
+      defer
+      type="text/javascript"
+      src="{{ $chartJS.RelPermalink }}"
+      integrity="{{ $chartJS.Data.Integrity }}"
+    ></script>
+  {{ end }}
+{{ end }}

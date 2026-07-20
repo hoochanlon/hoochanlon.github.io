@@ -1,0 +1,98 @@
+# -- Theme Options --
+# These options control how the theme functions and allow you to
+# customise the display of your website.
+#
+# Refer to the theme docs for more details about each of these parameters.
+# https://jpanther.github.io/congo/docs/configuration/#theme-parameters
+
+colorScheme = "congo"
+defaultAppearance = "light" # valid options: light or dark
+autoSwitchAppearance = true
+
+defaultThemeColor = "#FFFFFF"
+
+enableSearch = true
+enableCodeCopy = false
+enableImageLazyLoading = true
+enableImageWebp = true
+
+# robots = ""
+fingerprintAlgorithm = "sha256"
+
+[header]
+  layout = "basic" # valid options: basic, hamburger, hybrid, custom
+  # logo = "img/logo.jpg"
+  # logoDark = "img/dark-logo.jpg"
+  showTitle = true
+
+[footer]
+  showCopyright = true
+  # 版权起始年；页脚显示为 © 2018–当前年 作者名
+  copyrightSince = 2018
+  showThemeAttribution = true
+  showAppearanceSwitcher = false
+  showScrollToTop = true
+  # 页脚「Umami 站点分析」公开看板链接
+  umamiShareURL = "https://cloud.umami.is/analytics/us/share/29fuPWtjBtq9fbvm"
+
+[homepage]
+  layout = "profile" # valid options: page, profile, custom
+  showRecent = false
+  recentLimit = 5
+  showFeatured = true   # 文章 front matter: featured: true
+  featuredLimit = 5
+
+[article]
+  showDate = true
+  showDateUpdated = true
+  showAuthor = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = false
+  # editURL = "https://github.com/username/repo/"
+  editAppendPath = true
+  showHeadingAnchors = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = false
+  showTableOfContents = true
+  showTaxonomies = false
+  showWordCount = false
+  showComments = false
+  # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "threads", "telegram", "line", "weibo", "xing", "bluesky"]
+   sharingLinks = ["x-twitter","email","bluesky"]
+
+[list]
+  showBreadcrumbs = false
+  showSummary = true
+  showTableOfContents = false
+  showTaxonomies = false
+  groupByYear = true
+  paginationWidth = 1
+
+[sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+[taxonomy]
+  showTermCount = true
+  showChart = true       # 分类/标签总览页统计图
+  chartTagTopN = 20      # 标签页横条只显示文章数 Top N
+
+[fathomAnalytics]
+  # site = "ABC12345"
+
+[plausibleAnalytics]
+  # domain = "blog.yoursite.com"
+  # event = ""
+  # script = ""
+
+[umamiAnalytics]
+  site = "e8dda199-cdc2-4bb5-8aeb-1a6bd156ada7"
+  region = "eu"  # 官方云：eu 或 us；自托管见下方 script
+  # script = "https://你的域名/script.js"  # 自托管时取消注释并填写
+
+[verification]
+  # google = ""
+  # bing = ""
+  # pinterest = ""
+  # yandex = ""

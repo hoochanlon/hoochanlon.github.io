@@ -1,0 +1,14 @@
+{{ $hasList := or (.Site.Params.homepage.showRecent | default false) (.Site.Params.homepage.showFeatured | default false) }}
+<article
+  class="{{ if not $hasList }}
+    h-full
+  {{ end }} flex flex-col items-center justify-center text-center"
+>
+  {{ partial "profile.html" }}
+  <section class="prose dark:prose-invert">{{ .Content | emojify }}</section>
+</article>
+<section>
+  {{/* 各自开关；两者都开则精选在上、最近在下 */}}
+  {{ partial "featured-articles.html" . }}
+  {{ partial "recent-articles.html" . }}
+</section>

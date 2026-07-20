@@ -1,0 +1,141 @@
+<footer class="py-10 print:hidden">
+  {{/* Footer menu */}}
+  {{ if .Site.Menus.footer }}
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex list-none flex-col sm:flex-row">
+        {{ range .Site.Menus.footer }}
+          {{ if and (eq .Params.action "locale") (or (not page.IsTranslated) (not hugo.IsMultilingual)) }}
+            {{ continue }}
+          {{ end }}
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            {{ if eq .Params.action "search" }}
+              {{ $.Scratch.Add "searchCount" 1 }}
+              {{ if $.Site.Params.enableSearch | default false }}
+                <button
+                  id="search-button-{{ $.Scratch.Get "searchCount" }}"
+                  title="{{ .Title | default (i18n "search.open_button_title") }}"
+                >
+                  {{ with .Params.icon }}
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    >
+                      {{- partial "icon.html" . -}}
+                    </span>
+                  {{- end -}}{{- if .Params.showName | default true -}}
+                    <span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >{{ .Name | markdownify | emojify }}</span
+                    >
+                  {{ end }}
+                </button>
+              {{ end }}
+            {{ else if eq .Params.action "appearance" }}
+              {{ $.Scratch.Add "switchCount" 1 }}
+              <button
+                id="appearance-switcher-{{ $.Scratch.Get "switchCount" }}"
+                type="button"
+                aria-label="appearance switcher"
+              >
+                <span
+                  class="group-dark:hover:text-primary-400 inline transition-colors group-hover:text-primary-600 dark:hidden"
+                  title="{{ i18n "footer.dark_appearance" }}"
+                >
+                  {{ partial "icon.html" "moon" }}
+                </span>
+                <span
+                  class="group-dark:hover:text-primary-400 hidden transition-colors group-hover:text-primary-600 dark:inline"
+                  title="{{ i18n "footer.light_appearance" }}"
+                >
+                  {{ partial "icon.html" "sun" }}
+                </span>
+              </button>
+            {{ else if eq .Params.action "locale" }}
+              {{ $.Scratch.Add "localeCount" 1 }}
+              {{ partial "translations.html" (dict "ctx" . "dir" "up") }}
+            {{ else }}
+              <a
+                href="{{ .URL }}"
+                title="{{ .Title }}"
+                {{ with .Params.rel }}rel="{{ . }}"{{ end }}
+                {{ with .Params.target }}target="{{ . }}"{{ end }}
+                >{{ with .Params.icon }}
+                  <span
+                    class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                  >
+                    {{- partial "icon.html" . -}}
+                  </span>
+                {{- end -}}{{- if .Params.showName | default true -}}
+                  <span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    >{{ .Name | markdownify | emojify }}</span
+                  >
+                {{ end }}</a
+              >
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  {{ end }}
+  <div class="flex items-center justify-between">
+    <div>
+      {{/* Copyright */}}
+      {{ if .Site.Params.footer.showCopyright | default true }}
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          {{- with site.Copyright }}
+            {{ . | emojify | markdownify }}
+          {{- else }}
+            &copy;
+            {{ now.Format "2006" }}
+            {{ .Site.Language.Params.Author.name | markdownify | emojify }}
+          {{- end }}
+        </p>
+      {{ end }}
+      {{/* Theme attribution */}}
+      {{ if .Site.Params.footer.showThemeAttribution | default true }}
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          {{ $hugo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>`
+          }}
+          {{ $congo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>` }}
+          {{ i18n "footer.powered_by" (dict "Hugo" $hugo "Congo" $congo) | safeHTML }}
+        </p>
+      {{ end }}
+    </div>
+    <div class="flex flex-row items-center">
+      {{/* Locale switcher */}}
+      {{ if and (.IsTranslated) (eq ($.Scratch.Get "localeCount") 0) }}
+        <div>
+          {{ partial "translations.html" (dict "ctx" . "dir" "up") }}
+        </div>
+      {{ end }}
+      {{/* Appearance switcher */}}
+      {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+        <div
+          class="{{ if .Site.Params.footer.showScrollToTop | default true -}}
+            me-14
+          {{- end }} cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        >
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              title="{{ i18n "footer.dark_appearance" }}"
+            >
+              {{ partial "icon.html" "moon" }}
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+              title="{{ i18n "footer.light_appearance" }}"
+            >
+              {{ partial "icon.html" "sun" }}
+            </div>
+          </button>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+  {{/* Extend footer - eg. for extra scripts, etc. */}}
+  {{ if templates.Exists "_partials/extend-footer.html" }}
+    {{ partial "extend-footer.html" . }}
+  {{ end }}
+</footer>

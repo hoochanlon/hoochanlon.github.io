@@ -1,0 +1,328 @@
+/*! Congo v2.14.0 | MIT License | https://github.com/jpanther/congo */
+
+@tailwind base;
+@tailwind components;
+
+body a,
+body button {
+  @apply transition-colors;
+}
+
+/* Scale SVG icons to text size */
+.icon svg {
+  @apply h-[1em] w-[1em];
+}
+
+/* Search */
+#search-query::-webkit-search-cancel-button,
+#search-query::-webkit-search-decoration,
+#search-query::-webkit-search-results-button,
+#search-query::-webkit-search-results-decoration {
+  @apply hidden;
+}
+
+/* Hamburger menu */
+body:has(#menu-controller:checked) {
+  @apply h-screen overflow-hidden;
+}
+#menu-button:has(#menu-controller:checked) {
+  @apply invisible;
+}
+#menu-controller:checked ~ #menu-wrapper {
+  @apply visible opacity-100;
+}
+
+/* RTL support */
+.prose blockquote {
+  @apply rtl:border-l-0 rtl:border-r-4 rtl:pr-4;
+}
+.prose ul > li,
+.prose ol > li {
+  @apply rtl:mr-7 rtl:pl-0 rtl:pr-2;
+}
+.prose ol > li:before,
+.prose ul > li:before {
+  @apply rtl:left-auto rtl:right-1;
+}
+.prose thead td:first-child,
+.prose thead th:first-child {
+  @apply rtl:pr-0;
+}
+.prose thead td:last-child,
+.prose thead th:last-child {
+  @apply rtl:pl-0;
+}
+
+/* Adjust first child within prose */
+.prose div.min-w-0.max-w-prose > *:first-child {
+  @apply mt-3;
+}
+
+/* Table of Contents */
+.toc {
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 50px;
+}
+
+.toc ul,
+.toc li {
+  @apply list-none px-0 leading-snug;
+}
+.toc ul ul {
+  @apply ps-4;
+}
+.toc a {
+  @apply font-normal text-neutral-700 dark:text-neutral-400;
+}
+.toc ul > li {
+  @apply rtl:mr-0;
+}
+
+/* Code Copy */
+.highlight-wrapper {
+  @apply block;
+}
+.highlight {
+  @apply relative z-0;
+}
+.highlight:hover > .copy-button {
+  @apply visible;
+}
+.copy-button {
+  @apply invisible absolute right-0 top-0 z-10 w-20 cursor-pointer whitespace-nowrap rounded-bl-md rounded-tr-md bg-neutral-200 py-1 font-mono text-sm text-neutral-700 opacity-90 dark:bg-neutral-600 dark:text-neutral-200;
+}
+.copy-button:hover,
+.copy-button:focus,
+.copy-button:active,
+.copy-button:active:hover {
+  @apply bg-primary-100 dark:bg-primary-600;
+}
+.copy-textarea {
+  @apply absolute -z-10 opacity-5;
+}
+
+/* Fix long KaTeX equations on mobile (see https://katex.org/docs/issues.html#css-customization) */
+.katex-display {
+  overflow: auto hidden;
+}
+
+/* Fix long tables breaking out of article on mobile */
+table {
+  @apply block overflow-auto md:table;
+}
+
+/* Fix long inline code sections breaking out of article on mobile */
+code {
+  word-wrap: break-word; /* All browsers since IE 5.5+ */
+  @apply break-words;
+}
+
+/* -- Chroma Highlight -- */
+/* Background */
+.chroma {
+  @apply rounded-md bg-neutral-50 py-3 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200;
+}
+.chroma pre {
+  @apply m-0 p-0;
+}
+.prose div.chroma {
+  @apply mb-6 mt-6;
+}
+/* LineTable */
+.chroma .lntable {
+  @apply m-0 block w-auto overflow-auto text-base;
+}
+/* LineNumbersTable */
+/* LineNumbers */
+.chroma .lnt,
+.chroma .ln {
+  @apply mr-2 px-2 text-neutral-600 dark:text-neutral-300;
+}
+.chroma .lntd {
+  @apply p-0 align-top;
+}
+.chroma .lntd:last-of-type {
+  @apply w-full;
+}
+/* LineHighlight */
+.chroma .hl {
+  @apply block w-full bg-primary-100 dark:bg-primary-900;
+}
+/* Keyword */
+/* KeywordDeclaration */
+/* KeywordNamespace */
+/* KeywordPseudo */
+/* KeywordReserved */
+/* NameClass */
+/* NameFunctionMagic */
+/* NameNamespace */
+/* NameVariableClass */
+/* Operator */
+.chroma .k,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .nc,
+.chroma .fm,
+.chroma .nn,
+.chroma .vc,
+.chroma .o {
+  @apply text-primary-600 dark:text-primary-300;
+}
+/* KeywordConstant */
+.chroma .kc {
+  @apply font-semibold text-secondary-400 dark:text-secondary-500;
+}
+/* KeywordType */
+/* NameVariable */
+/* NameVariableInstance */
+/* NameVariableMagic */
+/* LiteralNumber */
+/* LiteralNumberBin */
+/* LiteralNumberFloat */
+/* LiteralNumberHex */
+/* LiteralNumberInteger */
+/* LiteralNumberIntegerLong */
+/* LiteralNumberOct */
+.chroma .kt,
+.chroma .nv,
+.chroma .vi,
+.chroma .vm,
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+  @apply text-secondary-400 dark:text-secondary-600;
+}
+/* Name */
+/* NameDecorator */
+/* NameEntity */
+/* NameLabel */
+.chroma .n,
+.chroma .nd,
+.chroma .ni,
+.chroma .nl {
+  @apply text-secondary-900 dark:text-secondary-200;
+}
+/* NameAttribute */
+/* NameBuiltin */
+/* NameBuiltinPseudo */
+/* NameOther */
+/* NameProperty */
+/* NameTag */
+.chroma .na,
+.chroma .nb,
+.chroma .bp,
+.chroma .nx,
+.chroma .py,
+.chroma .nt {
+  @apply text-secondary-800 dark:text-secondary-300;
+}
+/* NameConstant */
+/* NameException */
+/* NameVariableGlobal */
+.chroma .no,
+.chroma .ne,
+.chroma .vg {
+  @apply font-semibold text-secondary-400 dark:text-secondary-500;
+}
+/* NameFunction */
+.chroma .nf {
+  @apply text-secondary-600 dark:text-secondary-500;
+}
+/* Literal */
+/* LiteralDate */
+/* LiteralString */
+/* LiteralStringAffix */
+/* LiteralStringBacktick */
+/* LiteralStringChar */
+/* LiteralStringDelimiter */
+/* LiteralStringDoc */
+/* LiteralStringDouble */
+/* LiteralStringHeredoc */
+/* LiteralStringInterpol */
+/* LiteralStringOther */
+/* LiteralStringSingle */
+/* GenericInserted */
+/* GenericOutput */
+/* GenericPrompt */
+.chroma .l,
+.chroma .ld,
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .s1,
+.chroma .gd,
+.chroma .gi,
+.chroma .go,
+.chroma .gp {
+  @apply text-primary-800 dark:text-primary-400;
+}
+/* LiteralStringEscape */
+.chroma .se {
+  @apply font-semibold text-secondary-400 dark:text-secondary-500;
+}
+/* LiteralStringRegex */
+/* LiteralStringSymbol */
+.chroma .sr,
+.chroma .ss {
+  @apply font-semibold text-primary-800 dark:text-primary-400;
+}
+/* OperatorWord */
+.chroma .ow {
+  @apply font-semibold text-primary-400 dark:text-primary-600;
+}
+/* Comment */
+/* CommentMultiline */
+/* CommentSingle */
+/* CommentSpecial */
+/* CommentPreproc */
+/* CommentPreprocFile */
+.chroma .c,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf {
+  @apply italic text-neutral-500 dark:text-neutral-400;
+}
+/* CommentHashbang */
+.chroma .ch {
+  @apply font-semibold italic text-neutral-500 dark:text-neutral-400;
+}
+/* GenericEmph */
+.chroma .ge {
+  @apply italic;
+}
+/* GenericHeading */
+.chroma .gh {
+  @apply font-semibold text-neutral-500;
+}
+/* GenericStrong */
+.chroma .gs {
+  @apply font-semibold;
+}
+/* GenericSubheading */
+/* GenericTraceback */
+.chroma .gu,
+.chroma .gt {
+  @apply text-neutral-500;
+}
+/* GenericUnderline */
+.chroma .gl {
+  @apply underline;
+}
+
+@tailwind utilities;
