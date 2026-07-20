@@ -41,17 +41,22 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          # 有 package-lock.json 后再开 cache: npm（本地需先 npm install 生成并提交 lock）
+          # 提交 pnpm-lock.yaml 后可加：cache: pnpm
 
       # 构建前压 content/static/assets 大图（不改扩展名；只影响本次 runner 工作区）
       - name: Optimize images
         run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
-          npm run optimize-images
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install; fi
+          pnpm run optimize-images
 
       - name: Setup Pages
         id: pages

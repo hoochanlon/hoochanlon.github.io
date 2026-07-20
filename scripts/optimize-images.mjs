@@ -5,9 +5,9 @@
  * - 不改扩展名、不进 themes/
  *
  * 用法：
- *   npm install
- *   npm run optimize-images
- *   npm run optimize-images -- --dry-run
+ *   pnpm install
+ *   pnpm optimize-images
+ *   pnpm optimize-images:dry
  */
 import fs from "node:fs/promises";
 import path from "node:path";

@@ -30,12 +30,15 @@ Pages 里若还挂着旧域就 Remove；DNS 记录可顺手删掉。外链仍指
 ## 本地 / 部署
 
 ```bash
-hugo server -D          # 需 Hugo Extended
-npm install             # 仅压图脚本需要（生成 package-lock.json 后可提交，CI 会走 npm ci）
-npm run optimize-images # 批量压 content/static/assets 大图（可先 :dry）
+hugo server -D           # 需 Hugo Extended
+pnpm install             # 仅压图需要；生成 pnpm-lock.yaml 后建议提交
+pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 ```
 
-推送 `main` 后 Actions 会先装 `sharp`、跑 `optimize-images`，再 `hugo` 发布。  
-本地若装不了 npm 依赖，可只依赖 CI 压图；源文件仍会在 runner 里被压缩进 `public/`。
+### 图片压缩
+
+- 脚本：`pnpm optimize-images`（sharp；最长边 >1600 会缩小，有明显收益才写回）
+- 本地跑会**改仓库里的原图**；提交后仓库与线上都变小
+- 推 `main` 时 CI 也会压一遍，但只作用于构建产物，**不会**回写 git
 
 

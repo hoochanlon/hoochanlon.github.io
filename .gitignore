@@ -3,10 +3,10 @@
 /resources/
 .hugo_build.lock
 
-# --- 依赖 / 锁文件（站点本体是 Hugo；sharp 仅用于可选压图脚本）---
+# --- 依赖 / 锁文件（站点本体是 Hugo；sharp 仅用于可选压图脚本，用 pnpm）---
 node_modules/
-# package-lock.json 提交以便 CI npm ci 可复现
-pnpm-lock.yaml
+# 提交 pnpm-lock.yaml 以便 CI 可复现；不混用 npm/yarn lock
+package-lock.json
 yarn.lock
 
 # --- 环境与密钥 ---
