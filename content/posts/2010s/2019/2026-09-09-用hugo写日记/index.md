@@ -216,6 +216,63 @@ https://x.com/DesignReviewed/status/1085870671291310081
 
 ![ ](https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEXjkJqXjONyxSBTHJ2qFPN2U7oMvxjIAACmSwAAnUL8Va4InchFarp9j0E.jpg)
 
+## 诗词、注音
+
+写法（`dir=h` 横排 / `dir=v` 竖排）。**注意**：短代码在 Markdown 代码块里仍会被 Hugo 先执行，展示语法时要用 `{{</* … */>}}` 注释掉标签（同 YouTube / X 写法）。
+
+```md
+{{</* poem title="蝶恋花·春景" author="苏轼〔宋代〕" dir="h" */>}}
+花褪残红青杏小。
+huā tuì cán hóng qīng xìng xiǎo
+
+燕子飞时，绿水人家绕。
+yàn zi fēi shí lǜ shuǐ rén jiā rào
+{{</* /poem */>}}
+```
+
+实际效果（横排）：
+
+{{< poem title="蝶恋花·春景" author="苏轼〔宋代〕" dir="h" >}}
+花褪残红青杏小。
+huā tuì cán hóng qīng xìng xiǎo
+
+燕子飞时，绿水人家绕。
+yàn zi fēi shí lǜ shuǐ rén jiā rào
+{{< /poem >}}
+
+```md
+{{</* poem title="蝶恋花·春景" author="苏轼〔宋代〕" dir="v" */>}}
+花褪残红青杏小。
+huā tuì cán hóng qīng xìng xiǎo
+
+燕子飞时，绿水人家绕。
+yàn zi fēi shí lǜ shuǐ rén jiā rào
+{{</* /poem */>}}
+```
+
+实际效果（竖排）：
+
+{{< poem title="蝶恋花·春景" author="苏轼〔宋代〕" dir="v" >}}
+花褪残红青杏小。
+huā tuì cán hóng qīng xìng xiǎo
+
+燕子飞时，绿水人家绕。
+yàn zi fēi shí lǜ shuǐ rén jiā rào
+
+枝上柳绵吹又少，天涯何处无芳草！
+zhī shàng liǔ mián chuī yòu shǎo tiān yá hé chù wú fāng cǎo
+
+墙里秋千墙外道。
+qiáng lǐ qiū qiān qiáng wài dào
+
+墙外行人，墙里佳人笑。
+qiáng wài xíng rén qiáng lǐ jiā rén xiào
+
+笑渐不闻声渐悄，多情却被无情恼。
+xiào jiàn bù wén shēng jiàn qiǎo duō qíng què bèi wú qíng nǎo
+{{< /poem >}}
+
+
 ## 数学公式（KaTeX）
 
 本页先放一次 **`katex` 短代码**（无参数），Congo 才会加载 KaTeX；之后全文的 `\( \)` / `$$ $$` 都会渲染。
