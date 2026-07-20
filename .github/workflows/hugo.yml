@@ -43,13 +43,12 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
+        # 版本只写在 package.json 的 packageManager，避免与 action version 冲突
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
           # 提交 pnpm-lock.yaml 后可加：cache: pnpm
 
       # 构建前压 content/static/assets 大图（不改扩展名；只影响本次 runner 工作区）
