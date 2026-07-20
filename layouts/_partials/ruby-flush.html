@@ -1,0 +1,19 @@
+{{/*
+  将缓冲的非空行两两配对输出为带 ruby 的段落行。
+  入参: dict "lines" []string "lineClass" string
+*/}}
+{{- $lines := .lines -}}
+{{- $lineClass := .lineClass | default "sc-ruby__line" -}}
+{{- $n := len $lines -}}
+{{- range $idx, $line := $lines -}}
+  {{- if eq (mod $idx 2) 0 -}}
+    {{- $next := add $idx 1 -}}
+    {{- if lt $next $n -}}
+      <p class="{{ $lineClass }}">
+        {{- partial "ruby-annotate.html" (dict "hanzi" $line "pinyin" (index $lines $next)) -}}
+      </p>
+    {{- else -}}
+      <p class="{{ $lineClass }} {{ $lineClass }}--bare">{{ $line }}</p>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

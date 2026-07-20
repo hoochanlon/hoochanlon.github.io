@@ -1,36 +1,7 @@
 {{/*
-  汉字行 + 拼音行 → <ruby> 注音行
+  汉字行 + 拼音行 → <ruby> 注音行（诗词容器用）
   入参: dict "hanzi" string "pinyin" string
-  拼音按空白分音节；汉字侧标点 / 空白不消耗音节。
 */}}
-{{- $hanzi := .hanzi -}}
-{{- $pinyin := .pinyin -}}
-{{- $pyClean := replaceRE `[,.!?，。！？、；：·…—\-]` " " $pinyin -}}
-{{- $pyClean = replaceRE `\s+` " " (trim $pyClean " ") -}}
-{{- $syllables := split $pyClean " " -}}
-{{- $si := 0 -}}
-{{- $sylLen := len $syllables -}}
-
 <p class="sc-poem__line">
-{{- range split $hanzi "" -}}
-  {{- $ch := . -}}
-  {{- if ne $ch "" -}}
-    {{- if findRE `^[\s，。！？、；：""''“”‘’（）()【】《》〈〉…—·.,!?;:'"\[\]{}「」『』〔〕]$` $ch -}}
-      <span class="sc-poem__punct">{{ $ch }}</span>
-    {{- else if findRE `^[A-Za-z0-9]$` $ch -}}
-      <span class="sc-poem__latn">{{ $ch }}</span>
-    {{- else -}}
-      {{- $rt := "" -}}
-      {{- if lt $si $sylLen -}}
-        {{- $rt = index $syllables $si -}}
-        {{- $si = add $si 1 -}}
-      {{- end -}}
-      {{- if $rt -}}
-        <ruby class="sc-poem__ruby">{{ $ch }}<rp>(</rp><rt>{{ $rt }}</rt><rp>)</rp></ruby>
-      {{- else -}}
-        <span class="sc-poem__char">{{ $ch }}</span>
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
+  {{- partial "ruby-annotate.html" (dict "hanzi" .hanzi "pinyin" .pinyin) -}}
 </p>

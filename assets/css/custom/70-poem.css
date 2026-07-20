@@ -60,12 +60,14 @@
   height: 0.75rem;
 }
 
-.sc-poem__ruby {
+.sc-poem__ruby,
+.sc-poem .sc-ruby__ruby {
   ruby-position: over;
   ruby-align: center;
 }
 
-.sc-poem__ruby rt {
+.sc-poem__ruby rt,
+.sc-poem .sc-ruby__ruby rt {
   font-size: 0.55em;
   font-weight: 400;
   letter-spacing: 0;
@@ -73,13 +75,17 @@
   user-select: none;
 }
 
-.dark .sc-poem__ruby rt {
+.dark .sc-poem__ruby rt,
+.dark .sc-poem .sc-ruby__ruby rt {
   color: rgb(var(--color-primary-400));
 }
 
 .sc-poem__punct,
 .sc-poem__latn,
-.sc-poem__char {
+.sc-poem__char,
+.sc-poem .sc-ruby__punct,
+.sc-poem .sc-ruby__latn,
+.sc-poem .sc-ruby__char {
   display: inline;
 }
 
@@ -151,12 +157,14 @@
 }
 
 /* 竖排注音：落在字的「上侧」= 视觉右侧（旁注） */
-.sc-poem--v .sc-poem__ruby {
+.sc-poem--v .sc-poem__ruby,
+.sc-poem--v .sc-ruby__ruby {
   ruby-position: over;
   ruby-align: center;
 }
 
-.sc-poem--v .sc-poem__ruby rt {
+.sc-poem--v .sc-poem__ruby rt,
+.sc-poem--v .sc-ruby__ruby rt {
   font-size: 0.48em;
   letter-spacing: 0;
   text-orientation: mixed; /* 拼音保持横读，避免侧躺 */

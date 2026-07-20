@@ -1,0 +1,34 @@
+{{/*
+  汉字串 + 拼音串 → ruby 片段（无外层块标签）
+  入参: dict "hanzi" string "pinyin" string
+  拼音按空白分音节；汉字侧标点 / 空白 / 拉丁数字不消耗音节。
+*/}}
+{{- $hanzi := .hanzi -}}
+{{- $pinyin := .pinyin -}}
+{{- $pyClean := replaceRE `[,.!?，。！？、；：·…—\-]` " " $pinyin -}}
+{{- $pyClean = replaceRE `\s+` " " (trim $pyClean " ") -}}
+{{- $syllables := split $pyClean " " -}}
+{{- $si := 0 -}}
+{{- $sylLen := len $syllables -}}
+
+{{- range split $hanzi "" -}}
+  {{- $ch := . -}}
+  {{- if ne $ch "" -}}
+    {{- if findRE `^[\s，。！？、；：""''“”‘’（）()【】《》〈〉…—·.,!?;:'\"\[\]{}「」『』〔〕]$` $ch -}}
+      <span class="sc-ruby__punct">{{ $ch }}</span>
+    {{- else if findRE `^[A-Za-z0-9]$` $ch -}}
+      <span class="sc-ruby__latn">{{ $ch }}</span>
+    {{- else -}}
+      {{- $rt := "" -}}
+      {{- if lt $si $sylLen -}}
+        {{- $rt = index $syllables $si -}}
+        {{- $si = add $si 1 -}}
+      {{- end -}}
+      {{- if $rt -}}
+        <ruby class="sc-ruby__ruby">{{ $ch }}<rp>(</rp><rt>{{ $rt }}</rt><rp>)</rp></ruby>
+      {{- else -}}
+        <span class="sc-ruby__char">{{ $ch }}</span>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

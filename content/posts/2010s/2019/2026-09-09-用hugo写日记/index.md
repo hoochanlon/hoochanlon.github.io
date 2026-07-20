@@ -218,6 +218,8 @@ https://x.com/DesignReviewed/status/1085870671291310081
 
 ## 诗词、注音
 
+### 诗词容器 `poem`
+
 写法（`dir=h` 横排 / `dir=v` 竖排）。**注意**：短代码在 Markdown 代码块里仍会被 Hugo 先执行，展示语法时要用 `{{</* … */>}}` 注释掉标签（同 YouTube / X 写法）。
 
 ```md
@@ -271,6 +273,43 @@ qiáng wài xíng rén qiáng lǐ jiā rén xiào
 笑渐不闻声渐悄，多情却被无情恼。
 xiào jiàn bù wén shēng jiàn qiǎo duō qíng què bèi wú qíng nǎo
 {{< /poem >}}
+
+### 正文注音 `ruby`
+
+普通段落里不想手写 `<ruby>` 时用。两种模式：
+
+**行内**（嵌进一句话；`py` 按空格分音节，标点不占音节）：
+
+```md
+我喜欢{{</* ruby py="chūn jǐng" */>}}春景{{</* /ruby */>}}胜过秋天。
+```
+
+实际效果：我喜欢{{< ruby py="chūn jǐng" >}}春景{{< /ruby >}}胜过秋天。
+
+也可自闭参数：`{{</* ruby text="春景" py="chūn jǐng" */>}}`。
+
+**段落**（汉字行 + 拼音行两两配对，空行分段；无诗词题名框）：
+
+```md
+{{</* ruby */>}}
+人生天地间，忽如远行客。
+rén shēng tiān dì jiān hū rú yuǎn xíng kè
+
+对此如何不饮，且共欢笑。
+duì cǐ rú hé bù yǐn qiě gòng huān xiào
+{{</* /ruby */>}}
+```
+
+实际效果：
+
+{{< ruby >}}
+人生天地间，忽如远行客。
+rén shēng tiān dì jiān hū rú yuǎn xíng kè
+
+对此如何不饮，且共欢笑。
+duì cǐ rú hé bù yǐn qiě gòng huān xiào
+{{< /ruby >}}
+
 
 
 ## 数学公式（KaTeX）
