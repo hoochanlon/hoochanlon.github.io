@@ -1,0 +1,27 @@
+/* 首页 profile 作者名
+ * - 含汉字：常规系统无衬线（与主题 text-4xl extrabold 一致）
+ * - 否则：CDN 花体 Allura
+ */
+
+.site-author-name {
+  line-height: 1.15;
+}
+
+/* 汉字 / CJK：常规显示 */
+.site-author-name--han {
+  font-family: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-weight: 800;
+  font-size: 2.25rem; /* = text-4xl */
+  letter-spacing: normal;
+}
+
+/* 拉丁名：轻量花体 */
+.site-author-name--script {
+  font-family: "Allura", "Segoe Script", "Apple Chancery", cursive;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  /* 花体视觉字号偏小，略放大对齐 text-4xl 观感 */
+  font-size: 3.25rem;
+}
