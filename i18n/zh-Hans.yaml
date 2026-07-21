@@ -3,5 +3,5 @@ shortcode:
   featured_articles: "精选文章"
 
 article:
-  date: "创建于 {{ .Date }}"
+  date: "发稿于 {{ .Date }}"
   date_updated: "更新于 {{ .Date }}"
