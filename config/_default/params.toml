@@ -56,7 +56,8 @@ fingerprintAlgorithm = "sha256"
   invertPagination = false
   showReadingTime = false
   showTableOfContents = true
-  showTaxonomies = false
+  # 文章标题下显示分类/标签（可点进对应列表）
+  showTaxonomies = true
   showWordCount = false
   # 文章页脚 Giscus；单篇 front matter 可 showComments: false 关闭
   showComments = true
@@ -67,7 +68,8 @@ fingerprintAlgorithm = "sha256"
   showBreadcrumbs = false
   showSummary = true
   showTableOfContents = false
-  showTaxonomies = false
+  # 列表卡片上也显示分类/标签
+  showTaxonomies = true
   groupByYear = true
   paginationWidth = 1
 
