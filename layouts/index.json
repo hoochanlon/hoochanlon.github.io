@@ -1,0 +1,18 @@
+{{- $index := slice -}}
+{{- range .Site.Pages -}}
+  {{- $section := .Site.GetPage "section" .Section -}}
+  {{- $showDate := .Params.showDate | default .Site.Params.article.showDate -}}
+  {{- /* RelPermalink：结果链接始终跟当前访问域名，不绑死 baseURL */ -}}
+  {{- /* content 截断：全文进索引会让 index.json 过大，线上首开易超时/失败 */ -}}
+  {{- $snippet := .Plain | plainify | truncate 400 -}}
+  {{- $index = $index | append (dict
+    "date" (cond (and .IsPage $showDate) (.Date | time.Format (site.Params.dateFormat | default ":date_long")) nil)
+    "title" (.Title | emojify | safeJS)
+    "section" ($section.Title | emojify | safeJS)
+    "summary" (.Summary | emojify | safeJS)
+    "content" ($snippet | emojify | safeJS)
+    "permalink" .RelPermalink
+    )
+  -}}
+{{- end -}}
+{{- $index | jsonify -}}
