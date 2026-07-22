@@ -91,7 +91,7 @@ Piao, J., Zhang, F., Ren, T., Xu, F., Zhou, J., Su, J., Ru, P., & Li, Y. (2025).
 
 诚挚感谢清华大学团队 Piao 等人（2025）在 Nature 旗下开放获取期刊《Humanities and Social Sciences Communications》发表的研究工作。该文献构建的用户立场划分框架构成了本文实证分析的核心基础。该期刊采用开放获取模式，使研究成果可供公众免费阅览，为相关讨论提供了公开、可溯源的数据支撑。
 
-同时，感谢知乎用户“石头蛋子”在 [网络上的男女对立最后会发展成什么样子？](https://www.zhihu.com/question/1927994627014783681/answer/2061803044514407464) 相关回答中提供的观点与启发，以及 [urldecoder.cn](https://www.urldecoder.cn) 对中文编码与解码的支持。
+同时，感谢知乎用户“石头蛋子”在 [网络上的男女对立最后会发展成什么样子？](https://www.zhihu.com/question/1927994627014783681/answer/2061803044514407464) 相关回答中提供的观点与启发，以及 [urldecoder.cn](https://www.urldecoder.cn) 对中文（中国、台湾）编码与解码的支持。
 
 此外，感谢讨论中各位朋友提出的宝贵意见，这些意见帮助笔者关注到话语寄生机会主义亚群体，并进一步完善了全文的思辨链条。
 
