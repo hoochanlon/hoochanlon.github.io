@@ -7,8 +7,6 @@ slug: "20190909182016"
 categories: ["写作"]
 tags: ["排版","标注"]
 summary: "构建日记内容相关配置说明。"
-featured: true
-featuredWeight: 2
 featureAlt: "本文封面示例"
 coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面与列表缩略图"
 ---
