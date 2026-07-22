@@ -5,7 +5,7 @@ lastmod: 2026-07-22
 slug: "20260721192505"
 categories: ["她力量"]
 tags: ["女权"]
-summary: "依托清华 Piao 团队数据，本文梳理女权极化各派主张与算法逻辑，并增析“依附型女权”的话语寄生策略及其反噬效应。"
+summary: "依托 Piao 团队研究数据及相关结论，本文梳理女权极化各派主张与算法逻辑，并增析“依附型女权”的话语寄生策略及其反噬效应。"
 featured: true
 featuredWeight: 2
 coverCaption: "图：https://www.pinterest.com/soniafrontera/women-connecting-women/"

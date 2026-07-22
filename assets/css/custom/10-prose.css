@@ -6,6 +6,11 @@
   padding: 0.25rem 0;
 }
 
+/* 直接粘贴的长 URL 会作为连续文本渲染；允许外链在任意位置断行，避免撑破正文栏 */
+.prose a[href^="http"] {
+  overflow-wrap: anywhere;
+}
+
 /* flex 子项默认 min-width:auto 会阻止收缩，导致公式把栏撑破 */
 .prose {
   min-width: 0;

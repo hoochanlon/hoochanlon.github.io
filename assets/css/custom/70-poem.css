@@ -231,10 +231,3 @@
   ruby-position: over;
   ruby-align: center;
 }
-
-.sc-poem--v .sc-poem__ruby rt,
-.sc-poem--v .sc-ruby__ruby rt {
-  font-size: 0.48em;
-  letter-spacing: 0;
-  text-orientation: mixed; /* 拼音保持横读，避免侧躺 */
-}

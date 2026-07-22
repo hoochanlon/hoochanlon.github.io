@@ -1,0 +1,46 @@
+{{- $platform := .Get "platform" | default "generic" | lower -}}
+{{- $kind := .Get "kind" | default "track" | lower -}}
+{{- $id := .Get "id" | default "" -}}
+{{- $src := .Get "src" | default "" -}}
+{{- $title := .Get "title" | default "Music" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $compact := .Get "compact" | default "false" -}}
+{{- $isCompact := or (eq $compact "true") (eq $compact true) (eq $compact "1") -}}
+{{- $theme := .Get "theme" | default "dark" | lower -}}
+{{- $height := "352" -}}
+{{- if eq $platform "spotify" -}}
+  {{- $height = cond $isCompact "152" "352" -}}
+{{- else if eq $platform "apple" -}}
+  {{- $height = cond $isCompact "175" "450" -}}
+{{- else -}}
+  {{- $height = cond $isCompact "152" "352" -}}
+{{- end -}}
+{{- $themeValue := cond (eq $theme "light") "1" "0" -}}
+{{- $embedSrc := $src -}}
+
+{{- if and (eq $platform "spotify") (ne $id "") -}}
+  {{- $embedSrc = printf "https://open.spotify.com/embed/%s/%s?utm_source=generator&theme=%s" $kind $id $themeValue -}}
+{{- end -}}
+
+{{- if and (eq $platform "apple") (ne $src "") -}}
+  {{- $embedSrc = replace $src "https://music.apple.com/" "https://embed.music.apple.com/" -}}
+{{- end -}}
+
+{{- if ne $embedSrc "" -}}
+  <figure class="sc-music sc-music--{{ $platform }} not-prose">
+    <iframe
+      class="sc-music__embed"
+      src="{{ $embedSrc }}"
+      title="{{ $title }}"
+      loading="lazy"
+      width="100%"
+      height="{{ $height }}"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    {{- if ne $caption "" -}}
+      <figcaption class="sc-music__caption">{{ $caption }}</figcaption>
+    {{- end -}}
+  </figure>
+{{- end -}}

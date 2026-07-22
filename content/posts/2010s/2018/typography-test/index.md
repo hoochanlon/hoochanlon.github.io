@@ -296,3 +296,10 @@ zuì yǎn zhēng kāi yáo wàng péng lái yī bàn yún zhē yī bàn yān má
 (<ruby>時<rt>とき</rt></ruby>は<ruby>流<rt>なが</rt></ruby>れても)
 <ruby>僕<rt>ぼく</rt></ruby>は<ruby>流<rt>なが</rt></ruby>されない
 {{< /poem >}}
+
+{{< music
+  platform="apple"
+  src="https://embed.music.apple.com/cn/song/%E4%BD%95%E5%BA%A6%E7%9B%AE%E3%81%AE%E9%9D%92%E7%A9%BA%E3%81%8B/1537529214"
+  title="何度目の青空か? Type-A - EP"
+  compact="true"
+>}}

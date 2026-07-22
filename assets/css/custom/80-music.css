@@ -1,0 +1,25 @@
+/* ---------- 音乐嵌入 sc-music ---------- */
+.sc-music {
+  margin: 1.75rem 0;
+}
+
+.sc-music__embed {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: #121212;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.sc-music__caption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgb(var(--color-neutral-500));
+}
+
+.dark .sc-music__caption {
+  color: rgb(var(--color-neutral-400));
+}
