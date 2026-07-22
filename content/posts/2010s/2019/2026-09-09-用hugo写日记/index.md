@@ -424,6 +424,33 @@ sequenceDiagram
 
 更多图类型（流程图、类图等）见 [Mermaid 文档](https://mermaid.js.org/intro/)；本站 Congo 文档入口：[短代码 · mermaid](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)。
 
+## 超文本标注
+
+缺点：代码复杂；优点：多样性。
+
+* 波浪线：<span style="text-decoration: wavy underline;color: red;">波浪线</span>，继续普通文本。
+* 下划线：<u>下划线文字</u>
+* 文字下的着重点：这是<span style="text-emphasis: dot; text-emphasis-position: under;">文字下方着重点</span>。
+
+
+```
+# 波浪线，字体红色
+<span style="text-decoration: wavy underline; color: red;">波浪线</span>
+
+
+# 文字下方着重点
+<span style="text-emphasis: dot; text-emphasis-position: under;">文字下方着重点</span>
+```
+
+
+```
+/* 语法：线型 + 样式 + 颜色 + 厚度 */
+text-decoration: underline wavy red 2px;
+            ↓         ↓       ↓    ↓
+          "装饰"  "在哪里" "什么样" "什么色" "多粗"
+```
+
+
 ## 其他配置
 
 * [短代码总览](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)

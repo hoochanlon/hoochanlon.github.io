@@ -52,12 +52,81 @@
   text-align: center;
 }
 
-.sc-poem__line--bare {
-  line-height: 1.9;
+.sc-poem__lyrics {
+  width: 100%;
 }
 
-.sc-poem__gap {
-  height: 0.75rem;
+.sc-poem__lyrics-line {
+  margin: 0;
+  padding: 0.15rem 0;
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.sc-poem__collapse {
+  width: 100%;
+}
+
+.sc-poem__toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sc-poem__details-body {
+  display: none;
+  margin-top: 0.75rem;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__details-body {
+  display: block;
+}
+
+.sc-poem__toggle-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px dashed rgb(var(--color-neutral-300));
+  border-radius: 0.5rem;
+  color: rgb(var(--color-neutral-600));
+}
+
+.sc-poem__toggle-action--collapse {
+  display: none;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__toggle-action--expand {
+  display: none;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__toggle-action--collapse {
+  display: flex;
+}
+
+.dark .sc-poem__toggle-action {
+  border-color: rgb(var(--color-neutral-600));
+  color: rgb(var(--color-neutral-300));
+}
+
+.sc-poem__summary-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.sc-poem__summary-hint {
+  font-size: 0.8rem;
 }
 
 .sc-poem__ruby,

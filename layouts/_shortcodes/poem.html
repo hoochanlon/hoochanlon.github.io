@@ -5,6 +5,7 @@
     title   题名（可选）
     author  作者 / 朝代（可选）
     dir     h | v | horizontal | vertical（默认 h）
+    mode    classic | lyrics（默认 classic）
     pinyin  true|false 是否按「汉字行 + 拼音行」配对（默认 true）
 
   正文（pinyin=true）示例:
@@ -15,12 +16,14 @@
     fēn sàn zhú fēng zhuǎn cǐ yǐ fēi cháng shēn
 
   规则:
-    - 空行分段
-    - 非空行两两配对：奇数行为汉字，偶数行为拼音（空格分音节）
+    - classic: 空行分段，非空行两两配对，适合古典文本整行注音
+    - lyrics: 保留逐行结构，适合现代歌词 + 少量行内 ruby
     - 标点不消耗拼音音节
 */}}
 {{- $title := .Get "title" | default "" -}}
 {{- $author := .Get "author" | default "" -}}
+{{- $mode := .Get "mode" | default "classic" | lower -}}
+{{- $isLyrics := eq $mode "lyrics" -}}
 {{- $dirRaw := .Get "dir" | default "h" | lower -}}
 {{- $dir := "h" -}}
 {{- if or (eq $dirRaw "v") (eq $dirRaw "vertical") (eq $dirRaw "竖") (eq $dirRaw "竖排") -}}
@@ -34,6 +37,22 @@
   {{- end -}}
 {{- end -}}
 
+{{- $collapsed := false -}}
+{{- with .Get "collapsed" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}
+    {{- $collapsed = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $previewStanzas := 2 -}}
+{{- with .Get "previewStanzas" -}}
+  {{- $previewStanzas = int . -}}
+{{- end -}}
+
+{{- $expandLabel := .Get "expandLabel" | default "展开全文" -}}
+{{- $collapseHint := .Get "collapseHint" | default "长诗已折叠，点击继续阅读" -}}
+
+{{- $toggleId := printf "sc-poem-toggle-%s-%d" ($dir | urlize) .Ordinal -}}
 {{- $class := printf "sc-poem sc-poem--%s not-prose" $dir -}}
 
 <figure class="{{ $class }}">
@@ -49,27 +68,133 @@
   {{- end -}}
 
   <div class="sc-poem__body">
-    {{- if not $usePinyin -}}
-      {{- /* 纯文本 / Markdown，无注音 */ -}}
-      <div class="sc-poem__plain">{{ .Inner | markdownify }}</div>
-    {{- else -}}
-      {{- /* 去掉首尾空白，按行处理 */ -}}
+    {{- if $isLyrics -}}
       {{- $raw := trim .Inner "\n\r \t" -}}
       {{- $lines := split $raw "\n" -}}
       {{- $buf := slice -}}
+      {{- $stanzas := slice -}}
       {{- range $lines -}}
         {{- $line := trim . "\r \t" -}}
         {{- if ne $line "" -}}
           {{- $buf = $buf | append $line -}}
         {{- else if gt (len $buf) 0 -}}
-          {{- /* 空行：冲刷已缓冲的配对行，并插入段间隔 */ -}}
-          {{- partial "poem-flush.html" (dict "lines" $buf) -}}
+          {{- $stanzas = $stanzas | append (dict "lines" $buf) -}}
           {{- $buf = slice -}}
-          <div class="sc-poem__gap" aria-hidden="true"></div>
         {{- end -}}
       {{- end -}}
       {{- if gt (len $buf) 0 -}}
-        {{- partial "poem-flush.html" (dict "lines" $buf) -}}
+        {{- $stanzas = $stanzas | append (dict "lines" $buf) -}}
+      {{- end -}}
+
+      {{- $shouldCollapse := and $collapsed (gt (len $stanzas) $previewStanzas) -}}
+
+      {{- if $shouldCollapse -}}
+        <div class="sc-poem__collapse">
+          <input id="{{ $toggleId }}" class="sc-poem__toggle" type="checkbox">
+
+          <div class="sc-poem__preview sc-poem__lyrics">
+            {{- range $idx, $stanza := first $previewStanzas $stanzas -}}
+              {{- range $stanza.lines -}}
+                <p class="sc-poem__lyrics-line">{{ . | safeHTML }}</p>
+              {{- end -}}
+              {{- if lt $idx (sub $previewStanzas 1) -}}
+                <div class="sc-poem__gap" aria-hidden="true"></div>
+              {{- end -}}
+            {{- end -}}
+          </div>
+
+          <div class="sc-poem__details-body sc-poem__lyrics">
+            {{- range $stanza := after $previewStanzas $stanzas -}}
+              <div class="sc-poem__gap" aria-hidden="true"></div>
+              {{- range $stanza.lines -}}
+                <p class="sc-poem__lyrics-line">{{ . | safeHTML }}</p>
+              {{- end -}}
+            {{- end -}}
+          </div>
+
+          <label class="sc-poem__toggle-action sc-poem__toggle-action--expand" for="{{ $toggleId }}">
+            <span class="sc-poem__summary-label">{{ $expandLabel }}</span>
+            <span class="sc-poem__summary-hint">{{ $collapseHint }}</span>
+          </label>
+
+          <label class="sc-poem__toggle-action sc-poem__toggle-action--collapse" for="{{ $toggleId }}">
+            <span class="sc-poem__summary-label">收起全文</span>
+            <span class="sc-poem__summary-hint">返回前 {{ $previewStanzas }} 段预览</span>
+          </label>
+        </div>
+      {{- else -}}
+        <div class="sc-poem__lyrics">
+          {{- range $idx, $stanza := $stanzas -}}
+            {{- range $stanza.lines -}}
+              <p class="sc-poem__lyrics-line">{{ . | safeHTML }}</p>
+            {{- end -}}
+            {{- if lt $idx (sub (len $stanzas) 1) -}}
+              <div class="sc-poem__gap" aria-hidden="true"></div>
+            {{- end -}}
+          {{- end -}}
+        </div>
+      {{- end -}}
+    {{- else if not $usePinyin -}}
+      {{- /* 纯文本 / Markdown，无注音 */ -}}
+      <div class="sc-poem__plain">{{ .Inner | markdownify }}</div>
+    {{- else -}}
+      {{- /* 去掉首尾空白，按段处理 */ -}}
+      {{- $raw := trim .Inner "\n\r \t" -}}
+      {{- $lines := split $raw "\n" -}}
+      {{- $buf := slice -}}
+      {{- $stanzas := slice -}}
+      {{- range $lines -}}
+        {{- $line := trim . "\r \t" -}}
+        {{- if ne $line "" -}}
+          {{- $buf = $buf | append $line -}}
+        {{- else if gt (len $buf) 0 -}}
+          {{- $stanzas = $stanzas | append (dict "lines" $buf) -}}
+          {{- $buf = slice -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if gt (len $buf) 0 -}}
+        {{- $stanzas = $stanzas | append (dict "lines" $buf) -}}
+      {{- end -}}
+
+      {{- $shouldCollapse := and $collapsed (gt (len $stanzas) $previewStanzas) -}}
+
+      {{- if $shouldCollapse -}}
+        <div class="sc-poem__collapse">
+          <input id="{{ $toggleId }}" class="sc-poem__toggle" type="checkbox">
+
+          <div class="sc-poem__preview">
+            {{- range $idx, $stanza := first $previewStanzas $stanzas -}}
+              {{- partial "poem-flush.html" $stanza -}}
+              {{- if lt $idx (sub $previewStanzas 1) -}}
+                <div class="sc-poem__gap" aria-hidden="true"></div>
+              {{- end -}}
+            {{- end -}}
+          </div>
+
+          <div class="sc-poem__details-body">
+            {{- range $idx, $stanza := after $previewStanzas $stanzas -}}
+              <div class="sc-poem__gap" aria-hidden="true"></div>
+              {{- partial "poem-flush.html" $stanza -}}
+            {{- end -}}
+          </div>
+
+          <label class="sc-poem__toggle-action sc-poem__toggle-action--expand" for="{{ $toggleId }}">
+            <span class="sc-poem__summary-label">{{ $expandLabel }}</span>
+            <span class="sc-poem__summary-hint">{{ $collapseHint }}</span>
+          </label>
+
+          <label class="sc-poem__toggle-action sc-poem__toggle-action--collapse" for="{{ $toggleId }}">
+            <span class="sc-poem__summary-label">收起全文</span>
+            <span class="sc-poem__summary-hint">返回前 {{ $previewStanzas }} 段预览</span>
+          </label>
+        </div>
+      {{- else -}}
+        {{- range $idx, $stanza := $stanzas -}}
+          {{- partial "poem-flush.html" $stanza -}}
+          {{- if lt $idx (sub (len $stanzas) 1) -}}
+            <div class="sc-poem__gap" aria-hidden="true"></div>
+          {{- end -}}
+        {{- end -}}
       {{- end -}}
     {{- end -}}
   </div>
