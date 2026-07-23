@@ -1,0 +1,26 @@
+/* 单页标题样式
+ * 通过 front matter: titleStyle: script 启用。
+ */
+
+.page-title-script {
+  font-family: "Parisienne", cursive;
+  font-size: clamp(3.25rem, 8vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+
+.page-title-script + .page-title-kicker {
+  margin-top: -1.5rem;
+}
+
+.page-title-kicker {
+  margin-bottom: 2rem;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.dark .page-title-kicker {
+  color: rgb(var(--color-neutral-400));
+}

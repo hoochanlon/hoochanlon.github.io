@@ -3,7 +3,7 @@ label = "简体中文"
 direction = "ltr"
 weight = 1
 
-title = "无声的多数"
+title = "糊作存笼，点晴即破"
 # 不设置 copyright：页脚用 params.footer.copyrightSince + 当前年 + 站点 title
 
 [params]
