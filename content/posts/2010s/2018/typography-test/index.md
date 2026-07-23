@@ -298,8 +298,11 @@ zuì yǎn zhēng kāi yáo wàng péng lái yī bàn yún zhē yī bàn yān má
 {{< /poem >}}
 
 {{< music
-  platform="apple"
-  src="https://embed.music.apple.com/cn/song/%E4%BD%95%E5%BA%A6%E7%9B%AE%E3%81%AE%E9%9D%92%E7%A9%BA%E3%81%8B/1537529214"
-  title="何度目の青空か? Type-A - EP"
+  platform="spotify"
+  kind="track"
+  id="5BHSWjy2EUK0hyif8LvTgt"
+  title="何度目の青空か?"
   compact="true"
+  theme="light"
+  loading="eager"
 >}}

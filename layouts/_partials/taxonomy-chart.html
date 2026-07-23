@@ -1,6 +1,6 @@
 {{/*
   分类/标签总览页统计图
-  - categories → 横向长条 bar（全部词条）
+  - categories → 散点图 scatter（横轴文章数，纵轴分类）
   - tags       → 饼图 pie（Top N，默认 20）
   - 其它 taxonomy → 竖向 bar
   数据源：.Data.Terms（构建期静态）
@@ -25,7 +25,7 @@
     {{ $chartType := "bar" }}
     {{ $indexAxis := "x" }}
     {{ if eq $plural "categories" }}
-      {{ $indexAxis = "y" }}
+      {{ $chartType = "scatter" }}
     {{ else if eq $plural "tags" }}
       {{ $chartType = "pie" }}
     {{ end }}
@@ -80,6 +80,11 @@
         const chartType = {{ $chartType | jsonify | safeJS }};
         const indexAxis = {{ $indexAxis | jsonify | safeJS }};
         const isPie = chartType === "pie" || chartType === "doughnut";
+        const isScatter = chartType === "scatter";
+        const scatterPoints = labels.map((_, i) => ({
+          x: counts[i],
+          y: labels.length - i,
+        }));
 
         const cssVar = (name, fallback) => {
           const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -101,7 +106,9 @@
         const grid = cssVar("--color-neutral-200", "#e5e5e5");
 
         const wrap = canvas.parentElement;
-        if (chartType === "bar" && indexAxis === "y") {
+        if (isScatter) {
+          wrap.style.height = Math.max(320, labels.length * 38 + 56) + "px";
+        } else if (chartType === "bar" && indexAxis === "y") {
           wrap.style.height = Math.max(320, labels.length * 42 + 56) + "px";
         } else if (isPie) {
           // 图例在下方居中，高度 = 饼图 + 多行图例
@@ -117,14 +124,16 @@
             datasets: [
               {
                 label: "文章数",
-                data: counts,
+                data: isScatter ? scatterPoints : counts,
                 backgroundColor: isPie
                   ? colors
                   : cssVar("--color-primary-300", "#60a5fa"),
                 borderColor: isPie
                   ? colors.map(() => cssVar("--color-primary-500", "#2563eb"))
                   : cssVar("--color-primary-500", "#2563eb"),
-                borderWidth: 1,
+                borderWidth: isScatter ? 2 : 1,
+                pointRadius: isScatter ? 5 : undefined,
+                pointHoverRadius: isScatter ? 7 : undefined,
               },
             ],
           },
@@ -149,6 +158,9 @@
               tooltip: {
                 callbacks: {
                   label: (ctx) => {
+                    if (isScatter) {
+                      return " " + labels[ctx.dataIndex] + "：" + ctx.raw.x + " 篇";
+                    }
                     const n = ctx.raw;
                     return " " + n + " 篇";
                   },
@@ -157,7 +169,31 @@
             },
             scales: isPie
               ? {}
-              : {
+              : isScatter
+                ? {
+                    x: {
+                      beginAtZero: true,
+                      ticks: { color: tick, precision: 0 },
+                      grid: { color: grid },
+                      title: {
+                        display: true,
+                        text: "文章数",
+                        color: tick,
+                      },
+                    },
+                    y: {
+                      min: 0,
+                      max: labels.length + 1,
+                      ticks: {
+                        stepSize: 1,
+                        color: tick,
+                        font: { size: 13 },
+                        callback: (value) => labels[labels.length - value] || "",
+                      },
+                      grid: { color: grid },
+                    },
+                  }
+                : {
                   x: {
                     beginAtZero: true,
                     ticks: { color: tick, precision: 0 },

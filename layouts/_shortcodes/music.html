@@ -4,6 +4,9 @@
 {{- $src := .Get "src" | default "" -}}
 {{- $title := .Get "title" | default "Music" -}}
 {{- $caption := .Get "caption" | default "" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $priority := .Get "priority" | default "auto" | lower -}}
+{{- $preload := .Get "preload" | default "auto" -}}
 {{- $compact := .Get "compact" | default "false" -}}
 {{- $isCompact := or (eq $compact "true") (eq $compact true) (eq $compact "1") -}}
 {{- $theme := .Get "theme" | default "dark" | lower -}}
@@ -27,12 +30,18 @@
 {{- end -}}
 
 {{- if ne $embedSrc "" -}}
+  {{- $shouldPrefetch := or (eq $preload "true") (and (eq $preload "auto") (eq $loading "eager")) -}}
+  {{- $fetchPriority := cond (eq $priority "high") "high" (cond (eq $loading "eager") "high" "auto") -}}
+  {{- if $shouldPrefetch -}}
+    <link rel="prefetch" as="document" href="{{ $embedSrc }}" />
+  {{- end -}}
   <figure class="sc-music sc-music--{{ $platform }} not-prose">
     <iframe
       class="sc-music__embed"
       src="{{ $embedSrc }}"
       title="{{ $title }}"
-      loading="lazy"
+      loading="{{ $loading }}"
+      fetchpriority="{{ $fetchPriority }}"
       width="100%"
       height="{{ $height }}"
       frameborder="0"
