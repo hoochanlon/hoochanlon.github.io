@@ -1,7 +1,7 @@
 {{/*
   分类/标签总览页统计图
-  - categories → 散点图 scatter（横轴文章数，纵轴分类）
-  - tags       → 饼图 pie（Top N，默认 20）
+  - categories → 环形图 doughnut（中心=总文章数，外环=分类占比）
+  - tags       → Pareto 图（Top N，柱形=文章数，折线=累计占比）
   - 其它 taxonomy → 竖向 bar
   数据源：.Data.Terms（构建期静态）
   Chart 库由 extend-footer 在 Kind=taxonomy 时加载
@@ -25,9 +25,9 @@
     {{ $chartType := "bar" }}
     {{ $indexAxis := "x" }}
     {{ if eq $plural "categories" }}
-      {{ $chartType = "scatter" }}
+      {{ $chartType = "doughnut" }}
     {{ else if eq $plural "tags" }}
-      {{ $chartType = "pie" }}
+      {{ $chartType = "pareto" }}
     {{ end }}
 
     {{ $canvasId := printf "taxonomy-chart-%s" $plural }}
@@ -64,15 +64,19 @@
           </p>
         {{ end }}
         <div class="taxonomy-chart__canvas-wrap">
-          <canvas id="{{ $canvasId }}" aria-label="{{ $heading }}" role="img"></canvas>
+          {{ if eq $chartType "sunburst" }}
+            <div id="{{ $canvasId }}" class="taxonomy-chart__sunburst" aria-label="{{ $heading }}" role="img"></div>
+          {{ else }}
+            <canvas id="{{ $canvasId }}" aria-label="{{ $heading }}" role="img"></canvas>
+          {{ end }}
         </div>
       </div>
     </section>
 
     <script type="text/javascript">
       window.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById({{ $canvasId | jsonify | safeJS }});
-        if (!canvas || typeof Chart === "undefined") return;
+        const chartNode = document.getElementById({{ $canvasId | jsonify | safeJS }});
+        if (!chartNode) return;
 
         // jsonify|safeJS：避免 html/template 把 JSON 再包成 JS 字符串
         const labels = {{ $labels | jsonify | safeJS }};
@@ -80,7 +84,16 @@
         const chartType = {{ $chartType | jsonify | safeJS }};
         const indexAxis = {{ $indexAxis | jsonify | safeJS }};
         const isPie = chartType === "pie" || chartType === "doughnut";
+        const isDoughnut = chartType === "doughnut";
         const isScatter = chartType === "scatter";
+        const isPareto = chartType === "pareto";
+        const isSunburst = chartType === "sunburst";
+        const totalCount = counts.reduce((sum, n) => sum + n, 0);
+        let runningCount = 0;
+        const cumulativePercentages = counts.map((n) => {
+          runningCount += n;
+          return totalCount ? Math.round((runningCount / totalCount) * 1000) / 10 : 0;
+        });
         const scatterPoints = labels.map((_, i) => ({
           x: counts[i],
           y: labels.length - i,
@@ -105,11 +118,111 @@
         const tick = cssVar("--color-neutral-500", "#737373");
         const grid = cssVar("--color-neutral-200", "#e5e5e5");
 
-        const wrap = canvas.parentElement;
-        if (isScatter) {
+        const wrap = chartNode.parentElement;
+        if (isSunburst) {
+          wrap.style.height = "360px";
+
+          const ns = "http://www.w3.org/2000/svg";
+          const size = 360;
+          const center = size / 2;
+          const innerRadius = 58;
+          const outerRadius = 150;
+          const labelRadius = 118;
+          const toRadians = (degrees) => ((degrees - 90) * Math.PI) / 180;
+          const point = (radius, degrees) => ({
+            x: center + radius * Math.cos(toRadians(degrees)),
+            y: center + radius * Math.sin(toRadians(degrees)),
+          });
+          const arcPath = (start, end) => {
+            const outerStart = point(outerRadius, start);
+            const outerEnd = point(outerRadius, end);
+            const innerEnd = point(innerRadius, end);
+            const innerStart = point(innerRadius, start);
+            const largeArc = end - start > 180 ? 1 : 0;
+            return [
+              "M", outerStart.x, outerStart.y,
+              "A", outerRadius, outerRadius, 0, largeArc, 1, outerEnd.x, outerEnd.y,
+              "L", innerEnd.x, innerEnd.y,
+              "A", innerRadius, innerRadius, 0, largeArc, 0, innerStart.x, innerStart.y,
+              "Z",
+            ].join(" ");
+          };
+          const svgEl = (name, attrs = {}, text = "") => {
+            const node = document.createElementNS(ns, name);
+            Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+            if (text) node.textContent = text;
+            return node;
+          };
+
+          const svg = svgEl("svg", {
+            viewBox: "0 0 " + size + " " + size,
+            role: "img",
+            "aria-label": "分类旭日图",
+          });
+          let angle = 0;
+          counts.forEach((count, i) => {
+            const start = angle;
+            const end = angle + (count / totalCount) * 360;
+            const middle = (start + end) / 2;
+            const segment = svgEl("path", {
+              d: arcPath(start, end),
+              fill: colors[i],
+              stroke: cssVar("--color-neutral-50", "#fafafa"),
+              "stroke-width": "2",
+              tabindex: "0",
+            });
+            segment.appendChild(svgEl("title", {}, labels[i] + "：" + count + " 篇"));
+            svg.appendChild(segment);
+
+            if (end - start >= 18) {
+              const labelPoint = point(labelRadius, middle);
+              const label = svgEl("text", {
+                x: labelPoint.x,
+                y: labelPoint.y,
+                "text-anchor": "middle",
+                "dominant-baseline": "middle",
+                fill: tick,
+                "font-size": "12",
+              }, labels[i]);
+              svg.appendChild(label);
+            }
+            angle = end;
+          });
+          svg.appendChild(svgEl("circle", {
+            cx: center,
+            cy: center,
+            r: innerRadius - 8,
+            fill: cssVar("--color-neutral-50", "#fafafa"),
+            stroke: grid,
+            "stroke-width": "1",
+          }));
+          svg.appendChild(svgEl("text", {
+            x: center,
+            y: center - 6,
+            "text-anchor": "middle",
+            fill: cssVar("--color-neutral-700", "#404040"),
+            "font-size": "15",
+            "font-weight": "700",
+          }, "分类"));
+          svg.appendChild(svgEl("text", {
+            x: center,
+            y: center + 14,
+            "text-anchor": "middle",
+            fill: tick,
+            "font-size": "12",
+          }, totalCount + " 篇"));
+          chartNode.replaceChildren(svg);
+          return;
+        }
+
+        if (typeof Chart === "undefined") return;
+
+        if (isPareto) {
+          wrap.style.height = "360px";
+        } else if (isScatter) {
           wrap.style.height = Math.max(320, labels.length * 38 + 56) + "px";
         } else if (chartType === "bar" && indexAxis === "y") {
-          wrap.style.height = Math.max(320, labels.length * 42 + 56) + "px";
+          wrap.style.height = Math.max(360, labels.length * 34 + 56) + "px";
         } else if (isPie) {
           // 图例在下方居中，高度 = 饼图 + 多行图例
           wrap.style.height = Math.max(420, 280 + Math.ceil(labels.length / 3) * 28) + "px";
@@ -117,11 +230,51 @@
           wrap.style.height = "320px";
         }
 
-        new Chart(canvas, {
-          type: chartType,
-          data: {
-            labels,
-            datasets: [
+        const centerTextPlugin = {
+          id: "taxonomyCenterText",
+          beforeDraw: (chart) => {
+            if (!isDoughnut) return;
+            const { ctx, chartArea } = chart;
+            const centerX = (chartArea.left + chartArea.right) / 2;
+            const centerY = (chartArea.top + chartArea.bottom) / 2;
+            ctx.save();
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = cssVar("--color-neutral-700", "#404040");
+            ctx.font = "700 15px system-ui, sans-serif";
+            ctx.fillText("分类", centerX, centerY - 8);
+            ctx.fillStyle = tick;
+            ctx.font = "12px system-ui, sans-serif";
+            ctx.fillText(totalCount + " 篇", centerX, centerY + 12);
+            ctx.restore();
+          },
+        };
+
+        const datasets = isPareto
+          ? [
+              {
+                type: "bar",
+                label: "文章数",
+                data: counts,
+                yAxisID: "count",
+                backgroundColor: cssVar("--color-primary-300", "#60a5fa"),
+                borderColor: cssVar("--color-primary-500", "#2563eb"),
+                borderWidth: 1,
+              },
+              {
+                type: "line",
+                label: "累计占比",
+                data: cumulativePercentages,
+                yAxisID: "percentage",
+                borderColor: cssVar("--color-primary-600", "#1d4ed8"),
+                backgroundColor: cssVar("--color-primary-600", "#1d4ed8"),
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.25,
+              },
+            ]
+          : [
               {
                 label: "文章数",
                 data: isScatter ? scatterPoints : counts,
@@ -135,16 +288,24 @@
                 pointRadius: isScatter ? 5 : undefined,
                 pointHoverRadius: isScatter ? 7 : undefined,
               },
-            ],
+            ];
+
+        new Chart(chartNode, {
+          type: isPareto ? "bar" : chartType,
+          data: {
+            labels,
+            datasets,
           },
+          plugins: isDoughnut ? [centerTextPlugin] : [],
           options: {
             indexAxis,
             responsive: true,
             maintainAspectRatio: false,
+            cutout: isDoughnut ? "62%" : undefined,
             layout: { padding: isPie ? 8 : 4 },
             plugins: {
               legend: {
-                display: isPie,
+                display: isPie || isPareto,
                 // 底部居中：标题与饼心同一中轴，避免右侧图例造成“字不居中”
                 position: "bottom",
                 align: "center",
@@ -158,6 +319,12 @@
               tooltip: {
                 callbacks: {
                   label: (ctx) => {
+                    if (isPareto && ctx.dataset.yAxisID === "percentage") {
+                      return " 累计占比：" + ctx.raw + "%";
+                    }
+                    if (isPareto) {
+                      return " " + labels[ctx.dataIndex] + "：" + ctx.raw + " 篇";
+                    }
                     if (isScatter) {
                       return " " + labels[ctx.dataIndex] + "：" + ctx.raw.x + " 篇";
                     }
@@ -169,7 +336,49 @@
             },
             scales: isPie
               ? {}
-              : isScatter
+              : isPareto
+                ? {
+                    x: {
+                      ticks: {
+                        color: tick,
+                        maxRotation: 45,
+                        minRotation: 45,
+                        autoSkip: false,
+                        font: { size: 11 },
+                      },
+                      grid: { color: "transparent" },
+                    },
+                    count: {
+                      type: "linear",
+                      position: "left",
+                      beginAtZero: true,
+                      ticks: { color: tick, precision: 0 },
+                      grid: { color: grid },
+                      title: {
+                        display: true,
+                        text: "文章数",
+                        color: tick,
+                      },
+                    },
+                    percentage: {
+                      type: "linear",
+                      position: "right",
+                      beginAtZero: true,
+                      min: 0,
+                      max: 100,
+                      ticks: {
+                        color: tick,
+                        callback: (value) => value + "%",
+                      },
+                      grid: { drawOnChartArea: false },
+                      title: {
+                        display: true,
+                        text: "累计占比",
+                        color: tick,
+                      },
+                    },
+                  }
+                : isScatter
                 ? {
                     x: {
                       beginAtZero: true,
