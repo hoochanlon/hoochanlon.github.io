@@ -1,0 +1,124 @@
+/* ---------- 手机截图对比 sc-phone-shots ---------- */
+.sc-phone-shots {
+  margin: 1.75rem auto;
+  max-width: 100%;
+}
+
+.sc-phone-shots__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--sc-phone-shots-columns, 2), minmax(0, 1fr));
+  gap: var(--sc-phone-shots-gap, 0.9rem);
+  align-items: start;
+}
+
+.sc-phone-shots__item {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+}
+
+.sc-phone-shots__grid img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: var(--sc-phone-shots-max-height, 34rem);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.85rem;
+  object-fit: contain;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+  cursor: zoom-in;
+}
+
+.dark .sc-phone-shots__grid img {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+}
+
+.sc-phone-shots__fallback {
+  display: none;
+  min-height: 8rem;
+  place-items: center;
+  padding: 1rem;
+  border: 1px dashed rgb(var(--color-neutral-300));
+  border-radius: 0.85rem;
+  background: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.dark .sc-phone-shots__fallback {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-phone-shots__item.is-broken .sc-phone-shots__fallback,
+.sc-phone-shots__item--invalid .sc-phone-shots__fallback {
+  display: grid;
+}
+
+.sc-phone-shots__caption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgb(var(--color-neutral-500));
+}
+
+.dark .sc-phone-shots__caption {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-phone-shots--weibo {
+  max-width: 40rem;
+}
+
+.sc-phone-shots--weibo .sc-phone-shots__grid {
+  align-items: stretch;
+}
+
+.sc-phone-shots--weibo .sc-phone-shots__item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.55rem;
+  background: rgb(var(--color-neutral-100));
+}
+
+.dark .sc-phone-shots--weibo .sc-phone-shots__item {
+  background: rgb(var(--color-neutral-800));
+}
+
+.sc-phone-shots--weibo .sc-phone-shots__grid img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  border-radius: 0;
+  object-fit: cover;
+  box-shadow: none;
+}
+
+.sc-phone-shots--weibo .sc-phone-shots__fallback {
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+@media (max-width: 420px) {
+  .sc-phone-shots__grid {
+    gap: 0.65rem;
+  }
+
+  .sc-phone-shots__grid img {
+    max-height: min(var(--sc-phone-shots-max-height, 34rem), 68vh);
+    border-radius: 0.65rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .sc-phone-shots--compare .sc-phone-shots__grid {
+    grid-template-columns: 1fr;
+  }
+}

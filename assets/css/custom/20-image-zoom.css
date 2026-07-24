@@ -103,6 +103,62 @@ html.image-zoom-open {
   outline: none;
 }
 
+.image-zoom-nav {
+  position: fixed;
+  top: 50%;
+  z-index: 101;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 2.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.image-zoom-nav--prev {
+  left: 1rem;
+}
+
+.image-zoom-nav--next {
+  right: 1rem;
+}
+
+.image-zoom-nav:hover,
+.image-zoom-nav:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  outline: none;
+}
+
+.image-zoom-nav[hidden],
+.image-zoom-overlay:not(.has-gallery) .image-zoom-nav {
+  display: none !important;
+}
+
+.image-zoom-counter {
+  position: fixed;
+  top: 0.9rem;
+  left: 50%;
+  z-index: 101;
+  transform: translateX(-50%);
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.image-zoom-overlay:not(.has-gallery) .image-zoom-counter {
+  display: none;
+}
+
 @keyframes image-zoom-fade {
   from {
     opacity: 0;
@@ -119,6 +175,20 @@ html.image-zoom-open {
     white-space: normal;
     text-align: center;
     max-width: 90vw;
+  }
+
+  .image-zoom-nav {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 2rem;
+  }
+
+  .image-zoom-nav--prev {
+    left: 0.4rem;
+  }
+
+  .image-zoom-nav--next {
+    right: 0.4rem;
   }
 }
 

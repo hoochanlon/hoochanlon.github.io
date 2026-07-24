@@ -1,5 +1,5 @@
 {{ $img := .img }}
-{{ $alt := .alt }}
+{{ $alt := .alt | default "" | strings.TrimSpace }}
 {{ $class := .class }}
 {{ $lazy := .lazy }}
 {{ $webp := .webp }}

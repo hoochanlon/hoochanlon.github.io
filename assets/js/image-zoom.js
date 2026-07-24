@@ -5,11 +5,19 @@
   const MAX_SCALE = 8;
   const CLICK_STEP = 1.4; // 每次点击放大倍率
   const WHEEL_STEP = 0.12;
+  const WHEEL_NAV_THRESHOLD = 90;
+  const WHEEL_NAV_RELEASE = 4;
 
   let overlay = null;
   let panel = null;
   let full = null;
+  let counter = null;
+  let prevBtn = null;
+  let nextBtn = null;
   let lastFocus = null;
+
+  let gallery = [];
+  let currentIndex = -1;
 
   let scale = 1;
   let tx = 0;
@@ -19,12 +27,104 @@
   let moved = false;
   let dragStartX = 0;
   let dragStartY = 0;
+  let dragDx = 0;
+  let dragDy = 0;
   let originTx = 0;
   let originTy = 0;
 
   // 双指缩放
   let pinchStartDist = 0;
   let pinchStartScale = 1;
+
+  let wheelNavDx = 0;
+  let wheelNavLocked = false;
+  let wheelNavLockedAt = 0;
+
+  function getImageSrc(img) {
+    return img.currentSrc || img.getAttribute("src") || "";
+  }
+
+  function getImageTitle(img) {
+    return img.getAttribute("title") || img.getAttribute("aria-label") || img.alt || "";
+  }
+
+  function toGalleryItem(img) {
+    return {
+      img,
+      src: getImageSrc(img),
+      alt: img.alt || "",
+      title: getImageTitle(img),
+    };
+  }
+
+  function getGalleryFor(img) {
+    const phoneShots = img.closest(".sc-phone-shots");
+    if (!phoneShots) {
+      return [toGalleryItem(img)].filter((item) => item.src);
+    }
+
+    return Array.from(phoneShots.querySelectorAll("img"))
+      .filter(isZoomable)
+      .map(toGalleryItem)
+      .filter((item) => item.src);
+  }
+
+  function updateNav() {
+    const total = gallery.length;
+    const canNavigate = total > 1;
+    if (overlay) overlay.classList.toggle("has-gallery", canNavigate);
+    if (counter) counter.textContent = canNavigate ? `${currentIndex + 1} / ${total}` : "";
+    if (prevBtn) prevBtn.hidden = !canNavigate;
+    if (nextBtn) nextBtn.hidden = !canNavigate;
+  }
+
+  function freezeFitSize() {
+    if (!full) return;
+    // 先按 CSS max 约束布局，再读实际显示尺寸
+    full.style.width = "";
+    full.style.height = "";
+    full.style.maxWidth = "min(96vw, 100%)";
+    full.style.maxHeight = "92vh";
+    // 强制 reflow
+    void full.offsetWidth;
+    const w = full.getBoundingClientRect().width;
+    const h = full.getBoundingClientRect().height;
+    if (w > 0 && h > 0) {
+      full.style.width = `${w}px`;
+      full.style.height = `${h}px`;
+      full.style.maxWidth = "none";
+      full.style.maxHeight = "none";
+    }
+  }
+
+  function showAt(index) {
+    if (!full || gallery.length === 0) return;
+    currentIndex = (index + gallery.length) % gallery.length;
+    const item = gallery[currentIndex];
+
+    full.removeAttribute("style");
+    full.classList.remove("is-zoomed", "is-dragging");
+    wheelNavDx = 0;
+    wheelNavLocked = true;
+    wheelNavLockedAt = Date.now();
+    resetView();
+    full.src = item.src;
+    full.alt = item.alt;
+    full.title = item.title;
+
+    if (full.complete) {
+      freezeFitSize();
+    } else {
+      full.addEventListener("load", freezeFitSize, { once: true });
+    }
+
+    updateNav();
+  }
+
+  function go(delta) {
+    if (gallery.length <= 1) return;
+    showAt(currentIndex + delta);
+  }
 
   function clamp(n, min, max) {
     return Math.min(max, Math.max(min, n));
@@ -78,6 +178,9 @@
     overlay = null;
     panel = null;
     full = null;
+    counter = null;
+    prevBtn = null;
+    nextBtn = null;
     document.documentElement.classList.remove(OPEN_CLASS);
     document.removeEventListener("keydown", onKeydown);
     if (lastFocus && typeof lastFocus.focus === "function") {
@@ -88,12 +191,27 @@
     scale = 1;
     tx = 0;
     ty = 0;
+    gallery = [];
+    currentIndex = -1;
+    wheelNavDx = 0;
+    wheelNavLocked = false;
+    wheelNavLockedAt = 0;
   }
 
   function onKeydown(e) {
     if (e.key === "Escape") {
       e.preventDefault();
       close();
+      return;
+    }
+    if (e.key === "ArrowLeft" && scale <= 1.01) {
+      e.preventDefault();
+      go(-1);
+      return;
+    }
+    if (e.key === "ArrowRight" && scale <= 1.01) {
+      e.preventDefault();
+      go(1);
       return;
     }
     if (!full) return;
@@ -113,7 +231,7 @@
   }
 
   function openFrom(img) {
-    const src = img.currentSrc || img.getAttribute("src");
+    const src = getImageSrc(img);
     if (!src) return;
 
     close();
@@ -121,48 +239,25 @@
     scale = 1;
     tx = 0;
     ty = 0;
+    gallery = getGalleryFor(img);
+    currentIndex = Math.max(
+      0,
+      gallery.findIndex((item) => item.img === img || item.src === src)
+    );
 
     overlay = document.createElement("div");
     overlay.className = "image-zoom-overlay";
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
-    overlay.setAttribute("aria-label", "图片预览，点击图片继续放大，滚轮缩放，拖拽平移");
+    overlay.setAttribute("aria-label", "图片预览，左右切换，点击图片继续放大，滚轮缩放，拖拽平移");
 
     panel = document.createElement("div");
     panel.className = "image-zoom-panel";
 
     full = document.createElement("img");
     full.className = "image-zoom-full";
-    full.src = src;
-    full.alt = img.alt || "";
     full.decoding = "async";
     full.draggable = false;
-
-    /** 加载后锁定「适配视口」的像素尺寸，后续只靠 transform 放大 */
-    function freezeFitSize() {
-      if (!full) return;
-      // 先按 CSS max 约束布局，再读实际显示尺寸
-      full.style.width = "";
-      full.style.height = "";
-      full.style.maxWidth = "min(96vw, 100%)";
-      full.style.maxHeight = "92vh";
-      // 强制 reflow
-      void full.offsetWidth;
-      const w = full.getBoundingClientRect().width;
-      const h = full.getBoundingClientRect().height;
-      if (w > 0 && h > 0) {
-        full.style.width = `${w}px`;
-        full.style.height = `${h}px`;
-        full.style.maxWidth = "none";
-        full.style.maxHeight = "none";
-      }
-    }
-
-    if (full.complete) {
-      freezeFitSize();
-    } else {
-      full.addEventListener("load", freezeFitSize, { once: true });
-    }
 
     const hint = document.createElement("div");
     hint.className = "image-zoom-hint";
@@ -174,20 +269,49 @@
     closeBtn.setAttribute("aria-label", "关闭预览");
     closeBtn.textContent = "×";
 
+    prevBtn = document.createElement("button");
+    prevBtn.type = "button";
+    prevBtn.className = "image-zoom-nav image-zoom-nav--prev";
+    prevBtn.setAttribute("aria-label", "上一张图片");
+    prevBtn.textContent = "‹";
+
+    nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    nextBtn.className = "image-zoom-nav image-zoom-nav--next";
+    nextBtn.setAttribute("aria-label", "下一张图片");
+    nextBtn.textContent = "›";
+
+    counter = document.createElement("div");
+    counter.className = "image-zoom-counter";
+    counter.setAttribute("aria-live", "polite");
+
     panel.appendChild(full);
     overlay.appendChild(closeBtn);
+    overlay.appendChild(prevBtn);
+    overlay.appendChild(nextBtn);
+    overlay.appendChild(counter);
     overlay.appendChild(hint);
     overlay.appendChild(panel);
     document.body.appendChild(overlay);
 
     document.documentElement.classList.add(OPEN_CLASS);
     document.addEventListener("keydown", onKeydown);
+    showAt(currentIndex);
     closeBtn.focus();
-    applyTransform();
 
     closeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       close();
+    });
+
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      go(-1);
+    });
+
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      go(1);
     });
 
     // 点遮罩空白关闭；点图不关
@@ -210,11 +334,47 @@
       zoomAt(e.clientX, e.clientY, scale * CLICK_STEP);
     });
 
-    // 滚轮缩放（锚点为指针）
+    // 触控板横向手势翻图；纵向滚动继续缩放（锚点为指针）
     overlay.addEventListener(
       "wheel",
       (e) => {
         e.preventDefault();
+
+        const absX = Math.abs(e.deltaX);
+        const absY = Math.abs(e.deltaY);
+        const canWheelNavigate =
+          gallery.length > 1 && scale <= 1.01 && !e.ctrlKey && absX > absY * 1.4 && absX > 1;
+
+        if (canWheelNavigate) {
+          const now = Date.now();
+          if (wheelNavLocked && now - wheelNavLockedAt > 700) {
+            wheelNavLocked = false;
+            wheelNavDx = 0;
+          }
+
+          if (absX <= WHEEL_NAV_RELEASE) {
+            wheelNavDx = 0;
+            wheelNavLocked = false;
+            wheelNavLockedAt = 0;
+            return;
+          }
+
+          if (wheelNavLocked) return;
+
+          wheelNavDx += e.deltaX;
+          if (Math.abs(wheelNavDx) >= WHEEL_NAV_THRESHOLD) {
+            go(wheelNavDx > 0 ? 1 : -1);
+            wheelNavDx = 0;
+            wheelNavLocked = true;
+            wheelNavLockedAt = now;
+          }
+          return;
+        }
+
+        wheelNavDx = 0;
+        wheelNavLocked = false;
+        wheelNavLockedAt = 0;
+        if (absY <= 1) return;
         const delta = e.deltaY > 0 ? 1 - WHEEL_STEP : 1 + WHEEL_STEP;
         zoomAt(e.clientX, e.clientY, scale * delta);
       },
@@ -230,6 +390,8 @@
       moved = false;
       dragStartX = e.clientX;
       dragStartY = e.clientY;
+      dragDx = 0;
+      dragDy = 0;
       originTx = tx;
       originTy = ty;
       full.setPointerCapture(e.pointerId);
@@ -240,6 +402,8 @@
       if (!dragging) return;
       const dx = e.clientX - dragStartX;
       const dy = e.clientY - dragStartY;
+      dragDx = dx;
+      dragDy = dy;
       if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
       // 仅放大后平移；适配尺寸时也允许轻微拖，便于长图
       tx = originTx + dx;
@@ -251,6 +415,9 @@
       if (!dragging) return;
       dragging = false;
       full.classList.remove("is-dragging");
+      if (scale <= 1.01 && Math.abs(dragDx) > 60 && Math.abs(dragDx) > Math.abs(dragDy) * 1.5) {
+        go(dragDx < 0 ? 1 : -1);
+      }
       try {
         full.releasePointerCapture(e.pointerId);
       } catch (_) {
