@@ -1,5 +1,5 @@
 ---
-title: "用 Hugo 写日记"
+title: "用 Hugo + Congo 写日记"
 date: 2019-09-09T18:20:16+0800
 lastmod: 2026-07-20
 draft: false
@@ -158,9 +158,26 @@ coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面�
 
 日常一篇日记只要一张图时：命名为 `feature.jpg` / `feature.png` 即可，列表和正文都用它。
 
-## 嵌入 YouTube、X
+## 媒体分享
 
-Hugo **内置**短代码，写日记时直接嵌即可，不用装插件。下面是可运行的示例（语法 + 渲染结果）。
+这一组能力分成两类：
+
+```text
+官方平台短代码
+  ├─ YouTube
+  ├─ X
+  ├─ TikTok
+  └─ Bilibili
+
+音乐嵌入
+  ├─ Spotify
+  ├─ Apple Music
+  └─ 通用 iframe src
+```
+
+{{< callout type="note" >}}
+大部分境外平台嵌入需要 VPN 支持，且代理规则要覆盖对应静态资源域名；否则常见表现是卡加载、白块或播放器降级失败。
+{{< /callout >}}
 
 ### YouTube
 
@@ -182,7 +199,7 @@ Hugo **内置**短代码，写日记时直接嵌即可，不用装插件。下�
 
 {{< youtube ZJthWmvUzzc >}}
 
-### X（原 Twitter）推文
+### X（原 Twitter）
 
 需要两个命名参数：
 
@@ -207,6 +224,93 @@ https://x.com/DesignReviewed/status/1085870671291310081
 实际效果：
 
 {{< x user="DesignReviewed" id="1085870671291310081" >}}
+
+### TikTok
+
+本站使用官方前端脚本嵌入。正常时显示官方播放器；若触发风控、超时或播放器未成功生成，会自动回退为本地卡片。
+
+写法：
+
+```md
+{{</* tiktok url="https://www.tiktok.com/@hinatazakanews/video/7619919230682565908" */>}}
+```
+
+实际效果：
+
+{{< tiktok url="https://www.tiktok.com/@hinatazakanews/video/7619919230682565908" >}}
+
+### Bilibili
+
+支持 `id` / `bvid`、完整 `url`、分 P 和自动播放。
+
+最常用写法：
+
+```md
+{{</* bilibili id="BV1hx411T7XW" */>}}
+{{</* bilibili id="BV1Gg411m75M" p="19" */>}}
+{{</* bilibili url="https://www.bilibili.com/video/BV1hx411T7XW?p=2" */>}}
+```
+
+自动播放可写 `auto="true"` 或 `auto="1"`：
+
+```md
+{{</* bilibili id="BV1Gg411m75M" p="19" auto="1" */>}}
+```
+
+实际效果：
+
+{{< bilibili id="BV1Gg411m75M" p="19" auto="1" >}}
+
+### 音乐
+
+统一用 `music` 短代码。能力分三类：
+
+| 平台 | 核心参数 | 说明 |
+|------|----------|------|
+| Spotify | `platform="spotify"` + `id` | 支持 `track` / `album` / `playlist`，默认紧凑播放器更稳 |
+| Apple Music | `platform="apple"` + `src` | 直接贴 Apple Music 页面链接；专辑/EP 播放器通常比 Spotify 高很多 |
+| 通用 iframe | `src` | 兜底方式，用于非内建平台 |
+
+Spotify 示例：
+
+```md
+{{</* music
+  platform="spotify"
+  kind="track"
+  id="2kM92TK9i4lnxE8IVLpgOm"
+  title="ジャーマンアリイス"
+  compact="true"
+  theme="light"
+*/>}}
+```
+
+实际效果：
+
+{{< music
+  platform="spotify"
+  id="2kM92TK9i4lnxE8IVLpgOm"
+  title="ジャーマンアリイス"
+  compact="true"
+  theme="light"
+>}}
+
+Apple Music 示例：
+
+```md
+{{</* music
+  platform="apple"
+  src="https://music.apple.com/cn/album/%E4%BD%95%E5%BA%A6%E7%9B%AE%E3%81%AE%E9%9D%92%E7%A9%BA%E3%81%8B-type-a-ep/1537529213"
+  title="何度目の青空か?"
+*/>}}
+```
+
+实际效果：
+
+{{< music
+  platform="apple"
+  src="https://music.apple.com/cn/album/%E4%BD%95%E5%BA%A6%E7%9B%AE%E3%81%AE%E9%9D%92%E7%A9%BA%E3%81%8B-type-a-ep/1537529213"
+  title="何度目の青空か?"
+>}}
 
 ## 键盘按键
 
@@ -243,15 +347,21 @@ https://x.com/DesignReviewed/status/1085870671291310081
 
 实际效果：这是普通内容，{{< spoiler >}}这是剧透{{< /spoiler >}}，鼠标移上去再看。
 
-## 手机截图（特调比例）
+## 图片布局
 
-单张截图仍可使用常规 Markdown：
+### 普通图片
+
+单张图片直接写标准 Markdown 即可：
 
 ```md
 ![说明](图片地址)
 ```
 
-两张手机截图需要快速对比时，用 `phone-shots`。块内继续写普通 Markdown 图片，默认两列并排：
+当前站点的普通正文图片会自动接入点击放大；但它们是**单图查看**，不会串成整篇文章图库。
+
+### 手机截图对比 `phone-shots`
+
+两张或多张手机长截图需要并排比较时，用 `phone-shots`。块内继续写普通 Markdown 图片，默认就是更紧凑的 `compare` 布局。
 
 ```md
 {{</* phone-shots caption="手机截图对比" */>}}
@@ -260,22 +370,16 @@ https://x.com/DesignReviewed/status/1085870671291310081
 {{</* /phone-shots */>}}
 ```
 
+实际效果：
+
 {{<phone-shots caption="图：https://haowallpaper.com/mobileView" >}}
 ![](https://i.ibb.co/v47GysrQ/image.png)
 ![](https://i.ibb.co/YB3z01XH/image.png)
 {{</phone-shots>}}
 
-可选参数：
+### 微博式九宫格
 
-| 参数 | 默认值 | 用途 |
-|------|--------|------|
-| `layout` | `compare` | `compare` 为手机长截图对比；`weibo` 为微博式九宫格 |
-| `columns` | `compare` 为 `2`，`weibo` 为 `3` | 每行几张图 |
-| `maxHeight` | `34rem` | `compare` 模式下单张截图最大高度 |
-| `gap` | `compare` 为 `0.9rem`，`weibo` 为 `0.35rem` | 图片间距 |
-| `caption` | 空 | 整组说明文字 |
-
-三张图或九宫格可以用微博式布局：
+三张图、六张图、九张图更适合 `layout="weibo"`。它会统一裁成方格，更像社交媒体图片流。
 
 ```md
 {{</* phone-shots layout="weibo" caption="微博式图片网格" */>}}
@@ -285,11 +389,9 @@ https://x.com/DesignReviewed/status/1085870671291310081
 {{</* /phone-shots */>}}
 ```
 
-`layout="weibo"` 会把图片裁成统一方格，3 张图就是一行三列；6/9 张会继续按三列排列。
-
 实际效果：
 
-{{<phone-shots layout="weibo" caption="微博式图片网格" >}}
+{{<phone-shots layout="weibo" caption="图：https://bing.wdbyte.com/zh-cn" >}}
 ![ ](https://cn.bing.com/th?id=OHR.DevilsBridge_ZH-CN2164982440_UHD.jpg&pid=hp&w=1920)
 ![ ](https://cn.bing.com/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_UHD.jpg&pid=hp&w=1920)
 ![ ](https://cn.bing.com/th?id=OHR.FirefliesJapan_ZH-CN0071253415_UHD.jpg&pid=hp&w=1920)
@@ -301,9 +403,34 @@ https://x.com/DesignReviewed/status/1085870671291310081
 ![ ](https://cn.bing.com/th?id=OHR.KyrgyzstanRainbow_ZH-CN8027219590_UHD.jpg&pid=hp&w=1920)
 {{</phone-shots>}}
 
+### 参数表
 
+| 参数 | 默认值 | 用途 |
+|------|--------|------|
+| `layout` | `compare` | `compare` 为手机长截图对比；`weibo` 为方格九宫格 |
+| `columns` | `compare` 为 `2`，`weibo` 为 `3` | 每行几张图 |
+| `gap` | `compare` 为 `0.45rem`，`weibo` 为 `0.35rem` | 图片间距 |
+| `maxHeight` | `42rem` | `compare` 模式下单张截图最大高度 |
+| `fillColumn` | 空 | 补齐列高，适合多张长图混排时手动控制 |
+| `caption` | 空 | 整组说明文字 |
 
-## 诗词、注音
+如果要手动改成三列对比、或者再缩一点间距，可以直接加参数：
+
+```md
+{{</* phone-shots columns="3" gap="0.3rem" maxHeight="38rem" */>}}
+...
+{{</* /phone-shots */>}}
+```
+
+### 组图浏览行为
+
+`phone-shots` 组图会自动接入图库浏览：
+
+- 支持上一张 / 下一张按钮
+- 支持键盘 `←` `→`
+- 支持手机横向滑动
+- 支持 Mac 触控板横向翻图
+- 切图时会自动重置缩放和拖拽状态
 
 ### 诗词容器 `poem`
 

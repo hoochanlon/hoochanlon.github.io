@@ -398,62 +398,17 @@ public class StudentGradeSystem {
 
 ## 图片布局
 
-九宫格
+这部分的写法、参数和实际效果，已经整理到《用 Hugo 写日记》里，避免这里和写作指南重复维护。
 
-{{<phone-shots layout="weibo" caption="图：https://bing.wdbyte.com/zh-cn" >}}
-![ ](https://cn.bing.com/th?id=OHR.DevilsBridge_ZH-CN2164982440_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.FirefliesJapan_ZH-CN0071253415_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.ThamesSummer_ZH-CN5292532714_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.BambooPanda_ZH-CN8455481760_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.ForumRomanum_ZH-CN5873120178_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.LondonParliament_ZH-CN7089923691_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.BhutanMonastery_ZH-CN2469401011_UHD.jpg&pid=hp&w=1920)
-![ ](https://cn.bing.com/th?id=OHR.KyrgyzstanRainbow_ZH-CN8027219590_UHD.jpg&pid=hp&w=1920)
-{{</phone-shots>}}
-
-移动端图片显示优化
-
-{{<phone-shots caption="图：https://haowallpaper.com/mobileView" >}}
-![](https://i.ibb.co/v47GysrQ/image.png)
-![](https://i.ibb.co/YB3z01XH/image.png)
-{{</phone-shots>}}
-
+- 手机截图对比：`phone-shots`
+- 微博式九宫格：`phone-shots layout="weibo"`
+- 普通图片点击放大与组图浏览说明
 
 ## 媒体分享
 
-按 <kbd>⌘</kbd> + <kbd>C</kbd> 复制。
+这部分的参数说明和示例，也统一收口到《用 Hugo 写日记》里。
 
-> [!note]
-> 大部分场景需要 VPN 支持，以及 Proxy 代理规则额外支援。
-
-spotify 的各方面的效果加载速度比 apple music 要快不少。
-
-{{< music
-  platform="spotify"
-  id="2kM92TK9i4lnxE8IVLpgOm"
-  title="ジャーマンアリイス"
-  compact="true"
-  theme="light"
->}}
-
-
-{{< music
-  platform="apple"
-  src="https://music.apple.com/cn/album/%E4%BD%95%E5%BA%A6%E7%9B%AE%E3%81%AE%E9%9D%92%E7%A9%BA%E3%81%8B-type-a-ep/1537529213"
-  title="何度目の青空か?"
->}}
-
-
-
-可分享国外版小红书、抖音、微博状态，ins 版面与 x 类似，故不再例举。
-
-{{<x user="h_wakut" id="2011012487416856615">}}
-
-tiktok 容易触发风控造成网页元素加载失败。
-
-{{< tiktok url="https://www.tiktok.com/@hinatazakanews/video/7619919230682565908">}}
-
-支持b站、油管视频分享。
-
-{{< bilibili id="BV1Gg411m75M" p="19" auto="1">}}
+- YouTube / X
+- TikTok
+- Bilibili
+- Spotify / Apple Music / 通用音乐 iframe
