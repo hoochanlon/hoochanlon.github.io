@@ -214,7 +214,7 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 
 ## 代码块
 
-至少我接触到的博客主题来说，大部分并不适合写代码，因为基础骨架的版面宽度不够，以及不够体系目录专题化。写代码应该用专门的文档工具，如：fumadocs、docsify、docusaurus、starlight 等。
+至少我接触到的博客主题来说，大部分并不适合写代码，因为基础骨架的版面宽度不够，以及不够体系专题化，以及干扰元素较多。写代码应该用专门的文档工具，如：fumadocs、docsify、docusaurus、starlight 等。
 
 ```java
 import java.util.ArrayList;
@@ -395,20 +395,7 @@ public class StudentGradeSystem {
 }
 ```
 
+## 其他说明
 
-## 图片布局
+使用方式见：[《Hugo + Congo 发文流程》]({{< relref "/posts/2020s/2026/07/2026-07-24-Hugo-Congo-发文流程/index.md" >}})、[《Hugo 内容写法备忘》]({{< relref "/posts/2020s/2026/07/2026-07-24-Hugo-内容写法备忘/index.md" >}})、[《Congo 站点定制记录》]({{< relref "/posts/2020s/2026/07/2026-07-24-Congo-站点定制记录/index.md" >}})
 
-这部分的写法、参数和实际效果，已经整理到《用 Hugo 写日记》里，避免这里和写作指南重复维护。
-
-- 手机截图对比：`phone-shots`
-- 微博式九宫格：`phone-shots layout="weibo"`
-- 普通图片点击放大与组图浏览说明
-
-## 媒体分享
-
-这部分的参数说明和示例，也统一收口到《用 Hugo 写日记》里。
-
-- YouTube / X
-- TikTok
-- Bilibili
-- Spotify / Apple Music / 通用音乐 iframe

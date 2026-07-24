@@ -1,6 +1,6 @@
 .author-links {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .author-links__item,
@@ -8,6 +8,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding-inline: 0.08rem;
 }
 
 .author-links__wechat {
