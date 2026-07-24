@@ -1,0 +1,39 @@
+{{- $id := .Get "id" | default (.Get "bvid" | default "") -}}
+{{- $url := .Get "url" | default "" -}}
+{{- $p := .Get "p" | default "1" -}}
+{{- $autoParam := .Get "auto" | default (.Get "autoplay" | default "false") -}}
+{{- $autoplay := cond (or (eq $autoParam "true") (eq $autoParam true) (eq $autoParam "1")) "1" "0" -}}
+{{- $title := .Get "title" | default "Bilibili video" -}}
+
+{{- if and (eq $id "") (ne $url "") -}}
+  {{- $match := findRESubmatch `(?i)bilibili\.com/video/(BV[0-9A-Za-z]+)` $url 1 -}}
+  {{- if $match -}}
+    {{- $parts := index $match 0 -}}
+    {{- $id = index $parts 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if ne $url "" -}}
+  {{- $pMatch := findRESubmatch `[?&]p=([0-9]+)` $url 1 -}}
+  {{- if $pMatch -}}
+    {{- $parts := index $pMatch 0 -}}
+    {{- $p = index $parts 1 -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if ne $id "" -}}
+  <div class="video not-prose">
+    <iframe
+      src="https://player.bilibili.com/player.html?bvid={{ $id | urlquery }}&page={{ $p | urlquery }}&autoplay={{ $autoplay }}"
+      title="{{ $title }}"
+      loading="lazy"
+      scrolling="no"
+      border="0"
+      frameborder="no"
+      framespacing="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+{{- else if ne $url "" -}}
+  <p><a href="{{ $url }}" target="_blank" rel="noopener noreferrer">打开 Bilibili 视频</a></p>
+{{- end -}}

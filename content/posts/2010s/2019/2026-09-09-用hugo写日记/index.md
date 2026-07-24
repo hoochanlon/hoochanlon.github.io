@@ -225,9 +225,9 @@ https://x.com/DesignReviewed/status/1085870671291310081
 {{</* /phone-shots */>}}
 ```
 
-{{<phone-shots caption="手机截图对比" >}}
-![ ](https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEXjkJqXjONyxSBTHJ2qFPN2U7oMvxjIAACmSwAAnUL8Va4InchFarp9j0E.jpg)
-![ ](https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEXx6JqYqSTIWoKQVlS-AU7mg6eOrLZRwAC_ycAAmrvEVcK10o93e97wT0E.jpg)
+{{<phone-shots caption="图：https://haowallpaper.com/mobileView" >}}
+![](https://i.ibb.co/v47GysrQ/image.png)
+![](https://i.ibb.co/YB3z01XH/image.png)
 {{</phone-shots>}}
 
 可选参数：

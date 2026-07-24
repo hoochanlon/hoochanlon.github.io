@@ -13,6 +13,8 @@
  *   70-poem.css            诗词短代码
  *   75-ruby.css            正文注音短代码
  *   80-music.css           流媒体音乐短代码
+ *   81-social-embed.css    社交平台嵌入居中
+ *   82-tiktok.css          TikTok 嵌入短代码
  *   85-phone-shots.css     手机截图对比短代码
  *
  * layouts/_partials/head.html 会 Match 并按文件名顺序打进 main.bundle.css。

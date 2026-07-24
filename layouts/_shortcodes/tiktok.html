@@ -1,0 +1,102 @@
+{{- $url := .Get "url" | default "" -}}
+{{- $user := .Get "user" | default "" -}}
+{{- $id := .Get "id" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $title := .Get "title" | default "TikTok" -}}
+
+{{- if and (eq $url "") (ne $user "") (ne $id "") -}}
+  {{- $url = printf "https://www.tiktok.com/@%s/video/%s" $user $id -}}
+{{- end -}}
+
+{{- if and (ne $url "") (or (eq $user "") (eq $id "")) -}}
+  {{- $match := findRESubmatch `https?://www\.tiktok\.com/@([^/]+)/video/([0-9]+)` $url 1 -}}
+  {{- if $match -}}
+    {{- $parts := index $match 0 -}}
+    {{- $user = index $parts 1 -}}
+    {{- $id = index $parts 2 -}}
+  {{- end -}}
+{{- end -}}
+
+<figure class="sc-tiktok not-prose">
+  {{- if and (ne $url "") (ne $user "") (ne $id "") -}}
+    <div class="sc-tiktok__embed" aria-label="{{ $title }}">
+      <blockquote class="tiktok-embed" cite="{{ $url }}" data-video-id="{{ $id }}" data-embed-from="oembed" style="max-width: 605px; min-width: 325px; margin: 0 auto;">
+        <section>
+          <a target="_blank" title="@{{ $user }}" href="https://www.tiktok.com/@{{ $user }}?refer=embed">@{{ $user }}</a>
+        </section>
+      </blockquote>
+      <script async src="https://www.tiktok.com/embed.js"></script>
+    </div>
+    <div class="sc-tiktok__fallback" hidden aria-hidden="true">
+      <a class="sc-tiktok__card" href="{{ $url }}" target="_blank" rel="noopener noreferrer" title="{{ $title }}">
+        <span class="sc-tiktok__badge">TikTok</span>
+        <span class="sc-tiktok__account">@{{ $user }}</span>
+        <span class="sc-tiktok__open">打开视频</span>
+      </a>
+    </div>
+    <script>
+      (() => {
+        const currentScript = document.currentScript;
+        const figure = currentScript && currentScript.closest('.sc-tiktok');
+        if (!figure) return;
+
+        const embed = figure.querySelector('.sc-tiktok__embed');
+        const fallback = figure.querySelector('.sc-tiktok__fallback');
+        if (!embed || !fallback) return;
+
+        let settled = false;
+        const cleanup = () => {
+          settled = true;
+          observer.disconnect();
+          window.clearTimeout(timeoutId);
+        };
+        const revealFallback = () => {
+          if (settled) return;
+          cleanup();
+          embed.hidden = true;
+          embed.style.display = 'none';
+          fallback.hidden = false;
+          fallback.style.display = 'block';
+          fallback.removeAttribute('aria-hidden');
+        };
+        const markLoaded = () => {
+          if (settled) return;
+          cleanup();
+          fallback.hidden = true;
+          fallback.setAttribute('aria-hidden', 'true');
+        };
+        const inspect = () => {
+          const text = (embed.textContent || '').trim().toLowerCase();
+          if (text.includes('overload-protect')) {
+            revealFallback();
+            return;
+          }
+          const iframe = embed.querySelector('iframe');
+          if (iframe && iframe.offsetHeight > 180) {
+            markLoaded();
+          }
+        };
+
+        const observer = new MutationObserver(inspect);
+        const timeoutId = window.setTimeout(() => {
+          inspect();
+          if (!settled) revealFallback();
+        }, 8000);
+
+        observer.observe(embed, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+        inspect();
+      })();
+    </script>
+  {{- else if ne $url "" -}}
+    <div class="sc-tiktok__fallback">
+      <a class="sc-tiktok__link" href="{{ $url }}" target="_blank" rel="noopener noreferrer" title="{{ $title }}">在 TikTok 打开视频</a>
+    </div>
+  {{- end -}}
+  {{- if ne $caption "" -}}
+    <figcaption class="sc-tiktok__caption">{{ $caption | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

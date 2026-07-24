@@ -13,8 +13,7 @@ showComments: false
 ---
 
 
-
-{{< poem title="《刚时间的人·乞丐》" author="王计兵" dir="h" >}}
+{{< poem title="《赶时间的人·乞丐》" author="王计兵" dir="h" >}}
 一个弯曲成问号的老人
 
 手里捧着的大号铁碗多
@@ -30,6 +29,3 @@ showComments: false
 只需轻轻一擦，就能擦去
 
 {{< /poem >}}
-
-<img src="https://hoochanlon.github.io/picx-images-hosting/imgs/Idol/n46-1.png" />
-

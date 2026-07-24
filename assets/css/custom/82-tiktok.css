@@ -1,0 +1,87 @@
+/* ---------- TikTok 嵌入 sc-tiktok ---------- */
+.sc-tiktok {
+  margin: 1.75rem 0;
+}
+
+.sc-tiktok__embed {
+  display: grid;
+  justify-content: center;
+}
+
+.sc-tiktok__embed[hidden],
+.sc-tiktok__fallback[hidden] {
+  display: none !important;
+}
+
+.sc-tiktok__embed .tiktok-embed {
+  margin: 0 auto !important;
+}
+
+.sc-tiktok__fallback {
+  display: block;
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+.sc-tiktok__card,
+.sc-tiktok__link {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.95rem;
+  background: linear-gradient(135deg, rgb(var(--color-neutral-50)), rgb(var(--color-neutral-100)));
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.dark .sc-tiktok__card,
+.dark .sc-tiktok__link {
+  border-color: rgb(var(--color-neutral-700));
+  background: linear-gradient(135deg, rgb(var(--color-neutral-800)), rgb(var(--color-neutral-900)));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+}
+
+.sc-tiktok__badge {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.sc-tiktok__account {
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.95rem;
+}
+
+.dark .sc-tiktok__account {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-tiktok__open {
+  justify-self: center;
+  margin-top: 0.2rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-900));
+  color: rgb(var(--color-neutral-50));
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.dark .sc-tiktok__open {
+  background: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-900));
+}
+
+.sc-tiktok__caption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgb(var(--color-neutral-500));
+}
+
+.dark .sc-tiktok__caption {
+  color: rgb(var(--color-neutral-400));
+}

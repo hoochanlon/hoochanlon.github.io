@@ -1,12 +1,22 @@
 {{- $caption := .Get "caption" | default "" -}}
 {{- $layout := .Get "layout" | default "compare" -}}
 {{- $columns := .Get "columns" | default (cond (eq $layout "weibo") "3" "2") -}}
-{{- $maxHeight := .Get "maxHeight" | default "34rem" -}}
-{{- $gap := .Get "gap" | default (cond (eq $layout "weibo") "0.35rem" "0.9rem") -}}
+{{- $maxHeight := .Get "maxHeight" | default (cond (eq $layout "weibo") "34rem" "42rem") -}}
+{{- $gap := .Get "gap" | default (cond (eq $layout "weibo") "0.35rem" "0.45rem") -}}
+{{- $fillColumn := false -}}
+{{- with .Get "fillColumn" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}
+    {{- $fillColumn = true -}}
+  {{- end -}}
+{{- end -}}
+{{- $figureClass := printf "sc-phone-shots sc-phone-shots--%s not-prose" $layout -}}
+{{- if $fillColumn -}}
+  {{- $figureClass = printf "%s sc-phone-shots--fill-column" $figureClass -}}
+{{- end -}}
 {{- $imagePattern := `!\[([^\]]*)\]\(([^\s\)]+)(?:\s+"([^"]*)")?\)` -}}
 
 <figure
-  class="sc-phone-shots sc-phone-shots--{{ $layout }} not-prose"
+  class="{{ $figureClass }}"
   style="--sc-phone-shots-columns: {{ $columns }}; --sc-phone-shots-max-height: {{ $maxHeight }}; --sc-phone-shots-gap: {{ $gap }};"
 >
   <div class="sc-phone-shots__grid">

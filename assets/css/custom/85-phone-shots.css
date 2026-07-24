@@ -67,6 +67,10 @@
   color: rgb(var(--color-neutral-500));
 }
 
+.sc-phone-shots--compare.sc-phone-shots--fill-column .sc-phone-shots__grid img {
+  width: 100%;
+}
+
 .dark .sc-phone-shots__caption {
   color: rgb(var(--color-neutral-400));
 }
