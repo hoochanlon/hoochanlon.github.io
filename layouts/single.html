@@ -3,12 +3,13 @@
   {{- $cover := $images.GetMatch (.Params.cover | default "*cover*") }}
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $cover }}
   {{- $titleStyle := .Params.titleStyle | default "" }}
+  {{- $titleSize := .Params.titleSize | default "" }}
   <article>
     <header class="max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
       {{ end }}
-      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ end }}">
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
         {{ .Title | emojify }}
       </h1>
       {{ with .Params.birthLabel }}
@@ -52,7 +53,9 @@
     </section>
     <footer class="max-w-prose pt-8 print:hidden">
       {{ partial "author.html" . }}
-      {{ partial "sharing-links.html" . }}
+      {{ if .Params.showSharingLinks | default true }}
+        {{ partial "sharing-links.html" . }}
+      {{ end }}
       {{ partial "article-pagination.html" . }}
       {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
         {{ if templates.Exists "_partials/comments.html" }}

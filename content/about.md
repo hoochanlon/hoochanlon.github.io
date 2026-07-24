@@ -3,12 +3,14 @@ title: "Ch'eng-Lung Hu"
 description: "了解更多关于我的信息"
 summary: "个人简介与联系方式"
 birth: 1996-01-01
-birthLabel: "born. 1996.01.01"
+birthLabel: "b. 1996.01.01"
 titleStyle: script
+titleSize: small
 showDate: false
 showReadingTime: false
 showTaxonomies: false
 showAuthor: false
+showSharingLinks: false
 showComments: false
 ---
 
