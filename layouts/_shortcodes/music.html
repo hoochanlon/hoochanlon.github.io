@@ -20,9 +20,12 @@
 {{- end -}}
 {{- $themeValue := cond (eq $theme "light") "1" "0" -}}
 {{- $embedSrc := $src -}}
+{{- $openSrc := $src -}}
+{{- $failAfter := .Get "failAfter" | default "9000" -}}
 
 {{- if and (eq $platform "spotify") (ne $id "") -}}
   {{- $embedSrc = printf "https://open.spotify.com/embed/%s/%s?utm_source=generator&theme=%s" $kind $id $themeValue -}}
+  {{- $openSrc = printf "https://open.spotify.com/%s/%s" $kind $id -}}
 {{- end -}}
 
 {{- if and (eq $platform "apple") (ne $src "") -}}
@@ -48,6 +51,44 @@
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       allowfullscreen
     ></iframe>
+    <div class="sc-music__fallback" hidden aria-hidden="true">
+      <a class="sc-music__card" href="{{ $openSrc }}" target="_blank" rel="noopener noreferrer" title="{{ $title }}">
+        <span class="sc-music__platform">{{ $platform }}</span>
+        <span class="sc-music__title">{{ $title }}</span>
+        <span class="sc-music__open">打开音乐</span>
+      </a>
+    </div>
+    <script>
+      (() => {
+        const currentScript = document.currentScript;
+        const figure = currentScript && currentScript.closest('.sc-music');
+        if (!figure) return;
+
+        const frame = figure.querySelector('.sc-music__embed');
+        const fallback = figure.querySelector('.sc-music__fallback');
+        if (!frame || !fallback) return;
+
+        let state = 'pending';
+        const revealFallback = () => {
+          if (state !== 'pending') return;
+          state = 'fallback';
+          frame.hidden = true;
+          frame.style.display = 'none';
+          fallback.hidden = false;
+          fallback.style.display = 'block';
+          fallback.removeAttribute('aria-hidden');
+        };
+
+        frame.addEventListener('load', () => {
+          if (state !== 'pending') return;
+          state = 'loaded';
+          fallback.hidden = true;
+          fallback.setAttribute('aria-hidden', 'true');
+        }, { once: true });
+
+        window.setTimeout(revealFallback, {{ $failAfter }});
+      })();
+    </script>
     {{- if ne $caption "" -}}
       <figcaption class="sc-music__caption">{{ $caption }}</figcaption>
     {{- end -}}

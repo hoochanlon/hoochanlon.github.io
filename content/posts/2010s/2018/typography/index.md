@@ -212,6 +212,49 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 但是路線可能要問問何事
 {{< /poem >}}
 
+## 代码块
+
+```java
+import java.util.Scanner;
+
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("请输入第一个数字: ");
+        double num1 = scanner.nextDouble();
+        
+        System.out.print("请输入运算符 (+, -, *, /): ");
+        char operator = scanner.next().charAt(0);
+        
+        System.out.print("请输入第二个数字: ");
+        double num2 = scanner.nextDouble();
+        
+        double result = 0;
+        boolean valid = true;
+        
+        switch (operator) {
+            case '+': result = num1 + num2; break;
+            case '-': result = num1 - num2; break;
+            case '*': result = num1 * num2; break;
+            case '/': 
+                if (num2 != 0) result = num1 / num2;
+                else { System.out.println("错误：除数不能为0"); valid = false; }
+                break;
+            default: 
+                System.out.println("错误：无效的运算符"); valid = false;
+        }
+        
+        if (valid) {
+            System.out.printf("%.2f %c %.2f = %.2f\n", num1, operator, num2, result);
+        }
+        
+        scanner.close();
+    }
+}
+```
+
+
 ## 图片布局
 
 九宫格
@@ -237,6 +280,11 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 
 
 ## 媒体分享
+
+按 <kbd>⌘</kbd> + <kbd>C</kbd> 复制。
+
+> [!note]
+> 大部分场景需要 VPN 支持，以及 Proxy 代理规则额外支援。
 
 spotify 的各方面的效果加载速度比 apple music 要快不少。
 
@@ -265,6 +313,6 @@ tiktok 容易触发风控造成网页元素加载失败。
 
 {{< tiktok url="https://www.tiktok.com/@hinatazakanews/video/7619919230682565908">}}
 
-b站视频
+支持b站、油管视频分享。
 
 {{< bilibili id="BV1Gg411m75M" p="19" auto="1">}}

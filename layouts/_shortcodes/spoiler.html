@@ -1,0 +1,17 @@
+{{/*
+  spoiler — 行内剧透遮罩
+
+  用法：
+    {{< spoiler >}}结局内容{{< /spoiler >}}
+    {{< spoiler text="结局内容" >}}
+*/}}
+{{- $text := .Get "text" | default "" -}}
+{{- $inner := trim .Inner "\n\r \t" -}}
+{{- $content := $text -}}
+{{- if eq $content "" -}}
+  {{- $content = $inner -}}
+{{- end -}}
+{{- if ne $content "" -}}
+  {{- $rendered := .Page.RenderString (dict "display" "inline") $content -}}
+  <span class="sc-spoiler">{{ $rendered }}</span>
+{{- end -}}

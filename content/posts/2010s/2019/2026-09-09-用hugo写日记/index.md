@@ -208,6 +208,41 @@ https://x.com/DesignReviewed/status/1085870671291310081
 
 {{< x user="DesignReviewed" id="1085870671291310081" >}}
 
+## 键盘按键
+
+写快捷键时，不需要额外 JavaScript；正文里直接用原生 HTML 的 `<kbd>` 就行。当前站点已允许 Markdown 中夹带这类行内标签。
+
+常见写法：
+
+```md
+按 <kbd>Ctrl</kbd> + <kbd>C</kbd> 复制
+按 <kbd>Ctrl</kbd> + <kbd>V</kbd> 粘贴
+按 <kbd>⌘</kbd> + <kbd>K</kbd> 打开链接面板
+按 <kbd>Shift</kbd> + <kbd>Enter</kbd> 换行
+```
+
+显示效果示例：按 <kbd>Ctrl</kbd> + <kbd>C</kbd> 复制，按 <kbd>Ctrl</kbd> + <kbd>V</kbd> 粘贴。
+
+如果后面想把它真正渲染成“键帽”外观，再补一层 CSS 即可；内容写法本身不用改。
+
+## 行内剧透 `spoiler`
+
+需要“划上去才看得见”的剧透遮罩时，用 `spoiler` 短代码即可，不需要额外 JavaScript。
+
+写法：
+
+```md
+这是普通内容，{{</* spoiler */>}}这是剧透{{</* /spoiler */>}}，鼠标移上去再看。
+```
+
+也支持自闭参数写法：
+
+```md
+这是普通内容，{{</* spoiler text="这是剧透" */>}}。
+```
+
+实际效果：这是普通内容，{{< spoiler >}}这是剧透{{< /spoiler >}}，鼠标移上去再看。
+
 ## 手机截图（特调比例）
 
 单张截图仍可使用常规 Markdown：

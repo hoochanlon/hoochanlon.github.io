@@ -17,6 +17,41 @@ Congo 的 `alert` **只有一种主题色**，靠换图标区分语义，类别�
 
 本站自建，**色系对齐 GitHub Alerts**：浅蓝 note / 绿 tip / 紫 important / 琥珀 warning / 红 caution。`fold="true"` 可收起长说明。
 
+另外现在也兼容 **GitHub 风格 Markdown callout**，不必再强记短代码：
+
+```md
+> [!NOTE]
+> 补充说明、背景信息。
+
+> [!TIP]
+> 快速技巧或建议。
+
+> [!IMPORTANT]
+> 必须遵守的关键信息。
+
+> [!WARNING]
+> 可能遇到的问题与风险。
+
+> [!CAUTION]
+> 危险操作：执行前请确认后果。
+```
+
+如果你想顺手写折叠态，也兼容 Obsidian 风格扩展：
+
+```md
+> [!WARNING]- 风险说明
+> 默认收起，点开查看。
+
+> [!TIP]+ 经验技巧
+> 默认展开。
+```
+
+其中：
+
+- `+` = 默认展开
+- `-` = 默认收起
+- GitHub 本身只认基础五类；`success` / `forbid` / `critical` 这类站内扩展，仍建议继续用短代码
+
 ### 类型一览
 
 | type | 中文别名 | 默认标题 | 色感（GitHub） |

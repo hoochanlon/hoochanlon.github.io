@@ -1,0 +1,43 @@
+{{- $defaults := dict
+  "note" (dict "title" "注意" "icon" "circle-info" "tone" "note")
+  "tip" (dict "title" "提示" "icon" "lightbulb" "tone" "tip")
+  "important" (dict "title" "重要" "icon" "comment" "tone" "important")
+  "warning" (dict "title" "警告" "icon" "triangle-exclamation" "tone" "warning")
+  "caution" (dict "title" "小心" "icon" "xmark" "tone" "caution")
+-}}
+
+{{- if eq .Type "alert" -}}
+  {{- $alertType := .AlertType | default "note" -}}
+  {{- if not (isset $defaults $alertType) -}}{{- $alertType = "note" -}}{{- end -}}
+  {{- $meta := index $defaults $alertType -}}
+  {{- $title := $meta.title -}}
+  {{- with .AlertTitle -}}{{- $title = . -}}{{- end -}}
+  {{- $class := printf "sc-callout sc-callout--%s not-prose" $meta.tone -}}
+  {{- if ne .AlertSign "" -}}
+    <details class="{{ $class }} sc-callout--fold"{{ if eq .AlertSign "+" }} open{{ end }}>
+      <summary class="sc-callout__summary">
+        <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
+        <span class="sc-callout__title">{{ $title }}</span>
+      </summary>
+      <div class="sc-callout__body prose dark:prose-invert">
+        {{ .Text }}
+      </div>
+    </details>
+  {{- else -}}
+    <aside class="{{ $class }}" role="note">
+      <div class="sc-callout__content">
+        <div class="sc-callout__label">
+          <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
+          <span class="sc-callout__title">{{ $title }}</span>
+        </div>
+        <div class="sc-callout__body prose dark:prose-invert">
+          {{ .Text }}
+        </div>
+      </div>
+    </aside>
+  {{- end -}}
+{{- else -}}
+  <blockquote>
+    {{ .Text }}
+  </blockquote>
+{{- end -}}

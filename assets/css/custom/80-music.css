@@ -13,6 +13,69 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
+.sc-music__embed[hidden],
+.sc-music__fallback[hidden] {
+  display: none !important;
+}
+
+.sc-music__fallback {
+  display: block;
+  width: 100%;
+}
+
+.sc-music__card {
+  display: grid;
+  gap: 0.35rem;
+  place-items: center;
+  min-height: 9rem;
+  padding: 1.25rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, rgb(var(--color-neutral-50)), rgb(var(--color-neutral-100)));
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .sc-music__card {
+  border-color: rgb(var(--color-neutral-700));
+  background: linear-gradient(135deg, rgb(var(--color-neutral-800)), rgb(var(--color-neutral-900)));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.sc-music__platform {
+  text-transform: capitalize;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.dark .sc-music__platform {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-music__title {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.sc-music__open {
+  margin-top: 0.2rem;
+  padding: 0.32rem 0.78rem;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-900));
+  color: rgb(var(--color-neutral-50));
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.dark .sc-music__open {
+  background: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-900));
+}
+
 .sc-music__caption {
   margin-top: 0.6rem;
   font-size: 0.9rem;
