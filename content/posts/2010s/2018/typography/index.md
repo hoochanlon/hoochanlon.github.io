@@ -214,42 +214,183 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 
 ## 代码块
 
+至少我接触到的博客主题来说，大部分并不适合写代码，因为基础骨架的版面宽度不够，以及不够体系目录专题化。写代码应该用专门的文档工具，如：fumadocs、docsify、docusaurus、starlight 等。
+
 ```java
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class SimpleCalculator {
+/**
+ * 学生成绩管理系统 - Java Demo
+ * 功能：添加、查看、删除、修改学生成绩
+ */
+public class StudentGradeSystem {
+    private List<Student> students;
+    private Scanner scanner;
+
+    public StudentGradeSystem() {
+        students = new ArrayList<>();
+        scanner = new Scanner(System.in);
+    }
+
+    // 学生内部类
+    static class Student {
+        private int id;
+        private String name;
+        private double score;
+
+        public Student(int id, String name, double score) {
+            this.id = id;
+            this.name = name;
+            this.score = score;
+        }
+
+        public int getId() { return id; }
+        public String getName() { return name; }
+        public double getScore() { return score; }
+        
+        @Override
+        public String toString() {
+            return String.format("学号: %d, 姓名: %s, 成绩: %.2f", id, name, score);
+        }
+    }
+
+    // 添加学生
+    public void addStudent() {
+        System.out.print("请输入学号: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // 消耗换行符
+        
+        System.out.print("请输入姓名: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("请输入成绩: ");
+        double score = scanner.nextDouble();
+        
+        students.add(new Student(id, name, score));
+        System.out.println("✅ 学生添加成功！\n");
+    }
+
+    // 显示所有学生
+    public void showAllStudents() {
+        if (students.isEmpty()) {
+            System.out.println("⚠️ 暂无学生数据\n");
+            return;
+        }
+        
+        System.out.println("📊 所有学生成绩:");
+        for (Student s : students) {
+            System.out.println(s);
+        }
+        System.out.println();
+    }
+
+    // 查找学生
+    public void findStudent() {
+        System.out.print("请输入要查找的学号: ");
+        int id = scanner.nextInt();
+        
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.println("🔍 找到学生: " + s + "\n");
+                return;
+            }
+        }
+        System.out.println("❌ 未找到该学生\n");
+    }
+
+    // 删除学生
+    public void deleteStudent() {
+        System.out.print("请输入要删除的学号: ");
+        int id = scanner.nextInt();
+        
+        boolean removed = students.removeIf(s -> s.getId() == id);
+        if (removed) {
+            System.out.println("🗑️ 学生删除成功！\n");
+        } else {
+            System.out.println("❌ 未找到该学生\n");
+        }
+    }
+
+    // 修改学生成绩
+    public void updateStudent() {
+        System.out.print("请输入要修改的学号: ");
+        int id = scanner.nextInt();
+        
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.print("请输入新的成绩: ");
+                double newScore = scanner.nextDouble();
+                // 由于字段是private，需要通过反射或重新创建对象
+                // 这里简单演示，实际可添加setter方法
+                students.set(students.indexOf(s), 
+                    new Student(s.getId(), s.getName(), newScore));
+                System.out.println("✅ 成绩修改成功！\n");
+                return;
+            }
+        }
+        System.out.println("❌ 未找到该学生\n");
+    }
+
+    // 计算平均分
+    public void calculateAverage() {
+        if (students.isEmpty()) {
+            System.out.println("⚠️ 暂无学生数据\n");
+            return;
+        }
+        
+        double sum = 0;
+        for (Student s : students) {
+            sum += s.getScore();
+        }
+        double avg = sum / students.size();
+        System.out.printf("📈 平均成绩: %.2f\n\n", avg);
+    }
+
+    // 显示菜单
+    public void showMenu() {
+        System.out.println("=== 📚 学生成绩管理系统 ===");
+        System.out.println("1. 添加学生");
+        System.out.println("2. 查看所有学生");
+        System.out.println("3. 查找学生");
+        System.out.println("4. 删除学生");
+        System.out.println("5. 修改成绩");
+        System.out.println("6. 计算平均分");
+        System.out.println("0. 退出系统");
+        System.out.print("请选择操作: ");
+    }
+
+    // 运行系统
+    public void run() {
+        System.out.println("🎓 欢迎使用学生成绩管理系统！\n");
+        
+        while (true) {
+            showMenu();
+            int choice = scanner.nextInt();
+            System.out.println();
+            
+            switch (choice) {
+                case 1 -> addStudent();
+                case 2 -> showAllStudents();
+                case 3 -> findStudent();
+                case 4 -> deleteStudent();
+                case 5 -> updateStudent();
+                case 6 -> calculateAverage();
+                case 0 -> {
+                    System.out.println("👋 感谢使用，再见！");
+                    scanner.close();
+                    return;
+                }
+                default -> System.out.println("❌ 无效选项，请重新选择\n");
+            }
+        }
+    }
+
+    // 主方法
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("请输入第一个数字: ");
-        double num1 = scanner.nextDouble();
-        
-        System.out.print("请输入运算符 (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
-        
-        System.out.print("请输入第二个数字: ");
-        double num2 = scanner.nextDouble();
-        
-        double result = 0;
-        boolean valid = true;
-        
-        switch (operator) {
-            case '+': result = num1 + num2; break;
-            case '-': result = num1 - num2; break;
-            case '*': result = num1 * num2; break;
-            case '/': 
-                if (num2 != 0) result = num1 / num2;
-                else { System.out.println("错误：除数不能为0"); valid = false; }
-                break;
-            default: 
-                System.out.println("错误：无效的运算符"); valid = false;
-        }
-        
-        if (valid) {
-            System.out.printf("%.2f %c %.2f = %.2f\n", num1, operator, num2, result);
-        }
-        
-        scanner.close();
+        StudentGradeSystem system = new StudentGradeSystem();
+        system.run();
     }
 }
 ```

@@ -1,0 +1,226 @@
+/* 代码块：统一容器、滚动、语言标签与行号 gutter */
+
+.prose .sc-code {
+  margin: 1.25rem 0;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.75rem;
+  background: rgb(var(--color-neutral-50));
+  overflow: hidden;
+}
+
+.dark .prose .sc-code {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-900));
+}
+
+.prose .sc-code__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.5rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  background: rgb(var(--color-neutral-100));
+}
+
+.dark .prose .sc-code__header {
+  border-bottom-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+}
+
+.prose .sc-code__meta {
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.dark .prose .sc-code__meta {
+  color: rgb(var(--color-neutral-400));
+}
+
+.prose .sc-code__toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.prose .sc-code__body {
+  position: relative;
+}
+
+.prose .sc-code--collapsible .sc-code__body {
+  max-height: calc(1.3rem + var(--sc-code-preview-lines, 10) * 1.48em);
+  overflow: hidden;
+}
+
+.prose .sc-code--collapsible .sc-code__body::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 3.5rem;
+  background: linear-gradient(to bottom, rgb(var(--color-neutral-50) / 0), rgb(var(--color-neutral-50)) 85%);
+  pointer-events: none;
+}
+
+.dark .prose .sc-code--collapsible .sc-code__body::after {
+  background: linear-gradient(to bottom, rgb(var(--color-neutral-900) / 0), rgb(var(--color-neutral-900)) 85%);
+}
+
+.prose .sc-code__toggle:checked ~ .sc-code__body {
+  max-height: none;
+}
+
+.prose .sc-code--scrollable .sc-code__toggle:checked ~ .sc-code__body {
+  max-height: calc(1.4rem + var(--sc-code-expanded-lines, 33) * 1.5em);
+  overflow: auto;
+}
+
+.prose .sc-code--scrollable .sc-code__toggle:checked ~ .sc-code__body::-webkit-scrollbar {
+  width: 0.72rem;
+  height: 0.72rem;
+}
+
+.prose .sc-code--scrollable .sc-code__toggle:checked ~ .sc-code__body::-webkit-scrollbar-thumb {
+  border: 0.18rem solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgb(var(--color-neutral-300));
+}
+
+.dark .prose .sc-code--scrollable .sc-code__toggle:checked ~ .sc-code__body::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-neutral-600));
+}
+
+.prose .sc-code__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem 0.9rem;
+  border-top: 1px solid rgb(var(--color-neutral-200));
+  background: rgb(var(--color-neutral-50));
+}
+
+.dark .prose .sc-code__footer {
+  border-top-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-900));
+}
+
+.prose .sc-code__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--color-primary-600));
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dark .prose .sc-code__action {
+  color: rgb(var(--color-primary-400));
+}
+
+.prose .sc-code__action:hover {
+  opacity: 0.86;
+}
+
+.prose .sc-code__action--collapse {
+  display: none;
+}
+
+.prose .sc-code__toggle:checked ~ .sc-code__footer .sc-code__action--expand {
+  display: none;
+}
+
+.prose .sc-code__toggle:checked ~ .sc-code__footer .sc-code__action--collapse {
+  display: inline-flex;
+}
+
+.prose .sc-code__lang {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-200));
+  color: rgb(var(--color-neutral-700));
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.dark .prose .sc-code__lang {
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-neutral-100));
+}
+
+.prose .sc-code .highlight {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.prose .sc-code .highlight pre.chroma {
+  margin: 0;
+  padding: 0.9rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-size: 0.9rem;
+  line-height: 1.48;
+  background: transparent;
+}
+
+.prose .sc-code .highlight code {
+  font-size: inherit;
+}
+
+.prose .sc-code .highlight .line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.prose .sc-code .highlight .ln,
+.prose .sc-code .highlight .lnt {
+  min-width: 3.25rem;
+  padding: 0 0.9rem 0 1rem;
+  border-inline-end: 1px solid rgb(var(--color-neutral-200));
+  color: rgb(var(--color-neutral-400));
+  text-align: end;
+  user-select: none;
+}
+
+.dark .prose .sc-code .highlight .ln,
+.dark .prose .sc-code .highlight .lnt {
+  border-inline-end-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-neutral-500));
+}
+
+.prose .sc-code .highlight .cl {
+  min-width: 0;
+  padding-inline: 1rem;
+}
+
+.prose .sc-code .highlight .line:target {
+  background: color-mix(in srgb, rgb(var(--color-primary-500)) 12%, transparent);
+}
+
+.prose .sc-code .highlight pre.chroma::-webkit-scrollbar {
+  height: 0.7rem;
+}
+
+.prose .sc-code .highlight pre.chroma::-webkit-scrollbar-thumb {
+  border: 0.18rem solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgb(var(--color-neutral-300));
+}
+
+.dark .prose .sc-code .highlight pre.chroma::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-neutral-600));
+}

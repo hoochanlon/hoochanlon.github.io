@@ -1,0 +1,86 @@
+{{- $langRaw := .Type | default "" -}}
+{{- $langKey := lower $langRaw -}}
+{{- $previewLines := 10 -}}
+{{- $collapseThreshold := 20 -}}
+{{- $scrollThreshold := 40 -}}
+{{- $expandedLines := 29 -}}
+{{- $foldId := printf "sc-code-fold-%d" .Ordinal -}}
+{{- $labels := dict
+  "js" "JavaScript"
+  "javascript" "JavaScript"
+  "ts" "TypeScript"
+  "typescript" "TypeScript"
+  "jsx" "JSX"
+  "tsx" "TSX"
+  "sh" "Shell"
+  "bash" "Bash"
+  "zsh" "Zsh"
+  "shell" "Shell"
+  "py" "Python"
+  "python" "Python"
+  "rb" "Ruby"
+  "go" "Go"
+  "golang" "Go"
+  "java" "Java"
+  "kt" "Kotlin"
+  "kotlin" "Kotlin"
+  "c" "C"
+  "cpp" "C++"
+  "c++" "C++"
+  "cs" "C#"
+  "csharp" "C#"
+  "php" "PHP"
+  "html" "HTML"
+  "xml" "XML"
+  "css" "CSS"
+  "scss" "SCSS"
+  "sass" "Sass"
+  "less" "Less"
+  "json" "JSON"
+  "yaml" "YAML"
+  "yml" "YAML"
+  "toml" "TOML"
+  "ini" "INI"
+  "sql" "SQL"
+  "md" "Markdown"
+  "markdown" "Markdown"
+  "dockerfile" "Dockerfile"
+  "makefile" "Makefile"
+  "diff" "Diff"
+  "text" "Text"
+  "plaintext" "Plain text"
+-}}
+{{- $langLabel := "" -}}
+{{- if ne $langKey "" -}}
+  {{- $langLabel = cond (isset $labels $langKey) (index $labels $langKey) (title $langRaw) -}}
+{{- end -}}
+{{- $result := transform.HighlightCodeBlock . -}}
+{{- $lineCount := len (findRE "<span class=\"line\">" $result.Wrapped) -}}
+{{- $isCollapsible := gt $lineCount $collapseThreshold -}}
+{{- $isScrollable := gt $lineCount $scrollThreshold -}}
+<div class="sc-code not-prose{{ if $isCollapsible }} sc-code--collapsible{{ end }}{{ if $isScrollable }} sc-code--scrollable{{ end }}"{{ if $isCollapsible }} style="--sc-code-preview-lines: {{ $previewLines }};{{ if $isScrollable }} --sc-code-expanded-lines: {{ $expandedLines }};{{ end }}"{{ end }}>
+  {{- if or (ne $langLabel "") $isCollapsible -}}
+    <div class="sc-code__header">
+      {{- if ne $langLabel "" -}}
+        <span class="sc-code__lang">{{ $langLabel }}</span>
+      {{- else -}}
+        <span></span>
+      {{- end -}}
+      {{- if $isCollapsible -}}
+        <span class="sc-code__meta">共 {{ $lineCount }} 行</span>
+      {{- end -}}
+    </div>
+  {{- end -}}
+  {{- if $isCollapsible -}}
+    <input class="sc-code__toggle" id="{{ $foldId }}" type="checkbox" />
+  {{- end -}}
+  <div class="sc-code__body">
+    {{ $result.Wrapped }}
+  </div>
+  {{- if $isCollapsible -}}
+    <div class="sc-code__footer">
+      <label class="sc-code__action sc-code__action--expand" for="{{ $foldId }}">展开剩余 {{ sub $lineCount $previewLines }} 行</label>
+      <label class="sc-code__action sc-code__action--collapse" for="{{ $foldId }}">收起代码</label>
+    </div>
+  {{- end -}}
+</div>
