@@ -24,7 +24,7 @@
     {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
     {{ partial "picture.html" (dict "img" . "alt" $altText "class" $class "x2" $x2 "lazy" $lazy "webp" $webp) }}
   {{- else -}}
-    <img src="{{ .Destination | safeURL }}" alt="{{ $altText }}" class="{{ $class }}" />
+    <img src="{{ .Destination | safeURL }}" {{ with $altText }}alt="{{ . }}"{{ end }} class="{{ $class }}" />
   {{- end -}}
   {{ with $caption }}<figcaption class="text-center">{{ . | markdownify }}</figcaption>{{ end }}
 </figure>

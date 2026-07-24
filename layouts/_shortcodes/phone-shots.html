@@ -16,16 +16,16 @@
         {{- $match := findRESubmatch $imagePattern $line 1 -}}
         {{- if $match -}}
           {{- $parts := index $match 0 -}}
-          {{- $alt := index $parts 1 -}}
+          {{- $alt := index $parts 1 | strings.TrimSpace -}}
           {{- $src := index $parts 2 -}}
           {{- $title := "" -}}
           {{- if ge (len $parts) 4 -}}
-            {{- $title = index $parts 3 -}}
+            {{- $title = index $parts 3 | strings.TrimSpace -}}
           {{- end -}}
           <div class="sc-phone-shots__item">
             <img
               src="{{ $src | safeURL }}"
-              alt="{{ $alt }}"
+              {{ with $alt }}alt="{{ . }}"{{ end }}
               {{ with $title }}title="{{ . }}"{{ end }}
               loading="lazy"
               decoding="async"

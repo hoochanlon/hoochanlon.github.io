@@ -44,15 +44,19 @@
     return img.currentSrc || img.getAttribute("src") || "";
   }
 
+  function cleanText(value) {
+    return (value || "").trim();
+  }
+
   function getImageTitle(img) {
-    return img.getAttribute("title") || img.getAttribute("aria-label") || img.alt || "";
+    return cleanText(img.getAttribute("title") || img.getAttribute("aria-label") || img.alt);
   }
 
   function toGalleryItem(img) {
     return {
       img,
       src: getImageSrc(img),
-      alt: img.alt || "",
+      alt: cleanText(img.alt),
       title: getImageTitle(img),
     };
   }
@@ -109,8 +113,16 @@
     wheelNavLockedAt = Date.now();
     resetView();
     full.src = item.src;
-    full.alt = item.alt;
-    full.title = item.title;
+    if (item.alt) {
+      full.alt = item.alt;
+    } else {
+      full.removeAttribute("alt");
+    }
+    if (item.title) {
+      full.title = item.title;
+    } else {
+      full.removeAttribute("title");
+    }
 
     if (full.complete) {
       freezeFitSize();
