@@ -20,4 +20,5 @@ title = "糊作存笼，点晴即破"
     { github = "https://github.com/hoochanlon" },
     { email = "mailto:hoochanlon@outlook.com" },
     { rss = "/posts/index.xml" },
+    { twitter = "https://hoochanlon.github.io/twitter/?owner=hoochanlon&repo=twitter" },
   ]

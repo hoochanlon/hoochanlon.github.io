@@ -1,0 +1,35 @@
+{{ $wechatQr := resources.Get "img/wexin.jpg" }}
+
+{{ with site.Language.Params.Author.links }}
+  <div class="author-links flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    {{ range $links := . }}
+      {{ range $name, $url := $links }}
+        <a
+          class="author-links__item px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="{{ $url | safeURL }}"
+          target="_blank"
+          aria-label="{{ $name | title }}"
+          rel="me noopener noreferrer"
+          >{{ partial "icon.html" $name }}</a
+        >
+      {{ end }}
+    {{ end }}
+    {{ with $wechatQr }}
+      <span class="author-links__wechat" onmouseleave="this.querySelector('button')?.blur();">
+        <button
+          type="button"
+          class="author-links__wechat-trigger px-1 transition-transform hover:scale-125 hover:text-primary-700 focus-visible:scale-125 focus-visible:text-primary-700 focus-visible:outline-none dark:hover:text-primary-400 dark:focus-visible:text-primary-400"
+          style="will-change:transform;"
+          aria-label="微信二维码"
+          aria-haspopup="dialog"
+        >
+          {{ partial "icon.html" "wechat" }}
+        </button>
+        <span class="author-links__wechat-popover" role="dialog" aria-label="微信二维码">
+          <img src="{{ .RelPermalink }}" alt="微信二维码" loading="lazy" decoding="async" />
+        </span>
+      </span>
+    {{ end }}
+  </div>
+{{ end }}
