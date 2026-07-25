@@ -89,7 +89,7 @@
   width: 100%;
   padding: 0.6rem 0.7rem;
   text-align: left;
-  transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease;
+  transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
 }
 
 .palette-switcher__option:hover,
@@ -101,7 +101,13 @@
 .palette-switcher__option.is-active {
   border-color: rgb(var(--color-primary-400));
   background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-neutral-800));
   box-shadow: inset 0 0 0 1px rgb(var(--color-primary-300));
+}
+
+.palette-switcher__option.is-active .palette-switcher__label {
+  color: inherit;
+  font-weight: 600;
 }
 
 .palette-switcher__swatch {
@@ -134,6 +140,46 @@
 .dark .palette-switcher__trigger,
 .dark .palette-switcher__menu {
   background: color-mix(in srgb, rgb(var(--color-neutral-100)) 92%, black);
+}
+
+.dark .palette-switcher__menu {
+  border-color: rgb(var(--color-neutral-300));
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.32);
+}
+
+.dark .palette-switcher__title,
+.dark .palette-switcher__option,
+.dark .palette-switcher__reset,
+.dark .palette-switcher__label {
+  color: rgb(var(--color-neutral-800));
+}
+
+.dark .palette-switcher__option,
+.dark .palette-switcher__reset {
+  border-color: rgb(var(--color-neutral-300));
+  background: rgb(var(--color-neutral-50));
+}
+
+.dark .palette-switcher__option.is-active {
+  border-color: rgb(var(--color-primary-500));
+  background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-neutral-900));
+  box-shadow: inset 0 0 0 2px rgb(var(--color-primary-400));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .palette-switcher__trigger {
+  color: rgb(var(--color-primary-500));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .palette-switcher__menu {
+  background: color-mix(in srgb, rgb(var(--color-neutral-100)) 94%, black);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .palette-switcher__option.is-active {
+  border-color: rgb(var(--color-primary-500));
+  background: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-neutral-900));
+  box-shadow: inset 0 0 0 2px rgb(var(--color-primary-400));
 }
 
 @media (max-width: 640px) {

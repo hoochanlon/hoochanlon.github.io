@@ -3,6 +3,12 @@
   const container = document.querySelector("[data-palette-switcher]");
   if (!container) return;
 
+  const hasMermaidDiagrams = () => Boolean(document.querySelector(".mermaid"));
+  const refreshThemeBoundMedia = (didChange) => {
+    if (!didChange || !hasMermaidDiagrams()) return;
+    window.location.reload();
+  };
+
   const storageKey = "palette";
   const defaultPalette = (container.getAttribute("data-default-palette") || "").trim().toLowerCase();
   const options = Array.from(container.querySelectorAll("[data-palette-option]"));
@@ -60,22 +66,24 @@
     });
   };
 
-  const applyPalette = (palette, persist = true) => {
+  const applyPalette = (palette, persist = true, refresh = false) => {
     const requested = (palette || defaultPalette).trim().toLowerCase();
     const next = availablePalettes.has(requested) ? requested : defaultPalette;
     if (!next) return;
+    const previous = getActivePalette();
     root.setAttribute("data-palette", next);
     if (persist) {
       writeStoredPalette(next);
     }
     requestAnimationFrame(updateThemeColorMeta);
     syncActiveState();
+    refreshThemeBoundMedia(refresh && previous !== next);
   };
 
   options.forEach((button) => {
     button.addEventListener("click", () => {
       const palette = button.getAttribute("data-palette-option");
-      applyPalette(palette, true);
+      applyPalette(palette, true, true);
       if (details) details.open = false;
     });
   });
@@ -83,7 +91,7 @@
   if (resetButton) {
     resetButton.addEventListener("click", () => {
       clearStoredPalette();
-      applyPalette(defaultPalette, false);
+      applyPalette(defaultPalette, false, true);
       if (details) details.open = false;
     });
   }

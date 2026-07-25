@@ -22,7 +22,7 @@ fingerprintAlgorithm = "sha256"
 [palette]
   enabled = true
   default = "sakura"
-  options = ["sakura", "congo", "ocean", "slate", "cherry"]
+  options = ["sakura", "latex", "congo", "ocean", "slate", "cherry"]
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom

@@ -14,6 +14,17 @@ function setThemeColor() {
   return true;
 }
 
+function hasMermaidDiagrams() {
+  return document.querySelector(".mermaid") !== null;
+}
+
+function refreshThemeBoundMedia(didChange) {
+  if (!didChange || !hasMermaidDiagrams()) {
+    return;
+  }
+  window.location.reload();
+}
+
 if ((sitePreference === "dark" && userPreference === null) || userPreference === "dark") {
   document.documentElement.classList.add("dark");
   setThemeColor();
@@ -29,12 +40,14 @@ if (document.documentElement.getAttribute("data-auto-appearance") === "true") {
     setThemeColor();
   }
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+    const wasDark = document.documentElement.classList.contains("dark");
     if (event.matches) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
     setThemeColor();
+    refreshThemeBoundMedia(wasDark !== document.documentElement.classList.contains("dark"));
   });
 }
 
@@ -65,12 +78,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
   var switchers = document.querySelectorAll("[id^='appearance-switcher']");
   switchers.forEach((switcher) => {
     switcher.addEventListener("click", () => {
+      const wasDark = document.documentElement.classList.contains("dark");
       document.documentElement.classList.toggle("dark");
       setThemeColor();
       localStorage.setItem(
         "appearance",
         document.documentElement.classList.contains("dark") ? "dark" : "light"
       );
+      refreshThemeBoundMedia(wasDark !== document.documentElement.classList.contains("dark"));
     });
     switcher.addEventListener("contextmenu", (event) => {
       event.preventDefault();

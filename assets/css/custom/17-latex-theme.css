@@ -1,0 +1,496 @@
+/* Sakura Notes 阅读增强层：和纸留白、讲义章节线、教材盒子 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]) body {
+  background-color: rgb(var(--color-neutral-100));
+  background-image:
+    radial-gradient(circle at 12% 18%, rgb(var(--color-primary-100) / 0.42), transparent 4.6rem),
+    radial-gradient(circle at 88% 28%, rgb(var(--color-primary-100) / 0.3), transparent 3.4rem),
+    radial-gradient(circle at 52% 9%, rgb(var(--color-primary-200) / 0.18), transparent 6rem),
+    linear-gradient(180deg, rgb(var(--color-neutral-50)), rgb(var(--color-neutral-100)) 20rem, rgb(var(--color-neutral-200)) 100%);
+  color: rgb(var(--color-neutral-800));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark body {
+  background-color: rgb(var(--color-neutral-900));
+  background-image: none;
+  color: rgb(var(--color-neutral));
+}
+
+html[data-palette="latex"] body {
+  background-color: rgb(var(--color-neutral));
+  background-image: none;
+}
+
+html[data-palette="latex"].dark body {
+  background-image: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral-800));
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  line-height: 1.88;
+  letter-spacing: 0.004em;
+  text-rendering: optimizeLegibility;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10 :where(p, a, span, li, nav, button, div) {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  letter-spacing: normal;
+  line-height: 1.6;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral-900));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > .page-title-kicker,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > div {
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script) {
+  color: rgb(var(--color-neutral-900));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script) {
+  color: rgb(var(--color-neutral));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .site-author-name--han {
+  font-family: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .site-author-name--script {
+  font-family: "Allura", "Segoe Script", "Apple Chancery", cursive;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .page-title-script {
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose p,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose li {
+  hanging-punctuation: first last;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, #search-wrapper) :where(a, a *, .toc a, .toc a *)::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, #search-wrapper) :where(a, a *, .toc a, .toc a *)::-moz-selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  text-decoration-color: transparent;
+  text-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h1 {
+  margin-bottom: 1.4rem;
+  color: rgb(var(--color-primary-600));
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 2.6rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgb(var(--color-primary-200));
+  color: rgb(var(--color-primary-600));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2::before {
+  content: "§";
+  flex: 0 0 auto;
+  color: rgb(var(--color-primary-500));
+  font-size: 0.92em;
+  font-weight: 700;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+  color: rgb(var(--color-primary-700));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) {
+  color: rgb(var(--color-primary-700));
+  font-family: inherit;
+  text-decoration-color: rgb(var(--color-primary-300));
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) * {
+  color: inherit;
+  font-family: inherit;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) {
+  color: rgb(var(--color-primary-400));
+  text-decoration-color: rgb(var(--color-primary-500));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(article, .toc) ::selection {
+  background: rgb(var(--color-primary-700));
+  color: rgb(255 255 255);
+  -webkit-text-fill-color: rgb(255 255 255);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(article, .toc) ::-moz-selection {
+  background: rgb(var(--color-primary-700));
+  color: rgb(255 255 255);
+  -webkit-text-fill-color: rgb(255 255 255);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a:any-link::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a *::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a:any-link::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a *::selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  text-decoration-color: transparent;
+  text-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a:any-link::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a *::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a:any-link::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a *::-moz-selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  text-decoration-color: transparent;
+  text-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose hr {
+  border-color: rgb(var(--color-primary-200));
+  opacity: 0.8;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose :where(blockquote) {
+  border-inline-start: 0.28rem solid rgb(var(--color-secondary-500));
+  border-radius: 0;
+  background: rgb(var(--color-primary-50) / 0.65);
+  color: rgb(var(--color-neutral-700));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .prose :where(blockquote) {
+  background: rgb(var(--color-primary-100) / 0.2);
+  color: rgb(var(--color-neutral-100));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose .katex-display {
+  margin: 1.35rem 0;
+  padding: 0.9rem 1rem;
+  border-block: 1px solid rgb(var(--color-primary-200));
+  background: rgb(var(--color-neutral-50) / 0.72);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .prose .katex-display {
+  background: rgb(var(--color-neutral-100) / 0.18);
+  border-block-color: rgb(var(--color-primary-300) / 0.4);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose .sc-code {
+  border-radius: 0.35rem;
+  border-color: rgb(var(--color-primary-200));
+  background: rgb(var(--color-neutral-50) / 0.86);
+  box-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose .sc-code__header,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose .sc-code__footer {
+  background: rgb(var(--color-primary-50) / 0.78);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose .sc-code__lang {
+  border-radius: 0.25rem;
+  background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-primary-800));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout {
+  margin: 1.35rem 0;
+  border-width: 1px 1px 1px 0.28rem;
+  border-style: solid;
+  border-color: var(--sc-border);
+  border-inline-start-color: var(--sc-accent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--sc-bg) 90%, white 10%);
+  box-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout {
+  background: color-mix(in srgb, var(--sc-bg) 88%, black 12%);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout:not(.sc-callout--fold) {
+  padding: 1rem 1.15rem 1.05rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__label,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--fold > .sc-callout__summary {
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__icon {
+  display: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__title {
+  display: block;
+  width: 100%;
+  padding-bottom: 0.42rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--sc-accent) 24%, white 76%);
+  color: var(--sc-accent);
+  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body {
+  margin-top: 0.55rem;
+  color: var(--sc-body);
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  line-height: 1.8;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body p,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body li {
+  color: inherit;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note {
+  --sc-bg: #f5eef4;
+  --sc-border: #ead7e4;
+  --sc-accent: #8e5577;
+  --sc-body: #5f535a;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important {
+  --sc-bg: #f8ecef;
+  --sc-border: #e9c9d5;
+  --sc-accent: #c05a84;
+  --sc-body: #5f535a;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success {
+  --sc-bg: #eef5ee;
+  --sc-border: #d5e5d1;
+  --sc-accent: #5a9666;
+  --sc-body: #556258;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning {
+  --sc-bg: #f8f1e6;
+  --sc-border: #ebdbb8;
+  --sc-accent: #b3882f;
+  --sc-body: #665a45;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution {
+  --sc-bg: #faeef3;
+  --sc-border: #efcfda;
+  --sc-accent: #d06a96;
+  --sc-body: #66525d;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--note {
+  --sc-bg: #352b33;
+  --sc-border: #5f4656;
+  --sc-accent: #e0b5cb;
+  --sc-body: #f2e6ee;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--important {
+  --sc-bg: #3d2b33;
+  --sc-border: #7b4a61;
+  --sc-accent: #f2b6cb;
+  --sc-body: #f7e9ef;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--tip,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--success {
+  --sc-bg: #243128;
+  --sc-border: #44624a;
+  --sc-accent: #b8d8bc;
+  --sc-body: #eaf3ec;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--warning {
+  --sc-bg: #352c1f;
+  --sc-border: #735c31;
+  --sc-accent: #e7cc8a;
+  --sc-body: #f4ecda;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--caution {
+  --sc-bg: #402a34;
+  --sc-border: #825169;
+  --sc-accent: #f2b8cb;
+  --sc-body: #f8eaf0;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  margin-inline-end: 0.55rem;
+  font-size: 0.95em;
+  font-style: normal;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Definition";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Theorem";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip.sc-callout--fold > .sc-callout__summary .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Worked Example";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Intuition";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "A List of Rules";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .palette-switcher__trigger {
+  box-shadow: 0 0 0 1px rgb(var(--color-primary-600) / 0.12), 0 10px 28px rgb(var(--color-neutral-900) / 0.08);
+}
+
+/* 暗色沿用 Congo 的层级：深色底、浅色正文、较亮的主题色链接。 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark body {
+  background-color: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-100));
+}
+
+html[data-palette="latex"].dark body {
+  background-color: rgb(0 0 0);
+  background-image: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral-100));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #search-wrapper
+) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script),
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral-100));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)),
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) * {
+  color: rgb(var(--color-primary-400));
+  -webkit-text-fill-color: rgb(var(--color-primary-400));
+  text-decoration-color: rgb(var(--color-primary-500));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .prose :where(h1, h2, h3) {
+  color: rgb(var(--color-primary-300));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a)::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a) *::selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a)::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a) *::-moz-selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+}

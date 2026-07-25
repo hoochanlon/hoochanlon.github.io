@@ -18,7 +18,6 @@
                 {{ if $.Site.Params.enableSearch | default false }}
                   <button
                     id="search-button-{{ $.Scratch.Get "searchCount" }}"
-                    title="{{ .Title | default (i18n "search.open_button_title") }}"
                   >
                     {{ with .Params.icon | default "search" }}
                       <span
@@ -43,7 +42,6 @@
                 >
                   <span
                     class="group-dark:hover:text-primary-400 inline transition-colors group-hover:text-primary-600 dark:hidden"
-                    title="{{ i18n "footer.dark_appearance" }}"
                   >
                     {{ with .Params.icon | default "moon" }}
                       {{- partial "icon.html" . -}}
@@ -57,7 +55,6 @@
                   </span>
                   <span
                     class="group-dark:hover:text-primary-400 hidden transition-colors group-hover:text-primary-600 dark:inline"
-                    title="{{ i18n "footer.light_appearance" }}"
                   >
                     {{ with .Params.icon | default "sun" }}
                       {{ partial "icon.html" . }}
@@ -96,7 +93,7 @@
           {{ end }}
           {{ if and ($.Site.Params.enableSearch | default false) (eq ($.Scratch.Get "searchCount") 0) }}
             <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0">
-              <button id="search-button-m0" title="{{ i18n "search.open_button_title" }}">
+              <button id="search-button-m0">
                 <span
                   class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
                 >

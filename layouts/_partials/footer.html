@@ -2,8 +2,8 @@
   {{ $paletteEnabled := .Site.Params.palette.enabled | default false }}
   {{ $paletteDefault := lower (.Site.Params.palette.default | default (.Site.Params.colorScheme | default "congo")) }}
   {{ $paletteOptions := .Site.Params.palette.options | default (slice $paletteDefault) }}
-  {{ $paletteLabels := dict "sakura" "Sakura" "congo" "Congo" "ocean" "Ocean" "sapphire" "Sapphire" "slate" "Slate" "cherry" "Cherry" "fire" "Fire" "avocado" "Avocado" }}
-  {{ $paletteSwatches := dict "sakura" "#c85b87" "congo" "#8b5cf6" "ocean" "#0ea5e9" "sapphire" "#2563eb" "slate" "#64748b" "cherry" "#dc2626" "fire" "#f97316" "avocado" "#65a30d" }}
+  {{ $paletteLabels := dict "sakura" "Sakura" "latex" "LaTeX" "congo" "Congo" "ocean" "Ocean" "sapphire" "Sapphire" "slate" "Slate" "cherry" "Cherry" "fire" "Fire" "avocado" "Avocado" }}
+  {{ $paletteSwatches := dict "sakura" "#c85b87" "latex" "#374151" "congo" "#8b5cf6" "ocean" "#0ea5e9" "sapphire" "#2563eb" "slate" "#64748b" "cherry" "#dc2626" "fire" "#f97316" "avocado" "#65a30d" }}
   {{/* Footer menu */}}
   {{ if .Site.Menus.footer }}
     <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
@@ -18,7 +18,6 @@
               {{ if $.Site.Params.enableSearch | default false }}
                 <button
                   id="search-button-{{ $.Scratch.Get "searchCount" }}"
-                  title="{{ .Title | default (i18n "search.open_button_title") }}"
                 >
                   {{ with .Params.icon }}
                     <span
@@ -43,13 +42,11 @@
               >
                 <span
                   class="group-dark:hover:text-primary-400 inline transition-colors group-hover:text-primary-600 dark:hidden"
-                  title="{{ i18n "footer.dark_appearance" }}"
                 >
                   {{ partial "icon.html" "moon" }}
                 </span>
                 <span
                   class="group-dark:hover:text-primary-400 hidden transition-colors group-hover:text-primary-600 dark:inline"
-                  title="{{ i18n "footer.light_appearance" }}"
                 >
                   {{ partial "icon.html" "sun" }}
                 </span>
@@ -136,7 +133,7 @@
       {{ if $paletteEnabled }}
         <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" data-palette-switcher data-default-palette="{{ $paletteDefault }}">
           <details class="palette-switcher__panel">
-            <summary class="palette-switcher__trigger" aria-label="切换配色" title="切换配色">
+            <summary class="palette-switcher__trigger" aria-label="切换配色">
               {{ partial "icon.html" "color" }}
             </summary>
             <div class="palette-switcher__menu">
@@ -175,13 +172,11 @@
           <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
             <div
               class="flex h-12 w-12 items-center justify-center dark:hidden"
-              title="{{ i18n "footer.dark_appearance" }}"
             >
               {{ partial "icon.html" "moon" }}
             </div>
             <div
               class="hidden h-12 w-12 items-center justify-center dark:flex"
-              title="{{ i18n "footer.light_appearance" }}"
             >
               {{ partial "icon.html" "sun" }}
             </div>
