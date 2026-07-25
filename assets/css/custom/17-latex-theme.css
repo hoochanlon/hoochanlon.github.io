@@ -440,9 +440,87 @@ html[data-palette="latex"].dark body {
   color: rgb(var(--color-neutral-100));
 }
 
+html[data-palette="latex"].dark {
+  --latex-typora-bg: 54 59 64;
+  --latex-typora-surface: 51 51 51;
+  --latex-typora-border: 71 77 84;
+  --latex-typora-text: 184 191 198;
+  --latex-typora-heading: 222 222 222;
+  --latex-typora-muted: 157 162 166;
+  --latex-typora-selection: 74 137 220;
+}
+
 html[data-palette="latex"].dark body {
-  background-color: rgb(0 0 0);
+  background-color: rgb(var(--latex-typora-bg));
   background-image: none;
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  #main-content,
+  #search-wrapper
+) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script),
+html[data-palette="latex"].dark article > header.max-w-prose > h1:not(.page-title-script),
+html[data-palette="latex"].dark .prose :where(h1, h2, h3) {
+  color: rgb(var(--latex-typora-heading));
+}
+
+html[data-palette="latex"].dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)),
+html[data-palette="latex"].dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) * {
+  color: rgb(var(--latex-typora-heading));
+  -webkit-text-fill-color: rgb(var(--latex-typora-heading));
+  text-decoration-color: rgb(var(--latex-typora-heading) / 0.45);
+}
+
+html[data-palette="latex"].dark .prose hr {
+  border-color: rgb(var(--latex-typora-border));
+}
+
+html[data-palette="latex"].dark .prose :where(blockquote) {
+  background: transparent;
+  border-inline-start-color: rgb(var(--latex-typora-border));
+  color: rgb(var(--latex-typora-muted));
+}
+
+html[data-palette="latex"].dark .prose .katex-display,
+html[data-palette="latex"].dark .prose .sc-code,
+html[data-palette="latex"].dark .prose .sc-code__header,
+html[data-palette="latex"].dark .prose .sc-code__footer,
+html[data-palette="latex"].dark #search-modal,
+html[data-palette="latex"].dark .toc summary {
+  background: rgb(var(--latex-typora-surface));
+  border-color: rgb(var(--latex-typora-border));
+}
+
+html[data-palette="latex"].dark :where(.toc a, .prose a)::selection,
+html[data-palette="latex"].dark :where(.toc a, .prose a) *::selection {
+  background: rgb(var(--latex-typora-selection));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+}
+
+html[data-palette="latex"].dark :where(.toc a, .prose a)::-moz-selection,
+html[data-palette="latex"].dark :where(.toc a, .prose a) *::-moz-selection {
+  background: rgb(var(--latex-typora-selection));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
@@ -493,4 +571,36 @@ html[data-palette="latex"].dark body {
   background: rgb(var(--color-primary-600));
   color: rgb(255 255 255) !important;
   -webkit-text-fill-color: rgb(255 255 255) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.actor, .participant, .activation0, .activation1, .activation2) {
+  fill: rgb(var(--latex-typora-surface)) !important;
+  stroke: rgb(var(--latex-typora-border)) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(text.actor, .actor-line, .messageText, .loopText, .labelText, .noteText, .sequenceNumber) {
+  fill: rgb(var(--latex-typora-text)) !important;
+  color: rgb(var(--latex-typora-text)) !important;
+  stroke: none !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.messageLine0, .messageLine1, .loopLine, .actor-line) {
+  stroke: rgb(var(--latex-typora-muted)) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.note, .labelBox) {
+  fill: rgb(var(--latex-typora-surface)) !important;
+  stroke: rgb(var(--latex-typora-border)) !important;
+}
+
+html[data-palette="latex"].dark .prose .sc-code__lang {
+  background: rgb(var(--latex-typora-surface));
+  color: rgb(var(--latex-typora-heading));
+}
+
+html[data-palette="latex"].dark .prose .sc-code__icon,
+html[data-palette="latex"].dark .prose .sc-code__icon svg {
+  color: rgb(var(--latex-typora-heading));
+  fill: currentColor;
+  stroke: currentColor;
 }
