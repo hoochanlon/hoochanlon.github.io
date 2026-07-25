@@ -1,0 +1,44 @@
+/* 首页头像状态徽标
+ * - 数据来源：config/_default/languages.zh-cn.toml -> params.author.status
+ * - 目标：给头像一个轻量、可配置的右下角状态，而不干扰正文或社交链接模块
+ */
+
+.profile-avatar {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+}
+
+.profile-avatar__image {
+  margin-bottom: 0 !important;
+}
+
+.profile-avatar__status {
+  position: absolute;
+  right: 0.35rem;
+  bottom: 0.3rem;
+  display: inline-flex;
+  min-width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.42rem;
+  border: 2px solid rgb(var(--color-neutral-50));
+  border-radius: 999px;
+  background: rgb(var(--color-primary-100));
+  box-shadow: 0 10px 24px rgba(31, 27, 31, 0.18);
+  line-height: 1;
+}
+
+.profile-avatar__status-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.dark .profile-avatar__status {
+  border-color: rgb(var(--color-neutral-900));
+  background: rgb(var(--color-primary-200));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}

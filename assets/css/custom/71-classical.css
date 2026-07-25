@@ -1,0 +1,169 @@
+/* 古文短代码
+ *
+ * 作用域：layouts/_shortcodes/classical.html
+ * 职责：古文 / 表奏 / 序文的篇章式阅读，不复用诗词逐行模型
+ */
+
+.sc-classical {
+  margin: 1.8rem auto;
+  max-width: 52rem;
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(1rem, 3.6vw, 2.25rem);
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.9rem;
+  background: rgb(var(--color-neutral-50));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.dark .sc-classical {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.sc-classical__meta {
+  margin-bottom: 1.35rem;
+  text-align: center;
+}
+
+.sc-classical__title {
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+  font-size: clamp(1.22rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.sc-classical__author {
+  margin-top: 0.7rem;
+  color: rgb(var(--color-neutral-600));
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+
+.dark .sc-classical__author {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-classical__body {
+  font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+  font-size: clamp(0.92rem, 1.12vw, 1rem);
+  line-height: 1.76;
+  color: rgb(var(--color-neutral-800));
+  letter-spacing: 0.01em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.dark .sc-classical__body {
+  color: rgb(var(--color-neutral-100));
+}
+
+.sc-classical__para {
+  margin: 0;
+  text-indent: 2em;
+}
+
+.sc-classical__para + .sc-classical__para {
+  margin-top: 1.15rem;
+}
+
+.sc-classical__toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.sc-classical__details,
+.sc-classical__action--collapse {
+  display: none;
+}
+
+.sc-classical__action {
+  display: inline-flex;
+  margin-top: 1.2rem;
+  color: rgb(var(--color-primary-600));
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.dark .sc-classical__action {
+  color: rgb(var(--color-primary-400));
+}
+
+.sc-classical__toggle:checked ~ .sc-classical__details {
+  display: block;
+}
+
+.sc-classical__toggle:checked ~ .sc-classical__action--expand {
+  display: none;
+}
+
+.sc-classical__toggle:checked ~ .sc-classical__action--collapse {
+  display: inline-flex;
+}
+
+.sc-classical--v {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  width: fit-content;
+  max-width: 100%;
+  max-height: min(70vh, 38rem);
+  overflow: auto;
+  margin-inline: auto;
+  padding: 0.25rem 0;
+}
+
+.sc-classical--v .sc-classical__meta {
+  margin-bottom: 0;
+  margin-inline-end: 1.35rem;
+  text-align: center;
+}
+
+.sc-classical--v .sc-classical__body {
+  width: auto;
+  font-size: 1.16rem;
+  line-height: 2.35;
+}
+
+.sc-classical--v .sc-classical__para {
+  margin: 0;
+  text-indent: 0;
+}
+
+.sc-classical--v .sc-classical__para + .sc-classical__para {
+  margin-top: 0;
+  margin-inline-start: 1.15rem;
+}
+
+@media (max-width: 640px) {
+  .sc-classical {
+    margin: 1.35rem auto;
+    padding: 1rem 0.9rem;
+  }
+
+  .sc-classical__meta {
+    margin-bottom: 1rem;
+  }
+
+  .sc-classical__title {
+    font-size: 1.12rem;
+  }
+
+  .sc-classical__author {
+    font-size: 0.82rem;
+  }
+
+  .sc-classical__body {
+    font-size: 0.9rem;
+    line-height: 1.72;
+  }
+
+  .sc-classical__para + .sc-classical__para {
+    margin-top: 0.95rem;
+  }
+}

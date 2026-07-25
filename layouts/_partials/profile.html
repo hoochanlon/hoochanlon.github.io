@@ -10,19 +10,33 @@
 >
   {{ $lazy := site.Params.enableImageLazyLoading | default true }}
   {{ $altText := (site.Language.Params.Author.name | default "Author") }}
+  {{ $status := site.Language.Params.Author.status }}
+  {{ $statusText := "" }}
+  {{ $statusLabel := "" }}
+  {{ with $status }}
+    {{ $statusText = .text | default "" }}
+    {{ $statusLabel = .label | default $statusText }}
+  {{ end }}
   {{ with site.Language.Params.Author.image }}
     {{ $authorImage := resources.Get . }}
     {{ if $authorImage }}
-      {{ $imgClass := "mb-2 h-auto w-36 rounded-full" }}
-      {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
-      {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy "webp" $webp) }}
+      <div class="profile-avatar">
+        {{ $imgClass := "profile-avatar__image mb-2 h-auto w-36 rounded-full" }}
+        {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
+        {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy "webp" $webp) }}
+        {{ with $statusText }}
+          <span class="profile-avatar__status" aria-label="{{ $statusLabel }}" title="{{ $statusLabel }}">
+            <span class="profile-avatar__status-text">{{ . }}</span>
+          </span>
+        {{ end }}
+      </div>
     {{ end }}
   {{ end }}
-  {{/* 含汉字 → 常规标题；纯拉丁等 → Allura 花体（见 05-author-name.css） */}}
-  {{ $authorName := site.Language.Params.Author.name | default site.Title }}
+  {{/* 含汉字 → 常规标题；纯拉丁等 → 花体（见 05-name.css） */}}
+  {{ $authorName := site.Language.Params.Author.displayName | default site.Language.Params.Author.name | default site.Title }}
   {{ $hasHan := findRE `\p{Han}` $authorName }}
   <h1
-    class="site-author-name{{ if $hasHan }} site-author-name--han{{ else }} site-author-name--script{{ end }}"
+    class="author-name author-name--profile{{ if $hasHan }} author-name--han{{ else }} author-name--script{{ end }}"
   >
     {{ $authorName }}
   </h1>

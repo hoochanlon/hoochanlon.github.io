@@ -1,0 +1,50 @@
+/* 博客作者名模块
+ *
+ * 数据流：config/_default/languages.zh-cn.toml -> params.author.displayName
+ * 作用域：
+ * - .author-name--profile 首页 profile 大标题
+ * - .author-name--card    文章页脚作者卡片
+ *
+ * 中文艺术签名字体通过 layouts/_partials/extend-head.html 引入
+ */
+
+.author-name {
+  line-height: 1.12;
+}
+
+.author-name--han {
+  font-family: "Liu Jian Mao Cao", "Long Cang", cursive, ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+.author-name--script {
+  font-family: "Allura", "Segoe Script", "Apple Chancery", cursive;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.author-name--profile.author-name--han {
+  font-weight: 400;
+  font-size: 2.25rem;
+}
+
+.author-name--profile.author-name--script {
+  font-family: "Parisienne", cursive;
+  font-size: 3.25rem;
+}
+
+.author-name--card.author-name--han {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.author-name--card.author-name--script {
+  font-family: "Parisienne", cursive;
+  font-size: 2.15rem;
+  line-height: 1.1;
+}

@@ -13,6 +13,8 @@ title = "糊作存笼，点晴即破"
 
 [params.author]
   name = "Hoochanlon"
+  displayName = "Hoochanlon"
+  displayNameCard = "胡成龙"
   image = "img/author.jpg"
   headline = ""
   bio = "生田绘梨花、桥本奈奈未、大野爱实、宫濑玲奈粉丝"
@@ -23,3 +25,7 @@ title = "糊作存笼，点晴即破"
     { twitter = "https://hoochanlon.github.io/twitter/?owner=hoochanlon&repo=twitter" },
     { rss = "/posts/index.xml" },
   ]
+
+  [params.author.status]
+    text = "🌦"
+    label = "离开地球表面"

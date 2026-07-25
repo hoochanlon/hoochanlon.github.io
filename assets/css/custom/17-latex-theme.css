@@ -83,23 +83,23 @@ html[data-palette="latex"].dark body {
   color: rgb(var(--color-neutral));
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script) {
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.author-name):not(.page-title-script) {
   color: rgb(var(--color-neutral-900));
   font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
   font-weight: 600;
   letter-spacing: 0.005em;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script) {
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.author-name):not(.page-title-script) {
   color: rgb(var(--color-neutral));
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .site-author-name--han {
-  font-family: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .author-name--han {
+  font-family: "Liu Jian Mao Cao", "Long Cang", cursive, ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .site-author-name--script {
-  font-family: "Allura", "Segoe Script", "Apple Chancery", cursive;
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :is(.author-name--profile.author-name--script, .author-name--card.author-name--script) {
+  font-family: "Parisienne", cursive;
   font-weight: 400;
   letter-spacing: 0.04em;
 }
@@ -616,6 +616,63 @@ html[data-palette="latex"].dark .mermaid :where(.note, .labelBox) {
 html[data-palette="latex"].dark .prose .sc-code__lang {
   background: rgb(var(--latex-typora-surface));
   color: rgb(var(--latex-typora-heading));
+}
+
+/* 恢复 Congo 的分享与作者图标暗色 token，避免阅读主题的通用链接规则渗透。 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .author-links {
+  color: rgb(var(--color-neutral-500)) !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .author-links :is(.author-links__item, .author-links__wechat-trigger) {
+  color: inherit;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .author-links :is(.author-links__item, .author-links__wechat-trigger):is(:hover, :focus-visible) {
+  color: rgb(var(--color-primary-400)) !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sharing-links > a {
+  display: inline-flex !important;
+  width: 2.4rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem !important;
+  border-radius: 0.25rem;
+  background: rgb(var(--color-neutral-700)) !important;
+  color: rgb(var(--color-neutral-300)) !important;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1 !important;
+  text-decoration: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sharing-links > a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-500)) !important;
+  color: rgb(255 255 255) !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sharing-links > a:is(:hover, :focus-visible, :active) :is(.icon, svg, svg *) {
+  color: currentColor !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sharing-links > a .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  line-height: 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sharing-links > a svg {
+  width: 1.25em;
+  height: 1.25em;
+  color: currentColor;
+  fill: currentColor;
 }
 
 html[data-palette="latex"].dark .prose .sc-code__icon,

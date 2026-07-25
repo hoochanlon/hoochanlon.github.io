@@ -1,7 +1,7 @@
 /* 站内样式入口说明
  *
  * 具体规则已按职责拆到 assets/css/custom/：
- *   05-author-name.css     首页作者名英文字体
+ *   05-name.css            博客作者名（首页 / 作者卡片 / 页脚）
  *   06-page-title.css      单页特殊标题字体
  *   10-prose.css           正文公式 / 插图
  *   15-author-links.css    作者社交链接 / 微信二维码
@@ -14,6 +14,7 @@
  *   50-outdated.css        过期提示
  *   60-taxonomy-chart.css  分类标签图表
  *   70-poem.css            诗词短代码
+ *   71-classical.css       古文短代码
  *   75-ruby.css            正文注音短代码
  *   76-spoiler.css         行内剧透短代码
  *   80-music.css           流媒体音乐短代码

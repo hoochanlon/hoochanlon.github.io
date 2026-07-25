@@ -4,12 +4,13 @@
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $cover }}
   {{- $titleStyle := .Params.titleStyle | default "" }}
   {{- $titleSize := .Params.titleSize | default "" }}
+  {{- $hasHan := findRE `\p{Han}` .Title }}
   <article>
     <header class="max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
       {{ end }}
-      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ if $hasHan }} has-han{{ end }}{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
         {{ .Title | emojify }}
       </h1>
       {{ with .Params.birthLabel }}

@@ -2,12 +2,19 @@
  * 通过 front matter: titleStyle: script 启用。
  */
 
+/* 英文花体标题 */
 .page-title-script {
   font-family: "Parisienne", cursive;
   font-size: clamp(3.25rem, 8vw, 5rem);
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.05;
+}
+
+/* 中文艺术字标题 - 只在标题内容包含中文字符时应用 */
+.page-title-script.has-han {
+  font-family: "Liu Jian Mao Cao", "Long Cang", cursive;
+  letter-spacing: 0.08em;
 }
 
 .page-title-script.page-title-small {
