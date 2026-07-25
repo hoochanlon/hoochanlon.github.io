@@ -5,8 +5,8 @@ lastmod: 2026-07-20
 draft: false
 slug: "typography"
 coverCaption: "封面图"
-categories: ["写作"]
-tags: ["排版","标注"]
+categories: ["技术与工具"]
+tags: ["内容生产", "写作指南"]
 summary: "基础的文字与图片，以及流媒体排版演示。"
 featured: true
 featuredWeight: 1

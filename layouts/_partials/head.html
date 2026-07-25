@@ -13,6 +13,9 @@
   {{/* Asset bundles */}}
   {{ $assets := newScratch }}
   {{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }}
+  {{ $paletteEnabled := .Site.Params.palette.enabled | default false }}
+  {{ $paletteDefault := lower (.Site.Params.palette.default | default (.Site.Params.colorScheme | default "congo")) }}
+  {{ $paletteOptions := .Site.Params.palette.options | default (slice $paletteDefault) }}
   {{ $jsAppearance := resources.Get "js/appearance.js" }}
   {{ $jsAppearance = $jsAppearance | resources.Minify | resources.Fingerprint $algorithm }}
   <script
@@ -20,6 +23,18 @@
     src="{{ $jsAppearance.RelPermalink }}"
     integrity="{{ $jsAppearance.Data.Integrity }}"
   ></script>
+  {{ if $paletteEnabled }}
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem("palette");
+          const fallback = {{ $paletteDefault | jsonify | safeJS }};
+          const palette = (saved || fallback || "congo").toLowerCase();
+          document.documentElement.setAttribute("data-palette", palette);
+        } catch (_) {}
+      })();
+    </script>
+  {{ end }}
   {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (lower .Site.Params.colorScheme | default "congo")) }}
   {{ if not $cssScheme }}
     {{ $cssScheme = resources.Get "css/schemes/congo.css" }}
@@ -43,6 +58,19 @@
     href="{{ $bundleCSS.RelPermalink }}"
     integrity="{{ $bundleCSS.Data.Integrity }}"
   />
+  {{ if $paletteEnabled }}
+    <style id="palette-presets">
+      {{- range $rawName := $paletteOptions -}}
+        {{- $name := lower $rawName -}}
+        {{- with resources.Get (printf "css/schemes/%s.css" $name) -}}
+          {{- $content := .Content -}}
+          {{- $content = replace $content ":root {" (printf "html[data-palette=\"%s\"] {" $name) -}}
+          {{- $content = replace $content ".dark {" (printf "html[data-palette=\"%s\"].dark {" $name) -}}
+          {{- $content | safeCSS -}}
+        {{- end -}}
+      {{- end -}}
+    </style>
+  {{ end }}
   {{ if .Site.Params.enableSearch | default false }}
     {{ $jsFuse := resources.Get "lib/fuse/fuse.min.js" }}
     {{ $jsSearch := resources.Get "js/search.js" }}

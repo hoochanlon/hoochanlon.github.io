@@ -5,11 +5,11 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/configuration/#theme-parameters
 
-colorScheme = "congo"
+colorScheme = "sakura"
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
-defaultThemeColor = "#FFFFFF"
+defaultThemeColor = "#f8f3f1"
 
 enableSearch = true
 enableCodeCopy = false
@@ -18,6 +18,11 @@ enableImageWebp = true
 
 # robots = ""
 fingerprintAlgorithm = "sha256"
+
+[palette]
+  enabled = true
+  default = "sakura"
+  options = ["sakura", "congo", "ocean", "slate", "cherry"]
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom

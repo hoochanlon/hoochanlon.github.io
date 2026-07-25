@@ -3,8 +3,8 @@ title: "serverless 搭建 memos"
 date: 2025-12-16T12:18:33+0800
 draft: false
 slug: "20251216121833"
-categories: ["折腾"]
-tags: ["建站"]
+categories: ["技术与工具"]
+tags: ["工具链"]
 summary: "对比 Render 与 Zeabur 部署 memos，并补充 S3 存储与保活相关配置要点。"
 ---
 ## render

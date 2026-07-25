@@ -4,8 +4,8 @@ date: 2026-07-24T12:10:00+08:00
 lastmod: 2026-07-24
 draft: false
 slug: "congo-site-customization"
-categories: ["写作"]
-tags: ["Congo","front matter","模板"]
+categories: ["技术与工具"]
+tags: ["Congo", "内容生产", "写作指南"]
 summary: "记录本站页面级 front matter、标题特调和显示开关等模板定制项。"
 showComments: false
 ---

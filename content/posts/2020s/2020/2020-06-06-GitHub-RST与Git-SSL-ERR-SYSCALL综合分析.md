@@ -3,8 +3,8 @@ title: "GitHub RST与Git SSL_ERR_SYSCALL综合分析"
 date: 2020-06-06
 draft: false
 slug: "20200606005301"
-categories: ["折腾"]
-tags: ["建站"]
+categories: ["技术与工具"]
+tags: ["工具链"]
 summary: "区分 GitHub 的 RST 与 git 的 SSL_ERR_SYSCALL：前者多与封锁/DNS 有关，后者常出在代理与套接字配置。"
 ---
 * 杜绝主观情绪化因素

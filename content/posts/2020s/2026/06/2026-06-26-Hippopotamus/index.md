@@ -3,8 +3,8 @@ title: "Hippopotamus"
 date: 2026-06-26T09:26:23+0800
 draft: false
 slug: "20260626092623"
-categories: ["随笔"]
-tags: ["随想"]
+categories: ["生活随笔"]
+tags: ["ACG"]
 featured: true
 coverCaption: "Persona 人格面具 🎭"
 summary: "拟剧、规训与体制犬儒：现代科层制中的“双层生存编码”。"

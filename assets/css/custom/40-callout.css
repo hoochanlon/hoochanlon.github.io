@@ -1,10 +1,10 @@
-/* —— 站内 shortcode：callout / fold / outdated（GitHub Alerts 色系） —— */
+/* —— 站内 shortcode：callout / fold / outdated（Sakura Notes 纸面语义色系） —— */
 .sc-callout {
-  /* GitHub 风格：浅底 + 左侧强调条；标签/图标用 accent，正文更中性 */
-  --sc-bg: #f6f8fa;
-  --sc-border: #d0d7de;
-  --sc-accent: #57606a;
-  --sc-body: #24292f;
+  /* 和纸风格：暖底 + 细边 + 左侧语义强调条 */
+  --sc-bg: #f7f0ef;
+  --sc-border: #ead8da;
+  --sc-accent: #8d4b6b;
+  --sc-body: #5f5a5c;
   margin: 1.15rem 0;
   border: 1px solid var(--sc-border);
   border-left: 0.25rem solid var(--sc-accent);
@@ -15,94 +15,94 @@
 }
 
 .dark .sc-callout {
-  --sc-bg: #161b22;
-  --sc-border: #30363d;
-  --sc-accent: #8b949e;
-  --sc-body: #c9d1d9;
+  --sc-bg: #2d252b;
+  --sc-border: #4a3a43;
+  --sc-accent: #e0b1c2;
+  --sc-body: #f0e7e8;
 }
 
-/* note — 蓝 */
+/* note — 淡紫梅子 */
 .sc-callout--note {
-  --sc-bg: #ddf4ff;
-  --sc-border: #54aeff66;
-  --sc-accent: #0969da;
-  --sc-body: #1f2328;
+  --sc-bg: #f3e9ef;
+  --sc-border: #dcc1ce;
+  --sc-accent: #8d4b6b;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--note {
-  --sc-bg: #0c2d6b33;
-  --sc-border: #1f6feb66;
-  --sc-accent: #2f81f7;
-  --sc-body: #e6edf3;
+  --sc-bg: #392d37;
+  --sc-border: #6d4a5d;
+  --sc-accent: #efc2d3;
+  --sc-body: #f4eaed;
 }
 
-/* tip — 绿 */
+/* tip — 柔绿 worked example */
 .sc-callout--tip {
-  --sc-bg: #dafbe1;
-  --sc-border: #4ac26b66;
-  --sc-accent: #1a7f37;
-  --sc-body: #1f2328;
+  --sc-bg: #eef3ea;
+  --sc-border: #c8d8c1;
+  --sc-accent: #6f8f67;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--tip {
-  --sc-bg: #12261e;
-  --sc-border: #3fb95066;
-  --sc-accent: #3fb950;
-  --sc-body: #e6edf3;
+  --sc-bg: #283327;
+  --sc-border: #4f6a4b;
+  --sc-accent: #b9d0b1;
+  --sc-body: #eef2ea;
 }
 
-/* important — 紫 */
+/* important — 深玫红 theorem */
 .sc-callout--important {
-  --sc-bg: #fbefff;
-  --sc-border: #c297ff66;
-  --sc-accent: #8250df;
-  --sc-body: #1f2328;
+  --sc-bg: #f5e9ee;
+  --sc-border: #dfbcc9;
+  --sc-accent: #c05a84;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--important {
-  --sc-bg: #2a1a40;
-  --sc-border: #a371f766;
-  --sc-accent: #a371f7;
-  --sc-body: #e6edf3;
+  --sc-bg: #402935;
+  --sc-border: #7c4b61;
+  --sc-accent: #f0adc5;
+  --sc-body: #f6eaef;
 }
 
-/* warning — 琥珀/黄 */
+/* warning — 金棕 intuition */
 .sc-callout--warning {
-  --sc-bg: #fff8c5;
-  --sc-border: #d4a72c66;
-  --sc-accent: #9a6700;
-  --sc-body: #1f2328;
+  --sc-bg: #f7f1e6;
+  --sc-border: #e0cfad;
+  --sc-accent: #b08b3c;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--warning {
-  --sc-bg: #3d2e00;
-  --sc-border: #d2992266;
-  --sc-accent: #d29922;
-  --sc-body: #e6edf3;
+  --sc-bg: #3b3120;
+  --sc-border: #75603a;
+  --sc-accent: #e3c982;
+  --sc-body: #f5efe3;
 }
 
-/* caution — 红（forbid/danger/critical 别名共用） */
+/* caution — 樱桃粉规则框 */
 .sc-callout--caution {
-  --sc-bg: #ffebe9;
-  --sc-border: #ff818266;
-  --sc-accent: #cf222e;
-  --sc-body: #1f2328;
+  --sc-bg: #f8e9ef;
+  --sc-border: #e6bccc;
+  --sc-accent: #d36b96;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--caution {
-  --sc-bg: #3d1214;
-  --sc-border: #f8514966;
-  --sc-accent: #f85149;
-  --sc-body: #e6edf3;
+  --sc-bg: #442936;
+  --sc-border: #86516a;
+  --sc-accent: #f3b3c9;
+  --sc-body: #f7ebf0;
 }
 
-/* success — 站内扩展（非 GitHub 五类） */
+/* success — 站内扩展，沿用柔绿成功态 */
 .sc-callout--success {
-  --sc-bg: #dafbe1;
-  --sc-border: #4ac26b66;
-  --sc-accent: #1a7f37;
-  --sc-body: #1f2328;
+  --sc-bg: #eef3ea;
+  --sc-border: #c8d8c1;
+  --sc-accent: #6f8f67;
+  --sc-body: #5f5a5c;
 }
 .dark .sc-callout--success {
-  --sc-bg: #12261e;
-  --sc-border: #3fb95066;
-  --sc-accent: #3fb950;
-  --sc-body: #e6edf3;
+  --sc-bg: #283327;
+  --sc-border: #4f6a4b;
+  --sc-accent: #b9d0b1;
+  --sc-body: #eef2ea;
 }
 
 .sc-callout--neutral {

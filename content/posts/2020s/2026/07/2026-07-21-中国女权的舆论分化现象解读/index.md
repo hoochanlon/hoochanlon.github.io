@@ -3,8 +3,8 @@ title: "中国女权的舆论分化现象解读"
 date: 2026-07-21T19:25:05+08:00
 lastmod: 2026-07-22
 slug: "20260721192505"
-categories: ["她力量"]
-tags: ["女权"]
+categories: ["性别与亲密关系"]
+tags: ["两性关系", "心理困境", "性别博弈"]
 summary: "依托 Piao 团队研究数据及相关结论，本文梳理女权极化各派主张与算法逻辑，并增析“依附型女权”的话语寄生策略及其反噬效应。"
 featured: true
 featuredWeight: 2

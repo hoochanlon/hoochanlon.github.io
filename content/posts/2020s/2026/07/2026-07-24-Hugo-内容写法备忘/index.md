@@ -4,8 +4,8 @@ date: 2026-07-24T12:00:00+08:00
 lastmod: 2026-07-24
 draft: false
 slug: "hugo-content-notes"
-categories: ["写作"]
-tags: ["排版","短代码","媒体"]
+categories: ["技术与工具"]
+tags: ["Hugo"]
 summary: "正文里常用的图片、媒体、剧透、诗词、公式与 Mermaid 写法速查。"
 showComments: false
 ---
