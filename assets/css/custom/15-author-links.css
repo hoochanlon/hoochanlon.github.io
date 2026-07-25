@@ -103,6 +103,28 @@
   border-radius: 0.55rem;
 }
 
+.footer-rss {
+  vertical-align: -0.1em;
+  line-height: 1;
+}
+
+.footer-rss .icon {
+  display: inline-flex;
+  width: 0.95em;
+  height: 0.95em;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  vertical-align: baseline;
+  line-height: 1;
+}
+
+.footer-rss svg {
+  display: block;
+  width: 0.95em;
+  height: 0.95em;
+}
+
 @media (max-width: 420px) {
   .author-links__wechat-popover {
     width: 8.75rem;

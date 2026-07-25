@@ -37,6 +37,8 @@ fingerprintAlgorithm = "sha256"
   showThemeAttribution = true
   showAppearanceSwitcher = false
   showScrollToTop = true
+  # 页脚 RSS 订阅入口
+  rssURL = "/posts/index.xml"
   # 页脚「Umami 站点分析」公开看板链接
   umamiShareURL = "https://cloud.umami.is/analytics/us/share/29fuPWtjBtq9fbvm"
 

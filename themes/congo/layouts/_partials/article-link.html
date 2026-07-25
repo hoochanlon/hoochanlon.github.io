@@ -1,4 +1,4 @@
-<article class="mt-6 flex max-w-prose flex-row">
+<article class="mt-6 flex max-w-full flex-row">
   {{- $images := $.Resources.ByType "image" }}
   {{- $thumbnail := $images.GetMatch (.Params.thumbnail | default "*thumb*") }}
   {{- $feature := $images.GetMatch (.Params.feature | default "*feature*") | default $thumbnail }}
@@ -30,7 +30,7 @@
       </a>
     </div>
   {{- end }}
-  <div>
+  <div class="min-w-0 grow">
     <h3 class="flex items-center text-xl font-semibold">
       {{ with .Params.externalUrl }}
         <div>
@@ -69,7 +69,7 @@
       {{ partial "article-meta.html" . }}
     </div>
     {{ if .Params.showSummary | default (.Site.Params.list.showSummary | default false) }}
-      <div class="prose py-1 dark:prose-invert">
+      <div class="article-link__summary">
         {{ .Summary | emojify }}
       </div>
     {{ end }}

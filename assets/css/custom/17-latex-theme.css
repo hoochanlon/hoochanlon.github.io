@@ -20,8 +20,16 @@ html[data-palette="latex"] body {
   background-image: none;
 }
 
-html[data-palette="latex"].dark body {
-  background-image: none;
+html[data-palette="latex"] .article-meta .article-meta__value.sc-num,
+html[data-palette="latex"] .article-meta .article-meta__value.sc-num * {
+  font-family: "STIX Two Text", "Times New Roman", serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) :where(
@@ -60,6 +68,89 @@ html[data-palette="latex"].dark body {
   color: rgb(var(--color-neutral));
 }
 
+html[data-palette="latex"] :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
+@media (min-width: 1024px) {
+  html[data-palette="latex"] {
+    --latex-prose-width: 44rem;
+    --latex-toc-width: 21rem;
+    --latex-toc-gap: 1.25rem;
+    --latex-cover-width: 43.5rem;
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose {
+    max-width: min(100%, var(--latex-cover-width));
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose > .prose {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose > .prose > picture,
+  html[data-palette="latex"] article > header.max-w-prose > .prose > img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose > .prose > picture > img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="latex"] article > footer.max-w-prose,
+  html[data-palette="latex"] article > section.prose > .max-w-prose {
+    max-width: min(100%, var(--latex-prose-width));
+  }
+
+  html[data-palette="latex"] article > section.prose > .max-w-prose {
+    flex-basis: var(--latex-prose-width);
+  }
+
+  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last {
+    width: var(--latex-toc-width);
+    max-width: var(--latex-toc-width);
+    flex: 0 0 var(--latex-toc-width);
+    padding-inline-start: var(--latex-toc-gap);
+  }
+
+  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last .toc {
+    max-width: 100%;
+    padding-inline-end: 0;
+  }
+}
+
+html[data-palette="latex"] .prose :where(p, li, blockquote) {
+  font-size: 1.04em;
+}
+
+html[data-palette="latex"] article > header.max-w-prose > :is(.page-title-kicker, div) {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
 :is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10 :where(p, a, span, li, nav, button, div) {
   font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
@@ -77,6 +168,12 @@ html[data-palette="latex"].dark body {
 :is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > .page-title-kicker,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > div {
   font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+}
+
+html[data-palette="latex"] article > header.max-w-prose > :is(.page-title-kicker, div) {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
@@ -616,6 +713,52 @@ html[data-palette="latex"].dark .mermaid :where(.note, .labelBox) {
 html[data-palette="latex"].dark .prose .sc-code__lang {
   background: rgb(var(--latex-typora-surface));
   color: rgb(var(--latex-typora-heading));
+}
+
+/* 分享按钮是操作组件，不参与正文链接排版；浅色模式尺寸对齐深色模式。 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]):not(.dark) .sharing-links > a {
+  display: inline-flex !important;
+  width: 2.4rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem !important;
+  border-radius: 0.25rem;
+  background: rgb(var(--color-neutral-300)) !important;
+  color: rgb(var(--color-neutral-700)) !important;
+  -webkit-text-fill-color: currentColor !important;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1 !important;
+  text-decoration: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]):not(.dark) .sharing-links > a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-500)) !important;
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]):not(.dark) .sharing-links > a:is(:hover, :focus-visible, :active) :is(.icon, svg, svg *) {
+  color: currentColor !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]):not(.dark) .sharing-links > a .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  line-height: 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]):not(.dark) .sharing-links > a svg {
+  width: 1.25em;
+  height: 1.25em;
+  color: currentColor;
+  fill: currentColor;
 }
 
 /* 恢复 Congo 的分享与作者图标暗色 token，避免阅读主题的通用链接规则渗透。 */

@@ -1,0 +1,42 @@
+.article-link {
+  width: 100%;
+  max-width: 56rem;
+}
+
+.article-link__summary {
+  width: 100%;
+  max-width: none;
+  margin-top: 0.45rem;
+  color: rgb(var(--color-neutral-700));
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.dark .article-link__summary {
+  color: rgb(var(--color-neutral-300));
+}
+
+.article-link__summary > :first-child {
+  margin-top: 0;
+}
+
+.article-link__summary > :last-child {
+  margin-bottom: 0;
+}
+
+.article-link__summary :where(p, div) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.article-link__summary :where(a, a *) {
+  color: inherit;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.article-link__summary :where(p, div, li) {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}

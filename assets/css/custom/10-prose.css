@@ -6,9 +6,14 @@
   padding: 0.25rem 0;
 }
 
-/* 直接粘贴的长 URL 会作为连续文本渲染；允许外链在任意位置断行，避免撑破正文栏 */
-.prose a[href^="http"] {
+/* 直接粘贴的长 URL / DOI / 路径会作为连续文本渲染；允许文本块在必要时断行，避免撑破正文栏 */
+.prose :where(p, li, dd, figcaption, blockquote, a) {
   overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.prose :where(ul, ol) {
+  min-width: 0;
 }
 
 /* flex 子项默认 min-width:auto 会阻止收缩，导致公式把栏撑破 */

@@ -1,4 +1,4 @@
 <time datetime="{{ . }}">
-  {{- i18n "article.date" (dict "Date" (partial "functions/date.html" .)) | emojify -}}
+  <span class="article-meta__value sc-num">{{ partial "functions/date.html" . }}</span>
 </time>
 {{- /* Trim EOF */ -}}
