@@ -144,6 +144,7 @@
 .prose .sc-code__lang {
   display: inline-flex;
   align-items: center;
+  gap: 0.38rem;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background: rgb(var(--color-neutral-200));
@@ -152,6 +153,22 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: none;
+}
+
+.prose .sc-code__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+  color: #000;
+}
+
+.prose .sc-code__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .dark .prose .sc-code__lang {

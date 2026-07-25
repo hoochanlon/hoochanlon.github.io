@@ -54,6 +54,41 @@
 {{- if ne $langKey "" -}}
   {{- $langLabel = cond (isset $labels $langKey) (index $labels $langKey) (title $langRaw) -}}
 {{- end -}}
+{{- $icons := dict
+  "sh" "command-line"
+  "bash" "command-line"
+  "zsh" "command-line"
+  "shell" "command-line"
+  "fish" "command-line"
+  "ps" "command-line"
+  "powershell" "command-line"
+  "pwsh" "command-line"
+  "cmd" "command-line"
+  "console" "command-line"
+  "terminal" "command-line"
+  "md" "markdown"
+  "markdown" "markdown"
+  "mdx" "markdown"
+  "text" "text"
+  "txt" "text"
+  "plaintext" "text"
+  "plain" "text"
+  "sql" "sql"
+  "mysql" "sql"
+  "postgresql" "sql"
+  "postgres" "sql"
+  "plsql" "sql"
+  "tsql" "sql"
+  "sqlite" "sql"
+  "tex" "tex"
+  "latex" "tex"
+  "plaintex" "tex"
+  "r" "analysis"
+  "rscript" "analysis"
+  "julia" "analysis"
+-}}
+{{- $iconName := index $icons $langKey | default "code" -}}
+{{- $icon := resources.Get (printf "icons/%s.svg" $iconName) -}}
 {{- $result := transform.HighlightCodeBlock . -}}
 {{- $lineCount := len (findRE "<span class=\"line\">" $result.Wrapped) -}}
 {{- $isCollapsible := gt $lineCount $collapseThreshold -}}
@@ -62,7 +97,13 @@
   {{- if or (ne $langLabel "") $isCollapsible -}}
     <div class="sc-code__header">
       {{- if ne $langLabel "" -}}
-        <span class="sc-code__lang">{{ $langLabel }}</span>
+        <span class="sc-code__lang">
+          {{- with $icon -}}
+            {{- $iconSvg := replaceRE `fill="#[0-9A-Fa-f]{3,8}"` `fill="currentColor"` .Content -}}
+            <span class="sc-code__icon" aria-hidden="true">{{ $iconSvg | safeHTML }}</span>
+          {{- end -}}
+          <span>{{ $langLabel }}</span>
+        </span>
       {{- else -}}
         <span></span>
       {{- end -}}

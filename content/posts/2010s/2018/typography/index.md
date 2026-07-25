@@ -214,7 +214,7 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 
 ## 代码块
 
-至少我接触到的博客主题来说，大部分并不适合写代码，因为基础骨架的版面宽度不够，以及不够体系专题化，以及干扰元素较多。写代码应该用专门的文档工具，如：fumadocs、docsify、docusaurus、starlight 等。
+就我体验过的各类博客主题而言，大多并不适配技术代码写作：页面内容宽度不足，代码块展示局促，整体排版也难以支撑系统化专题内容的梳理。且装饰花哨的主题充斥各类干扰元素，严重影响阅读专注度。若以代码、技术文档写作为主，更推荐专用文档框架，例如 Fumadocs、Docsify、Docusaurus、Starlight 等。
 
 ```java
 import java.util.ArrayList;
@@ -396,6 +396,12 @@ public class StudentGradeSystem {
 ```
 
 ## 其他说明
+
+博客几经折腾：最早用 Jekyll，中途换 Hexo，因 GitHub Actions 部署便利又切回 Jekyll；后被 Butterfly 炫酷特效吸引重回 Hexo，却发觉花哨动画本末倒置。又试着体验 Astro，其配置过于偏向前端、对我来说体验糟糕。
+
+最终定档 Hugo+Congo。过往大半维护问题源于 Dependabot 自动更新，以及国内环境下 CMS 实用性低，VS Code 写稿也够用了。如今不再频繁换框架主题，只求稳定省心。
+
+<u>最后再次强调，对于博客来说，关掉 Dependabot 是十分有必要的事。</u>
 
 使用方式见：[《Hugo + Congo 发文流程》]({{< relref "/posts/2020s/2026/07/2026-07-24-Hugo-Congo-发文流程/index.md" >}})、[《Hugo 内容写法备忘》]({{< relref "/posts/2020s/2026/07/2026-07-24-Hugo-内容写法备忘/index.md" >}})、[《Congo 站点定制记录》]({{< relref "/posts/2020s/2026/07/2026-07-24-Congo-站点定制记录/index.md" >}})
 
