@@ -573,6 +573,26 @@ html[data-palette="latex"].dark :where(.toc a, .prose a) *::-moz-selection {
   -webkit-text-fill-color: rgb(255 255 255) !important;
 }
 
+html[data-palette="sakura"].dark .mermaid :where(.actor, .participant, .activation0, .activation1, .activation2) {
+  fill: rgb(var(--color-neutral-800)) !important;
+  stroke: rgb(var(--color-primary-400)) !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(text.actor, .messageText, .loopText, .labelText, .noteText, .sequenceNumber) {
+  fill: rgb(var(--color-neutral-100)) !important;
+  color: rgb(var(--color-neutral-100)) !important;
+  stroke: none !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(.messageLine0, .messageLine1, .loopLine, .actor-line) {
+  stroke: rgb(var(--color-neutral-300)) !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(.note, .labelBox) {
+  fill: rgb(var(--color-neutral-800)) !important;
+  stroke: rgb(var(--color-primary-400)) !important;
+}
+
 html[data-palette="latex"].dark .mermaid :where(.actor, .participant, .activation0, .activation1, .activation2) {
   fill: rgb(var(--latex-typora-surface)) !important;
   stroke: rgb(var(--latex-typora-border)) !important;

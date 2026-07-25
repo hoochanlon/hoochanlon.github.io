@@ -1,19 +1,31 @@
 .author-links {
   align-items: center;
   justify-content: flex-start;
+  gap: 0.35rem;
 }
 
 .author-links__item,
 .author-links__wechat-trigger {
   display: inline-flex;
+  width: 1.55rem;
+  height: 1.55rem;
   align-items: center;
   justify-content: center;
-  padding-inline: 0.08rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.author-links__item svg,
+.author-links__wechat-trigger svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
 }
 
 .author-links__wechat {
   position: relative;
   display: inline-flex;
+  align-items: center;
 }
 
 .author-links__wechat-trigger {
@@ -21,12 +33,6 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-}
-
-.author-links__wechat-trigger .icon,
-.author-links__wechat-trigger svg {
-  width: 1.28em;
-  height: 1.28em;
 }
 
 .author-links__wechat-popover {
