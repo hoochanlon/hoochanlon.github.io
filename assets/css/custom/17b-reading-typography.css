@@ -1,0 +1,116 @@
+/* Sakura / LaTeX 阅读主题：标题、正文链接、TOC 与基础正文元素 */
+html[data-palette="latex"] .prose :where(p, li, blockquote),
+html[data-palette="sakura"] .prose :where(p, li, blockquote) {
+  font-size: 1.04em;
+}
+
+html[data-palette="latex"] article > header.max-w-prose > :is(.page-title-kicker, div),
+html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicker, div) {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10 :where(p, a, span, li, nav, button, div) {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  letter-spacing: normal;
+  line-height: 1.6;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral-900));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > .page-title-kicker,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > div {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.author-name):not(.page-title-script) {
+  color: rgb(var(--color-neutral-900));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.author-name):not(.page-title-script) {
+  color: rgb(var(--color-neutral));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .author-name--han {
+  font-family: "Liu Jian Mao Cao", "Long Cang", cursive, ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :is(.author-name--profile.author-name--script, .author-name--card.author-name--script) {
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .page-title-script {
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose p,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose li {
+  hanging-punctuation: first last;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, #search-wrapper) :where(a, a *, .toc a, .toc a *)::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(#main-content, #search-wrapper) :where(a, a *, .toc a, .toc a *)::-moz-selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+  text-decoration-color: transparent;
+  text-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h1 {
+  margin-bottom: 1.4rem;
+  color: rgb(var(--color-primary-600));
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  letter-spacing: 0.005em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 2.6rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgb(var(--color-primary-200));
+  color: rgb(var(--color-primary-600));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2::before {
+  content: "§";
+  flex: 0 0 auto;
+  color: rgb(var(--color-primary-500));
+  font-size: 0.92em;
+  font-weight: 700;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+  color: rgb(var(--color-primary-700));
+  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}

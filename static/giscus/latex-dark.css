@@ -1,0 +1,42 @@
+/*! Giscus LaTeX dark theme */
+:root {
+  color-scheme: dark;
+  --color-fg-default: #e8e6e3;
+  --color-fg-muted: #b8b2aa;
+  --color-fg-subtle: #938c84;
+  --color-canvas-default: transparent;
+  --color-canvas-overlay: #171717;
+  --color-canvas-inset: #111111;
+  --color-canvas-subtle: #202020;
+  --color-border-default: #3f3f3f;
+  --color-border-muted: #303030;
+  --color-neutral-muted: rgba(148, 163, 184, 0.14);
+  --color-accent-fg: #d6d3ca;
+  --color-accent-emphasis: #9ca3af;
+  --color-accent-muted: rgba(156, 163, 175, 0.34);
+  --color-accent-subtle: rgba(156, 163, 175, 0.12);
+  --color-success-fg: #c7c3bc;
+  --color-attention-fg: #d6d3ca;
+  --color-danger-fg: #e8b4b4;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.32);
+  --color-btn-text: #e8e6e3;
+  --color-btn-bg: #202020;
+  --color-btn-border: #3f3f3f;
+  --color-btn-hover-bg: #292929;
+  --color-btn-hover-border: #6b7280;
+  --color-btn-primary-text: #111111;
+  --color-btn-primary-bg: #d6d3ca;
+  --color-btn-primary-border: #e8e6e3;
+  --color-btn-primary-hover-bg: #e8e6e3;
+  --color-btn-primary-hover-border: #ffffff;
+  --color-input-bg: #111111;
+  --color-input-border: #3f3f3f;
+  --color-timeline-badge-bg: #202020;
+  --color-social-reaction-bg-hover: rgba(214, 211, 202, 0.12);
+  --color-social-reaction-bg-reacted-hover: rgba(214, 211, 202, 0.18);
+  --color-gist-header-bg: #202020;
+  --color-gist-header-border: #3f3f3f;
+}
+.gsc-main { font-family: "STIX Two Text", "Times New Roman", "Noto Serif SC", serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }

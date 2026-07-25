@@ -1,6 +1,19 @@
-.article-link {
+html:not([data-palette="sakura"]):not([data-palette="latex"]) .article-link {
   width: 100%;
-  max-width: 56rem;
+  max-width: 46rem !important;
+}
+
+html:not([data-palette="sakura"]):not([data-palette="latex"]) .article-link > .min-w-0.grow {
+  max-width: calc(46rem - 10rem - 1.5rem);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .article-link {
+  width: 100%;
+  max-width: 53rem !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .article-link > .min-w-0.grow {
+  max-width: calc(53rem - 10rem - 1.5rem);
 }
 
 .article-link__summary {

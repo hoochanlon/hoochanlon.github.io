@@ -1,0 +1,112 @@
+/* Sakura / LaTeX 阅读主题：callout 教材化外观 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout {
+  margin: 1.35rem 0;
+  border-width: 1px 1px 1px 0.28rem;
+  border-style: solid;
+  border-color: var(--sc-border);
+  border-inline-start-color: var(--sc-accent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--sc-bg) 90%, white 10%);
+  box-shadow: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout {
+  background: color-mix(in srgb, var(--sc-bg) 88%, black 12%);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout:not(.sc-callout--fold) {
+  padding: 1rem 1.15rem 1.05rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__label,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--fold > .sc-callout__summary {
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__icon {
+  display: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__title {
+  display: block;
+  width: 100%;
+  padding-bottom: 0.42rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--sc-accent) 24%, white 76%);
+  color: var(--sc-accent);
+  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body {
+  margin-top: 0.55rem;
+  color: var(--sc-body);
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  line-height: 1.8;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body p,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body li {
+  color: inherit;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note {
+  --sc-bg: #f5eef4;
+  --sc-border: #ead7e4;
+  --sc-accent: #8e5577;
+  --sc-body: #5f535a;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important {
+  --sc-bg: #f8ecef;
+  --sc-border: #e9c9d5;
+  --sc-accent: #c05a84;
+  --sc-body: #5f535a;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success {
+  --sc-bg: #eef5ee;
+  --sc-border: #d5e5d1;
+  --sc-accent: #5a9666;
+  --sc-body: #556258;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning {
+  --sc-bg: #f8f1e6;
+  --sc-border: #ebdbb8;
+  --sc-accent: #b3882f;
+  --sc-body: #665a45;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution {
+  --sc-bg: #faeef3;
+  --sc-border: #efcfda;
+  --sc-accent: #d06a96;
+  --sc-body: #66525d;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--note {
+  --sc-bg: #352b33;
+  --sc-border: #5f4656;
+  --sc-accent: #e0b5cb;
+  --sc-body: #f2e6ee;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--important {
+  --sc-bg: #3d2b33;
+  --sc-border: #7b4a61;
+  --sc-accent: #f2b6cb;
+  --sc-body: #f7e9ef;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--tip,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--success {
+  --sc-bg: #243128;
+  --sc-border: #44624a;
+  --sc-accent: #b8d8bc;
+  --sc-body: #eaf3ec;
+}

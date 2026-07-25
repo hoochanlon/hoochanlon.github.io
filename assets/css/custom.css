@@ -6,7 +6,15 @@
  *   10-prose.css           正文公式 / 插图
  *   15-author-links.css    作者社交链接 / 微信二维码
  *   16-palette-switcher.css 配色切换面板
- *   17-latex-theme.css   Sakura 阅读增强层
+ *   17-latex-theme.css      Sakura / LaTeX 阅读主题索引
+ *   17a-reading-base.css    背景、字体数字、版心与目录约束
+ *   17b-reading-typography.css 标题、页脚字体、标题字体变体
+ *   17c-reading-prose.css   链接、选区、TOC、公式与代码外观
+ *   17d-reading-callout.css callout 基础外观与语义色
+ *   17e-reading-callout-labels.css callout 标签前缀与轻量组件
+ *   17f-reading-dark.css    暗色基础层级
+ *   17g-reading-dark-mermaid.css 暗色标题、选区与 Mermaid
+ *   17h-reading-actions.css 分享按钮与作者图标隔离
  *   20-image-zoom.css      图片灯箱
  *   30-video.css           内嵌视频
  *   35-code.css            代码块 / 行号

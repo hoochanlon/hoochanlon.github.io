@@ -1,0 +1,195 @@
+/* Sakura / LaTeX 阅读主题：背景、字体数字、版心与目录约束 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]) body {
+  background-color: rgb(var(--color-neutral-100));
+  background-image:
+    radial-gradient(circle at 12% 18%, rgb(var(--color-primary-100) / 0.42), transparent 4.6rem),
+    radial-gradient(circle at 88% 28%, rgb(var(--color-primary-100) / 0.3), transparent 3.4rem),
+    radial-gradient(circle at 52% 9%, rgb(var(--color-primary-200) / 0.18), transparent 6rem),
+    linear-gradient(180deg, rgb(var(--color-neutral-50)), rgb(var(--color-neutral-100)) 20rem, rgb(var(--color-neutral-200)) 100%);
+  color: rgb(var(--color-neutral-800));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark body {
+  background-color: rgb(var(--color-neutral-900));
+  background-image: none;
+  color: rgb(var(--color-neutral));
+}
+
+html[data-palette="latex"] body {
+  background-color: rgb(var(--color-neutral));
+  background-image: none;
+}
+
+html[data-palette="latex"] .article-meta .article-meta__value.sc-num,
+html[data-palette="latex"] .article-meta .article-meta__value.sc-num *,
+html[data-palette="sakura"] .article-meta .article-meta__value.sc-num,
+html[data-palette="sakura"] .article-meta .article-meta__value.sc-num *,
+html[data-palette="sakura"] .toc,
+html[data-palette="sakura"] .toc * {
+  font-family: "STIX Two Text", "Times New Roman", serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral-800));
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  line-height: 1.88;
+  letter-spacing: 0.004em;
+  text-rendering: optimizeLegibility;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral));
+}
+
+html[data-palette="latex"] :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+),
+html[data-palette="sakura"] :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "lnum" 1, "pnum" 1;
+}
+
+@media (min-width: 1024px) {
+  html[data-palette="latex"] {
+    --latex-prose-width: 44rem;
+    --latex-toc-width: 21rem;
+    --latex-toc-gap: 1.25rem;
+    --latex-cover-width: 43.5rem;
+  }
+
+  html[data-palette="sakura"] {
+    --sakura-prose-width: 44rem;
+    --sakura-toc-width: 21rem;
+    --sakura-toc-gap: 1.25rem;
+    --sakura-cover-width: 43.5rem;
+    --sakura-toc-padding-end: 0;
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose {
+    max-width: min(100%, var(--latex-cover-width));
+  }
+
+  html[data-palette="sakura"] article > header.max-w-prose {
+    max-width: min(100%, var(--sakura-cover-width));
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose > .prose {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="sakura"] article > header.max-w-prose > .prose {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="latex"] article > header.max-w-prose > .prose > picture,
+  html[data-palette="latex"] article > header.max-w-prose > .prose > img,
+  html[data-palette="latex"] article > header.max-w-prose > .prose > picture > img,
+  html[data-palette="sakura"] article > header.max-w-prose > .prose > picture,
+  html[data-palette="sakura"] article > header.max-w-prose > .prose > img,
+  html[data-palette="sakura"] article > header.max-w-prose > .prose > picture > img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette="latex"] article > footer.max-w-prose,
+  html[data-palette="latex"] article > section.prose > .max-w-prose {
+    max-width: min(100%, var(--latex-prose-width));
+  }
+
+  html[data-palette="sakura"] article > footer.max-w-prose,
+  html[data-palette="sakura"] article > section.prose > .max-w-prose {
+    max-width: min(100%, var(--sakura-prose-width));
+  }
+
+  html[data-palette="latex"] article > section.prose > .max-w-prose {
+    flex-basis: var(--latex-prose-width);
+  }
+
+  html[data-palette="sakura"] article > section.prose > .max-w-prose {
+    flex-basis: var(--sakura-prose-width);
+  }
+
+  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last {
+    width: var(--latex-toc-width);
+    max-width: var(--latex-toc-width);
+    flex: 0 0 var(--latex-toc-width);
+    padding-inline-start: var(--latex-toc-gap);
+  }
+
+  html[data-palette="sakura"] article > section.prose > .order-first.lg\:order-last {
+    width: var(--sakura-toc-width);
+    max-width: var(--sakura-toc-width);
+    flex: 0 0 var(--sakura-toc-width);
+    padding-inline-start: var(--sakura-toc-gap);
+  }
+
+  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last .toc {
+    max-width: 100%;
+    padding-inline-end: 0;
+  }
+
+  html[data-palette="sakura"] article > section.prose > .order-first.lg\:order-last .toc {
+    max-width: 100%;
+    padding-inline-end: var(--sakura-toc-padding-end);
+  }
+}

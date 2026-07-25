@@ -123,6 +123,8 @@ fingerprintAlgorithm = "sha256"
   inputPosition = "top"
   lang = "zh-CN"
   loading = "lazy"
-  # 明暗由脚本读 html.dark，勿再用 preferred_color_scheme（那是跟系统，不跟站点）
+  # 自托管 Giscus 主题目录；实际使用 /giscus/{palette}-{light|dark}.css
+  themeBasePath = "giscus"
+  # 明暗兜底主题：当自定义主题不可用时使用
   themeLight = "noborder_light"
   themeDark = "noborder_dark"

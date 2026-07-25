@@ -1,3 +1,38 @@
+.author-card-avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  line-height: 0;
+}
+
+.author-card-avatar__verified {
+  position: absolute;
+  right: -0.1rem;
+  bottom: 0.05rem;
+  display: inline-flex;
+  width: 1.65rem;
+  height: 1.65rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgb(var(--color-neutral));
+  border-radius: 999px;
+  background: rgb(var(--color-neutral));
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+  line-height: 1;
+}
+
+.author-card-avatar__verified svg {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.dark .author-card-avatar__verified {
+  border-color: rgb(var(--color-neutral-900));
+  background: rgb(var(--color-neutral-900));
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
 .author-links {
   align-items: center;
   justify-content: flex-start;

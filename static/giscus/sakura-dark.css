@@ -1,0 +1,42 @@
+/*! Giscus Sakura dark theme */
+:root {
+  color-scheme: dark;
+  --color-fg-default: #f7eef3;
+  --color-fg-muted: #d8c8d0;
+  --color-fg-subtle: #ad9ba5;
+  --color-canvas-default: transparent;
+  --color-canvas-overlay: #1f1b1f;
+  --color-canvas-inset: #181317;
+  --color-canvas-subtle: #2b242a;
+  --color-border-default: #5f3a4b;
+  --color-border-muted: #44313b;
+  --color-neutral-muted: rgba(211, 119, 158, 0.18);
+  --color-accent-fg: #e3a4bc;
+  --color-accent-emphasis: #d3779e;
+  --color-accent-muted: rgba(211, 119, 158, 0.42);
+  --color-accent-subtle: rgba(200, 91, 135, 0.16);
+  --color-success-fg: #d8c8d0;
+  --color-attention-fg: #e3a4bc;
+  --color-danger-fg: #efc6d4;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.28);
+  --color-btn-text: #f7eef3;
+  --color-btn-bg: #2b242a;
+  --color-btn-border: #5f3a4b;
+  --color-btn-hover-bg: #3a2a34;
+  --color-btn-hover-border: #d3779e;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #c85b87;
+  --color-btn-primary-border: #d3779e;
+  --color-btn-primary-hover-bg: #d3779e;
+  --color-btn-primary-hover-border: #e3a4bc;
+  --color-input-bg: #181317;
+  --color-input-border: #5f3a4b;
+  --color-timeline-badge-bg: #2b242a;
+  --color-social-reaction-bg-hover: rgba(211, 119, 158, 0.16);
+  --color-social-reaction-bg-reacted-hover: rgba(211, 119, 158, 0.24);
+  --color-gist-header-bg: #2b242a;
+  --color-gist-header-border: #5f3a4b;
+}
+.gsc-main { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }

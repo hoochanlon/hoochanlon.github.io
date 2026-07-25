@@ -6,9 +6,17 @@
   <div class="flex">
     {{ with .Site.Language.Params.Author.image }}
       {{ $authorImage := resources.Get . }}
+      {{ $verifiedIcon := resources.Get "icons/da-v.svg" }}
       {{ if $authorImage }}
-        {{ $imgClass := "!mb-0 !mt-0 me-4 w-24 h-auto rounded-full" }}
-        {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy) }}
+        {{ $imgClass := "!mb-0 !mt-0 w-24 h-auto rounded-full" }}
+        <span class="author-card-avatar me-4">
+          {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy) }}
+          {{ with $verifiedIcon }}
+            <span class="author-card-avatar__verified" aria-label="已认证" title="已认证">
+              {{ .Content | safeHTML }}
+            </span>
+          {{ end }}
+        </span>
       {{ end }}
     {{ end }}
     <div class="place-self-center">

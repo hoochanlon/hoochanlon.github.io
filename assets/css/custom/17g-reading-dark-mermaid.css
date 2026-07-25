@@ -1,0 +1,78 @@
+/* Sakura / LaTeX 阅读主题：暗色标题、链接选区与 Mermaid */
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #search-wrapper
+) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script),
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
+  color: rgb(var(--color-neutral-100));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)),
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) * {
+  color: rgb(var(--color-primary-400));
+  -webkit-text-fill-color: rgb(var(--color-primary-400));
+  text-decoration-color: rgb(var(--color-primary-500));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .prose :where(h1, h2, h3) {
+  color: rgb(var(--color-primary-300));
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a)::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a) *::selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a)::-moz-selection,
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(.toc a, .prose a) *::-moz-selection {
+  background: rgb(var(--color-primary-600));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(.actor, .participant, .activation0, .activation1, .activation2) {
+  fill: rgb(var(--color-neutral-800)) !important;
+  stroke: rgb(var(--color-primary-400)) !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(text.actor, .messageText, .loopText, .labelText, .noteText, .sequenceNumber) {
+  fill: rgb(var(--color-neutral-100)) !important;
+  color: rgb(var(--color-neutral-100)) !important;
+  stroke: none !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(.messageLine0, .messageLine1, .loopLine, .actor-line) {
+  stroke: rgb(var(--color-neutral-300)) !important;
+}
+
+html[data-palette="sakura"].dark .mermaid :where(.note, .labelBox) {
+  fill: rgb(var(--color-neutral-800)) !important;
+  stroke: rgb(var(--color-primary-400)) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.actor, .participant, .activation0, .activation1, .activation2) {
+  fill: rgb(var(--latex-typora-surface)) !important;
+  stroke: rgb(var(--latex-typora-border)) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(text.actor, .actor-line, .messageText, .loopText, .labelText, .noteText, .sequenceNumber) {
+  fill: rgb(var(--latex-typora-text)) !important;
+  color: rgb(var(--latex-typora-text)) !important;
+  stroke: none !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.messageLine0, .messageLine1, .loopLine, .actor-line) {
+  stroke: rgb(var(--latex-typora-muted)) !important;
+}
+
+html[data-palette="latex"].dark .mermaid :where(.note, .labelBox) {
+  fill: rgb(var(--latex-typora-surface)) !important;
+  stroke: rgb(var(--latex-typora-border)) !important;
+}
+
+html[data-palette="latex"].dark .prose .sc-code__lang,
+html[data-palette="latex"].dark .prose .sc-code__icon,
+html[data-palette="latex"].dark .prose .sc-code__icon svg {
+  background: rgb(var(--latex-typora-surface));
+  color: rgb(var(--latex-typora-heading));
+  fill: currentColor;
+  stroke: currentColor;
+}

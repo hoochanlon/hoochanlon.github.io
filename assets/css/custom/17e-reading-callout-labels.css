@@ -1,0 +1,52 @@
+/* Sakura / LaTeX 阅读主题：callout 标签前缀与轻量组件 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--warning {
+  --sc-bg: #352c1f;
+  --sc-border: #735c31;
+  --sc-accent: #e7cc8a;
+  --sc-body: #f4ecda;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--caution {
+  --sc-bg: #402a34;
+  --sc-border: #825169;
+  --sc-accent: #f2b8cb;
+  --sc-body: #f8eaf0;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  margin-inline-end: 0.55rem;
+  font-size: 0.95em;
+  font-style: normal;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Definition";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Theorem";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip.sc-callout--fold > .sc-callout__summary .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Worked Example";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "Intuition";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution .sc-callout__title::before,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+  content: "A List of Rules";
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .palette-switcher__trigger {
+  box-shadow: 0 0 0 1px rgb(var(--color-primary-600) / 0.12), 0 10px 28px rgb(var(--color-neutral-900) / 0.08);
+}
