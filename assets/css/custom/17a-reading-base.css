@@ -103,6 +103,31 @@ html[data-palette="sakura"] :where(
   font-feature-settings: "lnum" 1, "pnum" 1;
 }
 
+html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row,
+html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row {
+  align-items: center;
+  gap: 0.15rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row > li,
+html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li {
+  margin-inline: 0;
+}
+
+html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span),
+html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
+  display: inline-flex;
+  min-width: 1.8rem;
+  min-height: 1.8rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.2rem;
+  line-height: 1;
+}
+
 @media (min-width: 1024px) {
   html[data-palette="latex"] {
     --latex-prose-width: 44rem;
