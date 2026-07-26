@@ -2,11 +2,12 @@
   classical — 古文 / 骈文 / 表奏容器
 
   参数:
-    title   篇名（可选）
-    author  作者 / 朝代（可选）
-    dir     h | v | horizontal | vertical（默认 h）
-    collapsed true|false 是否折叠长文（默认 false）
-    preview  预览段数（默认 2）
+    title      篇名（可选）
+    author     作者 / 朝代（可选）
+    translator 译者 / 转写来源（可选）
+    dir        h | v | horizontal | vertical（默认 h）
+    collapsed  true|false 是否折叠长文（默认 false）
+    preview    预览段数（默认 2）
 
   正文规则:
     - 空行分段
@@ -15,6 +16,7 @@
 */}}
 {{- $title := .Get "title" | default "" -}}
 {{- $author := .Get "author" | default "" -}}
+{{- $translator := .Get "translator" | default "" -}}
 {{- $dirRaw := .Get "dir" | default "h" | lower -}}
 {{- $dir := "h" -}}
 {{- if or (eq $dirRaw "v") (eq $dirRaw "vertical") (eq $dirRaw "竖") (eq $dirRaw "竖排") -}}
@@ -55,13 +57,20 @@
 {{- $shouldCollapse := and $collapsed (gt (len $paras) $preview) -}}
 
 <figure class="{{ $class }}">
-  {{- if or $title $author -}}
+  {{- if or $title $author $translator -}}
     <header class="sc-classical__meta">
       {{- with $title -}}
         <div class="sc-classical__title">{{ . }}</div>
       {{- end -}}
-      {{- with $author -}}
-        <div class="sc-classical__author">作者：{{ . }}</div>
+      {{- if or $author $translator -}}
+        <div class="sc-classical__byline">
+          {{- with $author -}}
+            <span class="sc-classical__author">作者：{{ . }}</span>
+          {{- end -}}
+          {{- with $translator -}}
+            <span class="sc-classical__translator">{{ . }}</span>
+          {{- end -}}
+        </div>
       {{- end -}}
     </header>
   {{- end -}}

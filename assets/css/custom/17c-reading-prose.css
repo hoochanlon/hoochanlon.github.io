@@ -57,7 +57,51 @@
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
-  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", serif;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc nav,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ol,
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
+  padding-inline-start: 1rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li {
+  margin: 0;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li + li {
+  margin-top: 0.38rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li > ul {
+  margin-top: 0.3rem;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
+  display: block;
+  line-height: 1.68;
+  letter-spacing: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-indent: -1.2em;
+  padding-inline-start: 1.2em;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc summary {
+  line-height: 1.55;
+}
+
+@media (max-width: 1023px) {
+  :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
+    line-height: 1.72;
+  }
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose hr {

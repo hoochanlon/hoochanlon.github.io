@@ -33,7 +33,12 @@
   line-height: 1.2;
 }
 
-.sc-classical__author {
+.sc-classical__byline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.55rem;
   margin-top: 0.7rem;
   color: rgb(var(--color-neutral-600));
   font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
@@ -41,7 +46,14 @@
   letter-spacing: 0.02em;
 }
 
-.dark .sc-classical__author {
+.sc-classical__author,
+.sc-classical__translator {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.dark .sc-classical__byline {
   color: rgb(var(--color-neutral-400));
 }
 
@@ -154,7 +166,7 @@
     font-size: 1.12rem;
   }
 
-  .sc-classical__author {
+  .sc-classical__byline {
     font-size: 0.82rem;
   }
 

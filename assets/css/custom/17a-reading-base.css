@@ -131,17 +131,17 @@ html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, 
 @media (min-width: 1024px) {
   html[data-palette="latex"] {
     --latex-prose-width: 44rem;
-    --latex-toc-width: 21rem;
-    --latex-toc-gap: 1.25rem;
+    --latex-toc-width: 23rem;
+    --latex-toc-gap: 1.4rem;
     --latex-cover-width: 43.5rem;
   }
 
   html[data-palette="sakura"] {
     --sakura-prose-width: 44rem;
-    --sakura-toc-width: 21rem;
-    --sakura-toc-gap: 1.25rem;
+    --sakura-toc-width: 23rem;
+    --sakura-toc-gap: 1.4rem;
     --sakura-cover-width: 43.5rem;
-    --sakura-toc-padding-end: 0;
+    --sakura-toc-padding-end: 0.2rem;
   }
 
   html[data-palette="latex"] article > header.max-w-prose {

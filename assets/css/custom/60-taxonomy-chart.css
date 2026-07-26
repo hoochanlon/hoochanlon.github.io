@@ -1,4 +1,28 @@
-/* 分类/标签总览 Chart：整块在主栏内水平居中 */
+/* taxonomy 词条列表：按内容宽度排布，标题保持单行 */
+.taxonomy-terms {
+  margin-inline: -0.5rem;
+}
+
+.taxonomy-terms__item {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.taxonomy-terms__heading {
+  max-width: 100%;
+}
+
+.taxonomy-terms__link {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .taxonomy-terms__link {
+    font-size: 1.05rem;
+  }
+}
+
 .taxonomy-chart {
   display: flex;
   justify-content: center;
