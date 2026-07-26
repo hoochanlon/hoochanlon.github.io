@@ -1,4 +1,8 @@
-<footer class="py-10 print:hidden">
+<div class="site-footer-drawer print:hidden">
+  <div class="site-footer-trigger site-footer-trigger--left" aria-hidden="true"></div>
+  <div class="site-footer-trigger site-footer-trigger--right" aria-hidden="true"></div>
+<footer class="site-footer py-10">
+  <div class="site-footer__panel">
   {{ $paletteEnabled := .Site.Params.palette.enabled | default false }}
   {{ $paletteDefault := lower (.Site.Params.palette.default | default (.Site.Params.colorScheme | default "congo")) }}
   {{ $paletteOptions := .Site.Params.palette.options | default (slice $paletteDefault) }}
@@ -195,8 +199,10 @@
       {{ end }}
     </div>
   </div>
+  </div>
   {{/* Extend footer - eg. for extra scripts, etc. */}}
   {{ if templates.Exists "_partials/extend-footer.html" }}
     {{ partial "extend-footer.html" . }}
   {{ end }}
 </footer>
+</div>
