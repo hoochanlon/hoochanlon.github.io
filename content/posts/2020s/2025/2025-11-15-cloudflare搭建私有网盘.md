@@ -3,8 +3,8 @@ title: "cloudflare搭建私有图床与网盘"
 date: 2025-11-15
 draft: false
 slug: "20251115142753"
-categories: ["技术与工具"]
-tags: ["图床", "工具链"]
+categories: ["折腾"]
+tags: ["数位体验"]
 summary: "利用 Cloudflare 相关免费/优惠能力，搭建私人小型图床与网盘（含 CloudPaste 等方案）。"
 ---
 <figure style="text-align: center;">

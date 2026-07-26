@@ -5,8 +5,8 @@ lastmod: 2026-07-20
 draft: false
 slug: "typography"
 coverCaption: "封面图"
-categories: ["技术与工具"]
-tags: ["内容生产", "写作指南"]
+categories: ["写作"]
+tags: ["排版","内容生产"]
 summary: "基础的文字与图片，以及流媒体排版演示。"
 featured: true
 featuredWeight: 1
@@ -249,7 +249,7 @@ public class StudentGradeSystem {
         public int getId() { return id; }
         public String getName() { return name; }
         public double getScore() { return score; }
-        
+
         @Override
         public String toString() {
             return String.format("学号: %d, 姓名: %s, 成绩: %.2f", id, name, score);
@@ -261,13 +261,13 @@ public class StudentGradeSystem {
         System.out.print("请输入学号: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // 消耗换行符
-        
+
         System.out.print("请输入姓名: ");
         String name = scanner.nextLine();
-        
+
         System.out.print("请输入成绩: ");
         double score = scanner.nextDouble();
-        
+
         students.add(new Student(id, name, score));
         System.out.println("✅ 学生添加成功！\n");
     }
@@ -278,7 +278,7 @@ public class StudentGradeSystem {
             System.out.println("⚠️ 暂无学生数据\n");
             return;
         }
-        
+
         System.out.println("📊 所有学生成绩:");
         for (Student s : students) {
             System.out.println(s);
@@ -290,7 +290,7 @@ public class StudentGradeSystem {
     public void findStudent() {
         System.out.print("请输入要查找的学号: ");
         int id = scanner.nextInt();
-        
+
         for (Student s : students) {
             if (s.getId() == id) {
                 System.out.println("🔍 找到学生: " + s + "\n");
@@ -304,7 +304,7 @@ public class StudentGradeSystem {
     public void deleteStudent() {
         System.out.print("请输入要删除的学号: ");
         int id = scanner.nextInt();
-        
+
         boolean removed = students.removeIf(s -> s.getId() == id);
         if (removed) {
             System.out.println("🗑️ 学生删除成功！\n");
@@ -317,14 +317,14 @@ public class StudentGradeSystem {
     public void updateStudent() {
         System.out.print("请输入要修改的学号: ");
         int id = scanner.nextInt();
-        
+
         for (Student s : students) {
             if (s.getId() == id) {
                 System.out.print("请输入新的成绩: ");
                 double newScore = scanner.nextDouble();
                 // 由于字段是private，需要通过反射或重新创建对象
                 // 这里简单演示，实际可添加setter方法
-                students.set(students.indexOf(s), 
+                students.set(students.indexOf(s),
                     new Student(s.getId(), s.getName(), newScore));
                 System.out.println("✅ 成绩修改成功！\n");
                 return;
@@ -339,7 +339,7 @@ public class StudentGradeSystem {
             System.out.println("⚠️ 暂无学生数据\n");
             return;
         }
-        
+
         double sum = 0;
         for (Student s : students) {
             sum += s.getScore();
@@ -364,12 +364,12 @@ public class StudentGradeSystem {
     // 运行系统
     public void run() {
         System.out.println("🎓 欢迎使用学生成绩管理系统！\n");
-        
+
         while (true) {
             showMenu();
             int choice = scanner.nextInt();
             System.out.println();
-            
+
             switch (choice) {
                 case 1 -> addStudent();
                 case 2 -> showAllStudents();

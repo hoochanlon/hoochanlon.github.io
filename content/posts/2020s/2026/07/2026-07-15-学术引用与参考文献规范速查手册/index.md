@@ -3,8 +3,8 @@ title: "学术引用与参考文献规范速查手册（GB/T 7714 + APA7）"
 date: 2026-07-15T17:29:31+0800
 draft: false
 slug: "20260715172931"
-categories: ["技术与工具"]
-tags: ["内容生产", "写作指南"]
+categories: ["写作"]
+tags: ["内容生产"]
 summary: "整理 GB/T 7714 与 APA7 常见文献类型标识、正文引用写法与参考文献著录格式，便于投稿与答辩速查。"
 ---
 ## 一、常见参考文献类型标识（国标 GB/T 7714 通用）
@@ -54,3 +54,4 @@ summary: "整理 GB/T 7714 与 APA7 常见文献类型标识、正文引用写�
 * [全国标准信息公共服务平台（官方原文 PDF）](https://std.samr.gov.cn/dcpspTools/gbPlan/download?path=%2Fzxd%2F2023001000%2F20_%E6%A0%87%E5%87%86%E8%B5%B7%E8%8D%89%2F20_WD_2023001000_%E4%BF%A1%E6%81%AF%E4%B8%8E%E6%96%87%E7%8C%AE%20%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84%E5%88%99.pdf)
 * [参考文献格式大全:GB/T 7714、APA、MLA](https://acadwrite.cn/learn/reference-format)
 * [中南财经政法大学 - 学科服务动态（2026年第四期）】学术写作必看：新版参考文献著录规则7月1日正式施行](https://library.zuel.edu.cn/2026/0617/c14038a433363/page.htm)
+* [百度经验 - 参考文献可以随便写吗](https://jingyan.baidu.com/article/86fae346f5d3227d49121a8c.html)

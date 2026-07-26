@@ -4,8 +4,8 @@ date: 2026-07-24T11:30:00+08:00
 lastmod: 2026-07-24
 draft: false
 slug: "hugo-congo-publishing-workflow"
-categories: ["技术与工具"]
-tags: ["Congo", "Hugo"]
+categories: ["写作"]
+tags: ["内容生产"]
 summary: "从新建文章到发布的最小工作流，以及常用 front matter 与封面规则。"
 featureAlt: "本文封面示例"
 coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面与列表缩略图"

@@ -4,6 +4,21 @@ html[data-palette="sakura"] .prose :where(p, li, blockquote) {
   font-size: 1.04em;
 }
 
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose :where(.footnotes, .footnotes ol, .footnotes li, .footnotes p) {
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose sup[id^="fnref"],
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a[role="doc-noteref"] {
+  font-size: 0.72em;
+  line-height: 0;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose sup[id^="fnref"] {
+  vertical-align: 0.45em;
+}
+
 html[data-palette="latex"] article > header.max-w-prose > :is(.page-title-kicker, div),
 html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicker, div) {
   font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
@@ -97,7 +112,7 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
   font-size: clamp(1.45rem, 2vw, 1.85rem);
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2::before {
+html[data-palette="sakura"] .prose h2::before {
   content: "§";
   flex: 0 0 auto;
   color: rgb(var(--color-primary-500));

@@ -3,8 +3,8 @@ title: "ChatGPT Plus订阅方法信息收集"
 date: 2025-11-14
 draft: false
 slug: "20251114234938"
-categories: ["技术与工具"]
-tags: ["工具链"]
+categories: ["折腾"]
+tags: ["数位体验"]
 summary: "在已有账号与网络条件前提下，收集不依赖淘宝咸鱼代充的 ChatGPT Plus 订阅思路。"
 ---
 <figure style="text-align: center;">

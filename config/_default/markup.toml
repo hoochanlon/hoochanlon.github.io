@@ -5,6 +5,7 @@
 [goldmark.renderer]
   unsafe = true
 [goldmark.extensions]
+  linkify = true
 [goldmark.extensions.passthrough]
   enable = true
 [goldmark.extensions.passthrough.delimiters]
