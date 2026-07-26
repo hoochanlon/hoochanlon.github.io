@@ -1,4 +1,8 @@
 {{- $toc := .TableOfContents | emojify -}}
+{{- $toc = replaceRE `(<a\b[^>]*>)(（[一二三四五六七八九十百千万零〇]+）)\s*([^<]*?)<wbr>([^<]*?)(</a>)` `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label"><span class="sc-keep">${3}</span><wbr><span class="sc-keep">${4}</span></span>${5}` $toc -}}
+{{- $toc = replaceRE `(<a\b[^>]*>)([一二三四五六七八九十百千万零〇]+、)\s*([^<]*?)<wbr>([^<]*?)(</a>)` `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label"><span class="sc-keep">${3}</span><wbr><span class="sc-keep">${4}</span></span>${5}` $toc -}}
+{{- $toc = replaceRE `(<a\b[^>]*>)(（[一二三四五六七八九十百千万零〇]+）)\s*([^<]*)(</a>)` `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label">${3}</span>${4}` $toc -}}
+{{- $toc = replaceRE `(<a\b[^>]*>)([一二三四五六七八九十百千万零〇]+、)\s*([^<]*)(</a>)` `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label">${3}</span>${4}` $toc -}}
 {{- $toc = replaceRE `(<a\b[^>]*>)([^<]*?)<wbr>([^<]*?)(</a>)` `${1}<span class="sc-keep">${2}</span><wbr><span class="sc-keep">${3}</span>${4}` $toc -}}
 <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
   <summary

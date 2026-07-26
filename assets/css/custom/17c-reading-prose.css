@@ -17,13 +17,15 @@
   text-decoration-color: rgb(var(--color-primary-500));
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(article, .toc) ::selection {
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article ::selection,
+.toc ::selection {
   background: rgb(var(--color-primary-700));
   color: rgb(255 255 255);
   -webkit-text-fill-color: rgb(255 255 255);
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(article, .toc) ::-moz-selection {
+:is(html[data-palette="sakura"], html[data-palette="latex"]) article ::-moz-selection,
+.toc ::-moz-selection {
   background: rgb(var(--color-primary-700));
   color: rgb(255 255 255);
   -webkit-text-fill-color: rgb(255 255 255);
@@ -32,9 +34,9 @@
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a::selection,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a:any-link::selection,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a *::selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a::selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a:any-link::selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a *::selection {
+.toc a::selection,
+.toc a:any-link::selection,
+.toc a *::selection {
   background: rgb(var(--color-primary-600));
   color: rgb(255 255 255) !important;
   -webkit-text-fill-color: rgb(255 255 255) !important;
@@ -45,9 +47,9 @@
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a::-moz-selection,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a:any-link::-moz-selection,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose a *::-moz-selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a::-moz-selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a:any-link::-moz-selection,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a *::-moz-selection {
+.toc a::-moz-selection,
+.toc a:any-link::-moz-selection,
+.toc a *::-moz-selection {
   background: rgb(var(--color-primary-600));
   color: rgb(255 255 255) !important;
   -webkit-text-fill-color: rgb(255 255 255) !important;
@@ -55,54 +57,72 @@
   text-shadow: none;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
+.toc,
+.toc a {
   font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", serif;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(.toc, h1, h2, h3, h4) .sc-keep {
+:where(.toc, h1, h2, h3, h4) .sc-keep {
   white-space: nowrap;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc nav,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ol,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
+.toc nav,
+.toc ol,
+.toc ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
+.toc ul {
   padding-inline-start: 0.95rem;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li {
+.toc li {
   margin: 0;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li + li {
+.toc li + li {
   margin-top: 0.38rem;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li > ul {
+.toc li > ul {
   margin-top: 0.3rem;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
-  display: block;
+.toc a {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.42rem;
   line-height: 1.68;
   letter-spacing: normal;
   word-break: normal;
   overflow-wrap: normal;
   line-break: strict;
+  text-decoration: none;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc summary {
+.toc a > .sc-toc__prefix {
+  grid-column: 1;
+  white-space: nowrap;
+}
+
+.toc a > .sc-toc__label {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.toc a:not(:has(> .sc-toc__label)) {
+  display: block;
+}
+
+.toc summary {
   line-height: 1.55;
 }
 
 @media (max-width: 1023px) {
-  :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a {
+  .toc a {
     line-height: 1.72;
   }
 }
