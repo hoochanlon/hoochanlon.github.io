@@ -60,6 +60,10 @@
   font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", serif;
 }
 
+:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(.toc, h1, h2, h3, h4) .sc-keep {
+  white-space: nowrap;
+}
+
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc nav,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ol,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
@@ -69,7 +73,7 @@
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc ul {
-  padding-inline-start: 1rem;
+  padding-inline-start: 0.95rem;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc li {
@@ -88,10 +92,9 @@
   display: block;
   line-height: 1.68;
   letter-spacing: normal;
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  text-indent: -1.2em;
-  padding-inline-start: 1.2em;
+  word-break: normal;
+  overflow-wrap: normal;
+  line-break: strict;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .toc summary {
