@@ -4,7 +4,7 @@ date: 2026-07-13T11:20:02+0800
 draft: false
 slug: "20260713112002"
 categories: ["教育与流动"]
-tags: ["代际传递", "教育异化", "社会流动"]
+tags: ["代际传递", "教育异化", "结构性固化", "机会性流动"]
 featured: true
 featuredWeight: 4
 coverCaption: "图：https://www.setn.com/news/742577"

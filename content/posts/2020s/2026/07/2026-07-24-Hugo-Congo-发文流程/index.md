@@ -8,7 +8,7 @@ categories: ["写作"]
 tags: ["内容生产"]
 summary: "从新建文章到发布的最小工作流，以及常用 front matter 与封面规则。"
 featureAlt: "本文封面示例"
-coverCaption: "本文即示例：同目录 feature.jpg 自动作为文首封面与列表缩略图"
+coverCaption: "本文即示例：同目录 cover.jpg 自动作为文首封面"
 ---
 
 这篇只回答一个问题：**怎样从 0 到 1 发出一篇文章**。
