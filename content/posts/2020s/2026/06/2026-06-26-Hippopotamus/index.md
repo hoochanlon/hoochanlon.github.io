@@ -8,6 +8,7 @@ tags: ["ACG"]
 featured: true
 coverCaption: "Persona 人格面具 🎭"
 summary: "拟剧、规训与体制犬儒：现代科层制中的“双层生存编码”。"
+featuredWeight: 6
 ---
 
 ## 引言
