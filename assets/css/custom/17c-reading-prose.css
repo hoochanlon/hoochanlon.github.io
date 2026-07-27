@@ -66,6 +66,16 @@
   white-space: nowrap;
 }
 
+.prose :where(h1, h2, h3, h4) {
+  text-align: start;
+  text-justify: auto;
+  word-spacing: normal;
+}
+
+.prose :where(h1, h2, h3, h4) wbr {
+  font-size: 0;
+}
+
 .toc nav,
 .toc ol,
 .toc ul {
