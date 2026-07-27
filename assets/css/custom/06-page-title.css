@@ -2,6 +2,19 @@
  * 通过 front matter: titleStyle: script 启用。
  */
 
+.page-subtitle {
+  margin: -0.35rem 0 2rem;
+  color: rgb(var(--color-neutral-600));
+  font-size: clamp(1.15rem, 2.1vw, 1.5rem);
+  line-height: 1.55;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.dark .page-subtitle {
+  color: rgb(var(--color-neutral-300));
+}
+
 /* 英文花体标题 */
 .page-title-script {
   font-family: "Parisienne", cursive;
