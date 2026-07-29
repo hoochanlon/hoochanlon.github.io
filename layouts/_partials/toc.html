@@ -18,7 +18,10 @@
   >
     {{ i18n "article.table_of_contents" }}
   </summary>
-  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
-    {{ $toc | safeHTML }}
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600 sc-toc-panel">
+    {{/* data-sc-toc：折叠树 + scrollspy 挂载点；保留 Hugo 原生 #TableOfContents */}}
+    <div class="sc-toc-root" data-sc-toc>
+      {{ $toc | safeHTML }}
+    </div>
   </div>
 </details>

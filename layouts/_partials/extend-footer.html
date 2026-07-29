@@ -10,6 +10,12 @@
   <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
 
+{{/* 文章目录：折叠树 + 滚动追踪定位 */}}
+{{ with resources.Get "js/toc.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+
 {{/* 过期提示：按访问时间刷新年龄与显隐 */}}
 {{ with resources.Get "js/outdated.js" }}
   {{ $js := . | resources.Minify | resources.Fingerprint }}

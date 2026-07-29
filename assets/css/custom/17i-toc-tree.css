@@ -1,0 +1,146 @@
+/* 目录树：折叠控件、当前高亮、sticky 独立滚动 */
+
+.toc {
+  scrollbar-width: thin;
+}
+
+@media (min-width: 1024px) {
+  .toc.lg\:sticky,
+  .toc {
+    max-height: calc(100vh - 4.5rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* —— 树行：toggle + 链接 —— */
+.toc .sc-toc__row {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.2rem;
+}
+
+.toc .sc-toc__row > a {
+  min-width: 0;
+}
+
+.toc .sc-toc__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1.55em;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.2rem;
+  background: transparent;
+  color: rgb(var(--color-neutral-500));
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.toc .sc-toc__toggle:hover {
+  color: rgb(var(--color-primary-600));
+  background: rgb(var(--color-primary-100) / 0.55);
+}
+
+.toc .sc-toc__toggle:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-400));
+  outline-offset: 1px;
+}
+
+.toc .sc-toc__chevron {
+  display: block;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-inline-end: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.16s ease;
+  transform-origin: 55% 55%;
+}
+
+/* 展开：箭头朝下 */
+.toc .sc-toc__item--branch.is-open > .sc-toc__row > .sc-toc__toggle .sc-toc__chevron {
+  transform: rotate(45deg);
+}
+
+/* 折叠：隐藏子树 */
+.toc .sc-toc__item--branch:not(.is-open) > ul {
+  display: none;
+}
+
+/* 叶子无 toggle 时保持原缩进对齐 */
+.toc li:not(.sc-toc__item--branch) > a {
+  padding-inline-start: 1.2rem;
+}
+
+.toc ul ul {
+  padding-inline-start: 0.75rem;
+  margin-top: 0.28rem;
+  border-inline-start: 1px dotted rgb(var(--color-neutral-300) / 0.85);
+}
+
+.dark .toc ul ul {
+  border-inline-start-color: rgb(var(--color-neutral-600) / 0.9);
+}
+
+/* —— 当前章节 —— */
+.toc a.is-active {
+  color: rgb(var(--color-primary-700));
+  font-weight: 600;
+  text-decoration: none;
+  border-inline-start: 3px solid rgb(var(--color-primary-500));
+  padding-inline-start: 0.15rem;
+  background: transparent !important;
+}
+
+.toc a.is-active > .sc-toc__prefix,
+.toc a.is-active > .sc-toc__label {
+  color: inherit;
+}
+
+.dark .toc a.is-active {
+  color: rgb(var(--color-primary-400));
+  border-inline-start-color: rgb(var(--color-primary-400));
+  background: transparent !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a.is-active {
+  color: rgb(var(--color-primary-700));
+  border-inline-start: 3px solid rgb(var(--color-primary-500));
+  padding-inline-start: 0.15rem;
+  background: transparent !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .toc a.is-active {
+  color: rgb(var(--color-primary-300));
+  border-inline-start-color: rgb(var(--color-primary-400));
+  background: transparent !important;
+}
+
+html[data-palette="latex"].dark .toc a.is-active {
+  color: rgb(var(--color-primary-300));
+  border-inline-start-color: rgb(var(--color-primary-400));
+  background: transparent !important;
+}
+
+/* 行距：折叠按钮与文字对齐 */
+.toc .sc-toc__item--branch + .sc-toc__item--branch,
+.toc li + li {
+  margin-top: 0.32rem;
+}
+
+.toc .sc-toc__row > a {
+  line-height: 1.55;
+}
+
+@media (max-width: 1023px) {
+  .toc .sc-toc__toggle {
+    height: 1.7em;
+  }
+}
