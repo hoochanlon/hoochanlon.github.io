@@ -3,8 +3,8 @@ title: "神坛上的甲虫"
 date: 2026-07-17T15:41:47+0800
 draft: false
 slug: "20260717154147"
-categories: ["教育与流动"]
-tags: ["代际传递", "教育异化", "结构性固化", "机会性流动"]
+categories: ["阶级视域下的教育属性与阶层再生产研究"]
+tags: ["教育异化"]
 summary: "在实用主义的算盘里，他是这个时代能榨取出的、最完美的客体。"
 featured: true
 featuredWeight: 3
