@@ -1,0 +1,10 @@
+{{- $displayTitle := .Params.titleDisplay | default .Title | emojify -}}
+{{- if in $displayTitle "<wbr>" -}}
+  {{- $parts := split $displayTitle "<wbr>" -}}
+  {{- $last := sub (len $parts) 1 -}}
+  {{- range $idx, $part := $parts -}}
+    <span class="whitespace-nowrap">{{- $part | safeHTML -}}</span>{{- if lt $idx $last -}}<wbr>{{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $displayTitle | safeHTML -}}
+{{- end -}}

@@ -39,7 +39,7 @@
             href="{{ . }}"
             target="_blank"
             rel="external"
-            >{{ $.Title | emojify }}</a
+            >{{ partial "title-display.html" $ }}</a
           >
           <span
             class="cursor-default align-top text-xs text-neutral-400 dark:text-neutral-500"
@@ -53,7 +53,7 @@
         <a
           class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
           href="{{ .RelPermalink }}"
-          >{{ .Title | emojify }}</a
+          >{{ partial "title-display.html" . }}</a
         >
       {{ end }}
       {{ if and .Draft .Site.Params.article.showDraftLabel }}
