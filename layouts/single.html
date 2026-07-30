@@ -10,7 +10,7 @@
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
       {{ end }}
-      <h1 class="mb-4 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ if $hasHan }} has-han{{ end }}{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
+      <h1 class="mb-6 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ if $hasHan }} has-han{{ end }}{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
         {{ .Title | emojify }}
       </h1>
       {{ with .Params.subtitle }}
