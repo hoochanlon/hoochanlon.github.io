@@ -1,0 +1,4 @@
+/* Sakura / LaTeX 阅读主题：隐藏回到顶部按钮 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]) #to-top {
+  display: none !important;
+}

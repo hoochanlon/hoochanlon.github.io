@@ -8,7 +8,7 @@ tags: ["Control"]
 featured: true
 coverCaption: "Persona 🎭"
 summary: "拟剧、规训与体制犬儒：现代科层制中的“双层生存编码”。"
-featuredWeight: 6
+featuredWeight: 7
 ---
 
 ## 引言

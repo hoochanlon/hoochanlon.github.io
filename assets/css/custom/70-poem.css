@@ -32,6 +32,90 @@
   letter-spacing: 0.06em;
 }
 
+.sc-poem__view-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: -0.15rem auto 0.85rem;
+  padding: 0.18rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 9999px;
+  background: color-mix(in srgb, rgb(var(--color-neutral)) 88%, white);
+}
+
+.sc-poem__view-input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sc-poem__view-label {
+  display: inline-flex;
+  min-width: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.72rem;
+  border-radius: 9999px;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.82rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.sc-poem__view-input:checked + .sc-poem__view-label {
+  background: rgb(var(--color-neutral));
+  color: rgb(var(--color-primary-700));
+  box-shadow: 0 6px 16px rgb(var(--color-neutral-900) / 0.1);
+}
+
+.sc-poem__view-label--icon {
+  gap: 0.25rem;
+}
+
+.sc-poem__view-label--icon .icon {
+  padding-inline: 0;
+}
+
+.sc-poem__view-label--icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sc-poem--translate-toggle .sc-poem__view-panel--translation {
+  display: none;
+}
+
+.sc-poem--translate-toggle:has(.sc-poem__view-input--translation:checked) .sc-poem__view-panel--source {
+  display: none;
+}
+
+.sc-poem--translate-toggle:has(.sc-poem__view-input--translation:checked) .sc-poem__view-panel--translation {
+  display: block;
+}
+
+.sc-poem__translation-line {
+  line-height: 2;
+  letter-spacing: 0.02em;
+}
+
+.dark .sc-poem__view-switch {
+  border-color: rgb(var(--color-neutral-600));
+  background: color-mix(in srgb, rgb(var(--color-neutral-900)) 68%, black);
+}
+
+.dark .sc-poem__view-input:checked + .sc-poem__view-label {
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-primary-300));
+}
+
 .dark .sc-poem__author {
   color: rgb(var(--color-neutral-400));
 }

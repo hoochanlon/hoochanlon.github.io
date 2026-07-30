@@ -11,6 +11,62 @@
   position: relative;
 }
 
+.site-footer__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.site-footer__slot {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-footer__slot--left,
+.site-footer__slot--right {
+  justify-content: center;
+}
+
+.site-footer__copy {
+  min-width: 0;
+  text-align: center;
+}
+
+.site-footer__top-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.85rem;
+  height: 2.85rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 9999px;
+  background: color-mix(in srgb, rgb(var(--color-neutral)) 92%, white);
+  color: rgb(var(--color-primary-600));
+  font-size: 1.15rem;
+  line-height: 1;
+  box-shadow: 0 10px 30px rgb(var(--color-neutral-900) / 0.12);
+  transition: transform 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+  backdrop-filter: blur(10px);
+}
+
+.site-footer__top-button:hover {
+  transform: translateY(-1px);
+  border-color: rgb(var(--color-primary-300));
+  color: rgb(var(--color-primary-700));
+}
+
+.dark .site-footer__top-button {
+  background: color-mix(in srgb, rgb(var(--color-neutral-100)) 92%, black);
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__top-button {
+  color: rgb(var(--color-primary-500));
+}
+
 .site-footer-trigger {
   display: none;
 }
@@ -83,15 +139,38 @@
   }
 
   .site-footer__panel > nav,
-  .site-footer__panel > div.flex.items-center.justify-between {
+  .site-footer__row {
     max-width: none;
+  }
+
+  .site-footer__row {
+    display: grid;
+    grid-template-columns: minmax(2.85rem, 1fr) minmax(0, auto) minmax(2.85rem, 1fr);
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-footer__slot--left {
+    justify-content: flex-start;
+  }
+
+  .site-footer__slot--right {
+    justify-content: flex-end;
+  }
+
+  .site-footer__copy {
+    justify-self: center;
   }
 
   .site-footer [data-palette-switcher] {
     position: static;
     inset: auto;
     z-index: auto;
-    margin-inline-start: 0.75rem;
+    margin-inline-start: 0;
+  }
+
+  :is(html[data-palette="sakura"], html[data-palette="latex"]) .site-footer__top-button {
+    display: flex;
   }
 
   .dark .site-footer__panel {

@@ -83,8 +83,43 @@
       </ul>
     </nav>
   {{ end }}
-  <div class="flex items-center justify-between">
-    <div>
+  <div class="site-footer__row">
+    <div class="site-footer__slot site-footer__slot--left">
+      {{/* Palette switcher */}}
+      {{ if $paletteEnabled }}
+        <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" data-palette-switcher data-default-palette="{{ $paletteDefault }}">
+          <details class="palette-switcher__panel">
+            <summary class="palette-switcher__trigger" aria-label="切换配色">
+              {{ partial "icon.html" "color" }}
+            </summary>
+            <div class="palette-switcher__menu">
+              <p class="palette-switcher__title">配色方案</p>
+              <div class="palette-switcher__grid">
+                {{ range $rawName := $paletteOptions }}
+                  {{ $name := lower $rawName }}
+                  <button
+                    type="button"
+                    class="palette-switcher__option"
+                    data-palette-option="{{ $name }}"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="palette-switcher__swatch"
+                      style="background: {{ index $paletteSwatches $name | default "#c85b87" }}"
+                    ></span>
+                    <span class="palette-switcher__label">{{ index $paletteLabels $name | default $rawName }}</span>
+                  </button>
+                {{ end }}
+              </div>
+              <div class="palette-switcher__footer">
+                <button type="button" class="palette-switcher__reset" data-palette-reset>恢复默认</button>
+              </div>
+            </div>
+          </details>
+        </div>
+      {{ end }}
+    </div>
+    <div class="site-footer__copy">
       {{/* Copyright：支持 copyrightSince 起始年，结束年自动取当前构建年份 */}}
       {{ if .Site.Params.footer.showCopyright | default true }}
         <p class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -136,54 +171,16 @@
         </p>
       {{ end }}
     </div>
-    <div class="flex flex-row items-center">
+    <div class="site-footer__slot site-footer__slot--right">
       {{/* Locale switcher */}}
       {{ if and (.IsTranslated) (eq ($.Scratch.Get "localeCount") 0) }}
         <div>
           {{ partial "translations.html" (dict "ctx" . "dir" "up") }}
         </div>
       {{ end }}
-      {{/* Palette switcher */}}
-      {{ if $paletteEnabled }}
-        <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" data-palette-switcher data-default-palette="{{ $paletteDefault }}">
-          <details class="palette-switcher__panel">
-            <summary class="palette-switcher__trigger" aria-label="切换配色">
-              {{ partial "icon.html" "color" }}
-            </summary>
-            <div class="palette-switcher__menu">
-              <p class="palette-switcher__title">配色方案</p>
-              <div class="palette-switcher__grid">
-                {{ range $rawName := $paletteOptions }}
-                  {{ $name := lower $rawName }}
-                  <button
-                    type="button"
-                    class="palette-switcher__option"
-                    data-palette-option="{{ $name }}"
-                    aria-pressed="false"
-                  >
-                    <span
-                      class="palette-switcher__swatch"
-                      style="background: {{ index $paletteSwatches $name | default "#c85b87" }}"
-                    ></span>
-                    <span class="palette-switcher__label">{{ index $paletteLabels $name | default $rawName }}</span>
-                  </button>
-                {{ end }}
-              </div>
-              <div class="palette-switcher__footer">
-                <button type="button" class="palette-switcher__reset" data-palette-reset>恢复默认</button>
-              </div>
-            </div>
-          </details>
-        </div>
-      {{ end }}
-
       {{/* Appearance switcher */}}
       {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
-        <div
-          class="{{ if .Site.Params.footer.showScrollToTop | default true -}}
-            me-14
-          {{- end }} cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
-        >
+        <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
           <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
             <div
               class="flex h-12 w-12 items-center justify-center dark:hidden"
@@ -197,6 +194,16 @@
             </div>
           </button>
         </div>
+      {{ end }}
+      {{ if .Site.Params.footer.showScrollToTop | default true }}
+        <a
+          class="site-footer__top-button"
+          href="#the-top"
+          aria-label="{{ i18n "nav.scroll_to_top_title" }}"
+          title="{{ i18n "nav.scroll_to_top_title" }}"
+        >
+          &uarr;
+        </a>
       {{ end }}
     </div>
   </div>
