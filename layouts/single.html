@@ -5,7 +5,7 @@
   {{- $titleStyle := .Params.titleStyle | default "" }}
   {{- $titleSize := .Params.titleSize | default "" }}
   {{- $hasHan := findRE `\p{Han}` .Title }}
-  <article>
+  <article class="{{ if and .File (eq .File.Path "about.md") }}page-about{{ end }}">
     <header class="max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
@@ -27,7 +27,7 @@
         (.Params.showEdit | default (.Site.Params.article.showEdit | default false))
         (.Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false))
       }}
-        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        <div class="article-meta article-meta--single mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
           {{ partial "article-meta.html" (dict "context" . "scope" "single") }}
         </div>
       {{ end }}
@@ -55,7 +55,7 @@
         {{ .Content | emojify }}
       </div>
     </section>
-    <footer class="max-w-prose pt-8 print:hidden">
+    <footer class="article-footer max-w-prose pt-8 print:hidden">
       {{ partial "author.html" . }}
       {{ if .Params.showSharingLinks | default true }}
         {{ partial "sharing-links.html" . }}
@@ -63,7 +63,7 @@
       {{ partial "article-pagination.html" . }}
       {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
         {{ if templates.Exists "_partials/comments.html" }}
-          <div class="pt-3">
+          <div class="article-comments pt-3">
             <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
             <div class="pt-3">
               {{ partial "comments.html" . }}

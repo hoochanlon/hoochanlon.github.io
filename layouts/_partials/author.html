@@ -3,7 +3,7 @@
   {{ $altText := ($.Site.Language.Params.Author.name | default "Author") }}
   {{ $authorDisplayName := .Site.Language.Params.Author.displayNameCard | default (.Site.Language.Params.Author.displayName | default .Site.Language.Params.Author.name) }}
   {{ $hasHan := findRE `\p{Han}` $authorDisplayName }}
-  <div class="flex">
+  <div class="author-card flex">
     {{ with .Site.Language.Params.Author.image }}
       {{ $authorImage := resources.Get . }}
       {{ $verifiedIcon := resources.Get "icons/da-v.svg" }}
