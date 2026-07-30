@@ -5,6 +5,8 @@
   .site-header,
   .site-footer-drawer,
   .site-profile,
+  .home-intro,
+  .home-section-title,
   .list-header,
   .list-content,
   .list-year,
@@ -17,7 +19,27 @@
   .article-comments,
   .toc,
   #main-content > ul.mt-8.flex.flex-row
-) {
+),
+:where(
+  .page-about,
+  .site-header,
+  .site-footer-drawer,
+  .site-profile,
+  .home-intro,
+  .home-section-title,
+  .list-header,
+  .list-content,
+  .list-year,
+  .author-card,
+  .article-meta,
+  .taxonomy-terms,
+  .taxonomy-chart,
+  .article-link,
+  .article-footer,
+  .article-comments,
+  .toc,
+  #main-content > ul.mt-8.flex.flex-row
+) * {
   -webkit-user-select: none;
   user-select: none;
 }
@@ -27,6 +49,8 @@
   .site-header,
   .site-footer-drawer,
   .site-profile,
+  .home-intro,
+  .home-section-title,
   .list-header,
   .list-content,
   .list-year,
