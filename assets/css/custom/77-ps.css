@@ -1,0 +1,16 @@
+/* 行内括号补充说明 sc-ps（短代码 ps） */
+
+.prose .sc-ps {
+  color: rgb(var(--color-neutral-500));
+  -webkit-text-fill-color: rgb(var(--color-neutral-500));
+}
+
+.dark .prose .sc-ps {
+  color: rgb(var(--color-neutral-400));
+  -webkit-text-fill-color: rgb(var(--color-neutral-400));
+}
+
+.prose .sc-ps :where(a, code, strong, em) {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
