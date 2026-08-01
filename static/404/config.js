@@ -1,7 +1,7 @@
 // 404页面配置文件
 const Config404 = {
   // 默认语言设置
-  defaultLanguage: "zh", // zh: 中文, ja: 日文, en: 英文
+  defaultLanguage: "ja", // zh: 中文, ja: 日文, en: 英文
 
   // 多语言文案
   i18n: {
