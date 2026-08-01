@@ -1,0 +1,9 @@
+/* 404 样式入口：仅负责声明样式装配顺序。 */
+@import url("css/tokens.css");
+@import url("css/layout.css");
+@import url("css/navigation.css");
+@import url("css/actions.css");
+@import url("css/theme-toggle.css");
+@import url("css/language-switcher.css");
+@import url("css/desktop.css");
+@import url("css/mobile.css");

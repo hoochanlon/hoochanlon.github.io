@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <title>404 - 页面未找到</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // 防止闪烁，在页面加载前设置主题
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="/404/style.css">
+    <link rel="stylesheet" href="/404/base.css">
+    <script src="/404/config.js"></script>
 </head>
-<body>
+<body class="page-404">
+    {{ partial "404/icons.html" . }}
     <div class="hamburger-menu">
         <button class="burger" data-state="closed">
             <span></span>
@@ -19,24 +28,64 @@
     <nav data-state="closed">
         <ul>
             <li>
-                <a href="/">首页</a>
+                <a href="http://hoochanlon.github.io/todo">待办事项</a>
             </li>
             <li>
-                <a href="/posts/">文章</a>
+                <a href="http://hoochanlon.github.io/shigure">番茄钟与秒表</a>
             </li>
             <li>
-                <a href="/tags/">标签</a>
+                <a href="https://squoosh-neon.vercel.app">图片压缩</a>
             </li>
             <li>
-                <a href="/categories/">分类</a>
+                <a href="http://hoochanlon.github.io/rename">文件重命名</a>
+            </li>
+            <li>
+                <a href="https://hoochanlon.github.io/network-calculator">网络计算器</a>
+            </li>
+            <li>
+                <a href="http://hoochanlon.github.io/calendar">中国日历</a>
             </li>
         </ul>
+        <div class="language-switcher">
+            <button class="lang-toggle-btn" onclick="toggleLanguageDropdown()" aria-label="切换语言">
+                <svg class="ui-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M4.545 6.714L4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z" />
+                    <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292c.178.217.451.635.555.867c1.125-.359 2.08-.844 2.886-1.494c.777.665 1.739 1.165 2.93 1.472c.133-.254.414-.673.629-.89c-1.125-.253-2.057-.694-2.82-1.284c.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492a2 2 0 0 1-.94.31" />
+                </svg>
+                <span>语言</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-option" data-lang="zh">中文</div>
+                <div class="lang-option" data-lang="en">English</div>
+                <div class="lang-option" data-lang="ja">日本語</div>
+            </div>
+        </div>
     </nav>
+    <label class="theme-toggle" aria-label="切换主题">
+        <input type="checkbox" id="theme-checkbox" onclick="toggleTheme()">
+        <span class="slider">
+            <svg class="sun-icon" viewBox="0 0 512 512" aria-hidden="true">
+                <path d="m260.622 42.537l58.117-39.696c3.641-2.487 8.643-1.147 10.552 2.828l30.483 63.437a7.2 7.2 0 0 0 7.035 4.062l70.179-5.32c4.397-.333 8.058 3.328 7.725 7.725l-5.32 70.179a7.2 7.2 0 0 0 4.062 7.035l63.437 30.483c3.975 1.91 5.315 6.911 2.828 10.552l-39.696 58.117a7.2 7.2 0 0 0 0 8.123l39.696 58.117c2.487 3.641 1.147 8.643-2.828 10.552l-63.437 30.483a7.2 7.2 0 0 0-4.062 7.035l5.32 70.179c.333 4.397-3.328 8.058-7.725 7.725l-70.179-5.32a7.2 7.2 0 0 0-7.035 4.062l-30.483 63.437c-1.91 3.975-6.911 5.315-10.552 2.828l-58.117-39.696a7.2 7.2 0 0 0-8.123 0l-58.117 39.696c-3.641 2.487-8.643 1.147-10.552-2.828l-30.483-63.437a7.2 7.2 0 0 0-7.035-4.062l-70.179 5.32c-4.397.333-8.058-3.328-7.725-7.725l5.32-70.179a7.2 7.2 0 0 0-4.062-7.035L6.228 328.731c-3.975-1.91-5.315-6.911-2.828-10.552l39.696-58.117a7.2 7.2 0 0 0 0-8.123L3.401 193.821c-2.487-3.641-1.147-8.643 2.828-10.552l63.437-30.483a7.2 7.2 0 0 0 4.062-7.035l-5.32-70.179c-.333-4.397 3.328-8.058 7.725-7.725l70.179 5.32a7.2 7.2 0 0 0 7.035-4.062L183.83 5.668c1.91-3.975 6.911-5.315 10.552-2.828l58.117 39.696a7.2 7.2 0 0 0 8.123.001" />
+                <circle cx="256.56" cy="256" r="194.415" />
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 64 64" aria-hidden="true">
+                <circle cx="32" cy="32.12" r="31.875" />
+                <g opacity=".35">
+                    <circle cx="29.32" cy="53.02" r="9.226" />
+                    <circle cx="37.986" cy="24.487" r="3.918" />
+                    <circle cx="5.967" cy="36.54" r="3.845" />
+                    <circle cx="6.313" cy="18.917" r="2.195" />
+                    <circle cx="17.534" cy="19.656" r="3.433" />
+                    <circle cx="42.896" cy="11.07" r="4.835" />
+                </g>
+            </svg>
+        </span>
+    </label>
     <main>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 align-self-center">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    <svg class="illustration" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          viewBox="0 0 800 600">
                         <g>
                             <defs>
@@ -249,13 +298,37 @@
                 </div>
                 <div class="col-md-6 align-self-center">
                     <h1>404</h1>
-                    <h2>哎呀！你迷路了。</h2>
-                    <p>
-                        你要找的页面不存在。
-                        你是怎么来到这里的还是个谜。但你可以点击下面的按钮
-                        返回首页。
+                    <h2>哎呀！你来到了未知星球。</h2>
+                    <p class="desktop-text">
+                        你要找的页面不存在。不如，试试侧边栏工具，或者 Google 搜索吧。
                     </p>
-                    <button class="btn green" onclick="window.location.href='/'">返回首页</button>
+                    <p class="mobile-text">
+                        你要找的页面不存在。
+                        不如试试 Google 搜索吧。
+                    </p>
+                    <button class="btn green" onclick="window.location.href='https://www.google.com/'">
+                        <svg class="google-icon" viewBox="0 0 16 16" aria-hidden="true">
+                            <path fill="#f44336" d="M7.209 1.061c.725-.081 1.154-.081 1.933 0a6.57 6.57 0 0 1 3.65 1.82a100 100 0 0 0-1.986 1.93q-1.876-1.59-4.188-.734q-1.696.78-2.362 2.528a78 78 0 0 1-2.148-1.658a.26.26 0 0 0-.16-.027q1.683-3.245 5.26-3.86" />
+                            <path fill="#ffc107" d="M1.946 4.92q.085-.013.161.027a78 78 0 0 0 2.148 1.658A7.6 7.6 0 0 0 4.04 7.99q.037.678.215 1.331L2 11.116Q.527 8.038 1.946 4.92" />
+                            <path fill="#448aff" d="M12.685 13.29a26 26 0 0 0-2.202-1.74q1.15-.812 1.396-2.228H8.122V6.713q3.25-.027 6.497.055q.616 3.345-1.423 6.032a7 7 0 0 1-.51.49" />
+                            <path fill="#43a047" d="M4.255 9.322q1.23 3.057 4.51 2.854a3.94 3.94 0 0 0 1.718-.626q1.148.812 2.202 1.74a6.62 6.62 0 0 1-4.027 1.684a6.4 6.4 0 0 1-1.02 0Q3.82 14.524 2 11.116z" />
+                        </svg>
+                        <span class="button-label">去 Google 搜一下</span>
+                    </button>
+                    <div class="social-links">
+                        <a href="/" title="博客" target="_blank">
+                            <svg class="social-icon social-icon--blog" aria-hidden="true"><use href="#icon-blog"></use></svg>
+                        </a>
+                        <a href="https://blog.hoochanlon.moe/twitter/" title="Twitter" target="_blank">
+                            <svg class="social-icon social-icon--twitter" aria-hidden="true"><use href="#icon-twitter"></use></svg>
+                        </a>
+                        <a href="https://github.com/hoochanlon" title="GitHub" target="_blank">
+                            <svg class="social-icon social-icon--github" aria-hidden="true"><use href="#icon-github"></use></svg>
+                        </a>
+                        <a href="mailto:hoochanlon@outlook.com" title="邮件">
+                            <svg class="social-icon social-icon--email" aria-hidden="true"><use href="#icon-email"></use></svg>
+    </a>
+  </div>
                 </div>
             </div>
         </div>
