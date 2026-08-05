@@ -29,6 +29,8 @@ fingerprintAlgorithm = "sha256"
   # logo = "img/logo.jpg"
   # logoDark = "img/dark-logo.jpg"
   showTitle = true
+  # 是否在"日记"菜单项后显示最新更新日期
+  showDiaryLastUpdate = true
 
 [footer]
   showCopyright = true

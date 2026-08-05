@@ -84,7 +84,7 @@
                   {{- end -}}{{- if .Params.showName | default true -}}
                     <span
                       class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
-                      >{{ .Name | markdownify | emojify }}</span
+                      >{{ .Name | markdownify | emojify }}{{- if or (eq .URL "/posts/") (strings.Contains .URL "/posts/") }}{{- if $.Site.Params.header.showdiarylastupdate }}{{- $postsSection := $.Site.GetPage "/posts" }}{{- if $postsSection }}{{- $allPages := $postsSection.RegularPagesRecursive }}{{- if $allPages }}{{- if ge (len $allPages) 1 }}{{- $latestPost := index $allPages 0 }} <span class="text-neutral-500 dark:text-neutral-400">(更新: {{ $latestPost.Date.Format "2006-01-02" }})</span>{{- end }}{{- end }}{{- end }}{{- end }}{{- end }}</span
                     >
                   {{ end }}</a
                 >

@@ -89,13 +89,15 @@
 -}}
 {{- $iconName := index $icons $langKey | default "code" -}}
 {{- $icon := resources.Get (printf "icons/%s.svg" $iconName) -}}
+{{- $copyIcon := resources.Get "icons/copy.svg" -}}
+{{- $checkIcon := resources.Get "icons/check.svg" -}}
 {{- $result := transform.HighlightCodeBlock . -}}
 {{- $lineCount := len (findRE "<span class=\"line\">" $result.Wrapped) -}}
 {{- $isCollapsible := gt $lineCount $collapseThreshold -}}
 {{- $isScrollable := gt $lineCount $scrollThreshold -}}
 <div class="sc-code not-prose{{ if $isCollapsible }} sc-code--collapsible{{ end }}{{ if $isScrollable }} sc-code--scrollable{{ end }}"{{ if $isCollapsible }} style="--sc-code-preview-lines: {{ $previewLines }};{{ if $isScrollable }} --sc-code-expanded-lines: {{ $expandedLines }};{{ end }}"{{ end }}>
-  {{- if or (ne $langLabel "") $isCollapsible -}}
-    <div class="sc-code__header">
+  <div class="sc-code__header">
+    <div class="sc-code__header-info">
       {{- if ne $langLabel "" -}}
         <span class="sc-code__lang">
           {{- with $icon -}}
@@ -104,14 +106,20 @@
           {{- end -}}
           <span>{{ $langLabel }}</span>
         </span>
-      {{- else -}}
-        <span></span>
       {{- end -}}
       {{- if $isCollapsible -}}
         <span class="sc-code__meta">共 {{ $lineCount }} 行</span>
       {{- end -}}
     </div>
-  {{- end -}}
+    <button class="sc-code__copy" type="button" aria-label="复制代码" title="复制代码">
+      <span class="sc-code__copy-icon sc-code__copy-icon--default" aria-hidden="true">
+        {{- with $copyIcon -}}{{ .Content | safeHTML }}{{- end -}}
+      </span>
+      <span class="sc-code__copy-icon sc-code__copy-icon--success" aria-hidden="true">
+        {{- with $checkIcon -}}{{ .Content | safeHTML }}{{- end -}}
+      </span>
+    </button>
+  </div>
   {{- if $isCollapsible -}}
     <input class="sc-code__toggle" id="{{ $foldId }}" type="checkbox" />
   {{- end -}}

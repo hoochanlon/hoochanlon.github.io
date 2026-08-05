@@ -85,6 +85,7 @@
     {{ $jsCode := resources.Get "js/code.js" }}
     {{ $assets.Add "js" (slice $jsCode) }}
   {{ end }}
+  {{ $jsCodeCopy := resources.Get "js/code-copy.js" | resources.Minify | resources.Fingerprint $algorithm }}
   {{ if or (eq .Site.Params.header.layout "hamburger") (eq .Site.Params.header.layout "hybrid") }}
     {{ $jsMenu := resources.Get "js/menu.js" }}
     {{ $assets.Add "js" (slice $jsMenu) }}
@@ -105,6 +106,12 @@
       data-copied="{{ i18n "code.copied" }}"
     ></script>
   {{ end }}
+  <script
+    defer
+    type="text/javascript"
+    src="{{ $jsCodeCopy.RelPermalink }}"
+    integrity="{{ $jsCodeCopy.Data.Integrity }}"
+  ></script>
   {{/* Metadata */}}
   <meta
     name="description"

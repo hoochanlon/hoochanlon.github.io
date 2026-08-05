@@ -13,9 +13,15 @@
   {{ $status := site.Language.Params.Author.status }}
   {{ $statusText := "" }}
   {{ $statusLabel := "" }}
+  {{ $statusIcon := false }}
+  {{ $statusTooltipDelay := 0 }}
   {{ with $status }}
     {{ $statusText = .text | default "" }}
     {{ $statusLabel = .label | default $statusText }}
+    {{ with .icon }}
+      {{ $statusIcon = resources.Get . }}
+    {{ end }}
+    {{ $statusTooltipDelay = .tooltipDelay | default 0 }}
   {{ end }}
   {{ with site.Language.Params.Author.image }}
     {{ $authorImage := resources.Get . }}
@@ -24,9 +30,17 @@
         {{ $imgClass := "profile-avatar__image mb-2 h-auto w-36 rounded-full" }}
         {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
         {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy "webp" $webp) }}
-        {{ with $statusText }}
-          <span class="profile-avatar__status" aria-label="{{ $statusLabel }}" title="{{ $statusLabel }}">
-            <span class="profile-avatar__status-text">{{ . }}</span>
+        {{ if or $statusIcon $statusText }}
+          <span
+            class="profile-avatar__status{{ if $statusIcon }} profile-avatar__status--icon{{ else }} profile-avatar__status--text{{ end }}"
+            aria-label="{{ $statusLabel }}"
+            style="--profile-avatar-status-tooltip-delay: {{ $statusTooltipDelay }}s"
+          >
+            {{ with $statusIcon }}
+              <span class="profile-avatar__status-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+            {{ else }}
+              <span class="profile-avatar__status-text">{{ $statusText }}</span>
+            {{ end }}
           </span>
         {{ end }}
       </div>
