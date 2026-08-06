@@ -14,21 +14,23 @@ showSharingLinks: false
 showComments: false
 ---
 
-
 台中于我，是频段回响，是流动的比特。
-循着讯号拾捡城市暖意，安放我寥寥的浪漫遐想。
-那些短发女人的照片，
-从这座我从未抵达的城市传来，
+循着讯号捕捉这座城市的余温，藉此触碰彼岸万象。
+那些短发女人的写真集，从这座我从未抵达的城市传来，
+与现实叠合成我寥寥的浪漫憧憬。
 清晰得像是谎言，也像是一场邂逅。
+
 
 {{< music 
   platform="local"
-  audio="/music/single/乃木坂46/何度目の青空か/何度目の青空か？-乃木坂46.mp3"
-  lyrics="/music/single/乃木坂46/何度目の青空か/何度目の青空か？-乃木坂46.lrc"
-  cover="/music/single/乃木坂46/何度目の青空か/何度目の青空か.jpg"
-  title="何度目の青空か？"
-  artist="乃木坂46"
+  audio="/music/single/去月球/Everything's Alright - Laura Shigihara.mp3"
+  lyrics="/music/single/去月球/Everything_'s Alright-Laura Shigihara.lrc"
+  cover="/music/single/去月球/Everything's Alright - Laura Shigihara.jpg"
+  title="Everything's Alright "
+  artist="Laura Shigihara"
 >}}
+
+
 
 
 ![](/visual/乃木坂46/nanamin.png)

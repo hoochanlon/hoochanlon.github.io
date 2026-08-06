@@ -206,27 +206,68 @@ xiāng yǔ zhěn jiè hū zhōu zhōng bù zhī dōng fāng zhī jì bái
 
 ## 现代歌词
 
-{{< poem title="皇后大道東(節選)" author="羅大佑" dir="h" mode="lyrics" collapsed="true" previewStanzas="2" expandLabel="展開後半" collapseHint="歌詞示例先展示前兩段" >}}
-這個正義朋友面善又友善
-因此批準馬匹一週跑兩天
-百姓也自然要鬥快過終點
-若做大國公民祇須身有錢
+{{< poem title="何度目の青空か？" author="秋元康" dir="h" mode="lyrics" collapsed="true" previewStanzas="2" expandLabel="展开完整歌词" collapseHint="歌词示例先展示前两段" >}}
+<ruby>校庭<rt>こうてい</rt></ruby>の<ruby>端<rt>はし</rt></ruby>で<ruby>反射<rt>はんしゃ</rt></ruby>してた
+<ruby>誰<rt>だれ</rt></ruby>かが<ruby>閉<rt>し</rt></ruby>め<ruby>忘<rt>わす</rt></ruby>れた<ruby>蛇口<rt>じゃぐち</rt></ruby>
+<ruby>大事<rt>だいじ</rt></ruby>なものが
+ずっと<ruby>流<rt>なが</rt></ruby>れ<ruby>落<rt>お</rt></ruby>ちてるようで
+<ruby>風<rt>かぜ</rt></ruby>に<ruby>耳<rt>みみ</rt></ruby>を<ruby>塞<rt>ふさ</rt></ruby>いでた
+<ruby>僕<rt>ぼく</rt></ruby>の<ruby>心<rt>こころ</rt></ruby>の<ruby>片隅<rt>かたすみ</rt></ruby>にも
+<ruby>出<rt>だ</rt></ruby>しっ<ruby>放<rt>ぱな</rt></ruby>しの<ruby>何<rt>なに</rt></ruby>かがあるよ
+このままじゃいけないと
+そう<ruby>気<rt>き</rt></ruby>づいていたのに
+<ruby>見<rt>み</rt></ruby>ないふりをしていたんだ
 
-知己一聲拜拜遠去這都市
-要靠偉大同志搞搞新意思
-冷暖氣候同樣影響這都市
-但是換季可能靠特異人士
+<ruby>膨大<rt>ぼうだい</rt></ruby>な<ruby>時間<rt>じかん</rt></ruby>と<ruby>何<rt>なん</rt></ruby>だってできる<ruby>可能性<rt>かのうせい</rt></ruby>
+<ruby>自由<rt>じゆう</rt></ruby>はそこにある
+<ruby>何度目<rt>なんどめ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>か？
+<ruby>数<rt>かぞ</rt></ruby>えてはいないだろう
+<ruby>陽<rt>ひ</rt></ruby>は<ruby>沈<rt>しず</rt></ruby>みまた<ruby>昇<rt>のぼ</rt></ruby>る <ruby>当<rt>あ</rt></ruby>たり<ruby>前<rt>まえ</rt></ruby>の<ruby>毎日<rt>まいにち</rt></ruby>
+<ruby>何<rt>なに</rt></ruby>か<ruby>忘<rt>わす</rt></ruby>れてる
+<ruby>何度目<rt>なんどめ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>か？ <ruby>青春<rt>せいしゅん</rt></ruby>を<ruby>見逃<rt>みのが</rt></ruby>すな
+<ruby>夢中<rt>むちゅう</rt></ruby>に<ruby>生<rt>い</rt></ruby>きていても
+<ruby>時<rt>とき</rt></ruby>には<ruby>見上<rt>みあ</rt></ruby>げてみよう（<ruby>晴<rt>は</rt></ruby>れた<ruby>空<rt>そら</rt></ruby>を）
+<ruby>今<rt>いま</rt></ruby>の<ruby>自分<rt>じぶん</rt></ruby>を<ruby>無駄<rt>むだ</rt></ruby>にするな
 
-這個漂亮朋友道別亦漂亮
-夜夜電視螢幕繼續舊形象
-到了那日同慶個個要鼓掌
-硬幣上那尊容變烈士銅像
+<ruby>蛇口<rt>じゃぐち</rt></ruby>の<ruby>水<rt>みず</rt></ruby>に<ruby>触<rt>ふ</rt></ruby>れてみたら
+その<ruby>冷<rt>つめ</rt></ruby>たさに<ruby>目<rt>め</rt></ruby>を<ruby>覚<rt>さ</rt></ruby>ましたよ
+ほとばしる<ruby>水<rt>みず</rt></ruby>しぶき <ruby>与<rt>あた</rt></ruby>えられた<ruby>命<rt>いのち</rt></ruby>は
+<ruby>掌<rt>てのひら</rt></ruby>に<ruby>重<rt>おも</rt></ruby>たかった
+いつかやるつもりと
+<ruby>頭<rt>あたま</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で<ruby>思<rt>おも</rt></ruby>ってても
+<ruby>永遠<rt>えいえん</rt></ruby>は<ruby>短<rt>みじか</rt></ruby>い
+<ruby>何度目<rt>なんどめ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>か？
+<ruby>数<rt>かぞ</rt></ruby>えてはいないだろう
+<ruby>陽<rt>ひ</rt></ruby>は<ruby>沈<rt>しず</rt></ruby>みまた<ruby>昇<rt>のぼ</rt></ruby>る <ruby>当<rt>あ</rt></ruby>たり<ruby>前<rt>まえ</rt></ruby>の<ruby>毎日<rt>まいにち</rt></ruby>
+<ruby>何<rt>なに</rt></ruby>か<ruby>忘<rt>わす</rt></ruby>れてる
+<ruby>何度目<rt>なんどめ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>か？
+<ruby>青春<rt>せいしゅん</rt></ruby>を<ruby>見逃<rt>みのが</rt></ruby>すな
+<ruby>夢中<rt>むちゅう</rt></ruby>に<ruby>生<rt>い</rt></ruby>きていても
+<ruby>時<rt>とき</rt></ruby>には<ruby>見上<rt>みあ</rt></ruby>げてみよう（<ruby>晴<rt>は</rt></ruby>れた<ruby>空<rt>そら</rt></ruby>を）
+<ruby>今<rt>いま</rt></ruby>の<ruby>自分<rt>じぶん</rt></ruby>を<ruby>無駄<rt>むだ</rt></ruby>にするな
 
-知己一聲拜拜遠去這都市
-要靠偉大同志搞搞新意思
-會有鐵路城巴也會有的士
-但是路線可能要問問何事
+<ruby>目<rt>め</rt></ruby>を<ruby>閉<rt>と</rt></ruby>じてみれば <ruby>聴<rt>き</rt></ruby>こえて<ruby>来<rt>く</rt></ruby>るだろう
+<ruby>君<rt>きみ</rt></ruby>が<ruby>出<rt>だ</rt></ruby>しっ<ruby>放<rt>ぱな</rt></ruby>しにしてる<ruby>音<rt>おと</rt></ruby>
+<ruby>僕<rt>ぼく</rt></ruby>らも<ruby>空<rt>そら</rt></ruby>も<ruby>晴<rt>は</rt></ruby>れだけじゃない
+この<ruby>次<rt>つぎ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>は いつなのかわからない
+だから<ruby>今<rt>いま</rt></ruby> <ruby>空<rt>そら</rt></ruby><ruby>見上<rt>みあ</rt></ruby>げ <ruby>何<rt>なに</rt></ruby>かを<ruby>始<rt>はじ</rt></ruby>めるんだ
+<ruby>今日<rt>きょう</rt></ruby>できることを…
+<ruby>次<rt>つぎ</rt></ruby>の<ruby>青空<rt>あおぞら</rt></ruby>は <ruby>自分<rt>じぶん</rt></ruby>から<ruby>気<rt>き</rt></ruby>づくだろう
+<ruby>涙<rt>なみだ</rt></ruby>が<ruby>溢<rt>あふ</rt></ruby>れてても
+<ruby>太陽<rt>たいよう</rt></ruby>は<ruby>滲<rt>にじ</rt></ruby>まないさ（ちゃんと<ruby>見<rt>み</rt></ruby>れば）
+<ruby>君<rt>きみ</rt></ruby>はもっと<ruby>強<rt>つよ</rt></ruby>くなれるよ
+<ruby>今<rt>いま</rt></ruby>を<ruby>生<rt>い</rt></ruby>きるんだ（<ruby>時<rt>とき</rt></ruby>は<ruby>流<rt>なが</rt></ruby>れても）
+<ruby>僕<rt>ぼく</rt></ruby>は<ruby>流<rt>なが</rt></ruby>されない
 {{< /poem >}}
+
+{{< music 
+  platform="local"
+  audio="/music/single/乃木坂46/何度目の青空か/何度目の青空か？-乃木坂46.mp3"
+  lyrics="/music/single/乃木坂46/何度目の青空か/何度目の青空か？-乃木坂46.lrc"
+  cover="/music/single/乃木坂46/何度目の青空か/何度目の青空か.jpg"
+  title="何度目の青空か？"
+  artist="乃木坂46"
+>}}
 
 ## 代码块
 

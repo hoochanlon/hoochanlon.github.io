@@ -43,8 +43,14 @@
             {{- with $lyrics -}}
               <div class="sc-music-lyrics" data-lyrics="{{ . }}" aria-live="polite" hidden>
                 <span class="sc-music-lyrics__track">
-                  <span class="sc-music-lyrics__line sc-music-lyrics__line--current"></span>
-                  <span class="sc-music-lyrics__line sc-music-lyrics__line--next"></span>
+                  <span class="sc-music-lyrics__line sc-music-lyrics__line--current">
+                    <span class="sc-music-lyrics__original"></span>
+                    <span class="sc-music-lyrics__translation" hidden></span>
+                  </span>
+                  <span class="sc-music-lyrics__line sc-music-lyrics__line--next">
+                    <span class="sc-music-lyrics__original"></span>
+                    <span class="sc-music-lyrics__translation" hidden></span>
+                  </span>
                 </span>
               </div>
             {{- end -}}
@@ -92,44 +98,65 @@
           let lyricLines = [];
           let activeLyricIndex = -1;
 
-          const parseLyrics = (source) => source
-            .split(/\r?\n/)
-            .flatMap((line) => {
+          const parseLyrics = (source) => {
+            const groups = new Map();
+
+            source.split(/\r?\n/).forEach((line) => {
               const text = line.replace(/\[\d{1,2}:\d{2}(?:\.\d{1,3})?\]/g, '').trim();
               const timestamps = [...line.matchAll(/\[(\d{1,2}):(\d{2}(?:\.\d{1,3})?)\]/g)];
-              return text
-                ? timestamps.map(([, minutes, seconds]) => ({
-                    time: Number(minutes) * 60 + Number(seconds),
-                    text,
-                  }))
-                : [];
-            })
-            .sort((left, right) => left.time - right.time);
+              if (!text) return;
+
+              timestamps.forEach(([, minutes, seconds]) => {
+                const time = Number(minutes) * 60 + Number(seconds);
+                groups.set(time, [...(groups.get(time) ?? []), text]);
+              });
+            });
+
+            return [...groups.entries()]
+              .map(([time, texts]) => ({
+                time,
+                original: texts[0],
+                translation: texts.slice(1).join(' '),
+              }))
+              .sort((left, right) => left.time - right.time);
+          };
+
+          const renderLyric = (element, lyric) => {
+            const original = element.querySelector('.sc-music-lyrics__original');
+            const translation = element.querySelector('.sc-music-lyrics__translation');
+            const translatedText = lyric?.translation ?? '';
+
+            original.textContent = lyric?.original ?? '';
+            translation.textContent = translatedText;
+            translation.hidden = !translatedText;
+          };
 
           const setActiveLyric = () => {
             if (!lyricLines.length) return;
-            const nextIndex = lyricLines.reduce(
+            const timelineIndex = lyricLines.reduce(
               (result, line, index) => (line.time <= audio.currentTime ? index : result),
               -1,
             );
+            const nextIndex = timelineIndex === -1 ? 0 : timelineIndex;
             if (nextIndex === activeLyricIndex) return;
 
             activeLyricIndex = nextIndex;
-            const nextText = lyricLines[activeLyricIndex]?.text ?? '';
-            if (!currentLyric.textContent || prefersReducedMotion) {
-              currentLyric.textContent = nextText;
+            const nextLine = lyricLines[nextIndex];
+            lyricsPanel.classList.toggle('has-translation', Boolean(nextLine.translation));
+            if (timelineIndex === -1 || !currentLyric.textContent.trim() || prefersReducedMotion) {
+              renderLyric(currentLyric, nextLine);
               return;
             }
 
             lyricsPanel.classList.remove('is-transitioning');
-            nextLyric.textContent = nextText;
+            renderLyric(nextLyric, nextLine);
             requestAnimationFrame(() => lyricsPanel.classList.add('is-transitioning'));
           };
 
           lyricsTrack?.addEventListener('animationend', (event) => {
             if (event.animationName !== 'sc-music-lyrics-slide-up') return;
-            currentLyric.textContent = nextLyric.textContent;
-            nextLyric.textContent = '';
+            renderLyric(currentLyric, lyricLines[activeLyricIndex]);
+            renderLyric(nextLyric);
             lyricsPanel.classList.remove('is-transitioning');
           });
 
