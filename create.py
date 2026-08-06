@@ -71,7 +71,6 @@ def front_matter(title: str, when: datetime, *, bundle: bool = False) -> str:
     return f"""---
 title: "{title_esc}"
 date: {date_s}
-draft: true
 slug: "{slug}"
 categories: ["随笔"]
 tags: []
@@ -190,9 +189,9 @@ def main() -> None:
         target.write_text(body, encoding="utf-8")
 
     print(f"已创建: {target.relative_to(ROOT)}")
-    print("预览:   hugo server -D")
+    print("预览:   hugo server")
     print(
-        f"URL:    /posts/{year}/{when.strftime('%Y%m%d%H%M%S')}/  (slug；draft 需 -D)"
+        f"URL:    /posts/{year}/{when.strftime('%Y%m%d%H%M%S')}/  (slug)"
     )
 
 
