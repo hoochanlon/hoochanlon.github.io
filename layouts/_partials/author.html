@@ -3,11 +3,12 @@
   {{ $altText := ($.Site.Language.Params.Author.name | default "Author") }}
   {{ $authorDisplayName := .Site.Language.Params.Author.displayNameCard | default (.Site.Language.Params.Author.displayName | default .Site.Language.Params.Author.name) }}
   {{ $authorVerifiedLabel := .Site.Language.Params.Author.verified.label | default "已认证" }}
+  {{ $authorVerifiedIconPath := .Site.Language.Params.Author.verified.icon | default "icons/da-v.svg" }}
   {{ $hasHan := findRE `\p{Han}` $authorDisplayName }}
   <div class="author-card flex">
     {{ with .Site.Language.Params.Author.image }}
       {{ $authorImage := resources.Get . }}
-      {{ $verifiedIcon := resources.Get "icons/da-v.svg" }}
+      {{ $verifiedIcon := resources.Get $authorVerifiedIconPath }}
       {{ if $authorImage }}
         {{ $imgClass := "!mb-0 !mt-0 w-24 h-auto rounded-full" }}
         <span class="author-card-avatar me-4">

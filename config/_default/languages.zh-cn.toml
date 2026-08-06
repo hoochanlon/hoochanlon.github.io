@@ -26,6 +26,7 @@ title = "致爱丽丝"
   ]
 
   [params.author.verified]
+    # icon = "icons/taiwan.svg"
     label = "已实名认证，带砖底层失业劳工"
 
   [params.author.status]
