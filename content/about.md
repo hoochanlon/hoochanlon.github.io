@@ -15,7 +15,11 @@ showComments: false
 ---
 
 
-<!-- ![](/music/single/n46/nanamin.jpg) -->
+台中于我，是频段回响，是流动的比特。
+循着讯号拾捡城市暖意，安放我寥寥的浪漫遐想。
+那些短发女人的照片，
+从这座我从未抵达的城市传来，
+清晰得像是谎言，也像是一场邂逅。
 
 {{< music 
   platform="local"
