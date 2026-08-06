@@ -38,18 +38,21 @@
   transition: opacity 0.16s ease, transform 0.16s ease;
 }
 
-.author-card-avatar__verified::after {
-  content: attr(aria-label);
+.author-card-avatar__verified-tooltip {
   position: absolute;
   left: calc(100% + 0.5rem);
   top: 50%;
   z-index: 10;
+  display: grid;
+  grid-template-columns: 1.05em max-content;
+  align-items: center;
+  column-gap: 0.35rem;
   padding: 0.4rem 0.7rem;
   border-radius: 0.45rem;
   background: rgb(var(--color-neutral-800));
   color: rgb(var(--color-neutral-100));
   font-size: 0.75rem;
-  line-height: 1.35;
+  line-height: 1.2;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -57,10 +60,36 @@
   transition: opacity 0.16s ease, transform 0.16s ease;
 }
 
+.author-card-avatar__verified-tooltip-icon {
+  position: relative;
+  display: grid;
+  width: 1.05em;
+  height: 1.05em;
+  overflow: hidden;
+  border-radius: 50%;
+  place-items: center;
+  line-height: 1;
+}
+
+.author-card-avatar__verified-tooltip-icon svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.author-card-avatar__verified-tooltip-text {
+  display: block;
+  line-height: 1.2;
+}
+
 .author-card-avatar__verified:hover::before,
-.author-card-avatar__verified:hover::after,
+.author-card-avatar__verified:hover .author-card-avatar__verified-tooltip,
 .author-card-avatar__verified:focus-visible::before,
-.author-card-avatar__verified:focus-visible::after {
+.author-card-avatar__verified:focus-visible .author-card-avatar__verified-tooltip {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
 }
@@ -69,12 +98,12 @@
   border-right-color: rgb(var(--color-neutral-100));
 }
 
-.dark .author-card-avatar__verified::after {
+.dark .author-card-avatar__verified-tooltip {
   background: rgb(var(--color-neutral-100));
   color: rgb(var(--color-neutral-800));
 }
 
-.author-card-avatar__verified svg {
+.author-card-avatar__verified > svg {
   display: block;
   width: 1.35rem;
   height: 1.35rem;

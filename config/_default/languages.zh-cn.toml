@@ -26,8 +26,12 @@ title = "致爱丽丝"
   ]
 
   [params.author.verified]
-    # icon = "icons/taiwan.svg"
-    label = "已实名认证，带砖底层失业劳工"
+    # 文章作者卡片头像右下角的认证主图标
+    # icon = "icons/da-v.svg"
+
+    [params.author.verified.label]
+      text = "国家级认证，带砖底层失业劳工"
+      icon = "icons/china.svg"
 
   [params.author.status]
     # 如需自定义 SVG，取消注释并填写 assets/ 下的路径

@@ -2,8 +2,12 @@
   {{ $lazy := .Params.enableImageLazyLoading | default .Site.Params.enableImageLazyLoading | default true }}
   {{ $altText := ($.Site.Language.Params.Author.name | default "Author") }}
   {{ $authorDisplayName := .Site.Language.Params.Author.displayNameCard | default (.Site.Language.Params.Author.displayName | default .Site.Language.Params.Author.name) }}
-  {{ $authorVerifiedLabel := .Site.Language.Params.Author.verified.label | default "已认证" }}
+  {{ $authorVerifiedLabel := .Site.Language.Params.Author.verified.label.text | default "已认证" }}
   {{ $authorVerifiedIconPath := .Site.Language.Params.Author.verified.icon | default "icons/da-v.svg" }}
+  {{ $authorVerifiedLabelIcon := false }}
+  {{ with .Site.Language.Params.Author.verified.label.icon }}
+    {{ $authorVerifiedLabelIcon = resources.Get . }}
+  {{ end }}
   {{ $hasHan := findRE `\p{Han}` $authorDisplayName }}
   <div class="author-card flex">
     {{ with .Site.Language.Params.Author.image }}
@@ -16,6 +20,12 @@
           {{ with $verifiedIcon }}
             <span class="author-card-avatar__verified" aria-label="{{ $authorVerifiedLabel }}">
               {{ .Content | safeHTML }}
+              <span class="author-card-avatar__verified-tooltip" role="tooltip">
+                {{ with $authorVerifiedLabelIcon }}
+                  <span class="author-card-avatar__verified-tooltip-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+                {{ end }}
+                <span class="author-card-avatar__verified-tooltip-text">{{ $authorVerifiedLabel }}</span>
+              </span>
             </span>
           {{ end }}
         </span>
