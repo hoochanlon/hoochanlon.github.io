@@ -494,6 +494,9 @@
     if (img.dataset.noZoom === "true" || img.classList.contains("no-zoom")) {
       return false;
     }
+    if (img.closest(".video__cover")) {
+      return false;
+    }
     if (img.closest(".image-zoom-overlay")) return false;
     if (img.naturalWidth > 0 && img.naturalWidth < 48 && img.naturalHeight < 48) {
       return false;

@@ -96,6 +96,40 @@
   transition-delay: var(--profile-avatar-status-tooltip-delay, 0s);
 }
 
+.profile-avatar__status--image-tooltip::after {
+  display: none;
+}
+
+.profile-avatar__status-image-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 100;
+  width: min(10rem, 62vw);
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  background: rgb(var(--color-neutral-50));
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-4px);
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-avatar__status-image-tooltip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+.profile-avatar__status:hover .profile-avatar__status-image-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: var(--profile-avatar-status-tooltip-delay, 0s);
+}
+
 .profile-avatar__status--icon,
 .profile-avatar__status--text {
   width: 2rem;

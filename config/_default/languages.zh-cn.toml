@@ -27,8 +27,9 @@ title = "致爱丽丝"
 
   [params.author.status]
     # 如需自定义 SVG，取消注释并填写 assets/ 下的路径
-    # icon = "icons/moon-1.svg"
-    text = "🌦"
+    icon = "icons/to-the-moon.svg"
+    text = "🍏"
     label = "To the moon，离开地球表面"
+    # image = "img/wexin.jpg"
     # 鼠标移入状态徽标后，提示出现前的等待时间（秒）
-    tooltipDelay = 2
+    tooltipDelay = 0.6
