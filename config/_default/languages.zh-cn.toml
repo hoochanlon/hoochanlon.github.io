@@ -25,6 +25,9 @@ title = "致爱丽丝"
     { wechat = "img/wexin.jpg" },
   ]
 
+  [params.author.verified]
+    label = "已实名认证，带砖底层失业劳工"
+
   [params.author.status]
     # 如需自定义 SVG，取消注释并填写 assets/ 下的路径
     icon = "icons/to-the-moon.svg"
