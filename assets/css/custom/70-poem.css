@@ -32,6 +32,17 @@
   letter-spacing: 0.06em;
 }
 
+.sc-poem__translator {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: rgb(var(--color-neutral-400));
+  letter-spacing: 0.04em;
+}
+
+.dark .sc-poem__translator {
+  color: rgb(var(--color-neutral-500));
+}
+
 .sc-poem__view-switch {
   display: inline-flex;
   align-items: center;

@@ -14,3 +14,26 @@
   color: inherit;
   -webkit-text-fill-color: inherit;
 }
+
+/* 块级括号补充说明 sc-ps-block（短代码 ps block="true"） */
+
+.prose .sc-ps-block {
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgb(var(--color-neutral-300));
+  color: rgb(var(--color-neutral-500));
+  -webkit-text-fill-color: rgb(var(--color-neutral-500));
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.dark .prose .sc-ps-block {
+  border-left-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-neutral-400));
+  -webkit-text-fill-color: rgb(var(--color-neutral-400));
+}
+
+.prose .sc-ps-block :where(a, code, strong, em) {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}

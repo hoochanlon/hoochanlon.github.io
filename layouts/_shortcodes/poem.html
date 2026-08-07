@@ -22,6 +22,7 @@
 */}}
 {{- $title := .Get "title" | default "" -}}
 {{- $author := .Get "author" | default "" -}}
+{{- $translator := .Get "translator" | default "" -}}
 {{- $mode := .Get "mode" | default "classic" | lower -}}
 {{- $isLyrics := eq $mode "lyrics" -}}
 {{- $dirRaw := .Get "dir" | default "h" | lower -}}
@@ -83,13 +84,16 @@
 {{- end -}}
 
 <figure class="{{ $class }}">
-  {{- if or $title $author -}}
+  {{- if or $title $author $translator -}}
   <header class="sc-poem__meta">
     {{- with $title -}}
     <div class="sc-poem__title">{{ . }}</div>
     {{- end -}}
     {{- with $author -}}
     <div class="sc-poem__author">{{ . }}</div>
+    {{- end -}}
+    {{- with $translator -}}
+    <div class="sc-poem__translator">{{ . }}</div>
     {{- end -}}
   </header>
   {{- end -}}
