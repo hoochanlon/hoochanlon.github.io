@@ -125,7 +125,9 @@ fingerprintAlgorithm = "sha256"
   inputPosition = "top"
   lang = "zh-CN"
   loading = "lazy"
-  # 自托管 Giscus 主题目录；实际使用 /giscus/{palette}-{light|dark}.css
+  # 自定义 Giscus 主题必须由 HTTPS 公网地址提供，供本地预览与线上 iframe 共用
+  themeBaseURL = "https://hoochanlon.github.io/giscus"
+  # 仅在未设置 themeBaseURL 时使用的站内相对主题目录
   themeBasePath = "giscus"
   # 明暗兜底主题：当自定义主题不可用时使用
   themeLight = "noborder_light"

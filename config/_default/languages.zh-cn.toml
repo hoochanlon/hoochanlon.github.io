@@ -22,7 +22,7 @@ title = "致爱丽丝"
     { github = "https://github.com/hoochanlon" },
     { email = "mailto:hoochanlon@outlook.com" },
     { twitter = "https://hoochanlon.github.io/twitter/?owner=hoochanlon&repo=twitter" },
-    { wechat = "img/wexin.jpg" },
+  # { wechat = "img/wexin.jpg" },
   ]
 
   [params.author.verified]
@@ -35,9 +35,12 @@ title = "致爱丽丝"
 
   [params.author.status]
     # 如需自定义 SVG，取消注释并填写 assets/ 下的路径
-    icon = "icons/to-the-moon.svg"
+    # icon = "icons/to-the-moon.svg"
+    icon = "icons/wechat-1.svg"
     text = "🍏"
-    label = "To the moon，离开地球表面"
-    # image = "img/wexin.jpg"
+    # label = "To the moon，离开地球表面"
+    image = "img/wexin.jpg"
+    # 是否隐藏图标的圆形底框：true 为透明，false 恢复原始圆框
+    transparent = false
     # 鼠标移入状态徽标后，提示出现前的等待时间（秒）
     tooltipDelay = 0.6

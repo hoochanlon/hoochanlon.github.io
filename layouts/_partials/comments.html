@@ -5,7 +5,7 @@
   {{- if and .repo .repoID .categoryID }}
     {{- $light := .themeLight | default "noborder_light" }}
     {{- $dark := .themeDark | default "noborder_dark" }}
-    {{- $themeBase := absURL (.themeBasePath | default "giscus") }}
+    {{- $themeBase := strings.TrimRight "/" (.themeBaseURL | default (absURL (.themeBasePath | default "giscus"))) }}
     {{- $defaultPalette := $.Site.Params.palette.default | default ($.Site.Params.colorScheme | default "congo") | lower }}
     {{- $customPalettes := slice "sakura" "latex" }}
     {{- $initialMode := cond (eq ($.Site.Params.defaultAppearance | default "light") "dark") "dark" "light" }}

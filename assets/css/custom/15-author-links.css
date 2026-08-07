@@ -157,8 +157,12 @@
 }
 
 .author-links__wechat-trigger {
-  border: 0;
-  background: transparent;
+  appearance: none;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none;
   color: inherit;
   cursor: pointer;
 }

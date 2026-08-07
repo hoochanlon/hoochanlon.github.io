@@ -121,9 +121,7 @@
     transition: transform 0.24s ease;
   }
 
-  .site-footer-trigger:hover ~ .site-footer,
-  .site-footer:hover,
-  .site-footer:focus-within {
+  .site-footer-drawer[data-footer-drawer-state="open"] .site-footer {
     transform: translateY(0);
   }
 

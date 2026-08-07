@@ -1,3 +1,9 @@
+{{/* 页脚抽屉：进入触发区展开，点击页面空白处收起 */}}
+{{ with resources.Get "js/footer-drawer.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+
 {{/* 配色切换：独立于明暗模式，记住本地选择 */}}
 {{ with resources.Get "js/palette-switcher.js" }}
   {{ $js := . | resources.Minify | resources.Fingerprint }}

@@ -31,6 +31,13 @@
   cursor: default;
 }
 
+.profile-avatar__status--transparent,
+.dark .profile-avatar__status--transparent {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
 /* 自定义美化的 tooltip - 显示在下方 */
 .profile-avatar__status::after {
   content: attr(aria-label);

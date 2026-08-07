@@ -16,9 +16,11 @@
   {{ $statusIcon := false }}
   {{ $statusImage := false }}
   {{ $statusTooltipDelay := 0 }}
+  {{ $statusTransparent := false }}
   {{ with $status }}
     {{ $statusText = .text | default "" }}
     {{ $statusLabel = .label | default $statusText }}
+    {{ $statusTransparent = .transparent | default false }}
     {{ with .icon }}
       {{ $statusIcon = resources.Get . }}
     {{ end }}
@@ -36,7 +38,7 @@
         {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy "webp" $webp) }}
         {{ if or $statusIcon $statusText $statusImage }}
           <span
-            class="profile-avatar__status{{ if $statusIcon }} profile-avatar__status--icon{{ else }} profile-avatar__status--text{{ end }}{{ if $statusImage }} profile-avatar__status--image-tooltip{{ end }}"
+            class="profile-avatar__status{{ if $statusIcon }} profile-avatar__status--icon{{ else }} profile-avatar__status--text{{ end }}{{ if $statusImage }} profile-avatar__status--image-tooltip{{ end }}{{ if $statusTransparent }} profile-avatar__status--transparent{{ end }}"
             aria-label="{{ $statusLabel }}"
             style="--profile-avatar-status-tooltip-delay: {{ $statusTooltipDelay }}s"
           >
