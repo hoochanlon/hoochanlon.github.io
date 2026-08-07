@@ -32,10 +32,14 @@
   --color-fg-default: #443b40;
   --color-fg-muted: #756670;
   --color-fg-subtle: #8a747d;
-  --color-canvas-default: transparent;
+  --color-canvas-default: #f6efed;
   --color-canvas-overlay: #fffaf8;
   --color-canvas-inset: #f8f3f1;
   --color-canvas-subtle: #fcf3f6;
+  --color-bg-canvas: #f6efed;
+  --color-bg-primary: #f6efed;
+  --color-bg-secondary: #eae0dd;
+  --color-bg-tertiary: #f0e7e4;
   --color-border-default: #efc6d4;
   --color-border-muted: #f8e2e9;
   --color-neutral-muted: rgba(239, 198, 212, 0.45);
@@ -65,6 +69,8 @@
   --color-gist-header-bg: #fcf3f6;
   --color-gist-header-border: #efc6d4;
 }
+html, body { background-color: var(--color-bg-canvas); }
 .gsc-main { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; }
 .gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
 .gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

@@ -18,7 +18,7 @@ yarn.lock
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
+# .vscode/
 *.swp
 *~
 
@@ -28,3 +28,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# --- 本地 giscus 主题预览（mkcert 证书，每人本地生成，勿提交）---
+certs/

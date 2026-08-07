@@ -5,13 +5,13 @@
 }
 
 html[data-palette="latex"].dark {
-  --latex-typora-bg: 54 59 64;
-  --latex-typora-surface: 51 51 51;
-  --latex-typora-border: 71 77 84;
-  --latex-typora-text: 184 191 198;
-  --latex-typora-heading: 222 222 222;
-  --latex-typora-muted: 157 162 166;
-  --latex-typora-selection: 74 137 220;
+  --latex-typora-bg: 41 37 36;
+  --latex-typora-surface: 51 47 43;
+  --latex-typora-border: 68 64 60;
+  --latex-typora-text: 168 162 158;
+  --latex-typora-heading: 231 229 228;
+  --latex-typora-muted: 120 113 108;
+  --latex-typora-selection: 148 163 184;
 }
 
 html[data-palette="latex"].dark body {
