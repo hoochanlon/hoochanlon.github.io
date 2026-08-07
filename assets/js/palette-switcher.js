@@ -16,7 +16,15 @@
     options.map((button) => button.getAttribute("data-palette-option")).filter(Boolean)
   );
   const resetButton = container.querySelector("[data-palette-reset]");
-  const details = container.querySelector("details");
+  const panel = container.querySelector(".palette-switcher__panel");
+  const trigger = container.querySelector(".palette-switcher__trigger");
+
+  const isOpen = () => panel.classList.contains("is-open");
+  const toggle = () => {
+    const next = !isOpen();
+    panel.classList.toggle("is-open", next);
+    trigger.setAttribute("aria-expanded", next ? "true" : "false");
+  };
 
   const readStoredPalette = () => {
     try {
@@ -80,11 +88,20 @@
     refreshThemeBoundMedia(refresh && previous !== next);
   };
 
+  const close = () => {
+    panel.classList.remove("is-open");
+    trigger.setAttribute("aria-expanded", "false");
+  };
+
+  trigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggle();
+  });
+
   options.forEach((button) => {
     button.addEventListener("click", () => {
       const palette = button.getAttribute("data-palette-option");
       applyPalette(palette, true, true);
-      if (details) details.open = false;
     });
   });
 
@@ -92,14 +109,19 @@
     resetButton.addEventListener("click", () => {
       clearStoredPalette();
       applyPalette(defaultPalette, false, true);
-      if (details) details.open = false;
     });
   }
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && details?.open) {
-      details.open = false;
+    if (event.key === "Escape" && isOpen()) {
+      close();
     }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isOpen()) return;
+    if (container.contains(event.target)) return;
+    close();
   });
 
   const observer = new MutationObserver(updateThemeColorMeta);

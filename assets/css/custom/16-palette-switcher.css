@@ -34,10 +34,6 @@
   color: rgb(var(--color-primary-700));
 }
 
-.palette-switcher__trigger::-webkit-details-marker {
-  display: none;
-}
-
 .palette-switcher__trigger .icon {
   padding-inline: 0;
 }
@@ -58,6 +54,22 @@
   background: color-mix(in srgb, rgb(var(--color-neutral)) 96%, white);
   box-shadow: 0 18px 40px rgb(var(--color-neutral-900) / 0.14);
   backdrop-filter: blur(12px);
+
+  /* 默认隐藏态 —— 向下偏移 + 透明，由 .is-open 触发过渡 */
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transform-origin: bottom left;
+  pointer-events: none;
+  transition:
+    opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 打开态：.is-open 添加时从上方滑入 + 淡入 */
+.palette-switcher__panel.is-open .palette-switcher__menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .palette-switcher__title {
