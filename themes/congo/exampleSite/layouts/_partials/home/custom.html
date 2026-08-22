@@ -1,0 +1,13 @@
+{{ $jsHome := resources.Get "js/home.js" | resources.Minify | resources.Fingerprint "sha512" }}
+<div id="page">
+  {{ partial "home/page.html" . }}
+</div>
+<div id="profile" class="hidden h-full">
+  {{ partial "home/profile.html" . }}
+</div>
+<script
+  defer
+  type="text/javascript"
+  src="{{ $jsHome.Permalink }}"
+  integrity="{{ $jsHome.Data.Integrity }}"
+></script>

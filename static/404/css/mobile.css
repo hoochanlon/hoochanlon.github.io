@@ -1,0 +1,25 @@
+@media screen and (max-width: 768px) {
+  body {
+    display: block;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .container {
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+
+  .hamburger-menu,
+  nav {
+    display: none;
+  }
+
+  .desktop-text {
+    display: none;
+  }
+
+  .mobile-text {
+    display: block;
+  }
+}

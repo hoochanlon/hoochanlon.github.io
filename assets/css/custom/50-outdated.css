@@ -1,0 +1,43 @@
+/* 过期提示：归入 warning 色相（GitHub warning） */
+.sc-outdated {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin: 1.15rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d4a72c66;
+  border-left: 0.25rem solid #9a6700;
+  background: #fff8c5;
+  color: #1f2328;
+}
+
+.dark .sc-outdated {
+  border-color: #d2992266;
+  border-left-color: #d29922;
+  background: #3d2e00;
+  color: #e6edf3;
+}
+
+.sc-outdated__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: #9a6700;
+}
+
+.dark .sc-outdated__icon {
+  color: #d29922;
+}
+
+.sc-outdated__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.sc-outdated__body > :first-child {
+  margin-top: 0;
+}
+.sc-outdated__body > :last-child {
+  margin-bottom: 0;
+}

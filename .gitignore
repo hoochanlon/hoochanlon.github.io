@@ -1,0 +1,33 @@
+# --- Hugo 构建产物（CI 在 Actions 里重新生成，勿提交）---
+/public/
+/resources/
+.hugo_build.lock
+
+# --- 依赖 / 锁文件（站点本体是 Hugo；sharp 仅用于可选压图脚本，用 pnpm）---
+node_modules/
+# 提交 pnpm-lock.yaml 以便 CI 可复现；不混用 npm/yarn lock
+package-lock.json
+yarn.lock
+
+# --- 环境与密钥 ---
+.env
+.env.*
+!.env.example
+
+# --- 系统 / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+# .vscode/
+*.swp
+*~
+
+# --- 日志 ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- 本地 giscus 主题预览（mkcert 证书，每人本地生成，勿提交）---
+certs/

@@ -1,0 +1,57 @@
+{{- $ctx := "" -}}
+{{- $dir := default "down" -}}
+{{- if (reflect.IsMap . ) -}}
+  {{- $ctx = .ctx -}}
+  {{- $dir = cond (not .dir) nil .dir -}}
+{{- else -}}
+  {{- $ctx = . -}}
+{{- end -}}
+{{ with page }}
+  {{ if .IsTranslated }}
+    {{ $currentLang := .Page.Lang }}
+    {{ if hugo.IsMultilingual }}
+      <div class="group relative">
+        <button
+          class="group-dark:hover:text-primary-400 flex w-full items-center justify-end transition-colors group-hover:text-primary-600"
+        >
+          {{ partial "icon.html" "translate" }}<span class="text-sm">{{ .Lang | upper }}</span
+          ><span class="text-[0.6rem]"
+            >{{ partial "icon.html" (cond (eq $dir "down") "chevron-down" "chevron-up") }}</span
+          >
+        </button>
+        {{ if eq $dir "down" }}
+          <div class="invisible w-full bg-transparent group-hover:visible"></div>
+        {{ end }}
+        <div
+          class="{{ if not (eq $dir "down") }}
+            bottom-7
+          {{ end }} invisible absolute z-50 flex flex-col whitespace-nowrap rounded border border-neutral-300 bg-neutral text-start text-base shadow group-hover:visible dark:border-neutral-600 dark:bg-neutral-800 ltr:right-0 rtl:left-0"
+        >
+          {{ $currentLang := .Site.Language }}
+          {{ with .Rotate "language" }}
+            {{ range . }}
+              <div class="flex flex-grow">
+                {{ if eq .Site.Language $currentLang }}
+                  <a
+                    href="{{ .Permalink }}"
+                    class="flex w-full items-center justify-between bg-primary-100 px-2 py-1 dark:bg-primary-900"
+                    >{{ .Site.Language.Label }}
+                    <span class="ms-2 w-6 text-primary-600 dark:text-primary-400"
+                      >{{ partial "icon.html" "check" }}</span
+                    >
+                  </a>
+                {{ else }}
+                  <a
+                    href="{{ .Permalink }}"
+                    class="w-full py-1 pe-10 ps-2 decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+                    >{{ .Site.Language.Label }}</a
+                  >
+                {{ end }}
+              </div>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}

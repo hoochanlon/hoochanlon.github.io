@@ -1,0 +1,253 @@
+.author-card-avatar {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  line-height: 0;
+}
+
+.author-card-avatar__verified {
+  position: absolute;
+  right: -0.1rem;
+  bottom: 0.05rem;
+  display: inline-flex;
+  width: 1.65rem;
+  height: 1.65rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  line-height: 1;
+}
+
+.author-card-avatar__verified::before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 0.1rem);
+  top: 50%;
+  z-index: 11;
+  width: 0;
+  height: 0;
+  border-top: 0.35rem solid transparent;
+  border-bottom: 0.35rem solid transparent;
+  border-right: 0.4rem solid rgb(var(--color-neutral-800));
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-0.25rem);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.author-card-avatar__verified-tooltip {
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1.05em max-content;
+  align-items: center;
+  column-gap: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.45rem;
+  background: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-100));
+  font-size: 0.75rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-0.25rem);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.author-card-avatar__verified-tooltip-icon {
+  position: relative;
+  display: grid;
+  width: 1.05em;
+  height: 1.05em;
+  overflow: hidden;
+  border-radius: 50%;
+  place-items: center;
+  line-height: 1;
+}
+
+.author-card-avatar__verified-tooltip-icon svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.author-card-avatar__verified-tooltip-text {
+  display: block;
+  line-height: 1.2;
+}
+
+.author-card-avatar__verified:hover::before,
+.author-card-avatar__verified:hover .author-card-avatar__verified-tooltip,
+.author-card-avatar__verified:focus-visible::before,
+.author-card-avatar__verified:focus-visible .author-card-avatar__verified-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.dark .author-card-avatar__verified::before {
+  border-right-color: rgb(var(--color-neutral-100));
+}
+
+.dark .author-card-avatar__verified-tooltip {
+  background: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-800));
+}
+
+.author-card-avatar__verified > svg {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.dark .author-card-avatar__verified {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.author-links {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+/* 文章页脚资料卡片中的社交图标 - 使用较小的间距 */
+.author-name--card ~ * .author-links {
+  gap: 0.45rem;
+}
+
+.author-links__item,
+.author-links__wechat-trigger {
+  display: inline-flex;
+  width: 1.55rem;
+  height: 1.55rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.author-links__item svg,
+.author-links__wechat-trigger svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+/* 微信图标单独放大，与其他图标视觉平衡 */
+.author-links__wechat-trigger svg {
+  width: 1.35em;
+  height: 1.35em;
+}
+
+.author-links__wechat {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.author-links__wechat-trigger {
+  appearance: none;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.author-links__wechat-popover {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.65rem);
+  z-index: 20;
+  width: 10rem;
+  padding: 0.45rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.85rem;
+  background: rgb(var(--color-neutral));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0.25rem) scale(0.98);
+  transform-origin: bottom center;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.dark .author-links__wechat-popover {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+}
+
+.author-links__wechat:hover .author-links__wechat-popover,
+.author-links__wechat:focus-within .author-links__wechat-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.author-links__wechat-popover::after {
+  position: absolute;
+  left: 50%;
+  bottom: -0.42rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-right: 1px solid rgb(var(--color-neutral-200));
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  background: inherit;
+  content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.dark .author-links__wechat-popover::after {
+  border-color: rgb(var(--color-neutral-700));
+}
+
+.author-links__wechat-popover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.55rem;
+}
+
+.footer-rss {
+  vertical-align: -0.1em;
+  line-height: 1;
+}
+
+.footer-rss .icon {
+  display: inline-flex;
+  width: 0.95em;
+  height: 0.95em;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  vertical-align: baseline;
+  line-height: 1;
+}
+
+.footer-rss svg {
+  display: block;
+  width: 0.95em;
+  height: 0.95em;
+}
+
+@media (max-width: 420px) {
+  .author-links__wechat-popover {
+    width: 8.75rem;
+  }
+}

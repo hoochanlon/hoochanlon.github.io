@@ -1,0 +1,12 @@
+/* Sakura / LaTeX 阅读主题已按职责拆分：
+ *   17a-reading-base.css            背景、字体数字、版心与目录约束
+ *   17b-reading-typography.css      标题、页脚字体、标题字体变体
+ *   17c-reading-prose.css           链接、选区、TOC、公式与代码外观
+ *   17d-reading-callout.css         callout 基础外观与语义色
+ *   17e-reading-callout-labels.css  callout 标签前缀与轻量组件
+ *   17f-reading-dark.css            暗色基础层级
+ *   17g-reading-dark-mermaid.css    暗色标题、选区与 Mermaid
+ *   17h-reading-actions.css         分享按钮与作者图标隔离
+ *
+ * 本文件保留为编号锚点，避免后续误以为 17 系列缺失。
+ */

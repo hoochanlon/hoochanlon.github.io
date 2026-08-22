@@ -1,0 +1,79 @@
+/* Sakura Notes inspired scheme */
+:root {
+  --color-neutral: 246, 239, 237;
+  /* Warm paper */
+  --color-neutral-50: 252, 248, 247;
+  --color-neutral-100: 246, 239, 237;
+  --color-neutral-200: 236, 227, 224;
+  --color-neutral-300: 220, 206, 203;
+  --color-neutral-400: 186, 168, 167;
+  --color-neutral-500: 132, 118, 122;
+  --color-neutral-600: 108, 95, 101;
+  --color-neutral-700: 90, 79, 85;
+  --color-neutral-800: 68, 59, 65;
+  --color-neutral-900: 48, 42, 47;
+  --color-neutral-950: 31, 27, 31;
+  /* Sakura rose */
+  --color-primary-50: 252, 243, 246;
+  --color-primary-100: 248, 226, 233;
+  --color-primary-200: 239, 198, 212;
+  --color-primary-300: 227, 164, 188;
+  --color-primary-400: 211, 119, 158;
+  --color-primary-500: 200, 91, 135;
+  --color-primary-600: 182, 74, 119;
+  --color-primary-700: 154, 60, 101;
+  --color-primary-800: 125, 52, 84;
+  --color-primary-900: 99, 45, 68;
+  --color-primary-950: 67, 27, 44;
+  /* Plum accent */
+  --color-secondary-50: 250, 242, 247;
+  --color-secondary-100: 242, 225, 236;
+  --color-secondary-200: 229, 196, 218;
+  --color-secondary-300: 211, 160, 194;
+  --color-secondary-400: 188, 117, 167;
+  --color-secondary-500: 166, 86, 142;
+  --color-secondary-600: 145, 67, 122;
+  --color-secondary-700: 121, 54, 101;
+  --color-secondary-800: 100, 47, 85;
+  --color-secondary-900: 83, 40, 70;
+  --color-secondary-950: 52, 23, 42;
+}
+
+.dark {
+  --color-neutral: 247, 239, 244;
+  --color-neutral-50: 250, 245, 248;
+  --color-neutral-100: 239, 230, 236;
+  --color-neutral-200: 220, 207, 216;
+  --color-neutral-300: 188, 169, 181;
+  --color-neutral-400: 145, 123, 138;
+  --color-neutral-500: 111, 91, 105;
+  --color-neutral-600: 80, 63, 75;
+  --color-neutral-700: 57, 43, 53;
+  --color-neutral-800: 43, 32, 40;
+  --color-neutral-900: 30, 22, 28;
+  --color-neutral-950: 18, 13, 17;
+
+  --color-primary-50: 67, 27, 44;
+  --color-primary-100: 99, 45, 68;
+  --color-primary-200: 125, 52, 84;
+  --color-primary-300: 182, 74, 119;
+  --color-primary-400: 227, 164, 188;
+  --color-primary-500: 211, 119, 158;
+  --color-primary-600: 200, 91, 135;
+  --color-primary-700: 239, 198, 212;
+  --color-primary-800: 248, 226, 233;
+  --color-primary-900: 252, 243, 246;
+  --color-primary-950: 255, 250, 252;
+
+  --color-secondary-50: 52, 23, 42;
+  --color-secondary-100: 83, 40, 70;
+  --color-secondary-200: 100, 47, 85;
+  --color-secondary-300: 121, 54, 101;
+  --color-secondary-400: 166, 86, 142;
+  --color-secondary-500: 188, 117, 167;
+  --color-secondary-600: 211, 160, 194;
+  --color-secondary-700: 229, 196, 218;
+  --color-secondary-800: 242, 225, 236;
+  --color-secondary-900: 250, 242, 247;
+  --color-secondary-950: 255, 250, 253;
+}

@@ -1,0 +1,66 @@
+article:
+  anchor_label: "Якорь"
+  date: "{{ .Date }}"
+  date_updated: "Обновлено: {{ .Date }}"
+  draft: "Черновик"
+  edit_title: "Редактировать"
+  reading_time:
+    one: "{{ .Count }} минута"
+    few: "{{ .Count }} минуты"
+    many: "{{ .Count }} минут"
+    other: "{{ .Count }} минут"
+  reading_time_title: "Время чтения"
+  table_of_contents: "Содержание"
+  word_count:
+    one: "{{ .Count }} слово"
+    few: "{{ .Count }} слова"
+    many: "{{ .Count }} слов"
+    other: "{{ .Count }} слов"
+
+author:
+  byline_title: "Автор"
+
+code:
+  copy: "Копировать"
+  copied: "Скопировано"
+
+error:
+  404_title: "Страница не найдена :confused:"
+  404_error: "Ошибка 404"
+  404_description: "Похоже, что запрошенная вами страница не существует."
+
+footer:
+  dark_appearance: "Переключиться на темную тему"
+  light_appearance: "Переключиться на светлую тему"
+  powered_by: "Работает на {{ .Hugo }} &amp; {{ .Congo }}"
+
+list:
+  externalurl_title: "Ссылка на внешний сайт"
+  no_articles: "Здесь пока нет статей"
+
+nav:
+  scroll_to_top_title: "Вверх"
+  skip_to_main: "Перейти к содержанию"
+
+search:
+  open_button_title: "Поиск (/)"
+  close_button_title: "Закрыть (Esc)"
+  input_placeholder: "Поиск"
+
+sharing:
+  email: "Послать через email"
+  facebook: "Поделиться на Facebook"
+  linkedin: "Поделиться на LinkedIn"
+  mastodon: "Поделиться на Mastodon"
+  pinterest: "Поделиться на Pinterest"
+  reddit: "Опубликовать на Reddit"
+  twitter: "Опубликовать на Twitter"
+  # threads: "Post on Threads"
+  telegram: "Поделиться на Telegram"
+  line: "Поделиться на LINE"
+  weibo: "Поделиться на Weibo"
+  # x-twitter: "Post on X"
+  # xing: "Share on XING"
+
+shortcode:
+  recent_articles: "Последние"

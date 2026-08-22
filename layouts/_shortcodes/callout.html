@@ -1,0 +1,83 @@
+{{/*
+  callout — GitHub Alerts 风格分色提示框，可选折叠
+
+  标准 type（对齐 GitHub）：
+    note 注意(蓝) | tip 提示(绿) | important 重要(紫)
+    warning 警告(琥珀) | caution 小心(红)
+  扩展：
+    success 完成(翠绿)
+  兼容别名（归一到标准色，可保留不同默认标题/图标）：
+    info → important
+    forbid / danger / critical → caution
+  其它参数（与位置参数勿混用）：
+    title 标题（折叠时作摘要；非折叠时作类型标签）
+    fold true 可折叠
+    open true 默认展开（仅 fold）
+    icon 覆盖默认图标
+*/}}
+{{- $raw := .Get "type" | default (.Get 0) | default "note" -}}
+{{- $alias := $raw -}}
+{{- if eq $raw "提示" -}}{{- $alias = "tip" -}}
+{{- else if eq $raw "重要" -}}{{- $alias = "important" -}}
+{{- else if eq $raw "注意" -}}{{- $alias = "note" -}}
+{{- else if eq $raw "警告" -}}{{- $alias = "warning" -}}
+{{- else if or (eq $raw "小心") (eq $raw "警示") -}}{{- $alias = "caution" -}}
+{{- else if eq $raw "严禁" -}}{{- $alias = "forbid" -}}
+{{- else if or (eq $raw "高危") (eq $raw "高危操作") -}}{{- $alias = "danger" -}}
+{{- else if eq $raw "危险" -}}{{- $alias = "critical" -}}
+{{- else if or (eq $raw "完成") (eq $raw "成功") -}}{{- $alias = "success" -}}
+{{- else if eq $raw "info" -}}{{- $alias = "info" -}}
+{{- end -}}
+
+{{/* 展示用元数据（标题/图标可按别名区分）；色类归一到 GitHub 五类 + success */}}
+{{- $defaults := dict
+  "note" (dict "title" "注意" "icon" "circle-info" "tone" "note")
+  "tip" (dict "title" "提示" "icon" "lightbulb" "tone" "tip")
+  "important" (dict "title" "重要" "icon" "comment" "tone" "important")
+  "info" (dict "title" "重要" "icon" "comment" "tone" "important")
+  "warning" (dict "title" "警告" "icon" "triangle-exclamation" "tone" "warning")
+  "caution" (dict "title" "小心" "icon" "xmark" "tone" "caution")
+  "forbid" (dict "title" "严禁" "icon" "xmark" "tone" "caution")
+  "danger" (dict "title" "高危操作" "icon" "bug" "tone" "caution")
+  "critical" (dict "title" "危险" "icon" "skull-crossbones" "tone" "caution")
+  "success" (dict "title" "完成" "icon" "check" "tone" "success")
+-}}
+{{- if not (isset $defaults $alias) -}}{{- $alias = "note" -}}{{- end -}}
+{{- $meta := index $defaults $alias -}}
+{{- $tone := $meta.tone -}}
+{{- $title := .Get "title" | default $meta.title -}}
+{{- $icon := .Get "icon" | default $meta.icon -}}
+
+{{- $fold := false -}}
+{{- with .Get "fold" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}{{- $fold = true -}}{{- end -}}
+{{- end -}}
+{{- $open := false -}}
+{{- with .Get "open" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}{{- $open = true -}}{{- end -}}
+{{- end -}}
+
+{{- $class := printf "sc-callout sc-callout--%s not-prose" $tone -}}
+{{- if $fold -}}
+<details class="{{ $class }} sc-callout--fold"{{ if $open }} open{{ end }}>
+  <summary class="sc-callout__summary">
+    <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $icon -}}</span>
+    <span class="sc-callout__title">{{ $title | markdownify }}</span>
+  </summary>
+  <div class="sc-callout__body prose dark:prose-invert">
+    {{- .Inner | markdownify -}}
+  </div>
+</details>
+{{- else -}}
+<aside class="{{ $class }}" role="note">
+  <div class="sc-callout__content">
+    <div class="sc-callout__label">
+      <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $icon -}}</span>
+      <span class="sc-callout__title">{{ $title | markdownify }}</span>
+    </div>
+    <div class="sc-callout__body prose dark:prose-invert">
+      {{- .Inner | markdownify -}}
+    </div>
+  </div>
+</aside>
+{{- end -}}

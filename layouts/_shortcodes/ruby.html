@@ -1,0 +1,54 @@
+{{/*
+  ruby — 普通正文注音（不必手写 <ruby>）
+
+  ① 行内短语（推荐嵌在段落里）
+     {{< ruby py="chūn jǐng" >}}春景{{< /ruby >}}
+     {{< ruby text="春景" py="chūn jǐng" >}}
+
+  ② 段落块：汉字行 + 拼音行两两配对（空行分段）
+     {{< ruby >}}
+     人生天地间，忽如远行客。
+     rén shēng tiān dì jiān hū rú yuǎn xíng kè
+     {{< /ruby >}}
+
+  参数:
+    py / pinyin  拼音（空格分音节）；有则走「单段标注」
+    text / hanzi 汉字（可与 py 联用；省略则用 shortcode 正文）
+*/}}
+{{- $py := .Get "py" | default (.Get "pinyin") | default "" -}}
+{{- $text := .Get "text" | default (.Get "hanzi") | default "" -}}
+{{- $inner := trim .Inner "\n\r \t" -}}
+
+{{- /* 模式 A：显式 py → 行内 / 单行 */ -}}
+{{- if ne $py "" -}}
+  {{- $hanzi := $text -}}
+  {{- if eq $hanzi "" -}}
+    {{- $hanzi = $inner -}}
+  {{- end -}}
+  <span class="sc-ruby sc-ruby--inline">
+    {{- partial "ruby-annotate.html" (dict "hanzi" $hanzi "pinyin" $py) -}}
+  </span>
+{{- else -}}
+  {{- /* 模式 B：正文按行配对（段落） */ -}}
+  {{- $raw := $inner -}}
+  {{- if eq $raw "" -}}
+    {{- $raw = $text -}}
+  {{- end -}}
+  <div class="sc-ruby sc-ruby--block">
+    {{- $lines := split $raw "\n" -}}
+    {{- $buf := slice -}}
+    {{- range $lines -}}
+      {{- $line := trim . "\r \t" -}}
+      {{- if ne $line "" -}}
+        {{- $buf = $buf | append $line -}}
+      {{- else if gt (len $buf) 0 -}}
+        {{- partial "ruby-flush.html" (dict "lines" $buf) -}}
+        {{- $buf = slice -}}
+        <div class="sc-ruby__gap" aria-hidden="true"></div>
+      {{- end -}}
+    {{- end -}}
+    {{- if gt (len $buf) 0 -}}
+      {{- partial "ruby-flush.html" (dict "lines" $buf) -}}
+    {{- end -}}
+  </div>
+{{- end -}}

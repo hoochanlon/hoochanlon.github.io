@@ -1,0 +1,108 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--text);
+  font-size: 1.2em;
+  background: var(--bg);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button {
+  font-family: inherit;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 35px;
+}
+
+.container {
+  max-width: 1400px;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 7.5em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+html[lang="zh-CN"] h2 {
+  white-space: nowrap;
+}
+
+html[lang="zh-CN"] p {
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.6;
+}
+
+html[lang="en"] h2,
+html[lang="en"] p {
+  text-wrap: balance;
+  hyphens: auto;
+}
+
+p {
+  font-size: 1.15em;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+main .illustration {
+  width: 100%;
+  visibility: hidden;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] main .illustration {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.page-404 .icon-definitions {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.page-404 .ui-icon,
+.page-404 .google-icon,
+.page-404 .theme-toggle .slider svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.page-404 .social-icon {
+  display: block;
+  fill: currentColor;
+}
+
+ruby rt {
+  font-size: 0.55em;
+  font-weight: 500;
+}
+
+.desktop-text {
+  display: block;
+}
+
+.mobile-text {
+  display: none;
+}

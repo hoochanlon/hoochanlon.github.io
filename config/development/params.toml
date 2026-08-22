@@ -1,0 +1,8 @@
+# 本地开发覆盖（仅 `hugo serve` 生效，生产构建 `hugo` 不读此文件）。
+# 让 giscus 从本地 HTTPS+CORS 预览服务加载主题 CSS，这样改 static/giscus/*.css
+# 能在浏览器里实时看到。需配合 scripts/dev-giscus.sh 启动预览服务。
+#
+# 不跑预览服务时，giscus 会因 localhost:8443 连不上而回退默认主题——属于预期。
+# 想临时回到线上主题，注释掉 themeBaseURL 即可。
+[giscus]
+themeBaseURL = "https://localhost:8443"

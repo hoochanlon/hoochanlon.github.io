@@ -1,0 +1,62 @@
+article:
+  anchor_label: "Kotva"
+  date: "{{ .Date }}"
+  date_updated: "Aktualizováno: {{ .Date }}"
+  draft: "Koncept"
+  edit_title: "Upravit obsah"
+  reading_time:
+    one: "{{ .Count }} min"
+    other: "{{ .Count }} min"
+  reading_time_title: "Doba čtení"
+  table_of_contents: "Obsah"
+  word_count:
+    one: "{{ .Count }} slovo"
+    other: "{{ .Count }} slov"
+
+author:
+  byline_title: "Autor"
+
+code:
+  copy: "Kopírovat"
+  copied: "Zkopírováno"
+
+error:
+  404_title: "Stránka nenalezena :confused:"
+  404_error: "Chyba 404"
+  404_description: "Zdá se, že požadovaná stránka neexistuje."
+
+footer:
+  dark_appearance: "Přepněte na tmavý režim"
+  light_appearance: "Přepněte na světlý režim"
+  powered_by: "Využívá {{ .Hugo }} &amp; {{ .Congo }}"
+
+list:
+  externalurl_title: "Odkaz na externí stránku"
+  no_articles: "Zatím zde nejsou k dispozici žádné články."
+
+nav:
+  scroll_to_top_title: "Zpět na začátek"
+  skip_to_main: "Přeskočit na hlavní obsah"
+
+search:
+  open_button_title: "Vyhledávání (/)"
+  close_button_title: "Zavřít (Esc)"
+  input_placeholder: "Vyhledávání"
+
+sharing:
+  email: "Odeslat e-mailem"
+  facebook: "Sdílet na Facebook"
+  linkedin: "Sdílet na LinkedIn"
+  mastodon: "Toot na Mastodon"
+  pinterest: "Pin na Pinterest"
+  reddit: "Odeslat na Reddit"
+  twitter: "Tweet na Twitter"
+  # threads: "Post on Threads"
+  telegram: "Sdílejte na Telegram"
+  line: "Sdílejte na LINE"
+  weibo: "Sdílejte na Weibo"
+  # x-twitter: "Post on X"
+  # xing: "Share on XING"
+
+shortcode:
+  recent_articles: "Nedávné"

@@ -1,0 +1,37 @@
+/* 正文剧透遮罩 sc-spoiler（短代码 spoiler） */
+
+.prose .sc-spoiler {
+  display: inline;
+  padding: 0 0.28em;
+  border-radius: 0.22rem;
+  background: #24292f;
+  color: transparent;
+  text-shadow: none;
+  transition: color 0.16s ease, background-color 0.16s ease;
+  cursor: help;
+  -webkit-text-fill-color: transparent;
+}
+
+.prose .sc-spoiler:hover,
+.prose .sc-spoiler:focus,
+.prose .sc-spoiler:active {
+  color: #f6f8fa;
+  -webkit-text-fill-color: #f6f8fa;
+}
+
+.dark .prose .sc-spoiler {
+  background: #e6edf3;
+}
+
+.dark .prose .sc-spoiler:hover,
+.dark .prose .sc-spoiler:focus,
+.dark .prose .sc-spoiler:active {
+  color: #1f2328;
+  -webkit-text-fill-color: #1f2328;
+}
+
+.prose .sc-spoiler a,
+.prose .sc-spoiler code {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}

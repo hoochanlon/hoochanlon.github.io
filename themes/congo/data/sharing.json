@@ -1,0 +1,72 @@
+{
+  "email": {
+    "icon": "email",
+    "title": "sharing.email",
+    "url": "mailto:?body=%s&subject=%s"
+  },
+  "facebook": {
+    "icon": "facebook",
+    "title": "sharing.facebook",
+    "url": "https://www.facebook.com/sharer/sharer.php?u=%s&quote=%s"
+  },
+  "linkedin": {
+    "icon": "linkedin",
+    "title": "sharing.linkedin",
+    "url": "https://www.linkedin.com/shareArticle?mini=true&url=%s&title=%s"
+  },
+  "mastodon": {
+    "icon": "mastodon",
+    "title": "sharing.mastodon",
+    "url": "https://tootpick.org/#text=%s %s"
+  },
+  "pinterest": {
+    "icon": "pinterest",
+    "title": "sharing.pinterest",
+    "url": "https://pinterest.com/pin/create/bookmarklet/?url=%s&description=%s"
+  },
+  "reddit": {
+    "icon": "reddit",
+    "title": "sharing.reddit",
+    "url": "https://reddit.com/submit/?url=%s&resubmit=true&title=%s"
+  },
+  "twitter": {
+    "icon": "twitter",
+    "title": "sharing.twitter",
+    "url": "https://twitter.com/intent/tweet/?url=%s&text=%s"
+  },
+  "x-twitter": {
+    "icon": "x-twitter",
+    "title": "sharing.x-twitter",
+    "url": "https://x.com/intent/tweet/?url=%s&text=%s"
+  },
+  "threads": {
+    "icon": "threads",
+    "title": "sharing.threads",
+    "url": "https://www.threads.net/intent/post?text=%s %s"
+  },
+  "telegram": {
+    "icon": "telegram",
+    "title": "sharing.telegram",
+    "url": "https://telegram.me/share/url?text=%s&url=%s"
+  },
+  "line": {
+    "icon": "line",
+    "title": "sharing.line",
+    "url": "https://line.me/R/share?text=%s%%20%s"
+  },
+  "weibo": {
+    "icon": "weibo",
+    "title": "sharing.weibo",
+    "url": "https://service.weibo.com/share/share.php?url=%s&appkey=&title=%s&pic=&ralateUid=&lang"
+  },
+  "xing": {
+    "icon": "xing",
+    "title": "sharing.xing",
+    "url": "https://www.xing.com/spi/shares/new?url=%s"
+  },
+  "bluesky": {
+    "icon": "bluesky",
+    "title": "sharing.bluesky",
+    "url": "https://bsky.app/intent/compose?text=%s%s"
+  }
+}

@@ -1,0 +1,34 @@
+@media screen and (min-width: 769px) {
+  h1 {
+    font-size: 7em;
+  }
+
+  h2 {
+    font-size: 1.9em;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.7;
+  }
+
+  .row {
+    gap: 20px;
+  }
+
+  .col-md-6:first-child {
+    flex: 0 0 calc(58% - 40px);
+    max-width: calc(58% - 40px);
+  }
+
+  .col-md-6:last-child {
+    flex: 0 0 calc(42% - 40px);
+    max-width: calc(42% - 40px);
+    min-width: 0;
+  }
+
+  main .illustration {
+    width: 110%;
+    max-width: 110%;
+  }
+}

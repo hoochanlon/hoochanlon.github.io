@@ -1,0 +1,76 @@
+/*! Giscus Sakura light theme */
+:root {
+  color-scheme: light;
+  --color-prettylights-syntax-comment: #8a747d;
+  --color-prettylights-syntax-constant: #9a3c65;
+  --color-prettylights-syntax-entity: #b64a77;
+  --color-prettylights-syntax-storage-modifier-import: #443b40;
+  --color-prettylights-syntax-entity-tag: #b64a77;
+  --color-prettylights-syntax-keyword: #9a3c65;
+  --color-prettylights-syntax-string: #7d3454;
+  --color-prettylights-syntax-variable: #c85b87;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #b64a77;
+  --color-prettylights-syntax-invalid-illegal-text: #ffffff;
+  --color-prettylights-syntax-invalid-illegal-bg: #b64a77;
+  --color-prettylights-syntax-carriage-return-text: #ffffff;
+  --color-prettylights-syntax-carriage-return-bg: #b64a77;
+  --color-prettylights-syntax-string-regexp: #7d3454;
+  --color-prettylights-syntax-markup-list: #9a3c65;
+  --color-prettylights-syntax-markup-heading: #b64a77;
+  --color-prettylights-syntax-markup-italic: #443b40;
+  --color-prettylights-syntax-markup-bold: #312b31;
+  --color-prettylights-syntax-markup-deleted-text: #7d3454;
+  --color-prettylights-syntax-markup-deleted-bg: #f8e2e9;
+  --color-prettylights-syntax-markup-inserted-text: #5f554d;
+  --color-prettylights-syntax-markup-inserted-bg: #f8f3f1;
+  --color-prettylights-syntax-markup-changed-text: #7d3454;
+  --color-prettylights-syntax-markup-changed-bg: #f8e2e9;
+  --color-prettylights-syntax-markup-ignored-text: #443b40;
+  --color-prettylights-syntax-markup-ignored-bg: #efc6d4;
+  --color-prettylights-syntax-meta-diff-range: #9a3c65;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #d3a4bc;
+  --color-fg-default: #443b40;
+  --color-fg-muted: #756670;
+  --color-fg-subtle: #8a747d;
+  --color-canvas-default: #f6efed;
+  --color-canvas-overlay: #fffaf8;
+  --color-canvas-inset: #f8f3f1;
+  --color-canvas-subtle: #fcf3f6;
+  --color-bg-canvas: #f6efed;
+  --color-bg-primary: #f6efed;
+  --color-bg-secondary: #eae0dd;
+  --color-bg-tertiary: #f0e7e4;
+  --color-border-default: #efc6d4;
+  --color-border-muted: #f8e2e9;
+  --color-neutral-muted: rgba(239, 198, 212, 0.45);
+  --color-accent-fg: #b64a77;
+  --color-accent-emphasis: #c85b87;
+  --color-accent-muted: rgba(200, 91, 135, 0.35);
+  --color-accent-subtle: #fcf3f6;
+  --color-success-fg: #5f554d;
+  --color-attention-fg: #9a3c65;
+  --color-danger-fg: #b64a77;
+  --color-primer-shadow-inset: rgba(49, 43, 49, 0.08);
+  --color-btn-text: #443b40;
+  --color-btn-bg: #f8f3f1;
+  --color-btn-border: #efc6d4;
+  --color-btn-hover-bg: #f8e2e9;
+  --color-btn-hover-border: #e3a4bc;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #c85b87;
+  --color-btn-primary-border: #b64a77;
+  --color-btn-primary-hover-bg: #b64a77;
+  --color-btn-primary-hover-border: #9a3c65;
+  --color-input-bg: #fffaf8;
+  --color-input-border: #efc6d4;
+  --color-timeline-badge-bg: #f8e2e9;
+  --color-social-reaction-bg-hover: #fcf3f6;
+  --color-social-reaction-bg-reacted-hover: #f8e2e9;
+  --color-gist-header-bg: #fcf3f6;
+  --color-gist-header-border: #efc6d4;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

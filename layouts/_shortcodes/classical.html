@@ -1,0 +1,104 @@
+{{/*
+  classical — 古文 / 骈文 / 表奏容器
+
+  参数:
+    title      篇名（可选）
+    author     作者 / 朝代（可选）
+    translator 译者 / 转写来源（可选）
+    dir        h | v | horizontal | vertical（默认 h）
+    collapsed  true|false 是否折叠长文（默认 false）
+    preview    预览段数（默认 2）
+
+  正文规则:
+    - 空行分段
+    - 每个非空段落作为一段正文
+    - 不做诗词逐行模型，不做拼音配对
+*/}}
+{{- $title := .Get "title" | default "" -}}
+{{- $author := .Get "author" | default "" -}}
+{{- $translator := .Get "translator" | default "" -}}
+{{- $dirRaw := .Get "dir" | default "h" | lower -}}
+{{- $dir := "h" -}}
+{{- if or (eq $dirRaw "v") (eq $dirRaw "vertical") (eq $dirRaw "竖") (eq $dirRaw "竖排") -}}
+  {{- $dir = "v" -}}
+{{- end -}}
+
+{{- $collapsed := false -}}
+{{- with .Get "collapsed" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}
+    {{- $collapsed = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $preview := 2 -}}
+{{- with .Get "preview" -}}
+  {{- $preview = int . -}}
+{{- end -}}
+
+{{- $raw := trim .Inner "\n\r \t" -}}
+{{- $lines := split $raw "\n" -}}
+{{- $buf := slice -}}
+{{- $paras := slice -}}
+{{- range $lines -}}
+  {{- $line := trim . "\r \t" -}}
+  {{- if ne $line "" -}}
+    {{- $buf = $buf | append $line -}}
+  {{- else if gt (len $buf) 0 -}}
+    {{- $paras = $paras | append (delimit $buf "") -}}
+    {{- $buf = slice -}}
+  {{- end -}}
+{{- end -}}
+{{- if gt (len $buf) 0 -}}
+  {{- $paras = $paras | append (delimit $buf "") -}}
+{{- end -}}
+
+{{- $toggleId := printf "sc-classical-toggle-%s-%d" ($dir | urlize) .Ordinal -}}
+{{- $class := printf "sc-classical sc-classical--%s not-prose" $dir -}}
+{{- $shouldCollapse := and $collapsed (gt (len $paras) $preview) -}}
+
+<figure class="{{ $class }}">
+  {{- if or $title $author $translator -}}
+    <header class="sc-classical__meta">
+      {{- with $title -}}
+        <div class="sc-classical__title">{{ . }}</div>
+      {{- end -}}
+      {{- if or $author $translator -}}
+        <div class="sc-classical__byline">
+          {{- with $author -}}
+            <span class="sc-classical__author">作者：{{ . }}</span>
+          {{- end -}}
+          {{- with $translator -}}
+            <span class="sc-classical__translator">{{ . }}</span>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    </header>
+  {{- end -}}
+
+  {{- if $shouldCollapse -}}
+    <div class="sc-classical__collapse">
+      <input id="{{ $toggleId }}" class="sc-classical__toggle" type="checkbox">
+
+      <div class="sc-classical__body sc-classical__preview">
+        {{- range first $preview $paras -}}
+          <p class="sc-classical__para">{{ . | markdownify }}</p>
+        {{- end -}}
+      </div>
+
+      <div class="sc-classical__body sc-classical__details">
+        {{- range after $preview $paras -}}
+          <p class="sc-classical__para">{{ . | markdownify }}</p>
+        {{- end -}}
+      </div>
+
+      <label class="sc-classical__action sc-classical__action--expand" for="{{ $toggleId }}">展开全文</label>
+      <label class="sc-classical__action sc-classical__action--collapse" for="{{ $toggleId }}">收起全文</label>
+    </div>
+  {{- else -}}
+    <div class="sc-classical__body">
+      {{- range $paras -}}
+        <p class="sc-classical__para">{{ . | markdownify }}</p>
+      {{- end -}}
+    </div>
+  {{- end -}}
+</figure>

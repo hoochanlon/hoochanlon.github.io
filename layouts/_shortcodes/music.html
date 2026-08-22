@@ -1,0 +1,320 @@
+{{- $platform := .Get "platform" | default "generic" | lower -}}
+{{- $kind := .Get "kind" | default "track" | lower -}}
+{{- $id := .Get "id" | default "" -}}
+{{- $src := .Get "src" | default "" -}}
+{{- $cover := .Get "cover" | default "" -}}
+{{- $audio := .Get "audio" | default "" -}}
+{{- $lyrics := .Get "lyrics" | default "" -}}
+{{- $artist := .Get "artist" | default "" -}}
+{{- $title := .Get "title" | default "Music" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $priority := .Get "priority" | default "auto" | lower -}}
+{{- $preload := .Get "preload" | default "auto" -}}
+{{- $compact := .Get "compact" | default "false" -}}
+{{- $isCompact := or (eq $compact "true") (eq $compact true) (eq $compact "1") -}}
+{{- $theme := .Get "theme" | default "dark" | lower -}}
+{{- $height := "352" -}}
+
+{{- if eq $platform "local" -}}
+  {{/* 本地音乐播放器 */}}
+  {{- if and (ne $audio "") (ne $cover "") -}}
+    <figure class="sc-music sc-music--local not-prose">
+      <div class="sc-music-player">
+        <div class="sc-music-player__cover">
+          <img src="{{ $cover }}" alt="{{ $title }}" loading="{{ $loading }}" />
+          <button class="sc-music-player__play-btn" aria-label="播放/暂停">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="sc-music-player__body">
+          <div class="sc-music-player__info">
+            <div class="sc-music-player__title">{{ $title }}</div>
+            {{- if ne $artist "" -}}
+              <div class="sc-music-player__artist">{{ $artist }}</div>
+            {{- end -}}
+          </div>
+          <div class="sc-music-player__controls">
+            {{- with $lyrics -}}
+              <div class="sc-music-lyrics" data-lyrics="{{ . }}" aria-live="polite" hidden>
+                <span class="sc-music-lyrics__track">
+                  <span class="sc-music-lyrics__line sc-music-lyrics__line--current">
+                    <span class="sc-music-lyrics__original"></span>
+                    <span class="sc-music-lyrics__translation" hidden></span>
+                  </span>
+                  <span class="sc-music-lyrics__line sc-music-lyrics__line--next">
+                    <span class="sc-music-lyrics__original"></span>
+                    <span class="sc-music-lyrics__translation" hidden></span>
+                  </span>
+                </span>
+              </div>
+            {{- end -}}
+            <div class="sc-music-player__progress">
+              <span class="sc-music-player__time current-time">0:00</span>
+              <input
+                class="sc-music-player__progress-slider"
+                type="range"
+                min="0"
+                max="0"
+                value="0"
+                step="0.01"
+                aria-label="拖动播放进度"
+              />
+              <span class="sc-music-player__time duration">0:00</span>
+              <button class="sc-music-player__reset-btn" type="button" aria-label="重置播放进度">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7"/>
+                  <path d="M3 4v5h5"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <audio src="{{ $audio }}" preload="metadata"></audio>
+      </div>
+      <script>
+        (() => {
+          const musicCard = document.currentScript.closest('.sc-music--local');
+          const player = musicCard?.querySelector('.sc-music-player');
+          if (!player) return;
+          const audio = player.querySelector('audio');
+          const playBtn = player.querySelector('.sc-music-player__play-btn');
+          const playIcon = player.querySelector('.play-icon');
+          const pauseIcon = player.querySelector('.pause-icon');
+          const progressSlider = player.querySelector('.sc-music-player__progress-slider');
+          const resetBtn = player.querySelector('.sc-music-player__reset-btn');
+          const currentTimeEl = player.querySelector('.current-time');
+          const durationEl = player.querySelector('.duration');
+          const lyricsPanel = player.querySelector('.sc-music-lyrics');
+          const lyricsTrack = player.querySelector('.sc-music-lyrics__track');
+          const currentLyric = player.querySelector('.sc-music-lyrics__line--current');
+          const nextLyric = player.querySelector('.sc-music-lyrics__line--next');
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          let lyricLines = [];
+          let activeLyricIndex = -1;
+
+          const parseLyrics = (source) => {
+            const groups = new Map();
+
+            source.split(/\r?\n/).forEach((line) => {
+              const text = line.replace(/\[\d{1,2}:\d{2}(?:\.\d{1,3})?\]/g, '').trim();
+              const timestamps = [...line.matchAll(/\[(\d{1,2}):(\d{2}(?:\.\d{1,3})?)\]/g)];
+              if (!text) return;
+
+              timestamps.forEach(([, minutes, seconds]) => {
+                const time = Number(minutes) * 60 + Number(seconds);
+                groups.set(time, [...(groups.get(time) ?? []), text]);
+              });
+            });
+
+            return [...groups.entries()]
+              .map(([time, texts]) => ({
+                time,
+                original: texts[0],
+                translation: texts.slice(1).join(' '),
+              }))
+              .sort((left, right) => left.time - right.time);
+          };
+
+          const renderLyric = (element, lyric) => {
+            const original = element.querySelector('.sc-music-lyrics__original');
+            const translation = element.querySelector('.sc-music-lyrics__translation');
+            const translatedText = lyric?.translation ?? '';
+
+            original.textContent = lyric?.original ?? '';
+            translation.textContent = translatedText;
+            translation.hidden = !translatedText;
+          };
+
+          const setActiveLyric = () => {
+            if (!lyricLines.length) return;
+            const timelineIndex = lyricLines.reduce(
+              (result, line, index) => (line.time <= audio.currentTime ? index : result),
+              -1,
+            );
+            const nextIndex = timelineIndex === -1 ? 0 : timelineIndex;
+            if (nextIndex === activeLyricIndex) return;
+
+            activeLyricIndex = nextIndex;
+            const nextLine = lyricLines[nextIndex];
+            lyricsPanel.classList.toggle('has-translation', Boolean(nextLine.translation));
+            if (timelineIndex === -1 || !currentLyric.textContent.trim() || prefersReducedMotion) {
+              renderLyric(currentLyric, nextLine);
+              return;
+            }
+
+            lyricsPanel.classList.remove('is-transitioning');
+            renderLyric(nextLyric, nextLine);
+            requestAnimationFrame(() => lyricsPanel.classList.add('is-transitioning'));
+          };
+
+          lyricsTrack?.addEventListener('animationend', (event) => {
+            if (event.animationName !== 'sc-music-lyrics-slide-up') return;
+            renderLyric(currentLyric, lyricLines[activeLyricIndex]);
+            renderLyric(nextLyric);
+            lyricsPanel.classList.remove('is-transitioning');
+          });
+
+          const loadLyrics = async () => {
+            if (!lyricsPanel) return;
+            try {
+              const response = await fetch(lyricsPanel.dataset.lyrics);
+              if (!response.ok) throw new Error('歌词加载失败，状态码：' + response.status);
+              lyricLines = parseLyrics(await response.text());
+              if (!lyricLines.length) return;
+
+              lyricsPanel.hidden = false;
+              setActiveLyric();
+            } catch (error) {
+              console.warn(error);
+            }
+          };
+
+          loadLyrics();
+
+          function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+          }
+
+          playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+              audio.play();
+              playIcon.style.display = 'none';
+              pauseIcon.style.display = 'block';
+            } else {
+              audio.pause();
+              playIcon.style.display = 'block';
+              pauseIcon.style.display = 'none';
+            }
+          });
+
+          audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+            progressSlider.max = audio.duration;
+          });
+
+          audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressSlider.value = audio.currentTime;
+            progressSlider.style.setProperty('--progress', `${progress}%`);
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+            setActiveLyric();
+          });
+
+          audio.addEventListener('ended', () => {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+          });
+
+          const seekToSliderPosition = () => {
+            if (!Number.isFinite(audio.duration)) return;
+            audio.currentTime = Number(progressSlider.value);
+          };
+
+          progressSlider.addEventListener('input', seekToSliderPosition);
+          resetBtn.addEventListener('click', () => {
+            audio.currentTime = 0;
+            progressSlider.value = 0;
+            progressSlider.style.setProperty('--progress', '0%');
+            setActiveLyric();
+          });
+        })();
+      </script>
+      {{- if ne $caption "" -}}
+        <figcaption class="sc-music__caption">{{ $caption }}</figcaption>
+      {{- end -}}
+    </figure>
+  {{- end -}}
+{{- else -}}
+  {{/* 原有的在线音乐嵌入逻辑 */}}
+  {{- if eq $platform "spotify" -}}
+    {{- $height = cond $isCompact "152" "352" -}}
+  {{- else if eq $platform "apple" -}}
+    {{- $height = cond $isCompact "175" "450" -}}
+  {{- else -}}
+    {{- $height = cond $isCompact "152" "352" -}}
+  {{- end -}}
+  {{- $themeValue := cond (eq $theme "light") "1" "0" -}}
+  {{- $embedSrc := $src -}}
+  {{- $openSrc := $src -}}
+  {{- $failAfter := .Get "failAfter" | default "9000" -}}
+
+{{- if and (eq $platform "spotify") (ne $id "") -}}
+  {{- $embedSrc = printf "https://open.spotify.com/embed/%s/%s?utm_source=generator&theme=%s" $kind $id $themeValue -}}
+  {{- $openSrc = printf "https://open.spotify.com/%s/%s" $kind $id -}}
+{{- end -}}
+
+{{- if and (eq $platform "apple") (ne $src "") -}}
+  {{- $embedSrc = replace $src "https://music.apple.com/" "https://embed.music.apple.com/" -}}
+{{- end -}}
+
+{{- if ne $embedSrc "" -}}
+  {{- $shouldPrefetch := or (eq $preload "true") (and (eq $preload "auto") (eq $loading "eager")) -}}
+  {{- $fetchPriority := cond (eq $priority "high") "high" (cond (eq $loading "eager") "high" "auto") -}}
+  {{- if $shouldPrefetch -}}
+    <link rel="prefetch" as="document" href="{{ $embedSrc }}" />
+  {{- end -}}
+  <figure class="sc-music sc-music--{{ $platform }} not-prose">
+    <iframe
+      class="sc-music__embed"
+      src="{{ $embedSrc }}"
+      title="{{ $title }}"
+      loading="{{ $loading }}"
+      fetchpriority="{{ $fetchPriority }}"
+      width="100%"
+      height="{{ $height }}"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    <div class="sc-music__fallback" hidden aria-hidden="true">
+      <a class="sc-music__card" href="{{ $openSrc }}" target="_blank" rel="noopener noreferrer" title="{{ $title }}">
+        <span class="sc-music__platform">{{ $platform }}</span>
+        <span class="sc-music__title">{{ $title }}</span>
+        <span class="sc-music__open">打开音乐</span>
+      </a>
+    </div>
+    <script>
+      (() => {
+        const currentScript = document.currentScript;
+        const figure = currentScript && currentScript.closest('.sc-music');
+        if (!figure) return;
+
+        const frame = figure.querySelector('.sc-music__embed');
+        const fallback = figure.querySelector('.sc-music__fallback');
+        if (!frame || !fallback) return;
+
+        let state = 'pending';
+        const revealFallback = () => {
+          if (state !== 'pending') return;
+          state = 'fallback';
+          frame.hidden = true;
+          frame.style.display = 'none';
+          fallback.hidden = false;
+          fallback.style.display = 'block';
+          fallback.removeAttribute('aria-hidden');
+        };
+
+        frame.addEventListener('load', () => {
+          if (state !== 'pending') return;
+          state = 'loaded';
+          fallback.hidden = true;
+          fallback.setAttribute('aria-hidden', 'true');
+        }, { once: true });
+
+        window.setTimeout(revealFallback, Number('{{ $failAfter }}'));
+      })();
+    </script>
+    {{- if ne $caption "" -}}
+      <figcaption class="sc-music__caption">{{ $caption }}</figcaption>
+    {{- end -}}
+  </figure>
+{{- end -}}
+{{- end -}}

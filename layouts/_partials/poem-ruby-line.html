@@ -1,0 +1,7 @@
+{{/*
+  汉字行 + 拼音行 → <ruby> 注音行（诗词容器用）
+  入参: dict "hanzi" string "pinyin" string
+*/}}
+<p class="sc-poem__line">
+  {{- partial "ruby-annotate.html" (dict "hanzi" .hanzi "pinyin" .pinyin) -}}
+</p>

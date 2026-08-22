@@ -1,0 +1,62 @@
+article:
+  anchor_label: "एंकर"
+  date: "{{ .Date }}"
+  date_updated: "अद्यतन: {{ .Date }}"
+  draft: "ड्राफ्ट"
+  edit_title: "सामग्री संपादित करें"
+  reading_time:
+    one: "{{ .Count }} मिनट"
+    other: "{{ .Count }} मिनट"
+  reading_time_title: "पढ़ने का समय"
+  table_of_contents: "विषयसूची"
+  word_count:
+    one: "{{ .Count }} शब्द"
+    other: "{{ .Count }} शब्द"
+
+author:
+  byline_title: "लेखक"
+
+code:
+  copy: "कॉपी करें"
+  copied: "कॉपी किया गया"
+
+error:
+  404_title: "पृष्ठ नहीं मिला :confused:"
+  404_error: "त्रुटि 404"
+  404_description: "लगता है कि आपने जो पृष्ठ मांगा है वह मौजूद नहीं है।"
+
+footer:
+  dark_appearance: "डार्क मोड पर स्विच करें"
+  light_appearance: "लाइट मोड पर स्विच करें"
+  powered_by: "{{ .Hugo }} और {{ .Congo }} द्वारा संचालित"
+
+list:
+  externalurl_title: "बाहरी साइट का लिंक"
+  no_articles: "यहां कोई लेख सूचीबद्ध नहीं हैं।"
+
+nav:
+  scroll_to_top_title: "शीर्ष पर जाएं"
+  skip_to_main: "मुख्य सामग्री पर जाएं"
+
+search:
+  open_button_title: "खोजें (/)"
+  close_button_title: "बंद करें (Esc)"
+  input_placeholder: "खोजें"
+
+sharing:
+  email: "ईमेल से भेजें"
+  facebook: "फेसबुक पर साझा करें"
+  linkedin: "लिंक्डइन पर साझा करें"
+  mastodon: "मास्टोडॉन पर साझा करें"
+  pinterest: "पिंटरेस्ट पर पिन करें"
+  reddit: "रेडिट पर भेजें"
+  twitter: "ट्विटर पर ट्वीट करें"
+  threads: "Threads पर पोस्ट करें"
+  telegram: "टेलीग्राम पर साझा करें"
+  line: "LINE पर साझा करें"
+  weibo: "Weibo पर साझा करें"
+  x-twitter: "X पर पोस्ट करें"
+  xing: "XING पर साझा करें"
+
+shortcode:
+  recent_articles: "हाल ही के"

@@ -1,0 +1,27 @@
+{{ if .Get "src" }}
+  {{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) }}
+  <!-- prettier-ignore -->
+  <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+    {{- if .Get "href" -}}
+      <a href="{{ .Get "href" }}">
+    {{- end -}}
+
+    {{ $altText := "" }}
+    {{ with .Get "alt" }}
+      {{ $altText = . }}
+    {{ else }}
+      {{ $altText = (.Get "caption") | markdownify | plainify }}
+    {{ end }}
+
+    {{ $lazy := $.Page.Site.Params.enableImageLazyLoading | default true }}
+    {{ $webp := $.Page.Site.Params.enableImageWebp | default true }}
+    {{ partial "picture.html" (dict "img" $image "alt" $altText "x2" true "lazy" $lazy "webp" $webp) }}
+
+    {{- if .Get "href" }}</a>{{ end -}}
+    {{- if .Get "caption" -}}
+      <figcaption>
+        {{- .Get "caption" | markdownify -}}
+      </figcaption>
+    {{- end }}
+  </figure>
+{{ end }}

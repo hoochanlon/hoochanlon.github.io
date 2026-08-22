@@ -1,0 +1,56 @@
+/*! Giscus LaTeX dark theme — matched to Congo LaTeX neutral-800 */
+:root {
+  color-scheme: dark;
+  /* Foreground: matched to Congo neutral scale */
+  --color-fg-default: #f5f5f4;
+  --color-fg-muted: #a8a29e;
+  --color-fg-subtle: #78716c;
+  /* Canvas: neutral-800 (#292524) — matches Congo body background */
+  --color-canvas-default: #292524;
+  --color-canvas-overlay: #211e1d;
+  --color-canvas-inset: #1c1917;
+  --color-canvas-subtle: #332f2b;
+  /* Background: body = neutral-800, elevation = neutral-700/600 */
+  --color-bg-canvas: #292524;
+  --color-bg-primary: #292524;
+  --color-bg-secondary: #332f2b;
+  --color-bg-tertiary: #3d3833;
+  /* Borders */
+  --color-border-default: #57534e;
+  --color-border-muted: #3d3833;
+  /* Accent: matched to Congo primary scale */
+  --color-neutral-muted: rgba(148, 163, 184, 0.14);
+  --color-accent-fg: #94a3b8;
+  --color-accent-emphasis: #cbd5e1;
+  --color-accent-muted: rgba(148, 163, 184, 0.34);
+  --color-accent-subtle: rgba(148, 163, 184, 0.12);
+  --color-success-fg: #d6d3ca;
+  --color-attention-fg: #94a3b8;
+  --color-danger-fg: #e8b4b4;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.32);
+  /* Buttons */
+  --color-btn-text: #f5f5f4;
+  --color-btn-bg: #332f2b;
+  --color-btn-border: #57534e;
+  --color-btn-hover-bg: #3d3833;
+  --color-btn-hover-border: #94a3b8;
+  --color-btn-primary-text: #1c1917;
+  --color-btn-primary-bg: #94a3b8;
+  --color-btn-primary-border: #cbd5e1;
+  --color-btn-primary-hover-bg: #cbd5e1;
+  --color-btn-primary-hover-border: #e2e8f0;
+  /* Inputs */
+  --color-input-bg: #1c1917;
+  --color-input-border: #57534e;
+  /* Timeline / reactions */
+  --color-timeline-badge-bg: #332f2b;
+  --color-social-reaction-bg-hover: rgba(148, 163, 184, 0.12);
+  --color-social-reaction-bg-reacted-hover: rgba(148, 163, 184, 0.18);
+  --color-gist-header-bg: #332f2b;
+  --color-gist-header-border: #57534e;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: "STIX Two Text", "Times New Roman", "Noto Serif SC", serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

@@ -1,0 +1,332 @@
+/* ---------- 诗词短代码 sc-poem：拼音 + 横/竖排 ---------- */
+.sc-poem {
+  margin: 1.75rem auto;
+  padding: 1.25rem 1rem 1.5rem;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  background: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-neutral-700));
+}
+
+.dark .sc-poem {
+  background: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-200));
+}
+
+.sc-poem__meta {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sc-poem__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+
+.sc-poem__author {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: rgb(var(--color-neutral-500));
+  letter-spacing: 0.06em;
+}
+
+.sc-poem__translator {
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: rgb(var(--color-neutral-400));
+  letter-spacing: 0.04em;
+}
+
+.dark .sc-poem__translator {
+  color: rgb(var(--color-neutral-500));
+}
+
+.sc-poem__view-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: -0.15rem auto 0.85rem;
+  padding: 0.18rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 9999px;
+  background: color-mix(in srgb, rgb(var(--color-neutral)) 88%, white);
+}
+
+.sc-poem__view-input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sc-poem__view-label {
+  display: inline-flex;
+  min-width: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.72rem;
+  border-radius: 9999px;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.82rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.sc-poem__view-input:checked + .sc-poem__view-label {
+  background: rgb(var(--color-neutral));
+  color: rgb(var(--color-primary-700));
+  box-shadow: 0 6px 16px rgb(var(--color-neutral-900) / 0.1);
+}
+
+.sc-poem__view-label--icon {
+  gap: 0.25rem;
+}
+
+.sc-poem__view-label--icon .icon {
+  padding-inline: 0;
+}
+
+.sc-poem__view-label--icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sc-poem--translate-toggle .sc-poem__view-panel--translation {
+  display: none;
+}
+
+.sc-poem--translate-toggle:has(.sc-poem__view-input--translation:checked) .sc-poem__view-panel--source {
+  display: none;
+}
+
+.sc-poem--translate-toggle:has(.sc-poem__view-input--translation:checked) .sc-poem__view-panel--translation {
+  display: block;
+}
+
+.sc-poem__translation-line {
+  line-height: 2;
+  letter-spacing: 0.02em;
+}
+
+.dark .sc-poem__view-switch {
+  border-color: rgb(var(--color-neutral-600));
+  background: color-mix(in srgb, rgb(var(--color-neutral-900)) 68%, black);
+}
+
+.dark .sc-poem__view-input:checked + .sc-poem__view-label {
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-primary-300));
+}
+
+.dark .sc-poem__author {
+  color: rgb(var(--color-neutral-400));
+}
+
+.sc-poem__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sc-poem__line {
+  margin: 0;
+  padding: 0.15rem 0;
+  font-size: 1.05rem;
+  line-height: 2.35; /* 给 ruby 留高度 */
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.sc-poem__lyrics {
+  width: 100%;
+}
+
+.sc-poem__lyrics-line {
+  margin: 0;
+  padding: 0.15rem 0;
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.sc-poem__collapse {
+  width: 100%;
+}
+
+.sc-poem__toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sc-poem__details-body {
+  display: none;
+  margin-top: 0.75rem;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__details-body {
+  display: block;
+}
+
+.sc-poem__toggle-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px dashed rgb(var(--color-neutral-300));
+  border-radius: 0.5rem;
+  color: rgb(var(--color-neutral-600));
+}
+
+.sc-poem__toggle-action--collapse {
+  display: none;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__toggle-action--expand {
+  display: none;
+}
+
+.sc-poem__toggle:checked ~ .sc-poem__toggle-action--collapse {
+  display: flex;
+}
+
+.dark .sc-poem__toggle-action {
+  border-color: rgb(var(--color-neutral-600));
+  color: rgb(var(--color-neutral-300));
+}
+
+.sc-poem__summary-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.sc-poem__summary-hint {
+  font-size: 0.8rem;
+}
+
+.sc-poem__ruby,
+.sc-poem .sc-ruby__ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.sc-poem__ruby rt,
+.sc-poem .sc-ruby__ruby rt {
+  font-size: 0.55em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgb(var(--color-primary-600));
+  user-select: none;
+}
+
+.dark .sc-poem__ruby rt,
+.dark .sc-poem .sc-ruby__ruby rt {
+  color: rgb(var(--color-primary-400));
+}
+
+.sc-poem__punct,
+.sc-poem__latn,
+.sc-poem__char,
+.sc-poem .sc-ruby__punct,
+.sc-poem .sc-ruby__latn,
+.sc-poem .sc-ruby__char {
+  display: inline;
+}
+
+/* 横排 */
+.sc-poem--h .sc-poem__body {
+  width: 100%;
+}
+
+.sc-poem--h .sc-poem__gap {
+  height: 0.85rem;
+}
+
+/*
+ * 竖排（中文传统）：writing-mode: vertical-rl
+ * - 字：上 → 下
+ * - 行/列：右 → 左（DOM 第一句 = 最右列）
+ * 切勿再套 flex row-reverse，会把列序翻反。
+ */
+.sc-poem--v {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  width: fit-content;
+  max-width: 100%;
+  max-height: min(70vh, 36rem); /* 列过高时纵向滚动 */
+  margin-inline: auto;
+  padding: 1.5rem 1.35rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sc-poem--v .sc-poem__meta {
+  display: block;
+  margin: 0;
+  /* block-end 在 vertical-rl 里 = 视觉上的左侧，题名与正文隔开 */
+  margin-block-end: 1.35rem;
+  text-align: center;
+}
+
+.sc-poem--v .sc-poem__title {
+  letter-spacing: 0.2em;
+}
+
+.sc-poem--v .sc-poem__author {
+  margin-top: 0;
+  margin-block-start: 0.5rem;
+}
+
+.sc-poem--v .sc-poem__body {
+  display: block; /* 块级子元素自然按「右→左」成列 */
+  width: auto;
+  align-items: unset;
+  gap: 0;
+}
+
+.sc-poem--v .sc-poem__line {
+  display: block;
+  margin: 0;
+  /* 列间距：下一列在左侧 */
+  margin-block-end: 0.9rem;
+  padding: 0;
+  letter-spacing: 0.18em;
+  line-height: 2.15; /* 给旁注拼音留宽 */
+  text-align: start;
+  white-space: nowrap; /* 一句一列，不中途折行 */
+}
+
+.sc-poem--v .sc-poem__gap {
+  display: block;
+  inline-size: 1em;
+  block-size: 0.55rem; /* 阙/段之间多留一点列距 */
+  margin: 0;
+  margin-block-end: 0.35rem;
+}
+
+/* 竖排注音：落在字的「上侧」= 视觉右侧（旁注） */
+.sc-poem--v .sc-poem__ruby,
+.sc-poem--v .sc-ruby__ruby {
+  ruby-position: over;
+  ruby-align: center;
+}

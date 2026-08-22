@@ -1,0 +1,93 @@
+{{- /*
+  Giscus：HTML data-* 用普通插值；JS 字符串必须 jsonify|safeJS，否则引号被转义导致 404/CSP。
+  初始主题在 <script src=client.js> 之前用 JS 写入 data-theme，确保夜间模式不会先用 light 主题加载。
+*/ -}}
+{{- with .Site.Params.giscus }}
+  {{- if and .repo .repoID .categoryID }}
+    {{- $light := .themeLight | default "noborder_light" }}
+    {{- $dark := .themeDark | default "noborder_dark" }}
+    {{- $themeBase := strings.TrimRight "/" (.themeBaseURL | default (absURL (.themeBasePath | default "giscus"))) }}
+    {{- $defaultPalette := $.Site.Params.palette.default | default ($.Site.Params.colorScheme | default "congo") | lower }}
+    {{- $repo := .repo }}
+    {{- $repoID := .repoID }}
+    {{- $category := .category | default "Announcements" }}
+    {{- $categoryID := .categoryID }}
+    {{- $mapping := .mapping | default "pathname" }}
+    {{- $strict := .strict | default "0" }}
+    {{- $reactionsEnabled := .reactionsEnabled | default "1" }}
+    {{- $emitMetadata := .emitMetadata | default "0" }}
+    {{- $inputPosition := .inputPosition | default "top" }}
+    {{- $lang := .lang | default "zh-CN" }}
+    {{- $loading := .loading | default "lazy" }}
+    <div class="giscus"></div>
+    <script>
+      (function () {
+        var fallbackLight = {{ $light | jsonify | safeJS }};
+        var fallbackDark = {{ $dark | jsonify | safeJS }};
+        var themeBase = {{ strings.TrimRight "/" $themeBase | jsonify | safeJS }};
+        var defaultPalette = {{ $defaultPalette | jsonify | safeJS }};
+        var supportedPalettes = { sakura: true, latex: true };
+
+        function siteMode() {
+          return document.documentElement.classList.contains("dark") ? "dark" : "light";
+        }
+
+        function sitePalette() {
+          return (document.documentElement.dataset.palette || defaultPalette || "congo").toLowerCase();
+        }
+
+        function siteTheme() {
+          var mode = siteMode();
+          var palette = sitePalette();
+          if (!supportedPalettes[palette]) return mode === "dark" ? fallbackDark : fallbackLight;
+          return themeBase + "/" + palette + "-" + mode + ".css";
+        }
+
+        var giscusScript = document.createElement("script");
+        giscusScript.src = "https://giscus.app/client.js";
+        giscusScript.crossOrigin = "anonymous";
+        giscusScript.async = true;
+        giscusScript.setAttribute("data-repo", {{ $repo | jsonify | safeJS }});
+        giscusScript.setAttribute("data-repo-id", {{ $repoID | jsonify | safeJS }});
+        giscusScript.setAttribute("data-category", {{ $category | jsonify | safeJS }});
+        giscusScript.setAttribute("data-category-id", {{ $categoryID | jsonify | safeJS }});
+        giscusScript.setAttribute("data-mapping", {{ $mapping | jsonify | safeJS }});
+        giscusScript.setAttribute("data-strict", {{ $strict | jsonify | safeJS }});
+        giscusScript.setAttribute("data-reactions-enabled", {{ $reactionsEnabled | jsonify | safeJS }});
+        giscusScript.setAttribute("data-emit-metadata", {{ $emitMetadata | jsonify | safeJS }});
+        giscusScript.setAttribute("data-input-position", {{ $inputPosition | jsonify | safeJS }});
+        giscusScript.setAttribute("data-theme", siteTheme());
+        giscusScript.setAttribute("data-lang", {{ $lang | jsonify | safeJS }});
+        giscusScript.setAttribute("data-loading", {{ $loading | jsonify | safeJS }});
+        var giscusContainer = document.querySelector(".giscus");
+        if (giscusContainer) giscusContainer.parentNode.insertBefore(giscusScript, giscusContainer.nextSibling);
+
+        function setGiscusTheme() {
+          var frame = document.querySelector("iframe.giscus-frame");
+          if (!frame || !frame.contentWindow) return;
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: siteTheme() } } },
+            "https://giscus.app"
+          );
+        }
+
+        var done = false;
+        window.addEventListener("message", function (e) {
+          if (e.origin !== "https://giscus.app") return;
+          if (!(e.data && e.data.giscus)) return;
+          if (!done) {
+            done = true;
+            setGiscusTheme();
+          }
+        });
+
+        new MutationObserver(setGiscusTheme).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class", "data-palette"],
+        });
+      })();
+    </script>
+  {{- else }}
+    {{ warnf "[giscus] params.giscus.repoID / categoryID 未配置" }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,96 @@
+{{/* 置顶公告横幅
+ * 开关：        [banner] enabled = true/false
+ * 文案：        [banner] text = "..."
+ * 最新文章：    [banner] showLatestPost = true   显示最新文章标题，点击跳转并关闭横幅
+ * 链接按钮：    [banner] url = "..."  /  linkText = "..."
+ * 关闭后以 sessionStorage 记录，当次会话不再显示
+ */}}
+{{ if .Site.Params.banner.enabled }}
+  {{ $text     := .Site.Params.banner.text     | default "" }}
+  {{ $url      := .Site.Params.banner.url      | default "" }}
+  {{ $linkText := .Site.Params.banner.linkText | default "" }}
+  {{ $showLatest := .Site.Params.banner.showLatestPost | default false }}
+  {{ $showUpdateDate := .Site.Params.banner.showUpdateDate | default false }}
+
+  {{ if $text }}
+    {{/* 取 /posts section 最新一篇文章 */}}
+    {{ $latestDate  := "" }}
+    {{ $latestTitle := "" }}
+    {{ $latestURL   := "" }}
+    {{ $postsSection := .Site.GetPage "/posts" }}
+    {{ if $postsSection }}
+      {{ $allPages := $postsSection.RegularPagesRecursive }}
+      {{ if $allPages }}
+        {{ $latest      := index $allPages 0 }}
+        {{ $latestDate   = $latest.Date.Format "2006-01-02" }}
+        {{ $latestTitle  = $latest.Title }}
+        {{ $latestURL    = $latest.RelPermalink }}
+      {{ end }}
+    {{ end }}
+
+    <div class="site-banner print:hidden" id="site-banner" role="banner" aria-label="公告">
+
+      {{/* 左：自定义文案 */}}
+      <span class="site-banner__text">{{ $text | markdownify }}</span>
+
+      {{/* 中：最新文章/日期，居中显示 */}}
+      <div class="site-banner__middle">
+        {{ if and $showLatest $latestTitle }}
+          <a class="site-banner__latest" id="site-banner-latest" href="{{ $latestURL }}">
+            {{ if $showUpdateDate }}
+              <span class="site-banner__date-badge">文章更新: {{ $latestDate }}</span>
+            {{ end }}
+            <span class="site-banner__latest-title">{{ $latestTitle }}</span>
+          </a>
+        {{ else if and $showUpdateDate $latestDate }}
+          <span class="site-banner__date">文章更新: {{ $latestDate }}</span>
+        {{ end }}
+      </div>
+
+      {{/* 右：可选链接按钮 + 关闭按钮 */}}
+      <div class="site-banner__actions">
+        {{ if $url }}
+          <a class="site-banner__link" href="{{ $url }}">{{ $linkText | default "了解更多" }}</a>
+        {{ end }}
+        <button class="site-banner__close" id="site-banner-close" aria-label="关闭公告">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var banner = document.getElementById('site-banner');
+        var closeBtn = document.getElementById('site-banner-close');
+        var latestLink = document.getElementById('site-banner-latest');
+
+        function dismiss() {
+          banner.style.display = 'none';
+          sessionStorage.setItem('banner-dismissed', '1');
+        }
+
+        if (sessionStorage.getItem('banner-dismissed')) {
+          banner.style.display = 'none';
+        }
+
+        closeBtn.addEventListener('click', dismiss);
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' || e.key === 'Backspace') {
+            if (banner.style.display === 'none') return;
+            // 输入框 / 可编辑区内 Backspace 不触发
+            var tag = document.activeElement && document.activeElement.tagName;
+            if (e.key === 'Backspace' && (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement.isContentEditable)) return;
+            dismiss();
+          }
+        });
+
+        if (latestLink) {
+          latestLink.addEventListener('click', dismiss);
+        }
+      })();
+    </script>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,59 @@
+{{- $caption := .Get "caption" | default "" -}}
+{{- $layout := .Get "layout" | default "compare" -}}
+{{- $columns := .Get "columns" | default (cond (eq $layout "weibo") "3" "2") -}}
+{{- $maxHeight := .Get "maxHeight" | default (cond (eq $layout "weibo") "34rem" "42rem") -}}
+{{- $gap := .Get "gap" | default (cond (eq $layout "weibo") "0.35rem" "0.45rem") -}}
+{{- $fillColumn := false -}}
+{{- with .Get "fillColumn" -}}
+  {{- if or (eq . "true") (eq . "1") (eq . true) -}}
+    {{- $fillColumn = true -}}
+  {{- end -}}
+{{- end -}}
+{{- $figureClass := printf "sc-phone-shots sc-phone-shots--%s not-prose" $layout -}}
+{{- if $fillColumn -}}
+  {{- $figureClass = printf "%s sc-phone-shots--fill-column" $figureClass -}}
+{{- end -}}
+{{- $imagePattern := `!\[([^\]]*)\]\(([^\s\)]+)(?:\s+"([^"]*)")?\)` -}}
+
+<figure
+  class="{{ $figureClass }}"
+  style="--sc-phone-shots-columns: {{ $columns }}; --sc-phone-shots-max-height: {{ $maxHeight }}; --sc-phone-shots-gap: {{ $gap }};"
+>
+  <div class="sc-phone-shots__grid">
+    {{- range split .Inner "\n" -}}
+      {{- $line := strings.TrimSpace . -}}
+      {{- if ne $line "" -}}
+        {{- $match := findRESubmatch $imagePattern $line 1 -}}
+        {{- if $match -}}
+          {{- $parts := index $match 0 -}}
+          {{- $alt := index $parts 1 | strings.TrimSpace -}}
+          {{- $src := index $parts 2 -}}
+          {{- $title := "" -}}
+          {{- if ge (len $parts) 4 -}}
+            {{- $title = index $parts 3 | strings.TrimSpace -}}
+          {{- end -}}
+          <div class="sc-phone-shots__item">
+            <img
+              src="{{ $src | safeURL }}"
+              {{ with $alt }}alt="{{ . }}"{{ end }}
+              {{ with $title }}title="{{ . }}"{{ end }}
+              loading="lazy"
+              decoding="async"
+              onerror="this.closest('.sc-phone-shots__item').classList.add('is-broken'); this.remove();"
+            />
+            <span class="sc-phone-shots__fallback" aria-hidden="true">
+              图片暂不可用
+            </span>
+          </div>
+        {{- else -}}
+          <div class="sc-phone-shots__item sc-phone-shots__item--invalid">
+            <span class="sc-phone-shots__fallback">图片写法无法识别</span>
+          </div>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  </div>
+  {{- if ne $caption "" -}}
+    <figcaption class="sc-phone-shots__caption">{{ $caption | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

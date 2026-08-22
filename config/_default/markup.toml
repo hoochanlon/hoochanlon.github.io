@@ -1,0 +1,24 @@
+# -- Markup --
+# These settings are required for the theme to function.
+
+[goldmark]
+[goldmark.renderer]
+  unsafe = true
+[goldmark.extensions]
+  linkify = true
+[goldmark.extensions.passthrough]
+  enable = true
+[goldmark.extensions.passthrough.delimiters]
+  block = [['\[', '\]'], ['$$', '$$']]
+  inline = [['\(', '\)']]
+
+[highlight]
+  noClasses = false
+  lineNos = true
+  lineNumbersInTable = false
+  codeFences = true
+  guessSyntax = true
+
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4

@@ -1,0 +1,26 @@
+name: Test Build
+
+on: [push]
+
+jobs:
+  build:
+    name: Build Example Site
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+
+      - name: Build
+        working-directory: ./exampleSite
+        run: hugo --minify --themesDir ../.. --baseURL https://jpanther.github.io/congo/

@@ -1,0 +1,16 @@
+{{/*
+  将缓冲的非空行两两配对输出为带 ruby 的诗句。
+  入参: dict "lines" []string
+*/}}
+{{- $lines := .lines -}}
+{{- $n := len $lines -}}
+{{- range $idx, $line := $lines -}}
+  {{- if eq (mod $idx 2) 0 -}}
+    {{- $next := add $idx 1 -}}
+    {{- if lt $next $n -}}
+      {{- partial "poem-ruby-line.html" (dict "hanzi" $line "pinyin" (index $lines $next)) -}}
+    {{- else -}}
+      <p class="sc-poem__line sc-poem__line--bare">{{ $line }}</p>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

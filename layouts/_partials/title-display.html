@@ -1,0 +1,14 @@
+{{- /* title-display.html: 接收一个字符串参数，按 <wbr> 标记强制换行
+   - 含 <wbr>: 按其分割，每段包 whitespace-nowrap，段间插 <br>
+   - 不含 <wbr>: 原样输出
+   - 调用方负责传入最终要显示的文本（已从 frontmatter 取好字段） */ -}}
+{{- $text := . | emojify -}}
+{{- if in $text "<wbr>" -}}
+  {{- $parts := split $text "<wbr>" -}}
+  {{- $last := sub (len $parts) 1 -}}
+  {{- range $idx, $part := $parts -}}
+    <span class="whitespace-nowrap">{{- $part | safeHTML -}}</span>{{- if lt $idx $last -}}<br>{{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $text | safeHTML -}}
+{{- end -}}

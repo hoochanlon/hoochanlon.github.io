@@ -1,0 +1,56 @@
+/*! Giscus Sakura dark theme — matched to Congo Sakura neutral-800 */
+:root {
+  color-scheme: dark;
+  /* Foreground: matched to Congo neutral scale */
+  --color-fg-default: #f7eff4;
+  --color-fg-muted: #bca9b5;
+  --color-fg-subtle: #917b8a;
+  /* Canvas: neutral-800 (#2b2028) — matches Congo body background */
+  --color-canvas-default: #2b2028;
+  --color-canvas-overlay: #231a22;
+  --color-canvas-inset: #1f181d;
+  --color-canvas-subtle: #392b35;
+  /* Background: body = neutral-800, elevation = neutral-700/600 */
+  --color-bg-canvas: #2b2028;
+  --color-bg-primary: #2b2028;
+  --color-bg-secondary: #392b35;
+  --color-bg-tertiary: #48363f;
+  /* Borders */
+  --color-border-default: #503f4b;
+  --color-border-muted: #392b35;
+  /* Accent: matched to Congo primary scale */
+  --color-neutral-muted: rgba(211, 119, 158, 0.18);
+  --color-accent-fg: #e3a4bc;
+  --color-accent-emphasis: #d3779e;
+  --color-accent-muted: rgba(211, 119, 158, 0.42);
+  --color-accent-subtle: rgba(200, 91, 135, 0.16);
+  --color-success-fg: #bca9b5;
+  --color-attention-fg: #e3a4bc;
+  --color-danger-fg: #f8e2e9;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.28);
+  /* Buttons */
+  --color-btn-text: #f7eff4;
+  --color-btn-bg: #392b35;
+  --color-btn-border: #503f4b;
+  --color-btn-hover-bg: #48363f;
+  --color-btn-hover-border: #d3779e;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #c85b87;
+  --color-btn-primary-border: #d3779e;
+  --color-btn-primary-hover-bg: #d3779e;
+  --color-btn-primary-hover-border: #e3a4bc;
+  /* Inputs */
+  --color-input-bg: #231a22;
+  --color-input-border: #503f4b;
+  /* Timeline / reactions */
+  --color-timeline-badge-bg: #392b35;
+  --color-social-reaction-bg-hover: rgba(211, 119, 158, 0.16);
+  --color-social-reaction-bg-reacted-hover: rgba(211, 119, 158, 0.24);
+  --color-gist-header-bg: #392b35;
+  --color-gist-header-border: #503f4b;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

@@ -1,0 +1,48 @@
+/* 正文注音 sc-ruby（短代码 ruby；与 sc-poem 共用 ruby-annotate 核心） */
+
+.sc-ruby--inline {
+  display: inline;
+  line-height: 2.2; /* 给上方拼音留空，避免挤行 */
+}
+
+.sc-ruby--block {
+  margin: 1rem 0;
+  line-height: 2.35;
+}
+
+.sc-ruby__line {
+  margin: 0.35rem 0;
+  padding: 0;
+  line-height: 2.35;
+}
+
+.sc-ruby__line--bare {
+  line-height: 1.75;
+}
+
+.sc-ruby__gap {
+  height: 0.65rem;
+}
+
+.sc-ruby__ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.sc-ruby__ruby rt {
+  font-size: 0.55em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgb(var(--color-primary-600));
+  user-select: none;
+}
+
+.dark .sc-ruby__ruby rt {
+  color: rgb(var(--color-primary-400));
+}
+
+.sc-ruby__punct,
+.sc-ruby__latn,
+.sc-ruby__char {
+  display: inline;
+}

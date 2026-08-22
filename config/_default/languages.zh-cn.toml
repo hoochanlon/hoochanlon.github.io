@@ -1,0 +1,46 @@
+locale = "zh-Hans"
+label = "简体中文"
+direction = "ltr"
+weight = 1
+
+title = "致爱丽丝"
+# 不设置 copyright：页脚用 params.footer.copyrightSince + 当前年 + 站点 title
+
+[params]
+  dateFormat = "2006年1月2日"
+  mainSections = ["posts"]
+  description = "记录人文科学分析与生活日常的数字花园"
+
+[params.author]
+  name = "Hoochanlon"
+  displayName = "Hoochanlon"
+  displayNameCard = "胡成龙"
+  image = "img/author.jpg"
+  headline = ""
+  bio = "生田绘梨花粉丝"
+  links = [
+    { github = "https://github.com/hoochanlon" },
+    { email = "mailto:hoochanlon@outlook.com" },
+    { twitter = "https://hoochanlon.github.io/twitter/?owner=hoochanlon&repo=twitter" },
+  # { wechat = "img/wexin.jpg" },
+  ]
+
+  [params.author.verified]
+    # 文章作者卡片头像右下角的认证主图标
+    # icon = "icons/da-v.svg"
+
+    [params.author.verified.label]
+      text = "国家级认证，带砖底层失业劳工"
+      icon = "icons/china.svg"
+
+  [params.author.status]
+    # 如需自定义 SVG，取消注释并填写 assets/ 下的路径
+    # icon = "icons/to-the-moon.svg"
+    icon = "icons/wechat-1.svg"
+    text = "🍏"
+    # label = "To the moon，离开地球表面"
+    image = "img/wexin.jpg"
+    # 是否隐藏图标的圆形底框：true 为透明，false 恢复原始圆框
+    transparent = false
+    # 鼠标移入状态徽标后，提示出现前的等待时间（秒）
+    tooltipDelay = 0.6

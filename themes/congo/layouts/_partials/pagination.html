@@ -1,0 +1,87 @@
+{{- with .Paginator }}
+  {{- $width := (int $.Site.Params.list.paginationWidth) | default 1 }}
+  {{- $currentPageNumber := .PageNumber }}
+  {{- if gt .TotalPages 1 }}
+    {{- $start := math.Max 1 (sub .PageNumber $width) }}
+    {{- $end := math.Min .TotalPages (add $start (mul $width 2)) }}
+    <ul class="mt-8 flex flex-row">
+      {{- with .Prev }}
+        <li>
+          <a
+            href="{{ .URL }}"
+            class="mx-1 block min-w-[1.8rem] rounded text-center hover:bg-primary-600 hover:text-neutral"
+            aria-label="Previous page"
+            rel="prev"
+          >
+            &larr;
+          </a>
+        </li>
+      {{- end }}
+      {{- with .First }}
+        {{- if gt $currentPageNumber (add 1 $width) }}
+          <li class="mx-1 min-w-[1.8rem] text-center">
+            <a
+              href="{{ .URL }}"
+              class="block rounded hover:bg-primary-600 hover:text-neutral"
+              aria-label="First page"
+            >
+              {{ .PageNumber }}
+            </a>
+          </li>
+          {{- if gt $currentPageNumber (add 2 $width) }}
+            <li>&ctdot;</li>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- range $i := seq $start $end }}
+        <li class="mx-1 min-w-[1.8rem] text-center">
+          {{- if eq $.Paginator.PageNumber $i }}
+            <span
+              aria-current="page"
+              aria-label="Page {{ $i }}"
+              class="block rounded bg-primary-200 font-semibold text-primary-700 dark:bg-primary-400 dark:text-neutral-800"
+            >
+              {{ $i }}
+            </span>
+          {{- else }}
+            <a
+              href="{{ (index $.Paginator.Pagers (sub $i 1)).URL }}"
+              class="block rounded hover:bg-primary-600 hover:text-neutral"
+              aria-label="Page {{ $i }}"
+            >
+              {{ $i }}
+            </a>
+          {{- end }}
+        </li>
+      {{- end }}
+      {{- with .Last }}
+        {{- if and (lt $currentPageNumber (sub .TotalPages $width)) (lt $end .TotalPages) }}
+          {{- if lt $currentPageNumber (sub .TotalPages (add $width 1)) }}
+            <li>&ctdot;</li>
+          {{- end }}
+          <li class="mx-1 min-w-[1.8rem] text-center">
+            <a
+              href="{{ .URL }}"
+              class="block rounded hover:bg-primary-600 hover:text-neutral"
+              aria-label="Last page"
+            >
+              {{ .PageNumber }}
+            </a>
+          </li>
+        {{- end }}
+      {{- end }}
+      {{- with .Next }}
+        <li>
+          <a
+            href="{{ .URL }}"
+            class="mx-1 block min-w-[1.8rem] rounded text-center hover:bg-primary-600 hover:text-neutral"
+            aria-label="Next page"
+            rel="next"
+          >
+            &rarr;
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  {{- end }}
+{{- end }}

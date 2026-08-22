@@ -1,0 +1,210 @@
+/* —— 站内 shortcode：callout / fold / outdated（Sakura Notes 纸面语义色系） —— */
+.sc-callout {
+  /* 和纸风格：暖底 + 细边 + 左侧语义强调条 */
+  --sc-bg: #f7f0ef;
+  --sc-border: #ead8da;
+  --sc-accent: #8d4b6b;
+  --sc-body: #5f5a5c;
+  margin: 1.15rem 0;
+  border: 1px solid var(--sc-border);
+  border-left: 0.25rem solid var(--sc-accent);
+  border-radius: 0.375rem;
+  background: var(--sc-bg);
+  color: var(--sc-body);
+  overflow: hidden;
+}
+
+.dark .sc-callout {
+  --sc-bg: #2d252b;
+  --sc-border: #4a3a43;
+  --sc-accent: #e0b1c2;
+  --sc-body: #f0e7e8;
+}
+
+/* note — 淡紫梅子 */
+.sc-callout--note {
+  --sc-bg: #f3e9ef;
+  --sc-border: #dcc1ce;
+  --sc-accent: #8d4b6b;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--note {
+  --sc-bg: #392d37;
+  --sc-border: #6d4a5d;
+  --sc-accent: #efc2d3;
+  --sc-body: #f4eaed;
+}
+
+/* tip — 柔绿 worked example */
+.sc-callout--tip {
+  --sc-bg: #eef3ea;
+  --sc-border: #c8d8c1;
+  --sc-accent: #6f8f67;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--tip {
+  --sc-bg: #283327;
+  --sc-border: #4f6a4b;
+  --sc-accent: #b9d0b1;
+  --sc-body: #eef2ea;
+}
+
+/* important — 深玫红 theorem */
+.sc-callout--important {
+  --sc-bg: #f5e9ee;
+  --sc-border: #dfbcc9;
+  --sc-accent: #c05a84;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--important {
+  --sc-bg: #402935;
+  --sc-border: #7c4b61;
+  --sc-accent: #f0adc5;
+  --sc-body: #f6eaef;
+}
+
+/* warning — 金棕 intuition */
+.sc-callout--warning {
+  --sc-bg: #f7f1e6;
+  --sc-border: #e0cfad;
+  --sc-accent: #b08b3c;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--warning {
+  --sc-bg: #3b3120;
+  --sc-border: #75603a;
+  --sc-accent: #e3c982;
+  --sc-body: #f5efe3;
+}
+
+/* caution — 樱桃粉规则框 */
+.sc-callout--caution {
+  --sc-bg: #f8e9ef;
+  --sc-border: #e6bccc;
+  --sc-accent: #d36b96;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--caution {
+  --sc-bg: #442936;
+  --sc-border: #86516a;
+  --sc-accent: #f3b3c9;
+  --sc-body: #f7ebf0;
+}
+
+/* success — 站内扩展，沿用柔绿成功态 */
+.sc-callout--success {
+  --sc-bg: #eef3ea;
+  --sc-border: #c8d8c1;
+  --sc-accent: #6f8f67;
+  --sc-body: #5f5a5c;
+}
+.dark .sc-callout--success {
+  --sc-bg: #283327;
+  --sc-border: #4f6a4b;
+  --sc-accent: #b9d0b1;
+  --sc-body: #eef2ea;
+}
+
+.sc-callout--neutral {
+  /* 中性灰，沿用默认变量 */
+}
+
+/* 非折叠：标题行（图标+类型名）+ 正文，对齐 GitHub Alerts */
+.sc-callout:not(.sc-callout--fold) {
+  padding: 0.85rem 1rem;
+}
+
+.sc-callout__content {
+  min-width: 0;
+}
+
+.sc-callout__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.sc-callout__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--sc-accent);
+}
+
+.sc-callout__icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sc-callout__title {
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sc-accent);
+}
+
+.sc-callout__body {
+  min-width: 0;
+  color: var(--sc-body);
+}
+
+/* not-prose 会吃掉 typography 的 a 样式；正文链接单独补回 */
+.sc-callout__body a {
+  color: var(--sc-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  font-weight: 500;
+}
+
+.sc-callout__body a:hover {
+  opacity: 0.85;
+}
+
+.sc-callout__body > :first-child {
+  margin-top: 0;
+}
+.sc-callout__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 折叠形态 */
+.sc-callout--fold > .sc-callout__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-weight: 600;
+  color: var(--sc-accent);
+}
+
+.sc-callout--fold > .sc-callout__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sc-callout--fold > .sc-callout__summary::after {
+  content: "";
+  margin-inline-start: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-inline-end: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.75;
+  transition: transform 0.15s ease;
+}
+
+.sc-callout--fold[open] > .sc-callout__summary::after {
+  transform: rotate(225deg);
+  translate: 0 0.15rem;
+}
+
+.sc-callout--fold > .sc-callout__body {
+  padding: 0 1rem 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--sc-border) 70%, transparent);
+}
+
+.sc-callout--fold > .sc-callout__body > :first-child {
+  margin-top: 0.75rem;
+}

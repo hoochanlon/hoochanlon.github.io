@@ -1,0 +1,17 @@
+{{/*
+  ps — 行内括号补充说明
+
+  用法：
+    {{< ps "补充说明" />}}
+    {{< ps >}}补充说明{{< /ps >}}
+*/}}
+{{- $text := .Get 0 | default (.Get "text") | default "" -}}
+{{- $inner := trim .Inner "\n\r \t" -}}
+{{- $content := $text -}}
+{{- if eq $content "" -}}
+  {{- $content = $inner -}}
+{{- end -}}
+{{- if ne $content "" -}}
+  {{- $rendered := .Page.RenderString (dict "display" "inline") $content -}}
+  <span class="sc-ps">（{{ $rendered }}）</span>
+{{- end -}}

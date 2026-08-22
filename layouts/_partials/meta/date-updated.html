@@ -1,0 +1,6 @@
+{{- $date := partial "functions/date.html" . -}}
+<time datetime="{{ . }}" class="article-meta__date-updated inline-flex items-center">
+  <span class="article-meta__icon" aria-hidden="true">{{ (resources.Get "icons/update.svg").Content | safeHTML }}</span>
+  <span class="article-meta__value sc-num">{{ $date }}</span>
+</time>
+{{- /* Trim EOF */ -}}

@@ -1,0 +1,7 @@
+# 站点 i18n 增量（locale zh-Hans 时使用；与主题合并，同名键覆盖主题）
+shortcode:
+  featured_articles: "精选文章"
+
+article:
+  date: "发稿于 {{ .Date }}"
+  date_updated: "更新于 {{ .Date }}"

@@ -1,0 +1,62 @@
+article:
+  anchor_label: "એન્કર"
+  date: "{{ .Date }}"
+  date_updated: "અપડેટ કરેલું: {{ .Date }}"
+  draft: "ડ્રાફ્ટ"
+  edit_title: "સામગ્રી સંપાદિત કરો"
+  reading_time:
+    one: "{{ .Count }} મિનિટ"
+    other: "{{ .Count }} મિનિટ"
+  reading_time_title: "વાંચવાનો સમય"
+  table_of_contents: "વિષયસૂચિ"
+  word_count:
+    one: "{{ .Count }} શબ્દ"
+    other: "{{ .Count }} શબ્દો"
+
+author:
+  byline_title: "લેખક"
+
+code:
+  copy: "કોપી કરો"
+  copied: "કોપી થઈ ગયું"
+
+error:
+  404_title: "પૃષ્ઠ મળ્યું નથી :confused:"
+  404_error: "ભૂલ 404"
+  404_description: "મેસેજ દર્શાવે છે કે માંગેલું પૃષ્ઠ અસ્તિત્વમાં નથી."
+
+footer:
+  dark_appearance: "ડાર્ક મોડ પર સ્વિચ કરો"
+  light_appearance: "લાઈટ મોડ પર સ્વિચ કરો"
+  powered_by: "{{ .Hugo }} અને {{ .Congo }} દ્વારા સંચાલિત"
+
+list:
+  externalurl_title: "બાહ્ય સાઇટનો લિંક"
+  no_articles: "અહિ હજી કોઈ લેખ ઉપલબ્ધ નથી."
+
+nav:
+  scroll_to_top_title: "ઉપર જાઓ"
+  skip_to_main: "મુખ્ય સામગ્રી પર જાઓ"
+
+search:
+  open_button_title: "શોધો (/)"
+  close_button_title: "બંધ કરો (Esc)"
+  input_placeholder: "શોધો"
+
+sharing:
+  email: "ઇમેઇલ દ્વારા મોકલો"
+  facebook: "ફેસબુક પર શેર કરો"
+  linkedin: "લિંકડઇન પર શેર કરો"
+  mastodon: "માસ્ટોડોન પર પોસ્ટ કરો"
+  pinterest: "પિન્ટરેસ્ટ પર પિન કરો"
+  reddit: "રેડિટ પર મોકલો"
+  twitter: "ટ્વિટર પર ટ્વીટ કરો"
+  threads: "Threads પર પોસ્ટ કરો"
+  telegram: "ટેલિગ્રામ પર શેર કરો"
+  line: "LINE પર શેર કરો"
+  weibo: "Weibo પર શેર કરો"
+  x-twitter: "X પર પોસ્ટ કરો"
+  xing: "XING પર શેર કરો"
+
+shortcode:
+  recent_articles: "હાલના"

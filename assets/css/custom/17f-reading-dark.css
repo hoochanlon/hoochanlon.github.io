@@ -1,0 +1,99 @@
+/* Sakura / LaTeX 阅读主题：暗色层级与 Mermaid 适配 */
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark body {
+  background-color: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-100));
+}
+
+html[data-palette="latex"].dark {
+  --latex-typora-bg: 41 37 36;
+  --latex-typora-surface: 51 47 43;
+  --latex-typora-border: 68 64 60;
+  --latex-typora-text: 168 162 158;
+  --latex-typora-heading: 231 229 228;
+  --latex-typora-muted: 120 113 108;
+  --latex-typora-selection: 148 163 184;
+}
+
+html[data-palette="latex"].dark body {
+  background-color: rgb(var(--latex-typora-bg));
+  background-image: none;
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  #main-content,
+  #search-wrapper
+) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script),
+html[data-palette="latex"].dark article > header.max-w-prose > h1:not(.page-title-script),
+html[data-palette="latex"].dark .prose :where(h1, h2, h3) {
+  color: rgb(var(--latex-typora-heading));
+}
+
+html[data-palette="latex"].dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)),
+html[data-palette="latex"].dark :where(#main-content, body > header, #search-wrapper) :where(a:not(.no-underline)) * {
+  color: rgb(var(--latex-typora-heading));
+  -webkit-text-fill-color: rgb(var(--latex-typora-heading));
+  text-decoration-color: rgb(var(--latex-typora-heading) / 0.45);
+}
+
+html[data-palette="latex"].dark .prose hr {
+  border-color: rgb(var(--latex-typora-border));
+}
+
+html[data-palette="latex"].dark .prose :where(blockquote) {
+  background: transparent;
+  border-inline-start-color: rgb(var(--latex-typora-border));
+  color: rgb(var(--latex-typora-muted));
+}
+
+html[data-palette="latex"].dark .prose .katex-display,
+html[data-palette="latex"].dark .prose .sc-code,
+html[data-palette="latex"].dark .prose .sc-code__header,
+html[data-palette="latex"].dark .prose .sc-code__footer,
+html[data-palette="latex"].dark #search-modal,
+html[data-palette="latex"].dark .toc summary {
+  background: rgb(var(--latex-typora-surface));
+  border-color: rgb(var(--latex-typora-border));
+}
+
+html[data-palette="latex"].dark :where(.toc a, .prose a)::selection,
+html[data-palette="latex"].dark :where(.toc a, .prose a) *::selection,
+html[data-palette="latex"].dark :where(.toc a, .prose a)::-moz-selection,
+html[data-palette="latex"].dark :where(.toc a, .prose a) *::-moz-selection {
+  background: rgb(var(--latex-typora-selection));
+  color: rgb(255 255 255) !important;
+  -webkit-text-fill-color: rgb(255 255 255) !important;
+}
+
+:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+  body > header,
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  color: rgb(var(--color-neutral-100));
+}

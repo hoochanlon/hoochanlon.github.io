@@ -1,0 +1,49 @@
+{{ if .Params.showAuthor | default (.Site.Params.article.showAuthor | default true) }}
+  {{ $lazy := .Params.enableImageLazyLoading | default .Site.Params.enableImageLazyLoading | default true }}
+  {{ $altText := ($.Site.Language.Params.Author.name | default "Author") }}
+  {{ $authorDisplayName := .Site.Language.Params.Author.displayNameCard | default (.Site.Language.Params.Author.displayName | default .Site.Language.Params.Author.name) }}
+  {{ $authorVerifiedLabel := .Site.Language.Params.Author.verified.label.text | default "已认证" }}
+  {{ $authorVerifiedIconPath := .Site.Language.Params.Author.verified.icon | default "icons/da-v.svg" }}
+  {{ $authorVerifiedLabelIcon := false }}
+  {{ with .Site.Language.Params.Author.verified.label.icon }}
+    {{ $authorVerifiedLabelIcon = resources.Get . }}
+  {{ end }}
+  {{ $hasHan := findRE `\p{Han}` $authorDisplayName }}
+  <div class="author-card flex">
+    {{ with .Site.Language.Params.Author.image }}
+      {{ $authorImage := resources.Get . }}
+      {{ $verifiedIcon := resources.Get $authorVerifiedIconPath }}
+      {{ if $authorImage }}
+        {{ $imgClass := "!mb-0 !mt-0 w-24 h-auto rounded-full" }}
+        <span class="author-card-avatar me-4">
+          {{ partial "picture.html" (dict "img" $authorImage "alt" $altText "class" $imgClass "lazy" $lazy) }}
+          {{ with $verifiedIcon }}
+            <span class="author-card-avatar__verified" aria-label="{{ $authorVerifiedLabel }}">
+              {{ .Content | safeHTML }}
+              <span class="author-card-avatar__verified-tooltip" role="tooltip">
+                {{ with $authorVerifiedLabelIcon }}
+                  <span class="author-card-avatar__verified-tooltip-icon" aria-hidden="true">{{ .Content | safeHTML }}</span>
+                {{ end }}
+                <span class="author-card-avatar__verified-tooltip-text">{{ $authorVerifiedLabel }}</span>
+              </span>
+            </span>
+          {{ end }}
+        </span>
+      {{ end }}
+    {{ end }}
+    <div class="place-self-center">
+      {{ with $authorDisplayName }}
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          {{ i18n "author.byline_title" | markdownify | emojify }}
+        </div>
+        <div class="author-name author-name--card text-neutral-800 dark:text-neutral-300{{ if $hasHan }} author-name--han{{ else }} author-name--script{{ end }}">
+          {{ . | markdownify | emojify }}
+        </div>
+      {{ end }}
+      {{ with .Site.Language.Params.Author.bio | markdownify | emojify }}
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">{{ . }}</div>
+      {{ end }}
+      <div class="text-2xl sm:text-lg">{{ partialCached "author-links.html" . }}</div>
+    </div>
+  </div>
+{{ end }}

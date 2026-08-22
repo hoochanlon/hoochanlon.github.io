@@ -1,0 +1,15 @@
+{{- $index := slice -}}
+{{- range .Site.Pages -}}
+  {{- $section := .Site.GetPage "section" .Section -}}
+  {{- $showDate := .Params.showDate | default .Site.Params.article.showDate -}}
+  {{- $index = $index | append (dict
+    "date" (cond (and .IsPage $showDate) (.Date | time.Format (site.Params.dateFormat | default ":date_long")) nil)
+    "title" (.Title | emojify | safeJS)
+    "section" ($section.Title | emojify | safeJS)
+    "summary" (.Summary | emojify | safeJS)
+    "content" (.Plain | emojify | safeJS)
+    "permalink" .Permalink
+    )
+  -}}
+{{- end -}}
+{{- $index | jsonify -}}

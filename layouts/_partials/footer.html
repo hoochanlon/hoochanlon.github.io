@@ -1,0 +1,216 @@
+<div class="site-footer-drawer print:hidden" data-footer-drawer>
+  <div class="site-footer-trigger site-footer-trigger--left" aria-hidden="true"></div>
+  <div class="site-footer-trigger site-footer-trigger--right" aria-hidden="true"></div>
+<footer class="site-footer py-10">
+  <div class="site-footer__panel">
+  {{ $paletteEnabled := .Site.Params.palette.enabled | default false }}
+  {{ $paletteDefault := lower (.Site.Params.palette.default | default (.Site.Params.colorScheme | default "congo")) }}
+  {{ $paletteOptions := .Site.Params.palette.options | default (slice $paletteDefault) }}
+  {{ $paletteLabels := dict "sakura" "Sakura" "latex" "LaTeX" "congo" "Congo" "ocean" "Ocean" "sapphire" "Sapphire" "slate" "Slate" "cherry" "Cherry" "fire" "Fire" "avocado" "Avocado" }}
+  {{ $paletteSwatches := dict "sakura" "#c85b87" "latex" "#374151" "congo" "#8b5cf6" "ocean" "#0ea5e9" "sapphire" "#2563eb" "slate" "#64748b" "cherry" "#dc2626" "fire" "#f97316" "avocado" "#65a30d" }}
+  {{/* Footer menu */}}
+  {{ if .Site.Menus.footer }}
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex list-none flex-col sm:flex-row">
+        {{ range .Site.Menus.footer }}
+          {{ if and (eq .Params.action "locale") (or (not page.IsTranslated) (not hugo.IsMultilingual)) }}
+            {{ continue }}
+          {{ end }}
+          <li class="group mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0">
+            {{ if eq .Params.action "search" }}
+              {{ $.Scratch.Add "searchCount" 1 }}
+              {{ if $.Site.Params.enableSearch | default false }}
+                <button
+                  id="search-button-{{ $.Scratch.Get "searchCount" }}"
+                >
+                  {{ with .Params.icon }}
+                    <span
+                      class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                    >
+                      {{- partial "icon.html" . -}}
+                    </span>
+                  {{- end -}}{{- if .Params.showName | default true -}}
+                    <span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >{{ .Name | markdownify | emojify }}</span
+                    >
+                  {{ end }}
+                </button>
+              {{ end }}
+            {{ else if eq .Params.action "appearance" }}
+              {{ $.Scratch.Add "switchCount" 1 }}
+              <button
+                id="appearance-switcher-{{ $.Scratch.Get "switchCount" }}"
+                type="button"
+                aria-label="appearance switcher"
+              >
+                <span
+                  class="group-dark:hover:text-primary-400 inline transition-colors group-hover:text-primary-600 dark:hidden"
+                >
+                  {{ partial "icon.html" "moon" }}
+                </span>
+                <span
+                  class="group-dark:hover:text-primary-400 hidden transition-colors group-hover:text-primary-600 dark:inline"
+                >
+                  {{ partial "icon.html" "sun" }}
+                </span>
+              </button>
+            {{ else if eq .Params.action "locale" }}
+              {{ $.Scratch.Add "localeCount" 1 }}
+              {{ partial "translations.html" (dict "ctx" . "dir" "up") }}
+            {{ else }}
+              <a
+                href="{{ .URL }}"
+                title="{{ .Title }}"
+                {{ with .Params.rel }}rel="{{ . }}"{{ end }}
+                {{ with .Params.target }}target="{{ . }}"{{ end }}
+                >{{ with .Params.icon }}
+                  <span
+                    class="group-dark:hover:text-primary-400 transition-colors group-hover:text-primary-600"
+                  >
+                    {{- partial "icon.html" . -}}
+                  </span>
+                {{- end -}}{{- if .Params.showName | default true -}}
+                  <span
+                    class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                    >{{ .Name | markdownify | emojify }}</span
+                  >
+                {{ end }}</a
+              >
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  {{ end }}
+  <div class="site-footer__row">
+    <div class="site-footer__slot site-footer__slot--left">
+      {{/* Palette switcher */}}
+      {{ if $paletteEnabled }}
+        <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" data-palette-switcher data-default-palette="{{ $paletteDefault }}">
+          <div class="palette-switcher__panel">
+            <button type="button" class="palette-switcher__trigger" aria-label="切换配色" aria-expanded="false">
+              {{ partial "icon.html" "color" }}
+            </button>
+            <div class="palette-switcher__menu">
+              <p class="palette-switcher__title">配色方案</p>
+              <div class="palette-switcher__grid">
+                {{ range $rawName := $paletteOptions }}
+                  {{ $name := lower $rawName }}
+                  <button
+                    type="button"
+                    class="palette-switcher__option"
+                    data-palette-option="{{ $name }}"
+                    aria-pressed="false"
+                  >
+                    <span
+                      class="palette-switcher__swatch"
+                      style="background: {{ index $paletteSwatches $name | default "#c85b87" }}"
+                    ></span>
+                    <span class="palette-switcher__label">{{ index $paletteLabels $name | default $rawName }}</span>
+                  </button>
+                {{ end }}
+              </div>
+              <div class="palette-switcher__footer">
+                <button type="button" class="palette-switcher__reset" data-palette-reset>恢复默认</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    <div class="site-footer__copy">
+      {{/* Copyright：支持 copyrightSince 起始年，结束年自动取当前构建年份 */}}
+      {{ if .Site.Params.footer.showCopyright | default true }}
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          {{- with site.Copyright }}
+            {{ . | emojify | markdownify }}
+          {{- else }}
+            {{- $year := now.Year -}}
+            {{- $since := .Site.Params.footer.copyrightSince | default $year -}}
+            &copy;
+            {{- if eq $since $year -}}
+              {{ $year }}
+            {{- else -}}
+              {{ $since }}–{{ $year }}
+            {{- end }}
+            {{ .Site.Language.Params.Author.name | markdownify | emojify }}
+          {{- end }}
+        </p>
+      {{ end }}
+      {{/* Theme attribution + optional Umami share */}}
+      {{ if or
+        (.Site.Params.footer.showThemeAttribution | default true)
+        .Site.Params.footer.umamiShareURL
+      }}
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          {{ $linkClass := "hover:underline hover:decoration-primary-400 hover:text-primary-500" }}
+          {{ with .Site.Params.footer.rssURL }}
+            <a
+              class="footer-rss me-1 inline-flex text-neutral-500 hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400"
+              href="{{ . | relLangURL }}"
+              aria-label="RSS 订阅"
+              title="RSS 订阅"
+            >
+              {{ partial "icon.html" "rss" }}
+            </a>
+          {{ end }}
+          {{ if .Site.Params.footer.showThemeAttribution | default true }}
+            站点基于
+            <a class="{{ $linkClass }}" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+            框架与
+            <a class="{{ $linkClass }}" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+            主题构建
+          {{ end }}
+          {{ with .Site.Params.footer.umamiShareURL }}
+            {{ if $.Site.Params.footer.showThemeAttribution | default true }}，{{ end }}
+            采用
+            <a class="{{ $linkClass }}" href="{{ . }}" target="_blank" rel="noopener noreferrer">Umami</a>
+            进行访问统计
+          {{ end }}
+        </p>
+      {{ end }}
+    </div>
+    <div class="site-footer__slot site-footer__slot--right">
+      {{/* Locale switcher */}}
+      {{ if and (.IsTranslated) (eq ($.Scratch.Get "localeCount") 0) }}
+        <div>
+          {{ partial "translations.html" (dict "ctx" . "dir" "up") }}
+        </div>
+      {{ end }}
+      {{/* Appearance switcher */}}
+      {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
+        <div class="cursor-pointer text-sm text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400">
+          <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
+            <div
+              class="flex h-12 w-12 items-center justify-center dark:hidden"
+            >
+              {{ partial "icon.html" "moon" }}
+            </div>
+            <div
+              class="hidden h-12 w-12 items-center justify-center dark:flex"
+            >
+              {{ partial "icon.html" "sun" }}
+            </div>
+          </button>
+        </div>
+      {{ end }}
+      {{ if .Site.Params.footer.showScrollToTop | default true }}
+        <a
+          class="site-footer__top-button"
+          href="#the-top"
+          aria-label="{{ i18n "nav.scroll_to_top_title" }}"
+          title="{{ i18n "nav.scroll_to_top_title" }}"
+        >
+          &uarr;
+        </a>
+      {{ end }}
+    </div>
+  </div>
+  </div>
+  {{/* Extend footer - eg. for extra scripts, etc. */}}
+  {{ if templates.Exists "_partials/extend-footer.html" }}
+    {{ partial "extend-footer.html" . }}
+  {{ end }}
+</footer>
+</div>

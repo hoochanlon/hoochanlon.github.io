@@ -1,0 +1,27 @@
+{{- $toc := .TableOfContents | emojify -}}
+{{- $hanLower := `一二三四五六七八九十百千万零〇` -}}
+{{- $hanUpper := `壹貳參肆伍陸柒捌玖拾佰仟萬零〇` -}}
+{{- $hanJa := `壱弐参肆伍陸柒捌玖拾百千万` -}}
+{{- $token := printf `(?:[%s]+|[%s]+|[%s]+|[0-9０-９]+|[A-Za-z]+|[IVXLCDMivxlcdm]+)` $hanLower $hanUpper $hanJa -}}
+{{- $prefixBracketWbr := printf `(<a\b[^>]*>)([（(]%s[）)])\s*([^<]*?)<wbr>([^<]*?)(</a>)` $token -}}
+{{- $prefixSuffixWbr := printf `(<a\b[^>]*>)(%s(?:、|\.|．|\)|）))\s*([^<]*?)<wbr>([^<]*?)(</a>)` $token -}}
+{{- $prefixBracket := printf `(<a\b[^>]*>)([（(]%s[）)])\s*([^<]*)(</a>)` $token -}}
+{{- $prefixSuffix := printf `(<a\b[^>]*>)(%s(?:、|\.|．|\)|）))\s*([^<]*)(</a>)` $token -}}
+{{- $toc = replaceRE $prefixBracketWbr `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label"><span class="sc-keep">${3}</span><wbr><span class="sc-keep">${4}</span></span>${5}` $toc -}}
+{{- $toc = replaceRE $prefixSuffixWbr `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label"><span class="sc-keep">${3}</span><wbr><span class="sc-keep">${4}</span></span>${5}` $toc -}}
+{{- $toc = replaceRE $prefixBracket `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label">${3}</span>${4}` $toc -}}
+{{- $toc = replaceRE $prefixSuffix `${1}<span class="sc-toc__prefix">${2}</span><span class="sc-toc__label">${3}</span>${4}` $toc -}}
+{{- $toc = replaceRE `(<a\b[^>]*>)([^<]*?)<wbr>([^<]*?)(</a>)` `${1}<span class="sc-keep">${2}</span><wbr><span class="sc-keep">${3}</span>${4}` $toc -}}
+<details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    {{ i18n "article.table_of_contents" }}
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600 sc-toc-panel">
+    {{/* data-sc-toc：折叠树 + scrollspy 挂载点；保留 Hugo 原生 #TableOfContents */}}
+    <div class="sc-toc-root" data-sc-toc>
+      {{ $toc | safeHTML }}
+    </div>
+  </div>
+</details>

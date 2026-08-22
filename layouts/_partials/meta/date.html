@@ -1,0 +1,5 @@
+<time datetime="{{ . }}" class="article-meta__date inline-flex items-center">
+  <span class="article-meta__icon" aria-hidden="true">{{ (resources.Get "icons/date.svg").Content | safeHTML }}</span>
+  <span class="article-meta__value sc-num">{{ partial "functions/date.html" . }}</span>
+</time>
+{{- /* Trim EOF */ -}}

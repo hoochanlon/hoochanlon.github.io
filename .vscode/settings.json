@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "layouts/**/*.html": "gohtml",
+    "themes/**/layouts/**/*.html": "gohtml",
+    "archetypes/**/*.md": "gotemplate"
+  },
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+  "html.format.enable": false
+}
