@@ -1,18 +1,20 @@
-html:not([data-palette="sakura"]):not([data-palette="latex"]) .article-link {
+/* 非阅读主题：默认宽度（保留原 Congo 等主题的宽度） */
+html:not([data-palette]) .article-link {
   width: 100%;
   max-width: 46rem !important;
 }
 
-html:not([data-palette="sakura"]):not([data-palette="latex"]) .article-link > .min-w-0.grow {
+html:not([data-palette]) .article-link > .min-w-0.grow {
   max-width: calc(46rem - 10rem - 1.5rem);
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .article-link {
+/* 所有主题统一使用 53rem 宽度 */
+html[data-palette] .article-link {
   width: 100%;
   max-width: 53rem !important;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .article-link > .min-w-0.grow {
+html[data-palette] .article-link > .min-w-0.grow {
   max-width: calc(53rem - 10rem - 1.5rem);
 }
 
@@ -23,6 +25,29 @@ html:not([data-palette="sakura"]):not([data-palette="latex"]) .article-link > .m
   color: rgb(var(--color-neutral-700));
   font-size: 1rem;
   line-height: 1.7;
+}
+
+/* Sakura / LaTeX / Congo：主页列表更紧凑的间距 */
+html[data-palette] .article-link {
+  margin-top: 1.5rem !important;
+}
+
+html[data-palette] .article-link:first-of-type {
+  margin-top: 0.75rem !important;
+}
+
+html[data-palette] .list-year {
+  margin-top: 2.5rem !important;
+}
+
+html[data-palette] .list-year:first-of-type {
+  margin-top: 1.5rem !important;
+}
+
+html[data-palette] .article-link h2 {
+  font-size: 1.35rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.3rem !important;
 }
 
 .dark .article-link__summary {

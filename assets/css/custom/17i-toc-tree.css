@@ -110,14 +110,15 @@
   background: transparent !important;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .toc a.is-active {
+/* 所有主题统一：当前章节高亮样式 */
+html[data-palette] .toc a.is-active {
   color: rgb(var(--color-primary-700));
   border-inline-start: 3px solid rgb(var(--color-primary-500));
   padding-inline-start: 0.15rem;
   background: transparent !important;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .toc a.is-active {
+html[data-palette].dark .toc a.is-active {
   color: rgb(var(--color-primary-300));
   border-inline-start-color: rgb(var(--color-primary-400));
   background: transparent !important;

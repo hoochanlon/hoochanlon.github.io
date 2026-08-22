@@ -1,4 +1,5 @@
-/* Sakura / LaTeX 阅读主题：隐藏回到顶部按钮 */
-:is(html[data-palette="sakura"], html[data-palette="latex"]) #to-top {
+/* 所有主题统一：隐藏常规固定置顶按钮，只使用页脚抽屉中的按钮 */
+html[data-palette] #to-top {
   display: none !important;
 }
+

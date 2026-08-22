@@ -137,6 +137,34 @@
   line-height: 1;
 }
 
+/* 文章页脚资料卡片：移除放大效果，改为颜色变化 */
+.author-name--card ~ * .author-links__item,
+.author-name--card ~ * .author-links__wechat-trigger {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.author-name--card ~ * .author-links__item:hover,
+.author-name--card ~ * .author-links__wechat-trigger:hover {
+  transform: none !important;
+  color: rgb(var(--color-primary-600));
+}
+
+.author-name--card ~ * .author-links__item:active,
+.author-name--card ~ * .author-links__wechat-trigger:active {
+  color: rgb(var(--color-primary-700));
+  opacity: 0.8;
+}
+
+.dark .author-name--card ~ * .author-links__item:hover,
+.dark .author-name--card ~ * .author-links__wechat-trigger:hover {
+  color: rgb(var(--color-primary-400));
+}
+
+.dark .author-name--card ~ * .author-links__item:active,
+.dark .author-name--card ~ * .author-links__wechat-trigger:active {
+  color: rgb(var(--color-primary-300));
+}
+
 .author-links__item svg,
 .author-links__wechat-trigger svg {
   width: 1.15em;

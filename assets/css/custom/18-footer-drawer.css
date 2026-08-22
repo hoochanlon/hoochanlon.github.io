@@ -167,7 +167,8 @@
     margin-inline-start: 0;
   }
 
-  :is(html[data-palette="sakura"], html[data-palette="latex"]) .site-footer__top-button {
+  /* 所有主题统一显示置顶按钮 */
+  html[data-palette] .site-footer__top-button {
     display: flex;
   }
 

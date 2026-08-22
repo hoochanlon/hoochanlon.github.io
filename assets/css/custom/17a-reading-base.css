@@ -36,7 +36,8 @@ html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
   font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) :where(
+/* 所有主题统一排版：字体、行高与渲染优化 */
+html[data-palette] :where(
   body > header,
   #main-content,
   #main-content article,
@@ -56,7 +57,7 @@ html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
   text-rendering: optimizeLegibility;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]).dark :where(
+html[data-palette].dark :where(
   body > header,
   #main-content,
   #main-content article,
@@ -72,20 +73,8 @@ html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
   color: rgb(var(--color-neutral));
 }
 
-html[data-palette="latex"] :where(
-  body > header,
-  #main-content,
-  #main-content article,
-  #main-content section,
-  #main-content nav,
-  #main-content aside,
-  #main-content .toc,
-  #to-top,
-  #search-wrapper,
-  #search-modal,
-  #search-results
-),
-html[data-palette="sakura"] :where(
+/* 所有主题统一：STIX Two Text 字体与数字样式 */
+html[data-palette] :where(
   body > header,
   #main-content,
   #main-content article,
@@ -103,8 +92,7 @@ html[data-palette="sakura"] :where(
   font-feature-settings: "lnum" 1, "pnum" 1;
 }
 
-html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row,
-html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row {
+html[data-palette] #main-content > ul.mt-8.flex.flex-row {
   align-items: center;
   gap: 0.15rem;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -112,13 +100,11 @@ html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row {
   line-height: 1.5;
 }
 
-html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row > li,
-html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li {
+html[data-palette] #main-content > ul.mt-8.flex.flex-row > li {
   margin-inline: 0;
 }
 
-html[data-palette="latex"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span),
-html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
+html[data-palette] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
   display: inline-flex;
   min-width: 1.8rem;
   min-height: 1.8rem;
@@ -129,6 +115,16 @@ html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, 
 }
 
 @media (min-width: 1024px) {
+  /* 所有主题统一布局变量 */
+  html[data-palette] {
+    --prose-width: 44rem;
+    --toc-width: 23rem;
+    --toc-gap: 1.4rem;
+    --cover-width: 43.5rem;
+    --toc-padding-end: 0.2rem;
+  }
+
+  /* LaTeX 特殊背景保持独立 */
   html[data-palette="latex"] {
     --latex-prose-width: 44rem;
     --latex-toc-width: 23rem;
@@ -144,79 +140,56 @@ html[data-palette="sakura"] #main-content > ul.mt-8.flex.flex-row > li > :is(a, 
     --sakura-toc-padding-end: 0.2rem;
   }
 
-  html[data-palette="latex"] article > header.max-w-prose {
-    max-width: min(100%, var(--latex-cover-width));
+  html[data-palette="congo"] {
+    --congo-prose-width: 44rem;
+    --congo-toc-width: 23rem;
+    --congo-toc-gap: 1.4rem;
+    --congo-cover-width: 43.5rem;
+    --congo-toc-padding-end: 0.2rem;
   }
 
-  html[data-palette="sakura"] article > header.max-w-prose {
-    max-width: min(100%, var(--sakura-cover-width));
+  /* 所有主题统一布局：文章头部 */
+  html[data-palette] article > header.max-w-prose {
+    max-width: min(100%, var(--cover-width));
   }
 
-  html[data-palette="latex"] article > header.max-w-prose > .prose {
+  html[data-palette] article > header.max-w-prose > .prose {
     width: 100%;
     max-width: none;
     margin-inline: auto;
   }
 
-  html[data-palette="sakura"] article > header.max-w-prose > .prose {
-    width: 100%;
-    max-width: none;
-    margin-inline: auto;
-  }
-
-  html[data-palette="latex"] article > header.max-w-prose > .prose > picture,
-  html[data-palette="latex"] article > header.max-w-prose > .prose > img,
-  html[data-palette="latex"] article > header.max-w-prose > .prose > picture > img,
-  html[data-palette="sakura"] article > header.max-w-prose > .prose > picture,
-  html[data-palette="sakura"] article > header.max-w-prose > .prose > img,
-  html[data-palette="sakura"] article > header.max-w-prose > .prose > picture > img {
+  html[data-palette] article > header.max-w-prose > .prose > picture,
+  html[data-palette] article > header.max-w-prose > .prose > img,
+  html[data-palette] article > header.max-w-prose > .prose > picture > img {
     display: block;
     width: 100%;
     max-width: none;
     margin-inline: auto;
   }
 
-  html[data-palette="latex"] article > footer.max-w-prose,
-  html[data-palette="latex"] article > section.prose > .max-w-prose {
-    max-width: min(100%, var(--latex-prose-width));
+  html[data-palette] article > footer.max-w-prose,
+  html[data-palette] article > section.prose > .max-w-prose {
+    max-width: min(100%, var(--prose-width));
   }
 
-  html[data-palette="sakura"] article > footer.max-w-prose,
-  html[data-palette="sakura"] article > section.prose > .max-w-prose {
-    max-width: min(100%, var(--sakura-prose-width));
+  html[data-palette] article > section.prose > .max-w-prose {
+    flex-basis: var(--prose-width);
   }
 
-  html[data-palette="latex"] article > section.prose > .max-w-prose {
-    flex-basis: var(--latex-prose-width);
+  html[data-palette] article > section.prose > .order-first.lg\:order-last {
+    width: var(--toc-width);
+    max-width: var(--toc-width);
+    flex: 0 0 var(--toc-width);
+    padding-inline-start: var(--toc-gap);
   }
 
-  html[data-palette="sakura"] article > section.prose > .max-w-prose {
-    flex-basis: var(--sakura-prose-width);
-  }
-
-  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last {
-    width: var(--latex-toc-width);
-    max-width: var(--latex-toc-width);
-    flex: 0 0 var(--latex-toc-width);
-    padding-inline-start: var(--latex-toc-gap);
-  }
-
-  html[data-palette="sakura"] article > section.prose > .order-first.lg\:order-last {
-    width: var(--sakura-toc-width);
-    max-width: var(--sakura-toc-width);
-    flex: 0 0 var(--sakura-toc-width);
-    padding-inline-start: var(--sakura-toc-gap);
-  }
-
-  html[data-palette="latex"] article > section.prose > .order-first.lg\:order-last .toc {
+  html[data-palette] article > section.prose > .order-first.lg\:order-last .toc {
     max-width: 100%;
-    padding-inline-end: 0;
+    padding-inline-end: var(--toc-padding-end);
   }
 
-  html[data-palette="sakura"] article > section.prose > .order-first.lg\:order-last .toc {
-    max-width: 100%;
-    padding-inline-end: var(--sakura-toc-padding-end);
-  }
+  /* 保留 LaTeX/Sakura 特殊变量的向后兼容 */
 }
 
 /* 文章元信息内联图标：继承文字颜色，自动适配夜间模式 */
