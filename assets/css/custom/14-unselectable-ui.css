@@ -8,8 +8,11 @@
   .home-intro,
   .home-section-title,
   .list-header,
+  .list-header h1,
   .list-content,
   .list-year,
+  section > h2.list-year,
+  section > h2.text-2xl.font-bold,
   .author-card,
   .article-meta,
   .taxonomy-terms,
@@ -18,7 +21,10 @@
   .article-footer,
   .article-comments,
   .toc,
-  #main-content > ul.mt-8.flex.flex-row
+  #main-content > ul.mt-8.flex.flex-row,
+  .site-banner,
+  .taxonomy-title,
+  nav.breadcrumbs
 ),
 :where(
   .page-about,
@@ -28,8 +34,11 @@
   .home-intro,
   .home-section-title,
   .list-header,
+  .list-header h1,
   .list-content,
   .list-year,
+  section > h2.list-year,
+  section > h2.text-2xl.font-bold,
   .author-card,
   .article-meta,
   .taxonomy-terms,
@@ -38,10 +47,25 @@
   .article-footer,
   .article-comments,
   .toc,
-  #main-content > ul.mt-8.flex.flex-row
+  #main-content > ul.mt-8.flex.flex-row,
+  .site-banner,
+  .taxonomy-title,
+  nav.breadcrumbs
 ) * {
-  -webkit-user-select: none;
-  user-select: none;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* 允许 prose 内的标题可以被选中 */
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+/* 允许文章主标题可以被选中 */
+article > header h1 {
+  -webkit-user-select: text !important;
+  user-select: text !important;
 }
 
 :where(
@@ -52,8 +76,11 @@
   .home-intro,
   .home-section-title,
   .list-header,
+  .list-header h1,
   .list-content,
   .list-year,
+  section > h2.list-year,
+  section > h2.text-2xl.font-bold,
   .author-card,
   .article-meta,
   .taxonomy-terms,
@@ -62,7 +89,10 @@
   .article-footer,
   .article-comments,
   .toc,
-  #main-content > ul.mt-8.flex.flex-row
+  #main-content > ul.mt-8.flex.flex-row,
+  .site-banner,
+  .taxonomy-title,
+  nav.breadcrumbs
 ) :where(img, svg) {
   -webkit-user-drag: none;
 }

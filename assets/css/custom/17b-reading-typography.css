@@ -100,9 +100,7 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h2 {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
+  display: block;
   margin-top: 2.6rem;
   margin-bottom: 1.15rem;
   padding-bottom: 0.55rem;
@@ -110,14 +108,8 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
   color: rgb(var(--color-primary-600));
   font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
   font-size: clamp(1.45rem, 2vw, 1.85rem);
-}
-
-html[data-palette="sakura"] .prose h2::before {
-  content: "§";
-  flex: 0 0 auto;
-  color: rgb(var(--color-primary-500));
-  font-size: 0.92em;
-  font-weight: 700;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .prose h3 {

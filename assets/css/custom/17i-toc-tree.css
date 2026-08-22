@@ -4,6 +4,12 @@
   scrollbar-width: thin;
 }
 
+.toc a {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 @media (min-width: 1024px) {
   .toc.lg\:sticky,
   .toc {

@@ -223,3 +223,13 @@ html[data-palette] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
 .article-meta.flex {
   align-items: baseline !important;
 }
+
+/* MacBook 13/14 寸优化：更好地利用屏幕空间 */
+@media (min-width: 1280px) {
+  html[data-palette] {
+    --prose-width: 48rem;
+    --toc-width: 24rem;
+    --toc-gap: 1.6rem;
+    --cover-width: 47.5rem;
+  }
+}

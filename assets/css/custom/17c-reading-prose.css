@@ -70,6 +70,8 @@
   text-align: start;
   text-justify: auto;
   word-spacing: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .prose :where(h1, h2, h3, h4) wbr {
