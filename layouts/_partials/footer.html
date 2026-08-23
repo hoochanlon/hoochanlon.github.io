@@ -93,7 +93,22 @@
               {{ partial "icon.html" "color" }}
             </button>
             <div class="palette-switcher__menu">
-              <p class="palette-switcher__title">配色方案</p>
+              <div class="palette-switcher__header">
+                <p class="palette-switcher__title">配色方案</p>
+                <button
+                  id="appearance-switcher-palette"
+                  type="button"
+                  class="palette-switcher__appearance"
+                  aria-label="appearance switcher"
+                >
+                  <span class="palette-switcher__appearance-icon inline-flex dark:hidden">
+                    {{ partial "icon.html" "moon" }}
+                  </span>
+                  <span class="palette-switcher__appearance-icon hidden dark:inline">
+                    {{ partial "icon.html" "sun" }}
+                  </span>
+                </button>
+              </div>
               <div class="palette-switcher__grid">
                 {{ range $rawName := $paletteOptions }}
                   {{ $name := lower $rawName }}

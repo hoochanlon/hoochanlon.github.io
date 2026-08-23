@@ -81,11 +81,58 @@
   pointer-events: auto;
 }
 
-.palette-switcher__title {
+.palette-switcher__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin: 0 0 0.65rem;
+}
+
+.palette-switcher__title {
+  margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
   color: rgb(var(--color-neutral-700));
+}
+
+.palette-switcher__appearance {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 9999px;
+  background: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-primary-600));
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
+  transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.palette-switcher__appearance:hover {
+  border-color: rgb(var(--color-primary-300));
+  background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-primary-700));
+  box-shadow: inset 0 0 0 1px rgb(var(--color-primary-200));
+}
+
+.palette-switcher__appearance-icon {
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .palette-switcher__appearance-icon.dark\:inline {
+  display: inline-flex;
+}
+
+.palette-switcher__appearance .icon {
+  padding-inline: 0;
+}
+
+.palette-switcher__appearance svg {
+  width: 1.08rem;
+  height: 1.08rem;
 }
 
 .palette-switcher__grid {
@@ -179,6 +226,19 @@
 .dark .palette-switcher__reset {
   border-color: rgb(var(--color-neutral-300));
   background: rgb(var(--color-neutral-50));
+}
+
+.dark .palette-switcher__appearance {
+  border-color: rgb(var(--color-primary-300));
+  background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-primary-700));
+  box-shadow: inset 0 0 0 1px rgb(var(--color-primary-200));
+}
+
+.dark .palette-switcher__appearance:hover {
+  border-color: rgb(var(--color-primary-400));
+  background: rgb(var(--color-primary-200));
+  color: rgb(var(--color-primary-800));
 }
 
 .dark .palette-switcher__option.is-active {
