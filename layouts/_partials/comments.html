@@ -26,7 +26,17 @@
         var fallbackDark = {{ $dark | jsonify | safeJS }};
         var themeBase = {{ strings.TrimRight "/" $themeBase | jsonify | safeJS }};
         var defaultPalette = {{ $defaultPalette | jsonify | safeJS }};
-        var supportedPalettes = { sakura: true, latex: true };
+        var supportedPalettes = {
+          avocado: true,
+          cherry: true,
+          congo: true,
+          fire: true,
+          latex: true,
+          ocean: true,
+          sakura: true,
+          sapphire: true,
+          slate: true,
+        };
 
         function siteMode() {
           return document.documentElement.classList.contains("dark") ? "dark" : "light";

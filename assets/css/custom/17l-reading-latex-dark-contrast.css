@@ -1,0 +1,103 @@
+/* LaTeX 夜间模式对比度补丁
+ *
+ * 问题来源：LaTeX palette 的暗色色阶偏克制，通用 dark 规则继续使用
+ * primary-300/400、neutral-400/500 时，会在深棕黑背景上显得发暗。
+ * 作用域：仅 html[data-palette="latex"].dark。
+ */
+
+html[data-palette="latex"].dark {
+  --latex-typora-text: 214 211 209;
+  --latex-typora-heading: 250 250 249;
+  --latex-typora-muted: 168 162 158;
+  --latex-typora-link: 226 232 240;
+  --latex-typora-link-muted: 203 213 225;
+  --latex-typora-accent: 148 163 184;
+}
+
+html[data-palette="latex"].dark body {
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  body > header :where(a, button, span),
+  #main-content,
+  #main-content article,
+  #main-content section,
+  #main-content nav,
+  #main-content aside,
+  #main-content .toc,
+  #to-top,
+  #search-wrapper
+) {
+  color: rgb(var(--latex-typora-text));
+}
+
+html[data-palette="latex"].dark :where(
+  body > header,
+  #main-content,
+  #search-wrapper
+) :where(h1, h2, h3, h4):not(.site-author-name):not(.page-title-script),
+html[data-palette="latex"].dark article > header.max-w-prose > h1:not(.page-title-script),
+html[data-palette="latex"].dark .prose :where(h1, h2, h3) {
+  color: rgb(var(--latex-typora-heading));
+}
+
+html[data-palette="latex"].dark :where(
+  #main-content,
+  body > header,
+  #search-wrapper
+) :where(a:not(.no-underline)),
+html[data-palette="latex"].dark :where(
+  #main-content,
+  body > header,
+  #search-wrapper
+) :where(a:not(.no-underline)) * {
+  color: rgb(var(--latex-typora-link));
+  -webkit-text-fill-color: rgb(var(--latex-typora-link));
+  text-decoration-color: rgb(var(--latex-typora-accent) / 0.62);
+}
+
+html[data-palette="latex"].dark :where(.article-meta, .article-meta *, .page-title-kicker, .taxonomy-terms, .taxonomy-terms *) {
+  color: rgb(var(--latex-typora-muted));
+  -webkit-text-fill-color: rgb(var(--latex-typora-muted));
+}
+
+html[data-palette="latex"].dark .toc :where(a, .sc-toc__prefix, .sc-toc__label) {
+  color: rgb(var(--latex-typora-muted));
+  -webkit-text-fill-color: rgb(var(--latex-typora-muted));
+}
+
+html[data-palette="latex"].dark .toc .sc-toc__toggle {
+  color: rgb(var(--latex-typora-muted));
+}
+
+html[data-palette="latex"].dark .toc a.is-active,
+html[data-palette="latex"].dark .toc a.is-active :where(.sc-toc__prefix, .sc-toc__label) {
+  color: rgb(var(--latex-typora-link));
+  -webkit-text-fill-color: rgb(var(--latex-typora-link));
+  border-inline-start-color: rgb(var(--latex-typora-accent));
+}
+
+html[data-palette="latex"].dark .site-banner {
+  color: rgb(var(--latex-typora-link));
+  border-bottom-color: rgb(var(--latex-typora-accent));
+}
+
+html[data-palette="latex"].dark .site-banner__latest,
+html[data-palette="latex"].dark .site-banner__latest * {
+  color: rgb(var(--latex-typora-link));
+  -webkit-text-fill-color: rgb(var(--latex-typora-link));
+}
+
+html[data-palette="latex"].dark .site-banner__date-badge,
+html[data-palette="latex"].dark .site-banner__date {
+  background: rgb(var(--latex-typora-link));
+  color: rgb(var(--latex-typora-bg));
+  -webkit-text-fill-color: rgb(var(--latex-typora-bg));
+}
+
+html[data-palette="latex"].dark .site-banner__close {
+  color: rgb(var(--latex-typora-link));
+  opacity: 0.78;
+}

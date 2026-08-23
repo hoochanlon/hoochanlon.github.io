@@ -1,0 +1,48 @@
+/*! Giscus Congo dark theme — generated from assets/css/schemes/congo.css */
+:root {
+  color-scheme: dark;
+  --color-fg-default: #f4f4f5;
+  --color-fg-muted: #a1a1aa;
+  --color-fg-subtle: #71717a;
+  --color-canvas-default: #27272a;
+  --color-canvas-overlay: #18181b;
+  --color-canvas-inset: #030712;
+  --color-canvas-subtle: #3f3f46;
+  --color-bg-canvas: #27272a;
+  --color-bg-primary: #27272a;
+  --color-bg-secondary: #3f3f46;
+  --color-bg-tertiary: #52525b;
+  --color-border-default: #52525b;
+  --color-border-muted: #3f3f46;
+  --color-neutral-muted: rgba(167, 139, 250, 0.16);
+  --color-accent-fg: #c4b5fd;
+  --color-accent-emphasis: #a78bfa;
+  --color-accent-muted: rgba(167, 139, 250, 0.42);
+  --color-accent-subtle: rgba(139, 92, 246, 0.16);
+  --color-success-fg: #f0abfc;
+  --color-attention-fg: #c4b5fd;
+  --color-danger-fg: #ddd6fe;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.3);
+  --color-btn-text: #f4f4f5;
+  --color-btn-bg: #3f3f46;
+  --color-btn-border: #52525b;
+  --color-btn-hover-bg: #52525b;
+  --color-btn-hover-border: #a78bfa;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #7c3aed;
+  --color-btn-primary-border: #8b5cf6;
+  --color-btn-primary-hover-bg: #8b5cf6;
+  --color-btn-primary-hover-border: #a78bfa;
+  --color-input-bg: #18181b;
+  --color-input-border: #52525b;
+  --color-timeline-badge-bg: #3f3f46;
+  --color-social-reaction-bg-hover: rgba(167, 139, 250, 0.16);
+  --color-social-reaction-bg-reacted-hover: rgba(167, 139, 250, 0.24);
+  --color-gist-header-bg: #3f3f46;
+  --color-gist-header-border: #52525b;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

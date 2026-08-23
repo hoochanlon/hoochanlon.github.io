@@ -1,0 +1,48 @@
+/*! Giscus Slate dark theme — generated from assets/css/schemes/slate.css */
+:root {
+  color-scheme: dark;
+  --color-fg-default: #f3f4f6;
+  --color-fg-muted: #9ca3af;
+  --color-fg-subtle: #6b7280;
+  --color-canvas-default: #1f2937;
+  --color-canvas-overlay: #111827;
+  --color-canvas-inset: #111827;
+  --color-canvas-subtle: #374151;
+  --color-bg-canvas: #1f2937;
+  --color-bg-primary: #1f2937;
+  --color-bg-secondary: #374151;
+  --color-bg-tertiary: #4b5563;
+  --color-border-default: #4b5563;
+  --color-border-muted: #374151;
+  --color-neutral-muted: rgba(148, 163, 184, 0.16);
+  --color-accent-fg: #cbd5e1;
+  --color-accent-emphasis: #94a3b8;
+  --color-accent-muted: rgba(148, 163, 184, 0.42);
+  --color-accent-subtle: rgba(100, 116, 139, 0.16);
+  --color-success-fg: #d1d5db;
+  --color-attention-fg: #cbd5e1;
+  --color-danger-fg: #e2e8f0;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.3);
+  --color-btn-text: #f3f4f6;
+  --color-btn-bg: #374151;
+  --color-btn-border: #4b5563;
+  --color-btn-hover-bg: #4b5563;
+  --color-btn-hover-border: #94a3b8;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #475569;
+  --color-btn-primary-border: #64748b;
+  --color-btn-primary-hover-bg: #64748b;
+  --color-btn-primary-hover-border: #94a3b8;
+  --color-input-bg: #111827;
+  --color-input-border: #4b5563;
+  --color-timeline-badge-bg: #374151;
+  --color-social-reaction-bg-hover: rgba(148, 163, 184, 0.16);
+  --color-social-reaction-bg-reacted-hover: rgba(148, 163, 184, 0.24);
+  --color-gist-header-bg: #374151;
+  --color-gist-header-border: #4b5563;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

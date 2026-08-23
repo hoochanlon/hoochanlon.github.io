@@ -1,0 +1,48 @@
+/*! Giscus Sapphire light theme — generated from assets/css/schemes/sapphire.css */
+:root {
+  color-scheme: light;
+  --color-fg-default: #1e293b;
+  --color-fg-muted: #475569;
+  --color-fg-subtle: #64748b;
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #ffffff;
+  --color-canvas-subtle: #fafafa;
+  --color-bg-canvas: #ffffff;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #fafafa;
+  --color-bg-tertiary: #f4f4f5;
+  --color-border-default: #cbd5e1;
+  --color-border-muted: #e2e8f0;
+  --color-neutral-muted: rgba(203, 213, 225, 0.34);
+  --color-accent-fg: #4338ca;
+  --color-accent-emphasis: #4f46e5;
+  --color-accent-muted: rgba(99, 102, 241, 0.35);
+  --color-accent-subtle: #eef2ff;
+  --color-success-fg: #be185d;
+  --color-attention-fg: #4338ca;
+  --color-danger-fg: #4338ca;
+  --color-primer-shadow-inset: rgba(15, 23, 42, 0.08);
+  --color-btn-text: #1e293b;
+  --color-btn-bg: #f1f5f9;
+  --color-btn-border: #cbd5e1;
+  --color-btn-hover-bg: #eef2ff;
+  --color-btn-hover-border: #a5b4fc;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #4f46e5;
+  --color-btn-primary-border: #4338ca;
+  --color-btn-primary-hover-bg: #4338ca;
+  --color-btn-primary-hover-border: #3730a3;
+  --color-input-bg: #ffffff;
+  --color-input-border: #e2e8f0;
+  --color-timeline-badge-bg: #fafafa;
+  --color-social-reaction-bg-hover: #eef2ff;
+  --color-social-reaction-bg-reacted-hover: #e0e7ff;
+  --color-gist-header-bg: #fafafa;
+  --color-gist-header-border: #e2e8f0;
+}
+html, body { background: transparent; }
+.gsc-main { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background: transparent; }

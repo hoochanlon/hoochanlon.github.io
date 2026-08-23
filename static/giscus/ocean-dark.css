@@ -1,0 +1,48 @@
+/*! Giscus Ocean dark theme — generated from assets/css/schemes/ocean.css */
+:root {
+  color-scheme: dark;
+  --color-fg-default: #f1f5f9;
+  --color-fg-muted: #94a3b8;
+  --color-fg-subtle: #64748b;
+  --color-canvas-default: #1e293b;
+  --color-canvas-overlay: #0f172a;
+  --color-canvas-inset: #020617;
+  --color-canvas-subtle: #334155;
+  --color-bg-canvas: #1e293b;
+  --color-bg-primary: #1e293b;
+  --color-bg-secondary: #334155;
+  --color-bg-tertiary: #475569;
+  --color-border-default: #475569;
+  --color-border-muted: #334155;
+  --color-neutral-muted: rgba(96, 165, 250, 0.16);
+  --color-accent-fg: #93c5fd;
+  --color-accent-emphasis: #60a5fa;
+  --color-accent-muted: rgba(96, 165, 250, 0.42);
+  --color-accent-subtle: rgba(59, 130, 246, 0.16);
+  --color-success-fg: #67e8f9;
+  --color-attention-fg: #93c5fd;
+  --color-danger-fg: #bfdbfe;
+  --color-primer-shadow-inset: rgba(0, 0, 0, 0.3);
+  --color-btn-text: #f1f5f9;
+  --color-btn-bg: #334155;
+  --color-btn-border: #475569;
+  --color-btn-hover-bg: #475569;
+  --color-btn-hover-border: #60a5fa;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #2563eb;
+  --color-btn-primary-border: #3b82f6;
+  --color-btn-primary-hover-bg: #3b82f6;
+  --color-btn-primary-hover-border: #60a5fa;
+  --color-input-bg: #0f172a;
+  --color-input-border: #475569;
+  --color-timeline-badge-bg: #334155;
+  --color-social-reaction-bg-hover: rgba(96, 165, 250, 0.16);
+  --color-social-reaction-bg-reacted-hover: rgba(96, 165, 250, 0.24);
+  --color-gist-header-bg: #334155;
+  --color-gist-header-border: #475569;
+}
+html, body { background-color: var(--color-bg-canvas); }
+.gsc-main { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.gsc-comment-box, .gsc-comment { border-color: var(--color-border-muted); }
+.gsc-reactions-count, .gsc-reply-count { color: var(--color-accent-fg); }
+.gsc-reactions, .gsc-comments { background-color: var(--color-bg-canvas); }

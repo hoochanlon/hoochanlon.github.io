@@ -1,0 +1,38 @@
+/* 配色切换器尺寸隔离
+ *
+ * 数据流：layouts/_partials/footer.html -> [data-palette-switcher]
+ * 问题来源：Sakura / LaTeX 阅读主题会重写 footer 内部 button/span/div 的行高，
+ * 导致配色方案选项框比 Congo 默认主题更高。
+ * 作用域：只锁定配色切换器，不影响页脚其它文字。
+ */
+
+[data-palette-switcher],
+[data-palette-switcher] :where(div, p, button, span, svg) {
+  font-family: var(--reading-font-ui, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+  box-sizing: border-box;
+}
+
+.palette-switcher__option {
+  height: 2.42rem !important;
+  min-height: 0 !important;
+  padding-block: 0.48rem !important;
+}
+
+.palette-switcher__reset {
+  height: 2.25rem !important;
+  padding-block: 0.42rem !important;
+}
+
+.palette-switcher__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.palette-switcher__swatch {
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+}
