@@ -12,26 +12,57 @@
       </div>
     </section>
   {{ end }}
-  {{/* 先词条列表（找文主路径），统计图放底部 */}}
-  <section class="taxonomy-terms flex flex-wrap items-start overflow-visible">
-    {{ range .Data.Terms }}
-      <article class="taxonomy-terms__item my-3 px-2">
-        <h2 class="taxonomy-terms__heading flex items-center whitespace-nowrap">
-          <a
-            class="taxonomy-terms__link text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-            href="{{ .Page.RelPermalink }}"
-            >{{ .Page.Title }}</a
-          >
-          {{ if $.Site.Params.taxonomy.showTermCount | default true }}
-            <span class="px-2 text-base text-primary-500">&middot;</span>
-            <span class="text-base text-neutral-400">
-              {{ .Count }}
-            </span>
+  {{/* 标签页：高频标签先导览，全部标签再索引；其它 taxonomy 保持原来的流式列表 */}}
+  {{ if eq .Data.Plural "tags" }}
+    <section class="taxonomy-tags" aria-label="标签索引">
+      <div class="taxonomy-tags__featured">
+        <h2 class="taxonomy-tags__section-title">高频标签</h2>
+        <div class="taxonomy-tags__featured-grid">
+          {{ range first 20 .Data.Terms.ByCount }}
+            <a class="taxonomy-tags__featured-card" href="{{ .Page.RelPermalink }}">
+              <span class="taxonomy-tags__featured-name">{{ .Page.Title }}</span>
+              {{ if $.Site.Params.taxonomy.showTermCount | default true }}
+                <span class="taxonomy-tags__featured-count">{{ .Count }}</span>
+              {{ end }}
+            </a>
           {{ end }}
-        </h2>
-      </article>
-    {{ end }}
-  </section>
+        </div>
+      </div>
+      <div class="taxonomy-tags__all">
+        <h2 class="taxonomy-tags__section-title">全部标签</h2>
+        <div class="taxonomy-tags__grid">
+          {{ range .Data.Terms.Alphabetical }}
+            <a class="taxonomy-tags__item" href="{{ .Page.RelPermalink }}">
+              <span class="taxonomy-tags__name">{{ .Page.Title }}</span>
+              {{ if $.Site.Params.taxonomy.showTermCount | default true }}
+                <span class="taxonomy-tags__count">{{ .Count }}</span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ else }}
+    <section class="taxonomy-terms flex flex-wrap items-start overflow-visible">
+      {{ range .Data.Terms }}
+        <article class="taxonomy-terms__item my-3 px-2">
+          <h2 class="taxonomy-terms__heading flex items-center whitespace-nowrap">
+            <a
+              class="taxonomy-terms__link text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
+              href="{{ .Page.RelPermalink }}"
+              >{{ .Page.Title }}</a
+            >
+            {{ if $.Site.Params.taxonomy.showTermCount | default true }}
+              <span class="px-2 text-base text-primary-500">&middot;</span>
+              <span class="text-base text-neutral-400">
+                {{ .Count }}
+              </span>
+            {{ end }}
+          </h2>
+        </article>
+      {{ end }}
+    </section>
+  {{ end }}
   {{ if .Site.Params.taxonomy.showChart | default true }}
     {{ partial "taxonomy-chart.html" . }}
   {{ end }}

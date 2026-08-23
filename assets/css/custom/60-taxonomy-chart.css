@@ -1,4 +1,179 @@
-/* taxonomy 词条列表：按内容宽度排布，标题保持单行 */
+/* 标签总览页：高频标签负责导览，全部标签负责查找 */
+.taxonomy-tags {
+  margin-top: 1.5rem;
+}
+
+.taxonomy-tags__featured,
+.taxonomy-tags__all {
+  margin-top: 2rem;
+}
+
+.taxonomy-tags__featured:first-child {
+  margin-top: 1rem;
+}
+
+.taxonomy-tags__section-title {
+  margin: 0 0 0.85rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: rgb(var(--color-neutral-700));
+}
+
+.dark .taxonomy-tags__section-title {
+  color: rgb(var(--color-neutral-300));
+}
+
+.taxonomy-tags__featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.taxonomy-tags__featured-card {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.38rem;
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgb(var(--color-primary-200));
+  border-radius: 1rem;
+  background: color-mix(in srgb, rgb(var(--color-primary-50)) 74%, rgb(var(--color-neutral)));
+  color: rgb(var(--color-primary-700));
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgb(var(--color-neutral-900) / 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.taxonomy-tags__featured-card:hover {
+  transform: translateY(-1px);
+  border-color: rgb(var(--color-primary-400));
+  background: rgb(var(--color-primary-100));
+  box-shadow: 0 14px 32px rgb(var(--color-neutral-900) / 0.1);
+}
+
+.taxonomy-tags__featured-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.taxonomy-tags__featured-count {
+  flex: 0 0 auto;
+  color: rgb(var(--color-primary-500));
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.taxonomy-tags__featured-count::before {
+  content: "·";
+  margin-inline-end: 0.22rem;
+  color: rgb(var(--color-primary-400));
+}
+
+.taxonomy-tags__all {
+  padding-top: 1.5rem;
+  border-top: 1px dotted color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.taxonomy-tags__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 1.25rem;
+  row-gap: 0.45rem;
+}
+
+.taxonomy-tags__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28rem;
+  min-width: 0;
+  padding: 0.28rem 0;
+  color: rgb(var(--color-primary-700));
+  text-decoration: none;
+}
+
+.taxonomy-tags__item:hover .taxonomy-tags__name {
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--color-primary-400));
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.taxonomy-tags__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.taxonomy-tags__count {
+  color: rgb(var(--color-neutral-400));
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.taxonomy-tags__count::before {
+  content: "·";
+  margin-inline-end: 0.32rem;
+  color: rgb(var(--color-primary-400));
+}
+
+.dark .taxonomy-tags__featured-card {
+  border-color: rgb(var(--color-primary-700));
+  background: color-mix(in srgb, rgb(var(--color-primary-900)) 34%, rgb(var(--color-neutral-800)));
+  color: rgb(var(--color-primary-300));
+  box-shadow: 0 14px 32px rgb(0 0 0 / 0.22);
+}
+
+.dark .taxonomy-tags__featured-card:hover {
+  border-color: rgb(var(--color-primary-500));
+  background: color-mix(in srgb, rgb(var(--color-primary-900)) 46%, rgb(var(--color-neutral-800)));
+}
+
+.dark .taxonomy-tags__featured-count {
+  color: rgb(var(--color-primary-300));
+}
+
+.dark .taxonomy-tags__item {
+  color: rgb(var(--color-primary-300));
+}
+
+.dark .taxonomy-tags__count {
+  color: rgb(var(--color-neutral-500));
+}
+
+@media (max-width: 1024px) {
+  .taxonomy-tags__featured-grid,
+  .taxonomy-tags__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .taxonomy-tags__featured-grid,
+  .taxonomy-tags__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .taxonomy-tags__featured-grid,
+  .taxonomy-tags__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .taxonomy-tags__featured-card {
+    padding: 0.75rem 0.85rem;
+  }
+}
+
 .taxonomy-terms {
   margin-inline: -0.5rem;
 }
