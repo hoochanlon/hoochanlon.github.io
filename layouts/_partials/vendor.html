@@ -14,7 +14,7 @@
 {{ end }}
 {{/* Chart */}}
 {{ if .Page.HasShortcode "chart" }}
-  {{ $chartLib := resources.Get "lib/chart/chart.umd.js" }}
+  {{ $chartLib := resources.Get "lib/chart/chart.umd.min.js" }}
   {{ $chartConfig := resources.Get "js/chart.js" }}
   {{ $chartConfig := $chartConfig | resources.Minify }}
   {{ $chartJS := slice $chartLib $chartConfig | resources.Concat "js/chart.bundle.js" | resources.Fingerprint $algorithm }}

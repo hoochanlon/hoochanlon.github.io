@@ -31,7 +31,7 @@
 {{/* 分类/标签总览：加载 Congo 自带 Chart.js（taxonomy 页无 chart shortcode） */}}
 {{ if and (eq .Kind "taxonomy") (.Site.Params.taxonomy.showChart | default true) }}
   {{ $algorithm := .Site.Params.fingerprintAlgorithm | default "sha256" }}
-  {{ $chartLib := resources.Get "lib/chart/chart.umd.js" }}
+  {{ $chartLib := resources.Get "lib/chart/chart.umd.min.js" }}
   {{ $chartConfig := resources.Get "js/chart.js" }}
   {{ if and $chartLib $chartConfig }}
     {{ $chartConfig = $chartConfig | resources.Minify }}

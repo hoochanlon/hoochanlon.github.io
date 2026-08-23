@@ -64,17 +64,14 @@
           </p>
         {{ end }}
         <div class="taxonomy-chart__canvas-wrap">
-          {{ if eq $chartType "sunburst" }}
-            <div id="{{ $canvasId }}" class="taxonomy-chart__sunburst" aria-label="{{ $heading }}" role="img"></div>
-          {{ else }}
-            <canvas id="{{ $canvasId }}" aria-label="{{ $heading }}" role="img"></canvas>
-          {{ end }}
+          <canvas id="{{ $canvasId }}" aria-label="{{ $heading }}" role="img"></canvas>
         </div>
       </div>
     </section>
 
     <script type="text/javascript">
-      window.addEventListener("DOMContentLoaded", () => {
+      // 等待 Chart.js 加载完成后初始化图表
+      const initChart = () => {
         const chartNode = document.getElementById({{ $canvasId | jsonify | safeJS }});
         if (!chartNode) return;
 
@@ -87,7 +84,6 @@
         const isDoughnut = chartType === "doughnut";
         const isScatter = chartType === "scatter";
         const isPareto = chartType === "pareto";
-        const isSunburst = chartType === "sunburst";
         const totalCount = counts.reduce((sum, n) => sum + n, 0);
         let runningCount = 0;
         const cumulativePercentages = counts.map((n) => {
@@ -119,102 +115,6 @@
         const grid = cssVar("--color-neutral-200", "#e5e5e5");
 
         const wrap = chartNode.parentElement;
-        if (isSunburst) {
-          wrap.style.height = "360px";
-
-          const ns = "http://www.w3.org/2000/svg";
-          const size = 360;
-          const center = size / 2;
-          const innerRadius = 58;
-          const outerRadius = 150;
-          const labelRadius = 118;
-          const toRadians = (degrees) => ((degrees - 90) * Math.PI) / 180;
-          const point = (radius, degrees) => ({
-            x: center + radius * Math.cos(toRadians(degrees)),
-            y: center + radius * Math.sin(toRadians(degrees)),
-          });
-          const arcPath = (start, end) => {
-            const outerStart = point(outerRadius, start);
-            const outerEnd = point(outerRadius, end);
-            const innerEnd = point(innerRadius, end);
-            const innerStart = point(innerRadius, start);
-            const largeArc = end - start > 180 ? 1 : 0;
-            return [
-              "M", outerStart.x, outerStart.y,
-              "A", outerRadius, outerRadius, 0, largeArc, 1, outerEnd.x, outerEnd.y,
-              "L", innerEnd.x, innerEnd.y,
-              "A", innerRadius, innerRadius, 0, largeArc, 0, innerStart.x, innerStart.y,
-              "Z",
-            ].join(" ");
-          };
-          const svgEl = (name, attrs = {}, text = "") => {
-            const node = document.createElementNS(ns, name);
-            Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
-            if (text) node.textContent = text;
-            return node;
-          };
-
-          const svg = svgEl("svg", {
-            viewBox: "0 0 " + size + " " + size,
-            role: "img",
-            "aria-label": "分类旭日图",
-          });
-          let angle = 0;
-          counts.forEach((count, i) => {
-            const start = angle;
-            const end = angle + (count / totalCount) * 360;
-            const middle = (start + end) / 2;
-            const segment = svgEl("path", {
-              d: arcPath(start, end),
-              fill: colors[i],
-              stroke: cssVar("--color-neutral-50", "#fafafa"),
-              "stroke-width": "2",
-              tabindex: "0",
-            });
-            segment.appendChild(svgEl("title", {}, labels[i] + "：" + count + " 篇"));
-            svg.appendChild(segment);
-
-            if (end - start >= 18) {
-              const labelPoint = point(labelRadius, middle);
-              const label = svgEl("text", {
-                x: labelPoint.x,
-                y: labelPoint.y,
-                "text-anchor": "middle",
-                "dominant-baseline": "middle",
-                fill: tick,
-                "font-size": "12",
-              }, labels[i]);
-              svg.appendChild(label);
-            }
-            angle = end;
-          });
-          svg.appendChild(svgEl("circle", {
-            cx: center,
-            cy: center,
-            r: innerRadius - 8,
-            fill: cssVar("--color-neutral-50", "#fafafa"),
-            stroke: grid,
-            "stroke-width": "1",
-          }));
-          svg.appendChild(svgEl("text", {
-            x: center,
-            y: center - 6,
-            "text-anchor": "middle",
-            fill: cssVar("--color-neutral-700", "#404040"),
-            "font-size": "15",
-            "font-weight": "700",
-          }, "分类"));
-          svg.appendChild(svgEl("text", {
-            x: center,
-            y: center + 14,
-            "text-anchor": "middle",
-            fill: tick,
-            "font-size": "12",
-          }, totalCount + " 篇"));
-          chartNode.replaceChildren(svg);
-          return;
-        }
-
         if (typeof Chart === "undefined") return;
 
         if (isPareto) {
@@ -301,6 +201,20 @@
             indexAxis,
             responsive: true,
             maintainAspectRatio: false,
+            // 动画配置：easeOutQuart 缓动更流畅自然
+            animation: {
+              duration: 400,
+              easing: 'easeOutQuart',
+              animateRotate: true,
+              animateScale: false,
+            },
+            // 性能优化：减少重绘开销
+            interaction: {
+              mode: 'nearest',
+              intersect: true,
+            },
+            // 启用硬件加速提示
+            devicePixelRatio: window.devicePixelRatio || 1,
             cutout: isDoughnut ? "62%" : undefined,
             layout: { padding: isPie ? 8 : 4 },
             plugins: {
@@ -417,7 +331,26 @@
                 },
           },
         });
-      });
+      };
+
+      // 检测 Chart.js 加载完成（兼容 defer 加载）
+      if (typeof Chart !== 'undefined') {
+        initChart();
+      } else {
+        // 轮询检测，最多等待 3 秒
+        let attempts = 0;
+        const maxAttempts = 30;
+        const checkChart = setInterval(() => {
+          attempts++;
+          if (typeof Chart !== 'undefined') {
+            clearInterval(checkChart);
+            initChart();
+          } else if (attempts >= maxAttempts) {
+            clearInterval(checkChart);
+            console.warn('Chart.js 加载超时');
+          }
+        }, 100);
+      }
     </script>
   {{ end }}
 {{ end }}
