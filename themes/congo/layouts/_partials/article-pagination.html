@@ -22,11 +22,6 @@
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
                   >{{ $prev.Title | emojify }}</span
                 >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  {{ if .Params.showDate | default (.Site.Params.article.showDate | default true) }}
-                    {{ partial "meta/date.html" $prev.Date }}
-                  {{ end }}
-                </span>
               </span>
             </a>
           {{ end }}
@@ -39,11 +34,6 @@
                   class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
                   >{{ $next.Title | emojify }}</span
                 >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  {{ if .Params.showDate | default (.Site.Params.article.showDate | default true) }}
-                    {{ partial "meta/date.html" $next.Date }}
-                  {{ end }}
-                </span>
               </span>
               <span
                 class="ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[-2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
