@@ -48,11 +48,11 @@ pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 | 点         | 说明                                          |
 | :--------- | :-------------------------------------------- |
 | 站点本质   | 内容站，不是长期维护的 npm 应用               |
-| 噪音来源   | 主要是 `themes/congo` 的主题开发依赖          |
+| 噪音来源   | 主要是根目录 `sharp` 等少量构建工具依赖       |
 | 收益有限   | 合这些 PR 几乎不提升站点安全，还可能弄乱主题  |
-| 真正该管的 | Hugo 版本、主题大版本、根目录 `sharp`（偶尔） |
+| 真正该管的 | Hugo 版本、根目录 `sharp`（偶尔）             |
 
-主题 `themes/congo` 自带 npm 清单时，Dependabot 容易对主题依赖刷 PR，一般**不要合并**（跟上游主题即可）。
+主题运行文件已内联到根目录；Dependabot 只需关注根目录依赖。
 
 少 PR：仓库 **Settings → Code security / Advanced Security → Dependabot**  
 

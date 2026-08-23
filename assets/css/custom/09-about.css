@@ -1,0 +1,24 @@
+/* 关于页正文签名体
+ *
+ * 数据流：content/about.md -> layouts/single.html -> .page-about
+ * 作用域：只影响关于页正文；标题仍由 titleStyle: script 控制。
+ */
+
+.page-about .prose > .max-w-prose {
+  text-align: center;
+}
+
+.page-about .prose > .max-w-prose :where(p) {
+  margin-block: 0.95rem;
+  color: rgb(var(--color-neutral-700));
+  font-family: "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
+  font-size: clamp(1.65rem, 2.45vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: 0.075em;
+  text-wrap: balance;
+}
+
+.dark .page-about .prose > .max-w-prose :where(p) {
+  color: rgb(var(--color-neutral-200));
+}

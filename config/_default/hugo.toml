@@ -3,7 +3,6 @@
 # https://jpanther.github.io/congo/docs/getting-started/
 # 稳定主域名（自定义域会过期）；资源用 RelPermalink 根相对路径，双域名访问也不挂样式
 baseURL = "https://hoochanlon.github.io/"
-theme = "congo"
 defaultContentLanguage = "zh-cn"
 
 enableRobotsTXT = true

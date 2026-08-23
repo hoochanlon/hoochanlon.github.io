@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # 主题 congo 已 vendoring 进 themes/congo，无需 submodule
+          # 主题运行文件已内联到根目录，无需 submodule
           fetch-depth: 0
 
       - name: Setup Hugo
