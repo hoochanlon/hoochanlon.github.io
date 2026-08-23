@@ -113,6 +113,9 @@
         const colors = labels.map((_, i) => palette[i % palette.length]);
         const tick = cssVar("--color-neutral-500", "#737373");
         const grid = cssVar("--color-neutral-200", "#e5e5e5");
+        const centerTextColor = cssVar("--color-neutral-700", "#404040");
+        const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+        const chartAnimationDuration = prefersReducedMotion ? 0 : 250;
 
         const wrap = chartNode.parentElement;
         if (typeof Chart === "undefined") return;
@@ -140,7 +143,7 @@
             ctx.save();
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillStyle = cssVar("--color-neutral-700", "#404040");
+            ctx.fillStyle = centerTextColor;
             ctx.font = "700 15px system-ui, sans-serif";
             ctx.fillText("分类", centerX, centerY - 8);
             ctx.fillStyle = tick;
@@ -201,11 +204,11 @@
             indexAxis,
             responsive: true,
             maintainAspectRatio: false,
-            // 动画配置：easeOutQuart 缓动更流畅自然
+            // 动画配置：缩短入场时间，避免普通浏览器 Profile 下被扩展/状态放大成卡顿
             animation: {
-              duration: 400,
+              duration: chartAnimationDuration,
               easing: 'easeOutQuart',
-              animateRotate: true,
+              animateRotate: !prefersReducedMotion,
               animateScale: false,
             },
             // 性能优化：减少重绘开销

@@ -3,7 +3,7 @@ title: "论寒门出贵子"
 date: 2026-07-13T11:20:02+0800
 draft: false
 slug: "20260713112002"
-categories: ["阶级视域下的教育属性与阶层再生产研究"]
+categories: ["社会教育研究"]
 tags: ["结构性固化", "机会性流动"]
 featured: true
 featuredWeight: 80

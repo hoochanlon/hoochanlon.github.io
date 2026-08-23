@@ -13,9 +13,10 @@ Chart.defaults.elements.arc.backgroundColor = css("--color-primary-200");
 Chart.defaults.elements.arc.borderColor = css("--color-primary-500");
 Chart.defaults.elements.arc.borderWidth = 1;
 
-// 动画配置：easeOutQuart 缓动更流畅，400ms 响应更快
-Chart.defaults.animation.duration = 400;
+// 动画配置：缩短入场时间，降低普通浏览器 Profile 下的主线程压力
+const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+Chart.defaults.animation.duration = prefersReducedMotion ? 0 : 250;
 Chart.defaults.animation.easing = 'easeOutQuart';
 // 饼图优化：只启用旋转，禁用缩放
-Chart.defaults.datasets.doughnut.animation.animateRotate = true;
+Chart.defaults.datasets.doughnut.animation.animateRotate = !prefersReducedMotion;
 Chart.defaults.datasets.doughnut.animation.animateScale = false;

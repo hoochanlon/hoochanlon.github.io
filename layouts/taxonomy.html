@@ -19,7 +19,7 @@
         <h2 class="taxonomy-terms__heading flex items-center whitespace-nowrap">
           <a
             class="taxonomy-terms__link text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-            href="{{ .Page.Permalink }}"
+            href="{{ .Page.RelPermalink }}"
             >{{ .Page.Title }}</a
           >
           {{ if $.Site.Params.taxonomy.showTermCount | default true }}
