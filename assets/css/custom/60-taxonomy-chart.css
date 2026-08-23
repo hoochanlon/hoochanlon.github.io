@@ -31,14 +31,15 @@
 }
 
 .taxonomy-tags__featured-card {
-  display: inline-flex;
-  align-items: baseline;
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.38rem;
   min-width: 0;
+  min-height: 3.35rem;
   padding: 0.85rem 1rem;
   border: 1px solid rgb(var(--color-primary-200));
-  border-radius: 1rem;
+  border-radius: 0.85rem;
   background: color-mix(in srgb, rgb(var(--color-primary-50)) 74%, rgb(var(--color-neutral)));
   color: rgb(var(--color-primary-700));
   text-decoration: none;
@@ -51,6 +52,23 @@
   border-color: rgb(var(--color-primary-400));
   background: rgb(var(--color-primary-100));
   box-shadow: 0 14px 32px rgb(var(--color-neutral-900) / 0.1);
+}
+
+.taxonomy-tags__featured-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: rgb(var(--color-primary-500));
+}
+
+.taxonomy-tags__featured-icon .icon {
+  padding-inline: 0;
+}
+
+.taxonomy-tags__featured-icon svg {
+  width: 0.82rem;
+  height: 0.82rem;
 }
 
 .taxonomy-tags__featured-name {
@@ -137,6 +155,7 @@
   background: color-mix(in srgb, rgb(var(--color-primary-900)) 46%, rgb(var(--color-neutral-800)));
 }
 
+.dark .taxonomy-tags__featured-icon,
 .dark .taxonomy-tags__featured-count {
   color: rgb(var(--color-primary-300));
 }
@@ -171,6 +190,126 @@
 
   .taxonomy-tags__featured-card {
     padding: 0.75rem 0.85rem;
+  }
+}
+
+.taxonomy-categories {
+  margin-top: 1.25rem;
+}
+
+.taxonomy-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.taxonomy-categories__card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  min-width: 0;
+  min-height: 4.6rem;
+  padding: 0.9rem 0.95rem;
+  border-inline-start: 3px solid rgb(var(--color-primary-300));
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, rgb(var(--color-primary-50)) 44%, rgb(var(--color-neutral)));
+  color: rgb(var(--color-primary-700));
+  text-decoration: none;
+  transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.taxonomy-categories__card:hover {
+  transform: translateY(-1px);
+  border-inline-start-color: rgb(var(--color-primary-500));
+  background: color-mix(in srgb, rgb(var(--color-primary-100)) 72%, rgb(var(--color-neutral)));
+}
+
+.taxonomy-categories__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: 0.05rem;
+  border-radius: 9999px;
+  background: rgb(var(--color-primary-100));
+  color: rgb(var(--color-primary-600));
+}
+
+.taxonomy-categories__icon .icon {
+  padding-inline: 0;
+}
+
+.taxonomy-categories__icon svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.taxonomy-categories__body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.taxonomy-categories__name {
+  min-width: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.taxonomy-categories__count {
+  flex: 0 0 auto;
+  align-self: start;
+  padding-top: 0.08rem;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dark .taxonomy-categories__card {
+  border-inline-start-color: rgb(var(--color-primary-600));
+  background: color-mix(in srgb, rgb(var(--color-primary-900)) 24%, rgb(var(--color-neutral-800)));
+  color: rgb(var(--color-primary-300));
+}
+
+.dark .taxonomy-categories__card:hover {
+  border-inline-start-color: rgb(var(--color-primary-400));
+  background: color-mix(in srgb, rgb(var(--color-primary-900)) 38%, rgb(var(--color-neutral-800)));
+}
+
+.dark .taxonomy-categories__icon {
+  background: rgb(var(--color-primary-900));
+  color: rgb(var(--color-primary-300));
+}
+
+.dark .taxonomy-categories__count {
+  color: rgb(var(--color-neutral-400));
+}
+
+@media (max-width: 1024px) {
+  .taxonomy-categories__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .taxonomy-categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .taxonomy-categories__grid {
+    grid-template-columns: 1fr;
   }
 }
 

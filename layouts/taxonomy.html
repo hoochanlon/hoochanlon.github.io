@@ -20,6 +20,7 @@
         <div class="taxonomy-tags__featured-grid">
           {{ range first 20 .Data.Terms.ByCount }}
             <a class="taxonomy-tags__featured-card" href="{{ .Page.RelPermalink }}">
+              <span class="taxonomy-tags__featured-icon" aria-hidden="true">{{ partial "icon.html" "tags" }}</span>
               <span class="taxonomy-tags__featured-name">{{ .Page.Title }}</span>
               {{ if $.Site.Params.taxonomy.showTermCount | default true }}
                 <span class="taxonomy-tags__featured-count">{{ .Count }}</span>
@@ -40,6 +41,22 @@
             </a>
           {{ end }}
         </div>
+      </div>
+    </section>
+  {{ else if eq .Data.Plural "categories" }}
+    <section class="taxonomy-categories" aria-label="分类导航">
+      <div class="taxonomy-categories__grid">
+        {{ range .Data.Terms.ByCount }}
+          <a class="taxonomy-categories__card" href="{{ .Page.RelPermalink }}">
+            <span class="taxonomy-categories__icon" aria-hidden="true">{{ partial "icon.html" "categories" }}</span>
+            <span class="taxonomy-categories__body">
+              <span class="taxonomy-categories__name">{{ .Page.Title }}</span>
+              {{ if $.Site.Params.taxonomy.showTermCount | default true }}
+                <span class="taxonomy-categories__count">{{ .Count }} 篇文章</span>
+              {{ end }}
+            </span>
+          </a>
+        {{ end }}
       </div>
     </section>
   {{ else }}
