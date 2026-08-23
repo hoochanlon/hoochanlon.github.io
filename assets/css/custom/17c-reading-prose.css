@@ -59,7 +59,9 @@
 
 .toc,
 .toc a {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", serif;
+  font-family: var(--reading-font-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: var(--reading-numeric-feature);
 }
 
 :where(.toc, h1, h2, h3, h4) .sc-keep {

@@ -34,7 +34,7 @@
   padding-bottom: 0.42rem;
   border-bottom: 1px solid color-mix(in srgb, var(--sc-accent) 24%, white 76%);
   color: var(--sc-accent);
-  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-family: var(--reading-font-ui);
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -44,7 +44,7 @@
 :is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__body {
   margin-top: 0.55rem;
   color: var(--sc-body);
-  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-serif);
   line-height: 1.8;
 }
 

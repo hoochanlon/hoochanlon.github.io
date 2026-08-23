@@ -13,6 +13,7 @@
     --toc-gap: calc(var(--toc-gap-base) * var(--reading-scale));
     --cover-width: var(--prose-width);
     --toc-padding-end: calc(var(--toc-padding-end-base) * var(--reading-scale));
+    --article-body-width: var(--prose-width);
   }
 
   /* LaTeX 特殊背景保持独立 */
@@ -50,11 +51,7 @@
 
   /* 所有主题统一布局：文章头部 */
   html[data-palette] article > header.max-w-prose {
-    max-width: min(100%, var(--prose-width));
-  }
-
-  html[data-palette] article.article--has-toc > header.max-w-prose {
-    max-width: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
+    max-width: min(100%, var(--article-body-width));
   }
 
   html[data-palette] article > header.max-w-prose > .prose {
@@ -73,14 +70,14 @@
   }
 
   html[data-palette] article > footer.max-w-prose {
-    width: min(100%, var(--reading-measure));
-    max-width: min(100%, var(--reading-measure));
+    width: min(100%, var(--article-body-width));
+    max-width: min(100%, var(--article-body-width));
     margin-inline: 0;
   }
 
   html[data-palette] article > footer.max-w-prose > :is(.article-pagination, .article-comments) {
-    width: min(100%, var(--reading-measure));
-    max-width: min(100%, var(--reading-measure));
+    width: 100%;
+    max-width: 100%;
     margin-inline: 0;
   }
 
@@ -91,14 +88,26 @@
   }
 
   html[data-palette] article > section.prose > .max-w-prose {
-    width: min(100%, var(--prose-width));
-    max-width: min(100%, var(--prose-width));
+    width: min(100%, var(--article-body-width));
+    max-width: min(100%, var(--article-body-width));
   }
 
   html[data-palette] article > section.prose > .max-w-prose {
-    flex: 1 1 var(--prose-width);
-    flex-basis: var(--prose-width);
+    flex: 1 1 var(--article-body-width);
+    flex-basis: var(--article-body-width);
     min-width: 0;
+  }
+
+  html[data-palette] article.article--has-toc > header.max-w-prose,
+  html[data-palette] article.article--has-toc > footer.max-w-prose,
+  html[data-palette] article.article--has-toc > section.prose > .max-w-prose {
+    width: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
+    max-width: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
+  }
+
+  html[data-palette] article.article--has-toc > section.prose > .max-w-prose {
+    flex: 1 1 min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
+    flex-basis: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
   }
 
   html[data-palette] article > section.prose > .order-first.lg\:order-last {

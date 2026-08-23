@@ -21,30 +21,30 @@ html[data-palette="sakura"] .prose :where(p, li, blockquote) {
 
 html[data-palette="latex"] article > header.max-w-prose > :is(.page-title-kicker, div),
 html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicker, div) {
-  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
-  font-variant-numeric: lining-nums proportional-nums;
-  font-feature-settings: "lnum" 1, "pnum" 1;
+  font-family: var(--reading-font-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: var(--reading-numeric-feature);
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) footer.py-10 :where(p, a, span, li, nav, button, div) {
-  font-family: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-family: var(--reading-font-ui);
   letter-spacing: normal;
   line-height: 1.6;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > h1:not(.page-title-script) {
   color: rgb(var(--color-neutral-900));
-  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-heading);
   font-weight: 600;
   letter-spacing: 0.005em;
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > .page-title-kicker,
 :is(html[data-palette="sakura"], html[data-palette="latex"]) article > header.max-w-prose > div {
-  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
-  font-variant-numeric: lining-nums proportional-nums;
-  font-feature-settings: "lnum" 1, "pnum" 1;
+  font-family: var(--reading-font-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: var(--reading-numeric-feature);
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]).dark article > header.max-w-prose > h1:not(.page-title-script) {
@@ -53,7 +53,7 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]) :where(body > header, #main-content, #search-wrapper) :where(h1, h2, h3, h4):not(.author-name):not(.page-title-script) {
   color: rgb(var(--color-neutral-900));
-  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-heading);
   font-weight: 600;
   letter-spacing: 0.005em;
 }
@@ -106,7 +106,7 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
   padding-bottom: 0.55rem;
   border-bottom: 1px solid rgb(var(--color-primary-200));
   color: rgb(var(--color-primary-600));
-  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-heading);
   font-size: clamp(1.45rem, 2vw, 1.85rem);
   word-break: break-word;
   overflow-wrap: break-word;
@@ -116,7 +116,7 @@ html[data-palette="sakura"] article > header.max-w-prose > :is(.page-title-kicke
   margin-top: 2rem;
   margin-bottom: 0.7rem;
   color: rgb(var(--color-primary-700));
-  font-family: "Latin Modern Roman", "Computer Modern", "CMU Serif", "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-heading);
   font-size: 1.12rem;
   font-weight: 600;
   letter-spacing: 0.01em;

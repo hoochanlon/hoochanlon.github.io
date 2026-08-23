@@ -20,18 +20,28 @@ html[data-palette="latex"] body {
   background-image: none;
 }
 
-html[data-palette="latex"] .article-meta .article-meta__value.sc-num,
-html[data-palette="latex"] .article-meta .article-meta__value.sc-num *,
-html[data-palette="sakura"] .article-meta .article-meta__value.sc-num,
-html[data-palette="sakura"] .article-meta .article-meta__value.sc-num *,
-html[data-palette="sakura"] .toc,
-html[data-palette="sakura"] .toc * {
-  font-family: "STIX Two Text", "Times New Roman", serif;
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
+html[data-palette] {
+  --reading-font-serif: "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  --reading-font-heading: "STIX Two Text", "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  --reading-font-ui: "Avenir Next", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  --reading-numeric-feature: "lnum" 1, "tnum" 1;
 }
 
-html[data-palette="latex"] :where(code, kbd, samp, .katex, .katex-display) {
+html[data-palette] :where(
+  #main-content,
+  #main-content *,
+  body > header,
+  body > header *,
+  #to-top,
+  #search-wrapper,
+  #search-modal,
+  #search-results
+) {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: var(--reading-numeric-feature);
+}
+
+html[data-palette] :where(code, kbd, samp, pre, .katex, .katex-display) {
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: "lnum" 1, "tnum" 1;
 }
@@ -51,7 +61,7 @@ html[data-palette] :where(
   #search-results
 ) {
   color: rgb(var(--color-neutral-800));
-  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  font-family: var(--reading-font-serif);
   line-height: 1.88;
   letter-spacing: 0.004em;
   text-rendering: optimizeLegibility;
