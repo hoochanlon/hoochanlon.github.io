@@ -5,7 +5,11 @@
   {{- $titleStyle := .Params.titleStyle | default "" }}
   {{- $titleSize := .Params.titleSize | default "" }}
   {{- $hasHan := findRE `\p{Han}` .Title }}
-  <article class="{{ if and .File (eq .File.Path "about.md") }}page-about{{ end }}">
+  {{- $hasTOC := and
+    (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false))
+    (in .TableOfContents "<ul")
+  -}}
+  <article class="{{ if and .File (eq .File.Path "about.md") }}page-about{{ end }}{{ if $hasTOC }} article--has-toc{{ end }}">
     <header class="max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
@@ -44,7 +48,7 @@
       {{ end }}
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
-      {{ if and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
+      {{ if $hasTOC }}
         <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
           <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
             {{ partial "toc.html" . }}
