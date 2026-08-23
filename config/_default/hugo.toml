@@ -28,5 +28,7 @@ summaryLength = 0
     privacyEnhanced = true
 
 [services]
+  [services.googleAnalytics]
+    ID = "G-EFEVDFSN55"
   [services.x]
     disableInlineCSS = true

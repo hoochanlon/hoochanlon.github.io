@@ -1,0 +1,25 @@
+/* 首页简介尺寸隔离
+ *
+ * 数据流：content/_index.md -> layouts/_partials/home/profile.html -> .home-intro.prose
+ * 问题来源：Sakura / LaTeX 阅读主题会把 .prose p 统一收敛为正文尺寸，
+ * 但首页简介是签名式展示文案，不应进入正文排版系统。
+ */
+
+.home-intro {
+  max-width: min(42rem, calc(100vw - 2rem));
+}
+
+.home-intro :where(p) {
+  margin: 0 !important;
+  color: rgb(var(--color-neutral-700));
+  font-family: "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive !important;
+  font-size: clamp(1.45rem, 2.2vw, 2.05rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.055em !important;
+  text-wrap: balance;
+}
+
+.dark .home-intro :where(p) {
+  color: rgb(var(--color-neutral-200));
+}
