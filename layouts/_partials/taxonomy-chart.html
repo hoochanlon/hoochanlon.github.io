@@ -100,7 +100,7 @@
           return raw ? "rgb(" + raw + ")" : fallback;
         };
 
-        const palette = [
+        const getPalette = () => [
           cssVar("--color-primary-200", "#93c5fd"),
           cssVar("--color-primary-300", "#60a5fa"),
           cssVar("--color-primary-400", "#3b82f6"),
@@ -110,12 +110,18 @@
           cssVar("--color-neutral-400", "#a3a3a3"),
           cssVar("--color-primary-100", "#dbeafe"),
         ];
-        const colors = labels.map((_, i) => palette[i % palette.length]);
-        const tick = cssVar("--color-neutral-500", "#737373");
-        const grid = cssVar("--color-neutral-200", "#e5e5e5");
-        const centerTextColor = cssVar("--color-neutral-700", "#404040");
+        let palette = getPalette();
+        let colors = labels.map((_, i) => palette[i % palette.length]);
+        let tick = cssVar("--color-neutral-500", "#737373");
+        let grid = cssVar("--color-neutral-200", "#e5e5e5");
+        let centerTextColor = cssVar("--color-neutral-700", "#404040");
         const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
         const chartAnimationDuration = prefersReducedMotion ? 0 : 250;
+        const paretoAnimationDuration = prefersReducedMotion ? 0 : 820;
+        const paretoAnimationDelay = (ctx) => {
+          if (!isPareto || prefersReducedMotion || ctx.type !== "data") return 0;
+          return ctx.datasetIndex === 0 ? ctx.dataIndex * 18 : 420 + ctx.dataIndex * 24;
+        };
 
         const wrap = chartNode.parentElement;
         if (typeof Chart === "undefined") return;
@@ -193,7 +199,7 @@
               },
             ];
 
-        new Chart(chartNode, {
+        const taxonomyChart = new Chart(chartNode, {
           type: isPareto ? "bar" : chartType,
           data: {
             labels,
@@ -206,11 +212,24 @@
             maintainAspectRatio: false,
             // 动画配置：缩短入场时间，避免普通浏览器 Profile 下被扩展/状态放大成卡顿
             animation: {
-              duration: chartAnimationDuration,
+              duration: isPareto ? paretoAnimationDuration : chartAnimationDuration,
+              delay: paretoAnimationDelay,
               easing: 'easeOutQuart',
               animateRotate: !prefersReducedMotion,
               animateScale: false,
             },
+            animations: isPareto
+              ? {
+                  y: {
+                    easing: 'easeOutQuart',
+                    from: (ctx) => {
+                      if (ctx.type !== "data") return undefined;
+                      const scale = ctx.chart.scales[ctx.dataset.yAxisID];
+                      return scale ? scale.getPixelForValue(0) : undefined;
+                    },
+                  },
+                }
+              : {},
             // 性能优化：减少重绘开销
             interaction: {
               mode: 'nearest',
@@ -333,6 +352,49 @@
                   },
                 },
           },
+        });
+
+        const refreshChartPalette = () => {
+          palette = getPalette();
+          colors = labels.map((_, i) => palette[i % palette.length]);
+          tick = cssVar("--color-neutral-500", "#737373");
+          grid = cssVar("--color-neutral-200", "#e5e5e5");
+          centerTextColor = cssVar("--color-neutral-700", "#404040");
+
+          if (isPareto) {
+            const [barDataset, lineDataset] = taxonomyChart.data.datasets;
+            barDataset.backgroundColor = cssVar("--color-primary-300", "#60a5fa");
+            barDataset.borderColor = cssVar("--color-primary-500", "#2563eb");
+            lineDataset.borderColor = cssVar("--color-primary-600", "#1d4ed8");
+            lineDataset.backgroundColor = cssVar("--color-primary-600", "#1d4ed8");
+          } else {
+            const dataset = taxonomyChart.data.datasets[0];
+            dataset.backgroundColor = isPie ? colors : cssVar("--color-primary-300", "#60a5fa");
+            dataset.borderColor = isPie
+              ? colors.map(() => cssVar("--color-primary-500", "#2563eb"))
+              : cssVar("--color-primary-500", "#2563eb");
+          }
+
+          const legend = taxonomyChart.options.plugins?.legend?.labels;
+          if (legend) legend.color = tick;
+
+          Object.values(taxonomyChart.options.scales || {}).forEach((scale) => {
+            if (scale.ticks) scale.ticks.color = tick;
+            if (scale.title) scale.title.color = tick;
+            if (scale.grid) {
+              scale.grid.color = scale.grid.color === "transparent" ? "transparent" : grid;
+            }
+          });
+
+          taxonomyChart.update("none");
+        };
+
+        const chartPaletteObserver = new MutationObserver(() => {
+          requestAnimationFrame(refreshChartPalette);
+        });
+        chartPaletteObserver.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class", "data-palette"],
         });
       };
 
