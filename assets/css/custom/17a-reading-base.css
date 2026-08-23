@@ -73,32 +73,27 @@ html[data-palette].dark :where(
   color: rgb(var(--color-neutral));
 }
 
-/* 所有主题统一：STIX Two Text 字体与数字样式 */
-html[data-palette] :where(
-  body > header,
-  #main-content,
-  #main-content article,
-  #main-content section,
-  #main-content nav,
-  #main-content aside,
-  #main-content .toc,
-  #to-top,
-  #search-wrapper,
-  #search-modal,
-  #search-results
-) {
-  font-family: "STIX Two Text", "Noto Serif SC", "Songti SC", serif;
-  font-variant-numeric: lining-nums proportional-nums;
-  font-feature-settings: "lnum" 1, "pnum" 1;
+
+@media (min-width: 640px) {
+  html[data-palette]:has(#main-content article) body {
+    padding-inline: calc(3.5rem * var(--reading-scale));
+  }
 }
 
-html[data-palette] #main-content > ul.mt-8.flex.flex-row {
-  align-items: center;
-  gap: 0.15rem;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
+@media (min-width: 768px) {
+  html[data-palette]:has(#main-content article) body {
+    padding-inline: calc(6rem * var(--reading-scale));
+  }
 }
+
+@media (min-width: 1024px) {
+  html[data-palette]:has(#main-content article) body {
+    width: min(100%, calc(80rem * var(--reading-scale)));
+    max-width: min(100%, calc(80rem * var(--reading-scale)));
+    padding-inline: calc(8rem * var(--reading-scale));
+  }
+}
+
 
 html[data-palette] #main-content > ul.mt-8.flex.flex-row > li {
   margin-inline: 0;
@@ -114,87 +109,6 @@ html[data-palette] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
   line-height: 1;
 }
 
-@media (min-width: 1024px) {
-  /* 所有主题统一布局变量 */
-  html[data-palette] {
-    --prose-width: 44rem;
-    --toc-width: 23rem;
-    --toc-gap: 1.4rem;
-    --cover-width: var(--prose-width);
-    --toc-padding-end: 0.2rem;
-  }
-
-  /* LaTeX 特殊背景保持独立 */
-  html[data-palette="latex"] {
-    --latex-prose-width: 44rem;
-    --latex-toc-width: 23rem;
-    --latex-toc-gap: 1.4rem;
-    --latex-cover-width: var(--latex-prose-width);
-  }
-
-  html[data-palette="sakura"] {
-    --sakura-prose-width: 44rem;
-    --sakura-toc-width: 23rem;
-    --sakura-toc-gap: 1.4rem;
-    --sakura-cover-width: var(--sakura-prose-width);
-    --sakura-toc-padding-end: 0.2rem;
-  }
-
-  html[data-palette="congo"] {
-    --congo-prose-width: 44rem;
-    --congo-toc-width: 23rem;
-    --congo-toc-gap: 1.4rem;
-    --congo-cover-width: var(--congo-prose-width);
-    --congo-toc-padding-end: 0.2rem;
-  }
-
-  /* 所有主题统一布局：文章头部 */
-  html[data-palette] article > header.max-w-prose {
-    max-width: min(100%, var(--prose-width));
-  }
-
-  html[data-palette] article.article--has-toc > header.max-w-prose {
-    max-width: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
-  }
-
-  html[data-palette] article > header.max-w-prose > .prose {
-    width: 100%;
-    max-width: none;
-    margin-inline: auto;
-  }
-
-  html[data-palette] article > header.max-w-prose > .prose > picture,
-  html[data-palette] article > header.max-w-prose > .prose > img,
-  html[data-palette] article > header.max-w-prose > .prose > picture > img {
-    display: block;
-    width: 100%;
-    max-width: none;
-    margin-inline: auto;
-  }
-
-  html[data-palette] article > footer.max-w-prose,
-  html[data-palette] article > section.prose > .max-w-prose {
-    max-width: min(100%, var(--prose-width));
-  }
-
-  html[data-palette] article > section.prose > .max-w-prose {
-    flex-basis: var(--prose-width);
-  }
-
-  html[data-palette] article > section.prose > .order-first.lg\:order-last {
-    width: var(--toc-width);
-    max-width: var(--toc-width);
-    flex: 0 0 var(--toc-width);
-    padding-inline-start: var(--toc-gap);
-  }
-
-  html[data-palette] article > section.prose > .order-first.lg\:order-last .toc {
-    max-width: 100%;
-    padding-inline-end: var(--toc-padding-end);
-  }
-
-  /* 保留 LaTeX/Sakura 特殊变量的向后兼容 */
-}
 
 /* 文章元信息内联图标：继承文字颜色，自动适配夜间模式 */
 .article-meta__icon {
@@ -228,12 +142,3 @@ html[data-palette] #main-content > ul.mt-8.flex.flex-row > li > :is(a, span) {
   align-items: baseline !important;
 }
 
-/* MacBook 13/14 寸优化：更好地利用屏幕空间 */
-@media (min-width: 1280px) {
-  html[data-palette] {
-    --prose-width: 48rem;
-    --toc-width: 24rem;
-    --toc-gap: 1.6rem;
-    --cover-width: var(--prose-width);
-  }
-}

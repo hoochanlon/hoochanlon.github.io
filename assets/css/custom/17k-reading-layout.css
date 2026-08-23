@@ -1,0 +1,106 @@
+/* 阅读页面布局：正文版心、目录、头图与页脚的统一约束 */
+@media (min-width: 1024px) {
+  /* 所有主题统一布局变量：保持同一比例系数，避免局部拉宽 */
+  html[data-palette] {
+    --reading-scale: 1.06;
+    --prose-width-base: 50rem;
+    --toc-width-base: 23rem;
+    --toc-gap-base: 1.4rem;
+    --toc-padding-end-base: 0.2rem;
+    --prose-width: calc(var(--prose-width-base) * var(--reading-scale));
+    --toc-width: calc(var(--toc-width-base) * var(--reading-scale));
+    --toc-gap: calc(var(--toc-gap-base) * var(--reading-scale));
+    --cover-width: var(--prose-width);
+    --toc-padding-end: calc(var(--toc-padding-end-base) * var(--reading-scale));
+  }
+
+  /* LaTeX 特殊背景保持独立 */
+  html[data-palette="latex"] {
+    --latex-prose-width-base: 50rem;
+    --latex-toc-width-base: 23rem;
+    --latex-toc-gap-base: 1.4rem;
+    --latex-prose-width: calc(var(--latex-prose-width-base) * var(--reading-scale));
+    --latex-toc-width: calc(var(--latex-toc-width-base) * var(--reading-scale));
+    --latex-toc-gap: calc(var(--latex-toc-gap-base) * var(--reading-scale));
+    --latex-cover-width: var(--latex-prose-width);
+  }
+
+  html[data-palette="sakura"] {
+    --sakura-prose-width-base: 50rem;
+    --sakura-toc-width-base: 23rem;
+    --sakura-toc-gap-base: 1.4rem;
+    --sakura-prose-width: calc(var(--sakura-prose-width-base) * var(--reading-scale));
+    --sakura-toc-width: calc(var(--sakura-toc-width-base) * var(--reading-scale));
+    --sakura-toc-gap: calc(var(--sakura-toc-gap-base) * var(--reading-scale));
+    --sakura-cover-width: var(--sakura-prose-width);
+    --sakura-toc-padding-end: calc(0.2rem * var(--reading-scale));
+  }
+
+  html[data-palette="congo"] {
+    --congo-prose-width-base: 50rem;
+    --congo-toc-width-base: 23rem;
+    --congo-toc-gap-base: 1.4rem;
+    --congo-prose-width: calc(var(--congo-prose-width-base) * var(--reading-scale));
+    --congo-toc-width: calc(var(--congo-toc-width-base) * var(--reading-scale));
+    --congo-toc-gap: calc(var(--congo-toc-gap-base) * var(--reading-scale));
+    --congo-cover-width: var(--congo-prose-width);
+    --congo-toc-padding-end: calc(0.2rem * var(--reading-scale));
+  }
+
+  /* 所有主题统一布局：文章头部 */
+  html[data-palette] article > header.max-w-prose {
+    max-width: min(100%, var(--prose-width));
+  }
+
+  html[data-palette] article.article--has-toc > header.max-w-prose {
+    max-width: min(var(--prose-width), calc(100% - var(--toc-width) - var(--toc-gap)));
+  }
+
+  html[data-palette] article > header.max-w-prose > .prose {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette] article > header.max-w-prose > .prose > picture,
+  html[data-palette] article > header.max-w-prose > .prose > img,
+  html[data-palette] article > header.max-w-prose > .prose > picture > img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  html[data-palette] article > footer.max-w-prose,
+  html[data-palette] article > section.prose > .max-w-prose {
+    width: min(100%, var(--prose-width));
+    max-width: min(100%, var(--prose-width));
+  }
+
+  html[data-palette] article > section.prose > .max-w-prose {
+    flex: 1 1 var(--prose-width);
+    flex-basis: var(--prose-width);
+    min-width: 0;
+  }
+
+  html[data-palette] article > section.prose > .order-first.lg\:order-last {
+    width: var(--toc-width);
+    max-width: var(--toc-width);
+    flex: 0 0 var(--toc-width);
+    padding-inline-start: var(--toc-gap);
+  }
+
+  html[data-palette] article > section.prose > .order-first.lg\:order-last .toc {
+    max-width: 100%;
+    padding-inline-end: var(--toc-padding-end);
+  }
+
+  /* 保留 LaTeX/Sakura 特殊变量的向后兼容 */
+}
+
+/* MacBook 13/14 寸优化：继续保持整体比例一致地放大 */
+@media (min-width: 1280px) {
+  html[data-palette] {
+    --reading-scale: 1.08;
+  }
+}
