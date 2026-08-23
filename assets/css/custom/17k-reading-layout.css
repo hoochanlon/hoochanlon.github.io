@@ -3,6 +3,7 @@
   /* 所有主题统一布局变量：保持同一比例系数，避免局部拉宽 */
   html[data-palette] {
     --reading-scale: 1.06;
+    --reading-measure: 65ch;
     --prose-width-base: 50rem;
     --toc-width-base: 23rem;
     --toc-gap-base: 1.4rem;
@@ -71,7 +72,24 @@
     margin-inline: auto;
   }
 
-  html[data-palette] article > footer.max-w-prose,
+  html[data-palette] article > footer.max-w-prose {
+    width: min(100%, var(--reading-measure));
+    max-width: min(100%, var(--reading-measure));
+    margin-inline: 0;
+  }
+
+  html[data-palette] article > footer.max-w-prose > :is(.article-pagination, .article-comments) {
+    width: min(100%, var(--reading-measure));
+    max-width: min(100%, var(--reading-measure));
+    margin-inline: 0;
+  }
+
+  html[data-palette] article > footer.max-w-prose > .article-comments .giscus,
+  html[data-palette] article > footer.max-w-prose > .article-comments .giscus-frame {
+    width: 100%;
+    max-width: 100%;
+  }
+
   html[data-palette] article > section.prose > .max-w-prose {
     width: min(100%, var(--prose-width));
     max-width: min(100%, var(--prose-width));
