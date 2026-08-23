@@ -26,10 +26,17 @@
   min-width: 0;
 }
 
+/* 接近正方形的正文插图：降低视觉高度，避免一屏被图占满 */
+.prose img.sc-image--square,
+.prose picture img.sc-image--square {
+  max-width: min(100%, 28rem);
+  max-height: min(52vh, 24rem);
+}
+
 /*
- * 正文插图：别让手机竖图按栏宽无限放大
- * - 横图：仍可接近栏宽（高度通常碰不到上限）
- * - 竖图/手机截图：受 max-height 约束，宽度随比例收缩并居中（接近 X/微博时间线）
+ * 正文插图：别让图片按栏宽无限放大
+ * - 横图：仍可接近栏宽
+ * - 竖图/手机截图：受 max-height 约束，宽度随比例收缩并居中
  */
 .prose img,
 .prose picture img {

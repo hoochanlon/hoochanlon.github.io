@@ -5,6 +5,7 @@
 {{ $webp := .webp }}
 {{ $lqip := .lqip | default false }}
 {{ $x2 := .x2 | default false }}
+{{ $squareClass := "" }}
 
 {{ with $img }}
   {{ if (eq .MediaType.SubType "svg") }}
@@ -49,6 +50,12 @@
     >
       {{ $width := .Width }}
       {{ $height := .Height }}
+      {{ if and $width $height }}
+        {{ $ratio := div (float $width) (float $height) }}
+        {{ if and (ge $ratio 0.88) (le $ratio 1.14) }}
+          {{ $squareClass = " sc-image--square" }}
+        {{ end }}
+      {{ end }}
       {{ if $x2 }}
         {{ $width = div .Width 2 }}
         {{ $height = div .Height 2 }}
@@ -84,7 +91,7 @@
       <img
         width="{{ $width }}"
         height="{{ $height }}"
-        {{ with $class }}class="{{ . }}"{{ end }}
+        {{ with $class }}class="{{ . }}{{ $squareClass }}"{{ end }}
         {{ with $alt }}alt="{{ . }}"{{ end }}
         {{ with $lazy }}loading="lazy" decoding="async"{{ end }}
         {{ if lt .Width 660 }}
