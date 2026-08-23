@@ -60,11 +60,20 @@
 }
 
 .dark .site-footer__top-button {
-  background: color-mix(in srgb, rgb(var(--color-neutral-100)) 92%, black);
+  border-color: color-mix(in srgb, rgb(var(--color-neutral-600)) 68%, rgb(var(--color-primary-500)));
+  background:
+    linear-gradient(180deg, rgb(var(--color-neutral-800) / 0.96), rgb(var(--color-neutral-900) / 0.98)),
+    color-mix(in srgb, rgb(var(--color-primary-900)) 18%, rgb(var(--color-neutral-900)));
+  color: rgb(var(--color-primary-300));
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.34);
 }
 
 :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__top-button {
-  color: rgb(var(--color-primary-500));
+  border-color: color-mix(in srgb, rgb(var(--color-primary-400)) 54%, rgb(var(--color-neutral-700)));
+  background:
+    linear-gradient(180deg, rgb(var(--color-neutral-700) / 0.92), rgb(var(--color-neutral-800) / 0.98)),
+    color-mix(in srgb, rgb(var(--color-primary-500)) 18%, rgb(var(--color-neutral-800)));
+  color: rgb(var(--color-primary-400));
 }
 
 .site-footer-trigger {
@@ -173,9 +182,25 @@
   }
 
   .dark .site-footer__panel {
-    border-color: rgb(var(--color-neutral-300));
-    background: color-mix(in srgb, rgb(var(--color-neutral-100)) 92%, black);
-    box-shadow: 0 -20px 46px rgb(0 0 0 / 0.34);
+    border-color: color-mix(in srgb, rgb(var(--color-neutral-500)) 70%, rgb(var(--color-primary-400)));
+    background: rgb(var(--color-neutral-900));
+    color: rgb(var(--color-neutral-200));
+    box-shadow: 0 -20px 46px rgb(0 0 0 / 0.5);
+    backdrop-filter: none;
+  }
+
+  .dark .site-footer__panel > nav,
+  .dark .site-footer__panel > nav :where(li, span, a, button),
+  .dark .site-footer__copy,
+  .dark .site-footer__copy :where(p, span, a) {
+    color: rgb(var(--color-neutral-300));
+    -webkit-text-fill-color: rgb(var(--color-neutral-300));
+  }
+
+  .dark .site-footer__panel > nav :where(a:hover, button:hover, a:hover span, button:hover span),
+  .dark .site-footer__copy :where(a:hover, a:hover span) {
+    color: rgb(var(--color-primary-300));
+    -webkit-text-fill-color: rgb(var(--color-primary-300));
   }
 
   :is(html[data-palette="sakura"], html[data-palette="latex"]) .site-footer__panel {
@@ -183,7 +208,23 @@
   }
 
   :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__panel {
-    border-color: rgb(var(--color-primary-300) / 0.42);
+    border-color: color-mix(in srgb, rgb(var(--color-primary-400)) 52%, rgb(var(--color-neutral-600)));
+    background: rgb(var(--color-neutral-800));
+    backdrop-filter: none;
+  }
+
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__panel > nav,
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__panel > nav :where(li, span, a, button),
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__copy,
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__copy :where(p, span, a) {
+    color: rgb(var(--color-neutral-200));
+    -webkit-text-fill-color: rgb(var(--color-neutral-200));
+  }
+
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__panel > nav :where(a:hover, button:hover, a:hover span, button:hover span),
+  :is(html[data-palette="sakura"], html[data-palette="latex"]).dark .site-footer__copy :where(a:hover, a:hover span) {
+    color: rgb(var(--color-primary-400));
+    -webkit-text-fill-color: rgb(var(--color-primary-400));
   }
 }
 
