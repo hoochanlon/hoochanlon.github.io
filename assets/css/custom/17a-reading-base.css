@@ -85,19 +85,19 @@ html[data-palette].dark :where(
 
 
 @media (min-width: 640px) {
-  html[data-palette]:has(#main-content article) body {
+  html[data-palette]:has(#main-content :is(article, .taxonomy-tags, .taxonomy-categories, .taxonomy-terms)) body {
     padding-inline: calc(3.5rem * var(--reading-scale));
   }
 }
 
 @media (min-width: 768px) {
-  html[data-palette]:has(#main-content article) body {
+  html[data-palette]:has(#main-content :is(article, .taxonomy-tags, .taxonomy-categories, .taxonomy-terms)) body {
     padding-inline: calc(6rem * var(--reading-scale));
   }
 }
 
 @media (min-width: 1024px) {
-  html[data-palette]:has(#main-content article) body {
+  html[data-palette]:has(#main-content :is(article, .taxonomy-tags, .taxonomy-categories, .taxonomy-terms)) body {
     width: min(100%, calc(80rem * var(--reading-scale)));
     max-width: min(100%, calc(80rem * var(--reading-scale)));
     padding-inline: calc(8rem * var(--reading-scale));
