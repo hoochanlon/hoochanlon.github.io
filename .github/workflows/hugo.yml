@@ -63,10 +63,11 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+          cache-dependency-path: requirements.txt
       
       - name: Install Python dependencies
         run: |
-          pip install matplotlib
+          pip install -r requirements.txt
 
       - name: Render matplotlib plots
         run: |
