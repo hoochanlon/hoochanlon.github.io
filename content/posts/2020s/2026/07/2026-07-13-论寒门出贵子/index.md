@@ -6,7 +6,7 @@ slug: "20260713112002"
 categories: ["社会教育研究"]
 tags: ["结构性固化", "机会性流动"]
 featured: true
-featuredWeight: 80
+weight: 80
 coverCaption: "图：https://www.setn.com/news/742577"
 summary: "关于极端幸存者偏差的成功个体（贵子）行为研究。"
 ---

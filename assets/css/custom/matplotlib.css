@@ -1,0 +1,229 @@
+.matplotlib-card {
+  margin: 2rem 0;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.82rem;
+  overflow: hidden;
+  background: rgb(var(--color-neutral-50));
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.dark .matplotlib-card {
+  border-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-900));
+  box-shadow: none;
+}
+
+.matplotlib-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  background: rgb(var(--color-neutral-100));
+}
+
+.dark .matplotlib-card__header {
+  border-bottom-color: rgb(var(--color-neutral-700));
+  background: rgb(var(--color-neutral-800));
+}
+
+.matplotlib-card__identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.matplotlib-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.56rem;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-200));
+  color: rgb(var(--color-neutral-700));
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.dark .matplotlib-card__badge {
+  background: rgb(var(--color-neutral-700));
+  color: rgb(var(--color-neutral-100));
+}
+
+.matplotlib-card__title {
+  min-width: 0;
+  overflow: hidden;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dark .matplotlib-card__title {
+  color: rgb(var(--color-neutral-400));
+}
+
+.matplotlib-card__tabs {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.25rem;
+  padding: 0.18rem;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-200));
+}
+
+.dark .matplotlib-card__tabs {
+  background: rgb(var(--color-neutral-700));
+}
+
+.matplotlib-card__tab {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(var(--color-neutral-500));
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.46rem 0.78rem;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.matplotlib-card__tab:hover,
+.matplotlib-card__tab:focus-visible {
+  outline: none;
+  color: rgb(var(--color-neutral-800));
+}
+
+.dark .matplotlib-card__tab {
+  color: rgb(var(--color-neutral-300));
+}
+
+.dark .matplotlib-card__tab:hover,
+.dark .matplotlib-card__tab:focus-visible {
+  color: rgb(var(--color-neutral-50));
+}
+
+.matplotlib-card__tab[aria-selected="true"] {
+  background: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-neutral-800));
+  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.08);
+}
+
+.dark .matplotlib-card__tab[aria-selected="true"] {
+  background: rgb(var(--color-neutral-900));
+  color: rgb(var(--color-neutral-50));
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.24);
+}
+
+.matplotlib-card__body {
+  background: rgb(var(--color-neutral-50));
+}
+
+.dark .matplotlib-card__body {
+  background: rgb(var(--color-neutral-900));
+}
+
+.matplotlib-card__panel {
+  min-width: 0;
+}
+
+.matplotlib-card__panel[hidden] {
+  display: none !important;
+}
+
+.matplotlib-card__panel--image {
+  padding: 1rem;
+}
+
+.matplotlib-card__figure {
+  margin: 0;
+}
+
+.matplotlib-card__figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.55rem;
+}
+
+.matplotlib-card__figure figcaption {
+  margin-top: 0.75rem;
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.dark .matplotlib-card__figure figcaption {
+  color: rgb(var(--color-neutral-400));
+}
+
+.matplotlib-card__panel--code {
+  padding: 0;
+}
+
+.matplotlib-card__panel--code .sc-code {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.matplotlib-card__panel--code .sc-code__header {
+  background: rgb(var(--color-neutral-100));
+}
+
+.dark .matplotlib-card__panel--code .sc-code__header {
+  background: rgb(var(--color-neutral-800));
+}
+
+.matplotlib-card__panel--code .sc-code__footer {
+  background: rgb(var(--color-neutral-50));
+}
+
+.dark .matplotlib-card__panel--code .sc-code__footer {
+  background: rgb(var(--color-neutral-900));
+}
+
+.matplotlib-card__panel--code .sc-code__body {
+  background: transparent;
+}
+
+.matplotlib-card__panel--code .highlight pre.chroma {
+  background: transparent;
+}
+
+.matplotlib-card__code {
+  border-top: 1px solid rgb(var(--color-neutral-200));
+}
+
+.dark .matplotlib-card__code {
+  border-top-color: rgb(var(--color-neutral-700));
+}
+
+@media (max-width: 640px) {
+  .matplotlib-card__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .matplotlib-card__identity {
+    justify-content: space-between;
+  }
+
+  .matplotlib-card__tabs {
+    width: 100%;
+  }
+
+  .matplotlib-card__tab {
+    flex: 1 1 0;
+  }
+}

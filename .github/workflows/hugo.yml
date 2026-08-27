@@ -51,6 +51,27 @@ jobs:
           node-version: "24"
           # 提交 pnpm-lock.yaml 后可加：cache: pnpm
 
+      # 安装 Python 依赖并渲染 matplotlib 图表
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          fc-cache -f -v
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install Python dependencies
+        run: |
+          pip install matplotlib
+
+      - name: Render matplotlib plots
+        run: |
+          python scripts/render_matplotlib.py
+
       # 构建前压 content/static/assets 大图（不改扩展名；只影响本次 runner 工作区）
       - name: Optimize images
         run: |

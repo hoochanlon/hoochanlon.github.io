@@ -9,7 +9,7 @@ showTableOfContents: false
 coverCaption: "图由 ChatGPT 生成，这张图关于改善的愿景，似乎成为了美好的幻想..."
 summary: "破除产业升级万能论，剖析技术发展不会自动惠及普通人，点明做大蛋糕无法解决分配问题。"
 featured: true
-featuredWeight: 85
+weight: 85
 ---
 
 正文

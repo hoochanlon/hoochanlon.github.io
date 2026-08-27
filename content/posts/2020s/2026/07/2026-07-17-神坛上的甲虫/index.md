@@ -7,7 +7,7 @@ categories: ["社会教育研究"]
 tags: ["教育异化"]
 summary: "在实用主义的算盘里，他是这个时代能榨取出的、最完美的客体。"
 featured: true
-featuredWeight: 75
+weight: 75
 coverCaption: "图：https://condenaststore.com/featured/how-gregor-samsa-awoke-jason-adam-katzenstein.html"
 ---
 

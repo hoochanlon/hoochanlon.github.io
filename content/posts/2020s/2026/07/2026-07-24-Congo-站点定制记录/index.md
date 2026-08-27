@@ -32,7 +32,7 @@ showComments: false
 
 | 参数 | 类型 | 作用 |
 |------|------|------|
-| `featuredWeight` | int | 精选排序值，越小越靠前 |
+| `weight` | int | 精选排序值，越小越靠前 |
 | `feature` | string | 指定 feature 图匹配名 |
 | `cover` | string | 指定 cover 图匹配名 |
 | `thumbnail` | string | 指定缩略图匹配名 |

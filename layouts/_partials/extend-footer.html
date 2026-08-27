@@ -1,3 +1,9 @@
+{{/* 自动把正文里的括号补充说明套用 ps 样式 */}}
+{{ with resources.Get "js/auto-ps.js" }}
+  {{ $js := . | resources.Minify | resources.Fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+
 {{/* 页脚抽屉：进入触发区展开，点击页面空白处收起 */}}
 {{ with resources.Get "js/footer-drawer.js" }}
   {{ $js := . | resources.Minify | resources.Fingerprint }}

@@ -97,7 +97,7 @@ categories: ["随笔"]
 tags: []
 summary: ""
 featured: false
-# featuredWeight: 1
+# weight: 1
 ```
 
 普通文章最常用的字段只有这些：
@@ -171,7 +171,7 @@ coverCaption: "封面图说明"
   -> 上面那套
   -> + feature.jpg（放同目录）
   -> + featureAlt / coverCaption
-  -> + featured / featuredWeight
+  -> + featured / weight
 ```
 
 ## 延伸阅读

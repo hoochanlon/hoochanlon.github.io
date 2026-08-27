@@ -4,10 +4,10 @@ date: 2026-07-21T19:25:05+08:00
 lastmod: 2026-07-22
 slug: "20260721192505"
 categories: ["女性社会行为研究"]
-tags: ["两性关系","女权", "性别博弈","手稿存档"]
+tags: ["两性关系","女权", "性别博弈"]
 summary: "梳理 Piao 团队研究数据及相关结论，并增析“依附型女权”的话语寄生策略及其反噬效应。"
 featured: true
-featuredWeight: 70
+weight: 70
 coverCaption: "图：https://www.pinterest.com/soniafrontera/women-connecting-women/"
 ---
 

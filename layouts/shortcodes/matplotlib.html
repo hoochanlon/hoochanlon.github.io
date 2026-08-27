@@ -1,0 +1,59 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+{{- $title := .Get "title" | default "Matplotlib" -}}
+
+<div class="matplotlib-card not-prose" data-matplotlib-card data-default-view="image">
+  <div class="matplotlib-card__header">
+    <div class="matplotlib-card__identity">
+      <span class="matplotlib-card__badge">{{ $title }}</span>
+      {{- if $caption -}}
+        <span class="matplotlib-card__title">{{ $caption | plainify }}</span>
+      {{- end -}}
+    </div>
+
+    <div class="matplotlib-card__tabs" role="tablist" aria-label="Matplotlib 内容切换">
+      <button
+        type="button"
+        class="matplotlib-card__tab"
+        data-matplotlib-tab="image"
+        role="tab"
+        aria-selected="true"
+      >
+        图表
+      </button>
+      <button
+        type="button"
+        class="matplotlib-card__tab"
+        data-matplotlib-tab="code"
+        role="tab"
+        aria-selected="false"
+      >
+        源码
+      </button>
+    </div>
+  </div>
+
+  <div class="matplotlib-card__body">
+    <section class="matplotlib-card__panel matplotlib-card__panel--image" data-matplotlib-panel="image" role="tabpanel">
+      <figure class="matplotlib-card__figure">
+        <img
+          src="{{ $src | relURL }}"
+          {{ with $alt }}alt="{{ . }}"{{ else }}alt=""{{ end }}
+          loading="lazy"
+          decoding="async"
+        />
+        {{- if $caption -}}
+          <figcaption>{{ $caption | markdownify }}</figcaption>
+        {{- end -}}
+      </figure>
+    </section>
+
+    <section
+      class="matplotlib-card__panel matplotlib-card__panel--code"
+      data-matplotlib-panel="code"
+      role="tabpanel"
+      hidden
+    ></section>
+  </div>
+</div>

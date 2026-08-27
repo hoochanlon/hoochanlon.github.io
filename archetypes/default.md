@@ -7,5 +7,5 @@ categories: ["随笔"]
 tags: []
 summary: ""
 featured: false
-# featuredWeight: 1  # 精选排序，越小越靠前；仅 featured: true 时生效
+# weight: 1  # 精选排序，越小越靠前；仅 featured: true 时生效
 ---
