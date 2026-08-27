@@ -74,7 +74,7 @@ python scripts/render_matplotlib.py
 直接运行：
 
 ```bash
-scripts/dev.sh
+pnpm dev
 ```
 
 这个命令会同时启动：

@@ -56,7 +56,7 @@ fingerprintAlgorithm = "sha256"
   showRecent = false
   recentLimit = 10
   showFeatured = true   # 文章 front matter: featured: true
-  featuredLimit = 100     # 精选条数；排序用 front matter weight（越小越靠前）
+  featuredLimit = 100     # 精选条数；排序用 front matter weight（越大越靠前）
 
 [article]
   showDate = true

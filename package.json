@@ -4,6 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@9.15.0",
   "scripts": {
+    "dev": "bash scripts/dev.sh",
     "optimize-images": "node scripts/optimize-images.mjs",
     "optimize-images:dry": "node scripts/optimize-images.mjs --dry-run"
   },

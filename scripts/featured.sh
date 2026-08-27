@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 精选文章管理工具
-# - 集中列出所有 featured: true 的文章（按 featuredWeight 降序）
-# - 交互式调整 featuredWeight（越大越靠前，主页精选区按此排序）
+# - 集中列出所有 featured: true 的文章（按 weight 降序）
+# - 交互式调整 weight（越大越靠前，主页精选区按此排序）
 #
 # 文章不挪位、URL 零影响；精选状态完全由 frontmatter 标记。
 #
@@ -45,8 +45,8 @@ scan_featured() {
           val = line; sub(/^featured:[[:space:]]*/, "", val)
           sub(/[[:space:]]*#.*$/, "", val); sub(/[[:space:]]+$/, "", val)
           featured = val
-        } else if (line ~ /^featuredWeight:/) {
-          val = line; sub(/^featuredWeight:[[:space:]]*/, "", val)
+        } else if (line ~ /^weight:/) {
+          val = line; sub(/^weight:[[:space:]]*/, "", val)
           sub(/[[:space:]]*#.*$/, "", val); sub(/[[:space:]]+$/, "", val)
           weight = val
         } else if (line ~ /^title:/) {
@@ -67,7 +67,7 @@ scan_featured() {
 render_list() {
   local map_file="$1"
   : > "$map_file"
-  printf "\n${B}精选文章列表${R}（按 featuredWeight 降序，越大越靠前）\n"
+  printf "\n${B}精选文章列表${R}（按 weight 降序，越大越靠前）\n"
   printf "${DIM}──────────────────────────────────────────────────────────────────────${R}\n"
   printf "${B}%-4s %-6s %-12s %-40s %s${R}\n" "序号" "权重" "日期" "标题" "路径"
   printf "${DIM}──────────────────────────────────────────────────────────────────────${R}\n"
@@ -83,16 +83,16 @@ render_list() {
   printf "${DIM}──────────────────────────────────────────────────────────────────────${R}\n"
 }
 
-# 修改某文件 frontmatter 的 featuredWeight
+# 修改某文件 frontmatter 的 weight
 # 若字段不存在，则在 featured: 行后插入
 set_weight() {
   local filepath="$1" new_w="$2"
-  if grep -qE '^[[:space:]]*featuredWeight:' "$filepath"; then
-    sed -i '' -E "s/^([[:space:]]*featuredWeight:[[:space:]]*).*/\1${new_w}/" "$filepath"
+  if grep -qE '^[[:space:]]*weight:' "$filepath"; then
+    sed -i '' -E "s/^([[:space:]]*weight:[[:space:]]*).*/\1${new_w}/" "$filepath"
   else
-    # 在 featured: 行后插入 featuredWeight
+    # 在 featured: 行后插入 weight
     sed -i '' -E "/^[[:space:]]*featured:.*/a\\
-featuredWeight: ${new_w}
+weight: ${new_w}
 " "$filepath"
   fi
 }
@@ -141,7 +141,7 @@ main() {
     cur_w="$(awk -v f="$target" '
       BEGIN{in_fm=0;w=""}
       /^---[[:space:]]*$/{in_fm++;if(in_fm==2)exit;next}
-      in_fm==1 && /^[[:space:]]*featuredWeight:/{w=$0;sub(/^[^:]*:[[:space:]]*/,"",w);sub(/[[:space:]]*#.*$/,"",w);sub(/[[:space:]]+$/,"",w)}
+      in_fm==1 && /^[[:space:]]*weight:/{w=$0;sub(/^[^:]*:[[:space:]]*/,"",w);sub(/[[:space:]]*#.*$/,"",w);sub(/[[:space:]]+$/,"",w)}
     ' "$target")"
     cur_w="${cur_w:-（未设置）}"
     local tname
@@ -162,7 +162,7 @@ main() {
     fi
 
     set_weight "$target" "$new_w"
-    printf "${GRN}✓ 已更新 featuredWeight = %s${R}\n" "$new_w"
+    printf "${GRN}✓ 已更新 weight = %s${R}\n" "$new_w"
     printf "${DIM}%s${R}\n" "${target#$ROOT_DIR/}"
 
     # 刷新列表

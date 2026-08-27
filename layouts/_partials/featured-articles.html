@@ -2,15 +2,15 @@
   主页精选文章
   数据：front matter
     featured: true
-    weight: 10  # 可选；越小越靠前；未设则排在有权重的后面，再按站点默认日期序
+    weight: 10  # 可选；越大越靠前；未设则排在有权重的后面，再按站点默认日期序
   配置：homepage.showFeatured / featuredLimit
 */}}
 {{ if .Site.Params.homepage.showFeatured | default false }}
   {{ $sections := .Site.Params.mainSections }}
   {{ $pages := where .Site.RegularPages "Type" "in" $sections }}
   {{ $featured := where $pages "Params.featured" true }}
-  {{/* ByParam：按 weight 升序；缺省该字段的页面排在后面 */}}
-  {{ $featured = $featured.ByParam "weight" }}
+  {{/* ByParam：按 weight 升序；这里取反后实现 weight 越大越靠前 */}}
+  {{ $featured = $featured.ByParam "weight" | collections.Reverse }}
   {{ $limit := .Site.Params.homepage.featuredLimit | default 5 }}
   {{ if $featured }}
     <h2 class="home-section-title mt-8 text-2xl font-extrabold">
@@ -25,3 +25,4 @@
     {{ end }}
   {{ end }}
 {{ end }}
+

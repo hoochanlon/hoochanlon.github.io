@@ -57,6 +57,9 @@ plt.close(fig)
 ## 🔧 本地开发
 
 ```bash
+# 开发模式：Hugo 站点 + matplotlib 热加载 + giscus 预览
+pnpm dev
+
 # 安装依赖
 pip install matplotlib
 
