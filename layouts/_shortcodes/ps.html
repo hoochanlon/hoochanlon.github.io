@@ -13,5 +13,5 @@
 {{- end -}}
 {{- if ne $content "" -}}
   {{- $rendered := .Page.RenderString (dict "display" "inline") $content -}}
-  <span class="sc-ps">（{{ $rendered }}）</span>
+  （{{ $rendered }}）
 {{- end -}}

@@ -74,7 +74,11 @@ python scripts/render_matplotlib.py
 直接运行：
 
 ```bash
+# 推荐：直接使用项目级开发入口
 pnpm dev
+
+# 如果希望输入 hugo dev，需要让项目内包装器优先于系统 Hugo
+PATH="$PWD/bin:$PATH" hugo dev
 ```
 
 这个命令会同时启动：

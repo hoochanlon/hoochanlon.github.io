@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+
+if [[ "${1:-}" == "dev" ]]; then
+  shift
+  exec bash "$ROOT_DIR/scripts/dev.sh" "$@"
+fi
+
+if [[ -n "${HUGO_BIN:-}" ]]; then
+  exec "$HUGO_BIN" "$@"
+fi
+
+while IFS= read -r candidate; do
+  if [[ "$candidate" != "$SELF_PATH" && -x "$candidate" ]]; then
+    exec "$candidate" "$@"
+  fi
+done < <(type -aP hugo 2>/dev/null || true)
+
+for candidate in /opt/homebrew/bin/hugo /usr/local/bin/hugo /usr/bin/hugo; do
+  if [[ "$candidate" != "$SELF_PATH" && -x "$candidate" ]]; then
+    exec "$candidate" "$@"
+  fi
+done
+
+printf 'ERROR: cannot find the real hugo binary. Set HUGO_BIN=/path/to/hugo.\n' >&2
+exit 127

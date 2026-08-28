@@ -6,12 +6,15 @@
 # - Ctrl+C 同时关闭所有服务，互不残留
 #
 # 用法：
-#   scripts/dev.sh
+#   pnpm dev
+#   PATH="$PWD/bin:$PATH" hugo dev
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
 GISCUS_PORT=8443
 HUGO_PORT=1313
+WATCH_ROOTS=(content layouts assets scripts)
+WATCH_EXTENSIONS='\.(md|html|css|py|mjs|sh)$'
 
 CYAN='\033[36m'
 YELLOW='\033[33m'

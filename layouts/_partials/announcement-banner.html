@@ -13,16 +13,16 @@
   {{ $showUpdateDate := .Site.Params.banner.showUpdateDate | default false }}
 
   {{ if $text }}
-    {{/* 取 /posts section 最新一篇文章 */}}
+    {{/* 取 /posts section 最近更新的一篇文章 */}}
     {{ $latestDate  := "" }}
     {{ $latestTitle := "" }}
     {{ $latestURL   := "" }}
     {{ $postsSection := .Site.GetPage "/posts" }}
     {{ if $postsSection }}
-      {{ $allPages := $postsSection.RegularPagesRecursive }}
+      {{ $allPages := sort $postsSection.RegularPagesRecursive "Lastmod" "desc" }}
       {{ if $allPages }}
         {{ $latest      := index $allPages 0 }}
-        {{ $latestDate   = $latest.Date.Format "2006-01-02" }}
+        {{ $latestDate   = $latest.Lastmod.Format "2006-01-02" }}
         {{ $latestTitle  = $latest.Title }}
         {{ $latestURL    = $latest.RelPermalink }}
       {{ end }}

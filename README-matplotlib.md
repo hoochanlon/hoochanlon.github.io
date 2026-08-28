@@ -57,8 +57,11 @@ plt.close(fig)
 ## 🔧 本地开发
 
 ```bash
-# 开发模式：Hugo 站点 + matplotlib 热加载 + giscus 预览
+# 推荐：直接使用项目级开发入口
 pnpm dev
+
+# 如果希望输入 hugo dev，需要让项目内包装器优先于系统 Hugo
+PATH="$PWD/bin:$PATH" hugo dev
 
 # 安装依赖
 pip install matplotlib
