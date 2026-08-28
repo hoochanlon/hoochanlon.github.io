@@ -9,7 +9,6 @@
  *       → setActive：高亮、展开祖先、必要时 scrollIntoView
  */
 (function () {
-  const ROOT_SEL = ".toc [data-sc-toc], .toc #TableOfContents";
   const ACTIVE = "is-active";
   const OPEN = "is-open";
   const BRANCH = "sc-toc__item--branch";
@@ -108,7 +107,8 @@
     expandAncestors(entry.link);
 
     if (!scrollToc) return;
-    const scroller = nav.closest(".toc") || nav;
+    const scroller = nav.closest(".toc--sidebar");
+    if (!scroller) return;
     const linkRect = entry.link.getBoundingClientRect();
     const boxRect = scroller.getBoundingClientRect();
     const pad = 28;

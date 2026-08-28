@@ -115,6 +115,8 @@
   overflow-wrap: normal;
   line-break: strict;
   text-decoration: none;
+  border-inline-start: 3px solid transparent;
+  padding-inline-start: 0.15rem;
 }
 
 .toc a > .sc-toc__prefix {

@@ -5,3 +5,4 @@ shortcode:
 article:
   date: "发稿于 {{ .Date }}"
   date_updated: "更新于 {{ .Date }}"
+  table_of_contents: "目录"
