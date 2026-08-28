@@ -250,8 +250,12 @@ def process_markdown_file(
         for start, end, replacement in reversed(replacements):
             new_content = new_content[:start] + replacement + new_content[end:]
         
-        md_path.write_text(new_content, encoding='utf-8')
-        print(f"  💾 已更新 Markdown 文件")
+        # 只在内容真正变化时才写入，避免触发 Hugo 无意义的重建
+        if new_content != content:
+            md_path.write_text(new_content, encoding='utf-8')
+            print(f"  💾 已更新 Markdown 文件")
+        else:
+            print(f"  ✓ 内容无变化，跳过写入")
     
     return len(matches), success_count
 

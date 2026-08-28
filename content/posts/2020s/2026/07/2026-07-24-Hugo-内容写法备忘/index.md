@@ -10,7 +10,7 @@ summary: "正文里常用的图片、媒体、剧透、诗词、公式与 Mermai
 showComments: false
 ---
 
-这篇只管**正文怎么写**。发文流程见：[《Hugo + Congo 发文流程》]({{< relref "/posts/2020s/2026/07/2026-07-24-Hugo-Congo-发文流程/index.md" >}})；模板特调见：[《Congo 站点定制记录》]({{< relref "/posts/2020s/2026/07/2026-07-24-Congo-站点定制记录/index.md" >}})。
+这篇只管**正文怎么写**。
 
 ## 图片布局
 
