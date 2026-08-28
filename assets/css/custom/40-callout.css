@@ -99,6 +99,8 @@
 
 .sc-callout__body {
   min-width: 0;
+  width: 100%;
+  max-width: none;
   color: var(--sc-body);
 }
 
