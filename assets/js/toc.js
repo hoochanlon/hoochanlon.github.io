@@ -107,8 +107,11 @@
     expandAncestors(entry.link);
 
     if (!scrollToc) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+
     const scroller = nav.closest(".toc--sidebar");
-    if (!scroller) return;
+    if (!scroller || scroller.scrollHeight <= scroller.clientHeight + 8) return;
+
     const linkRect = entry.link.getBoundingClientRect();
     const boxRect = scroller.getBoundingClientRect();
     const pad = 28;

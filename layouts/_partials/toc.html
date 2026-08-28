@@ -1,5 +1,11 @@
-{{- $toc := .TableOfContents | emojify -}}
-{{- $layout := .Params.tocLayout | default "sidebar" | lower -}}
+{{- $page := . -}}
+{{- $layoutOverride := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- with .context -}}{{- $page = . -}}{{- end -}}
+  {{- with .layout -}}{{- $layoutOverride = . -}}{{- end -}}
+{{- end -}}
+{{- $toc := $page.TableOfContents | emojify -}}
+{{- $layout := $layoutOverride | default ($page.Params.tocLayout | default "sidebar") | lower -}}
 {{- $isInline := eq $layout "inline" -}}
 {{- $detailsOpen := not $isInline -}}
 {{- $detailsClass := cond $isInline "sc-toc-details sc-toc-details--inline" "sc-toc-details sc-toc-details--sidebar -ms-5 mt-0 overflow-hidden rounded-lg ps-5" -}}

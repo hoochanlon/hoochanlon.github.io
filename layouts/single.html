@@ -52,16 +52,16 @@
     </header>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       {{ if $hasSidebarTOC }}
-        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+        <div class="order-first hidden px-0 lg:order-last lg:block lg:max-w-xs lg:ps-8">
           <div class="toc toc--sidebar pe-5 lg:sticky lg:top-10 print:hidden">
-            {{ partial "toc.html" . }}
+            {{ partial "toc.html" (dict "context" . "layout" "sidebar") }}
           </div>
         </div>
       {{ end }}
       <div class="min-h-0 min-w-0 max-w-prose grow">
-        {{ if $hasInlineTOC }}
-          <div class="toc toc--inline print:hidden">
-            {{ partial "toc.html" . }}
+        {{ if $hasTOC }}
+          <div class="toc toc--inline print:hidden lg:hidden">
+            {{ partial "toc.html" (dict "context" . "layout" "inline") }}
           </div>
         {{ end }}
         {{ .Content | emojify }}

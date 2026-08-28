@@ -231,9 +231,3 @@ html[data-palette="latex"].dark .toc a.is-active {
 .toc .sc-toc__row > a {
   line-height: 1.55;
 }
-
-@media (max-width: 1023px) {
-  .toc .sc-toc__toggle {
-    height: 1.7em;
-  }
-}
