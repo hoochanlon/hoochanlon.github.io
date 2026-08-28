@@ -1,49 +1,130 @@
-/* Sakura / LaTeX 阅读主题：callout 标签前缀与轻量组件 */
-:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--warning {
+/* Sakura 阅读主题：恢复特殊的教材化 callout；LaTeX 继续保持 GitHub Alert 语义色 */
+html[data-palette="sakura"] .sc-callout__label,
+html[data-palette="sakura"] .sc-callout--fold > .sc-callout__summary {
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+html[data-palette="sakura"] .sc-callout__icon {
+  display: none;
+}
+
+html[data-palette="sakura"] .sc-callout__title {
+  display: block;
+  width: 100%;
+  padding-bottom: 0.42rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--sc-accent) 24%, white 76%);
+  color: var(--sc-accent);
+  font-family: var(--reading-font-ui);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+html[data-palette="sakura"] .sc-callout--note {
+  --sc-bg: #f5eef4;
+  --sc-border: #ead7e4;
+  --sc-accent: #8e5577;
+  --sc-body: #5f535a;
+}
+
+html[data-palette="sakura"] .sc-callout--important {
+  --sc-bg: #f8ecef;
+  --sc-border: #e9c9d5;
+  --sc-accent: #c05a84;
+  --sc-body: #5f535a;
+}
+
+html[data-palette="sakura"] .sc-callout--tip,
+html[data-palette="sakura"] .sc-callout--success {
+  --sc-bg: #eef5ee;
+  --sc-border: #d5e5d1;
+  --sc-accent: #5a9666;
+  --sc-body: #556258;
+}
+
+html[data-palette="sakura"] .sc-callout--warning {
+  --sc-bg: #f8f1e6;
+  --sc-border: #ebdbb8;
+  --sc-accent: #b3882f;
+  --sc-body: #665a45;
+}
+
+html[data-palette="sakura"] .sc-callout--caution {
+  --sc-bg: #faeef3;
+  --sc-border: #efcfda;
+  --sc-accent: #d06a96;
+  --sc-body: #66525d;
+}
+
+html[data-palette="sakura"].dark .sc-callout--note {
+  --sc-bg: #352b33;
+  --sc-border: #5f4656;
+  --sc-accent: #e0b5cb;
+  --sc-body: #f2e6ee;
+}
+
+html[data-palette="sakura"].dark .sc-callout--important {
+  --sc-bg: #3d2b33;
+  --sc-border: #7b4a61;
+  --sc-accent: #f2b6cb;
+  --sc-body: #f7e9ef;
+}
+
+html[data-palette="sakura"].dark .sc-callout--tip,
+html[data-palette="sakura"].dark .sc-callout--success {
+  --sc-bg: #243128;
+  --sc-border: #44624a;
+  --sc-accent: #b8d8bc;
+  --sc-body: #eaf3ec;
+}
+
+html[data-palette="sakura"].dark .sc-callout--warning {
   --sc-bg: #352c1f;
   --sc-border: #735c31;
   --sc-accent: #e7cc8a;
   --sc-body: #f4ecda;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]).dark .sc-callout--caution {
+html[data-palette="sakura"].dark .sc-callout--caution {
   --sc-bg: #402a34;
   --sc-border: #825169;
   --sc-accent: #f2b8cb;
   --sc-body: #f8eaf0;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   margin-inline-end: 0.55rem;
   font-size: 0.95em;
   font-style: normal;
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--note.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout--note .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--note.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   content: "Definition";
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--important.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout--important .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--important.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   content: "Theorem";
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--tip.sc-callout--fold > .sc-callout__summary .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--success.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout--tip .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--tip.sc-callout--fold > .sc-callout__summary .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--success .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--success.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   content: "Worked Example";
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--warning.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout--warning .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--warning.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   content: "Intuition";
 }
 
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution .sc-callout__title::before,
-:is(html[data-palette="sakura"], html[data-palette="latex"]) .sc-callout--caution.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
+html[data-palette="sakura"] .sc-callout--caution .sc-callout__title::before,
+html[data-palette="sakura"] .sc-callout--caution.sc-callout--fold > .sc-callout__summary .sc-callout__title::before {
   content: "A List of Rules";
 }
 

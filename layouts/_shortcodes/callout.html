@@ -29,18 +29,18 @@
 {{- else if eq $raw "info" -}}{{- $alias = "info" -}}
 {{- end -}}
 
-{{/* 展示用元数据（标题/图标可按别名区分）；色类归一到 GitHub 五类 + success */}}
+{{/* 展示用元数据；色类归一到 GitHub 五类 + success，默认标题使用 GitHub Alerts 标签 */}}
 {{- $defaults := dict
-  "note" (dict "title" "注意" "icon" "circle-info" "tone" "note")
-  "tip" (dict "title" "提示" "icon" "lightbulb" "tone" "tip")
-  "important" (dict "title" "重要" "icon" "comment" "tone" "important")
-  "info" (dict "title" "重要" "icon" "comment" "tone" "important")
-  "warning" (dict "title" "警告" "icon" "triangle-exclamation" "tone" "warning")
-  "caution" (dict "title" "小心" "icon" "xmark" "tone" "caution")
-  "forbid" (dict "title" "严禁" "icon" "xmark" "tone" "caution")
-  "danger" (dict "title" "高危操作" "icon" "bug" "tone" "caution")
-  "critical" (dict "title" "危险" "icon" "skull-crossbones" "tone" "caution")
-  "success" (dict "title" "完成" "icon" "check" "tone" "success")
+  "note" (dict "title" "Note" "icon" "circle-info" "tone" "note")
+  "tip" (dict "title" "Tip" "icon" "lightbulb" "tone" "tip")
+  "important" (dict "title" "Important" "icon" "comment" "tone" "important")
+  "info" (dict "title" "Important" "icon" "comment" "tone" "important")
+  "warning" (dict "title" "Warning" "icon" "triangle-exclamation" "tone" "warning")
+  "caution" (dict "title" "Caution" "icon" "xmark" "tone" "caution")
+  "forbid" (dict "title" "Caution" "icon" "xmark" "tone" "caution")
+  "danger" (dict "title" "Caution" "icon" "bug" "tone" "caution")
+  "critical" (dict "title" "Caution" "icon" "skull-crossbones" "tone" "caution")
+  "success" (dict "title" "Tip" "icon" "check" "tone" "success")
 -}}
 {{- if not (isset $defaults $alias) -}}{{- $alias = "note" -}}{{- end -}}
 {{- $meta := index $defaults $alias -}}
