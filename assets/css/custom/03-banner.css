@@ -107,6 +107,10 @@
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  vertical-align: middle;
 }
 
 .dark .site-banner__date-badge {
