@@ -92,7 +92,6 @@
                   {{ else }}
                     <a
                       href="{{ .URL }}"
-                      title="{{ .Title }}"
                       onclick="close_menu()"
                       {{ with .Params.rel }}rel="{{ . }}"{{ end }}
                       {{ with .Params.target }}target="{{ . }}"{{ end }}
@@ -198,7 +197,6 @@
               {{ else }}
                 <a
                   href="{{ .URL }}"
-                  title="{{ .Title }}"
                   {{ with .Params.rel }}rel="{{ . }}"{{ end }}
                   {{ with .Params.target }}target="{{ . }}"{{ end }}
                   >{{ with .Params.icon }}
