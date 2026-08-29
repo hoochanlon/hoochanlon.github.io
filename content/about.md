@@ -14,6 +14,7 @@ showAuthor: false
 showSharingLinks: false
 showComments: false
 showTableOfContents: false
+showPagination: false
 ---
 
 循着流量的潮汐靠近

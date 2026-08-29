@@ -13,6 +13,34 @@
   autoHeadingIDType = "github"
 [goldmark.extensions]
   linkify = true
+  taskList = true
+  [goldmark.extensions.extras]
+    [goldmark.extensions.extras.insert]
+      enable = true
+    [goldmark.extensions.extras.mark]
+      enable = true
+    [goldmark.extensions.extras.subscript]
+      enable = true
+    [goldmark.extensions.extras.superscript]
+      enable = true
+  [goldmark.extensions.cjk]
+    enable = true
+    eastAsianLineBreaks = false
+    eastAsianLineBreaksStyle = "simple"
+    escapedSpace = true
+  [goldmark.extensions.typographer]
+    enable = true
+    apostrophe = "&rsquo;"
+    disable = false
+    ellipsis = "&hellip;"
+    emDash = "&mdash;"
+    enDash = "&ndash;"
+    leftAngleQuote = "&laquo;"
+    leftDoubleQuote = "&ldquo;"
+    leftSingleQuote = "&lsquo;"
+    rightAngleQuote = "&raquo;"
+    rightDoubleQuote = "&rdquo;"
+    rightSingleQuote = "&rsquo;"
 [goldmark.extensions.passthrough]
   enable = true
 [goldmark.extensions.passthrough.delimiters]

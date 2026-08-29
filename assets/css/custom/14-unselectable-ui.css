@@ -2,6 +2,7 @@
 
 :where(
   .page-about,
+  .page-ideas,
   .site-header,
   .site-footer-drawer,
   .site-profile,
@@ -29,6 +30,7 @@
 ),
 :where(
   .page-about,
+  .page-ideas,
   .site-header,
   .site-footer-drawer,
   .site-profile,
@@ -58,6 +60,23 @@
   user-select: none !important;
 }
 
+/* 网站标题/Logo 不可选中 */
+header nav a[rel="me"],
+header .z-40 a {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* 导航菜单项不可选中 */
+header nav ul,
+header nav ul li,
+header nav ul li a,
+header nav ul li button,
+header nav ul li span {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 /* 允许 prose 内的标题可以被选中 */
 .prose :where(h1, h2, h3, h4, h5, h6) {
   -webkit-user-select: text !important;
@@ -70,6 +89,24 @@ article > header h1 {
   user-select: text !important;
 }
 
+/* about 和 ideas 页面标题不可选中 - 必须在最后，覆盖上面的规则 */
+.page-about h1,
+.page-about article > header h1,
+.page-ideas h1,
+.page-ideas article > header h1 {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* about 和 ideas 页面的 prose 内容也不可选中 */
+.page-about .prose,
+.page-about .prose *,
+.page-ideas .prose,
+.page-ideas .prose * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 
 .article-meta__separator {
   display: inline-block;
@@ -79,6 +116,7 @@ article > header h1 {
 
 :where(
   .page-about,
+  .page-ideas,
   .site-header,
   .site-footer-drawer,
   .site-profile,

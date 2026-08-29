@@ -31,6 +31,11 @@
   weight = 30
 
 [[main]]
+  name = "想法"
+  pageRef = "ideas"
+  weight = 35
+
+[[main]]
   identifier = "search"
   weight = 99
   [main.params]

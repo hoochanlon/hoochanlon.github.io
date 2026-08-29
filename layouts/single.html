@@ -12,7 +12,7 @@
   -}}
   {{- $hasInlineTOC := and $hasTOC (eq $tocLayout "inline") -}}
   {{- $hasSidebarTOC := and $hasTOC (not $hasInlineTOC) -}}
-  <article class="{{ if and .File (eq .File.Path "about.md") }}page-about{{ end }}{{ if $hasSidebarTOC }} article--has-toc{{ end }}{{ if $hasInlineTOC }} article--has-inline-toc{{ end }}">
+  <article class="{{ if and .File (eq .File.Path "about.md") }}page-about{{ end }}{{ if and .File (eq .File.Path "ideas.md") }}page-ideas{{ end }}{{ if $hasSidebarTOC }} article--has-toc{{ end }}{{ if $hasInlineTOC }} article--has-inline-toc{{ end }}">
     <header class="max-w-prose">
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}

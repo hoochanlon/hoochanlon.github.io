@@ -1,0 +1,135 @@
+/* 想法页手写体样式 */
+/* 清松手写体直接定义 @font-face */
+
+@font-face {
+  font-family: "JasonHandwriting1-Regular";
+  src: url(https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20240409/webfont/JasonHandwriting1-Regular.woff2) format("woff2");
+  font-display: swap;
+}
+
+.page-ideas {
+  /* 使用易读的手写体字体栈 */
+  font-family: 
+    "JasonHandwriting1-Regular", /* 清松手写体 1 - 原子笔手写 */
+    "LXGW WenKai Screen",    /* 霞鹜文楷 Screen - 候补 */
+    "LXGW WenKai",           /* 霞鹜文楷 - 候补 */
+    "STKaiti",               /* 华文楷体 - 中文后备 */
+    "KaiTi",                 /* 楷体 - 中文后备 */
+    var(--reading-font-serif),  /* 回退到文章页字体 */
+    serif !important;
+  
+  /* 调整行高，手写体通常需要更大的行距 */
+  line-height: 1.8 !important;
+}
+
+/* 标题使用稍微正式一点的字体 */
+.page-ideas article > header h1 {
+  font-family: 
+    "JasonHandwriting1-Regular", /* 清松手写体 1 */
+    "LXGW WenKai Screen",    /* 霞鹜文楷 Screen */
+    "LXGW WenKai",           /* 霞鹜文楷 */
+    "STKaiti",               /* 华文楷体 */
+    "KaiTi",                 /* 楷体 */
+    var(--reading-font-heading),  /* 回退到文章标题字体 */
+    serif !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* 正文内容保持手写感 */
+.page-ideas .prose {
+  font-family: inherit !important;
+}
+
+/* 所有文本元素都应用手写体 */
+.page-ideas *,
+.page-ideas .prose *,
+.page-ideas article > section * {
+  font-family: 
+    "JasonHandwriting1-Regular",
+    "LXGW WenKai Screen",
+    "LXGW WenKai",
+    "STKaiti",
+    "KaiTi",
+    var(--reading-font-serif),
+    serif !important;
+}
+    "Klee One",
+    "Long Cang",
+    "Ma Shan Zheng",
+    "STKaiti",
+    "KaiTi",
+    var(--reading-font-serif),
+    serif !important;
+}
+
+/* checkbox 列表样式微调 */
+.page-ideas .prose ul {
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+.page-ideas .prose ul li {
+  position: relative;
+  margin-bottom: 0.75em;
+}
+
+/* 已完成的待办项添加删除线 - 匹配 [x] 标记 */
+.page-ideas .prose ul li:has(input[type="checkbox"]:checked),
+.page-ideas .prose ul li input[type="checkbox"]:checked ~ * {
+  text-decoration: line-through !important;
+  opacity: 0.6 !important;
+  color: rgb(var(--color-neutral-500)) !important;
+}
+
+/* 如果 Hugo 将 [x] 渲染为纯文本，用伪元素模拟删除线 */
+.page-ideas .prose ul li {
+  position: relative;
+}
+
+/* 检测到 [x] 开头的列表项 */
+.page-ideas .prose ul li:has(> :first-child:is(input[type="checkbox"]:checked)),
+.page-ideas .prose ul li > input[type="checkbox"]:checked ~ * {
+  text-decoration: line-through !important;
+  opacity: 0.65 !important;
+}
+
+/* 引用块样式 */
+.page-ideas .prose blockquote {
+  font-style: italic;
+  border-left-width: 3px;
+  border-left-style: dashed;
+  padding-left: 1.5em;
+  opacity: 0.9;
+}
+
+/* 代码块保持等宽字体 */
+.page-ideas .prose code,
+.page-ideas .prose pre {
+  font-family: 
+    "Monaco",
+    "Menlo", 
+    "Consolas",
+    "Courier New",
+    monospace;
+}
+
+/* 微调字体大小 - 手写体需要更大的字号以保持可读性 */
+.page-ideas .prose {
+  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
+}
+
+/* 标题样式 */
+.page-ideas .prose h2 {
+  font-size: clamp(1.35rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.page-ideas .prose h3 {
+  font-size: clamp(1.18rem, 1.95vw, 1.32rem);
+  font-weight: 500;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
