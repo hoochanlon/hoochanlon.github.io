@@ -6,28 +6,64 @@
   "caution" (dict "title" "Caution" "icon" "xmark" "tone" "caution")
 -}}
 
-{{- $rendered := false -}}
-{{- $alertType := "note" -}}
-{{- $alertTitle := "" -}}
-{{- $alertSign := "" -}}
-{{- $content := .Text -}}
+<div style="background:lightblue;padding:10px;margin:10px 0;">
+  <strong>Blockquote 调试：</strong><br>
+  Type: "{{ .Type }}"<br>
+  AlertType: "{{ .AlertType }}"<br>
+  Text 前50字符: {{ .Text | plainify | truncate 50 }}<br>
+</div>
 
+{{- /* 调试：检查 Hugo 是否识别出 alert */ -}}
 {{- if eq .Type "alert" -}}
-  {{- $alertType = .AlertType | default "note" -}}
+  {{- /* Hugo 原生识别到了 alert */ -}}
+  {{- $alertType := .AlertType | default "note" -}}
   {{- if not (isset $defaults $alertType) -}}{{- $alertType = "note" -}}{{- end -}}
   {{- $meta := index $defaults $alertType -}}
-  {{- $alertTitle = $meta.title -}}
+  {{- $alertTitle := $meta.title -}}
   {{- with .AlertTitle -}}{{- $alertTitle = . -}}{{- end -}}
-  {{- $alertSign = .AlertSign -}}
-  {{- $rendered = true -}}
+  {{- $alertSign := .AlertSign -}}
+  {{- $class := printf "sc-callout sc-callout--%s not-prose" $meta.tone -}}
+  {{- if ne $alertSign "" -}}
+    <details class="{{ $class }} sc-callout--fold"{{ if eq $alertSign "+" }} open{{ end }}>
+      <summary class="sc-callout__summary">
+        <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
+        <span class="sc-callout__title">{{ $alertTitle }}</span>
+      </summary>
+      <div class="sc-callout__body prose dark:prose-invert">
+        {{ .Text }}
+      </div>
+    </details>
+  {{- else -}}
+    <aside class="{{ $class }}" role="note">
+      <div class="sc-callout__content">
+        <div class="sc-callout__label">
+          <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
+          <span class="sc-callout__title">{{ $alertTitle }}</span>
+        </div>
+        <div class="sc-callout__body prose dark:prose-invert">
+          {{ .Text }}
+        </div>
+      </div>
+    </aside>
+  {{- end -}}
 {{- else -}}
-  {{- $lines := split .Text "\n" -}}
+  {{- /* Hugo 没有识别出 alert，尝试手动解析 */ -}}
+  {{- $text := .Text | plainify -}}
+  <div style="background:yellow;padding:10px;margin:10px 0;">
+    <strong>调试信息：</strong><br>
+    Type: {{ .Type }}<br>
+    原始 Text 长度: {{ len .Text }}<br>
+    Plainify Text: {{ $text }}<br>
+    前20字符: {{ substr $text 0 20 }}
+  </div>
+  {{- $lines := split $text "\n" -}}
   {{- $first := "" -}}
   {{- if gt (len $lines) 0 -}}
     {{- $first = trim (index $lines 0) " \t\r" -}}
   {{- end -}}
   {{- $marker := lower $first -}}
   {{- if or (eq $marker "[!note]") (eq $marker "[!tip]") (eq $marker "[!important]") (eq $marker "[!warning]") (eq $marker "[!caution]") (eq $marker "[!success]") (eq $marker "[!info]") -}}
+    {{- $alertType := "note" -}}
     {{- if eq $marker "[!tip]" -}}
       {{- $alertType = "tip" -}}
     {{- else if eq $marker "[!important]" -}}
@@ -42,42 +78,22 @@
       {{- $alertType = "important" -}}
     {{- end -}}
     {{- $meta := index $defaults $alertType -}}
-    {{- $alertTitle = $meta.title -}}
-    {{- $content = replaceRE `(?s)^\[![^\]]+\]\s*\n?` "" .Text -}}
-    {{- $rendered = true -}}
-  {{- end -}}
-{{- end -}}
-
-{{- if $rendered -}}
-  {{- $meta := index $defaults $alertType -}}
-  {{- $title := $meta.title -}}
-  {{- if ne $alertTitle "" -}}{{- $title = $alertTitle -}}{{- end -}}
-  {{- $class := printf "sc-callout sc-callout--%s not-prose" $meta.tone -}}
-  {{- if ne $alertSign "" -}}
-    <details class="{{ $class }} sc-callout--fold"{{ if eq $alertSign "+" }} open{{ end }}>
-      <summary class="sc-callout__summary">
-        <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
-        <span class="sc-callout__title">{{ $title }}</span>
-      </summary>
-      <div class="sc-callout__body prose dark:prose-invert">
-        {{ $content }}
-      </div>
-    </details>
-  {{- else -}}
-    <aside class="{{ $class }}" role="note">
+    {{- $alertTitle := $meta.title -}}
+    {{- $content := replaceRE `(?s)^\[![^\]]+\]\s*\n?` "" .Text -}}
+    <aside class="sc-callout sc-callout--{{ $meta.tone }} not-prose" role="note">
       <div class="sc-callout__content">
         <div class="sc-callout__label">
           <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
-          <span class="sc-callout__title">{{ $title }}</span>
+          <span class="sc-callout__title">{{ $alertTitle }}</span>
         </div>
         <div class="sc-callout__body prose dark:prose-invert">
           {{ $content }}
         </div>
       </div>
     </aside>
+  {{- else -}}
+    <blockquote>
+      {{ .Text }}
+    </blockquote>
   {{- end -}}
-{{- else -}}
-  <blockquote>
-    {{ .Text }}
-  </blockquote>
 {{- end -}}

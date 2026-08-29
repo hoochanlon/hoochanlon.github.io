@@ -4,6 +4,13 @@
 [goldmark]
 [goldmark.renderer]
   unsafe = true
+[goldmark.parser]
+  [goldmark.parser.attribute]
+    block = true
+    title = true
+  wrapStandAloneImageWithParagraph = false
+  autoHeadingID = true
+  autoHeadingIDType = "github"
 [goldmark.extensions]
   linkify = true
 [goldmark.extensions.passthrough]

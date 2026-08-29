@@ -2,17 +2,17 @@
 {{- $title := .Get "title" | default "" -}}
 
 {{- $defaults := dict
-  "note" (dict "title" "Note" "icon" "circle-info" "tone" "note")
-  "tip" (dict "title" "Tip" "icon" "lightbulb" "tone" "tip")
-  "important" (dict "title" "Important" "icon" "comment" "tone" "important")
-  "warning" (dict "title" "Warning" "icon" "triangle-exclamation" "tone" "warning")
-  "caution" (dict "title" "Caution" "icon" "xmark" "tone" "caution")
+  "note" (dict "title" "Note" "icon" "circle-info")
+  "tip" (dict "title" "Tip" "icon" "lightbulb")
+  "important" (dict "title" "Important" "icon" "comment")
+  "warning" (dict "title" "Warning" "icon" "triangle-exclamation")
+  "caution" (dict "title" "Caution" "icon" "xmark")
 -}}
 
 {{- $meta := index $defaults $type | default (index $defaults "note") -}}
 {{- $displayTitle := $title | default $meta.title -}}
 
-<aside class="sc-callout sc-callout--{{ $meta.tone }} not-prose" role="note">
+<aside class="sc-callout sc-callout--{{ $type }} not-prose" role="note">
   <div class="sc-callout__content">
     <div class="sc-callout__label">
       <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $meta.icon -}}</span>
@@ -23,4 +23,3 @@
     </div>
   </div>
 </aside>
-

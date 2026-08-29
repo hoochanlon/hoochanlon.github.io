@@ -1,5 +1,32 @@
-/* 所有主题统一：隐藏常规固定置顶按钮，只使用页脚抽屉中的按钮 */
-html[data-palette] #to-top {
-  display: none !important;
+/* 移动端保留固定置顶按钮；桌面端继续使用页脚抽屉中的按钮 */
+@media (max-width: 1023px) {
+  html[data-palette] #to-top {
+    position: fixed;
+    inset-block-start: auto;
+    inset-inline-end: max(1rem, env(safe-area-inset-right));
+    inset-block-end: calc(1rem + env(safe-area-inset-bottom));
+    z-index: 28;
+    width: 2.85rem;
+  }
+
+  html[data-palette] #to-top > a {
+    position: static;
+    width: 2.85rem;
+    height: 2.85rem;
+    border: 1px solid rgb(var(--color-neutral-200));
+    background: color-mix(in srgb, rgb(var(--color-neutral)) 90%, white);
+    box-shadow: 0 10px 28px rgb(var(--color-neutral-900) / 0.14);
+  }
+
+  html[data-palette].dark #to-top > a {
+    border-color: color-mix(in srgb, rgb(var(--color-neutral-600)) 68%, rgb(var(--color-primary-500)));
+    background: rgb(var(--color-neutral-900) / 0.9);
+    box-shadow: 0 10px 28px rgb(0 0 0 / 0.34);
+  }
 }
 
+@media (min-width: 1024px) {
+  html[data-palette] #to-top {
+    display: none !important;
+  }
+}

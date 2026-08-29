@@ -1,52 +1,29 @@
-{{- $text := .Text | strings.TrimSpace -}}
-{{- $lines := split $text "\n" -}}
-{{- $firstLine := index $lines 0 | strings.TrimSpace -}}
-
-{{- $alertType := "" -}}
-{{- $alertIcon := "" -}}
-{{- $alertTitle := "" -}}
-
-{{- if strings.HasPrefix $firstLine "[!NOTE]" -}}
-  {{- $alertType = "note" -}}
-  {{- $alertIcon = "circle-info" -}}
-  {{- $alertTitle = "Note" -}}
-{{- else if strings.HasPrefix $firstLine "[!TIP]" -}}
-  {{- $alertType = "tip" -}}
-  {{- $alertIcon = "lightbulb" -}}
-  {{- $alertTitle = "Tip" -}}
-{{- else if strings.HasPrefix $firstLine "[!IMPORTANT]" -}}
-  {{- $alertType = "important" -}}
-  {{- $alertIcon = "comment" -}}
-  {{- $alertTitle = "Important" -}}
-{{- else if strings.HasPrefix $firstLine "[!WARNING]" -}}
-  {{- $alertType = "warning" -}}
-  {{- $alertIcon = "triangle-exclamation" -}}
-  {{- $alertTitle = "Warning" -}}
-{{- else if strings.HasPrefix $firstLine "[!CAUTION]" -}}
-  {{- $alertType = "caution" -}}
-  {{- $alertIcon = "xmark" -}}
-  {{- $alertTitle = "Caution" -}}
-{{- end -}}
-
-{{- if $alertType -}}
-  {{- $content := strings.TrimPrefix (printf "[!%s]" (upper $alertType)) $firstLine | strings.TrimSpace -}}
-  {{- if gt (len $lines) 1 -}}
-    {{- $restLines := after 1 $lines -}}
-    {{- $content = printf "%s\n%s" $content (delimit $restLines "\n") -}}
-  {{- end -}}
+{{- if eq .Type "alert" -}}
+  {{- /* Hugo 原生识别到了 alert */ -}}
+  {{- $alertType := .AlertType | default "note" -}}
+  {{- $meta := dict
+    "note" (dict "title" "Note" "icon" "circle-info")
+    "tip" (dict "title" "Tip" "icon" "lightbulb")
+    "important" (dict "title" "Important" "icon" "comment")
+    "warning" (dict "title" "Warning" "icon" "triangle-exclamation")
+    "caution" (dict "title" "Caution" "icon" "xmark")
+  -}}
+  {{- $config := index $meta $alertType | default (index $meta "note") -}}
+  {{- $title := .AlertTitle | default $config.title -}}
   
   <aside class="sc-callout sc-callout--{{ $alertType }} not-prose" role="note">
     <div class="sc-callout__content">
       <div class="sc-callout__label">
-        <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $alertIcon -}}</span>
-        <span class="sc-callout__title">{{ $alertTitle }}</span>
+        <span class="sc-callout__icon" aria-hidden="true">{{- partial "icon.html" $config.icon -}}</span>
+        <span class="sc-callout__title">{{ $title }}</span>
       </div>
       <div class="sc-callout__body prose dark:prose-invert">
-        {{- $content | markdownify -}}
+        {{ .Text | safeHTML }}
       </div>
     </div>
   </aside>
 {{- else -}}
+  {{- /* 普通 blockquote */ -}}
   <blockquote>
     {{- .Text | safeHTML -}}
   </blockquote>
