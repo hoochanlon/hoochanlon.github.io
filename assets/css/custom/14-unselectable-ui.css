@@ -70,10 +70,11 @@ article > header h1 {
   user-select: text !important;
 }
 
-/* 关于页是装饰性签名页，标题和正文都不参与文本选择 */
-.page-about :where(header h1, .prose > .max-w-prose, .prose > .max-w-prose *) {
-  -webkit-user-select: none !important;
-  user-select: none !important;
+
+.article-meta__separator {
+  display: inline-block;
+  width: 0.42em;
+  flex: 0 0 0.42em;
 }
 
 :where(

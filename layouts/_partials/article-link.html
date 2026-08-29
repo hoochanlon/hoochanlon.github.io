@@ -31,11 +31,11 @@
     </div>
   {{- end }}
   <div class="min-w-0 grow">
-    <h3 class="flex items-center text-xl font-semibold">
+    <h3 class="flex items-start text-xl font-semibold">
       {{ with .Params.externalUrl }}
         <div>
           <a
-            class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+            class="article-link__title-link text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
             href="{{ . }}"
             target="_blank"
             rel="external"
@@ -51,7 +51,7 @@
         </div>
       {{ else }}
         <a
-          class="text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          class="article-link__title-link text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
           href="{{ .RelPermalink }}"
           >{{ partial "title-display.html" (.Params.titleDisplay | default .Title | emojify) }}</a
         >

@@ -36,7 +36,7 @@
   <div class="article-meta flex flex-row flex-wrap items-center">
     {{/* Output partials */}}
     {{ with ($meta.Get "partials") }}
-      {{ delimit . "<span class=\"px-2 text-primary-500\">&middot;</span>" | safeHTML }}
+      {{ delimit . "<span class=\"article-meta__separator\" aria-hidden=\"true\"></span>" | safeHTML }}
     {{ end }}
 
     {{/* Output draft label */}}
@@ -50,7 +50,7 @@
     (and (ne $scope "single") (.Params.showTaxonomies | default (.Site.Params.list.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false))))
     (and (eq $scope "single") (.Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false)))
   }}
-    <div class="my-1 flex flex-wrap leading-relaxed text-neutral-500 dark:text-neutral-400" style="font-size: {{ if eq $scope "single" }}0.875rem{{ else }}0.66rem{{ end }}">
+    <div class="article-taxonomies my-1 flex flex-wrap leading-relaxed text-neutral-500 dark:text-neutral-400" style="font-size: {{ if eq $scope "single" }}0.875rem{{ else }}0.66rem{{ end }}">
       {{ range $taxonomy, $terms := .Site.Taxonomies }}
         {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
           {{ range $context.GetTerms $taxonomy }}

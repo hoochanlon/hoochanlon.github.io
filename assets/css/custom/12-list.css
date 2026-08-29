@@ -44,10 +44,14 @@ html[data-palette] .list-year:first-of-type {
   margin-top: 1.5rem !important;
 }
 
-html[data-palette] .article-link h2 {
-  font-size: 1.35rem !important;
-  line-height: 1.5 !important;
-  margin-bottom: 0.3rem !important;
+.article-link__title-link {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-height: calc(1.55rem * 2);
+  line-height: 1.55rem;
 }
 
 .dark .article-link__summary {
