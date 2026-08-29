@@ -131,3 +131,14 @@
     --reading-scale: 1.08;
   }
 }
+
+/* 目录显示控制：确保 sidebar TOC 只在桌面端显示，inline TOC 只在移动端显示 */
+article > section.prose > .order-first.lg\:order-last {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  article > section.prose > .order-first.lg\:order-last {
+    display: block;
+  }
+}
