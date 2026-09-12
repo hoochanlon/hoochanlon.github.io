@@ -40,8 +40,6 @@ showEdit: false
 
 > 怕忘记
 
-提取图床、在线阅读源码放入hamuleite
-
 ## 摘抄
 
 > 值得记住的摘录
