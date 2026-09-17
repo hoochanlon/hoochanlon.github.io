@@ -1,0 +1,70 @@
+{{/* 覆盖内置 RSS：section 用 RegularPagesRecursive，嵌套 decade/year/month 下的文章才能进 feed */}}
+{{- $authorEmail := "" }}
+{{- with site.Params.author }}
+	{{- if reflect.IsMap . }}
+		{{- with .email }}
+			{{- $authorEmail = . }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{- $authorName := "" }}
+{{- with site.Params.author }}
+	{{- if reflect.IsMap . }}
+		{{- with .name }}
+			{{- $authorName = . }}
+		{{- end }}
+	{{- else }}
+		{{- $authorName = . }}
+	{{- end }}
+{{- end }}
+
+{{- $pages := slice }}
+{{- if .IsHome }}
+	{{- $pages = site.RegularPages }}
+{{- else if .IsSection }}
+	{{- $pages = .RegularPagesRecursive }}
+{{- else }}
+	{{- $pages = .Pages }}
+{{- end }}
+{{- $limit := site.Config.Services.RSS.Limit }}
+{{- if ge $limit 1 }}
+	{{- $pages = $pages | first $limit }}
+{{- end }}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ site.Title }}{{ end }}</title>
+		<link>{{ .Permalink }}</link>
+		<description>Recent content {{ if ne .Title site.Title }}{{ with .Title }}in {{ . }} {{ end }}{{ end }}on {{ site.Title }}</description>
+		<generator>Hugo</generator>
+		<language>{{ site.Language.Locale }}</language>
+		{{ with $authorEmail }}
+			<managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>
+		{{ end }}
+		{{ with $authorEmail }}
+			<webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>
+		{{ end }}
+		{{ with site.Copyright }}
+			<copyright>{{ . }}</copyright>
+		{{ end }}
+		{{ with $pages }}
+			{{ with index .ByLastmod.Reverse 0 }}
+				<lastBuildDate>{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+			{{ end }}
+		{{ end }}
+		{{- with .OutputFormats.Get "RSS" }}
+			{{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+		{{- end }}
+		{{- range $pages }}
+			<item>
+				<title>{{ .Title }}</title>
+				<link>{{ .Permalink }}</link>
+				<pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+				{{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
+				<guid>{{ .Permalink }}</guid>
+				<description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+			</item>
+		{{- end }}
+	</channel>
+</rss>
