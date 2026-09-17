@@ -39,7 +39,8 @@ title = "致爱丽丝"
     icon = "icons/wechat-1.svg"
     text = "🍏"
     # label = "To the moon，离开地球表面"
-    image = "img/wexin.jpg"
+    # image = "img/wexin.jpg"
+    image = "img/avatar.gif"
     # 是否隐藏图标的圆形底框：true 为透明，false 恢复原始圆框
     transparent = false
     # 鼠标移入状态徽标后，提示出现前的等待时间（秒）
