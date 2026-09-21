@@ -11,12 +11,18 @@
 .page-about .prose > .max-w-prose :where(p) {
   margin-block: 0.95rem;
   color: rgb(var(--color-neutral-700));
-  font-family: "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
-  font-size: clamp(1.65rem, 2.45vw, 2.3rem);
+  font-family: "Parisienne", "Segoe Script", "Apple Chancery", cursive;
+  font-size: clamp(1.65rem, 2.05vw, 2.3rem);
   font-weight: 400;
   line-height: 1.72;
   letter-spacing: 0.075em;
   text-wrap: balance;
+}
+
+/* 中文使用霞鹜文楷 */
+.page-about .prose > .max-w-prose :where(p):lang(zh),
+.page-about .prose > .max-w-prose :where(p):lang(zh-CN) {
+  font-family: "LXGW WenKai", sans-serif;
 }
 
 .dark .page-about .prose > .max-w-prose :where(p) {

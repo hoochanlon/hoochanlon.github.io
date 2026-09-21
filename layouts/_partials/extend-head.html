@@ -1,6 +1,13 @@
 {{/* 英文装饰字体：Bunny Fonts CDN */}}
 <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
 <link
+  rel="preload"
+  href="https://fonts.bunny.net/parisienne/files/parisienne-latin-400-normal.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
   rel="stylesheet"
   href="https://fonts.bunny.net/css?family=allura:400|parisienne:400&display=swap"
 />
@@ -18,6 +25,14 @@
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Liu+Jian+Mao+Cao&display=swap"
 />
+
+{{/* 关于页中文字体：霞鹜文楷 */}}
+{{ if and .File (eq .File.Path "about.md") }}
+<link
+  rel="stylesheet"
+  href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.6.0/style.min.css"
+/>
+{{ end }}
 
 {{/* 想法页手写体：单文件完整版 preload，秒开体验，缺字回落到霞鹜 */}}
 {{ if and .File (eq .File.Path "ideas.md") }}
