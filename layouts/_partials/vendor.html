@@ -25,6 +25,45 @@
     integrity="{{ $chartJS.Data.Integrity }}"
   ></script>
 {{ end }}
+{{/* KaTeX：短代码只作开关，实际渲染靠 auto-render */}}
+{{ if .Page.HasShortcode "katex" }}
+  {{ $katexCSS := resources.Get "lib/katex/katex.min.css" }}
+  {{ $katexCSS := $katexCSS | resources.Fingerprint $algorithm }}
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="{{ $katexCSS.RelPermalink }}"
+    integrity="{{ $katexCSS.Data.Integrity }}"
+  />
+  {{ $katexJS := resources.Get "lib/katex/katex.min.js" }}
+  {{ $katexJS := $katexJS | resources.Fingerprint $algorithm }}
+  <script defer src="{{ $katexJS.RelPermalink }}" integrity="{{ $katexJS.Data.Integrity }}"></script>
+  {{ $katexRenderJS := resources.Get "lib/katex/auto-render.min.js" }}
+  {{ $katexRenderJS := $katexRenderJS | resources.Fingerprint $algorithm }}
+  <script
+    defer
+    src="{{ $katexRenderJS.RelPermalink }}"
+    integrity="{{ $katexRenderJS.Data.Integrity }}"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '$', right: '$', display: false},
+      ],
+      ignoredTags: ['script', 'style', 'textarea', 'pre', 'code', 'option'],
+      ignoredClasses: ['no-math'],
+      preprocess: function(text) {
+        return text.replace(/\$(?=\d)/g, '\uFF04');
+      },
+      throwOnError : false
+    });"
+  ></script>
+  {{ $katexFonts := resources.Match "lib/katex/fonts/*" }}
+  {{ range $katexFonts }}
+    {{ .Publish }}
+  {{ end }}
+{{ end }}
 {{/* Matplotlib toggle */}}
 {{ if .Page.HasShortcode "matplotlib" }}
   {{ $matplotlibToggleJS := resources.Get "js/matplotlib-toggle.js" | resources.Minify | resources.Fingerprint $algorithm }}
