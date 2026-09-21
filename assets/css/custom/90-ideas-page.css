@@ -1,62 +1,41 @@
-/* 想法页手写体样式 */
-/* 清松手写体直接定义 @font-face */
-
-@font-face {
-  font-family: "JasonHandwriting1-Regular";
-  src: url(https://cdn.jsdelivr.net/gh/max32002/JasonHandWritingFonts@20240409/webfont/JasonHandwriting1-Regular.woff2) format("woff2");
-  font-display: swap;
-}
+/* 想法页手写体：常用字首包 + 粗切片，由 jason-handwriting1/result.css 提供 */
 
 .page-ideas {
-  /* 使用易读的手写体字体栈 */
-  font-family: 
-    "JasonHandwriting1-Regular", /* 清松手写体 1 - 原子笔手写 */
-    "LXGW WenKai Screen",    /* 霞鹜文楷 Screen - 候补 */
-    "LXGW WenKai",           /* 霞鹜文楷 - 候补 */
-    "STKaiti",               /* 华文楷体 - 中文后备 */
-    "KaiTi",                 /* 楷体 - 中文后备 */
-    var(--reading-font-serif),  /* 回退到文章页字体 */
-    serif !important;
-  
-  /* 调整行高，手写体通常需要更大的行距 */
-  line-height: 1.8 !important;
-}
-
-/* 标题使用稍微正式一点的字体 */
-.page-ideas article > header h1 {
-  font-family: 
-    "JasonHandwriting1-Regular", /* 清松手写体 1 */
-    "LXGW WenKai Screen",    /* 霞鹜文楷 Screen */
-    "LXGW WenKai",           /* 霞鹜文楷 */
-    "STKaiti",               /* 华文楷体 */
-    "KaiTi",                 /* 楷体 */
-    var(--reading-font-heading),  /* 回退到文章标题字体 */
-    serif !important;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-/* 正文内容保持手写感 */
-.page-ideas .prose {
-  font-family: inherit !important;
-}
-
-/* 所有文本元素都应用手写体 */
-.page-ideas *,
-.page-ideas .prose *,
-.page-ideas article > section * {
-  font-family: 
-    "JasonHandwriting1-Regular",
+  font-family:
+    "JasonHandwriting1",
     "LXGW WenKai Screen",
     "LXGW WenKai",
     "STKaiti",
     "KaiTi",
     var(--reading-font-serif),
     serif !important;
+  line-height: 1.8 !important;
 }
-    "Klee One",
-    "Long Cang",
-    "Ma Shan Zheng",
+
+.page-ideas article > header h1 {
+  font-family:
+    "JasonHandwriting1",
+    "LXGW WenKai Screen",
+    "LXGW WenKai",
+    "STKaiti",
+    "KaiTi",
+    var(--reading-font-heading),
+    serif !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.page-ideas .prose {
+  font-family: inherit !important;
+}
+
+.page-ideas *,
+.page-ideas .prose *,
+.page-ideas article > section * {
+  font-family:
+    "JasonHandwriting1",
+    "LXGW WenKai Screen",
+    "LXGW WenKai",
     "STKaiti",
     "KaiTi",
     var(--reading-font-serif),

@@ -19,7 +19,20 @@
   href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Liu+Jian+Mao+Cao&display=swap"
 />
 
-{{/* 想法页手写体字体：清松手写体在 CSS 中直接定义 + 霞鹜文楷候补 */}}
+{{/* 想法页手写体：单文件完整版 preload，秒开体验，缺字回落到霞鹜 */}}
+{{ if and .File (eq .File.Path "ideas.md") }}
+<link
+  rel="preload"
+  href="{{ "fonts/jason-handwriting1/ideas-full.woff2" | relURL }}"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="stylesheet"
+  href="{{ "fonts/jason-handwriting1/ideas-full.css" | relURL }}"
+/>
+{{ end }}
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css"
