@@ -1,0 +1,29 @@
+{{ define "main" }}
+  {{- $titleStyle := .Params.titleStyle | default "" -}}
+  {{- $titleSize := .Params.titleSize | default "" -}}
+  {{- $hasHan := findRE `\p{Han}` .Title -}}
+  <article class="page-about">
+    <header class="max-w-prose">
+      {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
+        {{ partial "breadcrumbs.html" . }}
+      {{ end }}
+      <h1 class="mb-6 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral{{ if eq $titleStyle "script" }} page-title-script{{ if $hasHan }} has-han{{ end }}{{ end }}{{ if eq $titleSize "small" }} page-title-small{{ end }}">
+        {{ partial "title-display.html" (.Params.displayTitle | default .Params.titleDisplay | default .Title | emojify) }}
+      </h1>
+      {{ with .Params.subtitle }}
+        <p class="page-subtitle">{{ . | emojify }}</p>
+      {{ end }}
+      {{ with .Params.birthLabel }}
+        <p class="page-title-kicker">{{ . }}</p>
+      {{ end }}
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <div class="about-content-left">
+          {{ .Content | emojify }}
+        </div>
+        {{ partial "about-sidebar.html" . }}
+      </div>
+    </section>
+  </article>
+{{ end }}

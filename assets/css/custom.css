@@ -4,6 +4,8 @@
  *   03-banner.css          置顶公告横幅
  *   05-name.css            博客作者名（首页 / 作者卡片 / 页脚）
  *   06-page-title.css      单页特殊标题字体
+ *   08-home-intro.css      首页简介签名文案
+ *   09-about.css           关于页左右分栏
  *   10-prose.css           正文公式 / 插图
  *   14-unselectable-ui.css 装饰性 UI 与索引信息不可选中
  *   15-author-links.css    作者社交链接 / 微信二维码
@@ -18,6 +20,8 @@
  *   17g-reading-dark-mermaid.css 暗色标题、选区与 Mermaid
  *   17h-reading-actions.css 分享按钮与作者图标隔离
  *   18-footer-drawer.css   页脚半抽屉交互（桌面端）
+ *   19-about-identity.css  关于页右栏铭牌
+ *   19-home-intro-isolation.css 首页简介尺寸隔离
  *   20-image-zoom.css      图片灯箱
  *   30-video.css           内嵌视频
  *   35-code.css            代码块 / 行号

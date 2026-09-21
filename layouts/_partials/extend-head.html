@@ -27,7 +27,7 @@
 />
 
 {{/* 关于页中文字体：霞鹜文楷 */}}
-{{ if and .File (eq .File.Path "about.md") }}
+{{ if eq .Layout "about" }}
 <link
   rel="stylesheet"
   href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.6.0/style.min.css"

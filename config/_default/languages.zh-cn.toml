@@ -37,10 +37,9 @@ title = "致爱丽丝"
     # 如需自定义 SVG，取消注释并填写 assets/ 下的路径
     # icon = "icons/to-the-moon.svg"
     icon = "icons/beats.svg"
-    text = "🍏"
-    # label = "To the moon，离开地球表面"
+    label = "This is true music, Only Apple can do."
     # image = "imgs/wexin.jpg"
-    image = "imgs/album.jpg"
+    # image = "imgs/album.jpg"
     # 是否隐藏图标的圆形底框：true 为透明，false 恢复原始圆框
     transparent = false
     # 鼠标移入状态徽标后，提示出现前的等待时间（秒）

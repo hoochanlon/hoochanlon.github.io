@@ -1,0 +1,135 @@
+/* about 右栏身份铭牌：从阅读主题的 prose p/a 和选区规则里拆出来
+ *
+ * 09-about.css 先于 17* 加载，字号和选区都会被盖掉。
+ * 本文件排在 19-，专门覆盖铭牌尺寸和选区对比。
+ */
+
+.page-about .about-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.28rem;
+  width: 100%;
+  text-align: center;
+}
+
+.page-about .about-identity__name,
+.page-about .about-identity__handle,
+.page-about .about-identity__role,
+.page-about .about-identity__handle a {
+  margin: 0;
+  max-width: 100%;
+  font-family: inherit !important;
+  font-style: normal;
+  text-decoration: none !important;
+}
+
+.page-about .about-identity__name {
+  display: block;
+  font-size: 2.15rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  line-height: 1.3 !important;
+  color: rgb(var(--color-neutral-800));
+}
+
+.page-about .about-identity__handle,
+.page-about .about-identity__handle a {
+  display: inline-block;
+  font-size: 1.22rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em;
+  line-height: 1.4 !important;
+  color: rgb(var(--color-neutral-500)) !important;
+}
+
+.page-about .about-identity__handle a {
+  padding: 0.12em 0.45em;
+  border-radius: 999px;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.page-about .about-identity__handle a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-500));
+  color: rgb(var(--color-neutral-50)) !important;
+  -webkit-text-fill-color: rgb(var(--color-neutral-50));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(var(--color-primary-500), 0.3);
+}
+
+.page-about .about-identity__role {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 1.18rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.04em;
+  color: rgb(var(--color-neutral-500));
+}
+
+.dark .page-about .about-identity__name {
+  color: rgb(var(--color-neutral-100));
+}
+
+.dark .page-about .about-identity__handle,
+.dark .page-about .about-identity__handle a,
+.dark .page-about .about-identity__role {
+  color: rgb(var(--color-neutral-400)) !important;
+}
+
+.dark .page-about .about-identity__handle a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-400));
+  color: rgb(var(--color-neutral-900)) !important;
+  -webkit-text-fill-color: rgb(var(--color-neutral-900));
+  box-shadow: 0 6px 20px rgba(var(--color-primary-400), 0.3);
+}
+
+html[data-palette="sakura"].dark .page-about .about-identity__handle a:is(:hover, :focus-visible, :active) {
+  color: rgb(var(--color-neutral-900)) !important;
+  -webkit-text-fill-color: rgb(var(--color-neutral-900));
+}
+
+/* 划词选区跟社交图标同一套：主题色底 + 浅色字 */
+html[data-palette] .page-about .about-identity ::selection,
+html[data-palette] .page-about .about-identity *::selection,
+html[data-palette] .page-about .about-identity a::selection,
+html[data-palette] .page-about .about-identity a:any-link::selection,
+html[data-palette] .page-about .about-identity a *::selection,
+html[data-palette] #main-content .about-identity a::selection,
+html[data-palette] #main-content .about-identity a:any-link::selection,
+html[data-palette] #main-content .about-identity a *::selection,
+html[data-palette] .page-about .about-identity ::-moz-selection,
+html[data-palette] .page-about .about-identity *::-moz-selection,
+html[data-palette] .page-about .about-identity a::-moz-selection,
+html[data-palette] .page-about .about-identity a:any-link::-moz-selection,
+html[data-palette] .page-about .about-identity a *::-moz-selection,
+html[data-palette] #main-content .about-identity a::-moz-selection,
+html[data-palette] #main-content .about-identity a:any-link::-moz-selection,
+html[data-palette] #main-content .about-identity a *::-moz-selection {
+  background: rgb(var(--color-primary-500)) !important;
+  color: rgb(var(--color-neutral-50)) !important;
+  -webkit-text-fill-color: rgb(var(--color-neutral-50)) !important;
+  text-decoration-color: transparent !important;
+  text-shadow: none !important;
+}
+
+html[data-palette].dark .page-about .about-identity ::selection,
+html[data-palette].dark .page-about .about-identity *::selection,
+html[data-palette].dark .page-about .about-identity a::selection,
+html[data-palette].dark .page-about .about-identity a:any-link::selection,
+html[data-palette].dark .page-about .about-identity a *::selection,
+html[data-palette].dark #main-content .about-identity a::selection,
+html[data-palette].dark #main-content .about-identity a:any-link::selection,
+html[data-palette].dark #main-content .about-identity a *::selection,
+html[data-palette].dark .page-about .about-identity ::-moz-selection,
+html[data-palette].dark .page-about .about-identity *::-moz-selection,
+html[data-palette].dark .page-about .about-identity a::-moz-selection,
+html[data-palette].dark .page-about .about-identity a:any-link::-moz-selection,
+html[data-palette].dark .page-about .about-identity a *::-moz-selection,
+html[data-palette].dark #main-content .about-identity a::-moz-selection,
+html[data-palette].dark #main-content .about-identity a:any-link::-moz-selection,
+html[data-palette].dark #main-content .about-identity a *::-moz-selection {
+  background: rgb(var(--color-primary-400)) !important;
+  color: rgb(var(--color-neutral-900)) !important;
+  -webkit-text-fill-color: rgb(var(--color-neutral-900)) !important;
+}

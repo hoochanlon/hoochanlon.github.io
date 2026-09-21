@@ -1,0 +1,71 @@
+{{- $profile := .Params.profile | default dict -}}
+{{- $image := $profile.image | default "" -}}
+{{- $alt := $profile.imageAlt | default "Profile" -}}
+{{- $name := $profile.name | default "" -}}
+{{- $handle := $profile.handle | default "" -}}
+{{- $handleUrl := $profile.handleUrl | default "" -}}
+{{- $role := $profile.role | default "" -}}
+{{- $links := $profile.links | default slice -}}
+{{- $webp := .Site.Params.enableImageWebp | default true -}}
+
+{{- $file := strings.TrimPrefix "/" $image -}}
+{{- $img := .Resources.GetMatch $file -}}
+{{- if and (not $img) .File -}}
+  {{- $img = resources.Get (path.Join .File.Dir $file) -}}
+{{- end -}}
+{{- if not $img -}}
+  {{- $img = resources.Get $file -}}
+{{- end -}}
+
+<div class="about-sidebar-right">
+  {{- if $img -}}
+    <figure class="about-profile-image">
+      {{ partial "picture.html" (dict "img" $img "alt" $alt "class" "about-profile-image" "lazy" false "webp" $webp) }}
+    </figure>
+  {{- else -}}
+    {{- with $image -}}
+      <figure class="about-profile-image">
+        <img src="{{ . | relURL }}" alt="{{ $alt }}" />
+      </figure>
+    {{- end -}}
+  {{- end -}}
+
+  {{- if or $name $handle $role -}}
+    <div class="about-identity">
+      {{- with $name -}}
+        <span class="about-identity__name">{{ . }}</span>
+      {{- end -}}
+      {{- with $handle -}}
+        <span class="about-identity__handle">
+          {{- if $handleUrl -}}
+            <a href="{{ $handleUrl }}" target="_blank" rel="noopener" class="no-underline">@{{ . }}</a>
+          {{- else -}}
+            @{{ . }}
+          {{- end -}}
+        </span>
+      {{- end -}}
+      {{- with $role -}}
+        <span class="about-identity__role">{{ . }}</span>
+      {{- end -}}
+    </div>
+  {{- end -}}
+
+  {{- with $links -}}
+    <div class="about-social-icons">
+      {{- range . -}}
+        {{- $linkName := .name | default "" -}}
+        {{- $href := .url | default "" -}}
+        {{- $label := .label | default ($linkName | title) -}}
+        {{- $isMail := strings.HasPrefix $href "mailto:" -}}
+        {{- if and $linkName $href -}}
+          <a
+            href="{{ $href | safeURL }}"
+            class="no-underline"
+            aria-label="{{ $label }}"
+            {{ if not $isMail }}target="_blank" rel="noopener"{{ end }}
+          >{{ partial "icon.html" $linkName }}</a>
+        {{- end -}}
+      {{- end -}}
+    </div>
+  {{- end -}}
+</div>
