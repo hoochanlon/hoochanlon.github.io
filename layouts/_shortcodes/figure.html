@@ -7,7 +7,8 @@
     {{- $u := urls.Parse (.Get "src") -}}
     {{- $src := $u.String -}}
     {{- if not $u.IsAbs -}}
-      {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+      {{- $file := strings.TrimPrefix "/" $u.Path -}}
+      {{- with or (.Page.Resources.Get $file) (resources.Get $file) -}}
         {{- $src = .RelPermalink -}}
       {{- end -}}
     {{- end -}}
@@ -44,11 +45,14 @@
   {{ $href := .Get "href" }}
   {{ $class := default "mx-auto my-0 rounded-md" (.Get "class") }}
 
-  {{ $file := $url.Path }}
+  {{ $file := strings.TrimPrefix "/" $url.Path }}
   {{ $img := .Page.Resources.GetMatch $file }}
   {{- if and (not $img) .Page.File }}
     {{ $path := path.Join .Page.File.Dir $file }}
     {{ $img = resources.Get $path }}
+  {{ end -}}
+  {{- if not $img }}
+    {{ $img = resources.Get $file }}
   {{ end -}}
 
   <!-- prettier-ignore -->

@@ -20,13 +20,14 @@
             </span>
           {{ end }}
         {{ else }}
+          {{ $isMail := strings.HasPrefix $url "mailto:" }}
           <a
             class="author-links__item px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-500"
             style="will-change:transform;"
             href="{{ $url | safeURL }}"
-            target="_blank"
+            {{ if not $isMail }}target="_blank"{{ end }}
             aria-label="{{ $name | title }}"
-            rel="me noopener noreferrer"
+            rel="{{ if $isMail }}me{{ else }}me noopener noreferrer{{ end }}"
             >{{ partial "icon.html" $name }}</a
           >
         {{ end }}

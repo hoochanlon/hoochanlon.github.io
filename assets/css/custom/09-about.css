@@ -1,30 +1,235 @@
-/* 关于页正文签名体
+/* 关于页左右分栏布局
  *
  * 数据流：content/about.md -> layouts/single.html -> .page-about
- * 作用域：只影响关于页正文；标题仍由 titleStyle: script 控制。
+ * 布局：桌面端左右分栏，移动端上下堆叠
  */
 
-.page-about .prose > .max-w-prose {
-  text-align: center;
+/* 整体容器：使用 Grid 布局；宽度对齐无目录文章版心，避免被 65ch 卡住 */
+.page-about > header.max-w-prose,
+.page-about > section.prose > .max-w-prose,
+.page-about > footer.max-w-prose {
+  width: min(100%, var(--article-body-width, 50rem));
+  max-width: min(100%, var(--article-body-width, 50rem));
 }
 
-.page-about .prose > .max-w-prose :where(p) {
+.page-about .prose > .max-w-prose {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  text-align: left;
+}
+
+/* 桌面端：左右分栏 */
+@media (min-width: 1024px) {
+  .page-about .prose > .max-w-prose {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* 左侧内容区 */
+.about-content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-content-left > blockquote,
+.about-content-left > blockquote p {
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid rgb(var(--color-primary-500));
+  font-family:
+    "LXGW WenKai Screen",
+    "LXGW WenKai",
+    "STKaiti",
+    "KaiTi",
+    serif !important;
+  font-size: clamp(1.05rem, 1.15vw, 1.18rem) !important;
+  font-style: italic;
+  font-weight: 400 !important;
+  line-height: 1.85 !important;
+  letter-spacing: 0.02em !important;
+  color: rgb(var(--color-neutral-600));
+}
+
+.dark .about-content-left > blockquote,
+.dark .about-content-left > blockquote p {
+  color: rgb(var(--color-neutral-300));
+  border-left-color: rgb(var(--color-primary-400));
+}
+
+.about-content-left > p {
   margin-block: 0.95rem;
   color: rgb(var(--color-neutral-700));
-  font-family: "Parisienne", "Segoe Script", "Apple Chancery", cursive;
-  font-size: clamp(1.65rem, 2.05vw, 2.3rem);
-  font-weight: 400;
-  line-height: 1.72;
-  letter-spacing: 0.075em;
+  font-family:
+    "LXGW WenKai Screen",
+    "LXGW WenKai",
+    "STKaiti",
+    "KaiTi",
+    serif !important;
+  font-size: clamp(1.12rem, 1.25vw, 1.28rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  letter-spacing: 0.03em !important;
   text-wrap: balance;
 }
 
-/* 中文使用霞鹜文楷 */
-.page-about .prose > .max-w-prose :where(p):lang(zh),
-.page-about .prose > .max-w-prose :where(p):lang(zh-CN) {
-  font-family: "LXGW WenKai", sans-serif;
+.dark .about-content-left > p {
+  color: rgb(var(--color-neutral-200));
 }
 
-.dark .page-about .prose > .max-w-prose :where(p) {
+/* 右侧边栏 */
+.about-sidebar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* 移动端：右侧边栏在上方 */
+@media (max-width: 1023px) {
+  .about-sidebar-right {
+    order: -1;
+  }
+}
+
+/* 个人照片：圆角 + 轻微倾斜贴在同一层，避免 overflow:visible 把圆角裁掉 */
+.about-sidebar-right .about-profile-image {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0;
+  display: block;
+  overflow: visible;
+}
+
+.about-sidebar-right .about-profile-image img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transform: rotate(3deg);
+  transform-origin: center center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
+}
+
+.about-sidebar-right .about-profile-image picture {
+  display: block;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  transform: rotate(3deg);
+  transform-origin: center center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-sidebar-right .about-profile-image picture img {
+  transform: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.about-sidebar-right .about-profile-image:hover picture,
+.about-sidebar-right .about-profile-image:hover img {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+}
+
+.about-sidebar-right .about-profile-image:hover picture img {
+  transform: none;
+  box-shadow: none;
+}
+
+.dark .about-sidebar-right .about-profile-image img,
+.dark .about-sidebar-right .about-profile-image picture {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark .about-sidebar-right .about-profile-image:hover img,
+.dark .about-sidebar-right .about-profile-image:hover picture {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.dark .about-sidebar-right .about-profile-image picture img,
+.dark .about-sidebar-right .about-profile-image:hover picture img {
+  box-shadow: none;
+}
+
+/* 社交图标容器 */
+.about-social-icons {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-700));
+  -webkit-text-fill-color: currentColor;
+  fill: currentColor;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.about-social-icons a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-500));
+  color: rgb(var(--color-neutral-50));
+  -webkit-text-fill-color: currentColor;
+  fill: currentColor;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(var(--color-primary-500), 0.3);
+}
+
+.dark .about-social-icons a {
+  background: rgb(var(--color-neutral-800));
   color: rgb(var(--color-neutral-200));
+  -webkit-text-fill-color: currentColor;
+  fill: currentColor;
+}
+
+.dark .about-social-icons a:is(:hover, :focus-visible, :active) {
+  background: rgb(var(--color-primary-400));
+  color: rgb(var(--color-neutral-900));
+  -webkit-text-fill-color: currentColor;
+  fill: currentColor;
+}
+
+.about-social-icons a :is(svg, svg *) {
+  color: inherit;
+  fill: currentColor;
+  -webkit-text-fill-color: currentColor;
+}
+
+html[data-palette="sakura"].dark .about-social-icons a:is(:hover, :focus-visible, :active),
+html[data-palette="sakura"].dark .about-social-icons a:is(:hover, :focus-visible, :active) :is(svg, svg *) {
+  color: rgb(var(--color-neutral-900));
+  fill: currentColor;
+  -webkit-text-fill-color: currentColor;
+}
+
+.about-social-icons svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* 移除原有样式的副作用 */
+.page-about .prose > .max-w-prose :where(p) {
+  margin: 0;
 }

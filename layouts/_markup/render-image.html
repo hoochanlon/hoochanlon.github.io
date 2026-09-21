@@ -3,11 +3,14 @@
 {{ $caption := .Title | strings.TrimSpace }}
 {{ $class := "mx-auto my-0 rounded-md" }}
 
-{{ $file := $url.Path }}
+{{ $file := strings.TrimPrefix "/" $url.Path }}
 {{ $img := .Page.Resources.GetMatch $file }}
 {{- if and (not $img) .Page.File }}
   {{ $path := path.Join .Page.File.Dir $file }}
   {{ $img = resources.Get $path }}
+{{ end -}}
+{{- if not $img }}
+  {{ $img = resources.Get $file }}
 {{ end -}}
 
 {{/* https://github.com/gohugoio/hugo/pull/10666 */}}
