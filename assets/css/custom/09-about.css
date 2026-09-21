@@ -134,7 +134,18 @@
   overflow: visible;
 }
 
-.about-sidebar-right .about-profile-image img {
+.about-sidebar-right .about-profile-play {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.about-sidebar-right .about-profile-image img,
+.about-sidebar-right .about-profile-play img {
   display: block;
   width: 100%;
   max-width: none;
@@ -151,7 +162,17 @@
   cursor: default;
 }
 
-.about-sidebar-right .about-profile-image picture {
+.about-sidebar-right .about-profile-play:focus-visible {
+  outline: none;
+}
+
+.about-sidebar-right .about-profile-play:focus-visible .about-profile-play__badge {
+  outline: 2px solid rgb(var(--color-primary-500));
+  outline-offset: 3px;
+}
+
+.about-sidebar-right .about-profile-image picture,
+.about-sidebar-right .about-profile-play picture {
   display: block;
   width: 100%;
   border-radius: 1rem;
@@ -162,35 +183,122 @@
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.about-sidebar-right .about-profile-image picture img {
+.about-sidebar-right .about-profile-image picture img,
+.about-sidebar-right .about-profile-play picture img {
   transform: none;
   box-shadow: none;
   border-radius: 0;
 }
 
 .about-sidebar-right .about-profile-image:hover picture,
-.about-sidebar-right .about-profile-image:hover img {
+.about-sidebar-right .about-profile-image:hover img,
+.about-sidebar-right .about-profile-image:hover .about-profile-play picture,
+.about-sidebar-right .about-profile-image:hover .about-profile-play img,
+.about-sidebar-right .about-profile-image.is-playing picture,
+.about-sidebar-right .about-profile-image.is-playing img,
+.about-sidebar-right .about-profile-image.is-playing .about-profile-play picture,
+.about-sidebar-right .about-profile-image.is-playing .about-profile-play img {
   transform: rotate(0deg) translateY(-4px);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
 }
 
-.about-sidebar-right .about-profile-image:hover picture img {
+.about-sidebar-right .about-profile-image:hover picture img,
+.about-sidebar-right .about-profile-image.is-playing picture img,
+.about-sidebar-right .about-profile-image:hover .about-profile-play picture img,
+.about-sidebar-right .about-profile-image.is-playing .about-profile-play picture img {
   transform: none;
   box-shadow: none;
 }
 
+.about-profile-play__badge {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 1;
+  display: grid;
+  width: 2.85rem;
+  height: 2.85rem;
+  place-items: center;
+  border-radius: 999px;
+  background: rgb(var(--color-neutral-900) / 0.42);
+  color: rgb(var(--color-neutral-50));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  transform: rotate(-3deg);
+  transition: transform 0.35s ease, background 0.3s ease;
+}
+
+.about-profile-play__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.about-profile-play__ring-track,
+.about-profile-play__ring-value {
+  fill: none;
+  stroke-width: 3;
+}
+
+.about-profile-play__ring-track {
+  stroke: rgb(255 255 255 / 0.28);
+}
+
+.about-profile-play__ring-value {
+  stroke: rgb(var(--color-primary-400));
+  stroke-linecap: round;
+}
+
+.about-profile-image:hover .about-profile-play__badge,
+.about-profile-image.is-playing .about-profile-play__badge {
+  transform: rotate(0deg);
+  background: rgb(var(--color-neutral-900) / 0.55);
+}
+
+.about-profile-play__icon {
+  position: relative;
+  z-index: 1;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.about-profile-play__icon--pause,
+.about-profile-image.is-playing .about-profile-play__icon--play {
+  display: none;
+}
+
+.about-profile-image.is-playing .about-profile-play__icon--pause {
+  display: block;
+}
+
+.about-profile-audio {
+  display: none;
+}
+
 .dark .about-sidebar-right .about-profile-image img,
-.dark .about-sidebar-right .about-profile-image picture {
+.dark .about-sidebar-right .about-profile-image picture,
+.dark .about-sidebar-right .about-profile-play img,
+.dark .about-sidebar-right .about-profile-play picture {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .dark .about-sidebar-right .about-profile-image:hover img,
-.dark .about-sidebar-right .about-profile-image:hover picture {
+.dark .about-sidebar-right .about-profile-image:hover picture,
+.dark .about-sidebar-right .about-profile-image.is-playing img,
+.dark .about-sidebar-right .about-profile-image.is-playing picture,
+.dark .about-sidebar-right .about-profile-image:hover .about-profile-play img,
+.dark .about-sidebar-right .about-profile-image:hover .about-profile-play picture,
+.dark .about-sidebar-right .about-profile-image.is-playing .about-profile-play img,
+.dark .about-sidebar-right .about-profile-image.is-playing .about-profile-play picture {
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
 }
 
 .dark .about-sidebar-right .about-profile-image picture img,
-.dark .about-sidebar-right .about-profile-image:hover picture img {
+.dark .about-sidebar-right .about-profile-image:hover picture img,
+.dark .about-sidebar-right .about-profile-play picture img,
+.dark .about-sidebar-right .about-profile-image:hover .about-profile-play picture img,
+.dark .about-sidebar-right .about-profile-image.is-playing .about-profile-play picture img {
   box-shadow: none;
 }
 

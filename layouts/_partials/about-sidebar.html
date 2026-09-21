@@ -6,28 +6,65 @@
 {{- $handleUrl := $profile.handleUrl | default "" -}}
 {{- $role := $profile.role | default "" -}}
 {{- $links := $profile.links | default slice -}}
+{{- $track := $profile.track | default dict -}}
+{{- $audio := $track.audio | default "" -}}
+{{- $trackTitle := $track.title | default $alt -}}
+{{- $trackArtist := $track.artist | default "" -}}
 {{- $webp := .Site.Params.enableImageWebp | default true -}}
+{{- $isPlayable := ne $audio "" -}}
 
 {{- $file := strings.TrimPrefix "/" $image -}}
-{{- $img := .Resources.GetMatch $file -}}
-{{- if and (not $img) .File -}}
-  {{- $img = resources.Get (path.Join .File.Dir $file) -}}
-{{- end -}}
-{{- if not $img -}}
-  {{- $img = resources.Get $file -}}
+{{- $img := false -}}
+{{- $isStaticCover := strings.HasPrefix $image "/music/" -}}
+{{- if not $isStaticCover -}}
+  {{- $img = .Resources.GetMatch $file -}}
+  {{- if and (not $img) .File -}}
+    {{- $img = resources.Get (path.Join .File.Dir $file) -}}
+  {{- end -}}
+  {{- if not $img -}}
+    {{- $img = resources.Get $file -}}
+  {{- end -}}
 {{- end -}}
 
 <div class="about-sidebar-right">
-  {{- if $img -}}
-    <figure class="about-profile-image">
-      {{ partial "picture.html" (dict "img" $img "alt" $alt "class" "about-profile-image" "lazy" false "webp" $webp) }}
+  {{- if or $img $image -}}
+    <figure class="about-profile-image{{ if $isPlayable }} about-profile-image--playable{{ end }}">
+      {{- if $isPlayable -}}
+        <button
+          type="button"
+          class="about-profile-play"
+          aria-label="播放 {{ $trackTitle }}"
+          data-about-play
+        >
+      {{- end -}}
+      {{- if $img -}}
+        {{ partial "picture.html" (dict "img" $img "alt" $alt "class" "about-profile-image" "lazy" false "webp" $webp) }}
+      {{- else -}}
+        <img src="{{ $image }}" alt="{{ $alt }}" />
+      {{- end -}}
+      {{- if $isPlayable -}}
+          <span class="about-profile-play__badge" aria-hidden="true">
+            <svg class="about-profile-play__ring" viewBox="0 0 36 36">
+              <circle class="about-profile-play__ring-track" cx="18" cy="18" r="15.5"></circle>
+              <circle class="about-profile-play__ring-value" cx="18" cy="18" r="15.5" data-about-progress></circle>
+            </svg>
+            <svg class="about-profile-play__icon about-profile-play__icon--play" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg class="about-profile-play__icon about-profile-play__icon--pause" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+          </span>
+        </button>
+        <audio
+          class="about-profile-audio"
+          src="{{ $audio }}"
+          preload="metadata"
+          data-title="{{ $trackTitle }}"
+          {{ with $trackArtist }}data-artist="{{ . }}"{{ end }}
+        ></audio>
+      {{- end -}}
     </figure>
-  {{- else -}}
-    {{- with $image -}}
-      <figure class="about-profile-image">
-        <img src="{{ . | relURL }}" alt="{{ $alt }}" />
-      </figure>
-    {{- end -}}
   {{- end -}}
 
   {{- if or $name $handle $role -}}

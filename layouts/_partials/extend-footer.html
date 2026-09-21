@@ -16,6 +16,14 @@
   <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
 
+{{/* 关于页封面点击播放本地单曲 */}}
+{{ if eq .Layout "about" }}
+  {{ with resources.Get "js/about-profile-audio.js" }}
+    {{ $js := . | resources.Minify | resources.Fingerprint }}
+    <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{ end }}
+{{ end }}
+
 {{/* 文章目录：折叠树 + 滚动追踪定位 */}}
 {{ with resources.Get "js/toc.js" }}
   {{ $js := . | resources.Minify | resources.Fingerprint }}

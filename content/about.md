@@ -17,12 +17,16 @@ showComments: false
 showTableOfContents: false
 showPagination: false
 profile:
-  image: imgs/album.jpg
-  imageAlt: Profile
+  image: /music/single/乃木坂46/命は美しい/命は美しい.jpg
+  imageAlt: 命は美しい
   name: 胡成龙
   handle: hoochanlon
   handleUrl: https://github.com/hoochanlon
   role: 社会学爱好者，坂道系女团粉丝
+  track:
+    audio: /music/single/乃木坂46/命は美しい/命は美しい-乃木坂46.mp3
+    title: 命は美しい
+    artist: 乃木坂46
   links:
     - name: github
       url: https://github.com/hoochanlon
