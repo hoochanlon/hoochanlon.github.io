@@ -61,7 +61,7 @@
 }
 
 .page-about .about-content-left,
-.page-about .about-content-left > :where(p, blockquote),
+.page-about .about-content-left > :where(h1, h2, h3, h4, p, blockquote),
 .page-about .about-content-left > blockquote p {
   font-family: var(--about-prose-font) !important;
 }
@@ -86,6 +86,30 @@
   border-left-color: rgb(var(--color-primary-400));
 }
 
+.page-about .about-content-left > :where(h1, h2, h3, h4) {
+  margin-block: 0.15rem 0.55rem;
+  color: rgb(var(--color-neutral-800));
+  font-family: var(--about-prose-font) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.45 !important;
+}
+
+.page-about .about-content-left > h2 {
+  margin-block: 0.1rem 0.45rem !important;
+  padding-bottom: 0.35rem;
+  font-size: clamp(1.55rem, 2.1vw, 1.95rem) !important;
+}
+
+.page-about .about-content-left > h3 {
+  margin-block: 0.85rem 0.35rem !important;
+  font-size: clamp(1.28rem, 1.6vw, 1.5rem) !important;
+}
+
+.dark .page-about .about-content-left > :where(h1, h2, h3, h4) {
+  color: rgb(var(--color-neutral-100));
+}
+
 .page-about .about-content-left > p {
   margin-block: 0.4rem;
   color: rgb(var(--color-neutral-700));
@@ -100,12 +124,20 @@
   color: rgb(var(--color-neutral-200));
 }
 
-/* 右侧边栏 */
+/* 右侧边栏：图与签名贴近成一组，社交图标单独留呼吸 */
 .about-sidebar-right {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
   align-items: center;
+}
+
+.about-sidebar-right > .about-identity {
+  margin-top: 0.45rem;
+}
+
+.about-sidebar-right > .about-social-icons {
+  margin-top: 0.85rem;
 }
 
 /* 桌面端：图轨贴右；社交图标仍相对图片水平居中 */
@@ -308,7 +340,6 @@
   gap: 0.7rem;
   justify-content: center;
   align-items: center;
-  margin-top: 0.35rem;
 }
 
 .about-social-icons a {

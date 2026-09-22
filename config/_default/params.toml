@@ -32,7 +32,7 @@ fingerprintAlgorithm = "sha256"
 
 [banner]
   # 置顶公告横幅；改为 true 并填写 text 即可启用
-  enabled = true
+  enabled = false
   text = "🎉 欢迎来访，这里记录我的日常片刻。"
   showLatestPost = true   # 显示最新文章标题，点击可跳转并关闭横幅
   showUpdateDate = true   # 显示最新文章的发布日期徽章

@@ -1,4 +1,4 @@
-/* CDN 字体只作用于右栏姓名，不改变左侧诗句、账号和身份描述。 */
+/* CDN 字体：姓名用平方仿毛草，账号用 Parisienne，身份描述用 FontQu Smile。 */
 .page-about .about-identity__name {
   font-family:
     "平方仿毛体草书 常规",
@@ -24,7 +24,6 @@
 .page-about .about-identity__handle a {
   margin: 0;
   max-width: 100%;
-  font-family: inherit !important;
   font-style: normal;
   text-decoration: none !important;
 }
@@ -41,10 +40,11 @@
 .page-about .about-identity__handle,
 .page-about .about-identity__handle a {
   display: inline-block;
-  font-size: 1.22rem !important;
+  font-family: "Parisienne", cursive !important;
+  font-size: 1.55rem !important;
   font-weight: 400 !important;
-  letter-spacing: 0.02em;
-  line-height: 1.4 !important;
+  letter-spacing: 0.04em;
+  line-height: 1.2 !important;
   color: rgb(var(--color-neutral-500)) !important;
 }
 
@@ -65,11 +65,15 @@
 .page-about .about-identity__role {
   display: block;
   margin-top: 0.12rem;
-  font-size: 1.18rem !important;
+  font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif !important;
+  font-size: 1.75rem !important;
   font-weight: 400 !important;
+  font-synthesis: none;
   line-height: 1.5 !important;
-  letter-spacing: 0.04em;
-  color: rgb(var(--color-neutral-500));
+  letter-spacing: 0.02em;
+  color: rgb(var(--color-neutral-700));
+  -webkit-text-stroke: 0.028em currentColor;
+  paint-order: stroke fill;
 }
 
 .dark .page-about .about-identity__name {
@@ -77,9 +81,12 @@
 }
 
 .dark .page-about .about-identity__handle,
-.dark .page-about .about-identity__handle a,
-.dark .page-about .about-identity__role {
+.dark .page-about .about-identity__handle a {
   color: rgb(var(--color-neutral-400)) !important;
+}
+
+.dark .page-about .about-identity__role {
+  color: rgb(var(--color-neutral-200)) !important;
 }
 
 .dark .page-about .about-identity__handle a:is(:hover, :focus-visible, :active) {

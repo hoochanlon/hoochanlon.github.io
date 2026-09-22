@@ -1,0 +1,36 @@
+/* 关于页标题隔离
+ *
+ * 数据流：content/about.md -> layouts/about.html -> .page-about
+ * 问题来源：Sakura / LaTeX 阅读主题会把 h2 设成阅读衬线，
+ * 并叠上较大的标题外边距；关于页左栏应跟正文一样用 ToneOZ。
+ * 英文花体 h1（Ch'eng-Lung Hu）仍走 page-title-script，不在这里改。
+ */
+
+.page-about > header.max-w-prose > .page-title-kicker {
+  margin-bottom: 0.35rem !important;
+}
+
+.page-about .about-content-left > :where(h1, h2, h3, h4) {
+  color: rgb(var(--color-neutral-800)) !important;
+  font-family: var(--about-prose-font) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.45 !important;
+}
+
+.page-about .about-content-left > h2 {
+  margin-top: 0.1rem !important;
+  margin-bottom: 0.45rem !important;
+  padding-bottom: 0.35rem !important;
+  font-size: clamp(1.55rem, 2.1vw, 1.95rem) !important;
+}
+
+.page-about .about-content-left > h3 {
+  margin-top: 0.85rem !important;
+  margin-bottom: 0.35rem !important;
+  font-size: clamp(1.28rem, 1.6vw, 1.5rem) !important;
+}
+
+.dark .page-about .about-content-left > :where(h1, h2, h3, h4) {
+  color: rgb(var(--color-neutral-100)) !important;
+}
