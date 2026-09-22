@@ -1,0 +1,8 @@
+{{/*
+  把已渲染 HTML 里的裸 URL 补成 <a>。
+  Goldmark 的 GitHub Alert 把正文当 HTML 交给 .Text，linkify 不会再跑。
+  已有 href/src 不重复包；远程链接沿用 render-link 的 target/rel。
+*/}}
+{{- $html := . | string -}}
+{{- $html = replaceRE `(?i)(^|[\s>：:])(https?://[^\s<>"']+)` `${1}<a href="${2}" target="_blank" rel="noreferrer">${2}</a>` $html -}}
+{{- return ($html | safeHTML) -}}
