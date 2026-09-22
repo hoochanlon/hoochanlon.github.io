@@ -1,9 +1,6 @@
 # hoochanlon.github.io
 
-**主站（推荐）：** https://hoochanlon.github.io
-
-* [短代码](https://jpanther.github.io/congo/zh-hans/docs/shortcodes/)
-* [富文本](https://jpanther.github.io/congo/samples/rich-content/)
+ 基于 hugo 框架与 cango主题构建的 gitHub pages 个人博客：https://hoochanlon.github.io
 
 <p align="center">
   <img width="710" alt="blog" src="https://cdn.jsdelivr.net/gh/hoochanlon/hoochanlon.github.io@main/static/design/blog.png">
