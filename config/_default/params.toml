@@ -53,7 +53,7 @@ fingerprintAlgorithm = "sha256"
 
 [homepage]
   layout = "custom" # valid options: page, profile, custom
-  defaultView = "page" # custom 下首次进入展示 page；可用右下角按钮切回 profile
+  defaultView = "page" # 仅 layout=custom 生效：首次进入展示 page；右下角按钮可切回 profile
   showRecent = false
   recentLimit = 10
   showFeatured = true   # 文章 front matter: featured: true

@@ -36,7 +36,7 @@
       })();
     </script>
   {{ end }}
-  {{ if .IsHome }}
+  {{ if and .IsHome (eq (.Site.Params.homepage.layout | default "page") "custom") }}
     {{ $homeLayoutDefault := .Site.Params.homepage.defaultView | default "page" }}
     {{ if and (ne $homeLayoutDefault "profile") (ne $homeLayoutDefault "page") }}
       {{ $homeLayoutDefault = "page" }}

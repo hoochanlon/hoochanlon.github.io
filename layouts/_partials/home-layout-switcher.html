@@ -1,4 +1,4 @@
-{{ if .IsHome }}
+{{ if and .IsHome (eq (.Site.Params.homepage.layout | default "page") "custom") }}
   {{ $defaultLayout := .Site.Params.homepage.defaultView | default "page" }}
   {{ if and (ne $defaultLayout "profile") (ne $defaultLayout "page") }}
     {{ $defaultLayout = "page" }}

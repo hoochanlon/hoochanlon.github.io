@@ -10,8 +10,8 @@
   <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
 
-{{/* 首页布局切换：page / profile，记住本地选择 */}}
-{{ if .IsHome }}
+{{/* 首页布局切换：仅 custom 布局可用 page / profile，记住本地选择 */}}
+{{ if and .IsHome (eq (.Site.Params.homepage.layout | default "page") "custom") }}
   {{ with resources.Get "js/home-layout.js" }}
     {{ $js := . | resources.Minify | resources.Fingerprint }}
     <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
