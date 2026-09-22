@@ -7,24 +7,35 @@
 
 .home-page {
   max-width: min(53rem, calc(100vw - 2rem));
+  margin-block-start: 0.15rem;
 }
 
 .home-page__greeting {
-  font-family: var(--reading-font-heading, "STIX Two Text", "Songti SC", serif) !important;
-  font-size: clamp(1.85rem, 4vw, 2.4rem) !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.005em !important;
+  margin: 0 0 0.35rem !important;
+  font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif !important;
+  font-size: clamp(3.1rem, 8vw, 4.6rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
   line-height: 1.18 !important;
 }
 
+.home-page__body,
 .home-page__body p {
-  margin: 0 0 0.85rem !important;
   color: rgb(var(--color-neutral-700)) !important;
-  font-family: var(--reading-font-serif, "STIX Two Text", "Songti SC", serif) !important;
-  font-size: 1.05rem !important;
+  font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif !important;
+  font-size: clamp(1.45rem, 2.4vw, 1.95rem) !important;
   font-weight: 400 !important;
-  line-height: 1.9 !important;
-  letter-spacing: 0.004em !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.home-page__body p {
+  margin: 0 0 0.28rem !important;
+}
+
+/* 第一段承担进入博客的引导作用，比后续说明略微突出 */
+.home-page__body p:first-child {
+  color: rgb(var(--color-neutral-800)) !important;
 }
 
 .home-page__body p:last-child {
@@ -38,6 +49,10 @@
 
 .dark .home-page__body p {
   color: rgb(var(--color-neutral-300)) !important;
+}
+
+.dark .home-page__body p:first-child {
+  color: rgb(var(--color-neutral-200)) !important;
 }
 
 .dark .home-page__body em {

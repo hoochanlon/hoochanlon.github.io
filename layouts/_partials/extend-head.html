@@ -26,8 +26,34 @@
   href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Liu+Jian+Mao+Cao&display=swap"
 />
 
-{{/* 关于页中文字体：霞鹜文楷 */}}
+{{/* 首页简介：ToneOZ-Tsuipita-TC；欢迎标题：FontQu Smile */}}
+{{ if .IsHome }}
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/hoochanlon/fonts@refs/heads/main/public/ToneOZ-Tsuipita-TC/result.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/hoochanlon/fonts@refs/heads/main/public/FontQuSmile/result.css"
+/>
+{{ end }}
+
+{{/* 关于页正文字体：ToneOZ-Tsuipita-TC */}}
+{{ if and .File (eq .File.LogicalName "about.md") }}
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/hoochanlon/fonts@refs/heads/main/public/ToneOZ-Tsuipita-TC/result.css"
+/>
+{{ end }}
+
+{{/* 关于页右栏签名：平方仿毛草 */}}
 {{ if eq .Layout "about" }}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/hoochanlon/fonts@refs/heads/main/public/PingFangFangMaoTiCaoShu/result.css"
+/>
 <link
   rel="stylesheet"
   href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.6.0/style.min.css"

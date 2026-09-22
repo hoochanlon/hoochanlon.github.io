@@ -12,7 +12,7 @@
 .home-intro :where(p) {
   margin: 0;
   color: rgb(var(--color-neutral-700));
-  font-family: "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
+  font-family: "ToneOZ-Tsuipita-TC", "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
   font-size: clamp(1.45rem, 2.2vw, 2.05rem);
   font-weight: 400;
   line-height: 1.55;

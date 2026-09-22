@@ -4,6 +4,10 @@
  * 布局：桌面端左右分栏，移动端上下堆叠
  */
 
+.page-about {
+  --about-prose-font: "ToneOZ-Tsuipita-TC", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", serif;
+}
+
 /* about 独立版心：吃满站点主栏（body 内宽 ≈ 80rem - 两侧 padding），
  * 不再跟文章 50rem 绑死。标题 / 正文 / 页脚同一条边。 */
 .page-about > header.max-w-prose,
@@ -52,8 +56,14 @@
 .about-content-left {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.7rem;
   min-width: 0;
+}
+
+.page-about .about-content-left,
+.page-about .about-content-left > :where(p, blockquote),
+.page-about .about-content-left > blockquote p {
+  font-family: var(--about-prose-font) !important;
 }
 
 .about-content-left > blockquote,
@@ -61,12 +71,7 @@
   margin: 0 0 1rem 0;
   padding-left: 1.5rem;
   border-left: 4px solid rgb(var(--color-primary-500));
-  font-family:
-    "LXGW WenKai Screen",
-    "LXGW WenKai",
-    "STKaiti",
-    "KaiTi",
-    serif !important;
+  font-family: var(--about-prose-font) !important;
   font-size: clamp(1.05rem, 1.15vw, 1.18rem) !important;
   font-style: italic;
   font-weight: 400 !important;
@@ -81,18 +86,13 @@
   border-left-color: rgb(var(--color-primary-400));
 }
 
-.about-content-left > p {
-  margin-block: 0.95rem;
+.page-about .about-content-left > p {
+  margin-block: 0.4rem;
   color: rgb(var(--color-neutral-700));
-  font-family:
-    "LXGW WenKai Screen",
-    "LXGW WenKai",
-    "STKaiti",
-    "KaiTi",
-    serif !important;
-  font-size: clamp(1.12rem, 1.25vw, 1.28rem) !important;
+  font-family: var(--about-prose-font) !important;
+  font-size: clamp(1.24rem, 1.45vw, 1.42rem) !important;
   font-weight: 400 !important;
-  line-height: 1.9 !important;
+  line-height: 1.65 !important;
   letter-spacing: 0.03em !important;
 }
 
