@@ -59,4 +59,9 @@ pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 
 按钮写 **Disable** = 当前已开；写 **Enable** = 当前已关。旧 PR 需手动 Close。
 
+## todo
 
+token 消耗预计17块钱。（字体：FontQuSmile、晓声通秋茄）
+
+* [ ] 首页、关于页字体加载过慢的问题
+* [ ] 目标：达到霞鸢文楷的秒加载的效果
