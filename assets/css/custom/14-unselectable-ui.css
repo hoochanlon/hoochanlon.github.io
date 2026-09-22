@@ -93,8 +93,15 @@ header nav ul li span {
   user-select: text !important;
 }
 
-/* 首页标题"朋友，你好。"不可选中 - 优先级最高 */
+/* 首页标题"朋友,你好。"不可选中 - 优先级最高 */
 .home-page__greeting {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* 列表页面描述文字（如"这里会展示所有日记文章。"）不可选中 */
+.list-content,
+.list-content * {
   -webkit-user-select: none !important;
   user-select: none !important;
 }
