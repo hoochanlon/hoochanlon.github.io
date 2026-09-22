@@ -99,7 +99,7 @@ header nav ul li span {
   user-select: none !important;
 }
 
-/* 列表页面描述文字（如"这里会展示所有日记文章。"）不可选中 */
+/* 列表页面描述文字（如"这里会展示所有文章。"）不可选中 */
 .list-content,
 .list-content * {
   -webkit-user-select: none !important;

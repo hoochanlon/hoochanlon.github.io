@@ -1,6 +1,6 @@
 ---
-title: "日记"
-description: "日记列表"
+title: "文章"
+description: "文章列表"
 ---
 
-这里会展示所有日记文章。
+这里会展示所有文章。

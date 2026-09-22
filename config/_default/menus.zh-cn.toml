@@ -16,7 +16,7 @@
   weight = 40
 
 [[main]]
-  name = "日记"
+  name = "文章"
   pageRef = "posts"
   weight = 10
 
@@ -31,7 +31,7 @@
   weight = 30
 
 [[main]]
-  name = "想法"
+  name = "随记"
   pageRef = "ideas"
   weight = 35
 

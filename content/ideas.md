@@ -1,6 +1,6 @@
 ---
-title: "想法"
-browserTitle: "想法"
+title: "随记"
+browserTitle: "随记"
 description: "记录点子与待办事项"
 summary: "灵感记录与任务追踪"
 showDate: false
