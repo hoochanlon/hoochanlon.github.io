@@ -10,6 +10,14 @@
   <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}
 
+{{/* 首页布局切换：page / profile，记住本地选择 */}}
+{{ if .IsHome }}
+  {{ with resources.Get "js/home-layout.js" }}
+    {{ $js := . | resources.Minify | resources.Fingerprint }}
+    <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{ end }}
+{{ end }}
+
 {{/* 正文图片点击放大 */}}
 {{ with resources.Get "js/image-zoom.js" }}
   {{ $js := . | resources.Minify | resources.Fingerprint }}

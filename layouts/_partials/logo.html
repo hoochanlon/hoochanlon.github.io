@@ -2,24 +2,36 @@
   {{- $logo := resources.Get .Site.Params.header.logo }}
   {{- $logo_dark := resources.Get .Site.Params.header.logoDark }}
   {{- if $logo }}
-    <a href="{{ "" | relLangURL }}" class="mr-2">
+    <a href="{{ "" | relLangURL }}">
       <!-- prettier-ignore-attribute -->
-      <img
-        src="{{ $logo.RelPermalink }}"
-        width="{{ div $logo.Width 2 }}"
-        height="{{ div $logo.Height 2 }}"
-        class="max-h-[10rem] max-w-[10rem] object-scale-down object-left
-        {{ if $logo_dark }}dark:hidden flex{{ end }}"
-        alt="{{ .Site.Title }}"
-      />
-      {{- if $logo_dark }}
+      {{- if or (strings.HasSuffix $logo.RelPermalink ".svg") (strings.HasSuffix .Site.Params.header.logo ".svg") }}
+        <span>
+          {{ $logo.Content | safeHTML }}
+        </span>
+      {{- else }}
         <img
-          src="{{ $logo_dark.RelPermalink }}"
-          width="{{ div $logo_dark.Width 2 }}"
-          height="{{ div $logo_dark.Height 2 }}"
-          class="hidden max-h-[10rem] max-w-[10rem] object-scale-down object-left dark:flex"
+          src="{{ $logo.RelPermalink }}"
+          width="{{ div $logo.Width 2 }}"
+          height="{{ div $logo.Height 2 }}"
+          class="max-h-[10rem] max-w-[10rem] object-scale-down object-left
+          {{ if $logo_dark }}dark:hidden flex{{ end }}"
           alt="{{ .Site.Title }}"
         />
+      {{- end }}
+      {{- if $logo_dark }}
+        {{- if or (strings.HasSuffix $logo_dark.RelPermalink ".svg") (strings.HasSuffix .Site.Params.header.logoDark ".svg") }}
+          <span class="hidden dark:block">
+            {{ $logo_dark.Content | safeHTML }}
+          </span>
+        {{- else }}
+          <img
+            src="{{ $logo_dark.RelPermalink }}"
+            width="{{ div $logo_dark.Width 2 }}"
+            height="{{ div $logo_dark.Height 2 }}"
+            class="hidden max-h-[10rem] max-w-[10rem] object-scale-down object-left dark:flex"
+            alt="{{ .Site.Title }}"
+          />
+        {{- end }}
       {{- end }}
     </a>
   {{- end }}

@@ -5,7 +5,11 @@
   {{ end }} flex flex-col items-center justify-center text-center"
 >
   {{ partial "profile.html" }}
-  <section class="home-intro prose dark:prose-invert">{{ .Content | emojify }}</section>
+  {{ with .Params.profileIntro }}
+    <section class="home-intro prose dark:prose-invert"><p>{{ . | markdownify | emojify }}</p></section>
+  {{ else }}
+    <section class="home-intro prose dark:prose-invert">{{ .Content | emojify }}</section>
+  {{ end }}
 </article>
 <section>
   {{/* 各自开关；两者都开则精选在上、最近在下 */}}

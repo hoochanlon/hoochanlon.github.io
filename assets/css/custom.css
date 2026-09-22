@@ -5,6 +5,7 @@
  *   05-name.css            博客作者名（首页 / 作者卡片 / 页脚）
  *   06-page-title.css      单页特殊标题字体
  *   08-home-intro.css      首页简介签名文案
+ *   08-home-page.css       首页 page 欢迎区与布局切换
  *   09-about.css           关于页左右分栏
  *   10-prose.css           正文公式 / 插图
  *   14-unselectable-ui.css 装饰性 UI 与索引信息不可选中
@@ -22,6 +23,8 @@
  *   18-footer-drawer.css   页脚半抽屉交互（桌面端）
  *   19-about-identity.css  关于页右栏铭牌
  *   19-home-intro-isolation.css 首页简介尺寸隔离
+ *   19-home-page-isolation.css  首页 page 欢迎区尺寸隔离
+ *   19-home-layout-switcher-isolation.css 首页布局切换按钮隔离
  *   20-image-zoom.css      图片灯箱
  *   30-video.css           内嵌视频
  *   35-code.css            代码块 / 行号

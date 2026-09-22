@@ -1,0 +1,44 @@
+/* 首页布局切换器尺寸隔离
+ *
+ * 数据流：layouts/_partials/home-layout-switcher.html -> .home-layout-switcher
+ * 问题来源：阅读主题会改写 button / svg 行高，固定按钮需要独立尺寸。
+ */
+
+.home-layout-switcher,
+.home-layout-switcher :where(button, span, svg) {
+  font-family: var(--reading-font-ui, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif) !important;
+  line-height: 1 !important;
+  letter-spacing: normal !important;
+  box-sizing: border-box;
+}
+
+.home-layout-switcher__tooltip {
+  line-height: 1.2 !important;
+  letter-spacing: 0.02em !important;
+}
+
+html[data-home-layout] .home-layout-switcher {
+  display: inline-flex !important;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home-layout-switcher__button {
+  width: 2.35rem !important;
+  height: 2.35rem !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+.home-layout-switcher__button svg {
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+}
+
+@media (max-width: 1023px) {
+  html[data-home-layout] .home-layout-switcher {
+    flex-direction: column !important;
+    inset-inline-end: 0.75rem;
+    inset-block-end: 4.4rem;
+  }
+}

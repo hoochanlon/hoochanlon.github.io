@@ -1,0 +1,45 @@
+/* 首页 page 欢迎区尺寸隔离
+ *
+ * 数据流：content/_index.md 正文 -> layouts/_partials/home/page.html -> .home-page
+ * 问题来源：Sakura / LaTeX 阅读主题会把正文段落统一收敛，
+ * 但首页欢迎文是独立展示区，不应进入文章排版系统。
+ */
+
+.home-page {
+  max-width: min(53rem, calc(100vw - 2rem));
+}
+
+.home-page__greeting {
+  font-family: var(--reading-font-heading, "STIX Two Text", "Songti SC", serif) !important;
+  font-size: clamp(1.85rem, 4vw, 2.4rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.005em !important;
+  line-height: 1.18 !important;
+}
+
+.home-page__body p {
+  margin: 0 0 0.85rem !important;
+  color: rgb(var(--color-neutral-700)) !important;
+  font-family: var(--reading-font-serif, "STIX Two Text", "Songti SC", serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  letter-spacing: 0.004em !important;
+}
+
+.home-page__body p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.home-page__body em {
+  color: rgb(var(--color-neutral-500)) !important;
+  font-style: normal !important;
+}
+
+.dark .home-page__body p {
+  color: rgb(var(--color-neutral-300)) !important;
+}
+
+.dark .home-page__body em {
+  color: rgb(var(--color-neutral-400)) !important;
+}

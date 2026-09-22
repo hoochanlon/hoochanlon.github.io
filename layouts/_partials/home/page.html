@@ -1,10 +1,10 @@
-<article class="prose max-w-full dark:prose-invert">
+<article class="home-page">
   {{ with .Title }}
-    <header>
-      <h1>{{ . | emojify }}</h1>
+    <header class="home-page__header">
+      <h1 class="home-page__greeting">{{ . | emojify }}</h1>
     </header>
   {{ end }}
-  <section>{{ .Content | emojify }}</section>
+  <section class="home-page__body">{{ .Content | emojify }}</section>
 </article>
 <section>
   {{ partial "featured-articles.html" . }}

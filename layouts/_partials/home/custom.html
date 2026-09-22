@@ -1,0 +1,18 @@
+{{/* 首页 custom：同时挂 profile / page，由按钮在本地切换 */}}
+{{ $defaultLayout := .Site.Params.homepage.defaultView | default "page" }}
+{{ if and (ne $defaultLayout "profile") (ne $defaultLayout "page") }}
+  {{ $defaultLayout = "page" }}
+{{ end }}
+
+<div
+  class="home-layout"
+  data-home-layout
+  data-default-layout="{{ $defaultLayout }}"
+>
+  <div class="home-layout__pane" data-home-layout-pane="profile" hidden>
+    {{ partial "home/profile.html" . }}
+  </div>
+  <div class="home-layout__pane" data-home-layout-pane="page" hidden>
+    {{ partial "home/page.html" . }}
+  </div>
+</div>

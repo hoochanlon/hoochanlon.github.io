@@ -1,0 +1,32 @@
+{{ if .IsHome }}
+  {{ $defaultLayout := .Site.Params.homepage.defaultView | default "page" }}
+  {{ if and (ne $defaultLayout "profile") (ne $defaultLayout "page") }}
+    {{ $defaultLayout = "page" }}
+  {{ end }}
+  <div
+    class="home-layout-switcher"
+    data-home-layout-switcher
+    data-default-layout="{{ $defaultLayout }}"
+  >
+    <button
+      type="button"
+      class="home-layout-switcher__button"
+      data-home-layout-option="page"
+      aria-pressed="false"
+      aria-label="页面布局"
+    >
+      {{ partial "icon.html" "feather" }}
+      <span class="home-layout-switcher__tooltip" role="tooltip" data-home-layout-tooltip="page">页面布局</span>
+    </button>
+    <button
+      type="button"
+      class="home-layout-switcher__button"
+      data-home-layout-option="profile"
+      aria-pressed="false"
+      aria-label="资料卡布局"
+    >
+      {{ partial "icon.html" "hamlet" }}
+      <span class="home-layout-switcher__tooltip" role="tooltip" data-home-layout-tooltip="profile">资料卡布局</span>
+    </button>
+  </div>
+{{ end }}

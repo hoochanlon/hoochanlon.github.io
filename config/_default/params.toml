@@ -26,7 +26,7 @@ fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "hybrid" # valid options: basic, hamburger, hybrid, custom
-  # logo = "imgs/logo.jpg"
+  logo = "icons/alice.svg"
   # logoDark = "imgs/dark-logo.jpg"
   showTitle = true
 
@@ -52,7 +52,8 @@ fingerprintAlgorithm = "sha256"
   umamiShareURL = "https://cloud.umami.is/analytics/us/share/29fuPWtjBtq9fbvm"
 
 [homepage]
-  layout = "profile" # valid options: page, profile, custom
+  layout = "custom" # valid options: page, profile, custom
+  defaultView = "page" # custom 下首次进入展示 page；可用右下角按钮切回 profile
   showRecent = false
   recentLimit = 10
   showFeatured = true   # 文章 front matter: featured: true

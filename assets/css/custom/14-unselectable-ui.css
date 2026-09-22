@@ -7,9 +7,14 @@
   .site-footer-drawer,
   .site-profile,
   .home-intro,
+  .home-page__greeting,
+  .home-page__body,
+  .home-page__now,
+  .home-layout-switcher,
   .home-section-title,
   .list-header,
   .list-header h1,
+  .list-header p,
   .list-year,
   section > h2.list-year,
   section > h2.text-2xl.font-bold,
@@ -35,9 +40,14 @@
   .site-footer-drawer,
   .site-profile,
   .home-intro,
+  .home-page__greeting,
+  .home-page__body,
+  .home-page__now,
+  .home-layout-switcher,
   .home-section-title,
   .list-header,
   .list-header h1,
+  .list-header p,
   .list-year,
   section > h2.list-year,
   section > h2.text-2xl.font-bold,
@@ -83,6 +93,12 @@ header nav ul li span {
   user-select: text !important;
 }
 
+/* 首页标题"朋友，你好。"不可选中 - 优先级最高 */
+.home-page__greeting {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
 /* 允许文章主标题可以被选中 */
 article > header h1 {
   -webkit-user-select: text !important;
@@ -121,9 +137,14 @@ article > header h1 {
   .site-footer-drawer,
   .site-profile,
   .home-intro,
+  .home-page__greeting,
+  .home-page__body,
+  .home-page__now,
+  .home-layout-switcher,
   .home-section-title,
   .list-header,
   .list-header h1,
+  .list-header p,
   .list-year,
   section > h2.list-year,
   section > h2.text-2xl.font-bold,

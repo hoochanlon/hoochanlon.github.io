@@ -36,6 +36,22 @@
       })();
     </script>
   {{ end }}
+  {{ if .IsHome }}
+    {{ $homeLayoutDefault := .Site.Params.homepage.defaultView | default "page" }}
+    {{ if and (ne $homeLayoutDefault "profile") (ne $homeLayoutDefault "page") }}
+      {{ $homeLayoutDefault = "page" }}
+    {{ end }}
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem("home-layout");
+          const fallback = {{ $homeLayoutDefault | jsonify | safeJS }};
+          const layout = saved === "page" || saved === "profile" ? saved : fallback;
+          document.documentElement.setAttribute("data-home-layout", layout);
+        } catch (_) {}
+      })();
+    </script>
+  {{ end }}
   {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (lower .Site.Params.colorScheme | default "congo")) }}
   {{ if not $cssScheme }}
     {{ $cssScheme = resources.Get "css/schemes/congo.css" }}

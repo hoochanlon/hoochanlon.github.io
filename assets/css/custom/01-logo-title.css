@@ -1,0 +1,26 @@
+/* 强制设置博客标题字体大小 */
+header nav a[rel="me"] {
+  font-size: 1.875rem !important; /* 30px, 等同于 text-3xl */
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+/* 图标和标题居中对齐，保持视觉平衡 */
+header .z-40 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 图标和文字间距 8px */
+}
+
+/* Logo 图标大小控制 - 与文字高度接近 */
+header .z-40 a span {
+  width: 2.25rem !important;  /* 36px - 略小于文字，更协调 */
+  height: 2.25rem !important; /* 36px */
+  display: block !important;
+}
+
+
+/* Logo 图标颜色 - 夜间模式 */
+html.dark header .z-40 a span {
+  color: rgb(229 229 229) !important; /* neutral-200 */
+}

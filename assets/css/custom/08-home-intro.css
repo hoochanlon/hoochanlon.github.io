@@ -1,6 +1,6 @@
 /* 首页简介签名文案
  *
- * 数据流：content/_index.md -> layouts/_partials/home/profile.html -> .home-intro
+ * 数据流：content/_index.md.Params.profileIntro -> layouts/_partials/home/profile.html -> .home-intro
  * 作用域：只影响首页头像下方简介，不进入文章正文排版系统。
  */
 

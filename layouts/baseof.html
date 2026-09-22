@@ -51,5 +51,8 @@
         {{- partial "search.html" . -}}
       {{ end }}
     </div>
+    {{ if templates.Exists "_partials/home-layout-switcher.html" }}
+      {{ partial "home-layout-switcher.html" . }}
+    {{ end }}
   </body>
 </html>
