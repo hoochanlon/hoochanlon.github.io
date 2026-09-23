@@ -1,0 +1,32 @@
+.prose .sc-icon-list ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.prose .sc-icon-list ul ul {
+  margin-inline-start: 1em;
+}
+
+.prose .sc-icon-list li {
+  position: relative;
+  padding-inline-start: 1.32em;
+}
+
+.prose .sc-icon-list li::before {
+  position: absolute;
+  inset-inline-start: 0;
+  top: calc((1lh - 0.82em) / 2);
+  width: 0.82em;
+  aspect-ratio: 1;
+  background-color: currentColor;
+  content: "";
+  mask-image: var(--sc-icon-list-icon);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  transform: rotate(12deg);
+  -webkit-mask-image: var(--sc-icon-list-icon);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}

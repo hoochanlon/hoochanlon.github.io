@@ -25,6 +25,18 @@ showEdit: false
 
 ## 将要做的事...
 
+{{< icon-list >}}
+- 默认星形
+{{< /icon-list >}}
+
+{{< icon-list icon="pin" >}}
+- 图钉标记
+{{< /icon-list >}}
+
+{{< icon-list icon="ight" >}}
+- 灯泡标记
+{{< /icon-list >}}
+
 
 ## 待研究分析
 

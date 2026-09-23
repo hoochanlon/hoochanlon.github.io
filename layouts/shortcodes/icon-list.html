@@ -1,0 +1,10 @@
+{{- $iconName := .Get "icon" | default "star" -}}
+{{- $iconPath := printf "icons/%s.svg" $iconName -}}
+{{- $icon := resources.Get $iconPath -}}
+{{- if not $icon -}}
+  {{- errorf `[icon-list] Resource "%s" not found. Available icons are in assets/icons/` $iconPath -}}
+{{- else -}}
+  <div class="sc-icon-list" style="--sc-icon-list-icon: url('{{ $icon.RelPermalink }}')">
+    {{- .Inner | markdownify -}}
+  </div>
+{{- end -}}
