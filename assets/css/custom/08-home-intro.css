@@ -5,18 +5,18 @@
  */
 
 .home-intro {
-  max-width: min(42rem, calc(100vw - 2rem));
-  margin-top: 0.85rem;
+  max-width: var(--page-home-intro-max-width);
+  margin-top: var(--page-home-intro-margin-top);
 }
 
 .home-intro :where(p) {
   margin: 0;
   color: rgb(var(--color-neutral-700));
-  font-family: "YShiWritten", "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
-  font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  font-family: var(--page-home-intro-font-family);
+  font-size: var(--page-home-intro-font-size);
   font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: 0.055em;
+  line-height: var(--page-home-intro-line-height);
+  letter-spacing: var(--page-home-intro-letter-spacing);
   text-wrap: balance;
 }
 

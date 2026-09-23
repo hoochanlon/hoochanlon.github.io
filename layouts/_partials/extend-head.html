@@ -1,3 +1,6 @@
+{{/* 站点本地字体定义集中管理；各页仅预加载实际首屏会使用的字体 */}}
+<link rel="stylesheet" href="{{ "fonts/fonts.css" | relURL }}" />
+
 {{/* 英文装饰字体：Bunny Fonts CDN */}}
 <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
 <link
@@ -42,22 +45,6 @@
   type="font/woff2"
   crossorigin
 />
-<style>
-@font-face {
-  font-family: "FontQu Smile";
-  src: url("{{ "fonts/FontQuSmile-homepage.woff2" | relURL }}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "YShiWritten";
-  src: url("{{ "fonts/YShiWritten-Regular-homepage.woff2" | relURL }}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
 {{ end }}
 
 {{/* 关于页正文字体：预加载正文完整字集，避免缺字回退 */}}
@@ -69,15 +56,6 @@
   type="font/woff2"
   crossorigin
 />
-<style>
-@font-face {
-  font-family: "ToneOZ-Tsuipita-TC";
-  src: url("{{ "fonts/ToneOZ-Tsuipita-TC-about.woff2" | relURL }}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
 {{ end }}
 
 {{/* 关于页签名：仅包含姓名字形，预加载本地子集 */}}
@@ -89,15 +67,6 @@
   type="font/woff2"
   crossorigin
 />
-<style>
-@font-face {
-  font-family: "平方仿毛体草书 常规";
-  src: url("{{ "fonts/PingFangFangMaoTiCaoShu-signature.woff2" | relURL }}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
 {{ end }}
 
 {{/* 关于页右栏：身份描述复用本地 FontQu Smile 子集 */}}
@@ -109,15 +78,6 @@
   type="font/woff2"
   crossorigin
 />
-<style>
-@font-face {
-  font-family: "FontQu Smile 常规";
-  src: url("{{ "fonts/FontQuSmile-homepage.woff2" | relURL }}") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
 <link
   rel="stylesheet"
   href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.6.0/style.min.css"
@@ -128,14 +88,14 @@
 {{ if and .File (eq .File.Path "ideas.md") }}
 <link
   rel="preload"
-  href="{{ "fonts/jason-handwriting1/ideas-full.woff2" | relURL }}"
+  href="{{ "fonts/jason-handwriting/ideas-full.woff2" | relURL }}"
   as="font"
   type="font/woff2"
   crossorigin
 />
 <link
   rel="stylesheet"
-  href="{{ "fonts/jason-handwriting1/ideas-full.css" | relURL }}"
+  href="{{ "fonts/jason-handwriting/ideas-full.css" | relURL }}"
 />
 {{ end }}
 <link

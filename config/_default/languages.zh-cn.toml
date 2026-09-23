@@ -19,7 +19,7 @@ title = "致爱丽丝"
   headline = ""
   bio = "生田绘梨花粉丝"
   links = [
-    { github = "https://github.com/hoochanlon" },
+    { github = "https://github.com/hoochanlon/hoochanlon.github.io" },
     { email = "mailto:hoochanlon@outlook.com" },
     { twitter = "https://hoochanlon.github.io/twitter/?owner=hoochanlon&repo=twitter" },
   # { wechat = "imgs/wexin.jpg" },

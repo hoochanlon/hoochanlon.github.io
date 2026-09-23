@@ -3,8 +3,8 @@
 想法页清松手写体：单文件完整版本，优化秒开体验。
 
 产物：
-  static/fonts/jason-handwriting1/ideas-full.woff2
-  static/fonts/jason-handwriting1/ideas-full.css
+  static/fonts/jason-handwriting/ideas-full.woff2
+  static/fonts/jason-handwriting/ideas-full.css
 
 策略：
 - 将站点所有用到的汉字打包成单个 woff2 文件
@@ -25,7 +25,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parent.parent
 FONT_SRC = Path("/tmp/jason-font/full.woff2")
 CONTENT_DIR = ROOT / "content"
-OUT_DIR = ROOT / "static/fonts/jason-handwriting1"
+OUT_DIR = ROOT / "static/fonts/jason-handwriting"
 FAMILY = "JasonHandwriting1"
 PUNCT = "，。！？：；、""''（）【】《》…—·、．￥"
 

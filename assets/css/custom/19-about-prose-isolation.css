@@ -15,20 +15,20 @@
   font-family: var(--about-prose-font) !important;
   font-weight: 400 !important;
   letter-spacing: 0.03em !important;
-  line-height: 1.45 !important;
+  line-height: var(--page-about-heading-line-height) !important;
 }
 
 .page-about .about-content-left > h2 {
   margin-top: 0.1rem !important;
   margin-bottom: 0.45rem !important;
   padding-bottom: 0.35rem !important;
-  font-size: clamp(1.55rem, 2.1vw, 1.95rem) !important;
+  font-size: var(--page-about-h2-font-size) !important;
 }
 
 .page-about .about-content-left > h3 {
   margin-top: 0.85rem !important;
   margin-bottom: 0.35rem !important;
-  font-size: clamp(1.28rem, 1.6vw, 1.5rem) !important;
+  font-size: var(--page-about-h3-font-size) !important;
 }
 
 .dark .page-about .about-content-left > :where(h1, h2, h3, h4) {

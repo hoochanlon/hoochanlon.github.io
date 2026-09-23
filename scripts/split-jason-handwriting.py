@@ -3,9 +3,9 @@
 想法页清松手写体：常用字首包 + 按字频粗切片。
 
 产物：
-  static/fonts/jason-handwriting1/first.woff2
-  static/fonts/jason-handwriting1/chunk-NN.woff2
-  static/fonts/jason-handwriting1/result.css
+  static/fonts/jason-handwriting/first.woff2
+  static/fonts/jason-handwriting/chunk-NN.woff2
+  static/fonts/jason-handwriting/result.css
 
 首包覆盖 ASCII / 中文标点 / 站点最高频 300 汉字，供 preload。
 其余站内汉字按字频切成约 400 字一片。不切生僻字，缺字回落到霞鹜。
@@ -25,7 +25,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parent.parent
 FONT_SRC = Path("/tmp/jason-font/full.woff2")
 CONTENT_DIR = ROOT / "content"
-OUT_DIR = ROOT / "static/fonts/jason-handwriting1"
+OUT_DIR = ROOT / "static/fonts/jason-handwriting"
 FAMILY = "JasonHandwriting1"
 FIRST_HAN = 300
 CHUNK_HAN = 400

@@ -5,7 +5,7 @@
  */
 
 .page-about {
-  --about-prose-font: "ToneOZ-Tsuipita-TC", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", serif;
+  --about-prose-font: var(--page-about-prose-font);
 }
 
 /* about 独立版心：吃满站点主栏（body 内宽 ≈ 80rem - 两侧 padding），
@@ -31,24 +31,22 @@
 .page-about .prose > .max-w-prose {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: var(--page-about-layout-gap);
   text-align: left;
 }
 
 /* 桌面端：左文吃剩余宽度；右栏固定图轨，图随栏变大 */
 @media (min-width: 1024px) {
   .page-about .prose > .max-w-prose {
-    grid-template-columns: minmax(0, 1fr) 22rem;
-    column-gap: 3.5rem;
-    row-gap: 3rem;
+    grid-template-columns: minmax(0, 1fr) var(--page-about-desktop-sidebar-width);
+    column-gap: var(--page-about-desktop-column-gap);
+    row-gap: var(--page-about-layout-gap);
     align-items: start;
   }
 
   /* 图在 section，标题在 header；上移右栏，使图顶与花体标题顶齐平 */
   .page-about .about-sidebar-right {
-    margin-top: calc(
-      -1 * (clamp(2.6rem, 6.5vw, 4rem) * 1.05 + 0.45rem + 2rem)
-    );
+    margin-top: var(--page-about-sidebar-title-offset);
   }
 }
 
@@ -56,7 +54,7 @@
 .about-content-left {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: var(--page-about-content-gap);
   min-width: 0;
 }
 
@@ -72,10 +70,10 @@
   padding-left: 1.5rem;
   border-left: 4px solid rgb(var(--color-primary-500));
   font-family: var(--about-prose-font) !important;
-  font-size: clamp(1.05rem, 1.15vw, 1.18rem) !important;
+  font-size: var(--page-about-quote-font-size) !important;
   font-style: italic;
   font-weight: 400 !important;
-  line-height: 1.85 !important;
+  line-height: var(--page-about-quote-line-height) !important;
   letter-spacing: 0.02em !important;
   color: rgb(var(--color-neutral-600));
 }
@@ -92,18 +90,18 @@
   font-family: var(--about-prose-font) !important;
   font-weight: 400 !important;
   letter-spacing: 0.03em !important;
-  line-height: 1.45 !important;
+  line-height: var(--page-about-heading-line-height) !important;
 }
 
 .page-about .about-content-left > h2 {
   margin-block: 0.1rem 0.45rem !important;
   padding-bottom: 0.35rem;
-  font-size: clamp(1.55rem, 2.1vw, 1.95rem) !important;
+  font-size: var(--page-about-h2-font-size) !important;
 }
 
 .page-about .about-content-left > h3 {
   margin-block: 0.85rem 0.35rem !important;
-  font-size: clamp(1.28rem, 1.6vw, 1.5rem) !important;
+  font-size: var(--page-about-h3-font-size) !important;
 }
 
 .dark .page-about .about-content-left > :where(h1, h2, h3, h4) {
@@ -111,12 +109,12 @@
 }
 
 .page-about .about-content-left > p {
-  margin-block: 0.4rem;
+  margin-block: var(--page-about-paragraph-gap);
   color: rgb(var(--color-neutral-700));
   font-family: var(--about-prose-font) !important;
-  font-size: clamp(1.24rem, 1.45vw, 1.42rem) !important;
+  font-size: var(--page-about-body-font-size) !important;
   font-weight: 400 !important;
-  line-height: 1.65 !important;
+  line-height: var(--page-about-body-line-height) !important;
   letter-spacing: 0.03em !important;
 }
 
@@ -160,7 +158,7 @@
 /* 个人照片：圆角 + 轻微倾斜贴在同一层，避免 overflow:visible 把圆角裁掉 */
 .about-sidebar-right .about-profile-image {
   width: 100%;
-  max-width: 28rem;
+  max-width: var(--page-about-sidebar-image-max-width);
   margin: 0;
   display: block;
   overflow: visible;
@@ -185,12 +183,12 @@
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: var(--page-about-image-radius);
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  transform: rotate(3deg);
+  transform: rotate(var(--page-about-image-rotation));
   transform-origin: center center;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform var(--page-about-image-transition), box-shadow var(--page-about-image-transition);
   cursor: default;
 }
 
@@ -207,12 +205,12 @@
 .about-sidebar-right .about-profile-play picture {
   display: block;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: var(--page-about-image-radius);
   overflow: hidden;
-  transform: rotate(3deg);
+  transform: rotate(var(--page-about-image-rotation));
   transform-origin: center center;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform var(--page-about-image-transition), box-shadow var(--page-about-image-transition);
 }
 
 .about-sidebar-right .about-profile-image picture img,
@@ -230,7 +228,7 @@
 .about-sidebar-right .about-profile-image.is-playing img,
 .about-sidebar-right .about-profile-image.is-playing .about-profile-play picture,
 .about-sidebar-right .about-profile-image.is-playing .about-profile-play img {
-  transform: rotate(0deg) translateY(-4px);
+  transform: rotate(0deg) translateY(var(--page-about-image-hover-offset));
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
 }
 

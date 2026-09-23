@@ -1,26 +1,12 @@
-/* 随记页手写体：常用字首包 + 粗切片，由 jason-handwriting1/result.css 提供 */
+/* 随记页手写体：常用字首包 + 粗切片，由 jason-handwriting/result.css 提供 */
 
 .page-ideas {
-  font-family:
-    "JasonHandwriting1",
-    "LXGW WenKai Screen",
-    "LXGW WenKai",
-    "STKaiti",
-    "KaiTi",
-    var(--reading-font-serif),
-    serif !important;
-  line-height: 1.8 !important;
+  font-family: var(--page-ideas-font-family) !important;
+  line-height: var(--page-ideas-line-height) !important;
 }
 
 .page-ideas article > header h1 {
-  font-family:
-    "JasonHandwriting1",
-    "LXGW WenKai Screen",
-    "LXGW WenKai",
-    "STKaiti",
-    "KaiTi",
-    var(--reading-font-heading),
-    serif !important;
+  font-family: var(--page-ideas-heading-font-family) !important;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -32,14 +18,7 @@
 .page-ideas *,
 .page-ideas .prose *,
 .page-ideas article > section * {
-  font-family:
-    "JasonHandwriting1",
-    "LXGW WenKai Screen",
-    "LXGW WenKai",
-    "STKaiti",
-    "KaiTi",
-    var(--reading-font-serif),
-    serif !important;
+  font-family: var(--page-ideas-font-family) !important;
 }
 
 /* checkbox 列表样式微调 */
@@ -50,7 +29,7 @@
 
 .page-ideas .prose ul li {
   position: relative;
-  margin-bottom: 0.75em;
+  margin-bottom: var(--page-ideas-list-item-gap);
 }
 
 /* 已完成的待办项添加删除线 - 匹配 [x] 标记 */
@@ -95,20 +74,18 @@
 
 /* 微调字体大小 - 手写体需要更大的字号以保持可读性 */
 .page-ideas .prose {
-  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
+  font-size: var(--page-ideas-body-font-size);
 }
 
 /* 标题样式 */
 .page-ideas .prose h2 {
-  font-size: clamp(1.35rem, 2.2vw, 1.55rem);
+  font-size: var(--page-ideas-h2-font-size);
   font-weight: 600;
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin: var(--page-ideas-h2-margin);
 }
 
 .page-ideas .prose h3 {
-  font-size: clamp(1.18rem, 1.95vw, 1.32rem);
+  font-size: var(--page-ideas-h3-font-size);
   font-weight: 500;
-  margin-top: 1.5em;
-  margin-bottom: 0.75em;
+  margin: var(--page-ideas-h3-margin);
 }

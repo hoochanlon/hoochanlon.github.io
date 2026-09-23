@@ -5,33 +5,33 @@
  */
 
 .home-page {
-  max-width: min(53rem, calc(100vw - 2rem));
-  margin-block: 0.15rem 0.5rem;
+  max-width: var(--page-home-content-max-width);
+  margin-block: var(--page-home-content-margin-block);
 }
 
 /* 欢迎区只通过字号、字重和色阶建立层级，避免装饰效果盖过正文 */
 .home-page__greeting {
-  margin: 0 0 0.35rem;
+  margin: var(--page-home-heading-margin);
   color: rgb(var(--color-neutral-800));
-  font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif;
-  font-size: clamp(3.1rem, 8vw, 4.6rem);
+  font-family: var(--page-home-heading-font-family);
+  font-size: var(--page-home-heading-font-size);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.18;
+  letter-spacing: var(--page-home-heading-letter-spacing);
+  line-height: var(--page-home-heading-line-height);
   text-wrap: balance;
 }
 
 .home-page__body {
   color: rgb(var(--color-neutral-700));
-  font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif;
-  font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+  font-family: var(--page-home-heading-font-family);
+  font-size: var(--page-home-body-font-size);
   font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1.55;
+  letter-spacing: var(--page-home-body-letter-spacing);
+  line-height: var(--page-home-body-line-height);
 }
 
 .home-page__body p {
-  margin: 0 0 0.28rem !important;
+  margin: 0 0 var(--page-home-paragraph-gap) !important;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -94,8 +94,8 @@ html[data-home-layout="profile"] .home-layout__pane[data-home-layout-pane="page"
 
 .home-layout-switcher {
   position: fixed;
-  inset-inline-end: 1rem;
-  inset-block-end: 1rem;
+  inset-inline-end: var(--page-home-switcher-inline-offset);
+  inset-block-end: var(--page-home-switcher-block-offset);
   z-index: 40;
   display: none;
   gap: 0.45rem;
@@ -213,8 +213,8 @@ html[data-home-layout] .home-layout-switcher {
 
 @media (max-width: 1023px) {
   .home-layout-switcher {
-    inset-inline-end: 0.75rem;
-    inset-block-end: 4.4rem;
+    inset-inline-end: var(--page-home-switcher-mobile-inline-offset);
+    inset-block-end: var(--page-home-switcher-mobile-block-offset);
     flex-direction: column;
   }
 }

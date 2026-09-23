@@ -1,0 +1,68 @@
+:root {
+  /* 首页：profile 简介 */
+  --page-home-intro-max-width: min(42rem, calc(100vw - 2rem));
+  --page-home-intro-margin-top: 0.85rem;
+  --page-home-intro-font-family: "YShiWritten", "Parisienne", "Liu Jian Mao Cao", "Long Cang", "Segoe Script", "Apple Chancery", cursive;
+  --page-home-intro-font-size: clamp(1.45rem, 2.2vw, 2.05rem);
+  --page-home-intro-line-height: 1.55;
+  --page-home-intro-letter-spacing: 0.055em;
+
+  /* 首页：page 欢迎区与布局切换器 */
+  --page-home-content-max-width: min(53rem, calc(100vw - 2rem));
+  --page-home-content-margin-block: 0.15rem 0.5rem;
+  --page-home-content-margin-block-start: 0.15rem;
+  --page-home-heading-font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif;
+  --page-home-heading-font-size: clamp(3.1rem, 8vw, 4.6rem);
+  --page-home-heading-margin: 0 0 0.35rem;
+  --page-home-heading-line-height: 1.18;
+  --page-home-heading-letter-spacing: 0.04em;
+  --page-home-body-font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+  --page-home-body-line-height: 1.55;
+  --page-home-body-letter-spacing: 0.02em;
+  --page-home-paragraph-gap: 0.28rem;
+  --page-home-switcher-inline-offset: 1rem;
+  --page-home-switcher-block-offset: 1rem;
+  --page-home-switcher-mobile-inline-offset: 0.75rem;
+  --page-home-switcher-mobile-block-offset: 4.4rem;
+
+  /* 关于页：版心、正文层级与图片效果 */
+  --page-about-prose-font: "ToneOZ-Tsuipita-TC", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", serif;
+  --page-about-layout-gap: 3rem;
+  --page-about-desktop-sidebar-width: 22rem;
+  --page-about-desktop-column-gap: 3.5rem;
+  --page-about-content-gap: 0.7rem;
+  --page-about-paragraph-gap: 0.4rem;
+  --page-about-sidebar-title-offset: calc(-1 * (clamp(2.6rem, 6.5vw, 4rem) * 1.05 + 0.45rem + 2rem));
+  --page-about-quote-font-size: clamp(1.05rem, 1.15vw, 1.18rem);
+  --page-about-quote-line-height: 1.85;
+  --page-about-heading-line-height: 1.45;
+  --page-about-h2-font-size: clamp(1.55rem, 2.1vw, 1.95rem);
+  --page-about-h3-font-size: clamp(1.28rem, 1.6vw, 1.5rem);
+  --page-about-body-font-size: clamp(1.12rem, 1.32vw, 1.28rem);
+  --page-about-body-line-height: 1.65;
+  --page-about-sidebar-image-max-width: 28rem;
+  --page-about-image-radius: 1rem;
+  --page-about-image-rotation: 3deg;
+  --page-about-image-hover-offset: -4px;
+  --page-about-image-transition: 0.35s ease;
+  --page-about-identity-gap: 0.28rem;
+  --page-about-identity-name-font-family: "平方仿毛体草书 常规", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", serif;
+  --page-about-identity-handle-font-family: "Parisienne", cursive;
+  --page-about-identity-role-font-family: "FontQu Smile 常规", "FontQu Smile", "Songti SC", serif;
+  --page-about-identity-name-font-size: 2.9rem;
+  --page-about-identity-handle-font-size: 1.55rem;
+  --page-about-identity-role-font-size: 1.75rem;
+  --page-about-identity-handle-hover-offset: -2px;
+  --page-about-identity-role-margin-top: 0.12rem;
+
+  /* 想法页：手写体需要较宽松的行距与段落层级 */
+  --page-ideas-font-family: "JasonHandwriting1", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", var(--reading-font-serif), serif;
+  --page-ideas-heading-font-family: "JasonHandwriting1", "LXGW WenKai Screen", "LXGW WenKai", "STKaiti", "KaiTi", var(--reading-font-heading), serif;
+  --page-ideas-line-height: 1.8;
+  --page-ideas-body-font-size: clamp(1.05rem, 1.8vw, 1.15rem);
+  --page-ideas-h2-font-size: clamp(1.35rem, 2.2vw, 1.55rem);
+  --page-ideas-h3-font-size: clamp(1.18rem, 1.95vw, 1.32rem);
+  --page-ideas-h2-margin: 2em 0 1em;
+  --page-ideas-h3-margin: 1.5em 0 0.75em;
+  --page-ideas-list-item-gap: 0.75em;
+}
