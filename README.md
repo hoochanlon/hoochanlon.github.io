@@ -1,6 +1,6 @@
 # hoochanlon.github.io
 
- 基于 hugo 框架与 cango主题构建的 gitHub pages 个人博客：https://hoochanlon.github.io
+ 基于 hugo 框架与 cango主题构建的 github pages 个人博客：https://hoochanlon.github.io
 
 <p align="center">
   <img width="710" alt="blog" src="https://cdn.jsdelivr.net/gh/hoochanlon/hoochanlon.github.io@main/static/design/blog.png">
