@@ -22,6 +22,18 @@ Thumbs.db
 *.swp
 *~
 
+
+# python 缓存
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
+*.pyzw
+*.pyz
+
 # --- 中文完整版字体 ---
 *.ttf
 
