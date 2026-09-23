@@ -24,7 +24,7 @@
 内容在 GitHub，域名过期不影响 `github.io` 访问。  
 Pages 里若还挂着旧域就 Remove；DNS 记录可顺手删掉。外链仍指向旧域会失效，属正常。
 
-## 本地 / 部署
+## 部署
 
 ```bash
 hugo server -D           # 需 Hugo Extended
@@ -59,9 +59,12 @@ pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 
 按钮写 **Disable** = 当前已开；写 **Enable** = 当前已关。旧 PR 需手动 Close。
 
-## todo
+## 字体加载
 
-token 消耗预计17块钱。（字体：FontQuSmile、晓声通秋茄）
+即使对中文分包也无法做到秒开效果，这是一个非常普遍的技术现象。只能针对性的做常用、专用文字的子集化，并进一步分包。
 
-* [ ] 首页、关于页字体加载过慢的问题
-* [ ] 目标：达到霞鸢文楷的秒加载的效果
+* 使用 font-display 属性
+* 预加载字体（Preload）
+* Web Font Loader (JS 方案)
+
+本就充满着妥协，回过头来发现：设计本就是一场妥协的艺术。

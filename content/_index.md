@@ -1,5 +1,5 @@
 ---
-title: "朋友，你好。"
+title: "朋友，你好"
 description: "我的个人博客"
 profileIntro: "记录人文社科分析和生活日常的数字花园"
 ---

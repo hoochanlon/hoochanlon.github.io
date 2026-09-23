@@ -22,6 +22,9 @@ Thumbs.db
 *.swp
 *~
 
+# --- 中文完整版字体 ---
+*.ttf
+
 # --- 日志 ---
 *.log
 npm-debug.log*
