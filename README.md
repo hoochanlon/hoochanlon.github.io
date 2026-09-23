@@ -68,3 +68,12 @@ pnpm optimize-images     # 压 content/static/assets 大图（可先 :dry）
 * Web Font Loader (JS 方案)
 
 本就充满着妥协，回过头来发现：设计本就是一场妥协的艺术。
+
+## git
+
+强制覆盖本地代码，与git远程仓库保持一致。
+
+```shell
+git fetch --all && git reset --hard origin/main && git pull
+```
+
