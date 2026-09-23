@@ -52,7 +52,7 @@ fingerprintAlgorithm = "sha256"
   umamiShareURL = "https://cloud.umami.is/analytics/us/share/29fuPWtjBtq9fbvm"
 
 [homepage]
-  layout = "page" # valid options: page, profile, custom
+  layout = "custom" # valid options: page, profile, custom
   defaultView = "page" # 仅 layout=custom 生效：首次进入展示 page；右下角按钮可切回 profile
   showRecent = false
   recentLimit = 10
