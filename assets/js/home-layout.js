@@ -2,8 +2,9 @@
   const root = document.documentElement;
   const storageKey = "home-layout";
   const allowed = new Set(["page", "profile"]);
-  const container = document.querySelector("[data-home-layout]");
+  const container = document.querySelector(".home-layout[data-home-layout]");
   const switcher = document.querySelector("[data-home-layout-switcher]");
+  const profileFontHref = container && container.getAttribute("data-home-profile-font");
   const defaultLayout = (
     (container && container.getAttribute("data-default-layout")) ||
     (switcher && switcher.getAttribute("data-default-layout")) ||
@@ -39,8 +40,18 @@
     });
   };
 
+  const ensureProfileFont = () => {
+    if (!profileFontHref || document.querySelector("[data-home-profile-font-stylesheet]")) return;
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = profileFontHref;
+    stylesheet.dataset.homeProfileFontStylesheet = "";
+    document.head.append(stylesheet);
+  };
+
   const applyLayout = (layout, persist = true) => {
     const next = normalize(layout);
+    if (next === "profile") ensureProfileFont();
     root.setAttribute("data-home-layout", next);
     if (container) {
       container.querySelectorAll("[data-home-layout-pane]").forEach((pane) => {
