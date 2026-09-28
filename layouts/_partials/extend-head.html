@@ -85,7 +85,7 @@
 {{ end }}
 
 {{/* 随记页手写体：单文件完整版 preload，秒开体验，缺字回落到霞鹜 */}}
-{{ if and .File (eq .File.Path "ideas.md") }}
+{{ if and .File (or (eq .File.Path "ideas.md") (eq .File.Path "idea.md")) }}
 <link
   rel="preload"
   href="{{ "fonts/jason-handwriting/ideas-full.woff2" | relURL }}"
