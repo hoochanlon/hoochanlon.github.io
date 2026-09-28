@@ -32,7 +32,7 @@
 
 [[main]]
   name = "随记"
-  pageRef = "ideas"
+  pageRef = "idea"
   weight = 35
 
 [[main]]
