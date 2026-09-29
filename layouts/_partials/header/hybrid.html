@@ -94,6 +94,7 @@
                     <a
                       href="{{ .URL }}"
                       onclick="close_menu()"
+                      {{ if and .Params.icon (not (.Params.showName | default true)) }}class="no-underline"{{ end }}
                       {{ with .Params.rel }}rel="{{ . }}"{{ end }}
                       {{ with .Params.target }}target="{{ . }}"{{ end }}
                       >{{ with .Params.icon }}
@@ -198,6 +199,7 @@
               {{ else }}
                 <a
                   href="{{ .URL }}"
+                  {{ if and .Params.icon (not (.Params.showName | default true)) }}class="no-underline"{{ end }}
                   {{ with .Params.rel }}rel="{{ . }}"{{ end }}
                   {{ with .Params.target }}target="{{ . }}"{{ end }}
                   >{{ with .Params.icon }}

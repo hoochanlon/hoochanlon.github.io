@@ -36,6 +36,16 @@
   weight = 35
 
 [[main]]
+  identifier = "life-in-china"
+  url = "https://hoochanlon.github.io/life-in-china/"
+  title = "生活在中国"
+  weight = 98
+  [main.params]
+    icon = "notebook"
+    showName = false
+    target = "_blank"
+
+[[main]]
   identifier = "search"
   weight = 99
   [main.params]
